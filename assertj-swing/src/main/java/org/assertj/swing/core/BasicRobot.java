@@ -52,13 +52,7 @@ import static org.assertj.swing.util.Modifiers.updateModifierWithKeyCode;
 import static org.assertj.swing.util.TimeoutWatch.startWatchWithTimeoutOf;
 
 import java.applet.Applet;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.Window;
+import java.awt.*;
 import java.awt.event.InvocationEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
@@ -88,6 +82,7 @@ import org.assertj.swing.input.InputState;
 import org.assertj.swing.lock.ScreenLock;
 import org.assertj.swing.monitor.WindowMonitor;
 import org.assertj.swing.util.Pair;
+import org.assertj.swing.util.RobotFactory;
 import org.assertj.swing.util.TimeoutWatch;
 import org.assertj.swing.util.ToolkitProvider;
 
@@ -192,6 +187,11 @@ public class BasicRobot implements Robot {
   @RunsInEDT
   @Override
   public void showWindow(@Nonnull Window w) {
+    try {
+      new java.awt.Robot(RobotFactory.DEFAULT_SCREEN_DEVICE).mouseMove(RobotFactory.DEFAULT_WINDOW_LOCATION.x, RobotFactory.DEFAULT_WINDOW_LOCATION.y);
+    } catch (AWTException e) {
+      throw new RuntimeException(e);
+    }
     showWindow(w, null, true);
   }
 
@@ -222,7 +222,7 @@ public class BasicRobot implements Robot {
   @RunsInCurrentThread
   private void packAndEnsureSafePosition(@Nonnull Window w) {
     w.pack();
-    w.setLocation(100, 100);
+    w.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
   }
 
   @RunsInEDT
