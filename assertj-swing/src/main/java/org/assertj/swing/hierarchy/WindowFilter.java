@@ -101,7 +101,10 @@ class WindowFilter {
       return;
     }
     doFilter(c, ignore);
-    implicitlyIgnored.remove(c);
+    // A window that is ignored must stay implicitly ignored, otherwise disposed windows that are made diplayable again are not recognized.
+    if (!ignore) {
+      implicitlyIgnored.remove(c);
+    }
     if (!(c instanceof Window)) {
       return;
     }
