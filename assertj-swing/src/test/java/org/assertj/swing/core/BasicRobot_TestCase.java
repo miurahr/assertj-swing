@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.test.core.EDTSafeTestCase;
 import org.assertj.swing.test.swing.TestWindow;
+import org.assertj.swing.util.RobotFactory;
 import org.junit.After;
 import org.junit.Before;
 
@@ -50,7 +51,7 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
     beforeShowingWindow();
     robot.showWindow(window); // implicitly test 'showWindow(Window)'
     assertThat(isShowing(window)).isTrue();
-    assertThat(locationOnScreen(window)).isEqualTo(new Point(100, 100));
+    assertThat(locationOnScreen(window)).isEqualTo(RobotFactory.DEFAULT_WINDOW_LOCATION);
   }
 
   void beforeShowingWindow() {

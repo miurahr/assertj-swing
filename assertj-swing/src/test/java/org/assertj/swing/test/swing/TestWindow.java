@@ -12,22 +12,19 @@
  */
 package org.assertj.swing.test.swing;
 
+import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.assertj.swing.annotation.RunsInEDT;
+import org.assertj.swing.util.RobotFactory;
+
+import javax.annotation.Nonnull;
+import javax.swing.*;
+import java.awt.*;
+
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.task.FrameShowTask.packAndShow;
 import static org.assertj.swing.test.task.FrameShowTask.waitForShowing;
 import static org.assertj.swing.test.task.WindowDestroyTask.hideAndDispose;
-
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Point;
-
-import javax.annotation.Nonnull;
-import javax.swing.JFrame;
-
-import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.assertj.swing.annotation.RunsInEDT;
 
 /**
  * The base {@code Window} for all GUI tests.
@@ -35,7 +32,6 @@ import org.assertj.swing.annotation.RunsInEDT;
  * @author Alex Ruiz
  */
 public class TestWindow extends JFrame {
-  static final Point DEFAULT_WINDOW_LOCATION = new Point(100, 100);
 
   /**
    * Creates a new {@link TestWindow} and displays it on the screen. This method is executed in the event dispatch
@@ -137,7 +133,7 @@ public class TestWindow extends JFrame {
    */
   @RunsInCurrentThread
   @Nonnull protected static <T extends TestWindow> T display(@Nonnull T w) {
-    w.setLocation(DEFAULT_WINDOW_LOCATION);
+    w.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
     packAndShow(w);
     return w;
   }
@@ -168,7 +164,7 @@ public class TestWindow extends JFrame {
    */
   @RunsInCurrentThread
   protected static void display(@Nonnull TestWindow window, @Nonnull Dimension preferredSize) {
-    window.setLocation(DEFAULT_WINDOW_LOCATION);
+    window.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
     packAndShow(window, preferredSize);
   }
 

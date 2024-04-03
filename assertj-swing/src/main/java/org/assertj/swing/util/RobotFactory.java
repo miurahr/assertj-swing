@@ -12,10 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import java.awt.AWTException;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Robot;
+import java.awt.*;
 
 import javax.annotation.Nonnull;
 
@@ -25,6 +22,36 @@ import javax.annotation.Nonnull;
  * @author Alex Ruiz
  */
 public class RobotFactory {
+
+  private static GraphicsDevice getScreenDevice() {
+    if (OVERRIDDEN_SCREEN_DEVICE != null) {
+      return OVERRIDDEN_SCREEN_DEVICE;
+    } else {
+      return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    }
+  }
+
+  private static GraphicsDevice getOverriddenScreenDevice() {
+    String testDisplay = System.getenv().get("TEST_DISPLAY");
+    if (testDisplay != null) {
+      for (GraphicsDevice screenDevice : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()) {
+        if (screenDevice.getIDstring().equals(testDisplay)) {
+          return screenDevice;
+        }
+      }
+    }
+    return null;
+  }
+
+  public static final GraphicsDevice OVERRIDDEN_SCREEN_DEVICE = getOverriddenScreenDevice();
+  public static final GraphicsDevice DEFAULT_SCREEN_DEVICE = getScreenDevice();
+  public static final Point DEFAULT_WINDOW_LOCATION = getDefaultWindowLocation();
+
+  private static Point getDefaultWindowLocation() {
+    Rectangle screenBounds = DEFAULT_SCREEN_DEVICE.getDefaultConfiguration().getBounds();
+    return new Point(screenBounds.x + 100, screenBounds.y + 100);
+  }
+
   /**
    * Creates a new AWT {@code Robot} object in the coordinate system of the primary screen.
    * 
@@ -34,7 +61,7 @@ public class RobotFactory {
    * @throws SecurityException if {@code createRobot} permission is not granted.
    */
   @Nonnull public Robot newRobotInPrimaryScreen() throws AWTException {
-    return new Robot();
+    return new Robot(DEFAULT_SCREEN_DEVICE);
   }
 
   /**
@@ -49,10 +76,14 @@ public class RobotFactory {
   Robot newRobotInLeftScreen() throws AWTException {
     int lowestX = Integer.MAX_VALUE;
     GraphicsDevice lowestScreen = null;
-    for (GraphicsDevice screen : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()) {
-      if (screen.getDefaultConfiguration().getBounds().x < lowestX) {
-        lowestX = screen.getDefaultConfiguration().getBounds().x;
-        lowestScreen = screen;
+    if (OVERRIDDEN_SCREEN_DEVICE != null) {
+      lowestScreen = OVERRIDDEN_SCREEN_DEVICE;
+    } else {
+      for (GraphicsDevice screen : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()) {
+        if (screen.getDefaultConfiguration().getBounds().x < lowestX) {
+          lowestX = screen.getDefaultConfiguration().getBounds().x;
+          lowestScreen = screen;
+        }
       }
     }
     return new Robot(lowestScreen);
