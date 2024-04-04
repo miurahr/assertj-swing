@@ -1,0 +1,11 @@
+[versions]
+junit = "4.13.2"
+assertj = "3.17.1"
+
+[libraries]
+junit4 = {group = "junit", name = "junit", version.ref = "junit"}
+assertj = {group = "org.assertj", name = "assertj", version.ref = "assertj"}
+
+[plugins]
+nexus-publish = {id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0-rc-1"}
+spotbugs = {id = "com.github.spotbugs", version = "6.0.9"}
