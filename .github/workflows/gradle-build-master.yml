@@ -3,7 +3,7 @@ name: Unit Tests and Quality checks
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 
 jobs:
