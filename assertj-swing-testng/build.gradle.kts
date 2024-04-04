@@ -9,13 +9,13 @@ plugins {
 }
 
 dependencies {
-    api("org.testng:testng:6.11")
+    api(libs.testng)
     api(project(":assertj-swing"))
     api("org.easytesting:fest-reflect:1.4.1")
-    compileOnly("com.google.inject:guice:4.0")
-    testImplementation("junit:junit:4.12")
+    compileOnly(libs.guice)
+    testImplementation(libs.junit4)
     testImplementation("org.easytesting:fest-mocks:1.1")
-    testImplementation("com.google.inject:guice:4.0")
+    testImplementation(libs.guice)
 }
 
 description = "AssertJ-Swing - TestNG Extension"

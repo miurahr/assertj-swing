@@ -20,6 +20,11 @@ dependencies {
     testImplementation("nl.jqno.equalsverifier:equalsverifier:2.3.1")
     testImplementation("org.mockito:mockito-core:2.20.1")
     testImplementation(libs.ant.junit)
+    testImplementation(libs.jupiter)
 }
 
 description = "AssertJ-Swing - JUnit Jupiter Extension"
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}
