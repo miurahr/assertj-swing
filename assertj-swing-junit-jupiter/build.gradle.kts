@@ -9,17 +9,17 @@ plugins {
 }
 
 dependencies {
-    api("commons-codec:commons-codec:1.10")
-    api("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    api(libs.commons.codec)
+    api(libs.jupiter)
     api(project(":assertj-swing"))
     api(project(":assertj-swing-junit"))
     api("org.easytesting:fest-reflect:1.4.1")
-    compileOnly("org.apache.ant:ant-junit:1.10.1")
+    compileOnly(libs.ant.junit)
     testImplementation("org.easytesting:fest-test:2.1.0")
     testImplementation("org.easytesting:fest-mocks:1.1")
     testImplementation("nl.jqno.equalsverifier:equalsverifier:2.3.1")
     testImplementation("org.mockito:mockito-core:2.20.1")
-    testImplementation("org.apache.ant:ant-junit:1.10.1")
+    testImplementation(libs.ant.junit)
 }
 
 description = "AssertJ-Swing - JUnit Jupiter Extension"

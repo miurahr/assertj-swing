@@ -9,15 +9,15 @@ plugins {
 }
 
 dependencies {
-    api("commons-codec:commons-codec:1.10")
-    api("junit:junit:4.12")
+    api(libs.commons.codec)
+    api(libs.junit4)
     api(project(":assertj-swing"))
     api("org.easytesting:fest-reflect:1.4.1")
-    compileOnly("org.apache.ant:ant-junit:1.10.1")
+    compileOnly(libs.ant.junit)
     testImplementation("org.easytesting:fest-test:2.1.0")
     testImplementation("org.easytesting:fest-mocks:1.1")
     testImplementation("nl.jqno.equalsverifier:equalsverifier:2.3.1")
-    testImplementation("org.apache.ant:ant-junit:1.10.1")
+    testImplementation(libs.ant.junit)
 }
 
 description = "AssertJ-Swing - JUnit Extension"

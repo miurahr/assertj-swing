@@ -14,7 +14,7 @@ dependencies {
     api("org.easytesting:fest-reflect:1.4.1")
     runtimeOnly("org.easytesting:fest-util:1.2.5")
     testImplementation("org.easytesting:fest-test:2.1.0")
-    testImplementation("junit:junit:4.12")
+    testImplementation(libs.junit4)
     testImplementation("org.mockito:mockito-core:2.20.1")
     testImplementation("com.googlecode.multithreadedtc:multithreadedtc:1.01")
     testImplementation("nl.jqno.equalsverifier:equalsverifier:2.3.1")
