@@ -17,7 +17,7 @@ repositories {
     }
 }
 
-group = "org.assertj"
+group = "org.omegat"
 version = "3.17.2-SNAPSHOT"
 
 java {
