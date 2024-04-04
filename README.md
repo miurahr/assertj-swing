@@ -1,38 +1,44 @@
-Test NG: [![][Maven Central TestNG img]][Maven Central TestNG]
-
-JUnit: [![][Maven Central JUnit img]][Maven Central JUnit]
-
-
+# Asertj-Swing project
 
 This project provides a simple and intuitive API for functional testing of Swing user interfaces, resulting in tests 
-
 that are compact, easy to write, and read like a specification. Tests written using AssertJ Swing are also robust. 
 
 AssertJ Swing simulates actual user gestures at the operating system level, ensuring that the application will behave correctly in 
-
 front of the user. It also provides a reliable mechanism for GUI component lookup that ensures that changes in the GUI's 
-
 layout or look-and-feel will not break your tests.
 
+This project is a fork of https://gitub.com/assertj/assertj-swing , that is a fork of https://github.com/alexruiz/fest-swing-1.x.
+
+## Why forked?
+
+AssertJ project forked the original project because fest-swing project was stopped maintain, and AssertJ project has been 
+seeking a maintainer of assertj-swing project, and stopped maintain from Sep., 2020.
+We got several warnings when using assertj-swing framework because of a lack of support for recent Java versions.
+
+There are several forked projects which have individual improvements and there have not been integrated yet.
+OmegaT project uses assertj-swing-junit for testing GUI parts especially for vldocking library and plan to test OmegaT
+itself in a future.
+
+Because it is important to keep dependencies secure, and catch up new Java versions, we decided to fork it
+and integrate efforts into our repository.
 
 
-This project is a fork of https://github.com/alexruiz/fest-swing-1.x.
+## How to build
+
+The forked version of assrtj-swing uses Gradle for build system. To build the framework, you need to use
+Java SDK 17 to run gradle.
+The framework library will be built with Java SDK 11 and compatible with Java 11 and later.
+
+### compile and test
+
+```bash
+./gradlew build
+```
 
 
+# Original readme notes.
 
-[Maven Central TestNG]:https://maven-badges.herokuapp.com/maven-central/org.assertj/assertj-swing-testng
-
-[Maven Central TestNG img]:https://maven-badges.herokuapp.com/maven-central/org.assertj/assertj-swing-testng/badge.svg
-
-
-
-[Maven Central JUnit]:https://maven-badges.herokuapp.com/maven-central/org.assertj/assertj-swing-junit
-
-[Maven Central JUnit img]:https://maven-badges.herokuapp.com/maven-central/org.assertj/assertj-swing-junit/badge.svg
-
-
-
-# How to release
+## How to release
 
 
 
