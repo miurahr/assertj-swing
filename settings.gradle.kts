@@ -9,7 +9,7 @@ pluginManagement {
     includeBuild("build-logic")
 }
 
-rootProject.name = "assertj-swing-parent-pom"
+rootProject.name = "assertj-swing"
 include(":assertj-swing-testng")
 include(":assertj-swing")
 include(":assertj-swing-junit")
