@@ -15,12 +15,14 @@ package org.assertj.swing.junit.ant;
 import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.HOSTNAME;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.net.UnknownHostException;
 
-import org.fest.mocks.EasyMockTemplate;
+import org.assertj.swing.junit.xml.XmlNode;
 import org.junit.Test;
 
 /**
@@ -31,38 +33,19 @@ import org.junit.Test;
 public class EnvironmentXmlNodeWriter_writeHostName_Test extends EnvironmentXmlNodeWriter_TestCase {
 
   @Test
-  public void should_Write_Host_Name_As_Attribute() {
+  public void should_Write_Host_Name_As_Attribute() throws UnknownHostException {
     final String hostName = "myHost";
-    new EasyMockTemplate(timeStampFormatter, hostNameReader, targetNode) {
-      @Override
-      protected void expectations() throws Exception {
-        expect(hostNameReader.localHostName()).andReturn(hostName);
-        targetNode.addAttribute(name(HOSTNAME).value(hostName));
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeHostName(targetNode)).isSameAs(writer);
-      }
-    }.run();
+    when(hostNameReader.localHostName()).thenReturn(hostName);
+    targetNode.addAttribute(name(HOSTNAME).value(hostName));
+    verify(targetNode).addAttribute(any());
+    assertThat(writer.writeHostName(targetNode)).isSameAs(writer);
   }
 
   @Test
-  public void should_Write_Local_Host_As_Attribute_If_Host_Name_Could_Not_Be_Obtained() {
-    final UnknownHostException e = new UnknownHostException();
-    new EasyMockTemplate(timeStampFormatter, hostNameReader, targetNode) {
-      @Override
-      protected void expectations() throws Exception {
-        expect(hostNameReader.localHostName()).andThrow(e);
-        targetNode.addAttribute(name(HOSTNAME).value("localhost"));
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeHostName(targetNode)).isSameAs(writer);
-      }
-    }.run();
+  public void should_Write_Local_Host_As_Attribute_If_Host_Name_Could_Not_Be_Obtained() throws UnknownHostException {
+    when(hostNameReader.localHostName()).thenThrow(UnknownHostException.class);
+    targetNode.addAttribute(name(HOSTNAME).value("localhost"));
+    verify(targetNode).addAttribute(any());
+    assertThat(writer.writeHostName(targetNode)).isSameAs(writer);
   }
 }

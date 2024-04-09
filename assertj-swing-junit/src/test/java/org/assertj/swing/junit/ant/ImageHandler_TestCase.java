@@ -12,13 +12,12 @@
  */
 package org.assertj.swing.junit.ant;
 
-import static org.easymock.classextension.EasyMock.createMock;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import org.assertj.swing.image.ScreenshotTaker;
 import org.junit.BeforeClass;
+import org.mockito.Mockito;
 
 /**
  * Base test case for <code>{@link ImageHandler}</code>.
@@ -39,10 +38,10 @@ public abstract class ImageHandler_TestCase {
   }
 
   static BufferedImage mockImage() {
-    return createMock(BufferedImage.class);
+    return Mockito.mock(BufferedImage.class);
   }
 
   static ImageDecoder mockImageDecoder() {
-    return createMock(ImageDecoder.class);
+    return Mockito.mock(ImageDecoder.class);
   }
 }

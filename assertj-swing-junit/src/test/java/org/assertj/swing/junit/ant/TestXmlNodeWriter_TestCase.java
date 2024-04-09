@@ -13,13 +13,11 @@
 package org.assertj.swing.junit.ant;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.*;
+
 import junit.framework.TestResult;
 
 import org.assertj.swing.junit.xml.XmlNode;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 
 /**
@@ -40,26 +38,15 @@ public abstract class TestXmlNodeWriter_TestCase {
 
   public void shouldWriteStackTraceAsTextNode() {
     final Exception error = new Exception();
-    final StackTraceFilter filter = createMock(StackTraceFilter.class);
+    final StackTraceFilter filter = mock(StackTraceFilter.class);
     writer = new TestXmlNodeWriter(filter);
-    new EasyMockTemplate(filter, targetNode) {
-      @Override
-      protected void expectations() {
-        expect(filter.filter(error)).andReturn("Hello");
-        targetNode.addText("Hello");
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeStackTrace(targetNode, error)).isSameAs(writer);
-      }
-    }.run();
-
+    when(filter.filter(error)).thenReturn("Hello");
+    verify(targetNode).addText("Hello");
+    assertThat(writer.writeStackTrace(targetNode, error)).isSameAs(writer);
   }
 
   final XmlNode mockXmlNode() {
-    return createMock(XmlNode.class);
+    return mock(XmlNode.class);
   }
 
   static class TestStub implements junit.framework.Test {

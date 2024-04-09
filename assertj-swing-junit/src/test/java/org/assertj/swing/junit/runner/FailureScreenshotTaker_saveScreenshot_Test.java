@@ -14,15 +14,12 @@ package org.assertj.swing.junit.runner;
 
 import static java.io.File.separator;
 import static org.assertj.core.util.Strings.concat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.*;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.assertj.swing.image.ScreenshotTaker;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,40 +36,21 @@ public class FailureScreenshotTaker_saveScreenshot_Test {
 
   @Before
   public void setUp() {
-    screenshotTaker = createMock(ScreenshotTaker.class);
-    imageFolder = createMock(File.class);
+    screenshotTaker = mock(ScreenshotTaker.class);
+    imageFolder = mock(File.class);
     failureScreenshotTaker = new FailureScreenshotTaker(imageFolder, screenshotTaker);
   }
 
   @Test
-  public void should_Save_Screenshot_With_Given_Test_Name_At_Given_Folder() {
-    new EasyMockTemplate(screenshotTaker, imageFolder) {
-      @Override
-      protected void expectations() throws Exception {
-        expect(imageFolder.getCanonicalPath()).andReturn("myPath");
-        screenshotTaker.saveDesktopAsPng(concat("myPath", separator, "testName.png"));
-        expectLastCall().once();
-      }
-
-      @Override
-      protected void codeToTest() {
-        failureScreenshotTaker.saveScreenshot("testName");
-      }
-    }.run();
+  public void should_Save_Screenshot_With_Given_Test_Name_At_Given_Folder() throws IOException {
+    when(imageFolder.getCanonicalPath()).thenReturn("myPath");
+    screenshotTaker.saveDesktopAsPng(concat("myPath", separator, "testName.png"));
+    failureScreenshotTaker.saveScreenshot("testName");
   }
 
   @Test
-  public void should_Not_Rethrow_Exceptions() {
-    new EasyMockTemplate(screenshotTaker, imageFolder) {
-      @Override
-      protected void expectations() throws Exception {
-        expect(imageFolder.getCanonicalPath()).andThrow(new IOException("Thrown on purpose"));
-      }
-
-      @Override
-      protected void codeToTest() {
-        failureScreenshotTaker.saveScreenshot("testName");
-      }
-    }.run();
+  public void should_Not_Rethrow_Exceptions() throws IOException {
+    when(imageFolder.getCanonicalPath()).thenThrow(new IOException("Thrown on purpose"));
+    failureScreenshotTaker.saveScreenshot("testName");
   }
 }

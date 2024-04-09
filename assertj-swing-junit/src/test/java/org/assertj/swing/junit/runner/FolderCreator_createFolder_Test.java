@@ -15,18 +15,17 @@ package org.assertj.swing.junit.runner;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
 import static org.assertj.core.util.Files.newTemporaryFolder;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.easymock.EasyMock;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
- * Tests for <code>{@link FolderCreator#createFolder(File, String)}</code>.
+ * Tests for <code>{@link FolderCreator#createFolder(File, String, boolean)}</code>.
  *
  * @author Alex Ruiz
  */
@@ -66,25 +65,14 @@ public class FolderCreator_createFolder_Test {
   }
 
   @Test
-  public void should_Throw_Exception_In_Case_Of_Error() {
-    final File f = createMock(File.class);
-    final RuntimeException error = new RuntimeException();
-    new EasyMockTemplate(f) {
-      @Override
-      protected void expectations() throws Exception {
-        EasyMock.expect(f.getCanonicalPath()).andThrow(error);
-      }
-
-      @Override
-      protected void codeToTest() {
-        try {
-          creator.createFolder(f, "hello", true);
-          fail("expecting exception");
-        } catch (RuntimeException e) {
-          assertThat(e).hasMessage("Unable to create directory 'hello'");
-          assertThat(e.getCause()).isSameAs(error);
-        }
-      }
-    }.run();
+  public void should_Throw_Exception_In_Case_Of_Error() throws IOException {
+    final File f = Mockito.mock(File.class);
+    when(f.getCanonicalPath()).thenThrow(RuntimeException.class);
+    try {
+      creator.createFolder(f, "hello", true);
+      fail("expecting exception");
+    } catch (RuntimeException e) {
+      assertThat(e).hasMessage("Unable to create directory 'hello'");
+    }
   }
 }

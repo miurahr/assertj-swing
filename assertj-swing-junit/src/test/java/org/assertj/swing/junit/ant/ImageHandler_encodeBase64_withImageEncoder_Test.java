@@ -13,12 +13,11 @@
 package org.assertj.swing.junit.ant;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.*;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,22 +33,13 @@ public class ImageHandler_encodeBase64_withImageEncoder_Test extends ImageHandle
 
   @Before
   public void setUp() {
-    encoder = createMock(ImageEncoder.class);
+    encoder = mock(ImageEncoder.class);
     image = mockImage();
   }
 
   @Test
-  public void should_Not_Rethrow_Error() {
-    new EasyMockTemplate(encoder) {
-      @Override
-      protected void expectations() throws Throwable {
-        expect(encoder.encodeBase64(image)).andThrow(thrownOnPurpose());
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(ImageHandler.encodeBase64(image, encoder)).isNull();
-      }
-    }.run();
+  public void should_Not_Rethrow_Error() throws IOException {
+     doThrow(RuntimeException.class).when(encoder).encodeBase64(image);
+     assertThat(ImageHandler.encodeBase64(image, encoder)).isNull();
   }
 }

@@ -14,16 +14,18 @@ package org.assertj.swing.junit.ant;
 
 import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.TIMESTAMP;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.EasyMock.reportMatcher;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.assertj.swing.junit.xml.XmlAttribute;
-import org.easymock.IArgumentMatcher;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Test;
+
+import javax.xml.crypto.Data;
 
 /**
  * Test for <code>{@link EnvironmentXmlNodeWriter#writeTimestamp(org.assertj.swing.junit.xml.XmlNode)}</code>.
@@ -39,44 +41,24 @@ public class EnvironmentXmlNodeWriter_writeTimestamp_Test extends EnvironmentXml
   void onSetUp() {
     date = new Date();
     formatted = "2009-06-13T15:06:10";
-    reportMatcher(new BeforeOrEqualDateMatcher(date));
   }
 
   @Test
   public void shouldWriteFormattedCurrentDateAsAttribute() {
-    new EasyMockTemplate(timeStampFormatter, hostNameReader, targetNode) {
-      @Override
-      protected void expectations() {
-        expect(timeStampFormatter.format(date)).andReturn(formatted);
-        targetNode.addAttribute(XmlAttribute.name(TIMESTAMP).value(formatted));
-        expectLastCall().once();
+    when(timeStampFormatter.format(date)).thenReturn(formatted);
+    targetNode.addAttribute(XmlAttribute.name(TIMESTAMP).value(formatted));
+    verify(targetNode).addAttribute(argThat(xmlAttribute -> {
+      if (TIMESTAMP.equals(xmlAttribute.name())) {
+        String value = xmlAttribute.value();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
+        try {
+          Date other = sdf.parse(value);
+          return date.after(other) || date.equals(other);
+        } catch (ParseException ignored) {
+        }
       }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(writer.writeTimestamp(targetNode)).isSameAs(writer);
-      }
-    }.run();
-  }
-
-  private static class BeforeOrEqualDateMatcher implements IArgumentMatcher {
-    private final Date date;
-
-    BeforeOrEqualDateMatcher(Date date) {
-      this.date = date;
-    }
-
-    @Override
-    public boolean matches(Object argument) {
-      if (!(argument instanceof Date))
-        return false;
-      Date other = (Date) argument;
-      return date.before(other) || date.equals(other);
-    }
-
-    @Override
-    public void appendTo(StringBuffer buffer) {
-      buffer.append(date);
-    }
+      return false;
+    }));
+    assertThat(writer.writeTimestamp(targetNode)).isSameAs(writer);
   }
 }

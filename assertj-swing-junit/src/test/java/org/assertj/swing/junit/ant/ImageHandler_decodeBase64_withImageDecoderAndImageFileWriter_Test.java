@@ -13,14 +13,12 @@
 package org.assertj.swing.junit.ant;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.*;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import org.assertj.swing.image.ImageFileWriter;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,24 +42,14 @@ public class ImageHandler_decodeBase64_withImageDecoderAndImageFileWriter_Test e
     encoded = "Hello";
     decoder = mockImageDecoder();
     image = mockImage();
-    writer = createMock(ImageFileWriter.class);
+    writer = mock(ImageFileWriter.class);
     path = "somePath";
   }
 
   @Test
-  public void should_Not_Rethrow_Error() {
-    new EasyMockTemplate(decoder, writer) {
-      @Override
-      protected void expectations() throws Throwable {
-        expect(decoder.decodeBase64(encoded)).andReturn(image);
-        writer.writeAsPng(image, path);
-        expectLastCall().andThrow(thrownOnPurpose());
-      }
-
-      @Override
-      protected void codeToTest() {
-        assertThat(ImageHandler.decodeBase64AndSaveAsPng(encoded, path, decoder, writer)).isEmpty();
-      }
-    }.run();
+  public void should_Not_Rethrow_Error() throws IOException {
+    when(decoder.decodeBase64(encoded)).thenReturn(image);
+    doThrow(RuntimeException.class).when(writer).writeAsPng(image, path);
+    assertThat(ImageHandler.decodeBase64AndSaveAsPng(encoded, path, decoder, writer)).isEmpty();
   }
 }

@@ -14,15 +14,14 @@ package org.assertj.swing.junit.ant;
 
 import static java.lang.System.lineSeparator;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.classextension.EasyMock.createMock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.assertj.swing.junit.xml.XmlDocument;
 import org.assertj.swing.junit.xml.XmlNode;
-import org.fest.mocks.EasyMockTemplate;
 import org.junit.Test;
 
 /**
@@ -36,28 +35,19 @@ public class XmlOutputWriter_write_Test extends XmlOutputWriter_TestCase {
   public void should_Write_XML_To_OutputStream() throws Exception {
     MyOutputStream out = new MyOutputStream();
     writer.write(xml(), out);
-    String actual = new String(out.toByteArray());
+    String actual = out.toString();
     assertThat(actual).isEqualTo(expectedXml());
     assertThat(out.closed).isTrue();
   }
 
   @Test
-  public void should_Not_Close_OutputStream_When_Using_SystemOut_Or_SystemErr() {
-    final StandardOutputStreams streams = createMock(StandardOutputStreams.class);
+  public void should_Not_Close_OutputStream_When_Using_SystemOut_Or_SystemErr() throws Exception {
+    final StandardOutputStreams streams = mock(StandardOutputStreams.class);
     writer = new XmlOutputWriter(streams);
     final MyOutputStream out = new MyOutputStream();
-    new EasyMockTemplate(streams) {
-      @Override
-      protected void expectations() {
-        expect(streams.isStandardOutOrErr(out)).andReturn(true);
-      }
-
-      @Override
-      protected void codeToTest() throws Exception {
-        writer.write(xml(), out);
-      }
-    }.run();
-    String actual = new String(out.toByteArray());
+    when(streams.isStandardOutOrErr(out)).thenReturn(true);
+    writer.write(xml(), out);
+    String actual = out.toString();
     assertThat(actual).isEqualTo(expectedXml());
     assertThat(out.closed).isFalse();
   }
@@ -69,11 +59,10 @@ public class XmlOutputWriter_write_Test extends XmlOutputWriter_TestCase {
   }
 
   private String expectedXml() {
-    StringBuilder expected = new StringBuilder();
-    expected.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>").append(lineSeparator()).append("<root>")
-            .append(lineSeparator()).append("  <child />").append(lineSeparator()).append("</root>")
-            .append(lineSeparator());
-    return expected.toString();
+      String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" + lineSeparator() + "<root>" +
+              lineSeparator() + "  <child />" + lineSeparator() + "</root>" +
+              lineSeparator();
+    return expected;
   }
 
   private static class MyOutputStream extends ByteArrayOutputStream {

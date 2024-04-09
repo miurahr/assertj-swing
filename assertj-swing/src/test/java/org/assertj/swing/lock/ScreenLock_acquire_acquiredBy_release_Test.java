@@ -13,7 +13,6 @@
 package org.assertj.swing.lock;
 
 import static edu.umd.cs.mtc.TestFramework.runManyTimes;
-import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
@@ -39,8 +38,8 @@ public class ScreenLock_acquire_acquiredBy_release_Test extends MultithreadedTes
 
   public void thread1() {
     lock.acquire(owner1);
-    assertThat(lock.acquired()).isTrue();
-    assertThat(lock.acquiredBy(owner1)).isTrue();
+    assertTrue(lock.acquired());
+    assertTrue(lock.acquiredBy(owner1));
     waitForTick(2);
     lock.release(owner1);
   }
@@ -52,9 +51,9 @@ public class ScreenLock_acquire_acquiredBy_release_Test extends MultithreadedTes
 
   @Override
   public void finish() {
-    assertThat(lock.acquiredBy(owner2)).isTrue();
+    assertTrue(lock.acquiredBy(owner2));
     lock.release(owner2);
-    assertThat(lock.acquired()).isFalse();
+    assertFalse(lock.acquired());
   }
 
   @Test
