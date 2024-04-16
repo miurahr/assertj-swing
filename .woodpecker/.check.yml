@@ -4,7 +4,7 @@ when:
   - event: tag
     ref: refs/tags/v*
   - event: push
-    branch: [main, releases/*]
+    branch: main
 
 clone:
   git:
