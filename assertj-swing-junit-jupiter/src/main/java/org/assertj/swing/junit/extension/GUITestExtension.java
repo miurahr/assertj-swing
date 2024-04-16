@@ -35,6 +35,7 @@ import static org.assertj.swing.junit.runner.Formatter.testNameFrom;
 public class GUITestExtension implements Extension, InvocationInterceptor {
   private final FailureScreenshotTaker screenshotTaker;
 
+  @SuppressWarnings("unused")
   public GUITestExtension() {
     screenshotTaker = new FailureScreenshotTaker(new ImageFolderCreator().createImageFolder());
   }
@@ -45,11 +46,8 @@ public class GUITestExtension implements Extension, InvocationInterceptor {
   }
 
   @Override
-  public void interceptTestMethod(
-      Invocation<Void> invocation,
-      ReflectiveInvocationContext<Method> invocationContext,
-      ExtensionContext extensionContext)
-      throws Throwable {
+  public void interceptTestMethod(Invocation<Void> invocation, ReflectiveInvocationContext<Method> invocationContext,
+                                  ExtensionContext extensionContext) throws Throwable {
     try {
       invocation.proceed();
     } catch (Throwable t) {
