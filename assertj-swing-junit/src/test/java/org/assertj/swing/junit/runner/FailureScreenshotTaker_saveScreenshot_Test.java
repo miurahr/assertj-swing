@@ -14,7 +14,6 @@ package org.assertj.swing.junit.runner;
 
 import static java.io.File.separator;
 import static org.assertj.core.util.Strings.concat;
-import static org.mockito.Mockito.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +21,8 @@ import java.io.IOException;
 import org.assertj.swing.image.ScreenshotTaker;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 /**
  * Tests for <code>{@link FailureScreenshotTaker}</code>.
@@ -30,27 +31,28 @@ import org.junit.Test;
  */
 public class FailureScreenshotTaker_saveScreenshot_Test {
 
+  @Mock
   private ScreenshotTaker screenshotTaker;
   private File imageFolder;
   private FailureScreenshotTaker failureScreenshotTaker;
 
   @Before
   public void setUp() {
-    screenshotTaker = mock(ScreenshotTaker.class);
-    imageFolder = mock(File.class);
+    screenshotTaker = Mockito.mock(ScreenshotTaker.class);
+    imageFolder = Mockito.mock(File.class);
     failureScreenshotTaker = new FailureScreenshotTaker(imageFolder, screenshotTaker);
   }
 
   @Test
   public void should_Save_Screenshot_With_Given_Test_Name_At_Given_Folder() throws IOException {
-    when(imageFolder.getCanonicalPath()).thenReturn("myPath");
+    Mockito.when(imageFolder.getCanonicalPath()).thenReturn("myPath");
     screenshotTaker.saveDesktopAsPng(concat("myPath", separator, "testName.png"));
     failureScreenshotTaker.saveScreenshot("testName");
   }
 
   @Test
   public void should_Not_Rethrow_Exceptions() throws IOException {
-    when(imageFolder.getCanonicalPath()).thenThrow(new IOException("Thrown on purpose"));
+    Mockito.when(imageFolder.getCanonicalPath()).thenThrow(new IOException("Thrown on purpose"));
     failureScreenshotTaker.saveScreenshot("testName");
   }
 }

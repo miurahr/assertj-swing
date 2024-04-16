@@ -19,6 +19,7 @@ import org.assertj.swing.image.ScreenshotTaker;
 import org.junit.BeforeClass;
 import org.mockito.Mockito;
 
+
 /**
  * Base test case for <code>{@link ImageHandler}</code>.
  * 

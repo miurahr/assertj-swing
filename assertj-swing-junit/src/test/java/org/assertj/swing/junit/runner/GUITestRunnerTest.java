@@ -15,7 +15,10 @@ package org.assertj.swing.junit.runner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
 
+@RunWith(Enclosed.class)
 public class GUITestRunnerTest {
 
   private String javaAwtHeadlessBefore;
