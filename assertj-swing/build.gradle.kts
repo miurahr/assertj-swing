@@ -13,7 +13,6 @@ dependencies {
     testImplementation(libs.junit4)
     testImplementation(libs.mockito)
     testImplementation(libs.equals.verifier)
-    testImplementation(project(":multithreadedtc"))
 }
 
 description = "AssertJ-Swing"
