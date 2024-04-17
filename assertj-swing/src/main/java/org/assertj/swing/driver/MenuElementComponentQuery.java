@@ -17,7 +17,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.MenuElement;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -31,7 +31,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class MenuElementComponentQuery {
   @RunsInEDT
-  static @Nonnull Component componentIn(final @Nonnull MenuElement menuElement) {
+  static @NotNull Component componentIn(final @NotNull MenuElement menuElement) {
     Component result = execute(() -> menuElement.getComponent());
     return checkNotNull(result);
   }

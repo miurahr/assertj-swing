@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JSpinner;
 
 import org.assertj.swing.core.Robot;
@@ -35,7 +35,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JSpinner} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JSpinner} is found.
    */
-  public JSpinnerFixture(@Nonnull Robot robot, @Nullable String spinnerName) {
+  public JSpinnerFixture(@NotNull Robot robot, @Nullable String spinnerName) {
     super(JSpinnerFixture.class, robot, spinnerName, JSpinner.class);
   }
 
@@ -47,12 +47,12 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JSpinnerFixture(@Nonnull Robot robot, @Nonnull JSpinner target) {
+  public JSpinnerFixture(@NotNull Robot robot, @NotNull JSpinner target) {
     super(JSpinnerFixture.class, robot, target);
   }
 
   @Override
-  @Nonnull protected JSpinnerDriver createDriver(@Nonnull Robot robot) {
+  @NotNull protected JSpinnerDriver createDriver(@NotNull Robot robot) {
     return new JSpinnerDriver(robot);
   }
 
@@ -65,7 +65,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    * @throws IllegalStateException if this fixture's {@code JSpinner} is disabled.
    * @throws IllegalStateException if this fixture's {@code JSpinner} is not showing on the screen.
    */
-  @Nonnull public JSpinnerFixture increment(int times) {
+  @NotNull public JSpinnerFixture increment(int times) {
     driver().increment(target(), times);
     return this;
   }
@@ -77,7 +77,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    * @throws IllegalStateException if this fixture's {@code JSpinner} is disabled.
    * @throws IllegalStateException if this fixture's {@code JSpinner} is not showing on the screen.
    */
-  @Nonnull public JSpinnerFixture increment() {
+  @NotNull public JSpinnerFixture increment() {
     driver().increment(target());
     return this;
   }
@@ -91,7 +91,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    * @throws IllegalStateException if this fixture's {@code JSpinner} is disabled.
    * @throws IllegalStateException if this fixture's {@code JSpinner} is not showing on the screen.
    */
-  @Nonnull public JSpinnerFixture decrement(int times) {
+  @NotNull public JSpinnerFixture decrement(int times) {
     driver().decrement(target(), times);
     return this;
   }
@@ -103,7 +103,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    * @throws IllegalStateException if this fixture's {@code JSpinner} is disabled.
    * @throws IllegalStateException if this fixture's {@code JSpinner} is not showing on the screen.
    */
-  @Nonnull public JSpinnerFixture decrement() {
+  @NotNull public JSpinnerFixture decrement() {
     driver().decrement(target());
     return this;
   }
@@ -120,7 +120,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    *           found.
    * @throws org.assertj.swing.exception.UnexpectedException if the entering the text in the {@code JSpinner}'s editor fails.
    */
-  @Nonnull public JSpinnerFixture enterText(@Nonnull String text) {
+  @NotNull public JSpinnerFixture enterText(@NotNull String text) {
     driver().enterText(target(), text);
     return this;
   }
@@ -137,7 +137,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    *           found.
    * @throws org.assertj.swing.exception.UnexpectedException if the entering the text in the {@code JSpinner}'s editor fails.
    */
-  @Nonnull public JSpinnerFixture enterTextAndCommit(String text) {
+  @NotNull public JSpinnerFixture enterTextAndCommit(String text) {
     driver().enterTextAndCommit(target(), text);
     return this;
   }
@@ -151,7 +151,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    * @throws IllegalStateException if this fixture's {@code JSpinner} is not showing on the screen.
    * @throws IllegalArgumentException if the {@code JSpinner} does not support the specified {@code value}.
    */
-  public JSpinnerFixture select(@Nonnull Object value) {
+  public JSpinnerFixture select(@NotNull Object value) {
     driver().selectValue(target(), value);
     return this;
   }
@@ -163,7 +163,7 @@ public class JSpinnerFixture extends AbstractJPopupMenuInvokerFixture<JSpinnerFi
    * @return this fixture.
    * @throws AssertionError if the value of this fixture's {@code JSpinner} is not equal to the given one.
    */
-  @Nonnull public JSpinnerFixture requireValue(@Nonnull Object value) {
+  @NotNull public JSpinnerFixture requireValue(@NotNull Object value) {
     driver().requireValue(target(), value);
     return this;
   }

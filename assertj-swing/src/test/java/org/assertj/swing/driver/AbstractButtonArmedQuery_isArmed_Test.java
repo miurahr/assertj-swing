@@ -19,7 +19,7 @@ import static org.assertj.swing.test.task.AbstractButtonSetArmedTask.setArmed;
 
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JCheckBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -43,7 +43,7 @@ public class AbstractButtonArmedQuery_isArmed_Test extends RobotBasedTestCase {
   private final boolean armed;
 
   @Parameters
-  @Nonnull public static Collection<Object[]> booleans() {
+  @NotNull public static Collection<Object[]> booleans() {
     return newArrayList(BooleanProvider.booleans());
   }
 

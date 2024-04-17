@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.util;
 
-import java.awt.*;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
+import java.awt.*;
 
 /**
  * Factory of AWT {@code Robot}s.
@@ -60,7 +60,7 @@ public class RobotFactory {
    *           thrown when {@code GraphicsEnvironment.isHeadless()} returns {@code true}.
    * @throws SecurityException if {@code createRobot} permission is not granted.
    */
-  @Nonnull public Robot newRobotInPrimaryScreen() throws AWTException {
+  @NotNull public Robot newRobotInPrimaryScreen() throws AWTException {
     return new Robot(DEFAULT_SCREEN_DEVICE);
   }
 
@@ -72,7 +72,8 @@ public class RobotFactory {
    *           thrown when {@code GraphicsEnvironment.isHeadless()} returns {@code true}.
    * @throws SecurityException if {@code createRobot} permission is not granted.
    */
-  @Nonnull public
+  @NotNull
+  public
   Robot newRobotInLeftScreen() throws AWTException {
     int lowestX = Integer.MAX_VALUE;
     GraphicsDevice lowestScreen = null;

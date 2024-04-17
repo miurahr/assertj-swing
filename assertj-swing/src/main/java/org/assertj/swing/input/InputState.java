@@ -30,10 +30,8 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import org.assertj.swing.exception.UnexpectedException;
 import org.assertj.swing.listener.EventDispatchThreadedEventListener;
@@ -48,27 +46,22 @@ import org.assertj.swing.listener.EventDispatchThreadedEventListener;
  * </p>
  */
 // TODO: add a BitSet with the full keyboard key press state
-@ThreadSafe
 public class InputState {
-  @GuardedBy("this")
   private final MouseInfo mouseInfo = new MouseInfo();
 
-  @GuardedBy("this")
   private final DragDropInfo dragDropInfo = new DragDropInfo();
 
-  @GuardedBy("this")
   private int modifiers;
 
-  @GuardedBy("this")
   private long lastEventTime;
 
   private EventNormalizer normalizer;
 
-  public InputState(@Nonnull Toolkit toolkit) {
+  public InputState(@NotNull Toolkit toolkit) {
     long mask = MOUSE_MOTION_EVENT_MASK | MOUSE_EVENT_MASK | KEY_EVENT_MASK;
     AWTEventListener listener = new EventDispatchThreadedEventListener() {
       @Override
-      protected void processEvent(@Nonnull AWTEvent event) {
+      protected void processEvent(@NotNull AWTEvent event) {
         update(event);
       }
     };
@@ -93,7 +86,7 @@ public class InputState {
    * 
    * @param event the event to use to update the internal state.
    */
-  public void update(@Nonnull AWTEvent event) {
+  public void update(@NotNull AWTEvent event) {
     if (event instanceof InputEvent) {
       InputEvent inputEvent = (InputEvent) event;
       if (inputEvent.getWhen() < lastEventTime()) {
@@ -124,7 +117,7 @@ public class InputState {
     }
   }
 
-  @Nullable private Point screenLocation(@Nonnull MouseEvent event) {
+  @Nullable private Point screenLocation(@NotNull MouseEvent event) {
     // childAt and locationOnScreenOf want the tree lock, so be careful not to use any additional locks at the same time
     // to avoid deadlock.
     // Determine the current mouse position in screen coordinates
@@ -141,7 +134,7 @@ public class InputState {
     return null;
   }
 
-  private void lastEventTime(@Nonnull InputEvent event) {
+  private void lastEventTime(@NotNull InputEvent event) {
     lastEventTime = event.getWhen();
   }
 
@@ -195,7 +188,7 @@ public class InputState {
    * @param where the given coordinates.
    * @return the {@code Component} under the given coordinates in the given parent {@code Component}.
    */
-  public static Component childAt(@Nonnull Component parent, @Nonnull Point where) {
+  public static Component childAt(@NotNull Component parent, @NotNull Point where) {
     return getDeepestComponentAt(parent, where.x, where.y);
   }
 

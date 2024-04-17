@@ -17,7 +17,7 @@ import static org.assertj.swing.test.builder.JTextFields.textField;
 
 import java.awt.Container;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JTextField;
 
 import org.assertj.swing.core.Robot;
@@ -58,7 +58,7 @@ public class ExtensionTest extends RobotBasedTestCase {
     }
 
     @Override
-    public JTextFieldFixture createFixture(@Nonnull Robot robot, @Nonnull Container root) {
+    public JTextFieldFixture createFixture(@NotNull Robot robot, @NotNull Container root) {
       return new JTextFieldFixture(robot, textField().createNew());
     }
   }
@@ -69,7 +69,7 @@ public class ExtensionTest extends RobotBasedTestCase {
     }
 
     @Override
-    @Nonnull protected JComponentDriver createDriver(@Nonnull Robot robot) {
+    @NotNull protected JComponentDriver createDriver(@NotNull Robot robot) {
       return new JComponentDriver(robot);
     }
   }

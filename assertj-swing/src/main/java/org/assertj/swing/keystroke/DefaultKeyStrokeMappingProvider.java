@@ -12,13 +12,13 @@
  */
 package org.assertj.swing.keystroke;
 
+import org.jetbrains.annotations.NotNull;
+
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.swing.keystroke.KeyStrokeMappings.defaultMappings;
 
 import java.util.Collection;
 import java.util.List;
-
-import javax.annotation.Nonnull;
 
 /**
  * Default mapping of characters and {@code javax.swing.KeyStroke}s.
@@ -40,7 +40,8 @@ public class DefaultKeyStrokeMappingProvider implements KeyStrokeMappingProvider
    * @return the default mapping of characters and {@code KeyStroke}s
    */
   @Override
-  @Nonnull public Collection<KeyStrokeMapping> keyStrokeMappings() {
+  @NotNull
+  public Collection<KeyStrokeMapping> keyStrokeMappings() {
     return LazyLoadingSingleton.instance;
   }
 

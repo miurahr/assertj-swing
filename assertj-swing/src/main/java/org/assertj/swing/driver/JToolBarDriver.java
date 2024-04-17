@@ -25,8 +25,8 @@ import java.awt.Container;
 import java.awt.Point;
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JToolBar;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -59,7 +59,7 @@ public class JToolBarDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JToolBarDriver(@Nonnull Robot robot) {
+  public JToolBarDriver(@NotNull Robot robot) {
     super(robot);
   }
 
@@ -70,7 +70,7 @@ public class JToolBarDriver extends JComponentDriver {
    * @return {@code true} if the {@code JToolBar} is floating, {@code false} otherwise.
    */
   @RunsInEDT
-  public boolean isFloating(final @Nonnull JToolBar toolBar) {
+  public boolean isFloating(final @NotNull JToolBar toolBar) {
     Boolean result = execute(() -> isJToolBarFloating(toolBar));
     return checkNotNull(result);
   }
@@ -84,7 +84,7 @@ public class JToolBarDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JToolBar} is not floatable.
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code JToolBar} cannot be dragged.
    */
-  public void makeFloat(@Nonnull JToolBar toolBar) {
+  public void makeFloat(@NotNull JToolBar toolBar) {
     Pair<Point, Pair<Window, Point>> floatInfo = floatInfo(toolBar, location());
     Point p = floatInfo.second.second; // ancestor location
     doFloat(toolBar, p.x, p.y, floatInfo);
@@ -102,13 +102,13 @@ public class JToolBarDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code JToolBar} cannot be dragged.
    */
   @RunsInEDT
-  public void floatTo(@Nonnull JToolBar toolBar, int x, int y) {
+  public void floatTo(@NotNull JToolBar toolBar, int x, int y) {
     doFloat(toolBar, x, y, floatInfo(toolBar, location()));
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Point, Pair<Window, Point>> floatInfo(final @Nonnull JToolBar toolBar,
-                                                                     final @Nonnull JToolBarLocation location) {
+  @NotNull private static Pair<Point, Pair<Window, Point>> floatInfo(final @NotNull JToolBar toolBar,
+                                                                     final @NotNull JToolBarLocation location) {
     Pair<Point, Pair<Window, Point>> result = execute(new GuiQuery<Pair<Point, Pair<Window, Point>>>() {
       @Override
       protected Pair<Point, Pair<Window, Point>> executeInEDT() {
@@ -122,7 +122,7 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static void checkFloatable(@Nonnull JToolBar toolBar) {
+  private static void checkFloatable(@NotNull JToolBar toolBar) {
     if (!toolBar.isFloatable()) {
       String msg = String.format("JToolbar <%s> is not floatable", format(toolBar));
       throw new IllegalStateException(msg);
@@ -130,13 +130,13 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Pair<Window, Point> ancestorAndLocation(final @Nonnull JToolBar toolBar) {
+  @NotNull private static Pair<Window, Point> ancestorAndLocation(final @NotNull JToolBar toolBar) {
     Window window = getWindowAncestor(toolBar);
     return Pair.of(window, window.getLocation());
   }
 
   @RunsInEDT
-  private void doFloat(@Nonnull JToolBar toolBar, int x, int y, Pair<Point, Pair<Window, Point>> floatInfo) {
+  private void doFloat(@NotNull JToolBar toolBar, int x, int y, Pair<Point, Pair<Window, Point>> floatInfo) {
     drag(toolBar, checkNotNull(floatInfo.first));
     Pair<Window, Point> locationAndAncestor = floatInfo.second;
     Point ancestorLocation = locationAndAncestor.second;
@@ -145,7 +145,7 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private static void checkFloated(final @Nonnull JToolBar toolBar) {
+  private static void checkFloated(final @NotNull JToolBar toolBar) {
     execute(() -> {
       if (!isJToolBarFloating(toolBar)) {
         throw actionFailure(String.format("Unable to float JToolbar <%s>", format(toolBar)));
@@ -166,7 +166,7 @@ public class JToolBarDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the dock container cannot be found.
    */
   @RunsInEDT
-  public void unfloat(@Nonnull JToolBar toolBar, @Nonnull String constraint) {
+  public void unfloat(@NotNull JToolBar toolBar, @NotNull String constraint) {
     Pair<GenericRange<Point>, Container> unfloatInfo = unfloatInfo(toolBar, constraint, location());
     GenericRange<Point> fromAndTo = unfloatInfo.first;
     drag(toolBar, fromAndTo.from());
@@ -175,9 +175,9 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<GenericRange<Point>, Container> unfloatInfo(final @Nonnull JToolBar toolBar,
-                                                                           final @Nonnull String constraint,
-                                                                           final @Nonnull JToolBarLocation location) {
+  @NotNull private static Pair<GenericRange<Point>, Container> unfloatInfo(final @NotNull JToolBar toolBar,
+                                                                           final @NotNull String constraint,
+                                                                           final @NotNull JToolBarLocation location) {
     Pair<GenericRange<Point>, Container> result = execute(new GuiQuery<Pair<GenericRange<Point>, Container>>() {
       @Override
       protected Pair<GenericRange<Point>, Container> executeInEDT() {
@@ -192,7 +192,7 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private static void validateIsNotFloating(final @Nonnull JToolBar toolBar, final @Nonnull String constraint) {
+  private static void validateIsNotFloating(final @NotNull JToolBar toolBar, final @NotNull String constraint) {
     execute(() -> {
       if (isJToolBarFloating(toolBar)) {
         String msg = String.format("Failed to dock <%s> using constraint ''", format(toolBar), constraint);
@@ -202,7 +202,7 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Container dockFor(final @Nonnull JToolBar toolBar) {
+  @NotNull private static Container dockFor(final @NotNull JToolBar toolBar) {
     try {
       return checkNotNull(field("dockingSource").ofType(Container.class).in(toolBar.getUI()).get());
     } catch (RuntimeException e) {
@@ -218,7 +218,7 @@ public class JToolBarDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JToolBar} is not showing on the screen.
    */
   @RunsInEDT
-  public void unfloat(@Nonnull JToolBar toolBar) {
+  public void unfloat(@NotNull JToolBar toolBar) {
     Window w = windowAncestorOf(toolBar);
     if (w != null) {
       robot.close(w);
@@ -226,14 +226,14 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nullable private static Window windowAncestorOf(final @Nonnull JToolBar toolBar) {
+  @Nullable private static Window windowAncestorOf(final @NotNull JToolBar toolBar) {
     return execute(() -> {
       checkEnabledAndShowing(toolBar);
       return getWindowAncestor(toolBar);
     });
   }
 
-  @Nonnull private JToolBarLocation location() {
+  @NotNull private JToolBarLocation location() {
     return location;
   }
 }

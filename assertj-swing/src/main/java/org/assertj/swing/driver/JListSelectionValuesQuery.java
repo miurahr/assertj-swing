@@ -18,7 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -33,7 +33,7 @@ import org.assertj.swing.edt.GuiQuery;
  */
 final class JListSelectionValuesQuery {
   @RunsInEDT
-  static @Nonnull List<String> selectionValues(final @Nonnull JList<?> list, final @Nonnull JListCellReader cellReader) {
+  static @NotNull List<String> selectionValues(final @NotNull JList<?> list, final @NotNull JListCellReader cellReader) {
     List<String> result = execute(new GuiQuery<List<String>>() {
       @Override
       protected List<String> executeInEDT() {

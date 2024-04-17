@@ -14,10 +14,10 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns the text of a Swing {@code AbstractButton}. This query is executed in the event dispatch thread (EDT).
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class AbstractButtonTextQuery {
   @RunsInEDT
-  static @Nonnull String textOf(final @Nonnull AbstractButton button) {
+  static @NotNull String textOf(final @NotNull AbstractButton button) {
     String result = execute(() -> button.getText());
     return result == null ? "" : result;
   }

@@ -17,7 +17,7 @@ import static org.assertj.swing.data.TableCell.row;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -34,15 +34,15 @@ import org.assertj.swing.util.TextMatcher;
  */
 final class JTableMatchingCellQuery {
   @RunsInEDT
-  static @Nonnull TableCell cellWithValue(final @Nonnull JTable table, final @Nonnull TextMatcher matcher,
-                                          final @Nonnull JTableCellReader cellReader) {
+  static @NotNull TableCell cellWithValue(final @NotNull JTable table, final @NotNull TextMatcher matcher,
+                                          final @NotNull JTableCellReader cellReader) {
     TableCell result = execute(() -> findMatchingCell(table, matcher, cellReader));
     return checkNotNull(result);
   }
 
   @RunsInCurrentThread
-  @Nonnull private static TableCell findMatchingCell(@Nonnull JTable table, @Nonnull TextMatcher matcher,
-                                                     @Nonnull JTableCellReader cellReader) {
+  @NotNull private static TableCell findMatchingCell(@NotNull JTable table, @NotNull TextMatcher matcher,
+                                                     @NotNull JTableCellReader cellReader) {
     int rCount = table.getRowCount();
     int cCount = table.getColumnCount();
     for (int r = 0; r < rCount; r++) {
@@ -57,8 +57,8 @@ final class JTableMatchingCellQuery {
   }
 
   @RunsInCurrentThread
-  private static boolean cellHasValue(@Nonnull JTable table, int row, int column, @Nonnull TextMatcher matcher,
-                                      @Nonnull JTableCellReader cellReader) {
+  private static boolean cellHasValue(@NotNull JTable table, int row, int column, @NotNull TextMatcher matcher,
+                                      @NotNull JTableCellReader cellReader) {
     return matcher.isMatching(cellReader.valueAt(table, row, column));
   }
 

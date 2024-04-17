@@ -19,8 +19,8 @@ import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 import java.awt.Component;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JTable;
 
 import org.assertj.core.util.VisibleForTesting;
@@ -64,13 +64,13 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws NullPointerException if {@code table} is {@code null}.
    * @throws NullPointerException if {@code cell} is {@code null}.
    */
-  protected JTableCellFixture(@Nonnull JTableFixture table, @Nonnull TableCell cell) {
+  protected JTableCellFixture(@NotNull JTableFixture table, @NotNull TableCell cell) {
     this(table, cell, table.target(), table.driver());
   }
 
   @VisibleForTesting
-  JTableCellFixture(@Nonnull JTableFixture table, @Nonnull TableCell cell, @Nonnull JTable target,
-                    @Nonnull JTableDriver driver) {
+  JTableCellFixture(@NotNull JTableFixture table, @NotNull TableCell cell, @NotNull JTable target,
+                    @NotNull JTableDriver driver) {
     this.table = checkNotNull(table);
     this.cell = checkNotNull(cell);
     this.target = target;
@@ -85,7 +85,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws IllegalStateException if this fixture's {@code JTable} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTableCellFixture select() {
+  @NotNull public JTableCellFixture select() {
     table.selectCell(cell());
     return this;
   }
@@ -97,7 +97,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws IllegalStateException if this fixture's {@code JTable} is disabled.
    * @throws IllegalStateException if this fixture's {@code JTable} is not showing on the screen.
    */
-  @Nonnull public JTableCellFixture unselect() {
+  @NotNull public JTableCellFixture unselect() {
     table.unselectCell(cell());
     return this;
   }
@@ -110,7 +110,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws IllegalStateException if this fixture's {@code JTable} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTableCellFixture click() {
+  @NotNull public JTableCellFixture click() {
     table.click(cell(), LEFT_BUTTON);
     return this;
   }
@@ -125,7 +125,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws IllegalStateException if this fixture's {@code JTable} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTableCellFixture click(@Nonnull MouseClickInfo mouseClickInfo) {
+  @NotNull public JTableCellFixture click(@NotNull MouseClickInfo mouseClickInfo) {
     table.click(cell(), mouseClickInfo);
     return this;
   }
@@ -138,7 +138,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws IllegalStateException if this fixture's {@code JTable} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTableCellFixture doubleClick() {
+  @NotNull public JTableCellFixture doubleClick() {
     table.click(cell(), LEFT_BUTTON, 2);
     return this;
   }
@@ -151,7 +151,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws IllegalStateException if this fixture's {@code JTable} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTableCellFixture rightClick() {
+  @NotNull public JTableCellFixture rightClick() {
     return click(RIGHT_BUTTON);
   }
 
@@ -165,7 +165,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws IllegalStateException if this fixture's {@code JTable} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTableCellFixture click(@Nonnull MouseButton button) {
+  @NotNull public JTableCellFixture click(@NotNull MouseButton button) {
     table.click(cell(), button);
     return this;
   }
@@ -189,7 +189,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @see org.assertj.swing.cell.JTableCellWriter
    * @see #editor()
    */
-  @Nonnull public JTableCellFixture startEditing() {
+  @NotNull public JTableCellFixture startEditing() {
     driver.startCellEditing(target, cell());
     return this;
   }
@@ -213,7 +213,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @see org.assertj.swing.cell.JTableCellWriter
    * @see #editor()
    */
-  @Nonnull public JTableCellFixture stopEditing() {
+  @NotNull public JTableCellFixture stopEditing() {
     driver.stopCellEditing(target, cell());
     return this;
   }
@@ -251,7 +251,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @see org.assertj.swing.cell.JTableCellWriter
    * @see #editor()
    */
-  @Nonnull public JTableCellFixture cancelEditing() {
+  @NotNull public JTableCellFixture cancelEditing() {
     driver.cancelCellEditing(target, cell());
     return this;
   }
@@ -303,7 +303,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @see JTableFixture#replaceCellWriter(org.assertj.swing.cell.JTableCellWriter)
    * @see org.assertj.swing.cell.JTableCellWriter
    */
-  @Nonnull public JTableCellFixture enterValue(@Nonnull String value) {
+  @NotNull public JTableCellFixture enterValue(@NotNull String value) {
     driver.enterValueInCell(target, cell(), value);
     return this;
   }
@@ -315,7 +315,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @return this fixture.
    * @throws AssertionError if the value of this fixture's table cell does not match the expected one.
    */
-  @Nonnull public JTableCellFixture requireValue(@Nullable String value) {
+  @NotNull public JTableCellFixture requireValue(@Nullable String value) {
     table.requireCellValue(cell(), value);
     return this;
   }
@@ -329,7 +329,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws AssertionError if the value of this fixture's table cell does not match the expected the given regular
    *           expression pattern.
    */
-  @Nonnull public JTableCellFixture requireValue(@Nonnull Pattern pattern) {
+  @NotNull public JTableCellFixture requireValue(@NotNull Pattern pattern) {
     table.requireCellValue(cell(), pattern);
     return this;
   }
@@ -354,7 +354,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @see JTableFixture#replaceCellReader(org.assertj.swing.cell.JTableCellReader)
    * @see org.assertj.swing.cell.JTableCellReader
    */
-  @Nonnull public ColorFixture background() {
+  @NotNull public ColorFixture background() {
     return table.backgroundAt(cell());
   }
 
@@ -366,7 +366,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @see JTableFixture#replaceCellReader(org.assertj.swing.cell.JTableCellReader)
    * @see org.assertj.swing.cell.JTableCellReader
    */
-  @Nonnull public ColorFixture foreground() {
+  @NotNull public ColorFixture foreground() {
     return table.foregroundAt(cell());
   }
 
@@ -389,7 +389,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @return this fixture.
    */
   @Override
-  @Nonnull public JTableCellFixture drag() {
+  @NotNull public JTableCellFixture drag() {
     table.drag(cell());
     return this;
   }
@@ -400,7 +400,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @return this fixture.
    */
   @Override
-  @Nonnull public JTableCellFixture drop() {
+  @NotNull public JTableCellFixture drop() {
     table.drop(cell());
     return this;
   }
@@ -412,7 +412,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  @Nonnull public JPopupMenuFixture showPopupMenu() {
+  @NotNull public JPopupMenuFixture showPopupMenu() {
     return table.showPopupMenuAt(cell());
   }
 
@@ -422,7 +422,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @return this fixture.
    * @throws AssertionError if this fixture's table cell is not editable.
    */
-  @Nonnull public JTableCellFixture requireEditable() {
+  @NotNull public JTableCellFixture requireEditable() {
     table.requireEditable(cell());
     return this;
   }
@@ -433,7 +433,7 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
    * @return this fixture.
    * @throws AssertionError if this fixture's table cell is editable.
    */
-  @Nonnull public JTableCellFixture requireNotEditable() {
+  @NotNull public JTableCellFixture requireNotEditable() {
     table.requireNotEditable(cell());
     return this;
   }
@@ -453,13 +453,13 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
   }
 
   @VisibleForTesting
-  @Nonnull
+  @NotNull
   JTableFixture tableFixture() {
     return table;
   }
 
   @VisibleForTesting
-  @Nonnull
+  @NotNull
   TableCell cell() {
     return cell;
   }

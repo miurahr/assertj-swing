@@ -14,11 +14,11 @@ package org.assertj.swing.driver;
 
 import static org.assertj.core.util.Preconditions.checkNotNull;
 
-import javax.annotation.Nonnull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.data.TableCell;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Verifies correct argument values and state of {@code JTable} cells.
@@ -42,7 +42,7 @@ public final class JTableCellPreconditions {
    * @throws IllegalStateException if the table cell in the given coordinates is not editable.
    */
   @RunsInCurrentThread
-  public static void validateCellIsEditable(@Nonnull JTable table, int row, int column) {
+  public static void validateCellIsEditable(@NotNull JTable table, int row, int column) {
     if (!table.isCellEditable(row, column)) {
       String msg = String.format("Expecting cell [%d, %d] to be editable", row, column);
       throw new IllegalStateException(msg);
@@ -65,7 +65,7 @@ public final class JTableCellPreconditions {
    * @throws IndexOutOfBoundsException if any of the indices (row and column) is out of bounds.
    */
   @RunsInCurrentThread
-  public static void checkCellIndicesInBounds(@Nonnull JTable table, @Nonnull TableCell cell) {
+  public static void checkCellIndicesInBounds(@NotNull JTable table, @NotNull TableCell cell) {
     checkNotNull(cell);
     checkCellIndicesInBounds(table, cell.row, cell.column);
   }
@@ -87,7 +87,7 @@ public final class JTableCellPreconditions {
    *           rows.
    */
   @RunsInCurrentThread
-  public static void checkCellIndicesInBounds(@Nonnull JTable table, int row, int column) {
+  public static void checkCellIndicesInBounds(@NotNull JTable table, int row, int column) {
     if (table.getRowCount() == 0) {
       throw new IndexOutOfBoundsException("Table does not contain any rows");
     }
@@ -110,7 +110,7 @@ public final class JTableCellPreconditions {
    * @throws IndexOutOfBoundsException if the row index is out of bounds.
    */
   @RunsInCurrentThread
-  public static void checkRowInBounds(@Nonnull JTable table, int row) {
+  public static void checkRowInBounds(@NotNull JTable table, int row) {
     checkIndexInBounds(row, table.getRowCount(), "row");
   }
 
@@ -129,12 +129,12 @@ public final class JTableCellPreconditions {
    * @throws IndexOutOfBoundsException if the column index is out of bounds.
    */
   @RunsInCurrentThread
-  public static void checkColumnInBounds(@Nonnull JTable table, int column) {
+  public static void checkColumnInBounds(@NotNull JTable table, int column) {
     checkIndexInBounds(column, table.getColumnCount(), "column");
   }
 
   @RunsInCurrentThread
-  private static void checkIndexInBounds(int index, int itemCount, @Nonnull String indexName) {
+  private static void checkIndexInBounds(int index, int itemCount, @NotNull String indexName) {
     if (index >= 0 && index < itemCount) {
       return;
     }

@@ -19,11 +19,11 @@ import static org.assertj.core.util.Strings.quote;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
 import javax.swing.JFileChooser;
 
 import org.assertj.core.presentation.StandardRepresentation;
 import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Formatter for {@code JFileChooser}s.
@@ -44,7 +44,7 @@ public class JFileChooserFormatter extends ComponentFormatterTemplate {
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NotNull protected String doFormat(@NotNull Component c) {
     JFileChooser fileChooser = (JFileChooser) c;
     String format = "%s[name=%s, dialogTitle=%s, dialogType=%s, currentDirectory=%s, enabled=%b, visible=%b, showing=%b";
     return String.format(format, getRealClassName(c), quote(fileChooser.getName()),
@@ -58,7 +58,7 @@ public class JFileChooserFormatter extends ComponentFormatterTemplate {
    * @return {@code JFileChooser.class}.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NotNull public Class<? extends Component> targetType() {
     return JFileChooser.class;
   }
 }

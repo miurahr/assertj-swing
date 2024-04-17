@@ -19,12 +19,11 @@ import static org.assertj.swing.query.ComponentEnabledQuery.isEnabled;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.edt.GuiLazyLoadingDescription;
 import org.assertj.swing.timing.Condition;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Verifies that an AWT or Swing {@code Component} is enabled.
@@ -34,19 +33,19 @@ import org.assertj.swing.timing.Condition;
 class ComponentEnabledCondition extends Condition {
   private Component c;
 
-  static @Nonnull ComponentEnabledCondition untilIsEnabled(@Nonnull Component c) {
+  static @NotNull ComponentEnabledCondition untilIsEnabled(@NotNull Component c) {
     return new ComponentEnabledCondition(c);
   }
 
-  private ComponentEnabledCondition(@Nonnull Component c) {
+  private ComponentEnabledCondition(@NotNull Component c) {
     super(description(c));
     this.c = c;
   }
 
-  @Nonnull private static Description description(final @Nonnull Component c) {
+  @NotNull private static Description description(final @NotNull Component c) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @Nonnull protected String loadDescription() {
+      @NotNull protected String loadDescription() {
         return concat(format(c), " to be enabled");
       }
     };

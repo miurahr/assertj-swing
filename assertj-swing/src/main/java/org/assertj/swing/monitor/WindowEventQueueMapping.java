@@ -25,9 +25,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A mapping of unique event queues to the set of root windows found on each queue.
@@ -38,12 +37,12 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 class WindowEventQueueMapping {
   final Map<EventQueue, Map<Window, Boolean>> queueMap = newWeakHashMap();
 
-  void addQueueFor(@Nonnull Toolkit toolkit) {
+  void addQueueFor(@NotNull Toolkit toolkit) {
     Map<Window, Boolean> map = newWeakHashMap();
     queueMap.put(toolkit.getSystemEventQueue(), map);
   }
 
-  void addQueueFor(@Nonnull Component component) {
+  void addQueueFor(@NotNull Component component) {
     EventQueue queue = component.getToolkit().getSystemEventQueue();
     Map<Window, Boolean> windowMapping = queueMap.get(queue);
     if (windowMapping == null) {
@@ -55,14 +54,14 @@ class WindowEventQueueMapping {
     windowMapping.put((Window) component, TRUE);
   }
 
-  @Nonnull private Map<Window, Boolean> createWindowMapping(EventQueue queue) {
+  @NotNull private Map<Window, Boolean> createWindowMapping(EventQueue queue) {
     Map<Window, Boolean> windowMapping = newWeakHashMap();
     queueMap.put(queue, windowMapping);
     return windowMapping;
   }
 
   @RunsInCurrentThread
-  void removeMappingFor(@Nonnull Component component) {
+  void removeMappingFor(@NotNull Component component) {
     EventQueue queue = component.getToolkit().getSystemEventQueue();
     removeComponent(component, queue);
     for (EventQueue q : queueMap.keySet()) {
@@ -70,14 +69,14 @@ class WindowEventQueueMapping {
     }
   }
 
-  private void removeComponent(@Nonnull Component component, @Nonnull EventQueue queue) {
+  private void removeComponent(@NotNull Component component, @NotNull EventQueue queue) {
     Map<Window, Boolean> windowMapping = queueMap.get(queue);
     if (windowMapping != null) {
       windowMapping.remove(component);
     }
   }
 
-  @Nonnull
+  @NotNull
   Collection<Window> windows() {
     Set<Window> rootWindows = newHashSet();
     for (EventQueue queue : queueMap.keySet()) {
@@ -86,7 +85,7 @@ class WindowEventQueueMapping {
     return rootWindows;
   }
 
-  @Nonnull
+  @NotNull
   Collection<EventQueue> eventQueues() {
     return queueMap.keySet();
   }

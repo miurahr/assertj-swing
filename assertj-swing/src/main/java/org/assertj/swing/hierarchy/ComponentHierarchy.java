@@ -17,8 +17,8 @@ import java.awt.Container;
 import java.awt.Window;
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -40,7 +40,7 @@ public interface ComponentHierarchy {
   /**
    * @return all root {@code Container}s in the {@code ComponentHierarchy}.
    */
-  @Nonnull
+  @NotNull
   Collection<Container> roots();
 
   /**
@@ -49,8 +49,8 @@ public interface ComponentHierarchy {
    * @param c the given {@code Component}.
    * @return all the children of the given {@code Component}.
    */
-  @Nonnull
-  Collection<Component> childrenOf(@Nonnull Component c);
+  @NotNull
+  Collection<Component> childrenOf(@NotNull Component c);
 
   /**
    * Returns the parent for the given AWT or Swing {@code Component}.
@@ -59,7 +59,7 @@ public interface ComponentHierarchy {
    * @return the parent for the given {@code Component}.
    */
   @Nullable
-  Container parentOf(@Nonnull Component c);
+  Container parentOf(@NotNull Component c);
 
   /**
    * Indicates whether this {@code ComponentHierarchy} contains the given AWT or Swing {@code Component}.
@@ -68,7 +68,7 @@ public interface ComponentHierarchy {
    * @return {@code true} if this {@code ComponentHierarchy} contains the given {@code Component}, {@code false}
    *         otherwise.
    */
-  boolean contains(@Nonnull Component c);
+  boolean contains(@NotNull Component c);
 
   /**
    * Provides proper disposal of the given AWT or Swing {@code Window}, appropriate to this {@code ComponentHierarchy}.
@@ -77,5 +77,5 @@ public interface ComponentHierarchy {
    * 
    * @param w the {@code Window} to dispose.
    */
-  void dispose(@Nonnull Window w);
+  void dispose(@NotNull Window w);
 }

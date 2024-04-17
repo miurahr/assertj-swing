@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.fixture;
 
-import java.awt.Point;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
+import java.awt.Point;
 
 /**
  * Simulates user input on {@code JComponent}s capable of invoking {@code JPopupMenu}s.
@@ -30,7 +30,7 @@ public interface JPopupMenuInvokerFixture {
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
-  @Nonnull
+  @NotNull
   JPopupMenuFixture showPopupMenu();
 
   /**
@@ -42,6 +42,6 @@ public interface JPopupMenuInvokerFixture {
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
-  @Nonnull
-  JPopupMenuFixture showPopupMenuAt(@Nonnull Point p);
+  @NotNull
+  JPopupMenuFixture showPopupMenuAt(@NotNull Point p);
 }

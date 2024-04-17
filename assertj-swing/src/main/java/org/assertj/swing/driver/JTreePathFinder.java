@@ -17,8 +17,8 @@ import static org.assertj.core.util.Strings.quote;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JTree;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -45,8 +45,8 @@ class JTreePathFinder {
   }
 
   @RunsInCurrentThread
-  @Nonnull
-  TreePath findMatchingPath(@Nonnull JTree tree, @Nonnull String path) {
+  @NotNull
+  TreePath findMatchingPath(@NotNull JTree tree, @NotNull String path) {
     String[] pathStrings = splitPath(path);
     TreeModel model = tree.getModel();
     List<Object> newPathValues = newArrayList();
@@ -81,11 +81,11 @@ class JTreePathFinder {
     return new TreePath(newPathValues.toArray());
   }
 
-  @Nonnull private LocationUnavailableException pathNotFound(@Nonnull String path) {
+  @NotNull private LocationUnavailableException pathNotFound(@NotNull String path) {
     throw new LocationUnavailableException(String.format("Unable to find path %s", quote(path)));
   }
 
-  @Nonnull private String[] splitPath(@Nonnull String path) {
+  @NotNull private String[] splitPath(@NotNull String path) {
     List<String> result = newArrayList();
     int separatorSize = separator.length();
     int index = 0;
@@ -101,30 +101,30 @@ class JTreePathFinder {
     return result.toArray(new String[result.size()]);
   }
 
-  @Nonnull private LocationUnavailableException multipleMatchingNodes(@Nonnull String matchingText,
+  @NotNull private LocationUnavailableException multipleMatchingNodes(@NotNull String matchingText,
       @Nullable Object parentText) {
     String msg = String.format("There is more than one node with value '%s' under", matchingText, quote(parentText));
     throw new LocationUnavailableException(msg);
   }
 
-  @Nullable private String value(@Nonnull JTree tree, @Nullable Object modelValue) {
+  @Nullable private String value(@NotNull JTree tree, @Nullable Object modelValue) {
     return cellReader.valueAt(tree, modelValue);
   }
 
-  @Nonnull
+  @NotNull
   String separator() {
     return separator;
   }
 
-  void replaceSeparator(@Nonnull String newSeparator) {
+  void replaceSeparator(@NotNull String newSeparator) {
     separator = newSeparator;
   }
 
-  void replaceCellReader(@Nonnull JTreeCellReader newCellReader) {
+  void replaceCellReader(@NotNull JTreeCellReader newCellReader) {
     cellReader = newCellReader;
   }
 
-  @Nonnull
+  @NotNull
   JTreeCellReader cellReader() {
     return cellReader;
   }

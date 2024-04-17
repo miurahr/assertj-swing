@@ -12,10 +12,11 @@
  */
 package org.assertj.swing.edt;
 
+import org.jetbrains.annotations.Nullable;
+
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
-import javax.annotation.Nullable;
 
 /**
  * Executes in the event dispatch thread (EDT) an action that returns a value.

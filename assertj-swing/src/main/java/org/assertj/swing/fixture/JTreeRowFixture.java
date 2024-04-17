@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.core.MouseButton;
@@ -35,7 +35,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @param tree handles the {@code JTree} containing the node with the given row index.
    * @param index the given row index.
    */
-  protected JTreeRowFixture(@Nonnull JTreeFixture tree, int index) {
+  protected JTreeRowFixture(@NotNull JTreeFixture tree, int index) {
     this.tree = tree;
     this.index = index;
   }
@@ -49,7 +49,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws org.assertj.swing.exception.ActionFailedException if this method fails to expand the row.
    */
   @Override
-  @Nonnull public JTreeRowFixture expand() {
+  @NotNull public JTreeRowFixture expand() {
     tree.expandRow(index);
     return this;
   }
@@ -63,7 +63,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws org.assertj.swing.exception.ActionFailedException if this method fails to collapse the row.
    */
   @Override
-  @Nonnull public JTreeRowFixture collapse() {
+  @NotNull public JTreeRowFixture collapse() {
     tree.collapseRow(index);
     return this;
   }
@@ -77,7 +77,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws IllegalStateException if this fixture's {@code JTree} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTreeRowFixture select() {
+  @NotNull public JTreeRowFixture select() {
     tree.selectRow(index);
     return this;
   }
@@ -90,7 +90,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws IllegalStateException if this fixture's {@code JTree} is disabled.
    * @throws IllegalStateException if this fixture's {@code JTree} is not showing on the screen.
    */
-  @Nonnull public JTreeRowFixture unselect() {
+  @NotNull public JTreeRowFixture unselect() {
     tree.unselectRow(index);
     return this;
   }
@@ -103,7 +103,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws IllegalStateException if the {@code JTree} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTreeRowFixture click() {
+  @NotNull public JTreeRowFixture click() {
     tree.clickRow(index);
     return this;
   }
@@ -118,7 +118,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws IllegalStateException if the {@code JTree} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTreeRowFixture click(@Nonnull MouseButton button) {
+  @NotNull public JTreeRowFixture click(@NotNull MouseButton button) {
     tree.clickRow(index, button);
     return this;
   }
@@ -133,7 +133,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws IllegalStateException if the {@code JTree} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTreeRowFixture click(@Nonnull MouseClickInfo mouseClickInfo) {
+  @NotNull public JTreeRowFixture click(@NotNull MouseClickInfo mouseClickInfo) {
     tree.clickRow(index, mouseClickInfo);
     return this;
   }
@@ -146,7 +146,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws IllegalStateException if the {@code JTree} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTreeRowFixture doubleClick() {
+  @NotNull public JTreeRowFixture doubleClick() {
     tree.doubleClickRow(index);
     return this;
   }
@@ -159,7 +159,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws IllegalStateException if the {@code JTree} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTreeRowFixture rightClick() {
+  @NotNull public JTreeRowFixture rightClick() {
     tree.rightClickRow(index);
     return this;
   }
@@ -172,7 +172,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws IllegalStateException if the {@code JTree} is not showing on the screen.
    */
   @Override
-  @Nonnull public JTreeRowFixture drag() {
+  @NotNull public JTreeRowFixture drag() {
     tree.drag(index);
     return this;
   }
@@ -186,7 +186,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
   @Override
-  @Nonnull public JTreeRowFixture drop() {
+  @NotNull public JTreeRowFixture drop() {
     tree.drop(index);
     return this;
   }
@@ -200,7 +200,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  @Nonnull public JPopupMenuFixture showPopupMenu() {
+  @NotNull public JPopupMenuFixture showPopupMenu() {
     return tree.showPopupMenuAt(index);
   }
 
@@ -220,7 +220,7 @@ public class JTreeRowFixture implements JTreeNodeFixture<JTreeRowFixture> {
   }
 
   @VisibleForTesting
-  @Nonnull
+  @NotNull
   JTreeFixture treeFixture() {
     return tree;
   }

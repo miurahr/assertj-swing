@@ -12,13 +12,13 @@
  */
 package org.assertj.swing.format;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import static java.lang.String.valueOf;
 import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.util.Map;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Workaround to obtain a {@code String} representation of an {@code int} enumeration.
@@ -36,7 +36,7 @@ final class IntEnum {
     return valueOf(key);
   }
 
-  @Nonnull
+  @NotNull
   IntEnum put(int key, @Nullable String value) {
     map.put(key, value);
     return this;

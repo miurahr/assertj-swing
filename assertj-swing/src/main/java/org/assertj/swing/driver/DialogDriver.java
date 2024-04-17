@@ -17,11 +17,10 @@ import static org.assertj.swing.driver.DialogModalQuery.isModal;
 
 import java.awt.Dialog;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -42,7 +41,7 @@ public class DialogDriver extends WindowDriver {
    * 
    * @param robot the robot to use to simulate user input.
    */
-  public DialogDriver(@Nonnull Robot robot) {
+  public DialogDriver(@NotNull Robot robot) {
     super(robot);
   }
 
@@ -53,7 +52,7 @@ public class DialogDriver extends WindowDriver {
    * @throws AssertionError if the given {@code Dialog} is not modal.
    */
   @RunsInEDT
-  public void requireModal(@Nonnull Dialog dialog) {
+  public void requireModal(@NotNull Dialog dialog) {
     assertThat(isModal(dialog)).as(propertyName(dialog, "modal")).isTrue();
   }
 }

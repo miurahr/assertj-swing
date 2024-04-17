@@ -12,6 +12,8 @@
  */
 package org.assertj.swing.keystroke;
 
+import org.jetbrains.annotations.NotNull;
+
 import static java.awt.event.KeyEvent.VK_BACK_SPACE;
 import static java.awt.event.KeyEvent.VK_DELETE;
 import static java.awt.event.KeyEvent.VK_ENTER;
@@ -25,15 +27,13 @@ import static org.assertj.swing.util.Platform.isWindows;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 /**
  * Utility methods related to {@link KeyStrokeMapping}s.
  * 
  * @author Alex Ruiz
  */
 final class KeyStrokeMappings {
-  static @Nonnull Collection<KeyStrokeMapping> defaultMappings() {
+  static @NotNull Collection<KeyStrokeMapping> defaultMappings() {
     List<KeyStrokeMapping> mappings = newArrayList();
     mappings.add(mapping('\b', VK_BACK_SPACE, NO_MASK));
     mappings.add(mapping('', VK_DELETE, NO_MASK));

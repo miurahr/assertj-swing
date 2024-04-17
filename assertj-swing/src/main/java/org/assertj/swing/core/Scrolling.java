@@ -20,8 +20,8 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Rectangle;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JViewport;
@@ -38,7 +38,7 @@ public final class Scrolling {
    * @param robot simulates user input.
    * @param c the given {@code JComponent}.
    */
-  public static void scrollToVisible(@Nonnull Robot robot, @Nonnull JComponent c) {
+  public static void scrollToVisible(@NotNull Robot robot, @NotNull JComponent c) {
     JComponent root = findClosestValidatingRootAncestor(c);
     // scroll the component to view within each validating root ancestor, starting from the nearest
     while (root != null) {
@@ -54,7 +54,7 @@ public final class Scrolling {
    * @param c the given {@code JComponent}.
    * @return the found ancestor or {@code null} if there isn't one.
    */
-  @Nullable private static JComponent findClosestValidatingRootAncestor(@Nonnull JComponent c) {
+  @Nullable private static JComponent findClosestValidatingRootAncestor(@NotNull JComponent c) {
     // the candidate validating root at every iteration (candidate = not necessarily a root)
     Container root = c;
     // we go up to the top of the hierarchy
@@ -81,7 +81,7 @@ public final class Scrolling {
    * @param container the given container.
    * @param target the given {@code Component}.
    */
-  private static void scrollToVisible(@Nonnull Robot robot, @Nonnull JComponent container, @Nonnull Component target) {
+  private static void scrollToVisible(@NotNull Robot robot, @NotNull JComponent container, @NotNull Component target) {
     Rectangle r = convertRectangle(target.getParent(), target.getBounds(), container);
     scrollToVisible(robot, container, checkNotNull(r));
   }
@@ -93,8 +93,8 @@ public final class Scrolling {
    * @param c the {@code JComponent}.
    * @param rectangle the rectangular region.
    */
-  private static void scrollToVisible(@Nonnull Robot robot, final @Nonnull JComponent c,
-      final @Nonnull Rectangle rectangle) {
+  private static void scrollToVisible(@NotNull Robot robot, final @NotNull JComponent c,
+      final @NotNull Rectangle rectangle) {
     execute(() -> c.scrollRectToVisible(rectangle));
     robot.waitForIdle();
   }

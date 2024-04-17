@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.test.data;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A provider of {@code boolean} values.
@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
  * @author Yvonne Wang
  */
 public class BooleanProvider {
-  @Nonnull public static Object[][] booleans() {
+  @NotNull public static Object[][] booleans() {
     return new Object[][] { { true }, { false } };
   }
 }

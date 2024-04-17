@@ -23,7 +23,7 @@ import static org.assertj.swing.test.task.ComponentSetPopupMenuTask.createAndSet
 import java.awt.Dimension;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
@@ -80,29 +80,29 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
     private final JTextField textField = new JTextField(10);
 
     @RunsInEDT
-    static @Nonnull MyWindow createAndShow(final @Nonnull Class<?> testClass) {
+    static @NotNull MyWindow createAndShow(final @NotNull Class<?> testClass) {
       MyWindow result = execute(() -> display(new MyWindow(testClass)));
       return checkNotNull(result);
     }
 
-    private MyWindow(@Nonnull Class<?> testClass) {
+    private MyWindow(@NotNull Class<?> testClass) {
       super(testClass);
       addComponents(textField);
       setMinimumSize(new Dimension(100, 50));
     }
 
-    @Nonnull
+    @NotNull
     JTextField textField() {
       return checkNotNull(textField);
     }
   }
 
-  @Nonnull
+  @NotNull
   BasicRobot robot() {
     return checkNotNull(robot);
   }
 
-  @Nonnull
+  @NotNull
   MyWindow window() {
     return checkNotNull(window);
   }

@@ -15,8 +15,8 @@ package org.assertj.swing.fixture;
 import java.awt.Component;
 import java.awt.Dialog;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -58,7 +58,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JButton} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JButtonFixture button();
 
   /**
@@ -72,8 +72,8 @@ public interface ComponentContainerFixture {
    *           given search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JButtonFixture button(@Nonnull GenericTypeMatcher<? extends JButton> matcher);
+  @NotNull
+  JButtonFixture button(@NotNull GenericTypeMatcher<? extends JButton> matcher);
 
   /**
    * Finds a {@link JButton} in this fixture's {@code Container}, which name matches the specified one.
@@ -86,7 +86,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JButtonFixture button(@Nullable String name);
 
   /**
@@ -97,7 +97,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JCheckBox} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JCheckBoxFixture checkBox();
 
   /**
@@ -112,8 +112,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JCheckBoxFixture checkBox(@Nonnull GenericTypeMatcher<? extends JCheckBox> matcher);
+  @NotNull
+  JCheckBoxFixture checkBox(@NotNull GenericTypeMatcher<? extends JCheckBox> matcher);
 
   /**
    * Finds a {@code JCheckBox} in this fixture's {@code Container}, which name matches the specified one.
@@ -124,7 +124,7 @@ public interface ComponentContainerFixture {
    *           not be found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JCheckBoxFixture checkBox(@Nullable String name);
 
   /**
@@ -135,7 +135,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JComboBox} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JComboBoxFixture comboBox();
 
   /**
@@ -150,8 +150,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JComboBoxFixture comboBox(@Nonnull GenericTypeMatcher<? extends JComboBox> matcher);
+  @NotNull
+  JComboBoxFixture comboBox(@NotNull GenericTypeMatcher<? extends JComboBox> matcher);
 
   /**
    * Finds a {@code JComboBox} in this fixture's {@code Container}, which name matches the specified one.
@@ -164,7 +164,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JComboBoxFixture comboBox(@Nullable String name);
 
   /**
@@ -176,7 +176,7 @@ public interface ComponentContainerFixture {
    * @see #dialog(Timeout)
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   DialogFixture dialog();
 
   /**
@@ -187,8 +187,8 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code Dialog} could not be found.
    */
   @RunsInEDT
-  @Nonnull
-  DialogFixture dialog(@Nonnull Timeout timeout);
+  @NotNull
+  DialogFixture dialog(@NotNull Timeout timeout);
 
   /**
    * Finds a {@code Dialog} that matches the specified search criteria. This method uses the value defined in
@@ -201,8 +201,8 @@ public interface ComponentContainerFixture {
    * @see #dialog(GenericTypeMatcher, Timeout)
    */
   @RunsInEDT
-  @Nonnull
-  DialogFixture dialog(@Nonnull GenericTypeMatcher<? extends Dialog> matcher);
+  @NotNull
+  DialogFixture dialog(@NotNull GenericTypeMatcher<? extends Dialog> matcher);
 
   /**
    * Finds a {@code Dialog} that matches the specified search criteria.
@@ -214,8 +214,8 @@ public interface ComponentContainerFixture {
    *           could not be found.
    */
   @RunsInEDT
-  @Nonnull
-  DialogFixture dialog(@Nonnull GenericTypeMatcher<? extends Dialog> matcher, @Nonnull Timeout timeout);
+  @NotNull
+  DialogFixture dialog(@NotNull GenericTypeMatcher<? extends Dialog> matcher, @NotNull Timeout timeout);
 
   /**
    * Finds a {@code Dialog} with a name matching the specified one. This method uses the value defined in
@@ -227,7 +227,7 @@ public interface ComponentContainerFixture {
    * @see #dialog(String, Timeout)
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   DialogFixture dialog(@Nullable String name);
 
   /**
@@ -239,8 +239,8 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code Dialog} that a matching name could not be found.
    */
   @RunsInEDT
-  @Nonnull
-  DialogFixture dialog(@Nullable String name, @Nonnull Timeout timeout);
+  @NotNull
+  DialogFixture dialog(@Nullable String name, @NotNull Timeout timeout);
 
   /**
    * Returns the only {@code JFileChooser} currently available (if any). This method uses the value defined in
@@ -251,7 +251,7 @@ public interface ComponentContainerFixture {
    * @see #fileChooser(Timeout)
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JFileChooserFixture fileChooser();
 
   /**
@@ -262,8 +262,8 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code JFileChooser} could not be found.
    */
   @RunsInEDT
-  @Nonnull
-  JFileChooserFixture fileChooser(@Nonnull Timeout timeout);
+  @NotNull
+  JFileChooserFixture fileChooser(@NotNull Timeout timeout);
 
   /**
    * Finds a {@code JFileChooser} that matches the specified search criteria. This method uses the value defined in
@@ -275,8 +275,8 @@ public interface ComponentContainerFixture {
    * @see #fileChooser(GenericTypeMatcher, Timeout)
    */
   @RunsInEDT
-  @Nonnull
-  JFileChooserFixture fileChooser(@Nonnull GenericTypeMatcher<? extends JFileChooser> matcher);
+  @NotNull
+  JFileChooserFixture fileChooser(@NotNull GenericTypeMatcher<? extends JFileChooser> matcher);
 
   /**
    * Finds a {@code JFileChooser} that matches the specified search criteria.
@@ -287,8 +287,8 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code JFileChooser} could not be found.
    */
   @RunsInEDT
-  @Nonnull
-  JFileChooserFixture fileChooser(@Nonnull GenericTypeMatcher<? extends JFileChooser> matcher, @Nonnull Timeout timeout);
+  @NotNull
+  JFileChooserFixture fileChooser(@NotNull GenericTypeMatcher<? extends JFileChooser> matcher, @NotNull Timeout timeout);
 
   /**
    * Finds a {@code JFileChooser} with a name matching the specified one. This method uses the value defined in
@@ -300,7 +300,7 @@ public interface ComponentContainerFixture {
    * @see #fileChooser(String, Timeout)
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JFileChooserFixture fileChooser(@Nullable String name);
 
   /**
@@ -312,8 +312,8 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code JFileChooser} could not be found.
    */
   @RunsInEDT
-  @Nonnull
-  JFileChooserFixture fileChooser(@Nullable String name, @Nonnull Timeout timeout);
+  @NotNull
+  JFileChooserFixture fileChooser(@Nullable String name, @NotNull Timeout timeout);
 
   /**
    * Returns a {@link JInternalFrame} found in this fixture's {@code Container}.
@@ -323,7 +323,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JInternalFrame} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JInternalFrameFixture internalFrame();
 
   /**
@@ -337,8 +337,8 @@ public interface ComponentContainerFixture {
    *           the given search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JInternalFrameFixture internalFrame(@Nonnull GenericTypeMatcher<? extends JInternalFrame> matcher);
+  @NotNull
+  JInternalFrameFixture internalFrame(@NotNull GenericTypeMatcher<? extends JInternalFrame> matcher);
 
   /**
    * Finds a {@link JInternalFrame} in this fixture's {@code Container} whose name matches the specified one.
@@ -351,7 +351,7 @@ public interface ComponentContainerFixture {
    *           matching name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JInternalFrameFixture internalFrame(@Nullable String name);
 
   /**
@@ -362,7 +362,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JLabel} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JLabelFixture label();
 
   /**
@@ -376,8 +376,8 @@ public interface ComponentContainerFixture {
    *           search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JLabelFixture label(@Nonnull GenericTypeMatcher<? extends JLabel> matcher);
+  @NotNull
+  JLabelFixture label(@NotNull GenericTypeMatcher<? extends JLabel> matcher);
 
   /**
    * Finds a {@code JLabel} in this fixture's {@code Container}, which name matches the specified one.
@@ -390,7 +390,7 @@ public interface ComponentContainerFixture {
    *           could is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JLabelFixture label(@Nullable String name);
 
   /**
@@ -401,7 +401,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JList} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JListFixture list();
 
   /**
@@ -415,8 +415,8 @@ public interface ComponentContainerFixture {
    *           search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JListFixture list(@Nonnull GenericTypeMatcher<? extends JList> matcher);
+  @NotNull
+  JListFixture list(@NotNull GenericTypeMatcher<? extends JList> matcher);
 
   /**
    * Finds a {@code JList} in this fixture's {@code Container}, which name matches the specified one.
@@ -429,7 +429,7 @@ public interface ComponentContainerFixture {
    *           is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JListFixture list(@Nullable String name);
 
   /**
@@ -450,8 +450,8 @@ public interface ComponentContainerFixture {
    * @throws AssertionError if the {@code Component} found under the given path is not a {@code JMenuItem}.
    */
   @RunsInEDT
-  @Nonnull
-  JMenuItemFixture menuItemWithPath(@Nonnull String... path);
+  @NotNull
+  JMenuItemFixture menuItemWithPath(@NotNull String... path);
 
   /**
    * Finds a {@code JMenuItem}, contained in this fixture's {@code Container}, which name matches the specified one.
@@ -464,7 +464,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JMenuItemFixture menuItem(@Nullable String name);
 
   /**
@@ -480,8 +480,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JMenuItemFixture menuItem(@Nonnull GenericTypeMatcher<? extends JMenuItem> matcher);
+  @NotNull
+  JMenuItemFixture menuItem(@NotNull GenericTypeMatcher<? extends JMenuItem> matcher);
 
   /**
    * Returns the only {@code JOptionPane} currently available (if any). This method uses the value defined in
@@ -492,7 +492,7 @@ public interface ComponentContainerFixture {
    * @see #optionPane(Timeout)
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JOptionPaneFixture optionPane();
 
   /**
@@ -503,8 +503,8 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code JOptionPane} could not be found.
    */
   @RunsInEDT
-  @Nonnull
-  JOptionPaneFixture optionPane(@Nonnull Timeout timeout);
+  @NotNull
+  JOptionPaneFixture optionPane(@NotNull Timeout timeout);
 
   /**
    * Returns a {@code JPanel} found in this fixture's {@code Container}.
@@ -514,7 +514,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JPanel} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JPanelFixture panel();
 
   /**
@@ -528,8 +528,8 @@ public interface ComponentContainerFixture {
    *           search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JPanelFixture panel(@Nonnull GenericTypeMatcher<? extends JPanel> matcher);
+  @NotNull
+  JPanelFixture panel(@NotNull GenericTypeMatcher<? extends JPanel> matcher);
 
   /**
    * Finds a {@code JPanel} in this fixture's {@code Container}, which name matches the specified one.
@@ -540,7 +540,7 @@ public interface ComponentContainerFixture {
    *           be found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JPanelFixture panel(@Nullable String name);
 
   /**
@@ -551,7 +551,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JProgressBar} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JProgressBarFixture progressBar();
 
   /**
@@ -567,8 +567,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JProgressBarFixture progressBar(@Nonnull GenericTypeMatcher<? extends JProgressBar> matcher);
+  @NotNull
+  JProgressBarFixture progressBar(@NotNull GenericTypeMatcher<? extends JProgressBar> matcher);
 
   /**
    * Finds a {@code JProgressBar} in this fixture's {@code Container}, which name matches the specified one.
@@ -579,7 +579,7 @@ public interface ComponentContainerFixture {
    *           not be found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JProgressBarFixture progressBar(@Nullable String name);
 
   /**
@@ -590,7 +590,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JRadioButton} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JRadioButtonFixture radioButton();
 
   /**
@@ -606,8 +606,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JRadioButtonFixture radioButton(@Nonnull GenericTypeMatcher<? extends JRadioButton> matcher);
+  @NotNull
+  JRadioButtonFixture radioButton(@NotNull GenericTypeMatcher<? extends JRadioButton> matcher);
 
   /**
    * Finds a {@code JRadioButton} in this fixture's {@code Container}, which name matches the specified one.
@@ -620,7 +620,7 @@ public interface ComponentContainerFixture {
    *           matching name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JRadioButtonFixture radioButton(@Nullable String name);
 
   /**
@@ -631,7 +631,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JScrollBar} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JScrollBarFixture scrollBar();
 
   /**
@@ -646,8 +646,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JScrollBarFixture scrollBar(@Nonnull GenericTypeMatcher<? extends JScrollBar> matcher);
+  @NotNull
+  JScrollBarFixture scrollBar(@NotNull GenericTypeMatcher<? extends JScrollBar> matcher);
 
   /**
    * Finds a {@code JScrollBar} in this fixture's {@code Container}, which name matches the specified one.
@@ -660,7 +660,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JScrollBarFixture scrollBar(@Nullable String name);
 
   /**
@@ -671,7 +671,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JScrollPane} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JScrollPaneFixture scrollPane();
 
   /**
@@ -687,8 +687,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JScrollPaneFixture scrollPane(@Nonnull GenericTypeMatcher<? extends JScrollPane> matcher);
+  @NotNull
+  JScrollPaneFixture scrollPane(@NotNull GenericTypeMatcher<? extends JScrollPane> matcher);
 
   /**
    * Finds a {@code JScrollPane} in this fixture's {@code Container}, which name matches the specified one.
@@ -701,7 +701,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JScrollPaneFixture scrollPane(@Nullable String name);
 
   /**
@@ -712,7 +712,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JSlider} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JSliderFixture slider();
 
   /**
@@ -726,8 +726,8 @@ public interface ComponentContainerFixture {
    *           given search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JSliderFixture slider(@Nonnull GenericTypeMatcher<? extends JSlider> matcher);
+  @NotNull
+  JSliderFixture slider(@NotNull GenericTypeMatcher<? extends JSlider> matcher);
 
   /**
    * Finds a {@code JSlider} in this fixture's {@code Container}, which name matches the specified one.
@@ -740,7 +740,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JSliderFixture slider(@Nullable String name);
 
   /**
@@ -751,7 +751,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JSpinner} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JSpinnerFixture spinner();
 
   /**
@@ -765,8 +765,8 @@ public interface ComponentContainerFixture {
    *           given search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JSpinnerFixture spinner(@Nonnull GenericTypeMatcher<? extends JSpinner> matcher);
+  @NotNull
+  JSpinnerFixture spinner(@NotNull GenericTypeMatcher<? extends JSpinner> matcher);
 
   /**
    * Finds a {@code JSpinner} in this fixture's {@code Container}, which name matches the specified one.
@@ -779,7 +779,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JSpinnerFixture spinner(@Nullable String name);
 
   /**
@@ -790,7 +790,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JSplitPane} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JSplitPaneFixture splitPane();
 
   /**
@@ -805,8 +805,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JSplitPaneFixture splitPane(@Nonnull GenericTypeMatcher<? extends JSplitPane> matcher);
+  @NotNull
+  JSplitPaneFixture splitPane(@NotNull GenericTypeMatcher<? extends JSplitPane> matcher);
 
   /**
    * Finds a {@code JSplitPane} in this fixture's {@code Container}, which name matches the specified one.
@@ -819,7 +819,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JSplitPaneFixture splitPane(@Nullable String name);
 
   /**
@@ -830,7 +830,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JTabbedPane} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JTabbedPaneFixture tabbedPane();
 
   /**
@@ -846,8 +846,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JTabbedPaneFixture tabbedPane(@Nonnull GenericTypeMatcher<? extends JTabbedPane> matcher);
+  @NotNull
+  JTabbedPaneFixture tabbedPane(@NotNull GenericTypeMatcher<? extends JTabbedPane> matcher);
 
   /**
    * Finds a {@code JTabbedPane} in this fixture's {@code Container}, which name matches the specified one.
@@ -860,7 +860,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JTabbedPaneFixture tabbedPane(@Nullable String name);
 
   /**
@@ -873,7 +873,7 @@ public interface ComponentContainerFixture {
    *           is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JTableFixture table();
 
   /**
@@ -887,8 +887,8 @@ public interface ComponentContainerFixture {
    *           search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JTableFixture table(@Nonnull GenericTypeMatcher<? extends JTable> matcher);
+  @NotNull
+  JTableFixture table(@NotNull GenericTypeMatcher<? extends JTable> matcher);
 
   /**
    * Finds a {@code JTable} in this fixture's {@code Container}, which name matches the specified one.
@@ -901,7 +901,7 @@ public interface ComponentContainerFixture {
    *           is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JTableFixture table(@Nullable String name);
 
   /**
@@ -914,7 +914,7 @@ public interface ComponentContainerFixture {
    *           matching name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JTextComponentFixture textBox();
 
   /**
@@ -931,8 +931,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JTextComponentFixture textBox(@Nonnull GenericTypeMatcher<? extends JTextComponent> matcher);
+  @NotNull
+  JTextComponentFixture textBox(@NotNull GenericTypeMatcher<? extends JTextComponent> matcher);
 
   /**
    * Finds a {@code JTextComponent} in this fixture's {@code Container} managed by this fixture, which name matches the
@@ -955,7 +955,7 @@ public interface ComponentContainerFixture {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code JToggleButton} is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JToggleButtonFixture toggleButton();
 
   /**
@@ -971,8 +971,8 @@ public interface ComponentContainerFixture {
    *           found.
    */
   @RunsInEDT
-  @Nonnull
-  JToggleButtonFixture toggleButton(@Nonnull GenericTypeMatcher<? extends JToggleButton> matcher);
+  @NotNull
+  JToggleButtonFixture toggleButton(@NotNull GenericTypeMatcher<? extends JToggleButton> matcher);
 
   /**
    * Finds a {@code JToggleButton} in this fixture's {@code Container}, which name matches the specified one.
@@ -985,7 +985,7 @@ public interface ComponentContainerFixture {
    *           matching name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JToggleButtonFixture toggleButton(@Nullable String name);
 
   /**
@@ -998,7 +998,7 @@ public interface ComponentContainerFixture {
    *           name could is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JToolBarFixture toolBar();
 
   /**
@@ -1012,8 +1012,8 @@ public interface ComponentContainerFixture {
    *           given search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JToolBarFixture toolBar(@Nonnull GenericTypeMatcher<? extends JToolBar> matcher);
+  @NotNull
+  JToolBarFixture toolBar(@NotNull GenericTypeMatcher<? extends JToolBar> matcher);
 
   /**
    * Finds a {@code JToolBar} in this fixture's {@code Container}, which name matches the specified one.
@@ -1026,7 +1026,7 @@ public interface ComponentContainerFixture {
    *           name is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JToolBarFixture toolBar(@Nullable String name);
 
   /**
@@ -1039,7 +1039,7 @@ public interface ComponentContainerFixture {
    *           is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JTreeFixture tree();
 
   /**
@@ -1053,8 +1053,8 @@ public interface ComponentContainerFixture {
    *           search criteria is found.
    */
   @RunsInEDT
-  @Nonnull
-  JTreeFixture tree(@Nonnull GenericTypeMatcher<? extends JTree> matcher);
+  @NotNull
+  JTreeFixture tree(@NotNull GenericTypeMatcher<? extends JTree> matcher);
 
   /**
    * Finds a {@code JTree} in this fixture's {@code Container}, which name matches the specified one.
@@ -1067,7 +1067,7 @@ public interface ComponentContainerFixture {
    *           is found.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   JTreeFixture tree(@Nullable String name);
 
   /**
@@ -1080,13 +1080,13 @@ public interface ComponentContainerFixture {
    * @return a {@code ComponentFixture} managing a component inside this fixture's {@code Container}.
    */
   @RunsInEDT
-  @Nonnull
+  @NotNull
   <C extends Component, F extends AbstractComponentFixture<?, C, ?>> F with(
-                                                                            @Nonnull ComponentFixtureExtension<C, F> extension);
+                                                                            @NotNull ComponentFixtureExtension<C, F> extension);
 
   /**
    * @return the timeout to use when looking for a dialog. It's value is 100 ms.
    */
-  @Nonnull
+  @NotNull
   Timeout defaultDialogLookupTimeout();
 }

@@ -22,7 +22,7 @@ import java.awt.Window;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -45,13 +45,13 @@ public class ExistingHierarchy implements ComponentHierarchy {
   }
 
   @VisibleForTesting
-  ExistingHierarchy(@Nonnull ParentFinder parentFinder, @Nonnull ChildrenFinder childrenFinder) {
+  ExistingHierarchy(@NotNull ParentFinder parentFinder, @NotNull ChildrenFinder childrenFinder) {
     this.parentFinder = parentFinder;
     this.childrenFinder = childrenFinder;
   }
 
   @Override
-  @Nonnull public Collection<Container> roots() {
+  @NotNull public Collection<Container> roots() {
     List<Container> roots = newArrayList();
     for (Window w : windowMonitor.rootWindows()) {
       roots.add(w);
@@ -74,7 +74,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  public Container parentOf(@Nonnull Component c) {
+  public Container parentOf(@NotNull Component c) {
     return parentFinder.parentOf(c);
   }
 
@@ -86,7 +86,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    * @return {@code true}.
    */
   @Override
-  public boolean contains(@Nonnull Component c) {
+  public boolean contains(@NotNull Component c) {
     return true;
   }
 
@@ -105,7 +105,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull public Collection<Component> childrenOf(@Nonnull Component c) {
+  @NotNull public Collection<Component> childrenOf(@NotNull Component c) {
     return childrenFinder.childrenOf(c);
   }
 
@@ -123,7 +123,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @Override
   @RunsInCurrentThread
-  public void dispose(@Nonnull Window w) {
+  public void dispose(@NotNull Window w) {
     if (isAppletViewer(w)) {
       return;
     }
@@ -138,12 +138,12 @@ public class ExistingHierarchy implements ComponentHierarchy {
     w.dispose();
   }
 
-  @Nonnull
+  @NotNull
   ParentFinder parentFinder() {
     return parentFinder;
   }
 
-  @Nonnull
+  @NotNull
   ChildrenFinder childrenFinder() {
     return childrenFinder;
   }

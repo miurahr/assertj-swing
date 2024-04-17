@@ -18,7 +18,7 @@ import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.CellRendererPane;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
@@ -41,7 +41,7 @@ import org.assertj.swing.util.Pair;
  */
 final class PointAndParentForScrollingJTextFieldQuery {
   @RunsInCurrentThread
-  static @Nonnull Pair<Point, Container> pointAndParentForScrolling(final @Nonnull JTextField textField) {
+  static @NotNull Pair<Point, Container> pointAndParentForScrolling(final @NotNull JTextField textField) {
     Point origin = new Point(textField.getX(), textField.getY());
     Container parent = textField.getParent();
     while (parent != null && !(parent instanceof JComponent) && !(parent instanceof CellRendererPane)) {
@@ -51,7 +51,7 @@ final class PointAndParentForScrollingJTextFieldQuery {
     return Pair.of(origin, parent);
   }
 
-  @Nonnull private static Point addRectangleToPoint(@Nonnull Rectangle r, @Nonnull Point p) {
+  @NotNull private static Point addRectangleToPoint(@NotNull Rectangle r, @NotNull Point p) {
     Point newPoint = new Point(p);
     newPoint.x += r.x;
     newPoint.y += r.y;

@@ -12,6 +12,9 @@
  */
 package org.assertj.swing.driver;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import static java.util.Collections.sort;
 import static javax.swing.Action.NAME;
 import static org.assertj.core.util.Lists.newArrayList;
@@ -22,8 +25,6 @@ import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.Action;
 import javax.swing.ActionMap;
 
@@ -33,7 +34,7 @@ import javax.swing.ActionMap;
  * @author Alex Ruiz
  */
 final class Actions {
-  static @Nonnull Object findActionKey(@Nonnull String name, @Nonnull ActionMap actionMap) {
+  static @NotNull Object findActionKey(@NotNull String name, @NotNull ActionMap actionMap) {
     Action action = actionMap.get(name);
     if (action != null) {
       return name;
@@ -54,7 +55,7 @@ final class Actions {
     throw actionFailure(message);
   }
 
-  @Nonnull private static List<String> formatAllActionKeys(@Nonnull Object[] keys) {
+  @NotNull private static List<String> formatAllActionKeys(@NotNull Object[] keys) {
     List<String> formattedKeys = newArrayList();
     for (Object key : keys) {
       String keyAsString = keyAsString(key);
@@ -66,7 +67,8 @@ final class Actions {
     return formattedKeys;
   }
 
-  @Nullable private static String keyAsString(@Nullable Object key) {
+  @Nullable
+  private static String keyAsString(@Nullable Object key) {
     if (key == null) {
       return null;
     }

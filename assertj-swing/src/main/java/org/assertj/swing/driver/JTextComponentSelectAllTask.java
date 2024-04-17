@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTextComponentSelectAllTask {
   @RunsInEDT
-  static void selectAllText(final @Nonnull JTextComponent textBox) {
+  static void selectAllText(final @NotNull JTextComponent textBox) {
     execute(() -> textBox.selectAll());
   }
 

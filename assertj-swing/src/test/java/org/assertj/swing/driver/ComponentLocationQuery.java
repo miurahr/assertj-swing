@@ -18,7 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns the location (top-left corner) of a {@code Component}. This query is executed in the event dispatch thread
@@ -28,7 +28,7 @@ import javax.annotation.Nonnull;
  * @author Yvonne Wang
  */
 final class ComponentLocationQuery {
-  static @Nonnull Point locationOf(final @Nonnull Component component) {
+  static @NotNull Point locationOf(final @NotNull Component component) {
     Point result = execute(() -> component.getLocation());
     return checkNotNull(result);
   }

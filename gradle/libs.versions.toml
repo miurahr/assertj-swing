@@ -11,6 +11,7 @@ mockito = "2.28.2"
 multithreadedtc = "1.0.3-SNAPSHOT"
 equals_verifier = "2.5.2"
 cglib = "3.3.0"
+jetbrains_annotations = "23.0.0"
 
 [libraries]
 junit4 = {group = "junit", name = "junit", version.ref = "junit"}
@@ -25,6 +26,7 @@ mockito = {group = "org.mockito", name = "mockito-core", version.ref = "mockito"
 multithreadedtc = {group = "tokyo.northside", name = "multithreadedtc-junit4", version.ref = "multithreadedtc"}
 equals-verifier = {group = "nl.jqno.equalsverifier", name = "equalsverifier", version.ref = "equals_verifier"}
 cglib = {group = "cglib", name = "cglib", version.ref = "cglib"}
+annotations = {module="org.jetbrains:annotations", version.ref = "jetbrains_annotations"}
 
 [plugins]
 nexus-publish = {id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0-rc-1"}

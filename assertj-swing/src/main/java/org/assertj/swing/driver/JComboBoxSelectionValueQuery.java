@@ -15,8 +15,8 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -34,8 +34,8 @@ final class JComboBoxSelectionValueQuery {
   private static final Pair<Boolean, String> NO_SELECTION = Pair.of(false, null);
 
   @RunsInEDT
-  static @Nonnull Pair<Boolean, String> selection(final @Nonnull JComboBox<?> comboBox,
-                                                  final @Nonnull JComboBoxCellReader cellReader) {
+  static @NotNull Pair<Boolean, String> selection(final @NotNull JComboBox<?> comboBox,
+                                                  final @NotNull JComboBoxCellReader cellReader) {
     Pair<Boolean, String> result = execute(new GuiQuery<Pair<Boolean, String>>() {
       @Override
       @Nullable protected Pair<Boolean, String> executeInEDT() {
@@ -49,7 +49,7 @@ final class JComboBoxSelectionValueQuery {
     return checkNotNull(result);
   }
 
-  @Nonnull private static Pair<Boolean, String> valueForNoSelection(@Nonnull JComboBox<?> comboBox) {
+  @NotNull private static Pair<Boolean, String> valueForNoSelection(@NotNull JComboBox<?> comboBox) {
     if (!comboBox.isEditable()) {
       return NO_SELECTION;
     }
@@ -63,7 +63,7 @@ final class JComboBoxSelectionValueQuery {
     return NO_SELECTION;
   }
 
-  @Nonnull private static Pair<Boolean, String> selection(@Nullable String selection) {
+  @NotNull private static Pair<Boolean, String> selection(@Nullable String selection) {
     return Pair.of(true, selection);
   }
 

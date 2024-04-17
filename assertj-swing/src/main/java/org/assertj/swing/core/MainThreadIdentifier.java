@@ -14,8 +14,8 @@ package org.assertj.swing.core;
 
 import static org.assertj.core.util.Preconditions.checkNotNull;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Identifies the "main" thread.
@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  */
 class MainThreadIdentifier {
   @Nullable
-  Thread mainThreadIn(@Nonnull Thread[] threads) {
+  Thread mainThreadIn(@NotNull Thread[] threads) {
     for (Thread t : threads) {
       if (isMain(checkNotNull(t))) {
         return t;
@@ -33,7 +33,7 @@ class MainThreadIdentifier {
     return null;
   }
 
-  private boolean isMain(@Nonnull Thread thread) {
+  private boolean isMain(@NotNull Thread thread) {
     return "main".equalsIgnoreCase(thread.getName());
   }
 }

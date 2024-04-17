@@ -19,11 +19,10 @@ import static org.assertj.core.util.Strings.quote;
 
 import java.lang.reflect.Array;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.assertj.core.presentation.StandardRepresentation;
 import org.assertj.swing.internal.annotation.InternalApi;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Utility methods for arrays.
@@ -95,7 +94,8 @@ public final class Arrays {
    * @param array the array to format.
    * @return the data of the given array formatted to make it easier to read.
    */
-  @Nonnull public static String format(@Nullable String[][] array) {
+  @NotNull
+  public static String format(@Nullable String[][] array) {
     if (array == null) {
       return NULL;
     }
@@ -121,7 +121,7 @@ public final class Arrays {
     return b.toString();
   }
 
-  private static void addLine(@Nullable String[] line, @Nonnull StringBuilder b) {
+  private static void addLine(@Nullable String[] line, @NotNull StringBuilder b) {
     if (line == null) {
       b.append(NULL);
       return;
@@ -144,7 +144,7 @@ public final class Arrays {
    * @return the created copy.
    * @throws NullPointerException if the array to copy is {@code null}.
    */
-  @Nonnull public static int[] copyOf(@Nonnull int[] array) {
+  @NotNull public static int[] copyOf(@NotNull int[] array) {
     checkNotNull(array);
     int arraySize = array.length;
     int[] copy = new int[arraySize];
@@ -163,7 +163,7 @@ public final class Arrays {
    * @throws NullPointerException if the array to copy is {@code null}.
    */
   @SuppressWarnings("unchecked")
-  public static <T> T[] copyOf(@Nonnull T[] array) {
+  public static <T> T[] copyOf(@NotNull T[] array) {
     checkNotNull(array);
     int arraySize = array.length;
     T[] copy = (T[]) Array.newInstance(array.getClass().getComponentType(), arraySize);

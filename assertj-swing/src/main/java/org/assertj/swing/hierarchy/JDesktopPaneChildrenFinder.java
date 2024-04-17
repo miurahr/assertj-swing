@@ -19,7 +19,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JInternalFrame.JDesktopIcon;
@@ -34,7 +34,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 final class JDesktopPaneChildrenFinder implements ChildrenFinderStrategy {
   @Override
   @RunsInCurrentThread
-  @Nonnull public Collection<Component> nonExplicitChildrenOf(@Nonnull Container c) {
+  @NotNull public Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
     if (!(c instanceof JDesktopPane)) {
       return emptyList();
     }
@@ -44,7 +44,7 @@ final class JDesktopPaneChildrenFinder implements ChildrenFinderStrategy {
   // From Abbot: add iconified frames, which are otherwise unreachable. For consistency, they are still considered
   // children of the desktop pane.
   @RunsInCurrentThread
-  @Nonnull private Collection<Component> internalFramesFromIcons(@Nonnull Container c) {
+  @NotNull private Collection<Component> internalFramesFromIcons(@NotNull Container c) {
     Collection<Component> frames = newArrayList();
     for (Component child : c.getComponents()) {
       if (child instanceof JDesktopIcon) {

@@ -12,10 +12,11 @@
  */
 package org.assertj.swing.edt;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.concurrent.CountDownLatch;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Action executed in the event dispatch thread (EDT).
@@ -43,7 +44,7 @@ abstract class GuiAction implements Runnable {
     caughtException = null;
   }
 
-  final void executionNotification(@Nonnull CountDownLatch c) {
+  final void executionNotification(@NotNull CountDownLatch c) {
     executionNotification = c;
   }
 

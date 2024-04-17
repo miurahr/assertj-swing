@@ -25,11 +25,10 @@ import java.awt.Robot;
 import java.awt.Window;
 import java.util.logging.Logger;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.RobotFactory;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Verification of the state of a window.
@@ -39,18 +38,18 @@ import org.assertj.swing.util.RobotFactory;
 class WindowStatus {
   private static final Dimension MINIMUM_WINDOW_SIZE = new Dimension(50, 30);
 
-  private static Logger logger = Logger.getLogger(WindowStatus.class.getCanonicalName());
+  private static final Logger logger = Logger.getLogger(WindowStatus.class.getCanonicalName());
   private static int sign = 1;
 
   private final Windows windows;
 
   final Robot robot;
 
-  WindowStatus(@Nonnull Windows windows) {
+  WindowStatus(@NotNull Windows windows) {
     this(windows, new RobotFactory());
   }
 
-  WindowStatus(@Nonnull Windows windows, @Nonnull RobotFactory robotFactory) {
+  WindowStatus(@NotNull Windows windows, @NotNull RobotFactory robotFactory) {
     this.windows = windows;
     Robot r = null;
     try {
@@ -61,7 +60,7 @@ class WindowStatus {
     robot = r;
   }
 
-  @Nonnull
+  @NotNull
   Windows windows() {
     return windows;
   }
@@ -72,7 +71,7 @@ class WindowStatus {
    * @param w the given window.
    */
   @RunsInEDT
-  void checkIfReady(@Nonnull Window w) {
+  void checkIfReady(@NotNull Window w) {
     if (robot == null) {
       return;
     }
@@ -86,7 +85,7 @@ class WindowStatus {
   }
 
   @RunsInEDT
-  private void checkSafelyIfReady(final @Nonnull Window w) {
+  private void checkSafelyIfReady(final @NotNull Window w) {
     if (!windows.isShowingButNotReady(w)) {
       return;
     }
@@ -95,12 +94,12 @@ class WindowStatus {
   }
 
   @RunsInEDT
-  private static Point centerOf(final @Nonnull Window w) {
+  private static Point centerOf(final @NotNull Window w) {
     return execute(() -> absoluteCenterOf(w));
   }
 
   @RunsInEDT
-  private void mouseMove(@Nonnull Window w, @Nonnull Point point) {
+  private void mouseMove(@NotNull Window w, @NotNull Point point) {
     int x = point.x;
     int y = point.y;
     if (x == 0 || y == 0) {
@@ -117,7 +116,7 @@ class WindowStatus {
   }
 
   @RunsInCurrentThread
-  private void makeLargeEnoughToReceiveEvents(@Nonnull Window window) {
+  private void makeLargeEnoughToReceiveEvents(@NotNull Window window) {
     if (!shouldResize(window)) {
       return;
     }
@@ -125,7 +124,7 @@ class WindowStatus {
   }
 
   @RunsInCurrentThread
-  private boolean shouldResize(@Nonnull Window window) {
+  private boolean shouldResize(@NotNull Window window) {
     Insets insets = window.getInsets();
     int w = window.getWidth() - (insets.left + insets.right);
     if (w < MINIMUM_WINDOW_SIZE.width) {

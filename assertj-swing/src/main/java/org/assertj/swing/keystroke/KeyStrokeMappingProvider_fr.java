@@ -59,9 +59,8 @@ import static org.assertj.swing.keystroke.KeyStrokeMapping.mapping;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.core.util.Lists;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Mapping between characters and {@code KeyStroke}s for locale {@code Locale.FRENCH}.
@@ -74,7 +73,8 @@ public class KeyStrokeMappingProvider_fr implements KeyStrokeMappingProvider {
    * @return the mapping between characters and {@code KeyStroke}s for locale {@code Locale.FRENCH}.
    */
   @Override
-  @Nonnull public Collection<KeyStrokeMapping> keyStrokeMappings() {
+  @NotNull
+  public Collection<KeyStrokeMapping> keyStrokeMappings() {
     return SingletonHolder.instance;
   }
 
@@ -83,7 +83,8 @@ public class KeyStrokeMappingProvider_fr implements KeyStrokeMappingProvider {
     static List<KeyStrokeMapping> instance = createMappings();
   }
 
-  @Nonnull private static List<KeyStrokeMapping> createMappings() {
+  @NotNull
+  private static List<KeyStrokeMapping> createMappings() {
     List<KeyStrokeMapping> mappings = Lists.newArrayList();
     mappings.add(mapping('\b', VK_BACK_SPACE, NO_MASK));
     mappings.add(mapping('', VK_DELETE, NO_MASK));

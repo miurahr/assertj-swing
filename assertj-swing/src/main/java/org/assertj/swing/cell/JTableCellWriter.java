@@ -14,11 +14,11 @@ package org.assertj.swing.cell;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Edits the value of a cell in a {@code JTable}.
@@ -43,7 +43,7 @@ public interface JTableCellWriter {
    * @throws org.assertj.swing.exception.ActionFailedException if an editor for the given cell cannot be found or cannot
    *           be activated.
    */
-  void enterValue(@Nonnull JTable table, int row, int column, @Nonnull String value);
+  void enterValue(@NotNull JTable table, int row, int column, @NotNull String value);
 
   /**
    * Starts editing the given cell of the {@code JTable}. This method should be called before manipulating the AWT or
@@ -60,7 +60,7 @@ public interface JTableCellWriter {
    *           be activated.
    * @see #editorForCell(JTable, int, int)
    */
-  void startCellEditing(@Nonnull JTable table, int row, int column);
+  void startCellEditing(@NotNull JTable table, int row, int column);
 
   /**
    * Stops editing the given cell of the {@code JTable}. This method should be called after manipulating the AWT or
@@ -77,7 +77,7 @@ public interface JTableCellWriter {
    *           be activated.
    * @see #editorForCell(JTable, int, int)
    */
-  void stopCellEditing(@Nonnull JTable table, int row, int column);
+  void stopCellEditing(@NotNull JTable table, int row, int column);
 
   /**
    * Cancels editing the given cell of the {@code JTable}. This method should be called after manipulating the AWT or
@@ -94,7 +94,7 @@ public interface JTableCellWriter {
    *           be activated.
    * @see #editorForCell(JTable, int, int)
    */
-  void cancelCellEditing(@Nonnull JTable table, int row, int column);
+  void cancelCellEditing(@NotNull JTable table, int row, int column);
 
   /**
    * <p>
@@ -123,5 +123,5 @@ public interface JTableCellWriter {
    * @throws IndexOutOfBoundsException if any of the indices (row and column) is out of bounds.
    */
   @Nullable
-  Component editorForCell(@Nonnull JTable table, int row, int column);
+  Component editorForCell(@NotNull JTable table, int row, int column);
 }

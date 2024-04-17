@@ -15,8 +15,8 @@ package org.assertj.swing.annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Utility methods related to GUI tests. A GUI test is a class or method annotated with {@link GUITest}.
@@ -32,11 +32,11 @@ public final class GUITestFinder {
    * @param method the method to check.
    * @return {@code true} if the given class and/or method are annotated with {@code GUITest}.
    */
-  public static boolean isGUITest(@Nonnull Class<?> type, @Nonnull Method method) {
+  public static boolean isGUITest(@NotNull Class<?> type, @NotNull Method method) {
     return isGUITest(type) || isGUITest(method) || isSuperClassGUITest(type, method);
   }
 
-  private static boolean isSuperClassGUITest(@Nonnull Class<?> type, @Nonnull Method method) {
+  private static boolean isSuperClassGUITest(@NotNull Class<?> type, @NotNull Method method) {
     Class<?> superclass = type.getSuperclass();
     while (superclass != null) {
       if (isGUITest(superclass)) {
@@ -51,7 +51,7 @@ public final class GUITestFinder {
     return false;
   }
 
-  @Nullable private static Method findMethod(@Nonnull Class<?> type, @Nonnull Method method) {
+  @Nullable private static Method findMethod(@NotNull Class<?> type, @NotNull Method method) {
     try {
       return type.getDeclaredMethod(method.getName(), method.getParameterTypes());
     } catch (Throwable t) {
@@ -59,7 +59,7 @@ public final class GUITestFinder {
     }
   }
 
-  private static boolean isGUITest(@Nonnull AnnotatedElement annotatedElement) {
+  private static boolean isGUITest(@NotNull AnnotatedElement annotatedElement) {
     return annotatedElement.isAnnotationPresent(GUITest.class);
   }
 

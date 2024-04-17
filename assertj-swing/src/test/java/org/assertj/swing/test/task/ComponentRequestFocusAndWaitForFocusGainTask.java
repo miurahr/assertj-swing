@@ -19,7 +19,7 @@ import static org.assertj.swing.timing.Timeout.timeout;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -30,13 +30,13 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class ComponentRequestFocusAndWaitForFocusGainTask {
   @RunsInEDT
-  public static void giveFocusAndWaitTillIsFocused(final @Nonnull Component c) {
+  public static void giveFocusAndWaitTillIsFocused(final @NotNull Component c) {
     execute(() -> c.requestFocus());
     waitTillHasFocus(c);
   }
 
   @RunsInEDT
-  public static void waitTillHasFocus(final @Nonnull Component c) {
+  public static void waitTillHasFocus(final @NotNull Component c) {
     pause(untilFocused(c), timeout(500));
   }
 

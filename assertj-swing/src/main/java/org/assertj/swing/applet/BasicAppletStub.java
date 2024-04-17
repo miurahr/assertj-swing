@@ -21,8 +21,8 @@ import java.awt.Window;
 import java.net.URL;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Basic (and limited) implementation of {@code AppletStub}.
@@ -43,7 +43,7 @@ public class BasicAppletStub implements AppletStub {
    * @param parameters the parameters included in an "applet" HTML tag.
    * @throws NullPointerException if {@code viewer}, {@code context} or {@code parameters} are {@code null}.
    */
-  public BasicAppletStub(@Nonnull Window viewer, @Nonnull AppletContext context, @Nonnull Map<String, String> parameters) {
+  public BasicAppletStub(@NotNull Window viewer, @NotNull AppletContext context, @NotNull Map<String, String> parameters) {
     this(viewer, context);
     this.parameters.putAll(checkNotNull(parameters));
   }
@@ -55,7 +55,7 @@ public class BasicAppletStub implements AppletStub {
    * @param context the {@code Applet} environment.
    * @throws NullPointerException if {@code viewer} or {@code context} are {@code null}.
    */
-  public BasicAppletStub(@Nonnull Window viewer, @Nonnull AppletContext context) {
+  public BasicAppletStub(@NotNull Window viewer, @NotNull AppletContext context) {
     this.viewer = checkNotNull(viewer);
     this.context = checkNotNull(context);
   }
@@ -85,7 +85,7 @@ public class BasicAppletStub implements AppletStub {
    * @return the {@code Applet}'s context.
    */
   @Override
-  @Nonnull public AppletContext getAppletContext() {
+  @NotNull public AppletContext getAppletContext() {
     return context;
   }
 

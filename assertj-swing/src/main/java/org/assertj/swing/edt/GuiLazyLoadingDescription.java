@@ -15,7 +15,7 @@ package org.assertj.swing.edt;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -33,7 +33,7 @@ public abstract class GuiLazyLoadingDescription extends Description {
    * @return the text loaded in the event dispatch thread (EDT).
    */
   @Override
-  public final @Nonnull String value() {
+  public final @NotNull String value() {
     String result = execute(() -> loadDescription());
     return checkNotNull(result);
   }
@@ -51,5 +51,5 @@ public abstract class GuiLazyLoadingDescription extends Description {
    * @return the lazy-loaded text of this description.
    */
   @RunsInCurrentThread
-  protected abstract @Nonnull String loadDescription();
+  protected abstract @NotNull String loadDescription();
 }

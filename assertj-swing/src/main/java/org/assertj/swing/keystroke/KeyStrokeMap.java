@@ -16,11 +16,11 @@ import static java.awt.event.InputEvent.SHIFT_MASK;
 import static java.awt.event.KeyEvent.CHAR_UNDEFINED;
 import static org.assertj.swing.util.Platform.osFamily;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.KeyStroke;
 
 import org.assertj.core.util.VisibleForTesting;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A collection of {@link KeyStrokeMapping}.
@@ -45,7 +45,7 @@ public class KeyStrokeMap {
   }
 
   @VisibleForTesting
-  static void updateKeyStrokeMapCollection(@Nonnull KeyStrokeMapCollection c) {
+  static void updateKeyStrokeMapCollection(@NotNull KeyStrokeMapCollection c) {
     maps = c;
   }
 
@@ -54,13 +54,13 @@ public class KeyStrokeMap {
    * 
    * @param provider the given {@code KeyStrokeMappingProvider}.
    */
-  public static void addKeyStrokesFrom(@Nonnull KeyStrokeMappingProvider provider) {
+  public static void addKeyStrokesFrom(@NotNull KeyStrokeMappingProvider provider) {
     for (KeyStrokeMapping entry : provider.keyStrokeMappings()) {
       add(entry.character(), entry.keyStroke());
     }
   }
 
-  private static void add(@Nonnull Character character, @Nonnull KeyStroke keyStroke) {
+  private static void add(@NotNull Character character, @NotNull KeyStroke keyStroke) {
     maps.add(character, keyStroke);
   }
 
@@ -88,7 +88,8 @@ public class KeyStrokeMap {
    * @return the key code-based {@code KeyStroke} corresponding to the given character, or {@code null} if we cannot
    *         generate it.
    */
-  @Nullable public static
+  @Nullable
+  public static
   KeyStroke keyStrokeFor(char character) {
     return maps.keyStrokeFor(character);
   }
@@ -101,7 +102,7 @@ public class KeyStrokeMap {
    * @param keyStroke the given {@code KeyStroke}.
    * @return {@code KeyEvent.VK_UNDEFINED} if the result is unknown.
    */
-  public static char charFor(@Nonnull KeyStroke keyStroke) {
+  public static char charFor(@NotNull KeyStroke keyStroke) {
     Character character = maps.charFor(keyStroke);
     // Try again, but strip all modifiers but shift
     if (character == null) {
@@ -114,7 +115,7 @@ public class KeyStrokeMap {
   }
 
   @Nullable private static
-  Character charWithoutModifiersButShift(@Nonnull KeyStroke keyStroke) {
+  Character charWithoutModifiersButShift(@NotNull KeyStroke keyStroke) {
     int mask = keyStroke.getModifiers() & ~SHIFT_MASK;
     return maps.charFor(KeyStroke.getKeyStroke(keyStroke.getKeyCode(), mask));
   }

@@ -18,7 +18,7 @@ import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.MIDDLE_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -58,7 +58,7 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @Nonnull public static MouseClickInfo leftButton() {
+  @NotNull public static MouseClickInfo leftButton() {
     return button(LEFT_BUTTON);
   }
 
@@ -67,7 +67,7 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @Nonnull public static MouseClickInfo middleButton() {
+  @NotNull public static MouseClickInfo middleButton() {
     return button(MIDDLE_BUTTON);
   }
 
@@ -76,7 +76,7 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @Nonnull public static MouseClickInfo rightButton() {
+  @NotNull public static MouseClickInfo rightButton() {
     return button(RIGHT_BUTTON);
   }
 
@@ -87,11 +87,11 @@ public final class MouseClickInfo {
    * @return the created click info.
    * @throws NullPointerException if {@code button} is {@code null}.
    */
-  @Nonnull public static MouseClickInfo button(@Nonnull MouseButton button) {
+  @NotNull public static MouseClickInfo button(@NotNull MouseButton button) {
     return new MouseClickInfo(button, 1);
   }
 
-  private MouseClickInfo(@Nonnull MouseButton button, int times) {
+  private MouseClickInfo(@NotNull MouseButton button, int times) {
     this.button = checkNotNull(button);
     this.times = times;
   }
@@ -99,7 +99,7 @@ public final class MouseClickInfo {
   /**
    * @return the button to click.
    */
-  @Nonnull public MouseButton button() {
+  @NotNull public MouseButton button() {
     return button;
   }
 
@@ -122,7 +122,7 @@ public final class MouseClickInfo {
   }
 
   @Override
-  @Nonnull public String toString() {
+  @NotNull public String toString() {
     return concat(String.format("%s[button=%s, times=%d]", getClass().getName(), button.toString(), times));
   }
 }

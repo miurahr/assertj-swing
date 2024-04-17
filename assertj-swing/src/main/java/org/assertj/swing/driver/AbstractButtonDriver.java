@@ -22,14 +22,14 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.AbstractButton;
 
 import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>
@@ -55,7 +55,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    *
    * @param robot the robot to use to simulate user input.
    */
-  public AbstractButtonDriver(@Nonnull Robot robot) {
+  public AbstractButtonDriver(@NotNull Robot robot) {
     super(robot);
   }
 
@@ -69,7 +69,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    */
   @RunsInEDT
   @Override
-  public void requireText(@Nonnull AbstractButton button, @Nullable String expected) {
+  public void requireText(@NotNull AbstractButton button, @Nullable String expected) {
     verifyThat(textOf(button)).as(propertyName(button, TEXT_PROPERTY)).isEqualOrMatches(expected);
   }
 
@@ -83,7 +83,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    *           pattern.
    */
   @Override
-  public void requireText(@Nonnull AbstractButton button, @Nonnull Pattern pattern) {
+  public void requireText(@NotNull AbstractButton button, @NotNull Pattern pattern) {
     verifyThat(textOf(button)).as(propertyName(button, TEXT_PROPERTY)).matches(pattern);
   }
 
@@ -95,7 +95,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    */
   @RunsInEDT
   @Override
-  @Nonnull public String textOf(@Nonnull AbstractButton button) {
+  @NotNull public String textOf(@NotNull AbstractButton button) {
     return AbstractButtonTextQuery.textOf(button);
   }
 
@@ -107,7 +107,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    * @throws IllegalStateException if the {@code AbstractButton} is not showing on the screen.
    */
   @RunsInEDT
-  public void select(@Nonnull AbstractButton button) {
+  public void select(@NotNull AbstractButton button) {
     if (checkSelected(button)) {
       return;
     }
@@ -122,7 +122,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    * @throws IllegalStateException if the {@code AbstractButton} is not showing on the screen.
    */
   @RunsInEDT
-  public void deselect(@Nonnull AbstractButton button) {
+  public void deselect(@NotNull AbstractButton button) {
     if (!checkSelected(button)) {
       return;
     }
@@ -130,7 +130,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInEDT
-  private static boolean checkSelected(final @Nonnull AbstractButton button) {
+  private static boolean checkSelected(final @NotNull AbstractButton button) {
     Boolean result = execute(() -> {
       checkEnabledAndShowing(button);
       return button.isSelected();
@@ -145,7 +145,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    * @throws AssertionError if the button is not selected.
    */
   @RunsInEDT
-  public void requireSelected(@Nonnull AbstractButton button) {
+  public void requireSelected(@NotNull AbstractButton button) {
     assertThatButtonIsSelected(button, true);
   }
 
@@ -156,17 +156,17 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    * @throws AssertionError if the {@code AbstractButton} is selected.
    */
   @RunsInEDT
-  public void requireNotSelected(@Nonnull AbstractButton button) {
+  public void requireNotSelected(@NotNull AbstractButton button) {
     assertThatButtonIsSelected(button, false);
   }
 
   @RunsInEDT
-  private void assertThatButtonIsSelected(@Nonnull AbstractButton button, boolean selected) {
+  private void assertThatButtonIsSelected(@NotNull AbstractButton button, boolean selected) {
     assertThat(isSelected(button)).as(selectedProperty(button)).isEqualTo(selected);
   }
 
   @RunsInEDT
-  @Nonnull private static Description selectedProperty(@Nonnull AbstractButton button) {
+  @NotNull private static Description selectedProperty(@NotNull AbstractButton button) {
     return propertyName(button, SELECTED_PROPERTY);
   }
 
@@ -177,7 +177,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    * @throws AssertionError if the button is not armed.
    */
   @RunsInEDT
-  public void requireArmed(@Nonnull AbstractButton button) {
+  public void requireArmed(@NotNull AbstractButton button) {
     assertThatButtonIsArmed(button, true);
   }
 
@@ -188,17 +188,17 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    * @throws AssertionError if the {@code AbstractButton} is armed.
    */
   @RunsInEDT
-  public void requireNotArmed(@Nonnull AbstractButton button) {
+  public void requireNotArmed(@NotNull AbstractButton button) {
     assertThatButtonIsArmed(button, false);
   }
 
   @RunsInEDT
-  private void assertThatButtonIsArmed(@Nonnull AbstractButton button, boolean armed) {
+  private void assertThatButtonIsArmed(@NotNull AbstractButton button, boolean armed) {
     assertThat(isArmed(button)).as(armedProperty(button)).isEqualTo(armed);
   }
 
   @RunsInEDT
-  @Nonnull private static Description armedProperty(@Nonnull AbstractButton button) {
+  @NotNull private static Description armedProperty(@NotNull AbstractButton button) {
     return propertyName(button, ARMED_PROPERTY);
   }
 }

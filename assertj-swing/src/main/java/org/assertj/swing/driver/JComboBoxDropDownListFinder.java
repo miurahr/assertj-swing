@@ -20,8 +20,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.JList;
 import javax.swing.JPopupMenu;
 
@@ -30,6 +28,8 @@ import org.assertj.swing.core.ComponentMatcher;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.core.TypeMatcher;
 import org.assertj.swing.util.TimeoutWatch;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Looks up the {@code JList} in the pop-up raised by a {@code JComboBox}, if the LAF actually uses one.
@@ -68,7 +68,7 @@ final class JComboBoxDropDownListFinder {
     return findListIn(popup);
   }
 
-  @Nullable private JList<?> findListIn(@Nonnull Container parent) {
+  @Nullable private JList<?> findListIn(@NotNull Container parent) {
     List<Component> found = newArrayList(robot.finder().findAll(parent, LIST_MATCHER));
     if (found.size() != 1) {
       return null;

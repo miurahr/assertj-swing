@@ -12,6 +12,9 @@
  */
 package org.assertj.swing.edt;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import static javax.swing.SwingUtilities.invokeLater;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 import static org.assertj.core.util.Throwables.appendStackTraceInCurrentThreadToThrowable;
@@ -20,19 +23,13 @@ import static org.assertj.swing.exception.UnexpectedException.unexpected;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
 
 /**
  * Executes instances of {@link GuiQuery} and {@link GuiTask}.
  *
  * @author Alex Ruiz
  */
-@ThreadSafe
 public class GuiActionRunner {
-  @GuardedBy("this")
   private static boolean executeInEDT = true;
 
   /**
@@ -68,7 +65,8 @@ public class GuiActionRunner {
    *           wrapping.
    * @see #execute(GuiQuery)
    */
-  @Nullable public static <T> T execute(@Nonnull Callable<T> query) {
+  @Nullable
+  public static <T> T execute(@NotNull Callable<T> query) {
     return execute(new GuiQuery<T>() {
       @Override
       protected T executeInEDT() throws Throwable {
@@ -90,7 +88,7 @@ public class GuiActionRunner {
    * @see #executeInEDT()
    * @see #execute(Callable)
    */
-  @Nullable public static <T> T execute(@Nonnull GuiQuery<T> query) {
+  @Nullable public static <T> T execute(@NotNull GuiQuery<T> query) {
     if (!executeInEDT) {
       return executeInCurrentThread(query);
     }
@@ -98,7 +96,7 @@ public class GuiActionRunner {
     return resultOf(query);
   }
 
-  @Nullable private static <T> T executeInCurrentThread(@Nonnull GuiQuery<T> query) {
+  @Nullable private static <T> T executeInCurrentThread(@NotNull GuiQuery<T> query) {
     try {
       return query.executeInEDT();
     } catch (Throwable e) {
@@ -117,7 +115,7 @@ public class GuiActionRunner {
    * @see #executeInEDT()
    * @see #execute(GuiTask)
    */
-  public static void execute(@Nonnull GuiActionRunnable task) {
+  public static void execute(@NotNull GuiActionRunnable task) {
     execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
@@ -137,7 +135,7 @@ public class GuiActionRunner {
    * @see #executeInEDT()
    * @see #execute(GuiActionRunnable)
    */
-  public static void execute(@Nonnull GuiTask task) {
+  public static void execute(@NotNull GuiTask task) {
     if (!executeInEDT) {
       executeInCurrentThread(task);
       return;
@@ -146,7 +144,7 @@ public class GuiActionRunner {
     rethrowCaughtExceptionIn(task);
   }
 
-  private static void executeInCurrentThread(@Nonnull GuiTask task) {
+  private static void executeInCurrentThread(@NotNull GuiTask task) {
     try {
       task.executeInEDT();
     } catch (Throwable e) {
@@ -154,7 +152,7 @@ public class GuiActionRunner {
     }
   }
 
-  private static void run(@Nonnull final GuiAction action) {
+  private static void run(@NotNull final GuiAction action) {
     if (isEventDispatchThread()) {
       action.run();
       return;
@@ -169,7 +167,7 @@ public class GuiActionRunner {
     }
   }
 
-  @Nullable private static <T> T resultOf(@Nonnull GuiQuery<T> query) {
+  @Nullable private static <T> T resultOf(@NotNull GuiQuery<T> query) {
     T result = query.result();
     query.clearResult();
     rethrowCaughtExceptionIn(query);
@@ -183,7 +181,7 @@ public class GuiActionRunner {
    * @throws org.assertj.swing.exception.UnexpectedException wrapping any <b>checked</b> exception thrown when executing the given query in the
    *           event dispatch thread (EDT). Unchecked exceptions are re-thrown without any wrapping.
    */
-  private static void rethrowCaughtExceptionIn(@Nonnull GuiAction action) {
+  private static void rethrowCaughtExceptionIn(@NotNull GuiAction action) {
     Throwable caughtException = action.catchedException();
     action.clearCaughtException();
     if (caughtException == null) {

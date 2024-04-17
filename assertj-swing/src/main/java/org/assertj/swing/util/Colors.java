@@ -18,7 +18,7 @@ import static org.assertj.core.util.Strings.quote;
 
 import java.awt.Color;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Utility methods related to colors.
@@ -35,7 +35,7 @@ public final class Colors {
    * @throws IllegalArgumentException if the hexadecimal code is empty.
    * @throws NumberFormatException if the hexadecimal code is empty.
    */
-  @Nonnull public static Color colorFromHexString(@Nonnull String hexString) {
+  @NotNull public static Color colorFromHexString(@NotNull String hexString) {
     checkNotNullOrEmpty(hexString);
     try {
       return new Color(Integer.parseInt(hexString, 16));

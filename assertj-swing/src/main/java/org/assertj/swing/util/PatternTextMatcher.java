@@ -20,8 +20,8 @@ import static org.assertj.swing.util.Strings.match;
 
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Matches text to a group of {@code String} values. Matching is perform by equality or by regular expression matching.
@@ -38,7 +38,7 @@ public class PatternTextMatcher implements TextMatcher {
    * @throws NullPointerException if the array of patterns is {@code null}.
    * @throws IllegalArgumentException if the array of patterns is empty.
    */
-  public PatternTextMatcher(@Nonnull Pattern... patterns) {
+  public PatternTextMatcher(@NotNull Pattern... patterns) {
     this.patterns = checkNotNullOrEmpty(patterns);
   }
 
@@ -64,7 +64,7 @@ public class PatternTextMatcher implements TextMatcher {
    *         pattern.
    */
   @Override
-  @Nonnull public String description() {
+  @NotNull public String description() {
     return patterns.length == 1 ? "pattern" : "patterns";
   }
 
@@ -72,7 +72,7 @@ public class PatternTextMatcher implements TextMatcher {
    * @return the regular expression patterns in this matcher, formatted as a single {@code String}.
    */
   @Override
-  @Nonnull public String formattedValues() {
+  @NotNull public String formattedValues() {
     if (patterns.length == 1) {
       return checkNotNull(quote(patterns[0].pattern()));
     }

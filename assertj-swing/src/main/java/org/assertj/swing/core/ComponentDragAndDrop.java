@@ -23,7 +23,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.TimeoutWatch;
@@ -41,7 +41,7 @@ public class ComponentDragAndDrop {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public ComponentDragAndDrop(@Nonnull Robot robot) {
+  public ComponentDragAndDrop(@NotNull Robot robot) {
     this.robot = robot;
   }
 
@@ -55,7 +55,7 @@ public class ComponentDragAndDrop {
    * @param where the point where to start the drag action.
    */
   @RunsInEDT
-  public void drag(@Nonnull Component target, @Nonnull Point where) {
+  public void drag(@NotNull Component target, @NotNull Point where) {
     robot.pressMouse(target, where, robot.settings().dragButton());
     int dragDelay = settings().dragDelay();
     if (dragDelay > delayBetweenEvents()) {
@@ -65,7 +65,7 @@ public class ComponentDragAndDrop {
     robot.waitForIdle();
   }
 
-  private void mouseMove(@Nonnull Component target, int x, int y) {
+  private void mouseMove(@NotNull Component target, int x, int y) {
     if (isWindows() || isMacintosh()) {
       mouseMoveOnWindowsAndMacintosh(target, x, y);
       return;
@@ -76,7 +76,7 @@ public class ComponentDragAndDrop {
   }
 
   @RunsInEDT
-  private void mouseMoveOnWindowsAndMacintosh(@Nonnull Component target, int x, int y) {
+  private void mouseMoveOnWindowsAndMacintosh(@NotNull Component target, int x, int y) {
     Dimension size = target.getSize();
     int dx = distance(x, size.width);
     int dy = distance(y, size.height);
@@ -91,7 +91,7 @@ public class ComponentDragAndDrop {
     return coordinate + DRAG_THRESHOLD < dimension ? DRAG_THRESHOLD : 0;
   }
 
-  @Nonnull private Point point(int x, int y) {
+  @NotNull private Point point(int x, int y) {
     return new Point(x, y);
   }
 
@@ -109,7 +109,7 @@ public class ComponentDragAndDrop {
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
   @RunsInEDT
-  public void drop(@Nonnull Component target, @Nonnull Point where) {
+  public void drop(@NotNull Component target, @NotNull Point where) {
     dragOver(target, where);
     TimeoutWatch watch = startWatchWithTimeoutOf(settings().eventPostingDelay() * 4);
     while (!robot.isDragging()) {
@@ -131,7 +131,7 @@ public class ComponentDragAndDrop {
     return settings().delayBetweenEvents();
   }
 
-  @Nonnull private Settings settings() {
+  @NotNull private Settings settings() {
     return robot.settings();
   }
 
@@ -142,16 +142,16 @@ public class ComponentDragAndDrop {
    * @param target the target AWT or Swing {@code Component}.
    * @param where the point to drag over.
    */
-  public void dragOver(@Nonnull Component target, @Nonnull Point where) {
+  public void dragOver(@NotNull Component target, @NotNull Point where) {
     dragOver(target, where.x, where.y);
   }
 
-  private void dragOver(@Nonnull Component target, int x, int y) {
+  private void dragOver(@NotNull Component target, int x, int y) {
     robot.moveMouse(target, x - 4, y);
     robot.moveMouse(target, x, y);
   }
 
-  private void mouseMove(@Nonnull Component target, @Nonnull Point... points) {
+  private void mouseMove(@NotNull Component target, @NotNull Point... points) {
     for (Point p : points) {
       checkNotNull(p);
       robot.moveMouse(target, p.x, p.y);

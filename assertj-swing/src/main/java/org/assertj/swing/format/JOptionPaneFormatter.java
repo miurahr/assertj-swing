@@ -25,10 +25,10 @@ import static org.assertj.core.util.Strings.quote;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Formatter for {@code JOptionPane}s.
@@ -58,7 +58,7 @@ public class JOptionPaneFormatter extends ComponentFormatterTemplate {
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NotNull protected String doFormat(@NotNull Component c) {
     JOptionPane optionPane = (JOptionPane) c;
     String format = "%s[message=%s, messageType=%s, optionType=%s, enabled=%b, visible=%b, showing=%b]";
     return String.format(format, getRealClassName(c), quote(optionPane.getMessage()),
@@ -70,7 +70,7 @@ public class JOptionPaneFormatter extends ComponentFormatterTemplate {
    * @return {@code JOptionPane.class}.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NotNull public Class<? extends Component> targetType() {
     return JOptionPane.class;
   }
 }

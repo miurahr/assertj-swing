@@ -18,8 +18,8 @@ import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -64,7 +64,7 @@ public final class NameMatcher extends AbstractComponentMatcher {
    * @throws IllegalArgumentException if the given name is empty.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public NameMatcher(@Nullable String name, @Nonnull Class<? extends Component> type) {
+  public NameMatcher(@Nullable String name, @NotNull Class<? extends Component> type) {
     this(name, type, false);
   }
 
@@ -78,7 +78,7 @@ public final class NameMatcher extends AbstractComponentMatcher {
    * @throws IllegalArgumentException if the given name is empty.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public NameMatcher(@Nullable String name, @Nonnull Class<? extends Component> type, boolean requireShowing) {
+  public NameMatcher(@Nullable String name, @NotNull Class<? extends Component> type, boolean requireShowing) {
     super(requireShowing);
     this.name = checkNotNullOrEmpty(name).toString();
     this.type = checkNotNull(type);

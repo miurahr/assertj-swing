@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.data;
 
-import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
+import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
 
 /**
  * A cell in a {@code JTable}.
@@ -45,7 +45,8 @@ public class TableCell {
    * @param row the row index of the table cell to create.
    * @return the created builder.
    */
-  @Nonnull public static TableCellBuilder row(int row) {
+  @NotNull
+  public static TableCellBuilder row(int row) {
     return new TableCellBuilder(row);
   }
 
@@ -68,7 +69,7 @@ public class TableCell {
      * @param column the column index of the table cell to create.
      * @return the created table cell.
      */
-    @Nonnull public TableCell column(int column) {
+    @NotNull public TableCell column(int column) {
       return new TableCell(row, column);
     }
   }

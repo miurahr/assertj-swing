@@ -12,15 +12,15 @@
  */
 package org.assertj.swing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Alex Ruiz
  */
 class SystemPropertyWriter {
   @Nullable
-  String updateSystemProperty(@Nonnull String propertyName, @Nullable String value) {
+  String updateSystemProperty(@NotNull String propertyName, @Nullable String value) {
     return System.setProperty(propertyName, value);
   }
 }

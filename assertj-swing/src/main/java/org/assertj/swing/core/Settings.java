@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.function.Function;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.core.util.VisibleForTesting;
 
@@ -142,7 +142,7 @@ public class Settings {
     return PRESERVE_SCREENSHOTS;
   }
 
-  void attachTo(@Nonnull java.awt.Robot newRobot) {
+  void attachTo(@NotNull java.awt.Robot newRobot) {
     robot = newRobot;
     if (delayBetweenEvents < 0) {
       delayBetweenEvents = robot.getAutoDelay();
@@ -152,7 +152,7 @@ public class Settings {
   }
 
   @VisibleForTesting
-  @Nonnull
+  @NotNull
   java.awt.Robot robot() {
     return robot;
   }
@@ -334,7 +334,7 @@ public class Settings {
    *         {@code org.assertj.swing.fixture}.
    * @see #componentLookupScope(ComponentLookupScope) for default value and configuration key
    */
-  @Nonnull public ComponentLookupScope componentLookupScope() {
+  @NotNull public ComponentLookupScope componentLookupScope() {
     return componentLookupScope;
   }
 
@@ -347,7 +347,7 @@ public class Settings {
    *
    * @param scope the new value for the scope.
    */
-  public void componentLookupScope(@Nonnull ComponentLookupScope scope) {
+  public void componentLookupScope(@NotNull ComponentLookupScope scope) {
     componentLookupScope = scope;
   }
 

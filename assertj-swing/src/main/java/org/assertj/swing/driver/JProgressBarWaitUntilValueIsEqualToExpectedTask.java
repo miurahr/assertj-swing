@@ -16,7 +16,7 @@ import static org.assertj.swing.driver.JProgressBarValueQuery.valueOf;
 import static org.assertj.swing.format.Formatting.format;
 import static org.assertj.swing.timing.Pause.pause;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.core.description.Description;
@@ -33,8 +33,8 @@ import org.assertj.swing.timing.Timeout;
  */
 final class JProgressBarWaitUntilValueIsEqualToExpectedTask {
   @RunsInEDT
-  static void waitUntilValueIsEqualToExpected(final @Nonnull JProgressBar progressBar, final int expected,
-      final @Nonnull Timeout timeout) {
+  static void waitUntilValueIsEqualToExpected(final @NotNull JProgressBar progressBar, final int expected,
+      final @NotNull Timeout timeout) {
     pause(new Condition(untilValueIsEqualTo(progressBar, expected)) {
       @Override
       public boolean test() {
@@ -43,10 +43,10 @@ final class JProgressBarWaitUntilValueIsEqualToExpectedTask {
     }, timeout);
   }
 
-  private static Description untilValueIsEqualTo(final @Nonnull JProgressBar progressBar, final int expected) {
+  private static Description untilValueIsEqualTo(final @NotNull JProgressBar progressBar, final int expected) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @Nonnull protected String loadDescription() {
+      @NotNull protected String loadDescription() {
         return String.format("value of %s to be equal to %d", format(progressBar), expected);
       }
     };

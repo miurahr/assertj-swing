@@ -18,10 +18,9 @@ import static org.assertj.swing.keystroke.KeyStrokeMappingProviderNames.generate
 import java.util.Locale;
 import java.util.logging.Logger;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.util.OSFamily;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Chooses a {@link KeyStrokeMappingProvider} based on OS family and locale.
@@ -37,11 +36,11 @@ class KeyStrokeMappingProviderPicker {
   }
 
   @VisibleForTesting
-  KeyStrokeMappingProviderPicker(@Nonnull KeyStrokeMappingProviderFactory factory) {
+  KeyStrokeMappingProviderPicker(@NotNull KeyStrokeMappingProviderFactory factory) {
     this.factory = factory;
   }
 
-  KeyStrokeMappingProvider providerFor(@Nonnull OSFamily osFamily, @Nonnull Locale locale) {
+  KeyStrokeMappingProvider providerFor(@NotNull OSFamily osFamily, @NotNull Locale locale) {
     LOGGER.finer("providing keystroke mappings for OS=" + osFamily + ", locale=" + locale);
     for (String name : generateNamesFrom(osFamily, locale)) {
       LOGGER.finer("trying >" + name + "<");

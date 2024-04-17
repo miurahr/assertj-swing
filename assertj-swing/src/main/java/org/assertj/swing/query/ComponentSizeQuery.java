@@ -18,9 +18,8 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.awt.Dimension;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns the size of an AWT or Swing {@code Component}. This query is executed in the event dispatch thread (EDT).
@@ -40,7 +39,7 @@ public final class ComponentSizeQuery {
    * @see Component#getSize()
    */
   @RunsInEDT
-  @Nonnull public static Dimension sizeOf(final @Nonnull Component component) {
+  @NotNull public static Dimension sizeOf(final @NotNull Component component) {
     Dimension result = execute(() -> component.getSize());
     return checkNotNull(result);
   }

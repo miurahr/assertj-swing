@@ -17,7 +17,7 @@ import static org.fest.reflect.core.Reflection.field;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Finds the current focus owner using Java reflection.

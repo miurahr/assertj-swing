@@ -18,9 +18,8 @@ import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Keeps track of window visibility state.
@@ -31,7 +30,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 class WindowVisibilityMonitor extends WindowAdapter implements ComponentListener {
   private final Windows windows;
 
-  WindowVisibilityMonitor(@Nonnull Windows windows) {
+  WindowVisibilityMonitor(@NotNull Windows windows) {
     this.windows = windows;
   }
 

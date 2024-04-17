@@ -18,8 +18,8 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JInternalFrame;
 import javax.swing.JPopupMenu;
 import javax.swing.MenuElement;
@@ -48,7 +48,7 @@ class ParentFinder {
    */
   @RunsInCurrentThread
   @Nullable
-  Container parentOf(@Nonnull Component c) {
+  Container parentOf(@NotNull Component c) {
     Container p = c.getParent();
     if (p == null && c instanceof JInternalFrame) {
       p = parentOf((JInternalFrame) c);
@@ -57,7 +57,7 @@ class ParentFinder {
   }
 
   @RunsInCurrentThread
-  @Nullable private Container parentOf(@Nonnull JInternalFrame internalFrame) {
+  @Nullable private Container parentOf(@NotNull JInternalFrame internalFrame) {
     // From Abbot: workaround for bug in JInternalFrame: COMPONENT_HIDDEN is sent before the desktop icon is set, so
     // JInternalFrame.getDesktopPane will throw a NPE if called while dispatching that event. Reported against 1.4.x.
     return desktopPaneOf(internalFrame);
@@ -97,7 +97,7 @@ class ParentFinder {
    */
   @RunsInCurrentThread
   @Nullable
-  Component invokerFor(@Nonnull Component c) {
+  Component invokerFor(@NotNull Component c) {
     if (c instanceof JPopupMenu) {
       return ((JPopupMenu) c).getInvoker();
     }

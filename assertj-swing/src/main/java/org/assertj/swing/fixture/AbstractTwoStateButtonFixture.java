@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.core.Robot;
@@ -37,7 +37,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public AbstractTwoStateButtonFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nonnull T target) {
+  public AbstractTwoStateButtonFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @NotNull T target) {
     super(selfType, robot, target);
   }
 
@@ -53,8 +53,8 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code AbstractButton} could not be
    *           found. Or if more than one matching {@code AbstractButton} is found.
    */
-  public AbstractTwoStateButtonFixture(@Nonnull Class<S> selfType, @Nonnull Robot robot, @Nullable String buttonName,
-                                       @Nonnull Class<? extends T> type) {
+  public AbstractTwoStateButtonFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @Nullable String buttonName,
+                                       @NotNull Class<? extends T> type) {
     super(selfType, robot, buttonName, type);
   }
 
@@ -66,7 +66,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @throws IllegalStateException if this fixture's {@code AbstractButton} is disabled.
    * @throws IllegalStateException if this fixture's {@code AbstractButton} is not showing on the screen.
    */
-  public final @Nonnull S check(boolean checked) {
+  public final @NotNull S check(boolean checked) {
     if (checked) {
       return check();
     }
@@ -80,7 +80,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @throws IllegalStateException if this fixture's {@code AbstractButton} is disabled.
    * @throws IllegalStateException if this fixture's {@code AbstractButton} is not showing on the screen.
    */
-  public final @Nonnull S check() {
+  public final @NotNull S check() {
     driver().select(target());
     return myself();
   }
@@ -92,7 +92,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @throws IllegalStateException if this fixture's {@code AbstractButton} is disabled.
    * @throws IllegalStateException if this fixture's {@code AbstractButton} is not showing on the screen.
    */
-  public final @Nonnull S uncheck() {
+  public final @NotNull S uncheck() {
     driver().deselect(target());
     return myself();
   }
@@ -105,7 +105,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @return this fixture.
    * @throws AssertionError if the {@code AbstractButton} managed by this fixture is not selected.
    */
-  public final @Nonnull S requireSelected(boolean selected) {
+  public final @NotNull S requireSelected(boolean selected) {
     if (selected) {
       return requireSelected();
     }
@@ -118,7 +118,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @return this fixture.
    * @throws AssertionError if the {@code AbstractButton} managed by this fixture is not selected.
    */
-  public final @Nonnull S requireSelected() {
+  public final @NotNull S requireSelected() {
     driver().requireSelected(target());
     return myself();
   }
@@ -129,7 +129,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @return this fixture.
    * @throws AssertionError if the {@code AbstractButton} managed by this fixture is selected.
    */
-  public final @Nonnull S requireNotSelected() {
+  public final @NotNull S requireNotSelected() {
     driver().requireNotSelected(target());
     return myself();
   }
@@ -141,7 +141,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @return this fixture.
    * @throws AssertionError if the {@code AbstractButton} managed by this fixture is not armed.
    */
-  public final @Nonnull S requireArmed(boolean armed) {
+  public final @NotNull S requireArmed(boolean armed) {
     if (armed) {
       return requireArmed();
     }
@@ -154,7 +154,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @return this fixture.
    * @throws AssertionError if the {@code AbstractButton} managed by this fixture is not armed.
    */
-  public final @Nonnull S requireArmed() {
+  public final @NotNull S requireArmed() {
     driver().requireArmed(target());
     return myself();
   }
@@ -165,7 +165,7 @@ public abstract class AbstractTwoStateButtonFixture<S, T extends AbstractButton>
    * @return this fixture.
    * @throws AssertionError if the {@code AbstractButton} managed by this fixture is armed.
    */
-  public final @Nonnull S requireNotArmed() {
+  public final @NotNull S requireNotArmed() {
     driver().requireNotArmed(target());
     return myself();
   }

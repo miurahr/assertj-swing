@@ -21,7 +21,7 @@ import static org.assertj.swing.format.Formatting.format;
 
 import java.io.File;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JFileChooser;
 
 import org.assertj.core.presentation.StandardRepresentation;
@@ -35,7 +35,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JFileChooserSelectFileTask {
   @RunsInEDT
-  static void setSelectedFile(final @Nonnull JFileChooser fileChooser, final @Nonnull File file) {
+  static void setSelectedFile(final @NotNull JFileChooser fileChooser, final @NotNull File file) {
     execute(() -> {
       checkEnabledAndShowing(fileChooser);
       checkSelectionMode(fileChooser, file);
@@ -44,7 +44,7 @@ final class JFileChooserSelectFileTask {
   }
 
   @RunsInEDT
-  static void setSelectedFiles(final @Nonnull JFileChooser fileChooser, final @Nonnull File[] files) {
+  static void setSelectedFiles(final @NotNull JFileChooser fileChooser, final @NotNull File[] files) {
     execute(() -> {
       checkEnabledAndShowing(fileChooser);
       if (files.length > 1 && !fileChooser.isMultiSelectionEnabled()) {

@@ -28,12 +28,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -83,7 +83,8 @@ public class AppletViewer extends JFrame implements StatusDisplay {
    * @throws NullPointerException if {@code applet} is {@code null}.
    */
   @RunsInEDT
-  @Nonnull public static AppletViewer newViewer(@Nonnull Applet applet) {
+  @NotNull
+  public static AppletViewer newViewer(@NotNull Applet applet) {
     AppletViewer viewer = createInEDT(applet);
     viewer.appletStub(new BasicAppletStub(viewer, new BasicAppletContext(viewer)));
     return viewer;
@@ -106,7 +107,7 @@ public class AppletViewer extends JFrame implements StatusDisplay {
    * @throws NullPointerException if {@code parameters} is {@code null}.
    */
   @RunsInEDT
-  @Nonnull public static AppletViewer newViewer(@Nonnull Applet applet, @Nonnull Map<String, String> parameters) {
+  @NotNull public static AppletViewer newViewer(@NotNull Applet applet, @NotNull Map<String, String> parameters) {
     AppletViewer viewer = createInEDT(applet);
     viewer.appletStub(new BasicAppletStub(viewer, new BasicAppletContext(viewer), parameters));
     return viewer;
@@ -125,7 +126,7 @@ public class AppletViewer extends JFrame implements StatusDisplay {
    * @throws NullPointerException if {@code stub} is {@code null}.
    */
   @RunsInEDT
-  public static AppletViewer newViewer(@Nonnull Applet applet, @Nonnull AppletStub stub) {
+  public static AppletViewer newViewer(@NotNull Applet applet, @NotNull AppletStub stub) {
     checkNotNull(applet);
     AppletViewer viewer = createInEDT(applet);
     viewer.appletStub(stub);
@@ -133,11 +134,11 @@ public class AppletViewer extends JFrame implements StatusDisplay {
   }
 
   @RunsInEDT
-  private static AppletViewer createInEDT(@Nonnull final Applet applet) {
+  private static AppletViewer createInEDT(@NotNull final Applet applet) {
     return execute(() -> new AppletViewer(applet));
   }
 
-  private AppletViewer(@Nonnull Applet applet) {
+  private AppletViewer(@NotNull Applet applet) {
     this.applet = checkNotNull(applet);
     setUpFrame();
     addContent();
@@ -156,7 +157,7 @@ public class AppletViewer extends JFrame implements StatusDisplay {
     add(statusLabel, BorderLayout.SOUTH);
   }
 
-  private void appletStub(@Nonnull AppletStub newAppletStub) {
+  private void appletStub(@NotNull AppletStub newAppletStub) {
     checkNotNull(newAppletStub);
     stub = newAppletStub;
     applet.setStub(stub);
@@ -210,7 +211,7 @@ public class AppletViewer extends JFrame implements StatusDisplay {
    */
   @RunsInEDT
   @Override
-  public void showStatus(@Nonnull final String status) {
+  public void showStatus(@NotNull final String status) {
     if (isEventDispatchThread()) {
       setStatus(status);
       return;
@@ -224,21 +225,21 @@ public class AppletViewer extends JFrame implements StatusDisplay {
   }
 
   @RunsInCurrentThread
-  private void setStatus(@Nonnull String status) {
+  private void setStatus(@NotNull String status) {
     statusLabel.setText(status);
   }
 
   /**
    * @return the {@code Applet} displayed in this viewer.
    */
-  @Nonnull public Applet getApplet() {
+  @NotNull public Applet getApplet() {
     return applet;
   }
 
   /**
    * @return the {@code AppletStub} used in this viewer.
    */
-  @Nonnull public AppletStub getAppletStub() {
+  @NotNull public AppletStub getAppletStub() {
     return stub;
   }
 }

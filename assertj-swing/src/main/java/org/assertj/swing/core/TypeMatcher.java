@@ -16,8 +16,8 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -35,7 +35,7 @@ public final class TypeMatcher extends AbstractComponentMatcher {
    * @param type the type of the {@code Component} we are looking for.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public TypeMatcher(@Nonnull Class<? extends Component> type) {
+  public TypeMatcher(@NotNull Class<? extends Component> type) {
     this(type, false);
   }
 
@@ -46,7 +46,7 @@ public final class TypeMatcher extends AbstractComponentMatcher {
    * @param requireShowing indicates if the {@code Component} to match should be showing or not.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public TypeMatcher(@Nonnull Class<? extends Component> type, boolean requireShowing) {
+  public TypeMatcher(@NotNull Class<? extends Component> type, boolean requireShowing) {
     super(requireShowing);
     this.type = checkNotNull(type);
   }

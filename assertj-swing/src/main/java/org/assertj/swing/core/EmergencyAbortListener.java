@@ -26,7 +26,7 @@ import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.KeyEvent;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.util.ToolkitProvider;
@@ -90,12 +90,12 @@ public class EmergencyAbortListener implements AWTEventListener {
   }
 
   @VisibleForTesting
-  EmergencyAbortListener(@Nonnull Toolkit toolkit) {
+  EmergencyAbortListener(@NotNull Toolkit toolkit) {
     this(toolkit, new TestTerminator());
   }
 
   @VisibleForTesting
-  EmergencyAbortListener(@Nonnull Toolkit toolkit, @Nonnull TestTerminator testTerminator) {
+  EmergencyAbortListener(@NotNull Toolkit toolkit, @NotNull TestTerminator testTerminator) {
     this.testTerminator = testTerminator;
     this.toolkit = toolkit;
   }
@@ -122,7 +122,7 @@ public class EmergencyAbortListener implements AWTEventListener {
    * @return this listener.
    * @throws NullPointerException if the {@code KeyPressInfo} is {@code null}.
    */
-  public EmergencyAbortListener keyCombination(@Nonnull KeyPressInfo keyPressInfo) {
+  public EmergencyAbortListener keyCombination(@NotNull KeyPressInfo keyPressInfo) {
     checkNotNull(keyPressInfo);
     keyCode = keyPressInfo.keyCode();
     modifiers = unify(checkNotNull(keyPressInfo.modifiers()));

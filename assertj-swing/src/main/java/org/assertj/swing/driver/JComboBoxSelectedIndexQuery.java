@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -30,7 +30,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JComboBoxSelectedIndexQuery {
   @RunsInEDT
-  static int selectedIndexOf(final @Nonnull JComboBox<?> comboBox) {
+  static int selectedIndexOf(final @NotNull JComboBox<?> comboBox) {
     Integer result = execute(() -> comboBox.getSelectedIndex());
     return checkNotNull(result);
   }

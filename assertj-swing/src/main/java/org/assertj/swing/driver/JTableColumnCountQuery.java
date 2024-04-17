@@ -15,10 +15,10 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns the number of columns in a {@code JTable}. This query is executed in the event dispatch thread (EDT).
@@ -28,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTableColumnCountQuery {
   @RunsInEDT
-  static int columnCountOf(final @Nonnull JTable table) {
+  static int columnCountOf(final @NotNull JTable table) {
     Integer result = execute(() -> table.getColumnCount());
     return checkNotNull(result);
   }
