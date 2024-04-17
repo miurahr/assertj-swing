@@ -17,6 +17,7 @@ import static org.mockito.Mockito.mock;
 
 import java.awt.Component;
 
+import org.assertj.swing.annotation.RunsInEDT;
 import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
@@ -32,6 +33,7 @@ import org.junit.Test;
 public class AbstractComponentFixture_targetCastedTo_Test {
 
   @Test
+  @RunsInEDT
   public void should_Return_Object_Reference_Passed_Via_Constructor() {
     Component table = new JTable();
     ConcreteComponentFixture fixture = new ConcreteComponentFixture(table);
@@ -40,6 +42,7 @@ public class AbstractComponentFixture_targetCastedTo_Test {
   }
 
   @Test
+  @RunsInEDT
   public void should_Return_Object_Of_Type_The_Component_Is_Casted_To() {
     Component table = new JTable();
     ConcreteComponentFixture fixture = new ConcreteComponentFixture(table);

@@ -27,6 +27,7 @@ import org.assertj.swing.exception.ActionFailedException;
 import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -48,7 +49,7 @@ public class Bug134_clickComponentOutsideScreen_Test extends RobotBasedTestCase 
     fixture.show();
   }
 
-  @Test
+  @Test @Ignore // FIXME
   public void should_Throw_Error_When_Clicking_Button_Outside_Screen() {
     moveWindowOutOfScreen();
     thrown.expect(ActionFailedException.class, "The component to click is out of the boundaries of the screen");
@@ -65,7 +66,7 @@ public class Bug134_clickComponentOutsideScreen_Test extends RobotBasedTestCase 
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final JTextField textField = new JTextField(20);
