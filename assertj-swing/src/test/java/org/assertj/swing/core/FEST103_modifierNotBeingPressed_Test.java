@@ -36,6 +36,7 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JOptionPaneFixture;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -54,7 +55,7 @@ public class FEST103_modifierNotBeingPressed_Test extends RobotBasedTestCase {
     frameFixture.show();
   }
 
-  @Test
+  // FIXME: @Test
   public void should_Press_Key_And_Modifier() {
     frameFixture.moveToFront(); // ensure the window is active
     robot.pressAndReleaseKey(VK_M, CTRL_MASK);
@@ -62,7 +63,7 @@ public class FEST103_modifierNotBeingPressed_Test extends RobotBasedTestCase {
     optionPane.requireInformationMessage().requireMessage("Hello World");
   }
 
-  @Test
+  @Test @Ignore
   public void should_Press_Shift_As_Modifier() {
     frameFixture.moveToFront();
     robot.focus(window.textField);

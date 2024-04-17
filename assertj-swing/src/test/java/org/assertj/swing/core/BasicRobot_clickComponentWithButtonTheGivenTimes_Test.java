@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.JTextField;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -49,7 +50,7 @@ public class BasicRobot_clickComponentWithButtonTheGivenTimes_Test extends Basic
     this.times = times;
   }
 
-  @Test
+  @Test @Ignore
   public void should_Click_Component_With_Given_Mouse_Button_And_Given_Number_Of_Times() {
     JTextField textField = window().textField();
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(textField);

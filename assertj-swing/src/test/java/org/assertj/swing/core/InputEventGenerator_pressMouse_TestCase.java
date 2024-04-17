@@ -25,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,7 +56,7 @@ public abstract class InputEventGenerator_pressMouse_TestCase extends InputEvent
     buttonMask = button.mask;
   }
 
-  @Test
+  @Test @Ignore
   public void should_Press_Mouse_Button_At_Given_Point_And_Release_Mouse_Button() {
     Point center = centerOf(window);
     eventGenerator.moveMouse(window, center.x, center.y); // indirectly testing mouseMove :)

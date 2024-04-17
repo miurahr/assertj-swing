@@ -77,7 +77,7 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
   }
 
   static class MyWindow extends TestWindow {
-    private final JTextField textField = new JTextField(10);
+    private final JTextField textField;
 
     @RunsInEDT
     static @NotNull MyWindow createAndShow(final @NotNull Class<?> testClass) {
@@ -86,9 +86,12 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
     }
 
     private MyWindow(@NotNull Class<?> testClass) {
-      super(testClass);
-      addComponents(textField);
-      setMinimumSize(new Dimension(100, 50));
+        super(testClass);
+        // Workaround: explicit size of textfield.
+        textField = new JTextField(10);
+        textField.setPreferredSize(new Dimension(100, 20));
+        addComponents(textField);
+        setMinimumSize(new Dimension(100, 50));
     }
 
     @NotNull

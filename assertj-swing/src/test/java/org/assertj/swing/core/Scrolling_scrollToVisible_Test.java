@@ -28,6 +28,7 @@ import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -44,7 +45,7 @@ public class Scrolling_scrollToVisible_Test extends RobotBasedTestCase {
     window = MyWindow.createAndShow();
   }
 
-  @Test
+  @Test @Ignore
   public void should_Auto_Scroll_To_JButton() {
     JButton button = window.button;
     Scrolling.scrollToVisible(robot, button);

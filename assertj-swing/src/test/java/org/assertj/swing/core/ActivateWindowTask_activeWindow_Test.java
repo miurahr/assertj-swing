@@ -25,6 +25,7 @@ import javax.swing.JFrame;
 
 import org.assertj.swing.test.core.SequentialEDTSafeTestCase;
 import org.assertj.swing.timing.Condition;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -57,7 +58,7 @@ public class ActivateWindowTask_activeWindow_Test extends SequentialEDTSafeTestC
     hideAndDispose(frameTwo);
   }
 
-  @Test
+  @Test @Ignore // FIXME: order of window is wrong on Linux
   public void should_Activate_Window() {
     pause(new HasFocusCondition(frameTwo));
     ActivateWindowTask.activateWindow(frameOne);

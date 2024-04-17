@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import static java.awt.event.InputEvent.CTRL_MASK;
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.KEY_PRESSED;
 import static java.awt.event.KeyEvent.KEY_RELEASED;
 import static java.awt.event.KeyEvent.VK_C;
@@ -44,7 +43,8 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
     JTextField textField = window().textField();
     robot().focusAndWaitForFocusGain(textField);
     KeyPressRecorder recorder = KeyPressRecorder.attachTo(textField);
-    robot().pressAndReleaseKey(VK_C, new int[] { CTRL_MASK, SHIFT_MASK });
+    // FIXME: change deprecated key mask  to new one
+    robot().pressAndReleaseKey(VK_C, CTRL_MASK, SHIFT_MASK);
     robot().waitForIdle();
     List<KeyAction> actions = recorder.actions;
     assertThat(actions).containsOnly(KeyAction.action(KEY_PRESSED, VK_SHIFT),

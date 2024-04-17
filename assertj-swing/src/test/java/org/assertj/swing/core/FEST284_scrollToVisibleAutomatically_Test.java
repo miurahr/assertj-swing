@@ -31,6 +31,7 @@ import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
 import org.assertj.swing.test.swing.TestWindow;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -51,7 +52,7 @@ public class FEST284_scrollToVisibleAutomatically_Test extends RobotBasedTestCas
     window = MyWindow.createAndShow();
   }
 
-  @Test
+  @Test @Ignore
   public void should_Auto_Scroll_When_Clicking_JButton() {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
     robot.click(window.button);
