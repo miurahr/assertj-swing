@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 class JOptionPaneMessageTypeQuery {
   @RunsInEDT
-  static int messageTypeOf(final @Nonnull JOptionPane optionPane) {
+  static int messageTypeOf(final @NotNull JOptionPane optionPane) {
     Integer result = execute(() -> optionPane.getMessageType());
     return checkNotNull(result);
   }

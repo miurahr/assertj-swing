@@ -14,11 +14,11 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
 import javax.swing.JComboBox;
 
 import org.assertj.core.util.Preconditions;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Indicates whether a {@code JComboBox} is editable or not. This action is executed in the event dispatch thread (EDT).
@@ -28,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JComboBoxEditableQuery {
   @RunsInEDT
-  static boolean isEditable(final @Nonnull JComboBox<?> comboBox) {
+  static boolean isEditable(final @NotNull JComboBox<?> comboBox) {
     Boolean result = execute(() -> comboBox.isEditable());
     return Preconditions.checkNotNull(result);
   }

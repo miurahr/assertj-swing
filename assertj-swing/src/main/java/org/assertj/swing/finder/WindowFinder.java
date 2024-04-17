@@ -15,8 +15,8 @@ package org.assertj.swing.finder;
 import java.awt.Dialog;
 import java.awt.Frame;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import org.assertj.swing.core.GenericTypeMatcher;
 
@@ -81,7 +81,7 @@ public final class WindowFinder {
    * @param frameName the name of the frame to find.
    * @return the created finder.
    */
-  @Nonnull public static FrameFinder findFrame(@Nullable String frameName) {
+  @NotNull public static FrameFinder findFrame(@Nullable String frameName) {
     return new FrameFinder(frameName);
   }
 
@@ -91,7 +91,7 @@ public final class WindowFinder {
    * @param frameType the type of the frame to find.
    * @return the created finder.
    */
-  @Nonnull public static FrameFinder findFrame(@Nonnull Class<? extends Frame> frameType) {
+  @NotNull public static FrameFinder findFrame(@NotNull Class<? extends Frame> frameType) {
     return new FrameFinder(frameType);
   }
 
@@ -101,7 +101,7 @@ public final class WindowFinder {
    * @param matcher the matcher to use to find a frame.
    * @return the created finder.
    */
-  @Nonnull public static FrameFinder findFrame(@Nonnull GenericTypeMatcher<? extends Frame> matcher) {
+  @NotNull public static FrameFinder findFrame(@NotNull GenericTypeMatcher<? extends Frame> matcher) {
     return new FrameFinder(matcher);
   }
 
@@ -111,7 +111,7 @@ public final class WindowFinder {
    * @param dialogName the name of the dialog to find.
    * @return the created finder.
    */
-  @Nonnull public static DialogFinder findDialog(@Nullable String dialogName) {
+  @NotNull public static DialogFinder findDialog(@Nullable String dialogName) {
     return new DialogFinder(dialogName);
   }
 
@@ -121,7 +121,7 @@ public final class WindowFinder {
    * @param dialogType the type of the dialog to find.
    * @return the created finder.
    */
-  @Nonnull public static DialogFinder findDialog(@Nonnull Class<? extends Dialog> dialogType) {
+  @NotNull public static DialogFinder findDialog(@NotNull Class<? extends Dialog> dialogType) {
     return new DialogFinder(dialogType);
   }
 
@@ -131,7 +131,7 @@ public final class WindowFinder {
    * @param matcher the matcher to use to find a dialog.
    * @return the created finder.
    */
-  @Nonnull public static DialogFinder findDialog(@Nonnull GenericTypeMatcher<? extends Dialog> matcher) {
+  @NotNull public static DialogFinder findDialog(@NotNull GenericTypeMatcher<? extends Dialog> matcher) {
     return new DialogFinder(matcher);
   }
 }

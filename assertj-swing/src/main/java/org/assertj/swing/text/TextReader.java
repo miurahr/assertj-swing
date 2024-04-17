@@ -14,9 +14,8 @@ package org.assertj.swing.text;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Reads the text of an AWT or Swing {@code Component}.
@@ -29,7 +28,7 @@ public abstract class TextReader<T extends Component> {
   /**
    * @return the type of AWT or Swing {@code Component} this reader supports.
    */
-  public abstract @Nonnull Class<T> supportedComponent();
+  public abstract @NotNull Class<T> supportedComponent();
 
   /**
    * Indicates whether the given AWT or Swing {@code Component} contains or displays the given text.
@@ -42,7 +41,7 @@ public abstract class TextReader<T extends Component> {
    * @see #supportedComponent()
    */
   @RunsInCurrentThread
-  public final boolean containsText(@Nonnull Component c, @Nonnull String text) {
+  public final boolean containsText(@NotNull Component c, @NotNull String text) {
     checkCorrectType(c);
     T casted = supportedComponent().cast(c);
     return checkContainsText(casted, text);
@@ -65,5 +64,5 @@ public abstract class TextReader<T extends Component> {
    * @return {@code true} if the given {@code Component} contains or displays the given text; {@code false} otherwise.
    */
   @RunsInCurrentThread
-  protected abstract boolean checkContainsText(@Nonnull T component, @Nonnull String text);
+  protected abstract boolean checkContainsText(@NotNull T component, @NotNull String text);
 }

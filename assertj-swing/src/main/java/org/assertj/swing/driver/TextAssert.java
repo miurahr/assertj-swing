@@ -15,8 +15,8 @@ package org.assertj.swing.driver;
 import static org.assertj.core.error.ShouldMatchPattern.shouldMatch;
 import static org.assertj.swing.util.Strings.areEqualOrMatch;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import org.assertj.core.api.AbstractCharSequenceAssert;
 import org.assertj.core.internal.Failures;
@@ -27,11 +27,11 @@ import org.assertj.core.internal.Failures;
  * @author Alex Ruiz
  */
 class TextAssert extends AbstractCharSequenceAssert<TextAssert, String> {
-  static @Nonnull TextAssert assertThat(@Nullable String s) {
+  static @NotNull TextAssert assertThat(@Nullable String s) {
     return new TextAssert(s);
   }
 
-  static @Nonnull TextAssert verifyThat(@Nullable String s) {
+  static @NotNull TextAssert verifyThat(@Nullable String s) {
     return new TextAssert(s);
   }
 

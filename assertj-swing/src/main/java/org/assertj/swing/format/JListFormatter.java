@@ -19,12 +19,12 @@ import static org.assertj.swing.format.SwingIntEnums.SELECTION_MODES;
 import java.awt.Component;
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.swing.JList;
 import javax.swing.ListModel;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Formatter for {@code JList}s.
@@ -40,7 +40,8 @@ public class JListFormatter extends ComponentFormatterTemplate {
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NotNull
+  protected String doFormat(@NotNull Component c) {
     JList<?> list = (JList<?>) c;
     String format = "%s[name=%s, selectedValues=%s, contents=%s, selectionMode=%s, enabled=%b, visible=%b, showing=%b]";
     return String.format(format, getRealClassName(c), quote(list.getName()),
@@ -49,7 +50,7 @@ public class JListFormatter extends ComponentFormatterTemplate {
                          list.isShowing());
   }
 
-  @Nonnull private Object[] contentsOf(JList<?> list) {
+  @NotNull private Object[] contentsOf(JList<?> list) {
     List<Object> contents = newArrayList();
     ListModel<?> model = list.getModel();
     int size = model.getSize();
@@ -63,7 +64,7 @@ public class JListFormatter extends ComponentFormatterTemplate {
    * @return {@code JList.class}.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NotNull public Class<? extends Component> targetType() {
     return JList.class;
   }
 }

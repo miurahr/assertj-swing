@@ -15,7 +15,7 @@ package org.assertj.swing.test.task;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -29,12 +29,12 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class ComponentSetPopupMenuTask {
   @RunsInEDT
-  public static void setPopupMenu(final @Nonnull JComponent c, final @Nonnull JPopupMenu popupMenu) {
+  public static void setPopupMenu(final @NotNull JComponent c, final @NotNull JPopupMenu popupMenu) {
     execute(() -> c.setComponentPopupMenu(popupMenu));
   }
 
   @RunsInEDT
-  @Nonnull public static JPopupMenu createAndSetPopupMenu(final @Nonnull JComponent c, final String... items) {
+  @NotNull public static JPopupMenu createAndSetPopupMenu(final @NotNull JComponent c, final String... items) {
     JPopupMenu result = execute(() -> {
       JPopupMenu popupMenu = new JPopupMenu();
       for (String item : items) {

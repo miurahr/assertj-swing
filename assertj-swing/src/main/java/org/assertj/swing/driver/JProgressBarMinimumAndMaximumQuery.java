@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -29,7 +29,7 @@ import org.assertj.swing.util.Pair;
  */
 final class JProgressBarMinimumAndMaximumQuery {
   @RunsInEDT
-  static @Nonnull Pair<Integer, Integer> minimumAndMaximumOf(final @Nonnull JProgressBar progressBar) {
+  static @NotNull Pair<Integer, Integer> minimumAndMaximumOf(final @NotNull JProgressBar progressBar) {
     Pair<Integer, Integer> result = execute(() -> Pair.of(progressBar.getMinimum(), progressBar.getMaximum()));
     return checkNotNull(result);
   }

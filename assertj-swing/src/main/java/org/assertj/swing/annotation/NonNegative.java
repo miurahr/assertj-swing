@@ -10,20 +10,14 @@
  *
  * Copyright 2012-2018 the original author or authors.
  */
-package org.assertj.swing.input;
+package org.assertj.swing.annotation;
 
-import java.awt.AWTEvent;
-import java.awt.event.MouseEvent;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import org.jetbrains.annotations.NotNull;
-
-/**
- * Detects native drag 'n drop events.
- * 
- * @author Alex Ruiz
- */
-class NativeDndIdentifier {
-  boolean isNativeDragAndDrop(@NotNull AWTEvent e) {
-    return (e instanceof MouseEvent) && e.getClass().getName().contains("SunDropTargetEvent");
-  }
+@Retention(RetentionPolicy.CLASS)
+@Target({ElementType.FIELD, ElementType.PARAMETER})
+public @interface NonNegative {
 }

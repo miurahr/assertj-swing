@@ -22,11 +22,10 @@ import java.awt.Container;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Logger;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Registry of {@link TextReader}s.
@@ -34,7 +33,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  * @author Alex Ruiz
  */
 public class TextReaders {
-  private static Logger logger = Logger.getLogger(TextReaders.class.getCanonicalName());
+  private static final Logger logger = Logger.getLogger(TextReaders.class.getCanonicalName());
 
   @VisibleForTesting
   final ConcurrentMap<Class<?>, TextReader<?>> readers = newConcurrentHashMap();
@@ -55,7 +54,7 @@ public class TextReaders {
    * @throws NullPointerException if the supported {@code Component} type in the given {@code TextReader} is
    *           {@code null}.
    */
-  public void register(@Nonnull TextReader<?> reader) {
+  public void register(@NotNull TextReader<?> reader) {
     checkNotNull(reader);
     Class<?> type = checkNotNull(reader.supportedComponent());
     TextReader<?> old = readers.put(type, reader);
@@ -75,7 +74,7 @@ public class TextReaders {
    * @throws NullPointerException if the given text is {@code null}.
    */
   @RunsInEDT
-  public boolean containsText(final @Nonnull Container container, final @Nonnull String text) {
+  public boolean containsText(final @NotNull Container container, final @NotNull String text) {
     checkNotNull(container);
     checkNotNull(text);
     Boolean result = execute(() -> {
@@ -87,7 +86,7 @@ public class TextReaders {
     return checkNotNull(result);
   }
 
-  private boolean anyComponentContainsText(@Nonnull Component[] components, @Nonnull String text) {
+  private boolean anyComponentContainsText(@NotNull Component[] components, @NotNull String text) {
     for (Component c : components) {
       if (c == null) {
         continue;
@@ -103,7 +102,7 @@ public class TextReaders {
     return false;
   }
 
-  private boolean componentContainsText(@Nonnull Component c, @Nonnull String text) {
+  private boolean componentContainsText(@NotNull Component c, @NotNull String text) {
     TextReader<?> reader = readerFor(c);
     if (reader == null) {
       return false;
@@ -111,7 +110,8 @@ public class TextReaders {
     return reader.containsText(c, text);
   }
 
-  @Nullable private TextReader<?> readerFor(@Nonnull Component c) {
+  @Nullable
+  private TextReader<?> readerFor(@NotNull Component c) {
     Class<?> type = c.getClass();
     while (type != null) {
       TextReader<?> reader = readers.get(type);
@@ -129,7 +129,7 @@ public class TextReaders {
   /**
    * @return the singleton instance of this class.
    */
-  @Nonnull public static TextReaders instance() {
+  @NotNull public static TextReaders instance() {
     return SingletonHolder.INSTANCE;
   }
 

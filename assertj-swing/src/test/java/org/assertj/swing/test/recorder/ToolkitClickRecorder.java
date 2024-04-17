@@ -25,7 +25,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An event listener that records mouse events on a specific component as {@link AWTEventListener} in the
@@ -41,7 +41,7 @@ public class ToolkitClickRecorder extends AbstractClickRecorder {
     // hide the constructor from the outside
   }
 
-  static @Nonnull ToolkitClickRecorder attachTo(@Nonnull Component target) {
+  static @NotNull ToolkitClickRecorder attachTo(@NotNull Component target) {
     ToolkitClickRecorder recorder = new ToolkitClickRecorder();
     ClickListener listener = new ClickListener(recorder);
     recorderListeners.put(recorder, listener);
@@ -51,14 +51,14 @@ public class ToolkitClickRecorder extends AbstractClickRecorder {
     return recorder;
   }
 
-  static void remove(@Nonnull ToolkitClickRecorder recorder) {
+  static void remove(@NotNull ToolkitClickRecorder recorder) {
     ClickListener listener = recorderListeners.remove(recorder);
     if (listener != null) {
       Toolkit.getDefaultToolkit().removeAWTEventListener(listener);
     }
   }
 
-  private static void attach(@Nonnull final ClickListener listener, @Nonnull final Component target) {
+  private static void attach(@NotNull final ClickListener listener, @NotNull final Component target) {
     listener.addToolkitComponent(target);
     if (!(target instanceof Container)) {
       return;
@@ -73,16 +73,16 @@ public class ToolkitClickRecorder extends AbstractClickRecorder {
 
     private final List<Component> toolkitComponents = newArrayList();
 
-    ClickListener(@Nonnull ToolkitClickRecorder owner) {
+    ClickListener(@NotNull ToolkitClickRecorder owner) {
       this.owner = owner;
     }
 
-    public void addToolkitComponent(@Nonnull Component target) {
+    public void addToolkitComponent(@NotNull Component target) {
       toolkitComponents.add(target);
     }
 
     @Override
-    public void eventDispatched(@Nonnull AWTEvent evt) {
+    public void eventDispatched(@NotNull AWTEvent evt) {
       if (toolkitComponents.contains(evt.getSource())) {
         MouseEvent event = (MouseEvent) evt;
         switch (event.getID()) {

@@ -17,7 +17,7 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.lang.ref.WeakReference;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JComponent;
 import javax.swing.RepaintManager;
 
@@ -74,7 +74,7 @@ abstract class CheckThreadViolationRepaintManager extends RepaintManager {
    * (4) (exception from rule 3) it is not OK if swing code calls repaint() outside the EDT, because swing code should be called on the EDT.
    * (5) (exception from rule 4) using SwingWorker subclasses should not be considered swing code.
    */
-  private void checkThreadViolations(@Nonnull JComponent c) {
+  private void checkThreadViolations(@NotNull JComponent c) {
     if (!isEventDispatchThread() && (completeCheck || c.isShowing())) {
       boolean imageUpdate = false;
       boolean repaint = false;
@@ -112,5 +112,5 @@ abstract class CheckThreadViolationRepaintManager extends RepaintManager {
     }
   }
 
-  abstract void violationFound(@Nonnull JComponent c, @Nonnull StackTraceElement[] stackTrace);
+  abstract void violationFound(@NotNull JComponent c, @NotNull StackTraceElement[] stackTrace);
 }

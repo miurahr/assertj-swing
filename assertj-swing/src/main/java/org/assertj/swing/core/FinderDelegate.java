@@ -20,7 +20,7 @@ import java.awt.Component;
 import java.util.Collection;
 import java.util.Set;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.hierarchy.ComponentHierarchy;
@@ -33,8 +33,8 @@ import org.assertj.swing.hierarchy.ComponentHierarchy;
  */
 final class FinderDelegate {
   @RunsInEDT
-  @Nonnull
-  Collection<Component> find(@Nonnull ComponentHierarchy h, @Nonnull ComponentMatcher m) {
+  @NotNull
+  Collection<Component> find(@NotNull ComponentHierarchy h, @NotNull ComponentMatcher m) {
     Set<Component> found = newLinkedHashSet();
     execute(() -> {
       for (Component c : rootsOf(h)) {
@@ -45,8 +45,8 @@ final class FinderDelegate {
   }
 
   @RunsInEDT
-  private void find(@Nonnull ComponentHierarchy h, @Nonnull ComponentMatcher m, @Nonnull Component root,
-                    @Nonnull Set<Component> found) {
+  private void find(@NotNull ComponentHierarchy h, @NotNull ComponentMatcher m, @NotNull Component root,
+                    @NotNull Set<Component> found) {
     for (Component c : childrenOfComponent(root, h)) {
       find(h, m, checkNotNull(c), found);
     }
@@ -56,21 +56,21 @@ final class FinderDelegate {
   }
 
   @RunsInEDT
-  @Nonnull private static Collection<Component> childrenOfComponent(final @Nonnull Component c,
-                                                                    final @Nonnull ComponentHierarchy h) {
+  @NotNull private static Collection<Component> childrenOfComponent(final @NotNull Component c,
+                                                                    final @NotNull ComponentHierarchy h) {
     Collection<Component> children = h.childrenOf(c);
     return checkNotNull(children);
   }
 
   @RunsInEDT
-  private static boolean isMatching(@Nonnull final Component c, @Nonnull final ComponentMatcher m) {
+  private static boolean isMatching(@NotNull final Component c, @NotNull final ComponentMatcher m) {
     Boolean matching = m.matches(c);
     return checkNotNull(matching);
   }
 
   @RunsInEDT
-  @Nonnull
-  <T extends Component> Collection<T> find(@Nonnull ComponentHierarchy h, @Nonnull GenericTypeMatcher<T> m) {
+  @NotNull
+  <T extends Component> Collection<T> find(@NotNull ComponentHierarchy h, @NotNull GenericTypeMatcher<T> m) {
     Set<T> found = newLinkedHashSet();
     execute(() -> {
       for (Component c : rootsOf(h)) {
@@ -81,13 +81,13 @@ final class FinderDelegate {
   }
 
   @RunsInEDT
-  @Nonnull private static Collection<? extends Component> rootsOf(final @Nonnull ComponentHierarchy h) {
+  @NotNull private static Collection<? extends Component> rootsOf(final @NotNull ComponentHierarchy h) {
     return checkNotNull(h.roots());
   }
 
   @RunsInEDT
-  private <T extends Component> void find(@Nonnull ComponentHierarchy h, @Nonnull GenericTypeMatcher<T> m,
-                                          @Nonnull Component root, Set<T> found) {
+  private <T extends Component> void find(@NotNull ComponentHierarchy h, @NotNull GenericTypeMatcher<T> m,
+                                          @NotNull Component root, Set<T> found) {
     for (Component c : childrenOfComponent(root, h)) {
       find(h, m, checkNotNull(c), found);
     }
@@ -97,8 +97,8 @@ final class FinderDelegate {
   }
 
   @RunsInEDT
-  private static <T extends Component> boolean isMatching(final @Nonnull Component c,
-                                                          final @Nonnull GenericTypeMatcher<T> m) {
+  private static <T extends Component> boolean isMatching(final @NotNull Component c,
+                                                          final @NotNull GenericTypeMatcher<T> m) {
     Boolean matching = m.matches(c);
     return checkNotNull(matching);
   }

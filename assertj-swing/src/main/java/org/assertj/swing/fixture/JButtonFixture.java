@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JButton;
 
 import org.assertj.swing.core.Robot;
@@ -33,7 +33,7 @@ public class JButtonFixture extends AbstractButtonFixture<JButtonFixture, JButto
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JButtonFixture(@Nonnull Robot robot, @Nonnull JButton target) {
+  public JButtonFixture(@NotNull Robot robot, @NotNull JButton target) {
     super(JButtonFixture.class, robot, target);
   }
 
@@ -46,7 +46,7 @@ public class JButtonFixture extends AbstractButtonFixture<JButtonFixture, JButto
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JButton} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JButton} is found.
    */
-  public JButtonFixture(@Nonnull Robot robot, @Nullable String buttonName) {
+  public JButtonFixture(@NotNull Robot robot, @Nullable String buttonName) {
     super(JButtonFixture.class, robot, buttonName, JButton.class);
   }
 }

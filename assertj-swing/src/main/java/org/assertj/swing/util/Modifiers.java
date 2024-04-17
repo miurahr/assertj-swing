@@ -12,6 +12,8 @@
  */
 package org.assertj.swing.util;
 
+import org.jetbrains.annotations.NotNull;
+
 import static java.awt.event.InputEvent.ALT_GRAPH_MASK;
 import static java.awt.event.InputEvent.ALT_MASK;
 import static java.awt.event.InputEvent.CTRL_MASK;
@@ -29,8 +31,6 @@ import static org.assertj.core.util.Strings.concat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.annotation.Nonnull;
 
 /**
  * Utility methods related to input modifiers. This class also maps modifier masks to key codes for the following
@@ -69,7 +69,8 @@ public final class Modifiers {
    * @param modifierMask the given modifier mask.
    * @return the key codes for the given modifier mask.
    */
-  @Nonnull public static int[] keysFor(int modifierMask) {
+  @NotNull
+  public static int[] keysFor(int modifierMask) {
     List<Integer> keyList = newArrayList();
     for (Integer mask : MODIFIER_TO_KEY.keySet()) {
       if ((modifierMask & mask) != 0) {

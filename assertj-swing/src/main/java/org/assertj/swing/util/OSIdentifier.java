@@ -19,9 +19,8 @@ import static org.assertj.swing.util.OSFamily.MAC;
 import static org.assertj.swing.util.OSFamily.UNIX;
 import static org.assertj.swing.util.OSFamily.WINDOWS;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.core.util.VisibleForTesting;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Identifies the current Operating System.
@@ -44,7 +43,7 @@ class OSIdentifier {
   }
 
   @VisibleForTesting
-  OSIdentifier(@Nonnull SystemPropertyReader reader) {
+  OSIdentifier(@NotNull SystemPropertyReader reader) {
     String osName = checkNotNull(reader.systemProperty("os.name")).toLowerCase(ENGLISH);
     isWindows = osName.startsWith("windows");
     isWindows9x = isWindows && containsAny(osName, "95", "98", "me");
@@ -57,7 +56,7 @@ class OSIdentifier {
     osFamily = findOSFamily();
   }
 
-  private static boolean containsAny(@Nonnull String target, @Nonnull String... subs) {
+  private static boolean containsAny(@NotNull String target, @NotNull String... subs) {
     for (String sub : subs) {
       if (target.contains(sub)) {
         return true;
@@ -66,7 +65,7 @@ class OSIdentifier {
     return false;
   }
 
-  @Nonnull private OSFamily findOSFamily() {
+  @NotNull private OSFamily findOSFamily() {
     if (isWindows()) {
       return WINDOWS;
     }
@@ -117,7 +116,7 @@ class OSIdentifier {
   }
 
   /* Since 1.2 */
-  @Nonnull
+  @NotNull
   OSFamily osFamily() {
     return osFamily;
   }

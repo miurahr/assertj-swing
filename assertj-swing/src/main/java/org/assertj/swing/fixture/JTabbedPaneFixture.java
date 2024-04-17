@@ -14,8 +14,8 @@ package org.assertj.swing.fixture;
 
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JTabbedPane;
 
 import org.assertj.swing.core.Robot;
@@ -39,7 +39,7 @@ public class JTabbedPaneFixture extends
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JTabbedPaneFixture(@Nonnull Robot robot, @Nonnull JTabbedPane target) {
+  public JTabbedPaneFixture(@NotNull Robot robot, @NotNull JTabbedPane target) {
     super(JTabbedPaneFixture.class, robot, target);
   }
 
@@ -52,12 +52,12 @@ public class JTabbedPaneFixture extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JTabbedPane} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JTabbedPane} is found.
    */
-  public JTabbedPaneFixture(@Nonnull Robot robot, @Nonnull String tabbedPaneName) {
+  public JTabbedPaneFixture(@NotNull Robot robot, @NotNull String tabbedPaneName) {
     super(JTabbedPaneFixture.class, robot, tabbedPaneName, JTabbedPane.class);
   }
 
   @Override
-  @Nonnull protected JTabbedPaneDriver createDriver(@Nonnull Robot robot) {
+  @NotNull protected JTabbedPaneDriver createDriver(@NotNull Robot robot) {
     return new JTabbedPaneDriver(robot);
   }
 
@@ -79,7 +79,7 @@ public class JTabbedPaneFixture extends
    * @throws IllegalStateException if this fixture's {@code JTabbedPane} is not showing on the screen.
    * @throws IndexOutOfBoundsException if the given index is not within the {@code JTabbedPane} bounds.
    */
-  @Nonnull public JTabbedPaneFixture selectTab(int index) {
+  @NotNull public JTabbedPaneFixture selectTab(int index) {
     driver().selectTab(target(), index);
     return this;
   }
@@ -93,7 +93,7 @@ public class JTabbedPaneFixture extends
    * @throws IllegalStateException if this fixture's {@code JTabbedPane} is not showing on the screen.
    * @throws org.assertj.swing.exception.LocationUnavailableException if a tab matching the given title could not be found.
    */
-  @Nonnull public JTabbedPaneFixture selectTab(@Nullable String title) {
+  @NotNull public JTabbedPaneFixture selectTab(@Nullable String title) {
     driver().selectTab(target(), title);
     return this;
   }
@@ -108,7 +108,7 @@ public class JTabbedPaneFixture extends
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    * @throws org.assertj.swing.exception.LocationUnavailableException if a tab matching the given regular expression pattern could not be found.
    */
-  @Nonnull public JTabbedPaneFixture selectTab(@Nonnull Pattern pattern) {
+  @NotNull public JTabbedPaneFixture selectTab(@NotNull Pattern pattern) {
     driver().selectTab(target(), pattern);
     return this;
   }
@@ -122,7 +122,7 @@ public class JTabbedPaneFixture extends
    * @throws IndexOutOfBoundsException if the given index is not within the {@code JTabbedPane} bounds.
    * @throws AssertionError if the title of the tab at the given index does not match the given one.
    */
-  @Nonnull public JTabbedPaneFixture requireTitle(@Nullable String title, @Nonnull Index index) {
+  @NotNull public JTabbedPaneFixture requireTitle(@Nullable String title, @NotNull Index index) {
     driver().requireTabTitle(target(), title, index);
     return this;
   }
@@ -137,7 +137,7 @@ public class JTabbedPaneFixture extends
    * @throws AssertionError if the title of the tab at the given index does not match the given regular expression
    *           pattern.
    */
-  @Nonnull public JTabbedPaneFixture requireTitle(@Nonnull Pattern pattern, @Nonnull Index index) {
+  @NotNull public JTabbedPaneFixture requireTitle(@NotNull Pattern pattern, @NotNull Index index) {
     driver().requireTabTitle(target(), pattern, index);
     return this;
   }
@@ -150,7 +150,7 @@ public class JTabbedPaneFixture extends
    * @return this fixture.
    * @throws AssertionError if the title of any of the tabs is not equal to the expected titles.
    */
-  @Nonnull public JTabbedPaneFixture requireTabTitles(@Nonnull String... titles) {
+  @NotNull public JTabbedPaneFixture requireTabTitles(@NotNull String... titles) {
     driver().requireTabTitles(target(), titles);
     return this;
   }
@@ -162,7 +162,7 @@ public class JTabbedPaneFixture extends
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code JTabbedPane}'s selected tab does not have the given index.
    */
-  @Nonnull public JTabbedPaneFixture requireSelectedTab(@Nonnull Index expected) {
+  @NotNull public JTabbedPaneFixture requireSelectedTab(@NotNull Index expected) {
     driver().requireSelectedTab(target(), expected);
     return this;
   }
@@ -176,7 +176,7 @@ public class JTabbedPaneFixture extends
    * @throws IndexOutOfBoundsException if the given index is not within the {@code JTabbedPane} bounds.
    * @throws AssertionError if the toolTipText of the tab at the given index does not match the given one.
    */
-  @Nonnull public JTabbedPaneFixture requireToolTipText(@Nullable String toolTipText, @Nonnull Index index) {
+  @NotNull public JTabbedPaneFixture requireToolTipText(@Nullable String toolTipText, @NotNull Index index) {
     driver().requireTabToolTipText(target(), toolTipText, index);
     return this;
   }
@@ -191,7 +191,7 @@ public class JTabbedPaneFixture extends
    * @throws AssertionError if the toolTipText of the tab at the given index does not match the given regular expression
    *           pattern.
    */
-  @Nonnull public JTabbedPaneFixture requireToolTipText(@Nonnull Pattern pattern, @Nonnull Index index) {
+  @NotNull public JTabbedPaneFixture requireToolTipText(@NotNull Pattern pattern, @NotNull Index index) {
     driver().requireTabToolTipText(target(), pattern, index);
     return this;
   }
@@ -204,7 +204,7 @@ public class JTabbedPaneFixture extends
    * @throws IndexOutOfBoundsException if the given index is not within the {@code JTabbedPane} bounds.
    * @throws AssertionError if the tab at the given index is not enabled.
    */
-  @Nonnull public JTabbedPaneFixture requireEnabled(@Nonnull Index index) {
+  @NotNull public JTabbedPaneFixture requireEnabled(@NotNull Index index) {
     driver().requireTabEnabled(target(), index);
     return this;
   }
@@ -217,7 +217,7 @@ public class JTabbedPaneFixture extends
    * @throws IndexOutOfBoundsException if the given index is not within the {@code JTabbedPane} bounds.
    * @throws AssertionError if the tab at the given index is not disabled.
    */
-  @Nonnull public JTabbedPaneFixture requireDisabled(@Nonnull Index index) {
+  @NotNull public JTabbedPaneFixture requireDisabled(@NotNull Index index) {
     driver().requireTabDisabled(target(), index);
     return this;
   }

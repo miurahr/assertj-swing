@@ -14,11 +14,11 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.driver.JTableCellPreconditions.checkCellIndicesInBounds;
 
-import javax.annotation.Nonnull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.data.TableCell;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -37,7 +37,7 @@ import org.assertj.swing.data.TableCell;
  */
 final class JTableCellEditableQuery {
   @RunsInCurrentThread
-  static boolean isCellEditable(@Nonnull JTable table, @Nonnull TableCell cell) {
+  static boolean isCellEditable(@NotNull JTable table, @NotNull TableCell cell) {
     checkCellIndicesInBounds(table, cell);
     return table.isCellEditable(cell.row, cell.column);
   }

@@ -23,7 +23,7 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -53,7 +53,7 @@ public class NewHierarchy extends ExistingHierarchy {
    * 
    * @return the created hierarchy.
    */
-  @Nonnull public static NewHierarchy ignoreExistingComponents() {
+  @NotNull public static NewHierarchy ignoreExistingComponents() {
     return new NewHierarchy(true);
   }
 
@@ -62,7 +62,7 @@ public class NewHierarchy extends ExistingHierarchy {
    * 
    * @return the created hierarchy.
    */
-  @Nonnull public static NewHierarchy includeExistingComponents() {
+  @NotNull public static NewHierarchy includeExistingComponents() {
     return new NewHierarchy(false);
   }
 
@@ -70,21 +70,21 @@ public class NewHierarchy extends ExistingHierarchy {
     this(ToolkitProvider.instance().defaultToolkit(), ignoreExisting);
   }
 
-  private NewHierarchy(@Nonnull Toolkit toolkit, boolean ignoreExisting) {
+  private NewHierarchy(@NotNull Toolkit toolkit, boolean ignoreExisting) {
     this.filter = new WindowFilter(parentFinder(), childrenFinder());
     transientWindowListener = new TransientWindowListener(filter);
     setUp(toolkit, ignoreExisting);
   }
 
   @VisibleForTesting
-  NewHierarchy(@Nonnull Toolkit toolkit, @Nonnull WindowFilter filter, boolean ignoreExisting) {
+  NewHierarchy(@NotNull Toolkit toolkit, @NotNull WindowFilter filter, boolean ignoreExisting) {
     this.filter = filter;
     transientWindowListener = new TransientWindowListener(filter);
     setUp(toolkit, ignoreExisting);
   }
 
   @RunsInCurrentThread
-  private void setUp(@Nonnull Toolkit toolkit, boolean ignoreExisting) {
+  private void setUp(@NotNull Toolkit toolkit, boolean ignoreExisting) {
     if (ignoreExisting) {
       ignoreExisting();
     }
@@ -124,7 +124,7 @@ public class NewHierarchy extends ExistingHierarchy {
    * @param c the given {@code Component}.
    */
   @RunsInCurrentThread
-  public void recognize(@Nonnull Component c) {
+  public void recognize(@NotNull Component c) {
     filter.recognize(c);
   }
 
@@ -143,7 +143,7 @@ public class NewHierarchy extends ExistingHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull public Collection<Component> childrenOf(@Nonnull Component c) {
+  @NotNull public Collection<Component> childrenOf(@NotNull Component c) {
     if (filter.isIgnored(c)) {
       return emptyList();
     }
@@ -169,7 +169,7 @@ public class NewHierarchy extends ExistingHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  public boolean contains(@Nonnull Component c) {
+  public boolean contains(@NotNull Component c) {
     return super.contains(c) && !filter.isIgnored(c);
   }
 
@@ -188,7 +188,7 @@ public class NewHierarchy extends ExistingHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  public void dispose(@Nonnull Window w) {
+  public void dispose(@NotNull Window w) {
     if (!contains(w)) {
       return;
     }
@@ -200,7 +200,7 @@ public class NewHierarchy extends ExistingHierarchy {
    * @return all available root containers, excluding those which have been filtered.
    */
   @Override
-  @Nonnull public Collection<Container> roots() {
+  @NotNull public Collection<Container> roots() {
     Collection<Container> roots = super.roots();
     roots.removeAll(filter.filtered());
     return roots;

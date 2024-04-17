@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.core.matcher;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JLabel;
 
 /**
@@ -33,7 +33,7 @@ public abstract class NamedComponentMatcherTemplate_TestCase {
     }
 
     @Override
-    protected boolean isMatching(@Nonnull JLabel component) {
+    protected boolean isMatching(@NotNull JLabel component) {
       return false;
     }
   }

@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.awt.Component;
 import java.util.Collection;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 

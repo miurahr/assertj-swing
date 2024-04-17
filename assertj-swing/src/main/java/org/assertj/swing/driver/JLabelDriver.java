@@ -16,8 +16,8 @@ import static org.assertj.swing.driver.TextAssert.verifyThat;
 
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JLabel;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -45,7 +45,7 @@ public class JLabelDriver extends JComponentDriver implements TextDisplayDriver<
    * 
    * @param robot the robot to use to simulate user input.
    */
-  public JLabelDriver(@Nonnull Robot robot) {
+  public JLabelDriver(@NotNull Robot robot) {
     super(robot);
   }
 
@@ -58,7 +58,7 @@ public class JLabelDriver extends JComponentDriver implements TextDisplayDriver<
    */
   @RunsInEDT
   @Override
-  public void requireText(@Nonnull JLabel label, @Nullable String expected) {
+  public void requireText(@NotNull JLabel label, @Nullable String expected) {
     verifyThat(textOf(label)).as(propertyName(label, TEXT_PROPERTY)).isEqualOrMatches(expected);
   }
 
@@ -72,7 +72,7 @@ public class JLabelDriver extends JComponentDriver implements TextDisplayDriver<
    */
   @RunsInEDT
   @Override
-  public void requireText(@Nonnull JLabel label, @Nonnull Pattern pattern) {
+  public void requireText(@NotNull JLabel label, @NotNull Pattern pattern) {
     verifyThat(textOf(label)).as(propertyName(label, TEXT_PROPERTY)).matches(pattern);
   }
 
@@ -84,7 +84,7 @@ public class JLabelDriver extends JComponentDriver implements TextDisplayDriver<
    */
   @RunsInEDT
   @Override
-  @Nullable public String textOf(@Nonnull JLabel label) {
+  @Nullable public String textOf(@NotNull JLabel label) {
     return JLabelTextQuery.textOf(label);
   }
 }

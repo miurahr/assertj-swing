@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.exception;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Error thrown when acquiring or releasing a {@link org.assertj.swing.lock.ScreenLock}.
@@ -28,7 +28,7 @@ public final class ScreenLockException extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public ScreenLockException(@Nonnull String message) {
+  public ScreenLockException(@NotNull String message) {
     super(message);
   }
 }

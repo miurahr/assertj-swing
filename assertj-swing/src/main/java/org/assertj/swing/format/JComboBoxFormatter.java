@@ -17,12 +17,12 @@ import static org.assertj.core.util.Strings.quote;
 import java.awt.Component;
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.swing.JComboBox;
 
 import org.assertj.core.util.Lists;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Formatter for {@code JComboBox}es.
@@ -38,7 +38,7 @@ public class JComboBoxFormatter extends ComponentFormatterTemplate {
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NotNull protected String doFormat(@NotNull Component c) {
     JComboBox<?> comboBox = (JComboBox<?>) c;
     String format = "%s[name=%s, selectedItem=%s, contents=%s, editable=%b, enabled=%b, visible=%b, showing=%b]";
     return String.format(format, getRealClassName(c), quote(comboBox.getName()),
@@ -47,7 +47,7 @@ public class JComboBoxFormatter extends ComponentFormatterTemplate {
   }
 
   @RunsInCurrentThread
-  @Nonnull private Object[] contentsOf(@Nonnull JComboBox<?> comboBox) {
+  @NotNull private Object[] contentsOf(@NotNull JComboBox<?> comboBox) {
     List<Object> contents = Lists.newArrayList();
     int count = comboBox.getItemCount();
     for (int i = 0; i < count; i++) {
@@ -60,7 +60,7 @@ public class JComboBoxFormatter extends ComponentFormatterTemplate {
    * @return {@code JComboBox.class}.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NotNull public Class<? extends Component> targetType() {
     return JComboBox.class;
   }
 }

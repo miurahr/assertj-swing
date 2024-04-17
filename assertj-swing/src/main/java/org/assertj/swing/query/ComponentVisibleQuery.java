@@ -17,9 +17,8 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Indicates whether an AWT or Swing {@code Component} is visible. This query is executed in the event dispatch thread
@@ -38,7 +37,7 @@ public final class ComponentVisibleQuery {
    * @see Component#isVisible()
    */
   @RunsInEDT
-  public static boolean isVisible(final @Nonnull Component component) {
+  public static boolean isVisible(final @NotNull Component component) {
     Boolean result = execute(() -> component.isVisible());
     return checkNotNull(result);
   }

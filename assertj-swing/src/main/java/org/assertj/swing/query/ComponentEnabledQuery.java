@@ -12,12 +12,12 @@
  */
 package org.assertj.swing.query;
 
+import org.jetbrains.annotations.NotNull;
+
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
-
-import javax.annotation.Nonnull;
 
 /**
  * Indicates whether an AWT or Swing {@code Component} is enabled or not. This query is executed in the event dispatch
@@ -37,7 +37,7 @@ public final class ComponentEnabledQuery {
    * @return {@code true} if the given {@code Component} is enabled, {@code false} otherwise.
    * @see Component#isEnabled()
    */
-  public static boolean isEnabled(final @Nonnull Component component) {
+  public static boolean isEnabled(final @NotNull Component component) {
     Boolean result = execute(() -> component.isEnabled());
     return checkNotNull(result);
   }

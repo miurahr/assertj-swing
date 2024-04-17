@@ -19,7 +19,7 @@ import static org.assertj.swing.test.ExpectedException.none;
 import java.awt.Frame;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.exception.UnexpectedException;
@@ -82,7 +82,7 @@ public class ApplicationLauncher_start_Test extends RobotBasedTestCase {
   private void assertFrameIsShowing() {
     FrameFixture frameFixture = WindowFinder.findFrame(new GenericTypeMatcher<Frame>(Frame.class) {
       @Override
-      protected boolean isMatching(@Nonnull Frame frame) {
+      protected boolean isMatching(@NotNull Frame frame) {
         return "Java Application".equals(frame.getTitle()) && frame.isShowing();
       }
     }).using(robot);

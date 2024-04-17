@@ -25,9 +25,8 @@ import java.awt.Window;
 import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Event listener that monitors when a window is ready to receive OS-level event input.
@@ -39,11 +38,11 @@ final class WindowAvailabilityMonitor implements AWTEventListener {
 
   private final Windows windows;
 
-  WindowAvailabilityMonitor(@Nonnull Windows windows) {
+  WindowAvailabilityMonitor(@NotNull Windows windows) {
     this.windows = windows;
   }
 
-  void attachTo(@Nonnull Toolkit toolkit) {
+  void attachTo(@NotNull Toolkit toolkit) {
     attachAsWeakEventListener(toolkit, this, EVENT_MASK);
   }
 

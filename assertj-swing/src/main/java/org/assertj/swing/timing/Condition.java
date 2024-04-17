@@ -14,11 +14,10 @@ package org.assertj.swing.timing;
 
 import static org.assertj.core.util.Strings.concat;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.assertj.core.description.Description;
 import org.assertj.core.description.TextDescription;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A condition to verify, usually used in the method {@link Pause#pause(Condition)}.
@@ -36,7 +35,7 @@ public abstract class Condition {
    * 
    * @param description describes this condition.
    */
-  public Condition(@Nonnull String description) {
+  public Condition(@NotNull String description) {
     this(new TextDescription(description));
   }
 
@@ -62,7 +61,7 @@ public abstract class Condition {
    * @return the description of this condition.
    */
   @Override
-  public final @Nonnull String toString() {
+  public final @NotNull String toString() {
     String descriptionText = description != null ? description.value() : defaultDescription();
     String addendum = descriptionAddendum();
     return concat(descriptionText, addendum);
@@ -77,7 +76,7 @@ public abstract class Condition {
    * 
    * @return by default, an empty {@code String}.
    */
-  @Nonnull protected String descriptionAddendum() {
+  @NotNull protected String descriptionAddendum() {
     return EMPTY_TEXT;
   }
 

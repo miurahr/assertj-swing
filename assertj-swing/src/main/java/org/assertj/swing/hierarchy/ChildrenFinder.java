@@ -20,7 +20,7 @@ import java.awt.Container;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -36,8 +36,8 @@ class ChildrenFinder {
       new JMenuChildrenFinder(), new WindowChildrenFinder());
 
   @RunsInCurrentThread
-  @Nonnull
-  Collection<Component> childrenOf(@Nonnull Component c) {
+  @NotNull
+  Collection<Component> childrenOf(@NotNull Component c) {
     if (!(c instanceof Container)) {
       return emptyList();
     }
@@ -47,7 +47,7 @@ class ChildrenFinder {
     return children;
   }
 
-  @Nonnull private Collection<Component> nonExplicitChildrenOf(@Nonnull Container c) {
+  @NotNull private Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
     Collection<Component> children = newArrayList();
     for (ChildrenFinderStrategy s : strategies) {
       children.addAll(s.nonExplicitChildrenOf(c));
@@ -56,12 +56,12 @@ class ChildrenFinder {
   }
 
   @VisibleForTesting
-  static @Nonnull List<ChildrenFinderStrategy> strategies() {
+  static @NotNull List<ChildrenFinderStrategy> strategies() {
     return newArrayList(strategies);
   }
 
   @VisibleForTesting
-  static void replaceStrategiesWith(@Nonnull List<ChildrenFinderStrategy> newStrategies) {
+  static void replaceStrategiesWith(@NotNull List<ChildrenFinderStrategy> newStrategies) {
     strategies = newArrayList(newStrategies);
   }
 }

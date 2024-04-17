@@ -19,7 +19,7 @@ import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * An event listener that records mouse events on a specific component as {@link MouseListener}.
@@ -33,13 +33,13 @@ public class ClickRecorder extends AbstractClickRecorder {
     // hide the constructor from the outside
   }
 
-  static @Nonnull ClickRecorder attachTo(@Nonnull Component target) {
+  static @NotNull ClickRecorder attachTo(@NotNull Component target) {
     ClickRecorder recorder = new ClickRecorder();
     attach(new ClickListener(recorder), target);
     return recorder;
   }
 
-  private static void attach(@Nonnull ClickListener listener, @Nonnull Component target) {
+  private static void attach(@NotNull ClickListener listener, @NotNull Component target) {
     target.addMouseListener(listener);
     if (!(target instanceof Container)) {
       return;
@@ -52,7 +52,7 @@ public class ClickRecorder extends AbstractClickRecorder {
   private static class ClickListener extends MouseAdapter {
     private final ClickRecorder owner;
 
-    ClickListener(@Nonnull ClickRecorder owner) {
+    ClickListener(@NotNull ClickRecorder owner) {
       this.owner = owner;
     }
 

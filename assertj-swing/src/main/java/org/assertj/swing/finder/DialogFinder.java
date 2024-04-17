@@ -16,9 +16,9 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.assertj.swing.annotation.NonNegative;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.core.Robot;
@@ -45,7 +45,7 @@ public class DialogFinder extends WindowFinderTemplate<Dialog> {
    * 
    * @param matcher specifies the search criteria to use when looking up a {@code Dialog}.
    */
-  protected DialogFinder(@Nonnull GenericTypeMatcher<? extends Dialog> matcher) {
+  protected DialogFinder(@NotNull GenericTypeMatcher<? extends Dialog> matcher) {
     super(matcher);
   }
 
@@ -54,7 +54,7 @@ public class DialogFinder extends WindowFinderTemplate<Dialog> {
    * 
    * @param dialogType the type of {@code Dialog} to look for.
    */
-  protected DialogFinder(@Nonnull Class<? extends Dialog> dialogType) {
+  protected DialogFinder(@NotNull Class<? extends Dialog> dialogType) {
     super(dialogType);
   }
 
@@ -65,7 +65,7 @@ public class DialogFinder extends WindowFinderTemplate<Dialog> {
    * @return this finder.
    */
   @Override
-  @Nonnull public DialogFinder withTimeout(@Nonnegative long timeout) {
+  @NotNull public DialogFinder withTimeout(@NonNegative long timeout) {
     super.withTimeout(timeout);
     return this;
   }
@@ -78,7 +78,7 @@ public class DialogFinder extends WindowFinderTemplate<Dialog> {
    * @return this finder.
    */
   @Override
-  @Nonnull public DialogFinder withTimeout(@Nonnegative long timeout, @Nonnull TimeUnit unit) {
+  @NotNull public DialogFinder withTimeout(@NonNegative long timeout, @NotNull TimeUnit unit) {
     super.withTimeout(timeout, unit);
     return this;
   }
@@ -91,7 +91,7 @@ public class DialogFinder extends WindowFinderTemplate<Dialog> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code Dialog} could not be found.
    */
   @Override
-  @Nonnull public DialogFixture using(@Nonnull Robot robot) {
+  @NotNull public DialogFixture using(@NotNull Robot robot) {
     return new DialogFixture(robot, findComponentWith(robot));
   }
 

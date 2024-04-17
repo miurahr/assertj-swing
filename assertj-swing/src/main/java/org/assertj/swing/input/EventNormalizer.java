@@ -18,7 +18,7 @@ import java.awt.AWTEvent;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.listener.WeakEventListener;
@@ -43,7 +43,7 @@ public class EventNormalizer implements AWTEventListener {
   }
 
   @VisibleForTesting
-  EventNormalizer(@Nonnull DisposedWindowMonitor disposedWindowMonitor) {
+  EventNormalizer(@NotNull DisposedWindowMonitor disposedWindowMonitor) {
     this.disposedWindowMonitor = disposedWindowMonitor;
   }
 
@@ -54,7 +54,7 @@ public class EventNormalizer implements AWTEventListener {
    * @param delegate the event listener to delegate event processing to.
    * @param mask the event mask to use to register this normalizer in the {@code Toolkit}.
    */
-  public void startListening(@Nonnull Toolkit toolkit, @Nonnull AWTEventListener delegate, long mask) {
+  public void startListening(@NotNull Toolkit toolkit, @NotNull AWTEventListener delegate, long mask) {
     listener = delegate;
     weakEventListener = attachAsWeakEventListener(toolkit, this, mask);
   }
@@ -88,7 +88,7 @@ public class EventNormalizer implements AWTEventListener {
     }
   }
 
-  private void delegate(@Nonnull AWTEvent e) {
+  private void delegate(@NotNull AWTEvent e) {
     listener.eventDispatched(e);
   }
 }

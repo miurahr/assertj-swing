@@ -19,9 +19,9 @@ import static org.assertj.swing.format.Formatting.format;
 import java.awt.Component;
 
 import javax.accessibility.AccessibleAction;
-import javax.annotation.Nonnull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -38,7 +38,7 @@ class ComponentPerformDefaultAccessibleActionTask {
   private static final int DEFAULT_ACTION_INDEX = 0;
 
   @RunsInCurrentThread
-  static void performDefaultAccessibleAction(final @Nonnull Component c) {
+  static void performDefaultAccessibleAction(final @NotNull Component c) {
     AccessibleAction action = c.getAccessibleContext().getAccessibleAction();
     if (action == null || action.getAccessibleActionCount() == 0) {
       throw actionFailure(concat("Unable to perform accessible action for ", format(c)));

@@ -16,9 +16,8 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
-
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Sets the size of an AWT or Swing {@code Component}. This task is executed in the event dispatch thread (EDT).
@@ -27,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class ComponentSetSizeTask {
   @RunsInEDT
-  static void setComponentSize(final @Nonnull Component c, final int width, final int height) {
+  static void setComponentSize(final @NotNull Component c, final int width, final int height) {
     execute(() -> c.setSize(width, height));
   }
 

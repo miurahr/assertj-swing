@@ -23,8 +23,6 @@ import java.awt.Frame;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Logger;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -45,6 +43,8 @@ import javax.swing.text.JTextComponent;
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Utility methods related to formatting.
@@ -98,16 +98,17 @@ public class Formatting {
     register(new JTreeFormatter());
   }
 
-  @Nonnull private static ComponentFormatter instrospect(@Nonnull Class<? extends Component> targetType,
-                                                         @Nonnull String... propertyNames) {
+  @NotNull
+  private static ComponentFormatter instrospect(@NotNull Class<? extends Component> targetType,
+                                                @NotNull String... propertyNames) {
     return new IntrospectionComponentFormatter(targetType, propertyNames);
   }
 
-  @Nonnull private static ComponentFormatter empty(@Nonnull Class<? extends Component> targetType) {
+  @NotNull private static ComponentFormatter empty(@NotNull Class<? extends Component> targetType) {
     return new IntrospectionComponentFormatter(targetType);
   }
 
-  @Nonnull private static ComponentFormatter nameOnly(@Nonnull Class<? extends Component> targetType) {
+  @NotNull private static ComponentFormatter nameOnly(@NotNull Class<? extends Component> targetType) {
     return new IntrospectionComponentFormatter(targetType, NAME);
   }
 
@@ -117,7 +118,7 @@ public class Formatting {
    *
    * @param formatter the formatter to register.
    */
-  public static void register(@Nonnull ComponentFormatter formatter) {
+  public static void register(@NotNull ComponentFormatter formatter) {
     Class<?> key = formatter.targetType();
     ComponentFormatter previous = FORMATTERS.put(key, formatter);
     if (previous != null) {
@@ -127,7 +128,7 @@ public class Formatting {
   }
 
   @VisibleForTesting
-  static ComponentFormatter formatter(@Nonnull Class<?> type) {
+  static ComponentFormatter formatter(@NotNull Class<?> type) {
     return FORMATTERS.get(type);
   }
 
@@ -139,7 +140,7 @@ public class Formatting {
    * @return a {@code String} representation of the given {@code Component}.
    */
   @RunsInEDT
-  @Nonnull public static String inEdtFormat(final @Nonnull Component c) {
+  @NotNull public static String inEdtFormat(final @NotNull Component c) {
     return checkNotNull(execute(() -> format(c)));
   }
 
@@ -157,7 +158,7 @@ public class Formatting {
    * @return a {@code String} representation of the given {@code Component}.
    */
   @RunsInCurrentThread
-  @Nonnull public static String format(@Nullable Component c) {
+  @NotNull public static String format(@Nullable Component c) {
     if (c == null) {
       return NULL_COMPONENT_MESSAGE;
     }
@@ -172,7 +173,7 @@ public class Formatting {
     return String.format("%s[name=%s]", c.getClass().getName(), name);
   }
 
-  @Nullable private static ComponentFormatter formatterFor(@Nonnull Class<?> type) {
+  @Nullable private static ComponentFormatter formatterFor(@NotNull Class<?> type) {
     ComponentFormatter formatter = FORMATTERS.get(type);
     if (formatter != null) {
       return formatter;

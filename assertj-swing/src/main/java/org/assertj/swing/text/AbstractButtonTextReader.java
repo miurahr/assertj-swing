@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.text;
 
-import javax.annotation.Nonnull;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Reads the text displayed in a Swing {@code AbstractButton}.
@@ -27,7 +27,8 @@ public class AbstractButtonTextReader extends TextReader<AbstractButton> {
    * @return {@code AbstractButton.class}.
    */
   @Override
-  @Nonnull public Class<AbstractButton> supportedComponent() {
+  @NotNull
+  public Class<AbstractButton> supportedComponent() {
     return AbstractButton.class;
   }
 
@@ -40,7 +41,7 @@ public class AbstractButtonTextReader extends TextReader<AbstractButton> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean checkContainsText(@Nonnull AbstractButton button, @Nonnull String text) {
+  protected boolean checkContainsText(@NotNull AbstractButton button, @NotNull String text) {
     String buttonText = button.getText();
     if (buttonText == null) {
       return false;

@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 import java.awt.Component;
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.core.ComponentLookupScope;
 import org.assertj.swing.core.Robot;
@@ -76,7 +76,7 @@ public class AbstractComponentFixture_requireShowing_Test {
     }
 
     @Override
-    @Nonnull protected ComponentDriver createDriver(@Nonnull Robot robot) {
+    @NotNull protected ComponentDriver createDriver(@NotNull Robot robot) {
       return mock(ComponentDriver.class);
     }
   }

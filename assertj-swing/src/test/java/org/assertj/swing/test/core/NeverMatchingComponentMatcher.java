@@ -14,7 +14,7 @@ package org.assertj.swing.test.core;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.core.GenericTypeMatcher;
 
@@ -33,17 +33,17 @@ public class NeverMatchingComponentMatcher<T extends Component> extends GenericT
    * @return the created matcher.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  @Nonnull public static <T extends Component> NeverMatchingComponentMatcher<T> neverMatches(
-      @Nonnull Class<T> supportedType) {
+  @NotNull public static <T extends Component> NeverMatchingComponentMatcher<T> neverMatches(
+      @NotNull Class<T> supportedType) {
     return new NeverMatchingComponentMatcher<T>(supportedType);
   }
 
-  private NeverMatchingComponentMatcher(@Nonnull Class<T> supportedType) {
+  private NeverMatchingComponentMatcher(@NotNull Class<T> supportedType) {
     super(supportedType);
   }
 
   @Override
-  protected boolean isMatching(@Nonnull T component) {
+  protected boolean isMatching(@NotNull T component) {
     return false;
   }
 }

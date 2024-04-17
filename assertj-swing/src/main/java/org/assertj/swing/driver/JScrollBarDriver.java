@@ -22,7 +22,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JScrollBar;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -57,7 +57,7 @@ public class JScrollBarDriver extends JComponentDriver {
    * 
    * @param robot the robot to use to simulate user input.
    */
-  public JScrollBarDriver(@Nonnull Robot robot) {
+  public JScrollBarDriver(@NotNull Robot robot) {
     super(robot);
   }
 
@@ -66,7 +66,7 @@ public class JScrollBarDriver extends JComponentDriver {
    * 
    * @param scrollBar the target {@code JScrollBar}.
    */
-  public void scrollUnitUp(@Nonnull JScrollBar scrollBar) {
+  public void scrollUnitUp(@NotNull JScrollBar scrollBar) {
     scrollUnitUp(scrollBar, 1);
   }
 
@@ -79,7 +79,7 @@ public class JScrollBarDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JScrollBar} is disabled.
    * @throws IllegalStateException if the {@code JScrollBar} is not showing on the screen.
    */
-  public void scrollUnitUp(@Nonnull JScrollBar scrollBar, int times) {
+  public void scrollUnitUp(@NotNull JScrollBar scrollBar, int times) {
     checkPositive(times, "scroll up one unit");
     Pair<Point, Integer> scrollInfo = findScrollUnitInfo(scrollBar, location(), times * -1);
     scroll(scrollBar, scrollInfo);
@@ -90,7 +90,7 @@ public class JScrollBarDriver extends JComponentDriver {
    * 
    * @param scrollBar the target {@code JScrollBar}.
    */
-  public void scrollUnitDown(@Nonnull JScrollBar scrollBar) {
+  public void scrollUnitDown(@NotNull JScrollBar scrollBar) {
     scrollUnitDown(scrollBar, 1);
   }
 
@@ -103,15 +103,15 @@ public class JScrollBarDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JScrollBar} is disabled.
    * @throws IllegalStateException if the {@code JScrollBar} is not showing on the screen.
    */
-  public void scrollUnitDown(@Nonnull JScrollBar scrollBar, int times) {
+  public void scrollUnitDown(@NotNull JScrollBar scrollBar, int times) {
     checkPositive(times, "scroll down one unit");
     Pair<Point, Integer> scrollInfo = findScrollUnitInfo(scrollBar, location(), times);
     scroll(scrollBar, scrollInfo);
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Point, Integer> findScrollUnitInfo(final @Nonnull JScrollBar scrollBar,
-      final @Nonnull JScrollBarLocation location, final int times) {
+  @NotNull private static Pair<Point, Integer> findScrollUnitInfo(final @NotNull JScrollBar scrollBar,
+      final @NotNull JScrollBarLocation location, final int times) {
     Pair<Point, Integer> result = execute(new GuiQuery<Pair<Point, Integer>>() {
       @Override
       protected Pair<Point, Integer> executeInEDT() {
@@ -123,8 +123,8 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Pair<Point, Integer> scrollUnitInfo(@Nonnull JScrollBar scrollBar,
-      @Nonnull JScrollBarLocation location, int times) {
+  @NotNull private static Pair<Point, Integer> scrollUnitInfo(@NotNull JScrollBar scrollBar,
+      @NotNull JScrollBarLocation location, int times) {
     Point where = blockLocation(scrollBar, location, times);
     int count = times * scrollBar.getUnitIncrement();
     return Pair.of(where, scrollBar.getValue() + count);
@@ -136,7 +136,7 @@ public class JScrollBarDriver extends JComponentDriver {
    * @param scrollBar the target {@code JScrollBar}.
    */
   @RunsInEDT
-  public void scrollBlockUp(@Nonnull JScrollBar scrollBar) {
+  public void scrollBlockUp(@NotNull JScrollBar scrollBar) {
     scrollBlockUp(scrollBar, 1);
   }
 
@@ -150,7 +150,7 @@ public class JScrollBarDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JScrollBar} is not showing on the screen.
    */
   @RunsInEDT
-  public void scrollBlockUp(@Nonnull JScrollBar scrollBar, int times) {
+  public void scrollBlockUp(@NotNull JScrollBar scrollBar, int times) {
     checkPositive(times, "scroll up one block");
     Pair<Point, Integer> scrollInfo = validateAndFindScrollBlockInfo(scrollBar, location(), times * -1);
     scroll(scrollBar, scrollInfo);
@@ -162,7 +162,7 @@ public class JScrollBarDriver extends JComponentDriver {
    * @param scrollBar the target {@code JScrollBar}.
    */
   @RunsInEDT
-  public void scrollBlockDown(@Nonnull JScrollBar scrollBar) {
+  public void scrollBlockDown(@NotNull JScrollBar scrollBar) {
     scrollBlockDown(scrollBar, 1);
   }
 
@@ -176,13 +176,13 @@ public class JScrollBarDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JScrollBar} is not showing on the screen.
    */
   @RunsInEDT
-  public void scrollBlockDown(@Nonnull JScrollBar scrollBar, int times) {
+  public void scrollBlockDown(@NotNull JScrollBar scrollBar, int times) {
     checkPositive(times, "scroll down one block");
     Pair<Point, Integer> scrollInfo = validateAndFindScrollBlockInfo(scrollBar, location(), times);
     scroll(scrollBar, scrollInfo);
   }
 
-  private void checkPositive(int times, @Nonnull String action) {
+  private void checkPositive(int times, @NotNull String action) {
     if (times > 0) {
       return;
     }
@@ -191,8 +191,8 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Point, Integer> validateAndFindScrollBlockInfo(final @Nonnull JScrollBar scrollBar,
-      final @Nonnull JScrollBarLocation location, final int times) {
+  @NotNull private static Pair<Point, Integer> validateAndFindScrollBlockInfo(final @NotNull JScrollBar scrollBar,
+      final @NotNull JScrollBarLocation location, final int times) {
     Pair<Point, Integer> result = execute(new GuiQuery<Pair<Point, Integer>>() {
       @Override
       protected Pair<Point, Integer> executeInEDT() {
@@ -204,21 +204,21 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static Pair<Point, Integer> scrollBlockInfo(@Nonnull JScrollBar scrollBar,
-      @Nonnull JScrollBarLocation location, int times) {
+  private static Pair<Point, Integer> scrollBlockInfo(@NotNull JScrollBar scrollBar,
+      @NotNull JScrollBarLocation location, int times) {
     Point where = blockLocation(scrollBar, location, times);
     int count = times * scrollBar.getBlockIncrement();
     return Pair.of(where, scrollBar.getValue() + count);
   }
 
   @RunsInCurrentThread
-  @Nonnull private static Point blockLocation(@Nonnull JScrollBar scrollBar, @Nonnull JScrollBarLocation location,
+  @NotNull private static Point blockLocation(@NotNull JScrollBar scrollBar, @NotNull JScrollBarLocation location,
       int times) {
     return times > 0 ? location.blockLocationToScrollDown(scrollBar) : location.blockLocationToScrollUp(scrollBar);
   }
 
   @RunsInEDT
-  private void scroll(@Nonnull JScrollBar scrollBar, @Nonnull Pair<Point, Integer> scrollInfo) {
+  private void scroll(@NotNull JScrollBar scrollBar, @NotNull Pair<Point, Integer> scrollInfo) {
     // For now, do it programmatically, faking the mouse movement and clicking
     robot.moveMouse(scrollBar, checkNotNull(scrollInfo.first));
     setValueProperty(scrollBar, scrollInfo.second);
@@ -232,14 +232,14 @@ public class JScrollBarDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JScrollBar} is not showing on the screen.
    */
   @RunsInEDT
-  public void scrollToMaximum(@Nonnull JScrollBar scrollBar) {
+  public void scrollToMaximum(@NotNull JScrollBar scrollBar) {
     Pair<Integer, GenericRange<Point>> scrollInfo = findScrollToMaximumInfo(scrollBar, location());
     scroll(scrollBar, scrollInfo.first, checkNotNull(scrollInfo.second));
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Integer, GenericRange<Point>> findScrollToMaximumInfo(
-      final @Nonnull JScrollBar scrollBar, final @Nonnull JScrollBarLocation location) {
+  @NotNull private static Pair<Integer, GenericRange<Point>> findScrollToMaximumInfo(
+      final @NotNull JScrollBar scrollBar, final @NotNull JScrollBarLocation location) {
     Pair<Integer, GenericRange<Point>> result = execute(new GuiQuery<Pair<Integer, GenericRange<Point>>>() {
       @Override
       protected Pair<Integer, GenericRange<Point>> executeInEDT() {
@@ -260,14 +260,14 @@ public class JScrollBarDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JScrollBar} is not showing on the screen.
    */
   @RunsInEDT
-  public void scrollToMinimum(@Nonnull JScrollBar scrollBar) {
+  public void scrollToMinimum(@NotNull JScrollBar scrollBar) {
     Pair<Integer, GenericRange<Point>> scrollInfo = findScrollToMinimumInfo(scrollBar, location);
     scroll(scrollBar, scrollInfo.first, checkNotNull(scrollInfo.second));
   }
 
   @RunsInEDT
-  @Nonnull private static Pair<Integer, GenericRange<Point>> findScrollToMinimumInfo(
-      final @Nonnull JScrollBar scrollBar, final JScrollBarLocation location) {
+  @NotNull private static Pair<Integer, GenericRange<Point>> findScrollToMinimumInfo(
+      final @NotNull JScrollBar scrollBar, final JScrollBarLocation location) {
     Pair<Integer, GenericRange<Point>> result = execute(new GuiQuery<Pair<Integer, GenericRange<Point>>>() {
       @Override
       protected Pair<Integer, GenericRange<Point>> executeInEDT() {
@@ -290,14 +290,14 @@ public class JScrollBarDriver extends JComponentDriver {
    * @throws IllegalArgumentException if the given position is not within the {@code JScrollBar} bounds.
    */
   @RunsInEDT
-  public void scrollTo(@Nonnull JScrollBar scrollBar, int position) {
+  public void scrollTo(@NotNull JScrollBar scrollBar, int position) {
     GenericRange<Point> scrollInfo = validateAndFindScrollInfo(scrollBar, location(), position);
     scroll(scrollBar, position, scrollInfo);
   }
 
   @RunsInEDT
-  @Nonnull private static GenericRange<Point> validateAndFindScrollInfo(final @Nonnull JScrollBar scrollBar,
-      final @Nonnull JScrollBarLocation location, final int position) {
+  @NotNull private static GenericRange<Point> validateAndFindScrollInfo(final @NotNull JScrollBar scrollBar,
+      final @NotNull JScrollBarLocation location, final int position) {
     GenericRange<Point> result = execute(new GuiQuery<GenericRange<Point>>() {
       @Override
       protected GenericRange<Point> executeInEDT() {
@@ -310,7 +310,7 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static void checkPositionInBounds(@Nonnull JScrollBar scrollBar, int position) {
+  private static void checkPositionInBounds(@NotNull JScrollBar scrollBar, int position) {
     int min = scrollBar.getMinimum();
     int max = scrollBar.getMaximum();
     if (position >= min && position <= max) {
@@ -321,26 +321,26 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @Nonnull private static GenericRange<Point> scrollInfo(@Nonnull JScrollBar scrollBar,
-      @Nonnull JScrollBarLocation location, int position) {
+  @NotNull private static GenericRange<Point> scrollInfo(@NotNull JScrollBar scrollBar,
+      @NotNull JScrollBarLocation location, int position) {
     Point from = location.thumbLocation(scrollBar, scrollBar.getValue());
     Point to = location.thumbLocation(scrollBar, position);
     return new GenericRange<Point>(from, to);
   }
 
-  private void scroll(@Nonnull JScrollBar scrollBar, int position, @Nonnull GenericRange<Point> points) {
+  private void scroll(@NotNull JScrollBar scrollBar, int position, @NotNull GenericRange<Point> points) {
     simulateScrolling(scrollBar, points);
     setValueProperty(scrollBar, position);
   }
 
   @RunsInEDT
-  private void simulateScrolling(@Nonnull JScrollBar scrollBar, @Nonnull GenericRange<Point> points) {
+  private void simulateScrolling(@NotNull JScrollBar scrollBar, @NotNull GenericRange<Point> points) {
     robot.moveMouse(scrollBar, points.from());
     robot.moveMouse(scrollBar, points.to());
   }
 
   @RunsInEDT
-  private void setValueProperty(@Nonnull JScrollBar scrollBar, int value) {
+  private void setValueProperty(@NotNull JScrollBar scrollBar, int value) {
     setValue(scrollBar, value);
     robot.waitForIdle();
   }
@@ -353,11 +353,11 @@ public class JScrollBarDriver extends JComponentDriver {
    * @throws AssertionError if the value of the {@code JScrollBar} is not equal to the given one.
    */
   @RunsInEDT
-  public void requireValue(@Nonnull JScrollBar scrollBar, int value) {
+  public void requireValue(@NotNull JScrollBar scrollBar, int value) {
     assertThat(valueOf(scrollBar)).as(propertyName(scrollBar, VALUE_PROPERTY)).isEqualTo(value);
   }
 
-  @Nonnull private JScrollBarLocation location() {
+  @NotNull private JScrollBarLocation location() {
     return location;
   }
 }

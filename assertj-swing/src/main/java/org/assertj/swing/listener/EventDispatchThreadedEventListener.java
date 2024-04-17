@@ -21,9 +21,7 @@ import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -39,9 +37,7 @@ import javax.annotation.concurrent.ThreadSafe;
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
-@ThreadSafe
 public abstract class EventDispatchThreadedEventListener implements AWTEventListener {
-  @GuardedBy("lock")
   private final List<AWTEvent> deferredEvents = newArrayList();
 
   private final Object lock = new Object();
@@ -103,5 +99,5 @@ public abstract class EventDispatchThreadedEventListener implements AWTEventList
    * 
    * @param event the event to process.
    */
-  protected abstract void processEvent(@Nonnull AWTEvent event);
+  protected abstract void processEvent(@NotNull AWTEvent event);
 }

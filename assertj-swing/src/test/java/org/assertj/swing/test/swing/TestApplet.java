@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.FlowLayout;
 
-import javax.annotation.concurrent.GuardedBy;
 import javax.swing.JApplet;
 import javax.swing.JButton;
 
@@ -27,13 +26,9 @@ import org.assertj.swing.annotation.RunsInEDT;
  * @author Alex Ruiz
  */
 public class TestApplet extends JApplet {
-  @GuardedBy("this")
   private boolean initialized;
-  @GuardedBy("this")
   private boolean destroyed;
-  @GuardedBy("this")
   private boolean started;
-  @GuardedBy("this")
   private boolean stopped;
 
   @RunsInEDT

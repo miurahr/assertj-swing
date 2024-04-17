@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Action to execute on a {@code JInternalFrame}.
@@ -25,7 +25,7 @@ enum JInternalFrameAction {
   final String name;
   final boolean value;
 
-  private JInternalFrameAction(@Nonnull String name, boolean value) {
+  private JInternalFrameAction(@NotNull String name, boolean value) {
     this.name = name;
     this.value = value;
   }

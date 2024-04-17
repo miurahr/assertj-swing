@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -29,7 +29,7 @@ import org.assertj.swing.cell.JListCellReader;
  */
 final class JListContentQuery {
   @RunsInEDT
-  static @Nonnull String[] contents(final @Nonnull JList<?> list, final @Nonnull JListCellReader cellReader) {
+  static @NotNull String[] contents(final @NotNull JList<?> list, final @NotNull JListCellReader cellReader) {
     String[] result = execute(() -> {
       String[] values = new String[list.getModel().getSize()];
       for (int i = 0; i < values.length; i++) {

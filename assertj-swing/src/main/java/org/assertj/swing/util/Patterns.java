@@ -16,7 +16,7 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Utility methods for regular expression patterns.
@@ -50,7 +50,7 @@ public final class Patterns {
    * @throws NullPointerException if the given array of patterns is {@code null}.
    * @throws NullPointerException if any of the patterns in the given array is {@code null}.
    */
-  @Nonnull public static String format(@Nonnull Pattern[] patterns) {
+  @NotNull public static String format(@NotNull Pattern[] patterns) {
     checkNotNull(patterns);
     int patternCount = patterns.length;
     String[] patternsAsText = new String[patternCount];

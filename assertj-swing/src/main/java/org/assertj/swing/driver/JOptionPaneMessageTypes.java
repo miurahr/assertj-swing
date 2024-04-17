@@ -24,7 +24,7 @@ import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.util.Map;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Message types of a {@code JOptionPane}.
@@ -41,7 +41,7 @@ final class JOptionPaneMessageTypes {
     messageMap.put(PLAIN_MESSAGE, "Plain Message");
   }
 
-  static @Nonnull String messageTypeAsText(int messageType) {
+  static @NotNull String messageTypeAsText(int messageType) {
     if (messageMap.containsKey(messageType)) {
       return checkNotNullOrEmpty(messageMap.get(messageType)).toString();
     }

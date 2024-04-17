@@ -14,8 +14,8 @@ package org.assertj.swing.fixture;
 
 import java.io.File;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JFileChooser;
 
 import org.assertj.swing.core.Robot;
@@ -37,7 +37,7 @@ public class JFileChooserFixture extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JFileChooser} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JFileChooser} is found.
    */
-  public JFileChooserFixture(@Nonnull Robot robot) {
+  public JFileChooserFixture(@NotNull Robot robot) {
     super(JFileChooserFixture.class, robot, JFileChooser.class);
   }
 
@@ -49,7 +49,7 @@ public class JFileChooserFixture extends
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JFileChooserFixture(@Nonnull Robot robot, @Nonnull JFileChooser target) {
+  public JFileChooserFixture(@NotNull Robot robot, @NotNull JFileChooser target) {
     super(JFileChooserFixture.class, robot, target);
   }
 
@@ -62,12 +62,12 @@ public class JFileChooserFixture extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JFileChooser} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JFileChooser} is found.
    */
-  public JFileChooserFixture(@Nonnull Robot robot, @Nullable String fileChooserName) {
+  public JFileChooserFixture(@NotNull Robot robot, @Nullable String fileChooserName) {
     super(JFileChooserFixture.class, robot, fileChooserName, JFileChooser.class);
   }
 
   @Override
-  @Nonnull protected JFileChooserDriver createDriver(@Nonnull Robot robot) {
+  @NotNull protected JFileChooserDriver createDriver(@NotNull Robot robot) {
     return new JFileChooserDriver(robot);
   }
 
@@ -88,7 +88,7 @@ public class JFileChooserFixture extends
    * @return the found "Approve" button.
    * @throws org.assertj.swing.exception.ComponentLookupException if the "Approve" button cannot be found.
    */
-  @Nonnull public JButtonFixture approveButton() {
+  @NotNull public JButtonFixture approveButton() {
     return new JButtonFixture(robot(), driver().approveButton(target()));
   }
 
@@ -109,7 +109,7 @@ public class JFileChooserFixture extends
    * @return the found "Cancel" button.
    * @throws org.assertj.swing.exception.ComponentLookupException if the "Cancel" button cannot be found.
    */
-  @Nonnull public JButtonFixture cancelButton() {
+  @NotNull public JButtonFixture cancelButton() {
     return new JButtonFixture(robot(), driver().cancelButton(target()));
   }
 
@@ -120,7 +120,7 @@ public class JFileChooserFixture extends
    * @return the created fixture.
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching textToMatch field could not be found.
    */
-  @Nonnull public JTextComponentFixture fileNameTextBox() {
+  @NotNull public JTextComponentFixture fileNameTextBox() {
     return new JTextComponentFixture(robot(), driver().fileNameTextBox(target()));
   }
 
@@ -137,7 +137,7 @@ public class JFileChooserFixture extends
    * @throws IllegalArgumentException if this fixture's {@code JFileChooser} cannot select directories and the file to
    *           select is a directory.
    */
-  @Nonnull public JFileChooserFixture selectFile(@Nonnull File file) {
+  @NotNull public JFileChooserFixture selectFile(@NotNull File file) {
     driver().selectFile(target(), file);
     return this;
   }
@@ -158,7 +158,7 @@ public class JFileChooserFixture extends
    * @throws IllegalArgumentException if this fixture's {@code JFileChooser} cannot select directories and any of the
    *           files to select is a directory.
    */
-  @Nonnull public JFileChooserFixture selectFiles(@Nonnull File... files) {
+  @NotNull public JFileChooserFixture selectFiles(@NotNull File... files) {
     driver().selectFiles(target(), files);
     return this;
   }
@@ -171,7 +171,7 @@ public class JFileChooserFixture extends
    * @throws IllegalStateException if this fixture's {@code JFileChooser} is not showing on the screen.
    * @return this fixture.
    */
-  @Nonnull public JFileChooserFixture setCurrentDirectory(@Nonnull File dir) {
+  @NotNull public JFileChooserFixture setCurrentDirectory(@NotNull File dir) {
     driver().setCurrentDirectory(target(), dir);
     return this;
   }

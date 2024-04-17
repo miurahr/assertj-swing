@@ -16,8 +16,8 @@ import static org.assertj.swing.driver.JListItemPreconditions.checkIndexInBounds
 
 import java.awt.Rectangle;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -36,7 +36,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JListCellBoundsQuery {
   @RunsInCurrentThread
-  static @Nullable Rectangle cellBounds(@Nonnull JList<?> list, int index) {
+  static @Nullable Rectangle cellBounds(@NotNull JList<?> list, int index) {
     checkIndexInBounds(list, index);
     return list.getCellBounds(index, index);
   }

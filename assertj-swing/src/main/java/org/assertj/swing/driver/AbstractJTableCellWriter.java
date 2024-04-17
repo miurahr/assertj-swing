@@ -29,8 +29,6 @@ import static org.assertj.swing.timing.Pause.pause;
 import java.awt.Component;
 import java.awt.Point;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
@@ -43,6 +41,8 @@ import org.assertj.swing.core.Robot;
 import org.assertj.swing.core.TypeMatcher;
 import org.assertj.swing.exception.ActionFailedException;
 import org.assertj.swing.exception.WaitTimedOutError;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Template for implementations of {@link JTableCellWriter}.
@@ -58,13 +58,13 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
 
   private static final long EDITOR_LOOKUP_TIMEOUT = 5000;
 
-  public AbstractJTableCellWriter(@Nonnull Robot robot) {
+  public AbstractJTableCellWriter(@NotNull Robot robot) {
     this.robot = robot;
   }
 
   @RunsInEDT
   @Override
-  public void cancelCellEditing(@Nonnull JTable table, int row, int column) {
+  public void cancelCellEditing(@NotNull JTable table, int row, int column) {
     if (cellEditor == null) {
       doCancelCellEditing(table, row, column);
       return;
@@ -73,7 +73,7 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
   }
 
   @RunsInEDT
-  private void doCancelCellEditing(@Nonnull JTable table, int row, int column) {
+  private void doCancelCellEditing(@NotNull JTable table, int row, int column) {
     cancelEditing(table, row, column);
     robot.waitForIdle();
   }
@@ -86,7 +86,7 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
 
   @RunsInEDT
   @Override
-  public void stopCellEditing(@Nonnull JTable table, int row, int column) {
+  public void stopCellEditing(@NotNull JTable table, int row, int column) {
     if (cellEditor == null) {
       doStopCellEditing(table, row, column);
       return;
@@ -95,7 +95,7 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
   }
 
   @RunsInEDT
-  private void doStopCellEditing(@Nonnull JTable table, int row, int column) {
+  private void doStopCellEditing(@NotNull JTable table, int row, int column) {
     checkStateAndStopEditing(table, row, column);
     robot.waitForIdle();
   }
@@ -115,7 +115,8 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @return the editor for the given {@code JTable} cell.
    */
   @RunsInEDT
-  @Nullable protected static TableCellEditor cellEditor(final @Nonnull JTable table, final int row, final int column) {
+  @Nullable
+  protected static TableCellEditor cellEditor(final @NotNull JTable table, final int row, final int column) {
     return execute(() -> table.getCellEditor(row, column));
   }
 
@@ -141,12 +142,12 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
 
   @RunsInEDT
   @Override
-  @Nullable public Component editorForCell(@Nonnull JTable table, int row, int column) {
+  @Nullable public Component editorForCell(@NotNull JTable table, int row, int column) {
     return cellEditorComponent(table, row, column);
   }
 
   @RunsInEDT
-  @Nullable private static Component cellEditorComponent(final @Nonnull JTable table, final int row, final int column) {
+  @Nullable private static Component cellEditorComponent(final @NotNull JTable table, final int row, final int column) {
     return execute(() -> {
       checkCellIndicesInBounds(table, row, column);
       return cellEditorIn(table, row, column);
@@ -179,8 +180,8 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @throws ActionFailedException if an editor for the given cell cannot be found or cannot be activated.
    */
   @RunsInCurrentThread
-  @Nonnull protected static <T extends Component> T editor(@Nonnull JTable table, int row, int column,
-                                                           @Nonnull Class<T> supportedType) {
+  @NotNull protected static <T extends Component> T editor(@NotNull JTable table, int row, int column,
+                                                           @NotNull Class<T> supportedType) {
     validate(table, row, column);
     Component editor = cellEditorIn(table, row, column);
     if (supportedType.isInstance(editor)) {
@@ -204,8 +205,8 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @throws IllegalStateException if the table cell in the given coordinates is not editable.
    */
   @RunsInEDT
-  @Nonnull protected static Point cellLocation(final @Nonnull JTable table, final int row, final int column,
-                                               final @Nonnull JTableLocation location) {
+  @NotNull protected static Point cellLocation(final @NotNull JTable table, final int row, final int column,
+                                               final @NotNull JTableLocation location) {
     Point result = execute(() -> {
       validate(table, row, column);
       scrollToCell(table, row, column, location);
@@ -239,7 +240,7 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @throws IllegalStateException if the table cell in the given coordinates is not editable.
    */
   @RunsInCurrentThread
-  protected static void validate(final @Nonnull JTable table, final int row, final int column) {
+  protected static void validate(final @NotNull JTable table, final int row, final int column) {
     checkCellIndicesInBounds(table, row, column);
     checkEnabledAndShowing(table);
     validateCellIsEditable(table, row, column);
@@ -257,8 +258,8 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @throws ActionFailedException if an editor for the given cell cannot be found or cannot be activated.
    */
   @RunsInEDT
-  protected final @Nullable <T extends Component> T waitForEditorActivation(@Nonnull JTable table, int row, int column,
-                                                                            @Nonnull Class<T> supportedType) {
+  protected final @Nullable <T extends Component> T waitForEditorActivation(@NotNull JTable table, int row, int column,
+                                                                            @NotNull Class<T> supportedType) {
     return waitForEditorActivation(new TypeMatcher(supportedType, true), table, row, column, supportedType);
   }
 
@@ -275,9 +276,9 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @throws ActionFailedException if an editor for the given cell cannot be found or cannot be activated.
    */
   @RunsInEDT
-  protected final @Nullable <T extends Component> T waitForEditorActivation(@Nonnull ComponentMatcher matcher,
-                                                                            @Nonnull JTable table, int row, int column,
-                                                                            @Nonnull Class<T> supportedType) {
+  protected final @Nullable <T extends Component> T waitForEditorActivation(@NotNull ComponentMatcher matcher,
+                                                                            @NotNull JTable table, int row, int column,
+                                                                            @NotNull Class<T> supportedType) {
     ComponentFoundCondition condition = new ComponentFoundCondition("", robot.finder(), matcher, table);
     try {
       pause(condition, EDITOR_LOOKUP_TIMEOUT);
@@ -295,7 +296,7 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @param column the column index of the cell.
    * @return the thrown exception.
    */
-  @Nonnull protected static ActionFailedException cannotFindOrActivateEditor(int row, int column) {
+  @NotNull protected static ActionFailedException cannotFindOrActivateEditor(int row, int column) {
     String msg = concat("Unable to find or activate editor for cell [", valueOf(row), ",", valueOf(column), "]");
     throw actionFailure(msg);
   }
@@ -316,7 +317,7 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
     cellEditor = newCellEditor;
   }
 
-  protected final @Nonnull JTableLocation location() {
+  protected final @NotNull JTableLocation location() {
     return location;
   }
 }

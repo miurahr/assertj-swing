@@ -30,8 +30,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Window;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -40,6 +38,8 @@ import javax.swing.SwingUtilities;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.ToolkitProvider;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Utility methods related to AWT.
@@ -58,7 +58,7 @@ public class AWT {
    * @return {@code true} if the point is inside the screen boundaries; {@code false} otherwise.
    */
   @RunsInCurrentThread
-  public static boolean isPointInScreenBoundaries(@Nonnull JComponent c, @Nonnull Point p) {
+  public static boolean isPointInScreenBoundaries(@NotNull JComponent c, @NotNull Point p) {
     Point where = translate(c, p.x, p.y);
     return isPointInScreenBoundaries(where);
   }
@@ -69,7 +69,7 @@ public class AWT {
    * @param p the point to verify.
    * @return {@code true} if the point is inside the screen boundaries; {@code false} otherwise.
    */
-  public static boolean isPointInScreenBoundaries(@Nonnull Point p) {
+  public static boolean isPointInScreenBoundaries(@NotNull Point p) {
     for (GraphicsDevice screen : getLocalGraphicsEnvironment().getScreenDevices()) {
       for (GraphicsConfiguration conf : screen.getConfigurations()) {
         if (conf.getBounds().contains(p)) {
@@ -96,8 +96,9 @@ public class AWT {
    * @return the translated coordinates.
    */
   @RunsInCurrentThread
-  @Nullable public static
-  Point translate(@Nonnull Component c, int x, int y) {
+  @Nullable
+  public static
+  Point translate(@NotNull Component c, int x, int y) {
     Point p = locationOnScreenOf(c);
     if (p == null) {
       return null;
@@ -113,8 +114,8 @@ public class AWT {
    * @return a point at the center of the visible area of the given {@code Component}.
    */
   @RunsInEDT
-  @Nonnull public static
-  Point visibleCenterOf(@Nonnull final Component c) {
+  @NotNull public static
+  Point visibleCenterOf(@NotNull final Component c) {
     Point center = execute(() -> {
       if (c instanceof JComponent) {
         return centerOfVisibleRect((JComponent) c);
@@ -138,8 +139,8 @@ public class AWT {
    * @return a point at the center of the given {@code Component}.
    */
   @RunsInCurrentThread
-  @Nonnull public static
-  Point centerOf(@Nonnull Component c) {
+  @NotNull public static
+  Point centerOf(@NotNull Component c) {
     Dimension size = c.getSize();
     return new Point(size.width / 2, size.height / 2);
   }
@@ -158,8 +159,8 @@ public class AWT {
    * @return a point at the center of the visible rectangle of the given {@code JComponent}.
    */
   @RunsInCurrentThread
-  @Nonnull public static
-  Point centerOfVisibleRect(@Nonnull JComponent c) {
+  @NotNull public static
+  Point centerOfVisibleRect(@NotNull JComponent c) {
     Rectangle r = c.getVisibleRect();
     return centerOf(checkNotNull(r));
   }
@@ -178,8 +179,8 @@ public class AWT {
    * @return a point at the center of the given {@code Rectangle}.
    */
   @RunsInCurrentThread
-  @Nonnull public static
-  Point centerOf(@Nonnull Rectangle r) {
+  @NotNull public static
+  Point centerOf(@NotNull Rectangle r) {
     return new Point((r.x + (r.width / 2)), (r.y + (r.height / 2)));
   }
 
@@ -197,8 +198,8 @@ public class AWT {
    * @return the insets of the given {@code Container}, or an empty one if no insets can be found.
    */
   @RunsInCurrentThread
-  @Nonnull public static
-  Insets insetsFrom(@Nonnull Container c) {
+  @NotNull public static
+  Insets insetsFrom(@NotNull Container c) {
     try {
       Insets insets = c.getInsets();
       if (insets != null) {
@@ -249,7 +250,7 @@ public class AWT {
    * @return {@code true} if the given {@code Component} is a heavy-weight pop-up; {@code false} otherwise.
    */
   @RunsInCurrentThread
-  public static boolean isHeavyWeightPopup(@Nonnull Component c) {
+  public static boolean isHeavyWeightPopup(@NotNull Component c) {
     if (!(c instanceof Window) || c instanceof Dialog || c instanceof Frame) {
       return false;
     }
@@ -263,7 +264,7 @@ public class AWT {
 
   @RunsInCurrentThread
   @Nullable private static
-  String obtainNameSafely(@Nonnull Component c) {
+  String obtainNameSafely(@NotNull Component c) {
     // Work around some components throwing exceptions if getName is called prematurely
     try {
       return c.getName();
@@ -289,7 +290,7 @@ public class AWT {
    */
   @RunsInCurrentThread
   @Nullable public static
-  Component invokerOf(final @Nonnull Component c) {
+  Component invokerOf(final @NotNull Component c) {
     if (c instanceof JPopupMenu) {
       return ((JPopupMenu) c).getInvoker();
     }
@@ -311,8 +312,8 @@ public class AWT {
    * @return the a point specifying the {@code Component}'s top-left corner in the screen's coordinate space.
    */
   @RunsInCurrentThread
-  @Nonnull public static
-  Point locationOnScreenOf(@Nonnull Component c) {
+  @NotNull public static
+  Point locationOnScreenOf(@NotNull Component c) {
     return new Point(c.getLocationOnScreen());
   }
 

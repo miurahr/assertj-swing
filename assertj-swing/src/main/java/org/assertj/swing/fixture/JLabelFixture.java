@@ -14,8 +14,8 @@ package org.assertj.swing.fixture;
 
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import javax.swing.JLabel;
 
 import org.assertj.swing.core.Robot;
@@ -36,7 +36,7 @@ public class JLabelFixture extends AbstractJPopupMenuInvokerFixture<JLabelFixtur
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JLabelFixture(@Nonnull Robot robot, @Nonnull JLabel target) {
+  public JLabelFixture(@NotNull Robot robot, @NotNull JLabel target) {
     super(JLabelFixture.class, robot, target);
   }
 
@@ -49,12 +49,12 @@ public class JLabelFixture extends AbstractJPopupMenuInvokerFixture<JLabelFixtur
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JLabel} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JLabel} is found.
    */
-  public JLabelFixture(@Nonnull Robot robot, @Nullable String labelName) {
+  public JLabelFixture(@NotNull Robot robot, @Nullable String labelName) {
     super(JLabelFixture.class, robot, labelName, JLabel.class);
   }
 
   @Override
-  @Nonnull protected JLabelDriver createDriver(@Nonnull Robot robot) {
+  @NotNull protected JLabelDriver createDriver(@NotNull Robot robot) {
     return new JLabelDriver(robot);
   }
 
@@ -74,7 +74,7 @@ public class JLabelFixture extends AbstractJPopupMenuInvokerFixture<JLabelFixtur
    * @throws AssertionError if the text of this fixture's {@code JLabel} is not equal to the given one.
    */
   @Override
-  @Nonnull public JLabelFixture requireText(@Nullable String expected) {
+  @NotNull public JLabelFixture requireText(@Nullable String expected) {
     driver().requireText(target(), expected);
     return this;
   }
@@ -89,7 +89,7 @@ public class JLabelFixture extends AbstractJPopupMenuInvokerFixture<JLabelFixtur
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
   @Override
-  @Nonnull public JLabelFixture requireText(@Nonnull Pattern pattern) {
+  @NotNull public JLabelFixture requireText(@NotNull Pattern pattern) {
     driver().requireText(target(), pattern);
     return this;
   }

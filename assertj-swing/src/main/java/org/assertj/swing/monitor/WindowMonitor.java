@@ -22,14 +22,13 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.util.ToolkitProvider;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Monitor that keeps track of all known root AWT or Swing {@code Window}s (showing, hidden, closed).
@@ -56,13 +55,13 @@ public class WindowMonitor {
    * @param toolkit the {@code Toolkit} to use.
    */
   @RunsInCurrentThread
-  WindowMonitor(@Nonnull Toolkit toolkit) {
+  WindowMonitor(@NotNull Toolkit toolkit) {
     this(toolkit, new Context(toolkit), new WindowStatus(new Windows()));
   }
 
   @VisibleForTesting
   @RunsInCurrentThread
-  WindowMonitor(@Nonnull Toolkit toolkit, @Nonnull Context context, @Nonnull WindowStatus windowStatus) {
+  WindowMonitor(@NotNull Toolkit toolkit, @NotNull Context context, @NotNull WindowStatus windowStatus) {
     this.context = context;
     this.windowStatus = windowStatus;
     windows = windowStatus.windows();
@@ -80,7 +79,7 @@ public class WindowMonitor {
   }
 
   @RunsInCurrentThread
-  private void examine(@Nonnull Window w) {
+  private void examine(@NotNull Window w) {
     windows.attachNewWindowVisibilityMonitor(w);
     for (Window owned : w.getOwnedWindows()) {
       examine(checkNotNull(owned));
@@ -97,7 +96,7 @@ public class WindowMonitor {
    * @param w the given {@code Window}.
    * @return whether the {@code Window} is ready to receive OS-level event input.
    */
-  public boolean isWindowReady(@Nonnull Window w) {
+  public boolean isWindowReady(@NotNull Window w) {
     if (windows.isReady(w)) {
       return true;
     }
@@ -113,14 +112,15 @@ public class WindowMonitor {
    * @param c the given {@code Component}.
    * @return the event queue corresponding to the given component.
    */
-  @Nullable public EventQueue eventQueueFor(@Nonnull Component c) {
+  @Nullable
+  public EventQueue eventQueueFor(@NotNull Component c) {
     return context.eventQueueFor(c);
   }
 
   /**
    * @return all known event queues.
    */
-  @Nonnull public Collection<EventQueue> allEventQueues() {
+  @NotNull public Collection<EventQueue> allEventQueues() {
     return context.allEventQueues();
   }
 
@@ -131,7 +131,7 @@ public class WindowMonitor {
    *
    * @return all available root {@code Window}s.
    */
-  @Nonnull public Collection<Window> rootWindows() {
+  @NotNull public Collection<Window> rootWindows() {
     return context.rootWindows();
   }
 
@@ -139,7 +139,7 @@ public class WindowMonitor {
    * @return the singleton instance of this class.
    */
   @RunsInEDT
-  @Nonnull public static WindowMonitor instance() {
+  @NotNull public static WindowMonitor instance() {
     return SingletonLazyLoader.INSTANCE;
   }
 

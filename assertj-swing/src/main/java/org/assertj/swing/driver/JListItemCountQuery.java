@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 @RunsInEDT
 final class JListItemCountQuery {
-  static int itemCountIn(final @Nonnull JList<?> list) {
+  static int itemCountIn(final @NotNull JList<?> list) {
     Integer result = execute(() -> list.getModel().getSize());
     return checkNotNull(result);
   }

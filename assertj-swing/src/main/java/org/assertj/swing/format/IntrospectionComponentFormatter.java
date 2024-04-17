@@ -26,12 +26,12 @@ import java.beans.PropertyDescriptor;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import org.assertj.core.presentation.StandardRepresentation;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Formatter that uses <a href="http://docs.oracle.com/javase/tutorial/javabeans/index.html"
@@ -53,8 +53,8 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    * @param propertyNames the property names to show as the {@code String} representation of a given {@code Component}.
    * @throws NullPointerException if {@code targetType} is {@code null}.
    */
-  public IntrospectionComponentFormatter(@Nonnull Class<? extends Component> targetType,
-                                         @Nonnull String... propertyNames) {
+  public IntrospectionComponentFormatter(@NotNull Class<? extends Component> targetType,
+                                         @NotNull String... propertyNames) {
     this.targetType = checkNotNull(targetType);
     this.propertyNames = newArrayList(propertyNames);
     populate();
@@ -72,7 +72,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
     }
   }
 
-  private void register(@Nonnull PropertyDescriptor d) {
+  private void register(@NotNull PropertyDescriptor d) {
     String name = d.getName();
     if (!propertyNames.contains(name)) {
       return;
@@ -92,7 +92,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    */
   @RunsInCurrentThread
   @Override
-  @Nonnull protected String doFormat(@Nonnull Component c) {
+  @NotNull protected String doFormat(@NotNull Component c) {
     StringBuilder b = new StringBuilder();
     b.append(getRealClassName(c)).append("[");
     int max = propertyNames.size() - 1;
@@ -106,7 +106,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
     return b.toString();
   }
 
-  private void appendProperty(@Nonnull StringBuilder b, @Nonnull String name, @Nonnull Component c) {
+  private void appendProperty(@NotNull StringBuilder b, @NotNull String name, @NotNull Component c) {
     b.append(name).append("=");
     try {
       b.append(propertyValue(c, name));
@@ -115,7 +115,8 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
     }
   }
 
-  @Nullable private Object propertyValue(@Nonnull Component c, @Nonnull String property) throws Exception {
+  @Nullable
+  private Object propertyValue(@NotNull Component c, @NotNull String property) throws Exception {
     if ("showing".equals(property)) {
       return c.isShowing();
     }
@@ -135,7 +136,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    * @return the type of AWT or Swing {@code Component} this formatter supports.
    */
   @Override
-  @Nonnull public Class<? extends Component> targetType() {
+  @NotNull public Class<? extends Component> targetType() {
     return targetType;
   }
 

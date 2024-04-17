@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JTabbedPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -29,10 +29,10 @@ import org.assertj.swing.edt.GuiQuery;
  */
 final class JTabbedPaneTabTitlesQuery {
   @RunsInEDT
-  static @Nonnull String[] tabTitlesOf(final @Nonnull JTabbedPane tabbedPane) {
+  static @NotNull String[] tabTitlesOf(final @NotNull JTabbedPane tabbedPane) {
     String[] result = execute(new GuiQuery<String[]>() {
       @Override
-      @Nonnull protected String[] executeInEDT() {
+      @NotNull protected String[] executeInEDT() {
         int count = tabbedPane.getTabCount();
         String[] titles = new String[count];
         for (int i = 0; i < count; i++) {

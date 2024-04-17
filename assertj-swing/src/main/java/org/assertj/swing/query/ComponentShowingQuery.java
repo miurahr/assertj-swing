@@ -17,7 +17,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -40,7 +40,7 @@ public final class ComponentShowingQuery {
    * @see Component#isShowing()
    */
   @RunsInEDT
-  public static boolean isShowing(final @Nonnull Component component) {
+  public static boolean isShowing(final @NotNull Component component) {
     Boolean result = execute(() -> component.isShowing());
     return checkNotNull(result);
   }

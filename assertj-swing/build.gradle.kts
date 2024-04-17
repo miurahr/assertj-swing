@@ -5,8 +5,8 @@ plugins {
 
 dependencies {
     api(libs.assertj)
-    api("com.google.code.findbugs:jsr305:3.0.2")
     api(project(":fest-reflect"))
+    implementation(libs.annotations)
     implementation(project(":fest-util"))
     testImplementation(project(":fest-test"))
     testImplementation(libs.assertj)

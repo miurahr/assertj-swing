@@ -12,9 +12,10 @@
  */
 package org.assertj.swing.keystroke;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collection;
 
-import javax.annotation.Nonnull;
 
 /**
  * Provides a mapping between characters and {@code KeyStroke}s.
@@ -28,6 +29,6 @@ public interface KeyStrokeMappingProvider {
   /**
    * @return the {@code KeyStrokeMapping}s to be used by {@link KeyStrokeMap}.
    */
-  @Nonnull
+  @NotNull
   Collection<KeyStrokeMapping> keyStrokeMappings();
 }

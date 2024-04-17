@@ -19,7 +19,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.util.Arrays.format;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -61,7 +61,7 @@ public class TableCellInRowByValue implements TableCellFinder {
    * @return the created builder.
    * @throws NullPointerException if the given array of values is {@code null}.
    */
-  @Nonnull public static TableCellBuilder rowWithValue(@Nonnull String... values) {
+  @NotNull public static TableCellBuilder rowWithValue(@NotNull String... values) {
     return new TableCellBuilder(values);
   }
 
@@ -78,7 +78,7 @@ public class TableCellInRowByValue implements TableCellFinder {
      *
      * @param values the values of the cells of the row to find.
      */
-    TableCellBuilder(@Nonnull String[] values) {
+    TableCellBuilder(@NotNull String[] values) {
       this.values = checkNotNull(values);
     }
 
@@ -90,7 +90,7 @@ public class TableCellInRowByValue implements TableCellFinder {
      * @param column the index of the column in the table cell to find.
      * @return the created finder.
      */
-    @Nonnull public TableCellInRowByValue column(int column) {
+    @NotNull public TableCellInRowByValue column(int column) {
       return new TableCellInRowByValue(values, column);
     }
   }
@@ -104,7 +104,7 @@ public class TableCellInRowByValue implements TableCellFinder {
    * @param values the values in the cells of the row we are looking for.
    * @param column the index of the column in the table cell to find.
    */
-  protected TableCellInRowByValue(@Nonnull String[] values, int column) {
+  protected TableCellInRowByValue(@NotNull String[] values, int column) {
     this.values = values;
     this.column = column;
   }
@@ -125,7 +125,7 @@ public class TableCellInRowByValue implements TableCellFinder {
    */
   @RunsInEDT
   @Override
-  @Nonnull public TableCell findCell(@Nonnull JTable table, @Nonnull JTableCellReader cellReader) {
+  @NotNull public TableCell findCell(@NotNull JTable table, @NotNull JTableCellReader cellReader) {
     int row = findRowIndex(table, cellReader, values);
     if (row == -1) {
       throw actionFailure(concat("Unable to find a row with values:<", format(values), ">"));
@@ -134,8 +134,8 @@ public class TableCellInRowByValue implements TableCellFinder {
   }
 
   @RunsInEDT
-  private static int findRowIndex(final @Nonnull JTable table, final @Nonnull JTableCellReader cellReader,
-                                  final @Nonnull String[] values) {
+  private static int findRowIndex(final @NotNull JTable table, final @NotNull JTableCellReader cellReader,
+                                  final @NotNull String[] values) {
     Integer result = execute(() -> {
       validateEqualSize(table, values);
       int rowCount = table.getRowCount();
@@ -150,7 +150,7 @@ public class TableCellInRowByValue implements TableCellFinder {
   }
 
   @RunsInCurrentThread
-  private static void validateEqualSize(final @Nonnull JTable table, final @Nonnull String[] values) {
+  private static void validateEqualSize(final @NotNull JTable table, final @NotNull String[] values) {
     int columnCount = table.getColumnCount();
     if (values.length != columnCount) {
       throw new IllegalStateException(concat("The array of values should have size:<", columnCount, ">"));
@@ -158,8 +158,8 @@ public class TableCellInRowByValue implements TableCellFinder {
   }
 
   @RunsInCurrentThread
-  private static boolean matchingRow(@Nonnull JTable table, @Nonnull JTableCellReader cellReader,
-                                     @Nonnull String[] values, int row) {
+  private static boolean matchingRow(@NotNull JTable table, @NotNull JTableCellReader cellReader,
+                                     @NotNull String[] values, int row) {
     int columnCount = table.getColumnCount();
     for (int col = 0; col < columnCount; col++) {
       if (!areEqual(cellReader.valueAt(table, row, col), values[col])) {

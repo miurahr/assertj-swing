@@ -6,7 +6,7 @@ plugins {
 dependencies {
     implementation(libs.junit4)
     implementation(project(":fest-util"))
-    implementation("org.jetbrains:annotations:23.0.0")
+    implementation(libs.annotations)
 }
 
 description = "FEST-test"
