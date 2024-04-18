@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.exception.ParsingException;
@@ -206,7 +207,7 @@ public class KeyStrokeMappingsParser {
   private static int keyCodeFrom(@NotNull String s) {
     try {
       Integer keyCode = field("VK_" + s).ofType(int.class).in(KeyEvent.class).get();
-      return checkNotNull(keyCode);
+      return Objects.requireNonNull(keyCode);
     } catch (ReflectionError e) {
       throw new ParsingException(concat("Unable to retrieve key code from text ", quote(s)), e.getCause());
     }
@@ -218,7 +219,7 @@ public class KeyStrokeMappingsParser {
     }
     try {
       Integer modifiers = field(s).ofType(int.class).in(InputEvent.class).get();
-      return checkNotNull(modifiers);
+      return Objects.requireNonNull(modifiers);
     } catch (ReflectionError e) {
       throw new ParsingException(concat("Unable to retrieve modifiers from text ", quote(s)), e.getCause());
     }

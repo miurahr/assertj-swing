@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.keystroke;
 
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.SHIFT_DOWN_MASK;
 import static java.awt.event.KeyEvent.VK_A;
 import static java.awt.event.KeyEvent.VK_BACK_SPACE;
 import static java.awt.event.KeyEvent.VK_COMMA;
@@ -73,7 +73,7 @@ public class KeyStrokeMappingProvider_parse_Test {
     KeyStrokeMappingProvider mappingProvider = parser.parse("keyboard-mapping.txt");
     assertThatContainsDefaultMappings(mappingProvider);
     Collection<KeyStrokeMapping> mappings = mappingProvider.keyStrokeMappings();
-    assertThat(mappings).contains(mapping('a', VK_A, NO_MASK), mapping('A', VK_A, SHIFT_MASK),
+    assertThat(mappings).contains(mapping('a', VK_A, NO_MASK), mapping('A', VK_A, SHIFT_DOWN_MASK),
                                   mapping(',', VK_COMMA, NO_MASK));
   }
 

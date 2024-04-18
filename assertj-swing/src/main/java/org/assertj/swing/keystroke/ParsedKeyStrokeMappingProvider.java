@@ -37,7 +37,7 @@ class ParsedKeyStrokeMappingProvider implements KeyStrokeMappingProvider {
 
   /**
    * Returns the mapping of characters and {@link javax.swing.KeyStroke}s. The mappings are obtained from a text file. In addition,
-   * this provider will automatically add mappings for following keys:
+   * this provider will automatically add mappings for the following keys:
    * <ul>
    * <li>Backspace</li>
    * <li>Delete</li>

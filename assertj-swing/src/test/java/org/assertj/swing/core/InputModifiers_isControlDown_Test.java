@@ -12,25 +12,24 @@
  */
 package org.assertj.swing.core;
 
-import static java.awt.event.InputEvent.CTRL_MASK;
-import static java.awt.event.InputEvent.META_MASK;
+import static java.awt.event.InputEvent.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
 /**
- * Tests for {@link InputModifiers#isControlDown(int)}.
+ * Tests for {@link InputModifiers#isControlDownEx(int)}.
  * 
  * @author Alex Ruiz
  */
 public class InputModifiers_isControlDown_Test {
   @Test
   public void should_Return_True_If_Control_Mask_Is_Present() {
-    assertThat(InputModifiers.isControlDown(CTRL_MASK | META_MASK)).isTrue();
+    assertThat(InputModifiers.isControlDownEx(CTRL_DOWN_MASK | META_DOWN_MASK)).isTrue();
   }
 
   @Test
   public void should_Return_False_If_Control_Mask_Is_Not_Present() {
-    assertThat(InputModifiers.isControlDown(META_MASK)).isFalse();
+    assertThat(InputModifiers.isControlDownEx(META_DOWN_MASK)).isFalse();
   }
 }

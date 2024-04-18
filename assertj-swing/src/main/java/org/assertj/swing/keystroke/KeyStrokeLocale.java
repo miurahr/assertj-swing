@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 class KeyStrokeLocale {
   static final String ASSERTJ_SWING_KEYBOARD_LOCALE = "assertj.swing.keyboard.locale";
-  private static Logger LOGGER = Logger.getLogger(KeyStrokeLocale.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(KeyStrokeLocale.class.getName());
   private static Locale locale;
 
   static {

@@ -12,25 +12,24 @@
  */
 package org.assertj.swing.core;
 
-import static java.awt.event.InputEvent.META_MASK;
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
 /**
- * Tests for {@link InputModifiers#isMetaDown(int)}.
+ * Tests for {@link InputModifiers#isMetaDownEx(int)}.
  * 
  * @author Alex Ruiz
  */
 public class InputModifiers_isMetaDown_Test {
   @Test
   public void should_Return_True_If_Meta_Mask_Is_Present() {
-    assertThat(InputModifiers.isMetaDown(META_MASK | SHIFT_MASK)).isTrue();
+    assertThat(InputModifiers.isMetaDownEx(META_DOWN_MASK | SHIFT_DOWN_MASK)).isTrue();
   }
 
   @Test
   public void should_Return_False_If_Meta_Mask_Is_Not_Present() {
-    assertThat(InputModifiers.isMetaDown(SHIFT_MASK)).isFalse();
+    assertThat(InputModifiers.isMetaDownEx(SHIFT_DOWN_MASK)).isFalse();
   }
 }
