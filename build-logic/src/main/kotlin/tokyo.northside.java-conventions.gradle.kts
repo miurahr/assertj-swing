@@ -10,7 +10,7 @@ repositories {
 }
 
 group = "tokyo.northside"
-version = "3.17.2-SNAPSHOT"
+version = "4.0.0-SNAPSHOT"
 
 java {
     toolchain {
