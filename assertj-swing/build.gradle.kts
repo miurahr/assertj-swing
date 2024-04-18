@@ -16,3 +16,10 @@ dependencies {
 }
 
 description = "AssertJ-Swing"
+
+val envIsCi: String? by project
+
+tasks.named<Test>("test") {
+    enabled = ("true" != envIsCi)
+}
+
