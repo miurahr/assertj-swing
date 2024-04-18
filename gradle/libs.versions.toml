@@ -1,7 +1,7 @@
 [versions]
 junit = "4.13.2"
 jupiter = "5.8.2"
-assertj = "3.17.1"
+assertj = "3.25.3"
 commons_codec = "1.13"
 ant_junit = "1.10.14"
 guice = "7.0.0"
