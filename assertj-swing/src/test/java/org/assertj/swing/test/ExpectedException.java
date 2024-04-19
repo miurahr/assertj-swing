@@ -15,6 +15,7 @@ package org.assertj.swing.test;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.internal.matchers.TypeSafeMatcher;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
@@ -28,6 +29,7 @@ import org.junit.runners.model.Statement;
 public class ExpectedException implements TestRule {
   private final org.junit.rules.ExpectedException delegate = org.junit.rules.ExpectedException.none();
 
+  @Deprecated
   public static ExpectedException none() {
     return new ExpectedException();
   }
@@ -36,7 +38,7 @@ public class ExpectedException implements TestRule {
   }
 
   @Override
-  public Statement apply(Statement base, Description description) {
+  public @NotNull Statement apply(@NotNull Statement base, @NotNull Description description) {
     return delegate.apply(base, description);
   }
 
