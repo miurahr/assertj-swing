@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import static java.awt.event.InputEvent.ALT_MASK;
-import static java.awt.event.InputEvent.META_MASK;
+import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.VK_C;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.core.InputModifiers.*;
@@ -43,7 +42,7 @@ public class EmergencyAbortListener_keyCombination_Test {
 
   @Test
   public void should_Update_Key_Combination() {
-    listener.keyCombination(keyCode(VK_C).modifiers(ALT_MASK, META_MASK));
+    listener.keyCombination(keyCode(VK_C).modifiers(ALT_DOWN_MASK, META_DOWN_MASK));
     assertThat(listener.keyCode()).isEqualTo(VK_C);
     assertThatModifiersAreAltAndMeta(listener.modifiers());
   }

@@ -12,11 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import static java.awt.event.InputEvent.ALT_GRAPH_MASK;
-import static java.awt.event.InputEvent.ALT_MASK;
-import static java.awt.event.InputEvent.CTRL_MASK;
-import static java.awt.event.InputEvent.META_MASK;
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.VK_A;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
@@ -41,7 +37,7 @@ public class InputModifiers_modifiersMatch_Test {
 
   @Parameters
   public static Collection<Object[]> modifiers() {
-    return newArrayList(new Object[][] { { ALT_MASK }, { ALT_GRAPH_MASK }, { CTRL_MASK }, { META_MASK }, { SHIFT_MASK } });
+    return newArrayList(new Object[][] { { ALT_DOWN_MASK }, { ALT_GRAPH_DOWN_MASK }, { CTRL_DOWN_MASK }, { META_DOWN_MASK }, { SHIFT_DOWN_MASK } });
   }
 
   public InputModifiers_modifiersMatch_Test(int modifier) {
