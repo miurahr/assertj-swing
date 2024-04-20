@@ -7,7 +7,7 @@ dependencies {
     api(libs.commons.codec)
     api(libs.junit4)
     api(project(":assertj-swing"))
-    api(project(":fest-reflect"))
+    implementation(project(":fest-reflect"))
     compileOnly(libs.ant.junit)
     testImplementation(project(":fest-test"))
     testImplementation(project(":assertj-swing"))

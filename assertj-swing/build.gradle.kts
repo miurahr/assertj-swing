@@ -5,7 +5,7 @@ plugins {
 
 dependencies {
     api(libs.assertj)
-    api(project(":fest-reflect"))
+    implementation(project(":fest-reflect"))
     implementation(libs.annotations)
     testImplementation(project(":fest-util"))
     testImplementation(project(":fest-test"))
