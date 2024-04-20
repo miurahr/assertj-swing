@@ -25,7 +25,9 @@ import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.test.core.RobotBasedTestCase;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for <a href="http://code.google.com/p/fest/issues/detail?id=209" target="_blank">Bug 209</a>.
@@ -37,6 +39,7 @@ import org.junit.Test;
  * @author Ewan McDougall
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Bug209_JComboBoxWithCustomModel_Test extends RobotBasedTestCase {
   private DialogFixture dialog;
   private NamedObject[] values;

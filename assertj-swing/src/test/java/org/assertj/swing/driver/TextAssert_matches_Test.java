@@ -26,6 +26,7 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class TextAssert_matches_Test {
+  // FIXME: ExpectedException is deprecated in JUnit 4.13+
   @Rule
   public ExpectedException thrown = none();
 
