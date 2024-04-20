@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Alex Ruiz
  */
 class KeyStrokeMappingProviderPicker {
-  private static Logger LOGGER = Logger.getLogger(KeyStrokeMappingProviderPicker.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(KeyStrokeMappingProviderPicker.class.getName());
   private final KeyStrokeMappingProviderFactory factory;
 
   KeyStrokeMappingProviderPicker() {

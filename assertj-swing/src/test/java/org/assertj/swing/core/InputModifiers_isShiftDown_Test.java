@@ -12,25 +12,24 @@
  */
 package org.assertj.swing.core;
 
-import static java.awt.event.InputEvent.ALT_MASK;
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
 /**
- * Tests for {@link InputModifiers#isShiftDown(int)}.
+ * Tests for {@link InputModifiers#isShiftDownEx(int)}.
  * 
  * @author Alex Ruiz
  */
 public class InputModifiers_isShiftDown_Test {
   @Test
   public void should_Return_True_If_Shift_Mask_Is_Present() {
-    assertThat(InputModifiers.isShiftDown(SHIFT_MASK | ALT_MASK)).isTrue();
+    assertThat(InputModifiers.isShiftDownEx(SHIFT_DOWN_MASK | ALT_DOWN_MASK)).isTrue();
   }
 
   @Test
   public void should_Return_False_If_Shift_Mask_Is_Not_Present() {
-    assertThat(InputModifiers.isShiftDown(ALT_MASK)).isFalse();
+    assertThat(InputModifiers.isShiftDownEx(ALT_DOWN_MASK)).isFalse();
   }
 }

@@ -14,11 +14,7 @@ package org.assertj.swing.core;
 
 import static java.awt.event.KeyEvent.VK_A;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.swing.core.InputModifiers.isAltDown;
-import static org.assertj.swing.core.InputModifiers.isAltGraphDown;
-import static org.assertj.swing.core.InputModifiers.isControlDown;
-import static org.assertj.swing.core.InputModifiers.isMetaDown;
-import static org.assertj.swing.core.InputModifiers.isShiftDown;
+import static org.assertj.swing.core.InputModifiers.*;
 import static org.assertj.swing.test.awt.Toolkits.singletonToolkitMock;
 
 import org.junit.Before;
@@ -44,10 +40,10 @@ public class EmergencyAbortListener_constructor_Test {
   }
 
   private void assertThatModifiersAreCtrlAndShift(int modifiers) {
-    assertThat(isControlDown(modifiers)).isTrue();
-    assertThat(isShiftDown(modifiers)).isTrue();
-    assertThat(isAltDown(modifiers)).isFalse();
-    assertThat(isAltGraphDown(modifiers)).isFalse();
-    assertThat(isMetaDown(modifiers)).isFalse();
+    assertThat(isControlDownEx(modifiers)).isTrue();
+    assertThat(isShiftDownEx(modifiers)).isTrue();
+    assertThat(isAltDownEx(modifiers)).isFalse();
+    assertThat(isAltGraphDownEx(modifiers)).isFalse();
+    assertThat(isMetaDownEx(modifiers)).isFalse();
   }
 }

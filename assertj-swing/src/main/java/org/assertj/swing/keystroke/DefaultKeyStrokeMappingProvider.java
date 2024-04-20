@@ -28,7 +28,7 @@ import java.util.List;
 public class DefaultKeyStrokeMappingProvider implements KeyStrokeMappingProvider {
   /**
    * Returns the default mapping of characters and {@code KeyStroke}s. This provider will only return the mappings for
-   * following keys:
+   * the following keys:
    * <ul>
    * <li>Backspace</li>
    * <li>Delete</li>

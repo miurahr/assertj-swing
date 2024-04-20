@@ -109,6 +109,6 @@ public class KeyStrokeMapping {
   @Override
   public String toString() {
     String format = "%s[character='%s', keyStroke=%s]";
-    return String.format(format, getClass().getSimpleName(), String.valueOf(character), keyStroke.toString());
+    return String.format(format, getClass().getSimpleName(), character, keyStroke.toString());
   }
 }

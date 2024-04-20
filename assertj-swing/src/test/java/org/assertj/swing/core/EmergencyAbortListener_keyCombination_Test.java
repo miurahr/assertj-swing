@@ -16,11 +16,7 @@ import static java.awt.event.InputEvent.ALT_MASK;
 import static java.awt.event.InputEvent.META_MASK;
 import static java.awt.event.KeyEvent.VK_C;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.swing.core.InputModifiers.isAltDown;
-import static org.assertj.swing.core.InputModifiers.isAltGraphDown;
-import static org.assertj.swing.core.InputModifiers.isControlDown;
-import static org.assertj.swing.core.InputModifiers.isMetaDown;
-import static org.assertj.swing.core.InputModifiers.isShiftDown;
+import static org.assertj.swing.core.InputModifiers.*;
 import static org.assertj.swing.core.KeyPressInfo.keyCode;
 import static org.assertj.swing.test.awt.Toolkits.singletonToolkitMock;
 
@@ -53,10 +49,10 @@ public class EmergencyAbortListener_keyCombination_Test {
   }
 
   private void assertThatModifiersAreAltAndMeta(int modifiers) {
-    assertThat(isAltDown(modifiers)).isTrue();
-    assertThat(isMetaDown(modifiers)).isTrue();
-    assertThat(isAltGraphDown(modifiers)).isFalse();
-    assertThat(isControlDown(modifiers)).isFalse();
-    assertThat(isShiftDown(modifiers)).isFalse();
+    assertThat(isAltDownEx(modifiers)).isTrue();
+    assertThat(isMetaDownEx(modifiers)).isTrue();
+    assertThat(isAltGraphDownEx(modifiers)).isFalse();
+    assertThat(isControlDownEx(modifiers)).isFalse();
+    assertThat(isShiftDownEx(modifiers)).isFalse();
   }
 }

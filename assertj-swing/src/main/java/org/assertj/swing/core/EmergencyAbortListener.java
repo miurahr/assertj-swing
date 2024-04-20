@@ -13,8 +13,7 @@
 package org.assertj.swing.core;
 
 import static java.awt.AWTEvent.KEY_EVENT_MASK;
-import static java.awt.event.InputEvent.CTRL_MASK;
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.KEY_PRESSED;
 import static java.awt.event.KeyEvent.VK_A;
 import static org.assertj.core.util.Preconditions.checkNotNull;
@@ -75,7 +74,7 @@ public class EmergencyAbortListener implements AWTEventListener {
   private final TestTerminator testTerminator;
 
   private int keyCode = VK_A;
-  private int modifiers = unify(CTRL_MASK, SHIFT_MASK);
+  private int modifiers = unify(CTRL_DOWN_MASK, SHIFT_DOWN_MASK);
 
   /**
    * Attaches a new instance of {@link EmergencyAbortListener} to the given AWT {@code Toolkit}. Any other instances of

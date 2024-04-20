@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.keystroke;
 
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.SHIFT_DOWN_MASK;
 import static java.awt.event.KeyEvent.VK_A;
 import static java.awt.event.KeyEvent.VK_COMMA;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -41,7 +41,7 @@ public class KeyStrokeMappingsParser_mappingFrom_Test {
   @Parameters
   public static Collection<Object[]> linesToParse() {
     return newArrayList(new Object[][] { { "a, A, NO_MASK", mapping('a', VK_A, NO_MASK) },
-        { "A, A, SHIFT_MASK", mapping('A', VK_A, SHIFT_MASK) }, { "COMMA, COMMA, NO_MASK", mappingForComma() },
+        { "A, A, SHIFT_MASK", mapping('A', VK_A, SHIFT_DOWN_MASK) }, { "COMMA, COMMA, NO_MASK", mappingForComma() },
         { "COMMA,COMMA,NO_MASK", mappingForComma() }, { "  COMMA,  COMMA,  NO_MASK", mappingForComma() }, });
   }
 

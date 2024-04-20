@@ -23,7 +23,7 @@ import java.util.Collection;
  * @author Alex Ruiz
  */
 public interface KeyStrokeMappingProvider {
-  /** Value to use when a key stroke is not using modifiers. */
+  /** Value to use when a keystroke is not using modifiers. */
   int NO_MASK = 0;
 
   /**

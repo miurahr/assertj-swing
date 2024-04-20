@@ -42,7 +42,7 @@ class KeyStrokeMappingProviderNames implements Iterable<String> {
   }
 
   @Override
-  public Iterator<String> iterator() {
+  public @NotNull Iterator<String> iterator() {
     return new NameIterator(osFamily, language, country);
   }
 

@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.keystroke;
 
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.SHIFT_DOWN_MASK;
 import static java.awt.event.KeyEvent.VK_A;
 import static javax.swing.KeyStroke.getKeyStroke;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,8 +27,8 @@ import org.junit.Test;
 public class KeyStrokeMapping_mapping_Test {
   @Test
   public void should_Create_Mapping_From_Char_KeyCode_And_Modifiers() {
-    KeyStrokeMapping mapping = KeyStrokeMapping.mapping('A', VK_A, SHIFT_MASK);
+    KeyStrokeMapping mapping = KeyStrokeMapping.mapping('A', VK_A, SHIFT_DOWN_MASK);
     assertThat(mapping.character()).isEqualTo('A');
-    assertThat(mapping.keyStroke()).isEqualTo(getKeyStroke(VK_A, SHIFT_MASK));
+    assertThat(mapping.keyStroke()).isEqualTo(getKeyStroke(VK_A, SHIFT_DOWN_MASK));
   }
 }
