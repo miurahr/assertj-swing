@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -24,17 +25,17 @@ public class JListDriver_requireSelectedItemsAsText_Test extends JListDriver_Tes
   @Test
   public void should_Fail_If_There_Is_No_Selection() {
     clearSelection();
-    thrown.expect(AssertionError.class);
-    thrown.expectMessageToContain("property:'selectedIndices'", "expected:<[[\"one\", \"two\"]]> but was:<[[]]>");
-    driver.requireSelectedItems(list, "one", "two");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelectedItems(list, "one", "two"));
+    Assert.assertTrue(t.getMessage().contains("property:'selectedIndices'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[[\"one\", \"two\"]]> but was:<[[]]>"));
   }
 
   @Test
   public void should_Fail_If_Selection_Is_Not_Equal_To_Expected() {
     select(2);
-    thrown.expect(AssertionError.class);
-    thrown.expectMessageToContain("property:'selectedIndices'", "expected:<[\"[on]e\"]> but was:<[\"[thre]e\"]>");
-    driver.requireSelectedItems(list, "one");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelectedItems(list, "one"));
+    Assert.assertTrue(t.getMessage().contains("property:'selectedIndices'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[\"[on]e\"]> but was:<[\"[thre]e\"]>"));
   }
 
   @Test

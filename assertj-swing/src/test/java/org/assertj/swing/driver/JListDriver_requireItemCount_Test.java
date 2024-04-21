@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -22,9 +23,9 @@ import org.junit.Test;
 public class JListDriver_requireItemCount_Test extends JListDriver_TestCase {
   @Test
   public void should_Fail_If_JList_Does_Not_Have_Expected_Item_Count() {
-    thrown.expectAssertionError("property:'itemCount'");
-    thrown.expectMessageToContain("expected:<[6]> but was:<[3]>");
-    driver.requireItemCount(list, 6);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireItemCount(list, 6));
+    Assert.assertTrue(t.getMessage().contains("property:'itemCount'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[6]> but was:<[3]>"));
   }
 
   @Test

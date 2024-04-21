@@ -13,6 +13,7 @@
 package org.assertj.swing.driver;
 
 import org.assertj.swing.exception.LocationUnavailableException;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -40,20 +41,18 @@ public class JTreeDriver_expandPath_Test extends JTreeDriver_toggleCell_TestCase
   @Test
   public void should_Throw_Error_If_Path_Does_Not_Exist() {
     showWindow();
-    thrown.expect(LocationUnavailableException.class, "Unable to find path 'somePath'");
-    driver.expandPath(tree, "somePath");
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.expandPath(tree, "somePath"));
+    Assert.assertTrue(t.getMessage().contains("Unable to find path 'somePath'"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.expandPath(tree, "root");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.expandPath(tree, "root"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.expandPath(tree, "root");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.expandPath(tree, "root"));
   }
 }

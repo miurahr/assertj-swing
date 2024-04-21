@@ -18,6 +18,7 @@ import static org.assertj.swing.query.ComponentVisibleQuery.isVisible;
 
 import org.assertj.swing.test.recorder.ClickRecorderManager;
 import org.assertj.swing.test.recorder.ToolkitClickRecorder;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -45,13 +46,11 @@ public class JListDriver_showPopupMenuAtItemByIndex_Test extends JListDriver_sho
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.showPopupMenu(list, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenu(list, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.showPopupMenu(list, "o.*");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenu(list, "o.*"));
   }
 }

@@ -17,6 +17,7 @@ import static org.assertj.swing.test.swing.JOptionPaneLauncher.pack;
 
 import javax.swing.JOptionPane;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -36,7 +37,10 @@ public class JOptionPaneDriver_requireOptions_Test extends JOptionPaneDriver_Tes
   public void should_Fail_If_Options_Are_Not_Equal_To_Expected() {
     JOptionPane optionPane = messageWithOptions("First", "Second");
     pack(optionPane, title());
-    thrown.expectAssertionError("options", array("[Thir]d"), array("[First", "Secon]d"));
-    driver.requireOptions(optionPane, array("Third"));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireOptions(optionPane, array("Third")));
+    Assert.assertTrue(t.getMessage().contains("options"));
+    Assert.assertTrue(t.getMessage().contains("[First"));
+    Assert.assertTrue(t.getMessage().contains("Secon]d"));
+    Assert.assertTrue(t.getMessage().contains("[Thir]d"));
   }
 }

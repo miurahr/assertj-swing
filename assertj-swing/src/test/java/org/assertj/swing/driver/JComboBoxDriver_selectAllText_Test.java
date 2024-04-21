@@ -21,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -33,39 +34,32 @@ public class JComboBoxDriver_selectAllText_Test extends JComboBoxDriver_TestCase
   @Test
   public void should_Throw_Error_If_JComboBox_Is_Disabled() {
     disableComboBox();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.selectAllText(comboBox);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectAllText(comboBox));
   }
 
   @Test
   public void should_Throw_Error_If_JComboBox_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectAllText(comboBox);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectAllText(comboBox));
   }
 
   @Test
   public void should_Throw_Error_If_JComboBox_Is_Not_Editable() {
     showWindow();
-    assertThatIllegalStateExceptionCauseIsNotEditableComboBox();
-    driver.selectAllText(comboBox);
+    assertThatIllegalStateExceptionCauseIsNotEditableComboBox(() -> driver.selectAllText(comboBox));
   }
 
   @Test
+  @RunsInEDT
   public void should_Select_All_Text() {
     showWindow();
     makeEditableAndSelectFirstItem();
     robot.waitForIdle();
     driver.selectAllText(comboBox);
-    assertSelectedTextIs("first");
+    assertThat(selectedTextOf(comboBox)).isEqualTo("first");
   }
 
   @RunsInEDT
-  private void assertSelectedTextIs(String expected) {
-    assertThat(selectedTextOf(comboBox)).isEqualTo(expected);
-  }
-
-  @RunsInEDT
-  private static String selectedTextOf(final JComboBox comboBox) {
+  private static String selectedTextOf(final JComboBox<?> comboBox) {
     return execute(() -> {
       Component editor = comboBox.getEditor().getEditorComponent();
       assertThat(editor).isInstanceOf(JTextComponent.class);

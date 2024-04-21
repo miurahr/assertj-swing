@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.driver.JTableDriver_TestCase.MyWindow.COLUMN_COUNT;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -25,9 +26,9 @@ import org.junit.Test;
 public class JTableDriver_requireColumnCount_Test extends JTableDriver_TestCase {
   @Test
   public void should_Fail_If_Column_Count_Is_Not_Equal_To_Expected() {
-    thrown.expectAssertionError("property:'columnCount'");
-    thrown.expectMessageToContain("expected:<[12]> but was:<[6]>");
-    driver.requireColumnCount(table, 12);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireColumnCount(table, 12));
+    Assert.assertTrue(t.getMessage().contains("property:'columnCount'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[12]> but was:<[6]>"));
   }
 
   @Test

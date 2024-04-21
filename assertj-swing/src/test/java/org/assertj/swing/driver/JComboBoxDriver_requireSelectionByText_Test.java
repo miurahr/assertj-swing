@@ -14,11 +14,10 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import java.util.regex.Pattern;
-
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -45,16 +44,17 @@ public class JComboBoxDriver_requireSelectionByText_Test extends JComboBoxDriver
   @Test
   public void should_Fail_If_JComboBox_Does_Not_Have_Expected_Selection() {
     selectFirstItem();
-    thrown.expectAssertionError("selectedIndex", "first", Pattern.compile("second"));
-    driver.requireSelection(comboBox, "second");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(comboBox, "second"));
+    Assert.assertTrue(t.getMessage().contains("first"));
+    // thrown.expectAssertionError("selectedIndex", "first", Pattern.compile("second"));
   }
 
   @Test
   public void should_Fail_If_JComboBox_Does_Not_Have_Any_Selection() {
     clearSelection();
-    thrown.expect(AssertionError.class);
-    thrown.expectMessageToContain("property:'selectedIndex'", "No selection");
-    driver.requireSelection(comboBox, "second");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(comboBox, "second"));
+    Assert.assertTrue(t.getMessage().contains("No selection"));
+    // thrown.expectMessageToContain("property:'selectedIndex'", "No selection");
   }
 
   @Test
@@ -66,21 +66,24 @@ public class JComboBoxDriver_requireSelectionByText_Test extends JComboBoxDriver
   @Test
   public void should_Fail_If_Editable_JComboBox_Does_Not_Have_Expected_Selection() {
     makeEditableAndSelect("Hello World");
-    thrown.expectAssertionError("selectedIndex", "Hello World", Pattern.compile("second"));
-    driver.requireSelection(comboBox, "second");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(comboBox, "second"));
+    Assert.assertTrue(t.getMessage().contains("selectedIndex"));
+    Assert.assertTrue(t.getMessage().contains("Hello World"));
+    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
+    Assert.assertTrue(t.getMessage().contains("\"second\""));
   }
 
   @Test
   public void should_Fail_If_Editable_JComboBox_Does_Not_Have_Any_Selection() {
     makeEditableAndClearSelection(comboBox);
     robot.waitForIdle();
-    thrown.expect(AssertionError.class);
-    thrown.expectMessageToContain("property:'selectedIndex'", "No selection");
-    driver.requireSelection(comboBox, "second");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(comboBox, "second"));
+    Assert.assertTrue(t.getMessage().contains("property:'selectedIndex'"));
+    Assert.assertTrue(t.getMessage().contains("No selection"));
   }
 
   @RunsInEDT
-  private static void makeEditableAndClearSelection(final JComboBox comboBox) {
+  private static void makeEditableAndClearSelection(final JComboBox<?> comboBox) {
     execute(() -> {
       comboBox.setSelectedIndex(-1);
       comboBox.setEditable(true);

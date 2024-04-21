@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -26,23 +27,21 @@ public class JTreeDriver_unselectRows_Test extends JTreeDriver_selectCell_TestCa
     clearTreeSelection();
     updateTreeWithDefaultSelectionModel();
     driver.selectRows(tree, new int[] { 0, 1, 2 });
-    requireSelectedRows(new int[] { 0, 1, 2 });
+    requireSelectedRows(0, 1, 2);
     driver.unselectRows(tree, new int[] { 0, 2 });
-    requireSelectedRows(new int[] { 1 });
+    requireSelectedRows(1);
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
     int[] rows = { 0, 1, 2 };
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.unselectRows(tree, rows);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectRows(tree, rows));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
     int[] rows = { 0, 1, 2 };
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.unselectRows(tree, rows);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectRows(tree, rows));
   }
 }

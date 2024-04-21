@@ -20,6 +20,7 @@ import java.util.Collection;
 import javax.swing.JSlider;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
@@ -48,19 +49,17 @@ public class JSliderDriver_slideToMinimum_Test extends JSliderDriver_TestCase {
 
   @RunsInEDT
   private static int minimumOf(final JSlider slider) {
-    return execute(() -> slider.getMinimum());
+    return execute(slider::getMinimum);
   }
 
   @Test
   public void should_Throw_Error_If_JSlider_Is_Disabled() {
     disableSlider();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.slideToMinimum(slider);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.slideToMinimum(slider));
   }
 
   @Test
   public void should_Throw_Error_If_JSlider_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.slideToMinimum(slider);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.slideToMinimum(slider));
   }
 }

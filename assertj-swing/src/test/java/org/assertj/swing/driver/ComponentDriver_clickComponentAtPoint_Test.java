@@ -18,6 +18,7 @@ import java.awt.Point;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 

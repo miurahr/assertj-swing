@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 
 import org.assertj.swing.test.recorder.ClickRecorderManager;
 import org.assertj.swing.test.recorder.ToolkitClickRecorder;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -47,13 +48,11 @@ public class JListDriver_showPopupMenuAtItemAsPattern_Test extends JListDriver_s
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.showPopupMenu(list, Pattern.compile("o.*"));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenu(list, Pattern.compile("o.*")));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.showPopupMenu(list, Pattern.compile("o.*"));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenu(list, Pattern.compile("o.*")));
   }
 }

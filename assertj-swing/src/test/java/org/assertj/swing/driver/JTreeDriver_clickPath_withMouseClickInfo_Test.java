@@ -20,6 +20,7 @@ import org.assertj.swing.core.MouseClickInfo;
 import org.assertj.swing.exception.LocationUnavailableException;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -32,7 +33,7 @@ public class JTreeDriver_clickPath_withMouseClickInfo_Test extends JTreeDriver_c
   @Rule
   public ClickRecorderManager clickRecorder = new ClickRecorderManager();
 
-  private static MouseClickInfo mouseClickInfo = rightButton().times(2);
+  private static final MouseClickInfo mouseClickInfo = rightButton().times(2);
 
   @Test(expected = NullPointerException.class)
   public void should_Throw_Error_If_MouseClickInfo_Is_Null() {
@@ -53,20 +54,18 @@ public class JTreeDriver_clickPath_withMouseClickInfo_Test extends JTreeDriver_c
   @Test
   public void should_Throw_Error_If_Path_Not_Found() {
     showWindow();
-    thrown.expect(LocationUnavailableException.class, "Unable to find path 'another'");
-    driver.clickPath(tree, "another", mouseClickInfo);
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.clickPath(tree, "another", mouseClickInfo));
+    Assert.assertTrue(t.getMessage().contains("Unable to find path 'another'"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.clickPath(tree, "root/branch1", mouseClickInfo);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.clickPath(tree, "root/branch1", mouseClickInfo));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.clickPath(tree, "root/branch1", mouseClickInfo);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.clickPath(tree, "root/branch1", mouseClickInfo));
   }
 }

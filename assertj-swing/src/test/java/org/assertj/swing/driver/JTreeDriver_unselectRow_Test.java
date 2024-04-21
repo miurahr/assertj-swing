@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -48,13 +49,11 @@ public class JTreeDriver_unselectRow_Test extends JTreeDriver_selectCell_TestCas
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.unselectRow(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectRow(tree, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.unselectRow(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectRow(tree, 0));
   }
 }

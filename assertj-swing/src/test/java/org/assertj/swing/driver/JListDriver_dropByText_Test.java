@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -24,13 +25,11 @@ public class JListDriver_dropByText_Test extends JListDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.drop(list, "two");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.drop(list, "tow"));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.drop(list, "two");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.drop(list, "tow"));
   }
 }

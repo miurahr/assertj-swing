@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -35,16 +36,16 @@ public class JTreeDriver_requireSelectedRows_Test extends JTreeDriver_selectCell
   @Test
   public void should_Fail_If_JTree_Does_Not_Have_Selection() {
     clearTreeSelection();
-    thrown.expectAssertionError("property:'selection'");
-    thrown.expectMessageToContain("No selection");
-    driver.requireSelection(tree, new int[] { 3 });
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(tree, new int[] { 3 }));
+    Assert.assertTrue(t.getMessage().contains("property:'selection'"));
+    Assert.assertTrue(t.getMessage().contains("No selection"));
   }
 
   @Test
   public void should_Fail_If_Selection_Is_Not_Equal_To_Expected() {
     selectFirstChildOfRoot();
-    thrown.expectAssertionError("property:'selection'");
-    thrown.expectMessageToContain("expecting selection:<[5]> but was:<[1]>");
-    driver.requireSelection(tree, new int[] { 5 });
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(tree, new int[] { 5 }));
+    Assert.assertTrue(t.getMessage().contains("property:'selection'"));
+    Assert.assertTrue(t.getMessage().contains("expecting selection:<[5]> but was:<[1]>"));
   }
 }

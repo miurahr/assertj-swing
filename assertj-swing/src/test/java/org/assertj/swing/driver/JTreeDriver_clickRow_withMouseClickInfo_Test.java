@@ -19,6 +19,7 @@ import static org.assertj.swing.core.MouseClickInfo.rightButton;
 import org.assertj.swing.core.MouseClickInfo;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -31,7 +32,7 @@ public class JTreeDriver_clickRow_withMouseClickInfo_Test extends JTreeDriver_cl
   @Rule
   public ClickRecorderManager clickRecorder = new ClickRecorderManager();
 
-  private static MouseClickInfo mouseClickInfo = rightButton().times(2);
+  private static final MouseClickInfo mouseClickInfo = rightButton().times(2);
 
   @Test(expected = NullPointerException.class)
   public void should_Throw_Error_If_MouseClickInfo_Is_Null() {
@@ -51,20 +52,18 @@ public class JTreeDriver_clickRow_withMouseClickInfo_Test extends JTreeDriver_cl
   @Test
   public void should_Throw_Error_If_Row_Is_Out_Of_Bounds() {
     showWindow();
-    thrown.expectIndexOutOfBoundsException("The given row <100> should be between <0> and <6>");
-    driver.clickRow(tree, 100, mouseClickInfo);
+    Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.clickRow(tree, 100, mouseClickInfo));
+    Assert.assertTrue(t.getMessage().contains("The given row <100> should be between <0> and <6>"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.clickRow(tree, 1, mouseClickInfo);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.clickRow(tree, 1, mouseClickInfo));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.clickRow(tree, 1, mouseClickInfo);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.clickRow(tree, 1, mouseClickInfo));
   }
 }

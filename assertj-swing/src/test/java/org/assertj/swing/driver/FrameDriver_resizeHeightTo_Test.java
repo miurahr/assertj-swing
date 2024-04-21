@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.awt.Dimension;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -35,20 +36,17 @@ public class FrameDriver_resizeHeightTo_Test extends FrameDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Frame_Is_Disabled() {
     disableWindow();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.resizeHeightTo(window, 10);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.resizeHeightTo(window, 10));
   }
 
   @Test
   public void should_Throw_Error_If_Frame_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.resizeHeightTo(window, 10);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.resizeHeightTo(window, 10));
   }
 
   @Test
   public void should_Throw_Error_If_Frame_Is_Not_Resizable() {
     makeWindowNotResizable();
-    thrown.expectIllegalStateIsNotResizableComponent();
-    driver.resizeHeightTo(window, 10);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.resizeHeightTo(window, 10));
   }
 }

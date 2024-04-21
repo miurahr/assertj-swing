@@ -19,6 +19,7 @@ import static org.assertj.core.util.Strings.concat;
 
 import java.util.Collection;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -45,27 +46,28 @@ public class JListDriver_selectItemsByRange_withInvalidIndex_Test extends JListD
 
   @Test
   public void should_Throw_Error_If_Starting_Index_Is_Out_Of_Bounds() {
-    thrown.expectIndexOutOfBoundsException(concat("Item index (", valueOf(index),
-        ") should be between [0] and [2] (inclusive)"));
-    driver.selectItems(list, index, 1);
+    Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectItems(list, index, 1));
+    Assert.assertTrue(t.getMessage().contains(concat("Item index (", valueOf(index),
+        ") should be between [0] and [2] (inclusive)")));
+
   }
 
   @Test
   public void should_Throw_Error_If_Ending_Index_Is_Out_Of_Bounds() {
-    thrown.expectIndexOutOfBoundsException(concat("Item index (", valueOf(index),
-        ") should be between [0] and [2] (inclusive)"));
-    driver.selectItems(list, 0, index);
+    Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectItems(list, 0, index));
+    Assert.assertTrue(t.getMessage().contains(concat("Item index (", valueOf(index),
+        ") should be between [0] and [2] (inclusive)")));
   }
 
   @Test
   public void should_Keep_Original_Selection_If_Index_Is_Out_Of_Bounds() {
     select(1);
     showWindow();
-    thrown.expect(IndexOutOfBoundsException.class);
-    try {
-      driver.selectItems(list, 0, index);
-    } finally {
-      assertThat(selectedValue()).isEqualTo("two");
-    }
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
+      try {
+        driver.selectItems(list, 0, index);
+      } finally {
+        assertThat(selectedValue()).isEqualTo("two");
+      }});
   }
 }

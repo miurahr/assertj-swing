@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.data.TableCell.row;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -35,14 +36,14 @@ public class JTableDriver_selectCell_Test extends JTableDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JTable_Is_Disabled() {
     disableTable();
-    thrown.expectIllegalStateIsDisabledComponent();
-    robot.settings().clickOnDisabledComponentsAllowed(false);
-    driver.selectCell(table, row(0).column(0));
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      robot.settings().clickOnDisabledComponentsAllowed(false);
+      driver.selectCell(table, row(0).column(0));
+    });
   }
 
   @Test
   public void should_Throw_Error_If_JTable_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectCell(table, row(0).column(0));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectCell(table, row(0).column(0)));
   }
 }

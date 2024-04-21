@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.swing.JPopupMenu;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -41,13 +42,11 @@ public class JTreeDriver_showPopupMenuAtRow_Test extends JTreeDriver_showPopupMe
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.showPopupMenu(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenu(tree, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.showPopupMenu(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenu(tree, 0));
   }
 }

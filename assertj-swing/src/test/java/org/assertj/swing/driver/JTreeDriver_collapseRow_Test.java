@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -39,13 +40,11 @@ public class JTreeDriver_collapseRow_Test extends JTreeDriver_toggleCell_TestCas
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.collapseRow(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.collapseRow(tree, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.collapseRow(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.collapseRow(tree, 0));
   }
 }

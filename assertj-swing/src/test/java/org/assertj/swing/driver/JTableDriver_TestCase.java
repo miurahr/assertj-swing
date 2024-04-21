@@ -49,8 +49,6 @@ public abstract class JTableDriver_TestCase extends RobotBasedTestCase {
   MyWindow window;
   TestTable table;
   JTableDriver driver;
-  @Rule
-  public ExpectedException thrown = none();
 
   @Override
   protected final void onSetUp() {

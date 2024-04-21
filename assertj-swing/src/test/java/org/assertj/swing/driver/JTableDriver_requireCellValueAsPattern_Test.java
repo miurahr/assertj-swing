@@ -16,6 +16,7 @@ import static org.assertj.swing.data.TableCell.row;
 
 import java.util.regex.Pattern;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -32,7 +33,11 @@ public class JTableDriver_requireCellValueAsPattern_Test extends JTableDriver_Te
 
   @Test
   public void should_Fail_If_Cell_Value_Does_Not_Match_Pattern() {
-    thrown.expectAssertionError("value [row=0, column=0]", "0-0", Pattern.compile("0-1"));
-    driver.requireCellValue(table, row(0).column(0), Pattern.compile("0-1"));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireCellValue(table, row(0).column(0),
+            Pattern.compile("0-1")));
+    Assert.assertTrue(t.getMessage().contains("value [row=0, column=0]"));
+    Assert.assertTrue(t.getMessage().contains("0-0"));
+    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
+    Assert.assertTrue(t.getMessage().contains("\"0-1\""));
   }
 }

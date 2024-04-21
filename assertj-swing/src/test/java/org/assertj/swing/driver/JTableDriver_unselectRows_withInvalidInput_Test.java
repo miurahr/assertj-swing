@@ -19,9 +19,12 @@ import javax.swing.JTable;
 
 import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.awt.*;
 
 /**
  * Tests for {@link JTableDriver#unselectRows(javax.swing.JTable, int...)} using invalid input.
@@ -29,9 +32,6 @@ import org.junit.Test;
  * @author Christian Rösch
  */
 public class JTableDriver_unselectRows_withInvalidInput_Test extends RobotBasedTestCase {
-  @Rule
-  public ExpectedException thrown = none();
-
   private static JTable table;
   private JTableDriver driver;
 
@@ -47,13 +47,11 @@ public class JTableDriver_unselectRows_withInvalidInput_Test extends RobotBasedT
 
   @Test
   public void should_Throw_Error_If_Array_Of_Indices_Is_Null() {
-    thrown.expect(NullPointerException.class);
-    driver.unselectRows(table, null);
+    Assert.assertThrows(NullPointerException.class, () -> driver.unselectRows(table, null));
   }
 
   @Test
   public void should_Throw_Error_If_Array_Of_Indices_Is_Empty() {
-    thrown.expect(IllegalArgumentException.class);
-    driver.unselectRows(table, new int[0]);
+    Assert.assertThrows(IllegalArgumentException.class, () -> driver.unselectRows(table, new int[0]));
   }
 }

@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -31,16 +32,16 @@ public class JComboBoxDriver_requireSelectionByIndex_Test extends JComboBoxDrive
   @Test
   public void should_Fail_If_JComboBox_Does_Not_Have_Expected_Selection() {
     selectFirstItem();
-    thrown.expectAssertionError("property:'selectedIndex'");
-    thrown.expectMessageToContain("expected:<[1]> but was:<[0]>");
-    driver.requireSelection(comboBox, 1);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(comboBox, 1));
+    Assert.assertTrue(t.getMessage().contains("property:'selectedIndex'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[1]> but was:<[0]>"));
   }
 
   @Test
   public void should_Fail_If_JComboBox_Does_Not_Have_Any_Selection() {
     clearSelection();
-    thrown.expectAssertionError("property:'selectedIndex'");
-    thrown.expectMessageToContain("No selection");
-    driver.requireSelection(comboBox, 1);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(comboBox, 1));
+    Assert.assertTrue(t.getMessage().contains("property:'selectedIndex'"));
+    Assert.assertTrue(t.getMessage().contains("No selection"));
   }
 }

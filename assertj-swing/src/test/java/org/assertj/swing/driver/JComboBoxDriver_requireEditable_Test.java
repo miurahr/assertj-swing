@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -29,8 +30,8 @@ public class JComboBoxDriver_requireEditable_Test extends JComboBoxDriver_TestCa
 
   @Test
   public void should_Fail_If_JComboBox_Is_Not_Editable() {
-    thrown.expectAssertionError("property:'editable'");
-    thrown.expectMessageToContain("expected:<[tru]e> but was:<[fals]e>");
-    driver.requireEditable(comboBox);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireEditable(comboBox));
+    Assert.assertTrue(t.getMessage().contains("property:'editable'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[tru]e> but was:<[fals]e>"));
   }
 }

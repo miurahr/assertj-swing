@@ -15,6 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.swing.test.ExpectedException.none;
 
 import org.assertj.swing.test.ExpectedException;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -29,14 +30,14 @@ public class TextAssert_isEqualOrMatches_Test {
 
   @Test
   public void should_Fail_If_Actual_Is_Not_Equal_To_Expected() {
-    thrown.expectAssertionError("Expecting:\n \"hello\"\nto match pattern:\n \"bye\"");
-    new TextAssert("hello").isEqualOrMatches("bye");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> new TextAssert("hello").isEqualOrMatches("bye"));
+    Assert.assertTrue(t.getMessage().contains("Expecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\""));
   }
 
   @Test
   public void should_Fail_Showing_Description_If_Actual_Is_Not_Equal_To_Expected() {
-    thrown.expectAssertionError("[A Test] \nExpecting:\n \"hello\"\nto match pattern:\n \"bye\"");
-    new TextAssert("hello").as("A Test").isEqualOrMatches("bye");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> new TextAssert("hello").as("A Test").isEqualOrMatches("bye"));
+    Assert.assertTrue(t.getMessage().contains("[A Test] \nExpecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\""));
   }
 
   @Test

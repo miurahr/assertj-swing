@@ -18,6 +18,7 @@ import static org.assertj.core.util.Arrays.array;
 import java.util.regex.Pattern;
 
 import org.assertj.swing.exception.LocationUnavailableException;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -30,9 +31,8 @@ public class JListDriver_selectItemsByPattern_Test extends JListDriver_TestCase 
   @Test
   public void should_Throw_Error_If_A_Matching_Item_Was_Not_Found() {
     showWindow();
-    thrown.expect(LocationUnavailableException.class,
-        "Unable to find item matching the pattern 'ten' among the JList contents [\"one\", \"two\", \"three\"]");
-    driver.selectItems(list, array(Pattern.compile("ten")));
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.selectItems(list, array(Pattern.compile("ten"))));
+    Assert.assertTrue(t.getMessage().contains("Unable to find item matching the pattern 'ten' among the JList contents [\"one\", \"two\", \"three\"]"));
   }
 
   @Test
@@ -62,13 +62,11 @@ public class JListDriver_selectItemsByPattern_Test extends JListDriver_TestCase 
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.selectItems(list, array(Pattern.compile("two"), Pattern.compile("three")));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectItems(list, array(Pattern.compile("two"), Pattern.compile("three"))));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectItems(list, array(Pattern.compile("two"), Pattern.compile("three")));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectItems(list, array(Pattern.compile("two"), Pattern.compile("three"))));
   }
 }

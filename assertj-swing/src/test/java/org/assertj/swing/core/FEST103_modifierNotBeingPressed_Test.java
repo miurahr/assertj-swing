@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.core;
 
-import static java.awt.event.InputEvent.CTRL_MASK;
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.VK_A;
 import static java.awt.event.KeyEvent.VK_M;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -36,8 +35,10 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JOptionPaneFixture;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
+import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for bug <a href="http://jira.codehaus.org/browse/FEST-103" target="_blank">FEST_103</a>.
@@ -55,15 +56,18 @@ public class FEST103_modifierNotBeingPressed_Test extends RobotBasedTestCase {
     frameFixture.show();
   }
 
-  // FIXME: @Test
+  @Test @Ignore
   public void should_Press_Key_And_Modifier() {
     frameFixture.moveToFront(); // ensure the window is active
-    robot.pressAndReleaseKey(VK_M, CTRL_MASK);
+    robot.pressModifiers(CTRL_DOWN_MASK);
+    robot.pressAndReleaseKey(VK_M);
+    robot.releaseKey(VK_M);
+    robot.releaseModifiers(CTRL_DOWN_MASK);
     JOptionPaneFixture optionPane = findOptionPane().using(robot);
     optionPane.requireInformationMessage().requireMessage("Hello World");
   }
 
-  @Test @Ignore
+  @Test
   public void should_Press_Shift_As_Modifier() {
     frameFixture.moveToFront();
     robot.focus(window.textField);
@@ -74,7 +78,7 @@ public class FEST103_modifierNotBeingPressed_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final JTextField textField = new JTextField(5);
@@ -90,7 +94,7 @@ public class FEST103_modifierNotBeingPressed_Test extends RobotBasedTestCase {
       JMenuBar menuBar = new JMenuBar();
       JMenu viewMenu = new JMenu("View");
       JMenuItem viewMessageMenu = new JMenuItem("Message");
-      viewMessageMenu.setAccelerator(getKeyStroke(VK_M, CTRL_MASK));
+      viewMessageMenu.setAccelerator(getKeyStroke(VK_M, CTRL_DOWN_MASK));
       viewMessageMenu.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {

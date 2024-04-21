@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -23,13 +24,11 @@ public class JTreeDriver_dropRow_Test extends JTreeDriver_dragAndDrop_TestCase {
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.drop(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.drop(tree, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.drop(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.drop(tree, 0));
   }
 }

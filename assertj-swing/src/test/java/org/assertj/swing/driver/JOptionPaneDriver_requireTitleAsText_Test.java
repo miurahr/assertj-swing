@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -44,7 +45,10 @@ public class JOptionPaneDriver_requireTitleAsText_Test extends JOptionPaneDriver
   public void should_Fail_If_Title_Is_Not_Equal_To_Expected() {
     JOptionPane optionPane = informationMessage();
     pack(optionPane, title());
-    thrown.expectAssertionError("title", title(), Pattern.compile("Yoda"));
-    driver.requireTitle(optionPane, "Yoda");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireTitle(optionPane, "Yoda"));
+    Assert.assertTrue(t.getMessage().contains("title"));
+    Assert.assertTrue(t.getMessage().contains(title()));
+    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
+    Assert.assertTrue(t.getMessage().contains("\"Yoda\""));
   }
 }

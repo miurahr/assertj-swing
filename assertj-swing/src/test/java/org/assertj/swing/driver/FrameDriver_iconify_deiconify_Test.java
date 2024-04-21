@@ -16,7 +16,6 @@ import static java.awt.Frame.ICONIFIED;
 import static java.awt.Frame.NORMAL;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -25,7 +24,7 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class FrameDriver_iconify_deiconify_Test extends FrameDriver_TestCase {
-  @Test @Ignore // FIXME
+  @Test
   public void shouldIconifyAndDeiconifyFrame() {
     showWindow();
     driver.iconify(window);

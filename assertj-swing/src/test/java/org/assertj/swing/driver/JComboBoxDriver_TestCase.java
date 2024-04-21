@@ -18,7 +18,6 @@ import static org.assertj.swing.driver.JComboBoxMakeEditableAndSelectItemTask.ma
 import static org.assertj.swing.driver.JComboBoxSetEditableTask.setEditable;
 import static org.assertj.swing.driver.JComboBoxSetSelectedIndexTask.setSelectedIndex;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.query.JComboBoxSelectedItemQuery.selectedItemOf;
 import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 
@@ -30,11 +29,11 @@ import javax.swing.JLabel;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.MethodInvocations;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
-import org.junit.Rule;
+import org.junit.Assert;
+import org.junit.function.ThrowingRunnable;
 
 /**
  * Base test case for {@link JComboBoxDriver}.
@@ -44,12 +43,9 @@ import org.junit.Rule;
  */
 public abstract class JComboBoxDriver_TestCase extends RobotBasedTestCase {
   JComboBoxCellReaderStub cellReader;
-  JComboBox comboBox;
+  JComboBox<?> comboBox;
   JComboBoxDriver driver;
   MyWindow window;
-
-  @Rule
-  public ExpectedException thrown = none();
 
   @Override
   protected final void onSetUp() {
@@ -99,9 +95,10 @@ public abstract class JComboBoxDriver_TestCase extends RobotBasedTestCase {
     robot.waitForIdle();
   }
 
-  final void assertThatIllegalStateExceptionCauseIsNotEditableComboBox() {
-    thrown.expect(IllegalStateException.class, "Expecting component");
-    thrown.expectMessageToContain("to be editable");
+  final void assertThatIllegalStateExceptionCauseIsNotEditableComboBox(ThrowingRunnable runnable) {
+    Throwable t = Assert.assertThrows(IllegalStateException.class, runnable);
+    Assert.assertTrue(t.getMessage().contains("to be editable"));
+    // thrown.expect(IllegalStateException.class, "Expecting component");
   }
 
   @RunsInEDT
@@ -111,7 +108,7 @@ public abstract class JComboBoxDriver_TestCase extends RobotBasedTestCase {
   }
 
   @RunsInEDT
-  private static void setEditableAndSelectFirstItem(final JComboBox comboBox, final boolean editable) {
+  private static void setEditableAndSelectFirstItem(final JComboBox<?> comboBox, final boolean editable) {
     execute(() -> {
       comboBox.setSelectedIndex(0);
       comboBox.setEditable(editable);
@@ -119,7 +116,7 @@ public abstract class JComboBoxDriver_TestCase extends RobotBasedTestCase {
   }
 
   @RunsInEDT
-  final static String textIn(final JComboBox comboBox) {
+  static String textIn(final JComboBox<?> comboBox) {
     return execute(() -> {
       Component editor = comboBox.getEditor().getEditorComponent();
       if (editor instanceof JLabel) {
@@ -143,7 +140,7 @@ public abstract class JComboBoxDriver_TestCase extends RobotBasedTestCase {
   }
 
   static class MyWindow extends TestWindow {
-    final JComboBox comboBox = new JComboBox(array("first", "second", "third"));
+    final JComboBox<String> comboBox = new JComboBox<>(array("first", "second", "third"));
 
     @RunsInEDT
     static MyWindow createNew(final @NotNull Class<?> testClass) {

@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.swing.data.TableCell;
 import org.assertj.swing.exception.ActionFailedException;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -35,7 +36,7 @@ public class JTableDriver_cellByText_Test extends JTableDriver_TestCase {
 
   @Test
   public void should_Throw_Error_If_A_Matching_Cell_Was_Not_Found() {
-    thrown.expect(ActionFailedException.class, "Unable to find cell matching value 'Hello World'");
-    driver.cell(table, "Hello World");
+    Throwable t = Assert.assertThrows(ActionFailedException.class, () -> driver.cell(table, "Hello World"));
+    Assert.assertTrue(t.getMessage().contains("Unable to find cell matching value 'Hello World'"));
   }
 }

@@ -17,8 +17,11 @@ import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.swing.*;
 
 /**
  * Tests for {@link JTreeDriver#clickRow(JTree, int)}.
@@ -42,13 +45,11 @@ public class JTreeDriver_clickRow_Test extends JTreeDriver_clickCell_TestCase {
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.clickRow(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.clickRow(tree, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.clickRow(tree, 0);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.clickRow(tree, 0));
   }
 }

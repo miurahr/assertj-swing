@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -30,8 +31,8 @@ public class JTableDriver_requireNoSelection_Test extends JTableDriver_TestCase 
   @Test
   public void should_Fail_If_JTable_Has_Have_Selection() {
     selectCell(0, 0);
-    thrown.expectAssertionError("property:'selection'");
-    thrown.expectMessageToContain("expected no selection but was:<rows=[0], columns=[0]>");
-    driver.requireNoSelection(table);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireNoSelection(table));
+    Assert.assertTrue(t.getMessage().contains("property:'selection'"));
+    Assert.assertTrue(t.getMessage().contains("expected no selection but was:<rows=[0], columns=[0]>"));
   }
 }

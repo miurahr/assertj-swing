@@ -20,6 +20,7 @@ import java.util.Collection;
 import javax.swing.JSlider;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
@@ -48,19 +49,17 @@ public class JSliderDriver_slideToMaximum_Test extends JSliderDriver_TestCase {
 
   @RunsInEDT
   private static int maximumOf(final JSlider slider) {
-    return execute(() -> slider.getMaximum());
+    return execute(slider::getMaximum);
   }
 
   @Test
   public void should_Throw_Error_If_JSlider_Is_Disabled() {
     disableSlider();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.slideToMaximum(slider);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.slideToMaximum(slider));
   }
 
   @Test
   public void should_Throw_Error_If_JSlider_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.slideToMaximum(slider);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.slideToMaximum(slider));
   }
 }

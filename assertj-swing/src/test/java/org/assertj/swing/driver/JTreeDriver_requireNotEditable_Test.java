@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.driver.JTreeSetEditableTask.setEditable;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -33,8 +34,8 @@ public class JTreeDriver_requireNotEditable_Test extends JTreeDriver_TestCase {
   public void should_Fail_If_JTree_Is_Editable() {
     setEditable(tree, true);
     robot.waitForIdle();
-    thrown.expectAssertionError("property:'editable'");
-    thrown.expectMessageToContain("expected:<[fals]e> but was:<[tru]e>");
-    driver.requireNotEditable(tree);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireNotEditable(tree));
+    Assert.assertTrue(t.getMessage().contains("property:'editable'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[fals]e> but was:<[tru]e>"));
   }
 }

@@ -45,9 +45,6 @@ public abstract class JListDriver_TestCase extends RobotBasedTestCase {
   TestList list;
   JListDriver driver;
 
-  @Rule
-  public ExpectedException thrown = none();
-
   @Override
   protected final void onSetUp() {
     cellReader = new JListCellReaderStub();

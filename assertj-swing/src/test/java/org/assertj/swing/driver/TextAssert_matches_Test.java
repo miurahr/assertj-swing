@@ -17,6 +17,7 @@ import static org.assertj.swing.test.ExpectedException.none;
 import java.util.regex.Pattern;
 
 import org.assertj.swing.test.ExpectedException;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -26,22 +27,18 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class TextAssert_matches_Test {
-  // FIXME: ExpectedException is deprecated in JUnit 4.13+
-  @Rule
-  public ExpectedException thrown = none();
-
   @Test
   public void should_Fail_If_Actual_Does_Not_Match_Regex_Pattern() {
-    thrown.expect(AssertionError.class);
-    thrown.expectMessage("Expecting:\n \"hello\"\nto match pattern:\n \"bye\"");
-    new TextAssert("hello").matches(Pattern.compile("bye"));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> new TextAssert("hello")
+            .matches(Pattern.compile("bye")));
+    Assert.assertTrue(t.getMessage().contains("Expecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\""));
   }
 
   @Test
   public void should_Fail_Showing_Description_If_Actual_Does_Not_Match_Regex_Pattern() {
-    thrown.expect(AssertionError.class);
-    thrown.expectMessage("[A Test] \nExpecting:\n \"hello\"\nto match pattern:\n \"bye\"");
-    new TextAssert("hello").as("A Test").matches(Pattern.compile("bye"));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> new TextAssert("hello").as("A Test")
+            .matches(Pattern.compile("bye")));
+    Assert.assertTrue(t.getMessage().contains("[A Test] \nExpecting actual:\n  \"hello\"\nto match pattern:\n  \"bye\""));
   }
 
   @Test

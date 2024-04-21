@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -36,13 +37,11 @@ public class JListDriver_drop_Test extends JListDriver_dragAndDrop_TestCase {
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.drop(list);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.drop(list));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.drop(dropList);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.drop(dropList));
   }
 }

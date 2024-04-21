@@ -18,6 +18,7 @@ import static org.assertj.swing.test.swing.JOptionPaneLauncher.pack;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -42,7 +43,10 @@ public class JOptionPaneDriver_requireWarningMessage_Test extends JOptionPaneDri
   public void should_Fail_If_Error_Type_Is_Not_Equal_To_Expected() {
     JOptionPane optionPane = errorMessage();
     pack(optionPane, title());
-    thrown.expectAssertionError("messageType", "[Warning] Message", "[Error] Message");
-    driver.requireWarningMessage(optionPane);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireWarningMessage(optionPane));
+    Assert.assertTrue(t.getMessage().contains("messageType"));
+    Assert.assertTrue(t.getMessage().contains("[Warning] Message"));
+    Assert.assertTrue(t.getMessage().contains("[Error] Message"));
+
   }
 }

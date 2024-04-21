@@ -33,8 +33,6 @@ import org.junit.Rule;
 public abstract class JLabelDriver_TestCase extends RobotBasedTestCase {
   JLabel label;
   JLabelDriver driver;
-  @Rule
-  public ExpectedException thrown = none();
 
   @Override
   protected final void onSetUp() {

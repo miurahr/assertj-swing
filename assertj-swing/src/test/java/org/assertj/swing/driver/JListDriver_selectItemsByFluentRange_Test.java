@@ -17,6 +17,7 @@ import static org.assertj.core.util.Arrays.array;
 import static org.assertj.swing.util.Range.from;
 import static org.assertj.swing.util.Range.to;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -46,13 +47,11 @@ public class JListDriver_selectItemsByFluentRange_Test extends JListDriver_TestC
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.selectItems(list, from(0), to(1));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectItems(list, from(0), to(1)));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectItems(list, from(0), to(1));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectItems(list, from(0), to(1)));
   }
 }

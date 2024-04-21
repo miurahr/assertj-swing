@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -30,16 +31,16 @@ public class JListDriver_requireSelectionByIndex_Test extends JListDriver_TestCa
   @Test
   public void should_Fail_If_There_Is_No_Selection() {
     clearSelection();
-    thrown.expectAssertionError("property:'selectedIndex'");
-    thrown.expectMessageToContain("No selection");
-    driver.requireSelection(list, 0);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(list, 0));
+    Assert.assertTrue(t.getMessage().contains("property:'selectedIndex'"));
+    Assert.assertTrue(t.getMessage().contains("No selection"));
   }
 
   @Test
   public void should_Fail_If_Selection_Is_Not_Equal_To_Expected() {
     select(1);
-    thrown.expectAssertionError("property:'selectedIndex'");
-    thrown.expectMessageToContain("expected:<[0]> but was:<[1]>");
-    driver.requireSelection(list, 0);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(list, 0));
+    Assert.assertTrue(t.getMessage().contains("property:'selectedIndex'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[0]> but was:<[1]>"));
   }
 }

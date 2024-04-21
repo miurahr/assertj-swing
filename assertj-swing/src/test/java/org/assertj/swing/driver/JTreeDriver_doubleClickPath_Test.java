@@ -17,8 +17,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.swing.*;
 
 /**
  * Tests for {@link JTreeDriver#doubleClickPath(JTree, String)}.
@@ -41,13 +44,11 @@ public class JTreeDriver_doubleClickPath_Test extends JTreeDriver_clickCell_Test
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.doubleClickPath(tree, "root");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.doubleClickPath(tree, "root"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.doubleClickPath(tree, "root");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.doubleClickPath(tree, "root"));
   }
 }

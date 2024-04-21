@@ -20,6 +20,8 @@ import static org.assertj.swing.util.Range.to;
 
 import java.util.Collection;
 
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -49,16 +51,16 @@ public class JListDriver_selectItemsByFluentRange_withInvalidIndex_Test extends 
   @Test
   public void should_Throw_Error_If_Starting_Index_Is_Out_Of_Bounds() {
     showWindow();
-    thrown.expectIndexOutOfBoundsException(concat("Item index (", valueOf(index),
-        ") should be between [0] and [2] (inclusive)"));
-    driver.selectItems(list, from(index), to(1));
+    Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectItems(list, from(index), to(1)));
+    Assert.assertTrue(t.getMessage().contains(concat("Item index (", valueOf(index),
+        ") should be between [0] and [2] (inclusive)")));
   }
 
   @Test
   public void should_Throw_Error_If_Ending_Index_Is_Out_Of_Bounds() {
     showWindow();
-    thrown.expectIndexOutOfBoundsException(concat("Item index (", valueOf(index),
-        ") should be between [0] and [2] (inclusive)"));
-    driver.selectItems(list, from(0), to(index));
+    Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectItems(list, from(0), to(index)));
+    Assert.assertTrue(t.getMessage().contains(concat("Item index (", valueOf(index),
+        ") should be between [0] and [2] (inclusive)")));
   }
 }

@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -44,7 +45,10 @@ public class JOptionPaneDriver_requireMessageByPattern_Test extends JOptionPaneD
   public void should_Fail_Is_Message_Does_Match_Pattern() {
     JOptionPane optionPane = messageWithValue("Palpatine");
     pack(optionPane, title());
-    thrown.expectAssertionError("message", "Palpatine", Pattern.compile("Anakin"));
-    driver.requireMessage(optionPane, Pattern.compile("Anakin"));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireMessage(optionPane, Pattern.compile("Anakin")));
+    Assert.assertTrue(t.getMessage().contains("message"));
+    Assert.assertTrue(t.getMessage().contains("Palpatine"));
+    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
+    Assert.assertTrue(t.getMessage().contains("\"Anakin\""));
   }
 }

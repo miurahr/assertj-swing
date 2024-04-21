@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.data.TableCell.row;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -32,8 +33,8 @@ public class JTableDriver_requireNotEditable_Test extends JTableDriver_TestCase 
   @Test
   public void should_Fail_If_Cell_Is_Editable() {
     makeFirstCellEditable();
-    thrown.expectAssertionError("property:'editable [row=0, column=0]'");
-    thrown.expectMessageToContain("expected:<[fals]e> but was:<[tru]e>");
-    driver.requireNotEditable(table, row(0).column(0));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireNotEditable(table, row(0).column(0)));
+    Assert.assertTrue(t.getMessage().contains("property:'editable [row=0, column=0]'"));
+    Assert.assertTrue(t.getMessage().contains("expected:<[fals]e> but was:<[tru]e>"));
   }
 }

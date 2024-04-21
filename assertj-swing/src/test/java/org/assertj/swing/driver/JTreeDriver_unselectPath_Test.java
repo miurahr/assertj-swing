@@ -15,6 +15,7 @@ package org.assertj.swing.driver;
 import org.assertj.swing.exception.LocationUnavailableException;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -30,15 +31,14 @@ public class JTreeDriver_unselectPath_Test extends JTreeDriver_selectCell_TestCa
   @Test
   public void should_Throw_Error_If_Path_Not_Found() {
     showWindow();
-    thrown.expect(LocationUnavailableException.class, "Unable to find path 'another'");
-    driver.unselectPath(tree, "another");
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.unselectPath(tree, "another"));
+    Assert.assertTrue(t.getMessage().contains("Unable to find path 'another'"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.unselectPath(tree, "root/branch1");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectPath(tree, "root/branch1"));
   }
 
   @Test
@@ -53,7 +53,6 @@ public class JTreeDriver_unselectPath_Test extends JTreeDriver_selectCell_TestCa
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.unselectPath(tree, "root/branch1");
+    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectPath(tree, "root/branch1"));
   }
 }

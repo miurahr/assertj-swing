@@ -58,6 +58,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
@@ -677,17 +678,17 @@ public class BasicRobot implements Robot {
     Pair<Component, Point> result = execute(new GuiQuery<Pair<Component, Point>>() {
       @Override
       protected Pair<Component, Point> executeInEDT() {
-        Component invoker = checkNotNull(popupMenu.getInvoker());
+        Component invoker = Objects.requireNonNull(popupMenu.getInvoker());
         return Pair.of(invoker, centerOf(invoker));
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT
   @Override
   public void enterText(@NotNull String text) {
-    checkNotNull(text);
+    Objects.requireNonNull(text);
     if (text.isEmpty()) {
       return;
     }
@@ -791,12 +792,12 @@ public class BasicRobot implements Robot {
     } else {
       Collection<EventQueue> queues = windowMonitor.allEventQueues();
       if (queues.size() == 1) {
-        waitForIdle(checkNotNull(toolkit.getSystemEventQueue()));
+        waitForIdle(Objects.requireNonNull(toolkit.getSystemEventQueue()));
         return;
       }
       // FIXME this resurrects dead event queues
       for (EventQueue queue : queues) {
-        waitForIdle(checkNotNull(queue));
+        waitForIdle(Objects.requireNonNull(queue));
       }
     }
   }
@@ -902,7 +903,7 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   private boolean isWindowAncestorReadyForInput(final JPopupMenu popup) {
-    return checkNotNull(execute(() -> isReadyForInput(checkNotNull(getWindowAncestor(popup)))));
+    return Objects.requireNonNull(execute(() -> isReadyForInput(checkNotNull(getWindowAncestor(popup)))));
   }
 
   /**

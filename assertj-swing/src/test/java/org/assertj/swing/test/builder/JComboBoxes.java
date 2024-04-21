@@ -61,14 +61,14 @@ public final class JComboBoxes {
     }
 
     @RunsInEDT
-    public JComboBox createNew() {
+    public JComboBox<Object> createNew() {
       return execute(new GuiQuery<JComboBox>() {
         @Override
         protected JComboBox executeInEDT() {
-          JComboBox comboBox = new JComboBox();
+          JComboBox<Object> comboBox = new JComboBox<>();
           comboBox.setEditable(editable);
           if (!isNullOrEmpty(items)) {
-            comboBox.setModel(new DefaultComboBoxModel(items));
+            comboBox.setModel(new DefaultComboBoxModel<>(items));
           }
           comboBox.setName(name);
           comboBox.setSelectedIndex(selectedIndex);

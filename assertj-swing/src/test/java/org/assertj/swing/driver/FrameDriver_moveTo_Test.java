@@ -16,14 +16,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.awt.Point;
 
-import org.junit.Ignore;
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link WindowDriver#moveTo(java.awt.Window, java.awt.Point)} to ensure it works with {@link FrameDriver}.
  * 
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FrameDriver_moveTo_Test extends FrameDriver_TestCase {
   @Test
   public void should_Move_Frame() {
@@ -33,16 +36,16 @@ public class FrameDriver_moveTo_Test extends FrameDriver_TestCase {
     assertThat(windowLocationOnScreen()).isEqualTo(newLocation);
   }
 
-  @Test @Ignore // FIXME
+  @Test
   public void should_Throw_Error_If_Frame_Is_Disabled() {
     disableWindow();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.moveTo(window, windowLocationOnScreen().addToX(10).addToY(10));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.moveTo(window,
+            windowLocationOnScreen().addToX(10).addToY(10)));
   }
 
-  @Test @Ignore
+  @Test
   public void should_Throw_Error_If_Frame_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.moveTo(window, windowLocationOnScreen().addToX(10).addToY(10));
+    Assert.assertThrows(IllegalStateException.class,
+            () -> driver.moveTo(window, windowLocationOnScreen().addToX(10).addToY(10)));
   }
 }

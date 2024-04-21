@@ -21,9 +21,8 @@ import javax.swing.Action;
 import javax.swing.ActionMap;
 
 import org.assertj.swing.exception.ActionFailedException;
-import org.assertj.swing.test.ExpectedException;
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -32,9 +31,6 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class Actions_findActionKey_Test {
-  @Rule
-  public ExpectedException thrown = ExpectedException.none();
-
   private ActionMap map;
   private Action action;
 
@@ -61,8 +57,10 @@ public class Actions_findActionKey_Test {
   @Test
   public void should_Throw_Error_If_Key_Not_Found() {
     when(action.getValue(NAME)).thenReturn("name");
-    thrown.expect(ActionFailedException.class, "The action 'someName' is not available, available actions:['key']");
-    Object found = Actions.findActionKey("someName", map);
-    assertThat(found).isEqualTo("key");
+    Throwable t = Assert.assertThrows(ActionFailedException.class, () -> {
+      Object found = Actions.findActionKey("someName", map);
+      assertThat(found).isEqualTo("key");
+    });
+    Assert.assertTrue(t.getMessage().contains("The action 'someName' is not available, available actions:['key']"));
   }
 }

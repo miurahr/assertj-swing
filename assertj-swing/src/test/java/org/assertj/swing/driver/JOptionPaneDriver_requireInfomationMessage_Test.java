@@ -16,6 +16,7 @@ import static org.assertj.swing.test.swing.JOptionPaneLauncher.pack;
 
 import javax.swing.JOptionPane;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -35,7 +36,9 @@ public class JOptionPaneDriver_requireInfomationMessage_Test extends JOptionPane
   public void should_Fail_If_Error_Type_Is_Not_Equal_To_Expected() {
     JOptionPane optionPane = errorMessage();
     pack(optionPane, title());
-    thrown.expectAssertionError("messageType", "[Information] Message", "[Error] Message");
-    driver.requireInformationMessage(optionPane);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireInformationMessage(optionPane));
+    Assert.assertTrue(t.getMessage().contains("messageType"));
+    Assert.assertTrue(t.getMessage().contains("[Information] Message"));
+    Assert.assertTrue(t.getMessage().contains("[Error] Message"));
   }
 }

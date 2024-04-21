@@ -13,13 +13,14 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.junit.Test;
+
+import java.util.Objects;
 
 /**
  * Tests for {@link JComboBoxDriver#showDropDownList(javax.swing.JComboBox)}.
@@ -49,8 +50,8 @@ public class JComboBoxDriver_showDropDownList_Test extends JComboBoxDriver_TestC
   }
 
   @RunsInEDT
-  private static boolean isDropDownVisible(final JComboBox comboBox) {
+  private static boolean isDropDownVisible(final JComboBox<?> comboBox) {
     Boolean result = execute(() -> comboBox.getUI().isPopupVisible(comboBox));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 }

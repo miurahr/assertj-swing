@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import java.util.regex.Pattern;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -32,7 +33,10 @@ public class JTextComponentDriver_requireTextAsPattern_Test extends JTextCompone
   @Test
   public void should_Fail_If_Text_Does_Not_Match_Pattern() {
     setTextFieldText("Hi");
-    thrown.expectAssertionError("text", "Hi", Pattern.compile("Bye"));
-    driver.requireText(textField, Pattern.compile("Bye"));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireText(textField, Pattern.compile("Bye")));
+    Assert.assertTrue(t.getMessage().contains("text"));
+    Assert.assertTrue(t.getMessage().contains("Hi"));
+    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
+    Assert.assertTrue(t.getMessage().contains("\"Bye\""));
   }
 }

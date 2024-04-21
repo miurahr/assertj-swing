@@ -45,9 +45,6 @@ public abstract class JOptionPaneDriver_TestCase extends RobotBasedTestCase {
   private static final Icon ICON = null;
   private static final String MESSAGE = "Message";
 
-  @Rule
-  public ExpectedException thrown = none();
-
   JOptionPaneDriver driver;
 
   @Override

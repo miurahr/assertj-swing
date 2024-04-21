@@ -15,6 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.swing.exception.LocationUnavailableException;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -40,8 +41,7 @@ public class JListDriver_indexOfValueAsString_Test extends JListDriver_TestCase 
 
   @Test
   public void should_Throw_Error_If_Item_Matching_Given_Value_Was_Not_Found() {
-    thrown.expect(LocationUnavailableException.class,
-        "Unable to find item matching the value 'four' among the JList contents [\"one\", \"two\", \"three\"]");
-    driver.indexOf(list, "four");
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.indexOf(list, "four"));
+    Assert.assertTrue(t.getMessage().contains("Unable to find item matching the value 'four' among the JList contents [\"one\", \"two\", \"three\"]"));
   }
 }

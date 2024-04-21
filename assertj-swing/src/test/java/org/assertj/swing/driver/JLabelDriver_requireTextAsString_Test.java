@@ -14,7 +14,10 @@ package org.assertj.swing.driver;
 
 import java.util.regex.Pattern;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import javax.swing.*;
 
 /**
  * Tests for {@link JLabelDriver#requireText(JLabel, String)}.
@@ -34,7 +37,10 @@ public class JLabelDriver_requireTextAsString_Test extends JLabelDriver_TestCase
 
   @Test
   public void should_Fail_If_Text_Is_Not_Equal_To_Expected() {
-    thrown.expectAssertionError("text", "Hi", Pattern.compile("Bye"));
-    driver.requireText(label, "Bye");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireText(label, "Bye"));
+    Assert.assertTrue(t.getMessage().contains("text"));
+    Assert.assertTrue(t.getMessage().contains("Hi"));
+    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
+    Assert.assertTrue(t.getMessage().contains("\"Bye\""));
   }
 }

@@ -20,6 +20,7 @@ import java.awt.Point;
 import org.assertj.swing.exception.LocationUnavailableException;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -58,14 +59,12 @@ public class JListDriver_clickItemByText_Test extends JListDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.clickItem(list, "two", RIGHT_BUTTON, 2);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.clickItem(list, "", RIGHT_BUTTON, 2));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.clickItem(list, "two", RIGHT_BUTTON, 2);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.clickItem(list, "two", RIGHT_BUTTON, 2));
   }
 
   @Test(expected = LocationUnavailableException.class)

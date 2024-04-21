@@ -50,7 +50,7 @@ public class JComboBoxDropDownListFinder_findDropDownList_Test extends RobotBase
   @Test
   public void should_Find_Drop_Down_List() {
     showJComboBoxDropDownList();
-    JList list = finder.findDropDownList();
+    JList<?> list = finder.findDropDownList();
     assertThat(list).isNotNull();
     assertThatListContains(list, "first", "second", "third");
   }
@@ -58,7 +58,7 @@ public class JComboBoxDropDownListFinder_findDropDownList_Test extends RobotBase
   @Test
   public void should_Try_To_Find_Drop_Down_List_Until_It_Is_Found() {
     showDropDownListWithDelay();
-    JList list = finder.findDropDownList();
+    JList<?> list = finder.findDropDownList();
     assertThat(list).isNotNull();
     assertThatListContains(list, "first", "second", "third");
   }
@@ -79,9 +79,9 @@ public class JComboBoxDropDownListFinder_findDropDownList_Test extends RobotBase
     robot.waitForIdle();
   }
 
-  private void assertThatListContains(final JList list, final String... expectedElements) {
+  private void assertThatListContains(final JList<?> list, final String... expectedElements) {
     execute(() -> {
-      ListModel model = list.getModel();
+      ListModel<?> model = list.getModel();
       int elementCount = model.getSize();
       assertThat(elementCount).isEqualTo(expectedElements.length);
       for (int i = 0; i < elementCount; i++) {
@@ -92,24 +92,24 @@ public class JComboBoxDropDownListFinder_findDropDownList_Test extends RobotBase
 
   @Test
   public void should_Return_Null_If_Drop_Down_Was_Not_Found() {
-    JList list = finder.findDropDownList();
+    JList<?> list = finder.findDropDownList();
     assertThat(list).isNull();
   }
 
   @Test
   public void should_Return_Null_If_Active_Drop_Down_Does_Not_Belong_To_JComboBox() {
     robot.rightClick(window.textField);
-    JList list = finder.findDropDownList();
+    JList<?> list = finder.findDropDownList();
     assertThat(list).isNull();
   }
 
   private static class MyWindow extends TestWindow {
-    final JComboBox comboBox = new JComboBox(array("first", "second", "third"));
+    final JComboBox<?> comboBox = new JComboBox<>(array("first", "second", "third"));
     final JTextField textField = new JTextField(20);
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

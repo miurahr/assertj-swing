@@ -18,6 +18,7 @@ import static org.assertj.core.util.Strings.concat;
 
 import java.util.Collection;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -45,8 +46,8 @@ public class JListDriver_selectItemsByIndex_withInvalidIndex_Test extends JListD
   @Test
   public void should_Throw_Error_If_Index_Is_Out_Of_Bounds() {
     showWindow();
-    thrown.expectIndexOutOfBoundsException(concat("Item index (", valueOf(index),
-        ") should be between [0] and [2] (inclusive)"));
-    driver.selectItems(list, new int[] { index });
+    Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectItems(list, new int[] { index }));
+    Assert.assertTrue(t.getMessage().contains(concat("Item index (", valueOf(index),
+        ") should be between [0] and [2] (inclusive)")));
   }
 }

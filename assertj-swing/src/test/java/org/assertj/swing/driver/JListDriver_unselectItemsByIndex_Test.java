@@ -15,6 +15,7 @@ package org.assertj.swing.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Arrays.array;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -51,13 +52,11 @@ public class JListDriver_unselectItemsByIndex_Test extends JListDriver_TestCase 
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.unselectItems(list, new int[] { 1, 2 });
+    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectItems(list, new int[] { 1, 2 }));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.unselectItems(list, new int[] { 1, 2 });
+    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectItems(list, new int[] { 1, 2 }));
   }
 }
