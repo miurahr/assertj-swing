@@ -20,7 +20,12 @@ description = "AssertJ-Swing"
 val envIsCi: String? by project
 
 tasks.named<Test>("test") {
-    enabled = ("true" != envIsCi)
+    if ("true" == envIsCi) {
+        filter {
+            includeTestsMatching("org.assertj.core.api.*")
+            includeTestsMatching("org.assertj.swing.core.*")
+        }
+    }
     maxParallelForks =  1
 }
 
