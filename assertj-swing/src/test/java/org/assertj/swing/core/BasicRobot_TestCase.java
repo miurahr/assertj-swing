@@ -13,7 +13,6 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.query.ComponentLocationOnScreenQuery.locationOnScreen;
 import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
@@ -21,7 +20,7 @@ import static org.assertj.swing.test.task.ComponentRequestFocusAndWaitForFocusGa
 import static org.assertj.swing.test.task.ComponentSetPopupMenuTask.createAndSetPopupMenu;
 
 import java.awt.Dimension;
-import java.awt.Point;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import javax.swing.JPopupMenu;
@@ -47,7 +46,7 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
   @Before
   public final void setUp() {
     robot = (BasicRobot) BasicRobot.robotWithCurrentAwtHierarchy();
-    window = MyWindow.createAndShow(checkNotNull(getClass()));
+    window = MyWindow.createAndShow(Objects.requireNonNull(getClass()));
     beforeShowingWindow();
     robot.showWindow(window); // implicitly test 'showWindow(Window)'
     assertThat(isShowing(window)).isTrue();
@@ -82,7 +81,7 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
     @RunsInEDT
     static @NotNull MyWindow createAndShow(final @NotNull Class<?> testClass) {
       MyWindow result = execute(() -> display(new MyWindow(testClass)));
-      return checkNotNull(result);
+      return Objects.requireNonNull(result);
     }
 
     private MyWindow(@NotNull Class<?> testClass) {
@@ -90,23 +89,24 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
         // Workaround: explicit size of textfield.
         textField = new JTextField(10);
         textField.setPreferredSize(new Dimension(100, 20));
+        textField.setMinimumSize(new Dimension(100, 16));
         addComponents(textField);
         setMinimumSize(new Dimension(100, 50));
     }
 
     @NotNull
     JTextField textField() {
-      return checkNotNull(textField);
+      return Objects.requireNonNull(textField);
     }
   }
 
   @NotNull
   BasicRobot robot() {
-    return checkNotNull(robot);
+    return Objects.requireNonNull(robot);
   }
 
   @NotNull
   MyWindow window() {
-    return checkNotNull(window);
+    return Objects.requireNonNull(window);
   }
 }

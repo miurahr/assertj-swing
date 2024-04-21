@@ -16,14 +16,18 @@ import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link AbstractButtonDriver#click(java.awt.Component)}.
  *
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AbstractButtonDriver_click_Test extends AbstractButtonDriver_TestCase {
   @Rule
   public ClickRecorderManager clickRecorder = new ClickRecorderManager();
@@ -50,22 +54,24 @@ public class AbstractButtonDriver_click_Test extends AbstractButtonDriver_TestCa
     robot.settings().clickOnDisabledComponentsAllowed(false);
     disableCheckBox();
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(checkBox);
-    thrown.expectIllegalStateIsDisabledComponent();
-    try {
-      driver.click(checkBox);
-    } finally {
-      recorder.wasNotClicked();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.click(checkBox);
+      } finally {
+        recorder.wasNotClicked();
+      }
+    });
   }
 
   @Test
   public void should_Throw_Error_If_AbstractButton_Is_Not_Showing_On_The_Screen() {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(checkBox);
-    thrown.expectIllegalStateIsNotShowingComponent();
-    try {
-      driver.click(checkBox);
-    } finally {
-      recorder.wasNotClicked();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.click(checkBox);
+      } finally {
+        recorder.wasNotClicked();
+      }
+    });
   }
 }

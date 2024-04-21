@@ -41,6 +41,7 @@ public final class JDialogs {
     private boolean resizable = true;
     private String title;
 
+    @SuppressWarnings("unused")
     public JDialogFactory withOwner(Frame newOwner) {
       owner = newOwner;
       return this;
@@ -63,19 +64,19 @@ public final class JDialogs {
 
     @RunsInEDT
     public JDialog createNew() {
-      return execute(() -> create());
+      return execute(this::create);
     }
 
     @RunsInEDT
     public JDialog createAndShow() {
-      return execute(new GuiQuery<JDialog>() {
-        @Override
-        protected JDialog executeInEDT() {
-          JDialog dialog = create();
-          dialog.pack();
-          dialog.setVisible(true);
-          return dialog;
-        }
+      return execute(new GuiQuery<>() {
+          @Override
+          protected JDialog executeInEDT() {
+              JDialog dialog = create();
+              dialog.pack();
+              dialog.setVisible(true);
+              return dialog;
+          }
       });
     }
 

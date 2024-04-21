@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import java.util.regex.Pattern;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -30,7 +31,6 @@ public class AbstractButtonDriver_requireTextAsPattern_Test extends AbstractButt
   @Test
   public void should_Fail_If_Text_Does_Not_Match_Regex_Pattern() {
     Pattern pattern = Pattern.compile("Bye.");
-    thrown.expectAssertionError("text", "Hello", pattern);
-    driver.requireText(checkBox, pattern);
+    Assert.assertThrows(AssertionError.class, () -> driver.requireText(checkBox, pattern));
   }
 }

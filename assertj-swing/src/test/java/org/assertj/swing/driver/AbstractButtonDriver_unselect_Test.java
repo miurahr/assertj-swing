@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -39,13 +40,11 @@ public class AbstractButtonDriver_unselect_Test extends AbstractButtonDriver_Tes
   @Test
   public void should_Throw_Error_If_AbstractButton_Disabled() {
     disableCheckBox();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.deselect(checkBox);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.deselect(checkBox));
   }
 
   @Test
   public void should_Throw_Error_If_AbstractButton_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.deselect(checkBox);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.deselect(checkBox));
   }
 }

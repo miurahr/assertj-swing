@@ -21,5 +21,6 @@ val envIsCi: String? by project
 
 tasks.named<Test>("test") {
     enabled = ("true" != envIsCi)
+    maxParallelForks =  1
 }
 

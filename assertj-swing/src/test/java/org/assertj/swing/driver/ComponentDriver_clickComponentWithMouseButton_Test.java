@@ -20,8 +20,11 @@ import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link ComponentDriver#click(java.awt.Component, org.assertj.swing.core.MouseButton)}.
@@ -29,6 +32,7 @@ import org.junit.Test;
  * @author Alex Ruiz
  * @author Yvonne Wang
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ComponentDriver_clickComponentWithMouseButton_Test extends ComponentDriver_TestCase {
   @Rule
   public ClickRecorderManager clickRecorder = new ClickRecorderManager();
@@ -55,19 +59,19 @@ public class ComponentDriver_clickComponentWithMouseButton_Test extends Componen
     recorder.wasClickedWith(mouseButton).clickedAt(centerOf(window.button)).timesClicked(1);
   }
 
-  @Test(expected = NullPointerException.class)
+  @Test
   public void should_Throw_Error_If_MouseButton_Is_Null() {
-    driver.click(window.button, (MouseButton) null);
+    Assert.assertThrows(NullPointerException.class, () -> driver.click(window.button, (MouseButton) null));
   }
 
   @Test
-  public void should_Click_Disabled_Component() {
+  public void should_Z_Click_Disabled_Component() {
     disableButton();
     shouldClickComponentWith(LEFT_BUTTON);
   }
 
   @Test
-  public void should_Throw_Error_If_Component_Is_Disabled_And_ClickOnDisabledAllowd_Is_False() {
+  public void should_Z_Throw_Error_If_Component_Is_Disabled_And_ClickOnDisabledAllowd_Is_False() {
     robot.settings().clickOnDisabledComponentsAllowed(false);
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
     disableButton();
@@ -80,7 +84,7 @@ public class ComponentDriver_clickComponentWithMouseButton_Test extends Componen
   }
 
   @Test
-  public void should_Throw_Error_When_Clicking_Component_Not_Showing() {
+  public void should_Z_Throw_Error_When_Clicking_Component_Not_Showing() {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
     thrown.expectIllegalStateIsNotShowingComponent();
     try {

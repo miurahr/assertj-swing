@@ -13,11 +13,11 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.ClickingDataProvider.clickingData;
 
 import java.awt.Point;
 import java.util.Collection;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import javax.swing.JTextField;
@@ -45,7 +45,7 @@ public class BasicRobot_clickAtPointWithButtonTheGivenTimes_Test extends BasicRo
   }
 
   public BasicRobot_clickAtPointWithButtonTheGivenTimes_Test(@NotNull MouseButton button, int times) {
-    this.button = checkNotNull(button);
+    this.button = Objects.requireNonNull(button);
     this.times = times;
   }
 

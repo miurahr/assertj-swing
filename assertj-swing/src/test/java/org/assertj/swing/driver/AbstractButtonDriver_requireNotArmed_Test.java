@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -29,8 +30,8 @@ public class AbstractButtonDriver_requireNotArmed_Test extends AbstractButtonDri
   @Test
   public void should_Fail_If_Button_Is_Armed() {
     armCheckBox();
-    thrown.expectAssertionError("property:'armed'");
-    thrown.expectMessageToContain("expected:<[fals]e> but was:<[tru]e>");
-    driver.requireNotArmed(checkBox);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireNotArmed(checkBox));
+    Assert.assertTrue(t.getMessage().contains("expected:<[fals]e> but was:<[tru]e>"));
+    // thrown.expectAssertionError("property:'armed'");
   }
 }

@@ -20,13 +20,16 @@ import static org.assertj.swing.core.KeyPressInfo.keyCode;
 import static org.assertj.swing.test.awt.Toolkits.singletonToolkitMock;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link EmergencyAbortListener#keyCombination(KeyPressInfo)}.
  * 
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmergencyAbortListener_keyCombination_Test {
   private EmergencyAbortListener listener;
 
