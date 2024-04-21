@@ -49,7 +49,7 @@ public class FEST331_ShowPopupForNonFocusableComponents_Test extends RobotBasedT
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final JTextField nonFocusableTextField = new JTextField(20);

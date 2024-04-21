@@ -53,7 +53,7 @@ public class Bug289_robotShouldFocusWindowBeforeClosing_Test extends RobotBasedT
     private static int instanceCounter;
 
     static MyWindow createNew() {
-      return GuiActionRunner.execute(() -> new MyWindow());
+      return GuiActionRunner.execute(MyWindow::new);
     }
 
     private MyWindow() {
