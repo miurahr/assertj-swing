@@ -13,7 +13,7 @@
 package org.assertj.swing.fixture;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
+import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -24,11 +24,10 @@ import javax.swing.JTextField;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.exception.ActionFailedException;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
-import org.junit.Ignore;
-import org.junit.Rule;
+import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Test;
 
 /**
@@ -37,8 +36,6 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class Bug134_clickComponentOutsideScreen_Test extends RobotBasedTestCase {
-  @Rule
-  public ExpectedException thrown = none();
   private FrameFixture fixture;
   private MyWindow window;
 
@@ -49,11 +46,17 @@ public class Bug134_clickComponentOutsideScreen_Test extends RobotBasedTestCase 
     fixture.show();
   }
 
-  @Test @Ignore // FIXME
+  @Test
   public void should_Throw_Error_When_Clicking_Button_Outside_Screen() {
     moveWindowOutOfScreen();
-    thrown.expect(ActionFailedException.class, "The component to click is out of the boundaries of the screen");
-    fixture.button().click();
+    Assume.assumeFalse(isInsideScreen());
+    Throwable t = Assert.assertThrows(ActionFailedException.class, () -> fixture.button().click());
+    Assert.assertTrue(t.getMessage().contains("The component to click is out of the boundaries of the screen"));
+  }
+
+  private boolean isInsideScreen() {
+    Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+    return fixture.target().getLocation().x < screen.width;
   }
 
   private void moveWindowOutOfScreen() {
