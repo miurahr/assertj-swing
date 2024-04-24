@@ -22,7 +22,9 @@ tasks.named<Test>("test") {
         filter {
             includeTestsMatching("org.assertj.core.api.*")
             includeTestsMatching("org.assertj.swing.core.*")
+            includeTestsMatching("org.assertj.swing.driver.*")
         }
+        systemProperties.set("envIsCi", envIsCi)
     }
     maxParallelForks =  1
 }

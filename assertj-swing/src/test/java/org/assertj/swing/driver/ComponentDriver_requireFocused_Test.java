@@ -12,7 +12,9 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link ComponentDriver#requireFocused(java.awt.Component)}.
@@ -20,6 +22,7 @@ import org.junit.Test;
  * @author Alex Ruiz
  * @author Yvonne Wang
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ComponentDriver_requireFocused_Test extends ComponentDriver_TestCase {
   @Test
   public void should_Fail_If_Component_Does_Not_Have_Focus() {

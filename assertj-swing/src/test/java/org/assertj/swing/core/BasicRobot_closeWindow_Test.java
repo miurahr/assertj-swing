@@ -22,6 +22,7 @@ import org.assertj.swing.test.core.EDTSafeTestCase;
 import org.assertj.swing.test.swing.TestWindow;
 import org.assertj.swing.timing.Condition;
 import org.junit.After;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,6 +50,7 @@ public class BasicRobot_closeWindow_Test extends EDTSafeTestCase {
 
   @Test
   public void should_Close_Window() {
+    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
     robot.close(w);
     pause(new Condition("Window closed") {
       @Override

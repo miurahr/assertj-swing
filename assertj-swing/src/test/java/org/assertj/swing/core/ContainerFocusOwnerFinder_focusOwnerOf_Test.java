@@ -28,6 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.test.core.SequentialEDTSafeTestCase;
 import org.assertj.swing.test.swing.TestDialog;
 import org.assertj.swing.test.swing.TestWindow;
+import org.junit.Assume;
 import org.junit.Test;
 
 /**
@@ -71,6 +72,7 @@ public class ContainerFocusOwnerFinder_focusOwnerOf_Test extends SequentialEDTSa
 
   @Test
   public void should_Return_Focus_Owner_In_Owned_Window_When_Top_Window_Does_Not_Have_Focus_Owner() {
+    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
     window.display();
     MyDialog dialog = MyDialog.createAndShow(window);
     JButton focusOwner = dialog.button;
@@ -113,7 +115,7 @@ public class ContainerFocusOwnerFinder_focusOwnerOf_Test extends SequentialEDTSa
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

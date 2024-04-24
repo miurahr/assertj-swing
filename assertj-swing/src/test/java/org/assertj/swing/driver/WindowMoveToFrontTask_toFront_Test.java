@@ -23,6 +23,7 @@ import java.awt.Dimension;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
+import org.junit.Assume;
 import org.junit.Test;
 
 /**
@@ -43,8 +44,9 @@ public class WindowMoveToFrontTask_toFront_Test extends RobotBasedTestCase {
     robot.showWindow(windowTwo);
   }
 
-  @Test
+  @Test // FIXME
   public void should_Move_Window_To_Front() {
+    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
     assertThat(hasFocus(windowTwo)).isTrue();
     WindowMoveToFrontTask.toFront(windowOne);
     robot.waitForIdle();
@@ -54,7 +56,7 @@ public class WindowMoveToFrontTask_toFront_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private static int counter;

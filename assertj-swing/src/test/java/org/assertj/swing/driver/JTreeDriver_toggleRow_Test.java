@@ -13,13 +13,16 @@
 package org.assertj.swing.driver;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link JTreeDriver#toggleRow(javax.swing.JTree, int)}.
  * 
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JTreeDriver_toggleRow_Test extends JTreeDriver_toggleCell_TestCase {
   @Test
   public void shouldToggleNodeByRow() {

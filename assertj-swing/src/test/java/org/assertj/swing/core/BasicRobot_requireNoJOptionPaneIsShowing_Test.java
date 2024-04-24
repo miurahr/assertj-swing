@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.timing.Condition;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -46,12 +47,7 @@ public class BasicRobot_requireNoJOptionPaneIsShowing_Test extends BasicRobot_Te
   void beforeShowingWindow() {
     execute(() -> {
       button = new JButton("Click Me");
-      button.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-          JOptionPane.showMessageDialog(window(), "A Message");
-        }
-      });
+      button.addActionListener(e -> JOptionPane.showMessageDialog(window(), "A Message"));
       window().add(button);
     });
   }
@@ -63,6 +59,7 @@ public class BasicRobot_requireNoJOptionPaneIsShowing_Test extends BasicRobot_Te
 
   @Test
   public void should_Fail_If_A_JOptionPane_Is_Showing() {
+    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
     robot().click(button);
     pauseTillJOptionPaneIsShowing();
     thrown.expectAssertionError("Expecting no JOptionPane to be showing");

@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
  * 
  * @author Alex Ruiz
  */
-interface FocusOwnerFinderStrategy {
+public interface FocusOwnerFinderStrategy {
   @Nullable
   Component focusOwner();
 }
