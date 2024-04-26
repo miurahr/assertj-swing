@@ -14,8 +14,9 @@
  */
 package org.fest.reflect.innerclass;
 
+import org.assertj.core.util.Strings;
+
 import static org.fest.reflect.innerclass.Invoker.newInvoker;
-import static org.fest.util.Strings.isEmpty;
 
 /**
  * Understands the name of a static inner class.
@@ -60,7 +61,7 @@ public final class StaticInnerClassName {
 
   private static void validateIsNotNullOrEmpty(String name) {
     if (name == null) throw new NullPointerException("The name of the static inner class to access should not be null");
-    if (isEmpty(name)) throw new IllegalArgumentException("The name of the static inner class to access should not be empty");
+    if (Strings.isNullOrEmpty(name)) throw new IllegalArgumentException("The name of the static inner class to access should not be empty");
   }
 
   private final String name;

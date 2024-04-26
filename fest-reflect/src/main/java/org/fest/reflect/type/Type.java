@@ -14,10 +14,10 @@
  */
 package org.fest.reflect.type;
 
+import org.assertj.core.util.Strings;
 import org.fest.reflect.exception.ReflectionError;
 
 import static org.fest.reflect.type.TypeLoader.newLoader;
-import static org.fest.util.Strings.isEmpty;
 
 /**
  * Understands loading a class dynamically.
@@ -51,7 +51,7 @@ public final class Type {
    */
   public static Type newType(String name) {
     if (name == null) throw new NullPointerException("The name of the class to load should not be null");
-    if (isEmpty(name)) throw new IllegalArgumentException("The name of the class to load should not be empty");
+    if (Strings.isNullOrEmpty(name)) throw new IllegalArgumentException("The name of the class to load should not be empty");
     return new Type(name);
   }
 

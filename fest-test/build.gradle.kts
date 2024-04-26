@@ -5,7 +5,7 @@ plugins {
 
 dependencies {
     implementation(libs.junit4)
-    implementation(project(":fest-util"))
+    implementation(libs.assertj)
     implementation(libs.annotations)
 }
 

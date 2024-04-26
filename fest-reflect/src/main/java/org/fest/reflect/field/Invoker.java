@@ -14,13 +14,15 @@
  */
 package org.fest.reflect.field;
 
-import static org.fest.reflect.util.Accessibles.*;
-import static org.fest.util.Arrays.array;
-import static org.fest.util.Strings.*;
+import static org.fest.reflect.util.Accessibles.makeAccessible;
+import static org.fest.reflect.util.Accessibles.setAccessible;
+import static org.fest.reflect.util.Accessibles.setAccessibleIgnoringExceptions;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 
+import org.assertj.core.util.Arrays;
+import org.assertj.core.util.Strings;
 import org.fest.reflect.exception.ReflectionError;
 import org.fest.reflect.field.decorator.DecoratorInvocationHandler;
 import org.fest.reflect.field.decorator.PostDecorator;
@@ -89,7 +91,7 @@ public final class Invoker<T> {
       target = target.getSuperclass();
     }
     if (field != null) return field;
-    throw new ReflectionError(concat("Unable to find field ", quote(fieldName), " in ", declaringType.getName()));
+    throw new ReflectionError(Strings.concat("Unable to find field ", Strings.quote(fieldName), " in ", declaringType.getName()));
   }
 
   private static void verifyCorrectType(Field field, Class<?> expectedType) {
@@ -120,7 +122,7 @@ public final class Invoker<T> {
 
   private static ReflectionError incorrectFieldType(Field field, Class<?> actual, Class<?> expected) {
     String fieldTypeName = field.getDeclaringClass().getName();
-    String message = concat("The type of the field ", quote(field.getName()), " in ", fieldTypeName, " should be <",
+    String message = Strings.concat("The type of the field ", Strings.quote(field.getName()), " in ", fieldTypeName, " should be <",
         expected.getName(), "> but was <", actual.getName(), ">");
     throw new ReflectionError(message);
   }
@@ -136,7 +138,7 @@ public final class Invoker<T> {
       setAccessible(field, true);
       field.set(target, value);
     } catch (Exception e) {
-      throw new ReflectionError(concat("Unable to update the value in field ", quote(field.getName())), e);
+      throw new ReflectionError(Strings.concat("Unable to update the value in field ", Strings.quote(field.getName())), e);
     } finally {
       setAccessibleIgnoringExceptions(field, accessible);
     }
@@ -198,7 +200,7 @@ public final class Invoker<T> {
     T target = get();
     DecoratorInvocationHandler<T> handler = new PreDecorator<T>(target, decorator);
     @SuppressWarnings("unchecked")
-    T field = (T) Proxy.newProxyInstance(decorator.getClass().getClassLoader(), array(expectedType), handler);
+    T field = (T) Proxy.newProxyInstance(decorator.getClass().getClassLoader(), Arrays.array(expectedType), handler);
     set(field);
     return DecoratedInvoker.newInvoker(target, decorator, expectedType, this, handler);
   }
@@ -259,7 +261,7 @@ public final class Invoker<T> {
     T target = get();
     DecoratorInvocationHandler<T> handler = new PostDecorator<T>(target, decorator);
     @SuppressWarnings("unchecked")
-    T field = (T) Proxy.newProxyInstance(decorator.getClass().getClassLoader(), array(expectedType), handler);
+    T field = (T) Proxy.newProxyInstance(decorator.getClass().getClassLoader(), Arrays.array(expectedType), handler);
     set(field);
     return DecoratedInvoker.newInvoker(target, decorator, expectedType, this, handler);
   }
@@ -285,7 +287,7 @@ public final class Invoker<T> {
       setAccessible(field, true);
       return (T) field.get(target);
     } catch (Exception e) {
-      throw new ReflectionError(concat("Unable to obtain the value in field " + quote(field.getName())), e);
+      throw new ReflectionError(Strings.concat("Unable to obtain the value in field " + Strings.quote(field.getName())), e);
     } finally {
       setAccessibleIgnoringExceptions(field, accessible);
     }

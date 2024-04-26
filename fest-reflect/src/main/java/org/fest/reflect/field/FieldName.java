@@ -16,12 +16,12 @@ package org.fest.reflect.field;
 
 import static org.fest.reflect.field.FieldType.newFieldType;
 import static org.fest.reflect.field.FieldTypeRef.newFieldTypeRef;
-import static org.fest.util.Strings.isEmpty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.assertj.core.util.Strings;
 import org.fest.reflect.reference.TypeRef;
 
 /**
@@ -69,7 +69,7 @@ public final class FieldName {
 
   private static void validateIsNotNullOrEmpty(String name) {
     if (name == null) throw new NullPointerException("The name of the field to access should not be null");
-    if (isEmpty(name)) throw new IllegalArgumentException("The name of the field to access should not be empty");
+    if (Strings.isNullOrEmpty(name)) throw new IllegalArgumentException("The name of the field to access should not be empty");
   }
 
   private FieldName(String name) {

@@ -15,7 +15,7 @@
 package org.fest.reflect.field;
 
 import static org.fest.reflect.core.Reflection.field;
-import static org.fest.util.Lists.newArrayList;
+import static org.assertj.core.util.Lists.newArrayList;
 
 import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.*;

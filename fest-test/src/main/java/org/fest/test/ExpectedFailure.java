@@ -15,8 +15,8 @@
  */
 package org.fest.test;
 
-import static org.fest.util.Objects.areEqual;
-import static org.fest.util.Strings.*;
+import org.assertj.core.util.Objects;
+import org.assertj.core.util.Strings;
 
 /**
  * Understands executing test code that is expected to fail.
@@ -80,12 +80,12 @@ public final class ExpectedFailure {
     public void on(CodeToTest codeToTest) {
       try {
         codeToTest.run();
-        fail(concat("Expecting a thrown exception of type:<", errorTypeName(), ">"));
+        fail(Strings.concat("Expecting a thrown exception of type:<", errorTypeName(), ">"));
       } catch (Throwable t) {
         if (!errorType.isInstance(t))
-          fail(concat("Expecting exception of type:<", errorTypeName(), "> but was:<", t.getClass().getName(), ">"));
-        if (!areEqual(message, t.getMessage()))
-          fail(concat("Expecting message:<", quote(message), "> but was:<", quote(t.getMessage()), ">"));
+          fail(Strings.concat("Expecting exception of type:<", errorTypeName(), "> but was:<", t.getClass().getName(), ">"));
+        if (!Objects.areEqual(message, t.getMessage()))
+          fail(Strings.concat("Expecting message:<", Strings.quote(message), "> but was:<", Strings.quote(t.getMessage()), ">"));
       }
     }
 

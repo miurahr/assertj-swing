@@ -17,7 +17,7 @@ package org.fest.reflect.field;
 import static org.fest.reflect.util.ExpectedFailures.expectIllegalArgumentException;
 import static org.fest.reflect.util.ExpectedFailures.expectNullPointerException;
 import static org.fest.reflect.util.ExpectedFailures.expectReflectionError;
-import static org.fest.util.Lists.newArrayList;
+import static org.assertj.core.util.Lists.newArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

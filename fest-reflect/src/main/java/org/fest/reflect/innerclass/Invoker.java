@@ -14,8 +14,7 @@
  */
 package org.fest.reflect.innerclass;
 
-import static org.fest.util.Strings.concat;
-
+import org.assertj.core.util.Strings;
 import org.fest.reflect.exception.ReflectionError;
 
 /**
@@ -49,11 +48,11 @@ public class Invoker {
     String namespace = declaringClass.getName();
     for (Class<?> innerClass : declaringClass.getDeclaredClasses())
       if (innerClass.getName().equals(expectedInnerClassName(namespace))) return innerClass;
-    throw new ReflectionError(concat("The static inner class <", innerClassName, "> cannot be found in ",
+    throw new ReflectionError(Strings.concat("The static inner class <", innerClassName, "> cannot be found in ",
         declaringClass.getName()));
   }
 
   private String expectedInnerClassName(String namespace) {
-    return concat(namespace, "$", innerClassName);
+    return Strings.concat(namespace, "$", innerClassName);
   }
 }

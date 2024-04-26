@@ -14,9 +14,8 @@
  */
 package org.fest.reflect.type;
 
+import org.assertj.core.util.Strings;
 import org.fest.reflect.exception.ReflectionError;
-
-import static org.fest.util.Strings.quote;
 
 /**
  * Understands loading a class dynamically using a specific <code>{@link ClassLoader}</code>.
@@ -87,7 +86,7 @@ public final class TypeLoader {
 
   private String unableToLoadClassMessage(Class<?> asType) {
     StringBuilder msg = new StringBuilder();
-    msg.append("Unable to load class ").append(quote(name));
+    msg.append("Unable to load class ").append(Strings.quote(name));
     if (asType != null) msg.append(" as ").append(asType.getName());
     msg.append(" using class loader ").append(classLoader);
     return msg.toString();

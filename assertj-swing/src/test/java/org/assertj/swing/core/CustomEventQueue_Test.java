@@ -17,13 +17,13 @@ import static java.awt.event.KeyEvent.VK_B;
 import static java.awt.event.KeyEvent.VK_C;
 import static org.assertj.swing.timing.Pause.pause;
 import static org.assertj.swing.timing.Timeout.timeout;
-import static org.fest.util.Arrays.array;
 
 import java.awt.AWTEvent;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.util.concurrent.Executors;
 
+import org.assertj.core.util.Arrays;
 import org.assertj.swing.test.recorder.KeyRecorder;
 import org.assertj.swing.timing.Condition;
 import org.junit.After;
@@ -58,7 +58,7 @@ public class CustomEventQueue_Test extends BasicRobot_TestCase {
     pause(new Condition("until all keys are typed") {
       @Override
       public boolean test() {
-        Integer[] expectedKeys = array(VK_A, VK_B, VK_C);
+        Integer[] expectedKeys = Arrays.array(VK_A, VK_B, VK_C);
         return recorder.keysWerePressed(expectedKeys) && recorder.keysWereReleased(expectedKeys);
       }
     }, timeout(1000));

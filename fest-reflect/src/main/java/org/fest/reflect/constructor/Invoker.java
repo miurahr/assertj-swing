@@ -17,11 +17,11 @@ package org.fest.reflect.constructor;
 import static org.fest.reflect.util.Accessibles.makeAccessible;
 import static org.fest.reflect.util.Accessibles.setAccessibleIgnoringExceptions;
 import static org.fest.reflect.util.Throwables.targetOf;
-import static org.fest.util.Strings.concat;
 
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
 
+import org.assertj.core.util.Strings;
 import org.fest.reflect.exception.ReflectionError;
 
 /**
@@ -53,7 +53,7 @@ public final class Invoker<T> {
     try {
       return target.getDeclaredConstructor(parameterTypes);
     } catch (Exception e) {
-      throw new ReflectionError(concat("Unable to find constructor in type ", target.getName(), " with parameter types ",
+      throw new ReflectionError(Strings.concat("Unable to find constructor in type ", target.getName(), " with parameter types ",
           Arrays.toString(parameterTypes)), e);
     }
   }

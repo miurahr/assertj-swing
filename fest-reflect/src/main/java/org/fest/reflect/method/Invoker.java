@@ -17,12 +17,11 @@ package org.fest.reflect.method;
 import static org.fest.reflect.util.Accessibles.makeAccessible;
 import static org.fest.reflect.util.Accessibles.setAccessibleIgnoringExceptions;
 import static org.fest.reflect.util.Throwables.targetOf;
-import static org.fest.util.Arrays.format;
-import static org.fest.util.Strings.concat;
-import static org.fest.util.Strings.quote;
 
 import java.lang.reflect.Method;
 
+import org.assertj.core.util.Arrays;
+import org.assertj.core.util.Strings;
 import org.fest.reflect.exception.ReflectionError;
 
 /**
@@ -75,8 +74,8 @@ public final class Invoker<T> {
       type = type.getSuperclass();
     }
     if (method == null)
-      throw new ReflectionError(concat("Unable to find method ", quote(methodName), " in ", targetType.getName(),
-          " with parameter type(s) ", format(parameterTypes)));
+      throw new ReflectionError(Strings.concat("Unable to find method ", Strings.quote(methodName), " in ", targetType.getName(),
+          " with parameter type(s) ", Arrays.array(parameterTypes)));
     return method;
   }
 
@@ -120,7 +119,7 @@ public final class Invoker<T> {
   }
 
   private ReflectionError cannotInvokeMethod(Throwable cause, Object... args) {
-    String message = concat("Unable to invoke method ", quote(method.getName()), " with arguments ", format(args));
+    String message = Strings.concat("Unable to invoke method ", Strings.quote(method.getName()), " with arguments ", Arrays.array(args));
     throw new ReflectionError(message, cause);
   }
 

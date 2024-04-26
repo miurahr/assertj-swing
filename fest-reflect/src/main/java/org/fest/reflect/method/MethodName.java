@@ -18,8 +18,8 @@ import static org.fest.reflect.method.Invoker.newInvoker;
 import static org.fest.reflect.method.MethodParameterTypes.newParameterTypes;
 import static org.fest.reflect.method.MethodReturnType.newReturnType;
 import static org.fest.reflect.method.MethodReturnTypeRef.newReturnTypeRef;
-import static org.fest.util.Strings.isEmpty;
 
+import org.assertj.core.util.Strings;
 import org.fest.reflect.reference.TypeRef;
 
 /**
@@ -68,7 +68,7 @@ public final class MethodName {
 
   private static void validateIsNotNullOrEmpty(String name) {
     if (name == null) throw new NullPointerException("The name of the method to access should not be null");
-    if (isEmpty(name)) throw new IllegalArgumentException("The name of the method to access should not be empty");
+    if (Strings.isNullOrEmpty(name)) throw new IllegalArgumentException("The name of the method to access should not be empty");
   }
 
   private final String name;

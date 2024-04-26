@@ -14,13 +14,11 @@
  */
 package org.fest.reflect.beanproperty;
 
-import static org.fest.util.Strings.concat;
-import static org.fest.util.Strings.quote;
-
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 
+import org.assertj.core.util.Strings;
 import org.fest.reflect.exception.ReflectionError;
 import org.fest.reflect.field.StaticFieldName;
 import org.fest.reflect.field.StaticFieldType;
@@ -74,11 +72,11 @@ public final class Invoker<T> {
     try {
       beanInfo = Introspector.getBeanInfo(type);
     } catch (Exception e) {
-      throw new ReflectionError(concat("Unable to get BeanInfo for type ", type.getName()), e);
+      throw new ReflectionError(Strings.concat("Unable to get BeanInfo for type ", type.getName()), e);
     }
     for (PropertyDescriptor d : beanInfo.getPropertyDescriptors())
       if (propertyName.equals(d.getName())) return d;
-    throw new ReflectionError(concat("Unable to find property ", quote(propertyName), " in ", type.getName()));
+    throw new ReflectionError(Strings.concat("Unable to find property ", Strings.quote(propertyName), " in ", type.getName()));
   }
 
   static void verifyCorrectType(String name, Object target, Class<?> expectedType, PropertyDescriptor descriptor) {
@@ -88,7 +86,7 @@ public final class Invoker<T> {
 
   private static ReflectionError incorrectPropertyType(String name, Object target, Class<?> actual, Class<?> expected) {
     String typeName = target.getClass().getName();
-    String msg = concat("The type of the property ", quote(name), " in ", typeName, " should be <", expected.getName(),
+    String msg = Strings.concat("The type of the property ", Strings.quote(name), " in ", typeName, " should be <", expected.getName(),
         "> but was <", actual.getName(), ">");
     throw new ReflectionError(msg);
   }
@@ -112,7 +110,7 @@ public final class Invoker<T> {
     try {
       descriptor.getWriteMethod().invoke(target, value);
     } catch (Exception e) {
-      throw new ReflectionError(concat("Unable to update the value in property ", quote(propertyName)), e);
+      throw new ReflectionError(Strings.concat("Unable to update the value in property ", Strings.quote(propertyName)), e);
     }
   }
 
@@ -126,7 +124,7 @@ public final class Invoker<T> {
     try {
       return (T) descriptor.getReadMethod().invoke(target);
     } catch (Exception e) {
-      throw new ReflectionError(concat("Unable to obtain the value in property " + quote(propertyName)), e);
+      throw new ReflectionError(Strings.concat("Unable to obtain the value in property " + Strings.quote(propertyName)), e);
     }
   }
 

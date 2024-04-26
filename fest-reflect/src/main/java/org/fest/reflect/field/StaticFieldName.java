@@ -16,8 +16,8 @@ package org.fest.reflect.field;
 
 import static org.fest.reflect.field.StaticFieldType.newFieldType;
 import static org.fest.reflect.field.StaticFieldTypeRef.newFieldTypeRef;
-import static org.fest.util.Strings.isEmpty;
 
+import org.assertj.core.util.Strings;
 import org.fest.reflect.reference.TypeRef;
 
 /**
@@ -61,7 +61,7 @@ public final class StaticFieldName {
 
   private static void validateIsNotNullOrEmpty(String name) {
     if (name == null) throw new NullPointerException("The name of the static field to access should not be null");
-    if (isEmpty(name)) throw new IllegalArgumentException("The name of the static field to access should not be empty");
+    if (Strings.isNullOrEmpty(name)) throw new IllegalArgumentException("The name of the static field to access should not be empty");
   }
 
   private final String name;
