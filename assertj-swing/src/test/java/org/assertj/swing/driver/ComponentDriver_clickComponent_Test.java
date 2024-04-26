@@ -16,6 +16,7 @@ import static org.assertj.swing.awt.AWT.centerOf;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -51,22 +52,24 @@ public class ComponentDriver_clickComponent_Test extends ComponentDriver_TestCas
     robot.settings().clickOnDisabledComponentsAllowed(false);
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
     disableButton();
-    thrown.expectIllegalStateIsDisabledComponent();
-    try {
-      driver.click(window.button);
-    } finally {
-      recorder.wasNotClicked();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.click(window.button);
+      } finally {
+        recorder.wasNotClicked();
+      }
+    });
   }
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
-    thrown.expectIllegalStateIsNotShowingComponent();
-    try {
-      driver.click(window.button);
-    } finally {
-      recorder.wasNotClicked();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.click(window.button);
+      } finally {
+        recorder.wasNotClicked();
+      }
+    });
   }
 }

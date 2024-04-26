@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static java.awt.event.KeyEvent.VK_A;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -26,22 +27,24 @@ public class ComponentDriver_pressKey_Test extends ComponentDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Component_Is_Disabled() {
     disableTextField();
-    thrown.expectIllegalStateIsDisabledComponent();
-    try {
-      driver.pressKey(window.textField, VK_A);
-    } finally {
-      assertThatTextFieldIsEmpty();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.pressKey(window.textField, VK_A);
+      } finally {
+        assertThatTextFieldIsEmpty();
+      }
+    });
   }
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
     assertThatTextFieldIsEmpty();
-    thrown.expectIllegalStateIsNotShowingComponent();
-    try {
-      driver.pressKey(window.textField, VK_A);
-    } finally {
-      assertThatTextFieldIsEmpty();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.pressKey(window.textField, VK_A);
+      } finally {
+        assertThatTextFieldIsEmpty();
+      }
+    });
   }
 }

@@ -13,8 +13,7 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Files.newTemporaryFile;
-import static org.assertj.core.util.Files.temporaryFolder;
+import static org.assertj.core.util.Files.*;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.io.File;
@@ -62,16 +61,16 @@ public class JFileChooserSelectFileTask_validateAndSelectFile_Test extends Robot
 
   @RunsInEDT
   private static File selectedFileOf(final JFileChooser fileChooser) {
-    return execute(() -> fileChooser.getSelectedFile());
+    return execute(fileChooser::getSelectedFile);
   }
 
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
-    final JFileChooser fileChooser = new JFileChooser(temporaryFolder());
+    final JFileChooser fileChooser = new JFileChooser(newTemporaryFolder());
 
     private MyWindow() {
       super(JFileChooserSelectFileTask.class);

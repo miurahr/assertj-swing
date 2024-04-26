@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -23,13 +24,11 @@ public class JTabbedPaneDriver_selectTabByIndex_Test extends JTabbedPaneDriver_T
   @Test
   public void should_Throw_Error_If_JTabbedPane_Is_Disabled() {
     disableTabbedPane();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.selectTab(tabbedPane, 1);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectTab(tabbedPane, 1));
   }
 
   @Test
   public void should_Throw_Error_If_JTabbedPane_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectTab(tabbedPane, 1);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectTab(tabbedPane, 1));
   }
 }

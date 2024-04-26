@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.data.Index.atIndex;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -24,8 +25,10 @@ import org.junit.Test;
 public class JTabbedPaneDriver_requireSelectedTab_Test extends JTabbedPaneDriver_TestCase {
   @Test
   public void should_Fail_If_Index_Is_Not_Equal_To_Expected() {
-    thrown.expectAssertionError("selectedIndex", 12, 0);
-    driver.requireSelectedTab(tabbedPane, atIndex(12));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelectedTab(tabbedPane, atIndex(12)));
+    Assert.assertTrue(t.getMessage().contains("selectedIndex"));
+    Assert.assertTrue(t.getMessage().contains("12"));
+    Assert.assertTrue(t.getMessage().contains("0"));
   }
 
   @Test

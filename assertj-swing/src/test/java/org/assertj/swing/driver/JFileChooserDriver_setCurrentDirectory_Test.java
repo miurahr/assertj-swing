@@ -20,6 +20,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -45,14 +46,12 @@ public class JFileChooserDriver_setCurrentDirectory_Test extends JFileChooserDri
   @Test
   public void should_Throw_Error_If_JFileChooser_Is_Disabled() {
     disableFileChooser();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.setCurrentDirectory(fileChooser, userHomeDirectory());
+    Assert.assertThrows(IllegalStateException.class, () -> driver.setCurrentDirectory(fileChooser, userHomeDirectory()));
   }
 
   @Test
   public void should_Throw_Error_If_JFileChooser_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.setCurrentDirectory(fileChooser, userHomeDirectory());
+    Assert.assertThrows(IllegalStateException.class, () -> driver.setCurrentDirectory(fileChooser, userHomeDirectory()));
   }
 
   private File userHomeDirectory() {

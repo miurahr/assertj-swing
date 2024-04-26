@@ -72,22 +72,24 @@ public class ComponentDriver_clickComponentWithMouseButton_Test extends Componen
     robot.settings().clickOnDisabledComponentsAllowed(false);
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
     disableButton();
-    thrown.expectIllegalStateIsDisabledComponent();
-    try {
-      driver.click(window.button, RIGHT_BUTTON);
-    } finally {
-      recorder.wasNotClicked();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.click(window.button, RIGHT_BUTTON);
+      } finally {
+        recorder.wasNotClicked();
+      }
+    });
   }
 
   @Test
   public void should_Z_Throw_Error_When_Clicking_Component_Not_Showing() {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
-    thrown.expectIllegalStateIsNotShowingComponent();
-    try {
-      driver.click(window.button, RIGHT_BUTTON);
-    } finally {
-      recorder.wasNotClicked();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.click(window.button, RIGHT_BUTTON);
+      } finally {
+        recorder.wasNotClicked();
+      }
+    });
   }
 }

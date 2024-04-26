@@ -18,8 +18,10 @@ import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import javax.swing.*;
 
@@ -28,6 +30,7 @@ import javax.swing.*;
  * 
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JTreeDriver_doubleClickRow_Test extends JTreeDriver_clickCell_TestCase {
   @Rule
   public ClickRecorderManager clickRecorder = new ClickRecorderManager();

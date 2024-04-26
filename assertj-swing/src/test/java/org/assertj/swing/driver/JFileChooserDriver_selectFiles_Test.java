@@ -23,6 +23,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -34,17 +35,15 @@ import org.junit.Test;
 public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JFileChooser_Is_Disabled() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectFiles(fileChooser, array(fakeFile()));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectFiles(fileChooser, array(fakeFile())));
   }
 
   @Test
   public void should_Throw_Error_When_Selecting_Files_And_JFileChooser_Cannot_Handle_Multiple_Selection() {
     disableMultipleSelection();
     showWindow();
-    thrown.expect(IllegalStateException.class, "Expecting file chooser");
-    thrown.expectMessageToContain("Expecting file chooser");
-    driver.selectFiles(fileChooser, array(new File("Fake1"), new File("Fake2")));
+    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> driver.selectFiles(fileChooser, array(new File("Fake1"), new File("Fake2"))));
+    assertThat(t.getMessage()).contains("Expecting file chooser");
   }
 
   @RunsInEDT
@@ -59,12 +58,14 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
     TemporaryFolderAndFile folderAndFile = new TemporaryFolderAndFile();
     makeFileChooserSelectDirectoriesOnly();
     showWindow();
-    thrown.expectIllegalArgumentException("the file chooser can only open directories");
-    try {
-      driver.selectFiles(fileChooser, folderAndFile.contents());
-    } finally {
-      folderAndFile.delete();
-    }
+    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> {
+              try {
+                driver.selectFiles(fileChooser, folderAndFile.contents());
+              } finally {
+                folderAndFile.delete();
+              }
+            });
+    assertThat(t.getMessage()).contains("the file chooser can only open directories");
   }
 
   @Test
@@ -73,12 +74,14 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
     TemporaryFolderAndFile folderAndFile = new TemporaryFolderAndFile();
     makeFileChooserSelectFilesOnly();
     showWindow();
-    thrown.expectIllegalArgumentException("the file chooser can only open files");
-    try {
-      driver.selectFiles(fileChooser, folderAndFile.contents());
-    } finally {
-      folderAndFile.delete();
-    }
+    Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> {
+        try {
+          driver.selectFiles(fileChooser, folderAndFile.contents());
+        } finally {
+          folderAndFile.delete();
+        }
+      });
+    assertThat(t.getMessage()).contains("the file chooser can only open files");
   }
 
   @Test

@@ -17,6 +17,7 @@ import static org.assertj.swing.test.util.StopWatch.startNewStopWatch;
 import java.util.concurrent.CountDownLatch;
 
 import org.assertj.swing.test.util.StopWatch;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -33,13 +34,10 @@ public class ComponentDriver_focusAndWaitForFocusGain_Test extends ComponentDriv
     window.button.waitToRequestFocus();
     final CountDownLatch done = new CountDownLatch(1);
     StopWatch stopWatch = startNewStopWatch();
-    new Thread() {
-      @Override
-      public void run() {
-        driver.focusAndWaitForFocusGain(window.button);
-        done.countDown();
-      }
-    }.start();
+    new Thread(() -> {
+      driver.focusAndWaitForFocusGain(window.button);
+      done.countDown();
+    }).start();
     try {
       done.await();
     } catch (InterruptedException e) {
@@ -53,13 +51,11 @@ public class ComponentDriver_focusAndWaitForFocusGain_Test extends ComponentDriv
   @Test
   public void should_Throw_Error_If_Component_Is_Disabled() {
     disableButton();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.focusAndWaitForFocusGain(window.button);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.focusAndWaitForFocusGain(window.button));
   }
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.focusAndWaitForFocusGain(window.button);
+    Assert.assertThrows(IllegalStateException.class, () -> driver.focusAndWaitForFocusGain(window.button));
   }
 }

@@ -16,6 +16,7 @@ import static java.awt.Event.SHIFT_MASK;
 import static java.awt.event.KeyEvent.VK_A;
 import static org.assertj.swing.core.KeyPressInfo.keyCode;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -41,21 +42,23 @@ public class ComponentDriver_pressAndReleaseKeyWithPressInfo_Test extends Compon
   @Test
   public void should_Throw_Error_If_Component_Is_Disabled() {
     disableTextField();
-    thrown.expectIllegalStateIsDisabledComponent();
-    try {
-      driver.pressAndReleaseKey(window.textField, keyCode(VK_A).modifiers(SHIFT_MASK));
-    } finally {
-      assertThatTextFieldIsEmpty();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.pressAndReleaseKey(window.textField, keyCode(VK_A).modifiers(SHIFT_MASK));
+      } finally {
+        assertThatTextFieldIsEmpty();
+      }
+    });
   }
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    try {
-      driver.pressAndReleaseKey(window.textField, keyCode(VK_A).modifiers(SHIFT_MASK));
-    } finally {
-      assertThatTextFieldIsEmpty();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.pressAndReleaseKey(window.textField, keyCode(VK_A).modifiers(SHIFT_MASK));
+      } finally {
+        assertThatTextFieldIsEmpty();
+      }
+    });
   }
 }

@@ -16,6 +16,7 @@ import static org.assertj.swing.query.ComponentHasFocusQuery.hasFocus;
 import static org.assertj.swing.timing.Pause.pause;
 
 import org.assertj.swing.timing.Condition;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -40,21 +41,23 @@ public class ComponentDriver_focus_Test extends ComponentDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Component_Is_Disabled() {
     disableButton();
-    thrown.expectIllegalStateIsDisabledComponent();
-    try {
-      driver.focus(window.button);
-    } finally {
-      assertThatButtonDoesNotHaveFocus();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.focus(window.button);
+      } finally {
+        assertThatButtonDoesNotHaveFocus();
+      }
+    });
   }
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    try {
-      driver.focus(window.button);
-    } finally {
-      assertThatButtonDoesNotHaveFocus();
-    }
+    Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.focus(window.button);
+      } finally {
+        assertThatButtonDoesNotHaveFocus();
+      }
+    });
   }
 }

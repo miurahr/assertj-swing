@@ -22,6 +22,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -52,22 +53,20 @@ public class JFileChooserDriver_selectFile_Test extends JFileChooserDriver_TestC
   @Test
   public void should_Throw_Error_If_JFileChooser_Is_Disabled() {
     disableFileChooser();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.selectFile(fileChooser, fakeFile());
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectFile(fileChooser, fakeFile()));
   }
 
   @Test
   public void should_Throw_Error_If_JFileChooser_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectFile(fileChooser, fakeFile());
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectFile(fileChooser, fakeFile()));
   }
 
   @Test
   public void should_Throw_Error_When_Selecting_File_While_JFileChooser_Can_Only_Select_Folders() {
     makeFileChooserSelectDirectoriesOnly();
     showWindow();
-    thrown.expectIllegalArgumentException("the file chooser can only open directories");
-    driver.selectFile(fileChooser, fakeFile());
+    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> driver.selectFile(fileChooser, fakeFile()));
+    assertThat(t.getMessage()).contains("the file chooser can only open directories");
   }
 
   @Test
@@ -75,11 +74,13 @@ public class JFileChooserDriver_selectFile_Test extends JFileChooserDriver_TestC
     File temporaryFolder = newTemporaryFolder();
     makeFileChooserSelectFilesOnly();
     showWindow();
-    thrown.expectIllegalArgumentException("the file chooser can only open files");
-    try {
-      driver.selectFile(fileChooser, temporaryFolder);
-    } finally {
-      temporaryFolder.delete();
-    }
+    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> {
+      try {
+        driver.selectFile(fileChooser, temporaryFolder);
+      } finally {
+        temporaryFolder.delete();
+      }
+    });
+    assertThat(t.getMessage()).contains("the file chooser can only open files");
   }
 }

@@ -17,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.awt.Point;
 
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -29,9 +28,8 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FrameDriver_moveTo_Test extends FrameDriver_TestCase {
-  @Test // FIXME
+  @Test
   public void should_Move_Frame() {
-    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
     showWindow();
     Point newLocation = windowLocationOnScreen().addToX(10).addToY(10);
     driver.moveTo(window, newLocation);

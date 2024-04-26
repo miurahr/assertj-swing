@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.core.util.Arrays.array;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -24,8 +25,13 @@ import org.junit.Test;
 public class JTabbedPaneDriver_requireTabTitles_Test extends JTabbedPaneDriver_TestCase {
   @Test
   public void should_Fail_If_Titles_Are_Not_Equal_To_Expected() {
-    thrown.expectAssertionError("tabTitles", array("[Four", "Fiv]e"), array("[One", "Two", "Thre]e"));
-    driver.requireTabTitles(tabbedPane, array("Four", "Five"));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireTabTitles(tabbedPane, array("Four", "Five")));
+    Assert.assertTrue(t.getMessage().contains("tabTitles"));
+    Assert.assertTrue(t.getMessage().contains("[Four"));
+    Assert.assertTrue(t.getMessage().contains("Fiv]e"));
+    Assert.assertTrue(t.getMessage().contains("[One"));
+    Assert.assertTrue(t.getMessage().contains("Two"));
+    Assert.assertTrue(t.getMessage().contains("Thre]e"));
   }
 
   @Test

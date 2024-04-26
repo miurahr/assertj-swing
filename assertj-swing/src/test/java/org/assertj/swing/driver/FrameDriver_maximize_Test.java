@@ -16,13 +16,16 @@ import static java.awt.Frame.MAXIMIZED_BOTH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link FrameDriver#maximize(java.awt.Frame)}.
  * 
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FrameDriver_maximize_Test extends FrameDriver_TestCase {
   @Test
   public void should_Maximize_Frame() {

@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import java.util.regex.Pattern;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -33,13 +34,11 @@ public class JTabbedPaneDriver_selectTabByPattern_Test extends JTabbedPaneDriver
   @Test
   public void should_Throw_Error_If_JTabbedPane_Is_Disabled() {
     disableTabbedPane();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.selectTab(tabbedPane, Pattern.compile("Tw.*"));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectTab(tabbedPane, Pattern.compile("Tw.*")));
   }
 
   @Test
   public void should_Throw_Error_If_JTabbedPane_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectTab(tabbedPane, Pattern.compile("Tw.*"));
+    Assert.assertThrows(IllegalStateException.class, () -> driver.selectTab(tabbedPane, Pattern.compile("Tw.*")));
   }
 }

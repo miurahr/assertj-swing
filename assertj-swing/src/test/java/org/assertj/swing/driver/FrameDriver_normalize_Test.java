@@ -17,13 +17,16 @@ import static java.awt.Frame.NORMAL;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link FrameDriver#normalize(java.awt.Frame)}.
  * 
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FrameDriver_normalize_Test extends FrameDriver_TestCase {
   @Test
   public void should_Normalize_Frame() {
