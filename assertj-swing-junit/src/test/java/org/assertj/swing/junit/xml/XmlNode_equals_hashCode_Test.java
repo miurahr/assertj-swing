@@ -15,11 +15,8 @@ package org.assertj.swing.junit.xml;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
 import static org.assertj.swing.junit.xml.XmlAttributes.attributes;
-import static org.fest.test.EqualsHashCodeContractAssert.assertEqualsIsReflexive;
-import static org.fest.test.EqualsHashCodeContractAssert.assertEqualsIsSymmetric;
-import static org.fest.test.EqualsHashCodeContractAssert.assertEqualsIsTransitive;
-import static org.fest.test.EqualsHashCodeContractAssert.assertMaintainsEqualsAndHashCodeContract;
 
+import org.fest.test.EqualsHashCodeContractAssert;
 import org.fest.test.EqualsHashCodeContractTestCase;
 import org.junit.Test;
 
@@ -28,6 +25,7 @@ import org.junit.Test;
  * 
  * @author Alex Ruiz
  */
+@SuppressWarnings("unused")
 public class XmlNode_equals_hashCode_Test extends XmlNode_TestCase implements EqualsHashCodeContractTestCase {
 
   @Override
@@ -43,7 +41,7 @@ public class XmlNode_equals_hashCode_Test extends XmlNode_TestCase implements Eq
   @Override
   @Test
   public void equals_should_be_reflexive() {
-    assertEqualsIsReflexive(node);
+    EqualsHashCodeContractAssert.assertEqualsIsReflexive(node);
   }
 
   @Override
@@ -51,7 +49,7 @@ public class XmlNode_equals_hashCode_Test extends XmlNode_TestCase implements Eq
   public void equals_should_be_symmetric() {
     XmlNode child1 = node.addNewNode("child", attributes(name("name1").value("value1"), name("name2").value("value2")));
     XmlNode child2 = node.addNewNode("child", attributes(name("name1").value("value1"), name("name2").value("value2")));
-    assertEqualsIsSymmetric(child1, child2);
+    EqualsHashCodeContractAssert.assertEqualsIsSymmetric(child1, child2);
   }
 
   @Override
@@ -60,7 +58,7 @@ public class XmlNode_equals_hashCode_Test extends XmlNode_TestCase implements Eq
     XmlNode child1 = node.addNewNode("child", attributes(name("name1").value("value1"), name("name2").value("value2")));
     XmlNode child2 = node.addNewNode("child", attributes(name("name1").value("value1"), name("name2").value("value2")));
     XmlNode child3 = node.addNewNode("child", attributes(name("name1").value("value1"), name("name2").value("value2")));
-    assertEqualsIsTransitive(child1, child2, child3);
+    EqualsHashCodeContractAssert.assertEqualsIsTransitive(child1, child2, child3);
   }
 
   @Override
@@ -68,7 +66,7 @@ public class XmlNode_equals_hashCode_Test extends XmlNode_TestCase implements Eq
   public void should_maintain_equals_and_hashCode_contract() {
     XmlNode child1 = node.addNewNode("child", attributes(name("name1").value("value1"), name("name2").value("value2")));
     XmlNode child2 = node.addNewNode("child", attributes(name("name1").value("value1"), name("name2").value("value2")));
-    assertMaintainsEqualsAndHashCodeContract(child1, child2);
+    EqualsHashCodeContractAssert.assertMaintainsEqualsAndHashCodeContract(child1, child2);
   }
 
   @Override

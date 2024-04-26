@@ -7,7 +7,6 @@ dependencies {
     api(libs.assertj)
     implementation(project(":fest-reflect"))
     implementation(libs.annotations)
-    testImplementation(project(":fest-test"))
     testImplementation(libs.assertj)
     testImplementation(libs.junit4)
     testImplementation(libs.mockito)

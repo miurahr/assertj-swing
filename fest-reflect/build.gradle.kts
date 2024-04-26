@@ -6,7 +6,6 @@ plugins {
 dependencies {
     implementation(libs.assertj)
     testImplementation(libs.junit4)
-    testImplementation(project(":fest-test"))
     testImplementation(libs.mockito)
 }
 

@@ -16,5 +16,4 @@ rootProject.name = "assertj-swing-parent"
 include(":assertj-swing")
 include(":assertj-swing-junit")
 include(":assertj-swing-junit-jupiter")
-include(":fest-test")
 include(":fest-reflect")
