@@ -22,7 +22,9 @@ import static org.mockito.Mockito.verify;
 import java.awt.image.BufferedImage;
 
 import org.assertj.core.api.AssertionInfo;
+import org.assertj.swing.internal.assertions.Images;
 import org.assertj.swing.internal.assertions.ImagesBaseTest;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -57,23 +59,15 @@ public class Images_assertNotEqual_Test extends ImagesBaseTest {
   public void should_Fail_If_Images_Are_Equal() {
     AssertionInfo info = someInfo();
     BufferedImage other = newImage(5, 5, BLUE);
-    thrown.expect(AssertionError.class);
-    try {
-      images.assertNotEqual(info, actual, other);
-    } finally {
-      verifyFailureThrownWhenImagesAreEqual(info);
-    }
+    Assert.assertThrows(AssertionError.class, () -> images.assertNotEqual(info, actual, other));
+    verifyFailureThrownWhenImagesAreEqual(info);
   }
 
   @Test
   public void should_Fail_If_Images_Are_Same() {
     AssertionInfo info = someInfo();
-    thrown.expect(AssertionError.class);
-    try {
-      images.assertNotEqual(info, actual, actual);
-    } finally {
-      verifyFailureThrownWhenImagesAreEqual(info);
-    }
+    Assert.assertThrows(AssertionError.class, () -> images.assertNotEqual(info, actual, actual));
+    verifyFailureThrownWhenImagesAreEqual(info);
   }
 
   private void verifyFailureThrownWhenImagesAreEqual(AssertionInfo info) {
