@@ -15,11 +15,16 @@ package org.assertj.swing.test;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import org.assertj.core.api.AbstractStringAssert;
 import org.jetbrains.annotations.NotNull;
+import org.junit.Assert;
+import org.junit.function.ThrowingRunnable;
 import org.junit.internal.matchers.TypeSafeMatcher;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Allows in-test specification of expected exception types and messages.
@@ -35,6 +40,20 @@ public class ExpectedException implements TestRule {
   }
 
   private ExpectedException() {
+  }
+
+  public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsDisabledComponent(ThrowingRunnable r) {
+      Throwable t = Assert.assertThrows(IllegalStateException.class, r);
+      return assertThat(t.getMessage()).contains("Expecting component").contains("to be enabled");
+  }
+
+  public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsNotShowingComponent(ThrowingRunnable r) {
+      Throwable t = Assert.assertThrows(IllegalStateException.class, r);
+      return assertThat(t.getMessage()).contains("Expecting component").contains("to be shown on the screen");
+  }
+  public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsNotResizableComponent(ThrowingRunnable runnable) {
+    Throwable t = Assert.assertThrows(IllegalStateException.class, runnable);
+    return assertThat(t.getMessage()).contains("Expecting component").contains("to be resizable by the user");
   }
 
   @Override
@@ -127,40 +146,40 @@ public class ExpectedException implements TestRule {
   }
 
   public void expectMessageToContain(final String... strings) {
-    delegate.expectMessage(new TypeSafeMatcher<String>() {
-      @Override
-      public void describeTo(org.hamcrest.Description description) {
-        description.appendText("containing: " + Arrays.toString(strings));
-      }
-
-      @Override
-      public boolean matchesSafely(String item) {
-        for (String s : strings) {
-          if (!item.contains(s)) {
-            return false;
-          }
+    delegate.expectMessage(new TypeSafeMatcher<>() {
+        @Override
+        public void describeTo(org.hamcrest.Description description) {
+            description.appendText("containing: " + Arrays.toString(strings));
         }
-        return true;
-      }
+
+        @Override
+        public boolean matchesSafely(String item) {
+            for (String s : strings) {
+                if (!item.contains(s)) {
+                    return false;
+                }
+            }
+            return true;
+        }
     });
   }
 
   public void expectMessageNotToContain(final String... strings) {
-    delegate.expectMessage(new TypeSafeMatcher<String>() {
-      @Override
-      public void describeTo(org.hamcrest.Description description) {
-        description.appendText("not containing: " + Arrays.toString(strings));
-      }
-
-      @Override
-      public boolean matchesSafely(String item) {
-        for (String s : strings) {
-          if (item.contains(s)) {
-            return false;
-          }
+    delegate.expectMessage(new TypeSafeMatcher<>() {
+        @Override
+        public void describeTo(org.hamcrest.Description description) {
+            description.appendText("not containing: " + Arrays.toString(strings));
         }
-        return true;
-      }
+
+        @Override
+        public boolean matchesSafely(String item) {
+            for (String s : strings) {
+                if (item.contains(s)) {
+                    return false;
+                }
+            }
+            return true;
+        }
     });
   }
 
@@ -180,16 +199,19 @@ public class ExpectedException implements TestRule {
     });
   }
 
+  @Deprecated
   public void expectIllegalStateIsNotShowingComponent() {
     expect(IllegalStateException.class, "Expecting component");
     expectMessageToContain("to be showing on the screen");
   }
 
+  @Deprecated
   public void expectIllegalStateIsNotResizableComponent() {
     expect(IllegalStateException.class, "Expecting component");
     expectMessageToContain("to be resizable by the user");
   }
 
+  @Deprecated
   public void expectIllegalStateIsDisabledComponent() {
     expect(IllegalStateException.class, "Expecting component");
     expectMessageToContain("to be enabled");

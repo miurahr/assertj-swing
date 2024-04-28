@@ -12,7 +12,10 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import java.util.Collection;
 
@@ -40,24 +43,24 @@ public class JSliderDriver_slide_withInvalidInputAndState_Test extends JSliderDr
   public void should_Throw_Error_If_Value_Is_Less_Than_Minimum() {
     showWindow();
     Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> driver.slide(slider, -1));
-    Assert.assertTrue(t.getMessage().contains("Value <-1> is not within the JSlider bounds of <0> and <30>"));
+    assertThat(t.getMessage()).contains("Value <-1> is not within the JSlider bounds of <0> and <30>");
   }
 
   @Test
   public void should_Throw_Error_If_Value_Is_Greater_Than_Maximum() {
     showWindow();
     Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> driver.slide(slider, 31));
-    Assert.assertTrue(t.getMessage().contains("Value <31> is not within the JSlider bounds of <0> and <30>"));
+    assertThat(t.getMessage()).contains("Value <31> is not within the JSlider bounds of <0> and <30>");
   }
 
   @Test
   public void should_Throw_Error_If_JSlider_Is_Disabled() {
     disableSlider();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.slide(slider, 6));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.slide(slider, 6));
   }
 
   @Test
   public void should_Throw_Error_If_JSlider_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.slide(slider, 6));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.slide(slider, 6));
   }
 }

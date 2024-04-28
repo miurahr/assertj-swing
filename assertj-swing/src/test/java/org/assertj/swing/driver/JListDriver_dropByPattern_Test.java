@@ -14,8 +14,10 @@ package org.assertj.swing.driver;
 
 import java.util.regex.Pattern;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JListDriver#drop(javax.swing.JList, Pattern)}.
@@ -27,11 +29,11 @@ public class JListDriver_dropByPattern_Test extends JListDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.drop(list, Pattern.compile("two")));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.drop(list, Pattern.compile("two")));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.drop(list, Pattern.compile("two")));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.drop(list, Pattern.compile("two")));
   }
 }

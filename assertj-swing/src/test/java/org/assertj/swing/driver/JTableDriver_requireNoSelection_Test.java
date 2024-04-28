@@ -15,6 +15,8 @@ package org.assertj.swing.driver;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Tests for {@link JTableDriver#requireNoSelection(javax.swing.JTable)}.
  * 
@@ -32,7 +34,6 @@ public class JTableDriver_requireNoSelection_Test extends JTableDriver_TestCase 
   public void should_Fail_If_JTable_Has_Have_Selection() {
     selectCell(0, 0);
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireNoSelection(table));
-    Assert.assertTrue(t.getMessage().contains("property:'selection'"));
-    Assert.assertTrue(t.getMessage().contains("expected no selection but was:<rows=[0], columns=[0]>"));
+    assertThat(t.getMessage()).contains("property:'selection'").contains("expected no selection but was:<rows=[0], columns=[0]>");
   }
 }

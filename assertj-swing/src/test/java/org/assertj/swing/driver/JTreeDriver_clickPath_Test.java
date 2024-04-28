@@ -13,6 +13,8 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import org.assertj.swing.exception.LocationUnavailableException;
 import org.assertj.swing.test.recorder.ClickRecorder;
@@ -50,11 +52,11 @@ public class JTreeDriver_clickPath_Test extends JTreeDriver_clickCell_TestCase {
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.clickPath(tree, "root/branch1"));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.clickPath(tree, "root/branch1"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.clickPath(tree, "root/branch1"));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.clickPath(tree, "root/branch1"));
   }
 }

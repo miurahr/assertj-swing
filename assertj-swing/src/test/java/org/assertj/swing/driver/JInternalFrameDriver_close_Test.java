@@ -17,7 +17,9 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JInternalFrame;
 
+import org.assertj.core.api.ThrowableAssert;
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -43,9 +45,8 @@ public class JInternalFrameDriver_close_Test extends JInternalFrameDriver_TestCa
   public void should_Throw_Error_If_JInternalFrame_Is_Not_Closable() {
     makeNotCloseable();
     showWindow();
-    thrown.expect(IllegalStateException.class, "The JInternalFrame <");
-    thrown.expectMessageToContain("> is not closable");
-    driver.close(internalFrame);
+    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> driver.close(internalFrame));
+    assertThat(t.getMessage()).contains("The JInternalFrame <").contains("> is not closable");
   }
 
   @RunsInEDT

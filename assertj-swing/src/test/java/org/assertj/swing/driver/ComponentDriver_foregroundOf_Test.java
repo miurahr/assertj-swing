@@ -56,7 +56,7 @@ public class ComponentDriver_foregroundOf_Test extends RobotBasedTestCase {
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

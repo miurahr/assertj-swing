@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.test.swing.JOptionPaneLauncher.pack;
 
 import java.util.regex.Pattern;
@@ -46,9 +47,6 @@ public class JOptionPaneDriver_requireMessageByPattern_Test extends JOptionPaneD
     JOptionPane optionPane = messageWithValue("Palpatine");
     pack(optionPane, title());
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireMessage(optionPane, Pattern.compile("Anakin")));
-    Assert.assertTrue(t.getMessage().contains("message"));
-    Assert.assertTrue(t.getMessage().contains("Palpatine"));
-    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
-    Assert.assertTrue(t.getMessage().contains("\"Anakin\""));
+    assertThat(t.getMessage()).contains("message").contains("Palpatine").contains("to match pattern:").contains("\"Anakin\"");
   }
 }

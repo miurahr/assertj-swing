@@ -13,6 +13,7 @@
 package org.assertj.swing.driver;
 
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.test.swing.JOptionPaneLauncher.pack;
 
 import javax.swing.JOptionPane;
@@ -44,9 +45,6 @@ public class JOptionPaneDriver_requireWarningMessage_Test extends JOptionPaneDri
     JOptionPane optionPane = errorMessage();
     pack(optionPane, title());
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireWarningMessage(optionPane));
-    Assert.assertTrue(t.getMessage().contains("messageType"));
-    Assert.assertTrue(t.getMessage().contains("[Warning] Message"));
-    Assert.assertTrue(t.getMessage().contains("[Error] Message"));
-
+    assertThat(t.getMessage()).contains("messageType").contains("[Warning] Message").contains("[Error] Message");
   }
 }

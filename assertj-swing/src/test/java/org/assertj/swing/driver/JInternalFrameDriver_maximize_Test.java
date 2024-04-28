@@ -12,12 +12,15 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 import static org.assertj.swing.test.task.ComponentSetVisibleTask.hide;
 
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -51,15 +54,13 @@ public class JInternalFrameDriver_maximize_Test extends JInternalFrameDriver_Tes
 
   @Test
   public void should_Throw_Error_If_JInternalFrame_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.maximize(internalFrame);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.maximize(internalFrame));
   }
 
   @Test
   public void should_Throw_Error_If_JInternalFrame_Is_Hidden() {
     hideInternalJFrame();
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.maximize(internalFrame);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.maximize(internalFrame));
   }
 
   @RunsInEDT
@@ -72,9 +73,8 @@ public class JInternalFrameDriver_maximize_Test extends JInternalFrameDriver_Tes
   public void should_Throw_Error_If_JInternalFrame_Is_Not_Maximizable() {
     makeNotMaximizable();
     showWindow();
-    thrown.expect(IllegalStateException.class, "The JInternalFrame <");
-    thrown.expectMessageToContain("> is not maximizable");
-    driver.maximize(internalFrame);
+    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> driver.maximize(internalFrame));
+    assertThat(t.getMessage()).contains("The JInternalFrame <").contains("> is not maximizable");
   }
 
   @RunsInEDT

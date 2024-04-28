@@ -12,9 +12,8 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.swing.data.TableCell.row;
-
-import java.util.regex.Pattern;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -39,9 +38,6 @@ public class JTableDriver_requireCellValueAsText_Test extends JTableDriver_TestC
   @Test
   public void should_Fail_If_Cell_Value_Is_Not_Equal_To_Expected() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireCellValue(table, row(0).column(0), "0-1"));
-    Assert.assertTrue(t.getMessage().contains("value [row=0, column=0]"));
-    Assert.assertTrue(t.getMessage().contains("0-0"));
-    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
-    Assert.assertTrue(t.getMessage().contains("\"0-1\""));
+    assertThat(t.getMessage()).contains("value [row=0, column=0]").contains("0-0").contains("to match pattern:").contains("\"0-1\"");
   }
 }

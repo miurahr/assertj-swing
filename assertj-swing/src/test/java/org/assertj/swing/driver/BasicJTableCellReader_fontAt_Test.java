@@ -13,11 +13,11 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import javax.swing.JLabel;
@@ -47,7 +47,7 @@ public class BasicJTableCellReader_fontAt_Test extends BasicJTableCellReader_Tes
 
   @RunsInEDT
   @NotNull private static Font fontOf(final @NotNull Component component) {
-    Font result = execute(() -> component.getFont());
-    return checkNotNull(result);
+    Font result = execute(component::getFont);
+    return Objects.requireNonNull(result);
   }
 }

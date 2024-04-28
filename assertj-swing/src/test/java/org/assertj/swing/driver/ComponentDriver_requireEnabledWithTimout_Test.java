@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.test.util.StopWatch.startNewStopWatch;
 import static org.assertj.swing.timing.Timeout.timeout;
 
@@ -45,8 +46,9 @@ public class ComponentDriver_requireEnabledWithTimout_Test extends ComponentDriv
         assertThatWaited(stopWatch, timeout);
       }
     });
-    Assert.assertTrue(t.getMessage().contains("Timed out waiting for"));
-    Assert.assertTrue(t.getMessage().contains(window.button.getClass().getName()));
-    Assert.assertTrue(t.getMessage().contains("to be enabled"));
+    assertThat(t.getMessage())
+            .contains("Timed out waiting for")
+            .contains(window.button.getClass().getName())
+            .contains("to be enabled");
   }
 }

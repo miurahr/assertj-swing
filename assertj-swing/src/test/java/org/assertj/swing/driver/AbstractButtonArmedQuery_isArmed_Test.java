@@ -68,7 +68,7 @@ public class AbstractButtonArmedQuery_isArmed_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final JCheckBox checkBox = new JCheckBox("A Button");

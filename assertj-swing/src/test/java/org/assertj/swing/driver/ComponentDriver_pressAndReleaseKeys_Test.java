@@ -15,8 +15,9 @@ package org.assertj.swing.driver;
 import static java.awt.event.KeyEvent.VK_A;
 import static java.awt.event.KeyEvent.VK_C;
 import static java.awt.event.KeyEvent.VK_E;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -44,7 +45,7 @@ public class ComponentDriver_pressAndReleaseKeys_Test extends ComponentDriver_Te
   @Test
   public void should_Throw_Error_If_Component_Is_Disabled() {
     disableTextField();
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       try {
         driver.pressAndReleaseKeys(window.textField, VK_A);
       } finally {
@@ -55,7 +56,7 @@ public class ComponentDriver_pressAndReleaseKeys_Test extends ComponentDriver_Te
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> {
       try {
         driver.pressAndReleaseKeys(window.textField, VK_A);
       } finally {

@@ -13,12 +13,13 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.swing.awt.AWT.centerOf;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import java.awt.Point;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -59,7 +60,7 @@ public class ComponentDriver_clickComponentAtPoint_Test extends ComponentDriver_
     robot.settings().clickOnDisabledComponentsAllowed(false);
     disableButton();
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       try {
         driver.click(window.button, new Point(10, 10));
       } finally {
@@ -71,7 +72,7 @@ public class ComponentDriver_clickComponentAtPoint_Test extends ComponentDriver_
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> {
       try {
         driver.click(window.button, new Point(10, 10));
       } finally {

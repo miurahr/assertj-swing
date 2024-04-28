@@ -17,7 +17,7 @@ import static javax.swing.JSplitPane.VERTICAL_SPLIT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
+import static org.assertj.swing.test.ExpectedException.*;
 import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 
 import java.awt.Dimension;
@@ -30,7 +30,6 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -44,8 +43,6 @@ import org.junit.runners.Parameterized.Parameters;
  */
 @RunWith(Parameterized.class)
 public class JSplitPaneDriver_moveDividerTo_Test extends RobotBasedTestCase {
-  @Rule
-  public ExpectedException thrown = none();
 
   private JSplitPaneDriver driver;
 
@@ -78,15 +75,13 @@ public class JSplitPaneDriver_moveDividerTo_Test extends RobotBasedTestCase {
     MyWindow window = createWindow();
     disable(window.splitPane);
     robot.waitForIdle();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.moveDividerTo(window.splitPane, 100);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.moveDividerTo(window.splitPane, 100));
   }
 
   @Test
   public void should_Throw_Error_If_JSplitPane_Is_Not_Showing_On_The_Screen() {
     MyWindow window = createWindow();
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.moveDividerTo(window.splitPane, 100);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.moveDividerTo(window.splitPane, 100));
   }
 
   private MyWindow createAndShowWindow() {

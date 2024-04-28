@@ -13,16 +13,14 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
+import static org.assertj.swing.test.ExpectedException.*;
 import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 
 import java.awt.Component;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
-import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -32,9 +30,6 @@ import org.junit.Test;
  */
 public class ComponentStateValidator_validateIsEnabledAndShowing_Test extends RobotBasedTestCase {
   private TestWindow window;
-
-  @Rule
-  public ExpectedException thrown = none();
 
   @Override
   protected void onSetUp() {
@@ -52,14 +47,12 @@ public class ComponentStateValidator_validateIsEnabledAndShowing_Test extends Ro
     robot.showWindow(window);
     disable(window);
     robot.waitForIdle();
-    thrown.expectIllegalStateIsDisabledComponent();
-    validateWindowIsEnabledAndShowing(window);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> validateWindowIsEnabledAndShowing(window));
   }
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    validateWindowIsEnabledAndShowing(window);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> validateWindowIsEnabledAndShowing(window));
   }
 
   @RunsInEDT

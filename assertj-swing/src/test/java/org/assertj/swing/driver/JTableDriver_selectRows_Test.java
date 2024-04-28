@@ -15,6 +15,10 @@ package org.assertj.swing.driver;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for {@link JTableDriver#selectRows(javax.swing.JTable, int...)}.
  *
@@ -26,7 +30,7 @@ public class JTableDriver_selectRows_Test extends JTableDriver_TestCase {
   public void should_Throw_Error_If_Index_Is_Negative() {
     showWindow();
     Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectRows(table, -1));
-    Assert.assertTrue(t.getMessage().contains("row <-1> should be between <0> and <9>"));
+    assertThat(t.getMessage()).contains("row <-1> should be between <0> and <9>");
 
   }
 
@@ -34,7 +38,7 @@ public class JTableDriver_selectRows_Test extends JTableDriver_TestCase {
   public void should_Throw_Error_If_Index_Is_Equal_To_The_Number_Of_Rows() {
     showWindow();
     Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectRows(table, 10));
-    Assert.assertTrue(t.getMessage().contains("row <10> should be between <0> and <9>"));
+    assertThat(t.getMessage()).contains("row <10> should be between <0> and <9>");
   }
 
   @Test
@@ -57,7 +61,7 @@ public class JTableDriver_selectRows_Test extends JTableDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JTable_Is_Disabled() {
     disableTable();
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       robot.settings().clickOnDisabledComponentsAllowed(false);
       driver.selectRows(table, 0, 2);
     });
@@ -65,6 +69,6 @@ public class JTableDriver_selectRows_Test extends JTableDriver_TestCase {
 
   @Test
   public void should_Throw_Error_If_JTable_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.selectRows(table, 0, 2));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectRows(table, 0, 2));
   }
 }

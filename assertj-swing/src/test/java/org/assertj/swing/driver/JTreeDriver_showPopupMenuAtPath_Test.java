@@ -13,10 +13,11 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import javax.swing.JPopupMenu;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -43,11 +44,11 @@ public class JTreeDriver_showPopupMenuAtPath_Test extends JTreeDriver_showPopupM
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenu(tree, "root"));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.showPopupMenu(tree, "root"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenu(tree, "root"));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.showPopupMenu(tree, "root"));
   }
 }

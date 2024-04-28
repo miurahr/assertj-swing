@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +19,8 @@ import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Indicates whether the node (in a {@code JTree}) identified by the given path is expanded. This query is executed in
@@ -32,7 +33,7 @@ final class JTreeExpandedPathQuery {
   @RunsInEDT
   static boolean isExpanded(final @NotNull JTree tree, final @NotNull TreePath path) {
     Boolean result = execute(() -> tree.isExpanded(path));
-    return checkNotNull(result);
+    return Objects.nonNull(result);
   }
 
   private JTreeExpandedPathQuery() {

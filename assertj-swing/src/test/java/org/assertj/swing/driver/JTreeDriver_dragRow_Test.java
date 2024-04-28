@@ -12,8 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JTreeDriver#drag(javax.swing.JTree, int)}.
@@ -24,11 +26,11 @@ public class JTreeDriver_dragRow_Test extends JTreeDriver_dragAndDrop_TestCase {
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.drag(tree, 0));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.drag(tree, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.drag(tree, 0));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.drag(tree, 0));
   }
 }

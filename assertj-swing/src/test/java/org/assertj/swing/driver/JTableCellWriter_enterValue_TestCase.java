@@ -12,7 +12,10 @@
  */
 package org.assertj.swing.driver;
 
+import org.assertj.swing.cell.JTableCellWriter;
 import org.junit.Test;
+
+import javax.swing.*;
 
 /**
  * Test case for implementations of {@link JTableCellWriter#enterValue(JTable, int, int, String)}.
@@ -23,7 +26,7 @@ import org.junit.Test;
 public abstract class JTableCellWriter_enterValue_TestCase extends JTableCellWriter_TestCase {
   @Test
   public void should_Throw_Error_If_Editor_Component_Cannot_Be_Handled() {
-    assertActionFailedExceptionWithMessageIndicatingWriterWasUnableToActivateEditor();
-    writer.enterValue(window.table, 0, 1, "hello");
+    assertActionFailedExceptionWithMessageIndicatingWriterWasUnableToActivateEditor(
+            () -> writer.enterValue(window.table, 0, 1, "hello"));
   }
 }

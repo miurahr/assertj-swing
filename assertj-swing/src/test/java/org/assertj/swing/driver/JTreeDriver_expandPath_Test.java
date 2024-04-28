@@ -16,6 +16,9 @@ import org.assertj.swing.exception.LocationUnavailableException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for {@link JTreeDriver#expandPath(javax.swing.JTree, String)}.
  * 
@@ -48,11 +51,11 @@ public class JTreeDriver_expandPath_Test extends JTreeDriver_toggleCell_TestCase
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.expandPath(tree, "root"));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.expandPath(tree, "root"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.expandPath(tree, "root"));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.expandPath(tree, "root"));
   }
 }

@@ -72,7 +72,7 @@ public class DialogModalQuery_isModal_Test extends RobotBasedTestCase {
 
     @RunsInEDT
     static MyDialog createNew() {
-      return execute(() -> new MyDialog());
+      return execute(MyDialog::new);
     }
 
     private MyDialog() {

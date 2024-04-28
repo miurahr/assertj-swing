@@ -53,18 +53,18 @@ public class JTableHasSelectionQuery_hasSelection_Test extends RobotBasedTestCas
 
   @RunsInEDT
   private static void selectAllIn(final TestTable table) {
-    execute(() -> table.selectAll());
+    execute(table::selectAll);
   }
 
   @RunsInEDT
   private static boolean hasSelection(final TestTable table) {
-    return execute(() -> JTableHasSelectionQuery.hasSelection(table));
+    return Boolean.TRUE.equals(execute(() -> JTableHasSelectionQuery.hasSelection(table)));
   }
 
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final TestTable table = new TestTable(2, 4);

@@ -15,6 +15,8 @@ package org.assertj.swing.driver;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Tests for {@link ComponentDriver#requireDisabled(java.awt.Component)}.
  * 
@@ -31,7 +33,6 @@ public class ComponentDriver_requireDisabled_Test extends ComponentDriver_TestCa
   @Test
   public void should_Fail_If_Component_Is_Enabled() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireDisabled(window.button));
-    Assert.assertTrue(t.getMessage().contains("property:'enabled'"));
-    Assert.assertTrue(t.getMessage().contains("expected:<[fals]e> but was:<[tru]e>"));
+    assertThat(t.getMessage()).contains("property:'enabled'").contains("expected:<[fals]e> but was:<[tru]e>");
   }
 }

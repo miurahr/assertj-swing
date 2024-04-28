@@ -15,6 +15,8 @@ package org.assertj.swing.driver;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Tests for {@link JListDriver#pointAt(javax.swing.JList, String)}.
  * 
@@ -32,7 +34,6 @@ public class JListDriver_requireNoSelection_Test extends JListDriver_TestCase {
   public void should_Fail_If_JList_Has_Selection() {
     selectFirstItem();
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireNoSelection(list));
-    Assert.assertTrue(t.getMessage().contains("property:'selectedIndex'"));
-    Assert.assertTrue(t.getMessage().contains("expected:<[-1]> but was:<[0]>"));
+    assertThat(t.getMessage()).contains("property:'selectedIndex'").contains("expected:<[-1]> but was:<[0]>");
   }
 }

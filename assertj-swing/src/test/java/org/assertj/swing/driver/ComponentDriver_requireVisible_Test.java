@@ -15,6 +15,8 @@ package org.assertj.swing.driver;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Tests for {@link ComponentDriver#requireVisible(java.awt.Component)}.
  * 
@@ -31,7 +33,6 @@ public class ComponentDriver_requireVisible_Test extends ComponentDriver_TestCas
   @Test
   public void should_Fail_If_Component_Is_Not_Visible() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireVisible(window.button));
-    Assert.assertTrue(t.getMessage().contains("property:'visible'"));
-    Assert.assertTrue(t.getMessage().contains("expected:<[tru]e> but was:<[fals]e>"));
+    assertThat(t.getMessage()).contains("property:'visible'").contains("expected:<[tru]e> but was:<[fals]e>");
   }
 }

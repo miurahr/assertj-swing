@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.test.swing.JOptionPaneLauncher.pack;
 
 import javax.swing.JOptionPane;
@@ -37,8 +38,6 @@ public class JOptionPaneDriver_requireInfomationMessage_Test extends JOptionPane
     JOptionPane optionPane = errorMessage();
     pack(optionPane, title());
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireInformationMessage(optionPane));
-    Assert.assertTrue(t.getMessage().contains("messageType"));
-    Assert.assertTrue(t.getMessage().contains("[Information] Message"));
-    Assert.assertTrue(t.getMessage().contains("[Error] Message"));
+    assertThat(t.getMessage()).contains("messageType").contains("[Information] Message").contains("[Error] Message");
   }
 }

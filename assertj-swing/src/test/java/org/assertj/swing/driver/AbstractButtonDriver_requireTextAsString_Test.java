@@ -15,6 +15,8 @@ package org.assertj.swing.driver;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Tests for {@link AbstractButtonDriver#requireText(javax.swing.AbstractButton, String)}.
  * 
@@ -34,12 +36,12 @@ public class AbstractButtonDriver_requireTextAsString_Test extends AbstractButto
   @Test
   public void should_Fail_If_Text_Is_Not_Equal_To_Given_String() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireText(checkBox, "Bye"));
-    Assert.assertTrue(t.getMessage().contains("Hello"));
+    assertThat(t.getMessage()).contains("Hello");
   }
 
   @Test
   public void should_Fail_If_Text_Does_Not_Match_Regex_Pattern_In_Given_String() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireText(checkBox, "Bye"));
-    Assert.assertTrue(t.getMessage().contains("Hello"));
+    assertThat(t.getMessage()).contains("Hello");
   }
 }

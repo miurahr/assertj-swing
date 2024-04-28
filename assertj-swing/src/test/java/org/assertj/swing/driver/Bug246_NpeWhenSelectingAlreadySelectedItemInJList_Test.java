@@ -49,7 +49,7 @@ public class Bug246_NpeWhenSelectingAlreadySelectedItemInJList_Test extends Robo
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final JList list = new JList(array("One", "Two"));

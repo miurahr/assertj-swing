@@ -67,7 +67,7 @@ public class Bug219_editTableCellWithEditorHavingCustomDocument_Test extends Rob
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final TestTable table = new TestTable(3, 3);

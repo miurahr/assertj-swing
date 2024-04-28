@@ -18,6 +18,9 @@ import org.junit.Test;
 
 import javax.swing.*;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for {@link JTreeDriver#collapsePath(JTree, String)}.
  * 
@@ -50,11 +53,11 @@ public class JTreeDriver_collapsePath_Test extends JTreeDriver_toggleCell_TestCa
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.collapsePath(tree, "root"));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.collapsePath(tree, "root"));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.collapsePath(tree, "root"));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.collapsePath(tree, "root"));
   }
 }

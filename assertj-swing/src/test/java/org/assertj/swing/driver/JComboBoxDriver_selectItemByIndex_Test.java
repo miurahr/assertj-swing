@@ -12,10 +12,12 @@
  */
 package org.assertj.swing.driver;
 
-import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JComboBoxDriver#selectItem(javax.swing.JComboBox, int)}.
@@ -44,12 +46,12 @@ public class JComboBoxDriver_selectItemByIndex_Test extends JComboBoxDriver_Test
   @Test
   public void should_Throw_Error_If_JComboBox_Is_Disabled() {
     disableComboBox();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.selectItem(comboBox, 0));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.selectItem(comboBox, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JComboBox_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.selectItem(comboBox, 0));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectItem(comboBox, 0));
   }
 
   @Test(expected = IndexOutOfBoundsException.class)

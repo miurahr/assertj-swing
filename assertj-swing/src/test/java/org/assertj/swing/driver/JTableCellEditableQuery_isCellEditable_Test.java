@@ -75,7 +75,7 @@ public class JTableCellEditableQuery_isCellEditable_Test extends RobotBasedTestC
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

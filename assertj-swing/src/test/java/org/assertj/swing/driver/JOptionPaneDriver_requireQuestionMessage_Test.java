@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static org.assertj.swing.test.swing.JOptionPaneLauncher.pack;
 
@@ -20,8 +21,6 @@ import javax.swing.JOptionPane;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.regex.Pattern;
 
 /**
  * Tests for {@link JOptionPaneDriver#requireQuestionMessage(JOptionPane)}.
@@ -46,8 +45,6 @@ public class JOptionPaneDriver_requireQuestionMessage_Test extends JOptionPaneDr
     JOptionPane optionPane = errorMessage();
     pack(optionPane, title());
     Throwable t= Assert.assertThrows(AssertionError.class, () -> driver.requireQuestionMessage(optionPane));
-    Assert.assertTrue(t.getMessage().contains("messageType"));
-    Assert.assertTrue(t.getMessage().contains("[Question] Message"));
-    Assert.assertTrue(t.getMessage().contains("[Error] Message"));
+    assertThat(t.getMessage()).contains("messageType").contains("[Question] Message").contains("[Error] Message");
   }
 }

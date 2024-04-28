@@ -12,12 +12,14 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.test.data.ZeroAndNegativeProvider.zeroAndNegative;
 
 import java.util.Collection;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -43,8 +45,8 @@ public class JScrollBarDriver_scrollUnitDownWithTimes_withInvalidTimes_Test exte
 
   @Test
   public void should_Throw_Error_If_Times_Is_Zero_Or_Negative() {
-    thrown.expectIllegalArgumentException(concat(
+    Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> driver.scrollUnitDown(scrollBar, times));
+    assertThat(t.getMessage()).contains(concat(
         "The number of times to scroll down one unit should be greater than zero, but was <", times, ">"));
-    driver.scrollUnitDown(scrollBar, times);
   }
 }

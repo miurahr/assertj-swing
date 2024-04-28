@@ -87,7 +87,7 @@ public class FEST231_JScrollBarUpAndDownInverted_Test extends RobotBasedTestCase
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final JScrollPane scrollPane = new JScrollPane(newList(), VERTICAL_SCROLLBAR_ALWAYS, HORIZONTAL_SCROLLBAR_ALWAYS);

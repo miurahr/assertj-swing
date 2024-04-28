@@ -14,6 +14,9 @@ package org.assertj.swing.driver;
 
 import org.junit.Test;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for {@link JTextComponentDriver#replaceText(javax.swing.text.JTextComponent, String)}.
  *
@@ -40,13 +43,11 @@ public class JTextComponentDriver_replaceText_Test extends JTextComponentDriver_
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Disabled() {
     disableTextField();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.replaceText(textField, "Hello");
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.replaceText(textField, "Hello"));
   }
 
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.replaceText(textField, "Hello");
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.replaceText(textField, "Hello"));
   }
 }

@@ -15,6 +15,8 @@ package org.assertj.swing.driver;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Tests for {@link JComboBoxDriver#requireItemCount(javax.swing.JComboBox, int)}.
  * 
@@ -24,8 +26,7 @@ public class JComboBoxDriver_requireItemCount_Test extends JComboBoxDriver_TestC
   @Test
   public void should_Fail_If_JList_Does_Not_Have_Expected_Item_Count() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireItemCount(comboBox, 6));
-    Assert.assertTrue(t.getMessage().contains("property:'itemCount'"));
-    Assert.assertTrue(t.getMessage().contains("expected:<[6]> but was:<[3]>"));
+    assertThat(t.getMessage()).contains("property:'itemCount'").contains("expected:<[6]> but was:<[3]>");
   }
 
   @Test

@@ -14,6 +14,9 @@ package org.assertj.swing.driver;
 
 import org.junit.Test;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for {@link JTextComponentDriver#enterText(javax.swing.text.JTextComponent, String)}.
  * 
@@ -32,13 +35,11 @@ public class JTextComponentDriver_enterText_Test extends JTextComponentDriver_Te
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Disabled() {
     disableTextField();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.enterText(textField, "Entering text");
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.enterText(textField, "Entering text"));
   }
 
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.enterText(textField, "Entering text");
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.enterText(textField, "Entering text"));
   }
 }

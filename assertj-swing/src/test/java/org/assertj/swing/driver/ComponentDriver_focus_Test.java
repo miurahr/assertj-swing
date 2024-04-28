@@ -13,10 +13,11 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.swing.query.ComponentHasFocusQuery.hasFocus;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 import static org.assertj.swing.timing.Pause.pause;
 
 import org.assertj.swing.timing.Condition;
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -41,7 +42,7 @@ public class ComponentDriver_focus_Test extends ComponentDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Component_Is_Disabled() {
     disableButton();
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       try {
         driver.focus(window.button);
       } finally {
@@ -52,7 +53,7 @@ public class ComponentDriver_focus_Test extends ComponentDriver_TestCase {
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> {
       try {
         driver.focus(window.button);
       } finally {

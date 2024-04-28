@@ -19,6 +19,8 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+
 /**
  * Tests for {@link JTreeDriver#unselectPath(javax.swing.JTree, String)}.
  *
@@ -38,7 +40,7 @@ public class JTreeDriver_unselectPath_Test extends JTreeDriver_selectCell_TestCa
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectPath(tree, "root/branch1"));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.unselectPath(tree, "root/branch1"));
   }
 
   @Test

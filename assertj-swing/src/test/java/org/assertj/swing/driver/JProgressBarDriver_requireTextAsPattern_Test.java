@@ -13,6 +13,7 @@
 package org.assertj.swing.driver;
 
 import java.util.regex.Pattern;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,9 +34,6 @@ public class JProgressBarDriver_requireTextAsPattern_Test extends JProgressBarDr
   @Test
   public void should_Fail_If_Text_Does_Not_Match_Pattern() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireText(progressBar, Pattern.compile("50%")));
-    Assert.assertTrue(t.getMessage().contains("string"));
-    Assert.assertTrue(t.getMessage().contains("60%"));
-    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
-    Assert.assertTrue(t.getMessage().contains("\"50%\""));
+    assertThat(t.getMessage()).contains("string").contains("60%").contains("to match pattern:").contains("\"50%\"");
   }
 }

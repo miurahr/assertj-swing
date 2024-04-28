@@ -12,11 +12,13 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -32,14 +34,14 @@ public class JListItemIndexValidator_validateIndices_Test extends JListItemIndex
 
   @Test
   public void should_Throw_Error_If_Index_Is_Negative() {
-    thrown.expectIndexOutOfBoundsException("Item index (-1) should be between [0] and [2] (inclusive)");
-    validateIndices(-1, 0, 1);
+    Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> validateIndices(-1, 0, 1));
+    assertThat(t.getMessage()).contains("Item index (-1) should be between [0] and [2] (inclusive)");
   }
 
   @Test
   public void should_Throw_Error_If_Index_Is_Greater_Than_Index_Of_Last_Item() {
-    thrown.expectIndexOutOfBoundsException("Item index (3) should be between [0] and [2] (inclusive)");
-    validateIndices(0, 1, 3);
+    Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> validateIndices(0, 1, 3));
+    assertThat(t.getMessage()).contains("Item index (3) should be between [0] and [2] (inclusive)");
   }
 
   @RunsInEDT

@@ -14,6 +14,8 @@ package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.driver.JTextComponentTextQuery.textOf;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import javax.swing.text.JTextComponent;
 
@@ -46,13 +48,11 @@ public class JSpinnerDriver_enterText_Test extends JSpinnerDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JSpinner_Is_Disabled() {
     disableSpinner();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.enterText(spinner, "Gandalf");
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.enterText(spinner, "Gandalf"));
   }
 
   @Test
   public void should_Throw_Error_If_JSpinner_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.enterText(spinner, "Gandalf");
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.enterText(spinner, "Gandalf"));
   }
 }

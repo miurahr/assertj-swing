@@ -14,6 +14,9 @@ package org.assertj.swing.driver;
 
 import org.junit.Test;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for {@link JSpinnerDriver#decrement(javax.swing.JSpinner, int)}.
  * 
@@ -31,13 +34,11 @@ public class JSpinnerDriver_decrementWithTimes_Test extends JSpinnerDriver_TestC
   @Test
   public void should_Throw_Error_If_JSpinner_Is_Disabled() {
     disableSpinner();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.decrement(spinner, 2);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.decrement(spinner, 2));
   }
 
   @Test
   public void should_Throw_Error_If_JSpinner_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.decrement(spinner, 2);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.decrement(spinner, 2));
   }
 }

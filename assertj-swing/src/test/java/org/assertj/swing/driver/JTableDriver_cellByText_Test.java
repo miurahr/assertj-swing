@@ -37,6 +37,6 @@ public class JTableDriver_cellByText_Test extends JTableDriver_TestCase {
   @Test
   public void should_Throw_Error_If_A_Matching_Cell_Was_Not_Found() {
     Throwable t = Assert.assertThrows(ActionFailedException.class, () -> driver.cell(table, "Hello World"));
-    Assert.assertTrue(t.getMessage().contains("Unable to find cell matching value 'Hello World'"));
+    assertThat(t.getMessage()).contains("Unable to find cell matching value 'Hello World'");
   }
 }

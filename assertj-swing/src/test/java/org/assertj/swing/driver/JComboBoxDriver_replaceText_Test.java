@@ -13,8 +13,9 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -43,12 +44,12 @@ public class JComboBoxDriver_replaceText_Test extends JComboBoxDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JComboBox_Is_Disabled() {
     disableComboBox();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.replaceText(comboBox, "Hello"));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.replaceText(comboBox, "Hello"));
   }
 
   @Test
   public void should_Throw_Error_If_JComboBox_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.replaceText(comboBox, "Hello"));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.replaceText(comboBox, "Hello"));
   }
 
   @Test

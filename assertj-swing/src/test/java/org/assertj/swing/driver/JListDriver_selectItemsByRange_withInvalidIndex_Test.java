@@ -47,16 +47,16 @@ public class JListDriver_selectItemsByRange_withInvalidIndex_Test extends JListD
   @Test
   public void should_Throw_Error_If_Starting_Index_Is_Out_Of_Bounds() {
     Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectItems(list, index, 1));
-    Assert.assertTrue(t.getMessage().contains(concat("Item index (", valueOf(index),
-        ") should be between [0] and [2] (inclusive)")));
+    assertThat(t.getMessage()).contains(concat("Item index (", valueOf(index),
+        ") should be between [0] and [2] (inclusive)"));
 
   }
 
   @Test
   public void should_Throw_Error_If_Ending_Index_Is_Out_Of_Bounds() {
     Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectItems(list, 0, index));
-    Assert.assertTrue(t.getMessage().contains(concat("Item index (", valueOf(index),
-        ") should be between [0] and [2] (inclusive)")));
+    assertThat(t.getMessage()).contains(concat("Item index (", valueOf(index),
+        ") should be between [0] and [2] (inclusive)"));
   }
 
   @Test

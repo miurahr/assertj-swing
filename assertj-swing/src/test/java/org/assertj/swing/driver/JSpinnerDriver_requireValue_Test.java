@@ -12,7 +12,11 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 /**
  * Tests for {@link JSpinnerDriver#requireValue(javax.swing.JSpinner, Object)}.
@@ -29,7 +33,7 @@ public class JSpinnerDriver_requireValue_Test extends JSpinnerDriver_TestCase {
   @Test
   public void should_Fail_If_Value_Is_Not_Equal_To_Expected() {
     selectLastValue();
-    thrown.expectAssertionError("value", "[Frodo]", "[Gandalf]");
-    driver.requireValue(spinner, "Frodo");
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireValue(spinner, "Frodo"));
+    assertThat(t.getMessage()).contains("value").contains("[Frodo]").contains("[Gandalf]");
   }
 }

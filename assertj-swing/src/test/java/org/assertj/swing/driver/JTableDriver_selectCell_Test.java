@@ -13,8 +13,9 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.swing.data.TableCell.row;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -36,7 +37,7 @@ public class JTableDriver_selectCell_Test extends JTableDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JTable_Is_Disabled() {
     disableTable();
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       robot.settings().clickOnDisabledComponentsAllowed(false);
       driver.selectCell(table, row(0).column(0));
     });
@@ -44,6 +45,6 @@ public class JTableDriver_selectCell_Test extends JTableDriver_TestCase {
 
   @Test
   public void should_Throw_Error_If_JTable_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.selectCell(table, row(0).column(0)));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectCell(table, row(0).column(0)));
   }
 }

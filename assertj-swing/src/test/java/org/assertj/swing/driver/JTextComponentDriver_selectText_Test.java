@@ -17,6 +17,8 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.driver.JTextComponentSelectedTextQuery.selectedTextOf;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import java.awt.Dimension;
 
@@ -76,13 +78,11 @@ public class JTextComponentDriver_selectText_Test extends JTextComponentDriver_T
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Disabled() {
     disableTextField();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.selectText(textField, "llo W");
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.selectText(textField, "llo W"));
   }
 
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectText(textField, "llo W");
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectText(textField, "llo W"));
   }
 }

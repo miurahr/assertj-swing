@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import java.util.Collection;
@@ -44,6 +45,6 @@ public class JTabbedPaneDriver_selectTabByIndex_withInvalidIndices_Test extends 
   @Test
   public void should_Throw_Error_If_Index_Is_Out_Of_Bounds() {
     Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectTab(tabbedPane, index));
-    Assert.assertTrue(t.getMessage().contains(String.format("Index <%d> is not within the JTabbedPane bounds of <0> and <2> (inclusive)", index)));
+    assertThat(t.getMessage()).contains(String.format("Index <%d> is not within the JTabbedPane bounds of <0> and <2> (inclusive)", index));
   }
 }

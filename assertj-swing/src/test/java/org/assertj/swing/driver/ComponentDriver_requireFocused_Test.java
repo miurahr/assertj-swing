@@ -17,6 +17,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Tests for {@link ComponentDriver#requireFocused(java.awt.Component)}.
  * 
@@ -28,8 +30,7 @@ public class ComponentDriver_requireFocused_Test extends ComponentDriver_TestCas
   @Test
   public void should_Fail_If_Component_Does_Not_Have_Focus() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireFocused(window.button));
-    Assert.assertTrue(t.getMessage().contains("Expected component"));
-    Assert.assertTrue(t.getMessage().contains("to have input focus"));
+    assertThat(t.getMessage()).contains("Expected component").contains("to have input focus");
   }
 
   @Test

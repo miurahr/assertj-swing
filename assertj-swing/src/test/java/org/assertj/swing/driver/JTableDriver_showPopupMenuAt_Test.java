@@ -15,6 +15,8 @@ package org.assertj.swing.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 import static org.assertj.swing.data.TableCell.row;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 import static org.assertj.swing.test.task.ComponentSetPopupMenuTask.createAndSetPopupMenu;
 
 import javax.swing.JPopupMenu;
@@ -22,7 +24,6 @@ import javax.swing.JPopupMenu;
 import org.assertj.swing.data.TableCell;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -58,7 +59,7 @@ public class JTableDriver_showPopupMenuAt_Test extends JTableDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JTable_Is_Disabled() {
     disableTable();
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       robot.settings().clickOnDisabledComponentsAllowed(false);
       driver.showPopupMenuAt(table, row(0).column(0));
     });
@@ -66,6 +67,6 @@ public class JTableDriver_showPopupMenuAt_Test extends JTableDriver_TestCase {
 
   @Test
   public void should_Throw_Error_If_JTable_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.showPopupMenuAt(table, row(0).column(0)));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.showPopupMenuAt(table, row(0).column(0)));
   }
 }

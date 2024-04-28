@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.driver.JTableCellValueQuery.cellValueOf;
-import static org.assertj.swing.test.ExpectedException.none;
 
 import java.awt.Dimension;
 
@@ -22,9 +22,9 @@ import javax.swing.JTable;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellWriter;
 import org.assertj.swing.exception.ActionFailedException;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
-import org.junit.Rule;
+import org.junit.Assert;
+import org.junit.function.ThrowingRunnable;
 
 /**
  * Test case for implementations of {@link JTableCellWriter}.
@@ -37,9 +37,6 @@ public abstract class JTableCellWriter_TestCase extends RobotBasedTestCase {
   JTable table;
   JTableCellWriter writer;
 
-  @Rule
-  public ExpectedException thrown = none();
-
   @Override
   protected final void onSetUp() {
     writer = createWriter();
@@ -50,8 +47,9 @@ public abstract class JTableCellWriter_TestCase extends RobotBasedTestCase {
 
   abstract JTableCellWriter createWriter();
 
-  final void assertActionFailedExceptionWithMessageIndicatingWriterWasUnableToActivateEditor() {
-    thrown.expect(ActionFailedException.class, "Unable to find or activate editor");
+  final void assertActionFailedExceptionWithMessageIndicatingWriterWasUnableToActivateEditor(ThrowingRunnable action) {
+    Throwable t = Assert.assertThrows(ActionFailedException.class, action);
+    assertThat(t.getMessage()).contains("Unable to find or activate editor");
   }
 
   @RunsInEDT

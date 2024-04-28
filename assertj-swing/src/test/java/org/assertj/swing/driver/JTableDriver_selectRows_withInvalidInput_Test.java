@@ -12,15 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.builder.JTables.table;
 
 import javax.swing.JTable;
 
 import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
+import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -29,8 +28,6 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class JTableDriver_selectRows_withInvalidInput_Test extends RobotBasedTestCase {
-  @Rule
-  public ExpectedException thrown = none();
 
   private static JTable table;
   private JTableDriver driver;
@@ -47,13 +44,11 @@ public class JTableDriver_selectRows_withInvalidInput_Test extends RobotBasedTes
 
   @Test
   public void should_Throw_Error_If_Array_Of_Indices_Is_Null() {
-    thrown.expect(NullPointerException.class);
-    driver.selectRows(table, null);
+    Assert.assertThrows(NullPointerException.class, () -> driver.selectRows(table, null));
   }
 
   @Test
   public void should_Throw_Error_If_Array_Of_Indices_Is_Empty() {
-    thrown.expect(IllegalArgumentException.class);
-    driver.selectRows(table, new int[0]);
+    Assert.assertThrows(IllegalArgumentException.class, () -> driver.selectRows(table));
   }
 }

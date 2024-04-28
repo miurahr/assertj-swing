@@ -13,10 +13,10 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.*;
 
 import java.awt.Dimension;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -36,17 +36,17 @@ public class FrameDriver_resizeWidthTo_Test extends FrameDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Frame_Is_Disabled() {
     disableWindow();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.resizeWidthTo(window, 100));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.resizeWidthTo(window, 100));
   }
 
   @Test
   public void should_Throw_Error_If_Frame_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.resizeWidthTo(window, 100));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.resizeWidthTo(window, 100));
   }
 
   @Test
   public void should_Throw_Error_If_Frame_Is_Not_Resizable() {
     makeWindowNotResizable();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.resizeWidthTo(window, 100));
+    assertThatIllegalStateExceptionCauseIsNotResizableComponent(() -> driver.resizeWidthTo(window, 100));
   }
 }

@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import java.util.regex.Pattern;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -40,9 +40,6 @@ public class JTextComponentDriver_requireTextAsString_Test extends JTextComponen
   public void should_Fail_If_Does_Not_Have_Expected_Text() {
     setTextFieldText("Hi");
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireText(textField, "Bye"));
-    Assert.assertTrue(t.getMessage().contains("text"));
-    Assert.assertTrue(t.getMessage().contains("Hi"));
-    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
-    Assert.assertTrue(t.getMessage().contains("\"Bye\""));
+    assertThat(t.getMessage()).contains("text").contains("Hi").contains("to match pattern:").contains("\"Bye\"");
   }
 }

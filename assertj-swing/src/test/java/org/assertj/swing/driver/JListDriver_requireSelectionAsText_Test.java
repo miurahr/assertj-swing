@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import java.util.regex.Pattern;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests for {@link JListDriver#requireSelection(javax.swing.JList, String)}.
@@ -42,17 +42,13 @@ public class JListDriver_requireSelectionAsText_Test extends JListDriver_TestCas
   public void should_Fail_If_There_Is_No_Selection() {
     clearSelection();
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(list, "one"));
-    Assert.assertTrue(t.getMessage().contains("property:'selectedIndex'"));
-    Assert.assertTrue(t.getMessage().contains("No selection"));
+    assertThat(t.getMessage()).contains("property:'selectedIndex'").contains("No selection");
   }
 
   @Test
   public void should_Fail_If_Selection_Is_Not_Equal_To_Expected() {
     select(1);
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(list, "one"));
-    Assert.assertTrue(t.getMessage().contains("selectedIndex"));
-    Assert.assertTrue(t.getMessage().contains("two"));
-    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
-    Assert.assertTrue(t.getMessage().contains("\"one\""));
+    assertThat(t.getMessage()).contains("selectedIndex").contains("two").contains("to match pattern:").contains("\"one\"");
   }
 }

@@ -14,6 +14,9 @@ package org.assertj.swing.driver;
 
 import org.junit.Test;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for {@link JScrollBarDriver#scrollBlockDown(javax.swing.JScrollBar, int)}.
  * 
@@ -30,13 +33,11 @@ public class JScrollBarDriver_scrollBlockDownWithTimes_Test extends JScrollBarDr
   @Test
   public void should_Throw_Error_If_JScrollBar_Is_Disabled() {
     disableScrollBar();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.scrollBlockDown(scrollBar, 2);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.scrollBlockDown(scrollBar, 2));
   }
 
   @Test
   public void should_Throw_Error_If_JScrollBar_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.scrollBlockDown(scrollBar, 2);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.scrollBlockDown(scrollBar, 2));
   }
 }

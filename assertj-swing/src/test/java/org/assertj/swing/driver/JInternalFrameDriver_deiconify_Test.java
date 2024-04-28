@@ -16,9 +16,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.driver.JInternalFrameAction.DEICONIFY;
 import static org.assertj.swing.driver.JInternalFrameIconQuery.isIconified;
 import static org.assertj.swing.driver.JInternalFrameSetIconTask.setIcon;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.junit.Test;
+
+import javax.swing.*;
 
 /**
  * Tests for {@link JInternalFrameDriver#deiconify(JInternalFrame)}.
@@ -43,7 +46,6 @@ public class JInternalFrameDriver_deiconify_Test extends JInternalFrameDriver_Te
 
   @Test
   public void should_Throw_Error_If_JInternalFrame_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.deiconify(internalFrame);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.deiconify(internalFrame));
   }
 }

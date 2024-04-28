@@ -18,6 +18,8 @@ import org.junit.Assert;
 import org.junit.ComparisonFailure;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Tests for {@link FrameDriver#requireTitle(Frame, String)}.
  *
@@ -29,7 +31,7 @@ public class FrameDriver_requireTitle_Test extends FrameDriver_TestCase {
   @Test
   public void should_Fail_If_Frame_Does_Not_Have_Expected_Title() {
     Throwable t = Assert.assertThrows(ComparisonFailure.class, () -> driver.requireTitle(window, "incorrect title"));
-    Assert.assertTrue(t.getMessage().contains("expected:<\"[incorrect title]\"> but was:<\"[" + CORRECT_TITLE + "]\">"));
+    assertThat(t.getMessage()).contains("expected:<\"[incorrect title]\"> but was:<\"[" + CORRECT_TITLE + "]\">");
   }
 
   @Test

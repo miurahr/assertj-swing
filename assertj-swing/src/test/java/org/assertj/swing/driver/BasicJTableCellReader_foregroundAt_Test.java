@@ -13,11 +13,11 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import javax.swing.JLabel;
@@ -49,7 +49,7 @@ public class BasicJTableCellReader_foregroundAt_Test extends BasicJTableCellRead
 
   @RunsInEDT
   @NotNull private static Color foregroundOf(final @NotNull Component component) {
-    Color result = execute(() -> component.getForeground());
-    return checkNotNull(result);
+    Color result = execute(component::getForeground);
+    return Objects.requireNonNull(result);
   }
 }

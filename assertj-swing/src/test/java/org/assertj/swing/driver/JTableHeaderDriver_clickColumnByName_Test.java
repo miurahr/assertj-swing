@@ -13,7 +13,12 @@
 package org.assertj.swing.driver;
 
 import org.assertj.swing.exception.LocationUnavailableException;
+import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JTableHeaderDriver#clickColumn(javax.swing.table.JTableHeader, String)}.
@@ -23,20 +28,18 @@ import org.junit.Test;
 public class JTableHeaderDriver_clickColumnByName_Test extends JTableHeaderDriver_TestCase {
   @Test
   public void should_Fail_If_Matching_Column_Was_Not_Found() {
-    thrown.expect(LocationUnavailableException.class, "Unable to find column with name matching value 'hello'");
-    driver.clickColumn(tableHeader, "hello");
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.clickColumn(tableHeader, "hello"));
+    assertThat(t.getMessage()).contains("Unable to find column with name matching value 'hello'");
   }
 
   @Test
   public void should_Throw_Error_If_JTableHeader_Is_Disabled() {
     disableTableHeader();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.clickColumn(tableHeader, "0");
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.clickColumn(tableHeader, "0"));
   }
 
   @Test
   public void should_Throw_Error_If_JTableHeader_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.clickColumn(tableHeader, "0");
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.clickColumn(tableHeader, "0"));
   }
 }

@@ -13,11 +13,12 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
-import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
@@ -48,11 +49,11 @@ public class JTreeDriver_doubleClickRow_Test extends JTreeDriver_clickCell_TestC
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.doubleClickRow(tree, 0));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.doubleClickRow(tree, 0));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.doubleClickRow(tree, 0));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.doubleClickRow(tree, 0));
   }
 }

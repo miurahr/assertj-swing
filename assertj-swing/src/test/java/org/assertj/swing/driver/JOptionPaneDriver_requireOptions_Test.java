@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Arrays.array;
 import static org.assertj.swing.test.swing.JOptionPaneLauncher.pack;
 
@@ -38,9 +39,6 @@ public class JOptionPaneDriver_requireOptions_Test extends JOptionPaneDriver_Tes
     JOptionPane optionPane = messageWithOptions("First", "Second");
     pack(optionPane, title());
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireOptions(optionPane, array("Third")));
-    Assert.assertTrue(t.getMessage().contains("options"));
-    Assert.assertTrue(t.getMessage().contains("[First"));
-    Assert.assertTrue(t.getMessage().contains("Secon]d"));
-    Assert.assertTrue(t.getMessage().contains("[Thir]d"));
+    assertThat(t.getMessage()).contains("options").contains("[First").contains("Secon]d").contains("[Thir]d");
   }
 }

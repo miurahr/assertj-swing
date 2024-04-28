@@ -14,6 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.query.ComponentLocationOnScreenQuery.locationOnScreen;
+import static org.assertj.swing.test.ExpectedException.*;
 
 import java.awt.Point;
 
@@ -38,13 +39,13 @@ public class WindowDriver_moveTo_Test extends WindowDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Window_Is_Disabled() {
     disableWindow();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.moveTo(window, new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() ->
+      driver.moveTo(window, new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100)));
   }
 
   @Test
   public void should_Throw_Error_If_Window_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.moveTo(window, new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() ->
+      driver.moveTo(window, new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100)));
   }
 }

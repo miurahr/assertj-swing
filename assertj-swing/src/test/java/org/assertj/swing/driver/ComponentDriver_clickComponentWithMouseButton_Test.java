@@ -16,6 +16,8 @@ import static org.assertj.swing.awt.AWT.centerOf;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.MIDDLE_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.test.recorder.ClickRecorder;
@@ -72,7 +74,7 @@ public class ComponentDriver_clickComponentWithMouseButton_Test extends Componen
     robot.settings().clickOnDisabledComponentsAllowed(false);
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
     disableButton();
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       try {
         driver.click(window.button, RIGHT_BUTTON);
       } finally {
@@ -84,7 +86,7 @@ public class ComponentDriver_clickComponentWithMouseButton_Test extends Componen
   @Test
   public void should_Z_Throw_Error_When_Clicking_Component_Not_Showing() {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> {
       try {
         driver.click(window.button, RIGHT_BUTTON);
       } finally {

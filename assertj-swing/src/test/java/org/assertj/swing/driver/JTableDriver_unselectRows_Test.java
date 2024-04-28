@@ -12,9 +12,12 @@
  */
 package org.assertj.swing.driver;
 
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JTableDriver#unselectRows(javax.swing.JTable, int...)}.
@@ -33,7 +36,7 @@ public class JTableDriver_unselectRows_Test extends JTableDriver_TestCase {
   public void should_Throw_Error_If_Index_Is_Equal_To_The_Number_Of_Rows() {
     showWindow();
     Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.unselectRows(table, 10));
-    Assert.assertTrue(t.getMessage().contains("row <10> should be between <0> and <9>"));
+    assertThat(t.getMessage()).contains("row <10> should be between <0> and <9>");
   }
 
   @Test
@@ -63,7 +66,7 @@ public class JTableDriver_unselectRows_Test extends JTableDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JTable_Is_Disabled() {
     disableTable();
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       robot.settings().clickOnDisabledComponentsAllowed(false);
       driver.unselectRows(table, 0, 2);
     });
@@ -71,6 +74,6 @@ public class JTableDriver_unselectRows_Test extends JTableDriver_TestCase {
 
   @Test
   public void should_Throw_Error_If_JTable_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.unselectRows(table, 0, 2));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.unselectRows(table, 0, 2));
   }
 }

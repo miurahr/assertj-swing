@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 import java.awt.Point;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 final class ComponentLocationQuery {
   static @NotNull Point locationOf(final @NotNull Component component) {
     Point result = execute(() -> component.getLocation());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private ComponentLocationQuery() {

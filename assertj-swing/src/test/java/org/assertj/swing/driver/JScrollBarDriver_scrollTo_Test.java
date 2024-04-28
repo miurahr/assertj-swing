@@ -12,7 +12,12 @@
  */
 package org.assertj.swing.driver;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JScrollBarDriver#scrollTo(javax.swing.JScrollBar, int)}.
@@ -30,14 +35,12 @@ public class JScrollBarDriver_scrollTo_Test extends JScrollBarDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JScrollBar_Is_Disabled() {
     disableScrollBar();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.scrollTo(scrollBar, 68);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.scrollTo(scrollBar, 68));
   }
 
   @Test
   public void should_Throw_Error_If_JScrollBar_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.scrollTo(scrollBar, 68);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.scrollTo(scrollBar, 68));
   }
 
   @Test
@@ -48,7 +51,7 @@ public class JScrollBarDriver_scrollTo_Test extends JScrollBarDriver_TestCase {
 
   @Test
   public void should_Throw_Error_If_Position_Is_Greater_Than_Maximum() {
-    thrown.expectIllegalArgumentException("Position <90> is not within the JScrollBar bounds of <10> and <80>");
-    driver.scrollTo(scrollBar, 90);
+    Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> driver.scrollTo(scrollBar, 90));
+    assertThat(t.getMessage()).contains("Position <90> is not within the JScrollBar bounds of <10> and <80>");
   }
 }

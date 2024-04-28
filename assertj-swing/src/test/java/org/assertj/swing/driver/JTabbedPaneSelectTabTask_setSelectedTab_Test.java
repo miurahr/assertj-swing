@@ -57,7 +57,7 @@ public class JTabbedPaneSelectTabTask_setSelectedTab_Test extends RobotBasedTest
 
   @RunsInEDT
   private static int selectedIndexOf(final JTabbedPane tabbedPane) {
-    return execute(() -> tabbedPane.getSelectedIndex());
+    return execute(tabbedPane::getSelectedIndex);
   }
 
   private static class MyWindow extends TestWindow {
@@ -65,7 +65,7 @@ public class JTabbedPaneSelectTabTask_setSelectedTab_Test extends RobotBasedTest
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

@@ -17,7 +17,6 @@ import static org.assertj.swing.driver.JTextComponentSelectedTextQuery.selectedT
 import static org.assertj.swing.driver.JTextComponentSetEditableTask.setTextFieldEditable;
 import static org.assertj.swing.driver.JTextComponentTextQuery.textOf;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 
 import java.awt.Dimension;
@@ -25,10 +24,8 @@ import java.awt.Dimension;
 import javax.swing.JTextField;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
-import org.junit.Rule;
 
 /**
  * Base test case for {@link JTextComponentDriver}.
@@ -40,9 +37,6 @@ public abstract class JTextComponentDriver_TestCase extends RobotBasedTestCase {
   MyWindow window;
   JTextField textField;
   JTextComponentDriver driver;
-
-  @Rule
-  public ExpectedException thrown = none();
 
   @Override
   protected final void onSetUp() {

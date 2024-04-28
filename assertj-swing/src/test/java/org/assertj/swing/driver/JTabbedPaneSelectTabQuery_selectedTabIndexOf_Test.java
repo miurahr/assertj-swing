@@ -59,7 +59,7 @@ public class JTabbedPaneSelectTabQuery_selectedTabIndexOf_Test extends RobotBase
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

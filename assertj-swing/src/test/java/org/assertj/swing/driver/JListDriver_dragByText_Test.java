@@ -12,8 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JListDriver#drag(javax.swing.JList, String)}.
@@ -25,11 +27,11 @@ public class JListDriver_dragByText_Test extends JListDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.drag(list, "two"));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.drag(list, "two"));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.drag(list, "two"));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.drag(list, "two"));
   }
 }

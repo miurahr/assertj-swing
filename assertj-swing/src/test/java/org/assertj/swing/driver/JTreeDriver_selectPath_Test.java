@@ -12,7 +12,10 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Arrays.array;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -38,13 +41,13 @@ public class JTreeDriver_selectPath_Test extends JTreeDriver_selectCell_TestCase
   public void should_Throw_Error_If_Path_Not_Found() {
     showWindow();
     Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.selectPath(tree, "another"));
-    Assert.assertTrue(t.getMessage().contains("Unable to find path 'another'"));
+    assertThat(t.getMessage()).contains("Unable to find path 'another'");
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.selectPath(tree, "root/branch1"));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.selectPath(tree, "root/branch1"));
   }
 
   @Test
@@ -68,6 +71,6 @@ public class JTreeDriver_selectPath_Test extends JTreeDriver_selectCell_TestCase
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.selectPath(tree, "root/branch1"));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectPath(tree, "root/branch1"));
   }
 }

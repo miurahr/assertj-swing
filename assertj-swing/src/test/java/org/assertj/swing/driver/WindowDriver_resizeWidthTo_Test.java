@@ -14,6 +14,8 @@ package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.query.ComponentSizeQuery.sizeOf;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import java.awt.Dimension;
 
@@ -37,14 +39,12 @@ public class WindowDriver_resizeWidthTo_Test extends WindowDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Window_Is_Disabled() {
     disableWindow();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.resizeWidthTo(window, 10);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.resizeWidthTo(window, 10));
   }
 
   @Test
   public void should_Throw_Error_If_Window_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.resizeWidthTo(window, 10);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.resizeWidthTo(window, 10));
   }
 
   @Test(expected = IllegalStateException.class)

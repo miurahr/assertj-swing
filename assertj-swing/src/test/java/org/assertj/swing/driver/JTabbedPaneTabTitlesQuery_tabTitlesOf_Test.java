@@ -48,7 +48,7 @@ public class JTabbedPaneTabTitlesQuery_tabTitlesOf_Test extends RobotBasedTestCa
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

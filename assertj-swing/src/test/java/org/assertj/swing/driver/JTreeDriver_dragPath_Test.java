@@ -16,6 +16,8 @@ import org.assertj.swing.exception.LocationUnavailableException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for <code>{@link JTreeDriver#drag(javax.swing.JTree, String)}.
  * 
@@ -37,6 +39,6 @@ public class JTreeDriver_dragPath_Test extends JTreeDriver_dragAndDrop_TestCase 
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.drag(tree, "root"));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.drag(tree, "root"));
   }
 }

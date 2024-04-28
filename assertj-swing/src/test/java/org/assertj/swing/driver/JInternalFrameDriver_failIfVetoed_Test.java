@@ -12,12 +12,14 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.driver.JInternalFrameAction.MAXIMIZE;
 
 import java.beans.PropertyVetoException;
 
 import org.assertj.swing.exception.ActionFailedException;
 import org.assertj.swing.exception.UnexpectedException;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -32,9 +34,8 @@ public class JInternalFrameDriver_failIfVetoed_Test extends JInternalFrameDriver
   public void should_Throw_Error_If_SetProperty_Is_Vetoed() {
     final PropertyVetoException vetoed = new PropertyVetoException("Test", null);
     JInternalFrameAction action = MAXIMIZE;
-    thrown.expect(ActionFailedException.class, action.name);
-    thrown.expectMessageToContain("was vetoed: <Test>");
-    driver.failIfVetoed(internalFrame, action, new UnexpectedException(vetoed));
+    Throwable t = Assert.assertThrows(ActionFailedException.class, () -> driver.failIfVetoed(internalFrame, action, new UnexpectedException(vetoed)));
+    assertThat(t.getMessage()).contains(action.name).contains("was vetoed: <Test>");
   }
 
   @Test

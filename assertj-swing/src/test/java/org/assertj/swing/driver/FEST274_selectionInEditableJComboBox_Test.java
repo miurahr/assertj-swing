@@ -52,7 +52,7 @@ public class FEST274_selectionInEditableJComboBox_Test extends RobotBasedTestCas
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

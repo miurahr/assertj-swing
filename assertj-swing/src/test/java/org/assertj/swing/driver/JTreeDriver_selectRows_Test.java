@@ -12,8 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JTreeDriver#selectRows(javax.swing.JTree, int[])}.
@@ -36,12 +38,12 @@ public class JTreeDriver_selectRows_Test extends JTreeDriver_selectCell_TestCase
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
     int[] rows = { 0, 1, 2 };
-    Assert.assertThrows(IllegalStateException.class, () -> driver.selectRows(tree, rows));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.selectRows(tree, rows));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
     int[] rows = { 0, 1, 2 };
-    Assert.assertThrows(IllegalStateException.class, () -> driver.selectRows(tree, rows));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectRows(tree, rows));
   }
 }

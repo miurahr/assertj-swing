@@ -13,10 +13,11 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import javax.swing.JPopupMenu;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -44,7 +45,7 @@ public class ComponentDriver_invokePopup_Test extends ComponentDriver_invokePopu
   public void should_Throw_Error_If_Component_Is_Disabled_And_ClickOnDisabledAllowd_Is_False() {
     robot.settings().clickOnDisabledComponentsAllowed(false);
     disableTextField();
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
       try {
         driver.invokePopupMenu(window.textField);
       } finally {
@@ -55,7 +56,7 @@ public class ComponentDriver_invokePopup_Test extends ComponentDriver_invokePopu
 
   @Test
   public void should_Throw_Error_If_Component_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> {
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> {
       try {
         driver.invokePopupMenu(window.textField);
       } finally {

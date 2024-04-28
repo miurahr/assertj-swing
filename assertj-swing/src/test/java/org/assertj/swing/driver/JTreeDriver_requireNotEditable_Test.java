@@ -12,6 +12,7 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.driver.JTreeSetEditableTask.setEditable;
 
 import org.junit.Assert;
@@ -35,7 +36,6 @@ public class JTreeDriver_requireNotEditable_Test extends JTreeDriver_TestCase {
     setEditable(tree, true);
     robot.waitForIdle();
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireNotEditable(tree));
-    Assert.assertTrue(t.getMessage().contains("property:'editable'"));
-    Assert.assertTrue(t.getMessage().contains("expected:<[fals]e> but was:<[tru]e>"));
+    assertThat(t.getMessage()).contains("property:'editable'").contains("expected:<[fals]e> but was:<[tru]e>");
   }
 }

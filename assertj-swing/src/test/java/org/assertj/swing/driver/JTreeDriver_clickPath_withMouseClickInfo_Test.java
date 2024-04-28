@@ -15,6 +15,8 @@ package org.assertj.swing.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 import static org.assertj.swing.core.MouseClickInfo.rightButton;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 import org.assertj.swing.core.MouseClickInfo;
 import org.assertj.swing.exception.LocationUnavailableException;
@@ -55,17 +57,17 @@ public class JTreeDriver_clickPath_withMouseClickInfo_Test extends JTreeDriver_c
   public void should_Throw_Error_If_Path_Not_Found() {
     showWindow();
     Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.clickPath(tree, "another", mouseClickInfo));
-    Assert.assertTrue(t.getMessage().contains("Unable to find path 'another'"));
+    assertThat(t.getMessage()).contains("Unable to find path 'another'");
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Disabled() {
     disableTree();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.clickPath(tree, "root/branch1", mouseClickInfo));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.clickPath(tree, "root/branch1", mouseClickInfo));
   }
 
   @Test
   public void should_Throw_Error_If_JTree_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.clickPath(tree, "root/branch1", mouseClickInfo));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.clickPath(tree, "root/branch1", mouseClickInfo));
   }
 }

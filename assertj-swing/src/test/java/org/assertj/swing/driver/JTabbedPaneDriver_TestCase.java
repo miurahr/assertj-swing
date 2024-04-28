@@ -66,7 +66,7 @@ public abstract class JTabbedPaneDriver_TestCase extends RobotBasedTestCase {
 
   @RunsInEDT
   private static int selectedIndexIn(final JTabbedPane tabbedPane) {
-    return execute(() -> tabbedPane.getSelectedIndex());
+    return execute(tabbedPane::getSelectedIndex);
   }
 
   private static class MyWindow extends TestWindow {

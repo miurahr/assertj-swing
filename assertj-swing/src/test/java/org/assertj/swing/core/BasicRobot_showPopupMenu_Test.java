@@ -13,14 +13,12 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.swing.test.ExpectedException.none;
 
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import org.assertj.swing.exception.ComponentLookupException;
-import org.assertj.swing.test.ExpectedException;
-import org.junit.Rule;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -30,8 +28,6 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class BasicRobot_showPopupMenu_Test extends BasicRobot_TestCase {
-  @Rule
-  public ExpectedException thrown = none();
 
   @Test
   public void should_Show_PopupMenu() {
@@ -45,8 +41,7 @@ public class BasicRobot_showPopupMenu_Test extends BasicRobot_TestCase {
 
   @Test
   public void should_Throw_Error_If_PopupMenu_Not_Found() {
-    thrown.expect(ComponentLookupException.class, "Unable to show popup");
-    thrown.expectMessageToContain("on javax.swing.JTextField");
-    robot().showPopupMenu(window().textField());
+    Throwable t = Assert.assertThrows(ComponentLookupException.class, () -> robot().showPopupMenu(window().textField()));
+    assertThat(t.getMessage()).contains("Unable to show popup").contains("on javax.swing.JTextField");
   }
 }

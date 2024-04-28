@@ -49,7 +49,7 @@ public abstract class JTableCellEditingTask_TestCase extends RobotBasedTestCase 
 
   @RunsInEDT
   final boolean isTableEditing() {
-    return execute(() -> window.table.isEditing());
+    return Boolean.TRUE.equals(execute(() -> window.table.isEditing()));
   }
 
   final void assertCellEditingStopped() {

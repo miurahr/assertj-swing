@@ -12,8 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link FrameDriver#deiconify(java.awt.Frame)}.
@@ -24,11 +26,11 @@ public class FrameDriver_deiconify_Test extends FrameDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Frame_Is_Disabled() {
     disableWindow();
-    Assert.assertThrows(IllegalStateException.class, () -> driver.deiconify(window));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.deiconify(window));
   }
 
   @Test
   public void should_Throw_Error_If_Frame_Is_Not_Showing_On_The_Screen() {
-    Assert.assertThrows(IllegalStateException.class, () -> driver.deiconify(window));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.deiconify(window));
   }
 }

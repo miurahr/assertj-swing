@@ -14,6 +14,9 @@ package org.assertj.swing.driver;
 
 import org.junit.Test;
 
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+
 /**
  * Tests for {@link JScrollBarDriver#scrollBlockUp(javax.swing.JScrollBar, int)}.
  * 
@@ -30,13 +33,11 @@ public class JScrollBarDriver_scrollBlockUpWithTimes_Test extends JScrollBarDriv
   @Test
   public void should_Throw_Error_If_JScrollBar_Is_Disabled() {
     disableScrollBar();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.scrollBlockUp(scrollBar, 6);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.scrollBlockUp(scrollBar, 6));
   }
 
   @Test
   public void should_Throw_Error_If_JScrollBar_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.scrollBlockUp(scrollBar, 6);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.scrollBlockUp(scrollBar, 6));
   }
 }

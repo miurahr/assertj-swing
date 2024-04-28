@@ -51,7 +51,7 @@ public class Bug233_cannotSelectItemInSmallJList_Test extends RobotBasedTestCase
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     final JList list = new JList(array("One", superLongText()));
@@ -66,9 +66,7 @@ public class Bug233_cannotSelectItemInSmallJList_Test extends RobotBasedTestCase
 
   static String superLongText() {
     StringBuilder b = new StringBuilder();
-    for (int i = 0; i < 1000; i++) {
-      b.append("a ");
-    }
+    b.append("a ".repeat(1000));
     return b.toString();
   }
 }

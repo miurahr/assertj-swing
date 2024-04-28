@@ -12,8 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import org.assertj.swing.exception.ActionFailedException;
 import org.junit.Test;
+
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
 /**
  * Tests for {@link JTextComponentDriver#selectText(javax.swing.text.JTextComponent, int, int)}.
@@ -32,20 +34,18 @@ public class JTextComponentDriver_selectTextByIndexRange_Test extends JTextCompo
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Disabled() {
     disableTextField();
-    thrown.expectIllegalStateIsDisabledComponent();
-    driver.selectText(textField, 8, 14);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent( () -> driver.selectText(textField, 8, 14));
   }
 
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Not_Showing_On_The_Screen() {
-    thrown.expectIllegalStateIsNotShowingComponent();
-    driver.selectText(textField, 8, 14);
+    assertThatIllegalStateExceptionCauseIsDisabledComponent( () -> driver.selectText(textField, 8, 14));
   }
 
   @Test
   public void should_Throw_Error_If_Indices_Are_Out_Of_Bounds() {
     showWindow();
-    thrown.expect(ActionFailedException.class, "Unable to get location for index <20> in javax.swing.JTextField");
-    driver.selectText(textField, 20, 22);
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectText(textField, 20, 22))
+      .contains("Unable to get location for index <20> in javax.swing.JTextField");
   }
 }

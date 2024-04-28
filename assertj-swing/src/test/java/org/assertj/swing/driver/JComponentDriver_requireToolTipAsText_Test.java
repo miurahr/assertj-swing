@@ -12,12 +12,12 @@
  */
 package org.assertj.swing.driver;
 
-import java.util.regex.Pattern;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests for {@link JComponentDriver#requireToolTip(JComponent, String)}.
@@ -38,9 +38,6 @@ public class JComponentDriver_requireToolTipAsText_Test extends JComponentDriver
   @Test
   public void should_Fail_If_ToolTip_Is_Not_Equal_To_Given_Text() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireToolTip(button, "Hello"));
-    Assert.assertTrue(t.getMessage().contains("toolTipText"));
-    Assert.assertTrue(t.getMessage().contains("A ToolTip"));
-    Assert.assertTrue(t.getMessage().contains("to match pattern:"));
-    Assert.assertTrue(t.getMessage().contains("\"Hello\""));
+    assertThat(t.getMessage()).contains("toolTipText").contains("A ToolTip").contains("to match pattern:").contains("\"Hello\"");
   }
 }

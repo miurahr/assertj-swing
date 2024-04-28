@@ -42,6 +42,6 @@ public class JListDriver_indexOfValueAsString_Test extends JListDriver_TestCase 
   @Test
   public void should_Throw_Error_If_Item_Matching_Given_Value_Was_Not_Found() {
     Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.indexOf(list, "four"));
-    Assert.assertTrue(t.getMessage().contains("Unable to find item matching the value 'four' among the JList contents [\"one\", \"two\", \"three\"]"));
+    assertThat(t.getMessage()).contains("Unable to find item matching the value 'four' among the JList contents [\"one\", \"two\", \"three\"]");
   }
 }

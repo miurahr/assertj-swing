@@ -52,7 +52,7 @@ public class ComponentDriver_fontOf_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private boolean recording;

@@ -13,14 +13,12 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.swing.test.ExpectedException.none;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.assertj.swing.exception.ComponentLookupException;
-import org.assertj.swing.test.ExpectedException;
-import org.junit.Rule;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -30,8 +28,6 @@ import org.junit.Test;
  * @author Yvonne Wang
  */
 public class BasicComponentFinder_findByLabelAndType_Test extends BasicComponentFinder_TestCase {
-  @Rule
-  public ExpectedException thrown = none();
 
   @Test
   public void should_Find_Component() {
@@ -41,8 +37,7 @@ public class BasicComponentFinder_findByLabelAndType_Test extends BasicComponent
 
   @Test
   public void should_Throw_Error_If_Component_Not_Found() {
-    thrown.expect(ComponentLookupException.class);
-    thrown.expectMessageToContain("label='list'", "type=javax.swing.JLabel");
-    finder.findByLabel("list", JLabel.class);
+    Throwable t = Assert.assertThrows(ComponentLookupException.class, () -> finder.findByLabel("list", JLabel.class));
+    assertThat(t.getMessage()).contains("label='list'").contains("type=javax.swing.JLabel");
   }
 }
