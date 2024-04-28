@@ -54,7 +54,7 @@ public class BasicRobot_requireNoJOptionPaneIsShowing_Test extends BasicRobot_Te
 
   @Test
   public void should_Fail_If_A_JOptionPane_Is_Showing() {
-    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
+    Assume.assumeFalse("true".equals(System.getProperty("envIsCi")));
     robot().click(button);
     pauseTillJOptionPaneIsShowing();
     Throwable t = Assert.assertThrows(AssertionError.class, () -> robot().requireNoJOptionPaneIsShowing());

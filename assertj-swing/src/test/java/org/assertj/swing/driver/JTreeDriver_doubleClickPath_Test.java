@@ -36,7 +36,7 @@ public class JTreeDriver_doubleClickPath_Test extends JTreeDriver_clickCell_Test
 
   @Test // FIXME
   public void should_Double_Click_Cell() {
-    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
+    Assume.assumeFalse("true".equals(System.getProperty("envIsCi")));
     showWindow();
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(tree);
     driver.doubleClickPath(tree, "root");

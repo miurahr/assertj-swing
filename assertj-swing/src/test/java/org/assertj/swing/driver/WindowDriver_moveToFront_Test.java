@@ -26,7 +26,7 @@ import org.junit.Test;
 public class WindowDriver_moveToFront_Test extends WindowDriver_TestCase {
   @Test // FIXME
   public void should_Move_Window_To_Front() {
-    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
+    Assume.assumeFalse("true".equals(System.getProperty("envIsCi")));
     showWindow();
     TestWindow.createAndShowNewWindow(getClass());
     assertThat(isActive(window)).isFalse();

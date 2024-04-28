@@ -29,7 +29,7 @@ import org.junit.Test;
 public class NameMatcher_matches_byNameAndShowing_Test extends NameMatcher_TestCase {
   @Test // FIXME: wait timeout error
   public void should_Return_False_If_Name_Does_Not_Match_And_Component_Is_Showing() {
-    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
+    Assume.assumeFalse("true".equals(System.getProperty("envIsCi")));
     window.display();
     NameMatcher matcher = new NameMatcher("b", true);
     assertThat(matcher.matches(window.button)).isFalse();

@@ -71,7 +71,7 @@ public final class Invoker<T> {
    * @throws ReflectionError if a new instance cannot be created.
    */
   public T newInstance(Object... args) {
-    boolean accessible = constructor.isAccessible();
+    boolean accessible = constructor.canAccess(null);
     try {
       makeAccessible(constructor);
       T newInstance = constructor.newInstance(args);
