@@ -72,7 +72,7 @@ public class ContainerFocusOwnerFinder_focusOwnerOf_Test extends SequentialEDTSa
 
   @Test
   public void should_Return_Focus_Owner_In_Owned_Window_When_Top_Window_Does_Not_Have_Focus_Owner() {
-    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
+    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
     window.display();
     MyDialog dialog = MyDialog.createAndShow(window);
     JButton focusOwner = dialog.button;

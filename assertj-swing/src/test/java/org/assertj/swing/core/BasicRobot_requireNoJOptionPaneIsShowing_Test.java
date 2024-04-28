@@ -12,23 +12,20 @@
  */
 package org.assertj.swing.core;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Collection;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.timing.Condition;
+import org.junit.Assert;
 import org.junit.Assume;
-import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -39,8 +36,6 @@ import org.junit.Test;
  */
 public class BasicRobot_requireNoJOptionPaneIsShowing_Test extends BasicRobot_TestCase {
   private JButton button;
-  @Rule
-  public ExpectedException thrown = none();
 
   @RunsInEDT
   @Override
@@ -59,11 +54,11 @@ public class BasicRobot_requireNoJOptionPaneIsShowing_Test extends BasicRobot_Te
 
   @Test
   public void should_Fail_If_A_JOptionPane_Is_Showing() {
-    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
+    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
     robot().click(button);
     pauseTillJOptionPaneIsShowing();
-    thrown.expectAssertionError("Expecting no JOptionPane to be showing");
-    robot().requireNoJOptionPaneIsShowing();
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> robot().requireNoJOptionPaneIsShowing());
+    assertThat(t.getMessage()).contains("Expecting no JOptionPane to be showing");
   }
 
   private void pauseTillJOptionPaneIsShowing() {

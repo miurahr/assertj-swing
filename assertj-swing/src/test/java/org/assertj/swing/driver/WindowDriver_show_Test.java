@@ -29,7 +29,7 @@ import org.junit.Test;
 public class WindowDriver_show_Test extends WindowDriver_TestCase {
   @Test // FIXME
   public void should_Show_Window() {
-    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
+    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
     Dimension newSize = new Dimension(600, 300);
     driver.show(window, newSize);
     assertThat(isVisible(window)).isTrue();

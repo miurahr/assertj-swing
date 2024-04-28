@@ -42,7 +42,7 @@ public class ComponentDriver_doubleClick_Test extends ComponentDriver_TestCase {
 
   @Test // FIXME
   public void should_Double_Click_Disabled_Component() {
-    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
+    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
     showWindow();
     disableButton();
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);

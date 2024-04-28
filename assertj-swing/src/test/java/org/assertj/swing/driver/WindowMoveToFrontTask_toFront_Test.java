@@ -46,7 +46,7 @@ public class WindowMoveToFrontTask_toFront_Test extends RobotBasedTestCase {
 
   @Test // FIXME
   public void should_Move_Window_To_Front() {
-    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
+    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
     assertThat(hasFocus(windowTwo)).isTrue();
     WindowMoveToFrontTask.toFront(windowOne);
     robot.waitForIdle();

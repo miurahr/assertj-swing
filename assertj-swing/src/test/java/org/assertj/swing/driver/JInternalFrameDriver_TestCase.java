@@ -78,7 +78,7 @@ public abstract class JInternalFrameDriver_TestCase extends RobotBasedTestCase {
 
   @RunsInEDT
   private static boolean isMaximized(final JInternalFrame internalFrame) {
-    return execute(() -> internalFrame.isMaximum());
+    return Boolean.TRUE.equals(execute(internalFrame::isMaximum));
   }
 
   @RunsInEDT

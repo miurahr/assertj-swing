@@ -36,7 +36,7 @@ import org.junit.Test;
 public class Bug289_robotShouldFocusWindowBeforeClosing_Test extends RobotBasedTestCase {
   @Test
   public void should_Give_Focus_To_Window_Before_Closing_It() {
-    Assume.assumeTrue("true".equals(System.getProperty("isEnvCi")));
+    Assume.assumeTrue("true".equals(System.getProperty("envIsCi")));
     MyWindow window1 = MyWindow.createNew();
     WindowCloseMonitor monitor1 = new WindowCloseMonitor();
     window1.addWindowListener(monitor1);
