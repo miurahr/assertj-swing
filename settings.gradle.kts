@@ -8,6 +8,7 @@ plugins {
 }
 develocity {
     buildScan {
+        publishing.onlyIf { "true".equals(System.getProperty("envIsCi")) }
         termsOfUseUrl.set("https://gradle.com/terms-of-service")
         termsOfUseAgree.set("yes")
     }
