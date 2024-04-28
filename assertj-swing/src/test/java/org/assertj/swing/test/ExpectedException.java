@@ -48,7 +48,7 @@ public class ExpectedException implements TestRule {
 
   public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsNotShowingComponent(ThrowingRunnable r) {
     Throwable t = Assert.assertThrows(IllegalStateException.class, r);
-    return assertThat(t.getMessage()).contains("Expecting component").contains("to be shown on the screen");
+    return assertThat(t.getMessage()).contains("Expecting component").contains("to be showing on the screen");
   }
 
   public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsNotResizableComponent(ThrowingRunnable runnable) {
