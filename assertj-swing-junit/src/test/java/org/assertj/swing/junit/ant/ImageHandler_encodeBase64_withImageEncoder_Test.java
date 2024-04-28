@@ -39,7 +39,7 @@ public class ImageHandler_encodeBase64_withImageEncoder_Test extends ImageHandle
 
   @Test
   public void should_Not_Rethrow_Error() throws IOException {
-     doThrow(RuntimeException.class).when(encoder).encodeBase64(image);
-     assertThat(ImageHandler.encodeBase64(image, encoder)).isNull();
+    doThrow(RuntimeException.class).when(encoder).encodeBase64(image);
+    assertThat(ImageHandler.encodeBase64(image, encoder)).isNull();
   }
 }

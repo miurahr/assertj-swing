@@ -32,6 +32,5 @@ final class JTableCellValueQuery {
     return execute(() -> table.getValueAt(row, column));
   }
 
-  private JTableCellValueQuery() {
-  }
+  private JTableCellValueQuery() {}
 }

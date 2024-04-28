@@ -34,6 +34,5 @@ final class JOptionPaneOptionsQuery {
     return checkNotNull(result);
   }
 
-  private JOptionPaneOptionsQuery() {
-  }
+  private JOptionPaneOptionsQuery() {}
 }

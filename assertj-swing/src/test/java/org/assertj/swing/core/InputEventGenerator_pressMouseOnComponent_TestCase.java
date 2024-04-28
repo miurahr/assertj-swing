@@ -46,7 +46,8 @@ public abstract class InputEventGenerator_pressMouseOnComponent_TestCase extends
   private final int buttonMask;
 
   @Parameters
-  @NotNull public static Collection<Object[]> mouseButtons() {
+  @NotNull
+  public static Collection<Object[]> mouseButtons() {
     return newArrayList(MouseButtonProvider.mouseButtons());
   }
 

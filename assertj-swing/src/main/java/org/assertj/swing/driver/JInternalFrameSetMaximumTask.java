@@ -33,6 +33,5 @@ final class JInternalFrameSetMaximumTask {
     });
   }
 
-  private JInternalFrameSetMaximumTask() {
-  }
+  private JInternalFrameSetMaximumTask() {}
 }

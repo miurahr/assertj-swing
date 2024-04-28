@@ -20,8 +20,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.edt.GuiQuery;
 
 public final class JApplets {
-  private JApplets() {
-  }
+  private JApplets() {}
 
   public static JAppletFactory applet() {
     return new JAppletFactory();

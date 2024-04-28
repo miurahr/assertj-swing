@@ -24,7 +24,6 @@ import java.awt.Window;
 import java.util.Collection;
 import java.util.Set;
 
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -113,7 +112,8 @@ class Context {
   }
 
   @RunsInEDT
-  @Nullable private static Component topParentOf(final @NotNull Component c) {
+  @Nullable
+  private static Component topParentOf(final @NotNull Component c) {
     return execute(() -> {
       Component parent = c;
       // Components above the applet in the hierarchy may or may not share the same context with the applet itself.

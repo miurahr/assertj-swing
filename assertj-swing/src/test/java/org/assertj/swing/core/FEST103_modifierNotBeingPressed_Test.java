@@ -35,10 +35,8 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JOptionPaneFixture;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
-import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 /**
  * Tests for bug <a href="http://jira.codehaus.org/browse/FEST-103" target="_blank">FEST_103</a>.
@@ -56,7 +54,8 @@ public class FEST103_modifierNotBeingPressed_Test extends RobotBasedTestCase {
     frameFixture.show();
   }
 
-  @Test @Ignore
+  @Test
+  @Ignore
   public void should_Press_Key_And_Modifier() {
     frameFixture.moveToFront(); // ensure the window is active
     robot.pressModifiers(CTRL_DOWN_MASK);

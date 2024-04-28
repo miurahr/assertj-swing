@@ -102,7 +102,8 @@ public class JMenuItemDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static JMenuItemLocation locationOf(final @NotNull JMenuItem menuItem) {
+  @NotNull
+  private static JMenuItemLocation locationOf(final @NotNull JMenuItem menuItem) {
     JMenuItemLocation result = execute(() -> new JMenuItemLocation(menuItem));
     return checkNotNull(result);
   }

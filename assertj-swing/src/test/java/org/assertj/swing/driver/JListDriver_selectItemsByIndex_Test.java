@@ -51,8 +51,7 @@ public class JListDriver_selectItemsByIndex_Test extends JListDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.selectItems(list, new int[] { 1, 2 }));
-    ;
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.selectItems(list, new int[] { 1, 2 }));;
   }
 
   @Test

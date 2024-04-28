@@ -59,7 +59,7 @@ public class AbstractContainerFixture_scrollBar_Test extends RobotBasedTestCase 
   public void should_Fail_If_Visible_JScrollBar_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='myScrollBar', type=javax.swing.JScrollBar, requireShowing=true");
+                                  "name='myScrollBar', type=javax.swing.JScrollBar, requireShowing=true");
     fixture.scrollBar("myScrollBar");
   }
 
@@ -74,7 +74,7 @@ public class AbstractContainerFixture_scrollBar_Test extends RobotBasedTestCase 
   public void should_Fail_If_Visible_JScrollBar_Not_Found_By_Type() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.JScrollBar, requireShowing=true");
+                                  "type=javax.swing.JScrollBar, requireShowing=true");
     fixture.scrollBar();
   }
 

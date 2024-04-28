@@ -67,8 +67,7 @@ class DragAwareEventNormalizer extends EventNormalizer {
     }
     try {
       dragAwareEventQueue.pop();
-    } catch (EmptyStackException e) {
-    }
+    } catch (EmptyStackException e) {}
     dragAwareEventQueue = null;
   }
 }

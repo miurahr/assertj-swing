@@ -104,13 +104,11 @@ public class BasicRobot implements Robot {
 
   private static final ComponentMatcher POPUP_MATCHER = new TypeMatcher(JPopupMenu.class, true);
 
-
   private volatile boolean active;
 
   private static final Runnable EMPTY_RUNNABLE = new Runnable() {
     @Override
-    public void run() {
-    }
+    public void run() {}
   };
 
   private static final int BUTTON_MASK = BUTTON1_MASK | BUTTON2_MASK | BUTTON3_MASK;
@@ -133,12 +131,14 @@ public class BasicRobot implements Robot {
    *
    * @return the created {@code Robot}.
    */
-  @NotNull public static Robot robotWithNewAwtHierarchy() {
+  @NotNull
+  public static Robot robotWithNewAwtHierarchy() {
     Object screenLockOwner = acquireScreenLock();
     return new BasicRobot(screenLockOwner, ignoreExistingComponents());
   }
 
-  @NotNull public static Robot robotWithNewAwtHierarchyWithoutScreenLock() {
+  @NotNull
+  public static Robot robotWithNewAwtHierarchyWithoutScreenLock() {
     return new BasicRobot(null, ignoreExistingComponents());
   }
 
@@ -147,17 +147,20 @@ public class BasicRobot implements Robot {
    *
    * @return the created {@code Robot}.
    */
-  @NotNull public static Robot robotWithCurrentAwtHierarchy() {
+  @NotNull
+  public static Robot robotWithCurrentAwtHierarchy() {
     Object screenLockOwner = acquireScreenLock();
     return new BasicRobot(screenLockOwner, new ExistingHierarchy());
   }
 
   // TODO document
-  @NotNull public static Robot robotWithCurrentAwtHierarchyWithoutScreenLock() {
+  @NotNull
+  public static Robot robotWithCurrentAwtHierarchyWithoutScreenLock() {
     return new BasicRobot(null, new ExistingHierarchy());
   }
 
-  @NotNull private static Object acquireScreenLock() {
+  @NotNull
+  private static Object acquireScreenLock() {
     Object screenLockOwner = new Object();
     ScreenLock.instance().acquire(screenLockOwner);
     return screenLockOwner;
@@ -176,12 +179,14 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  @NotNull public ComponentPrinter printer() {
+  @NotNull
+  public ComponentPrinter printer() {
     return finder().printer();
   }
 
   @Override
-  @NotNull public ComponentFinder finder() {
+  @NotNull
+  public ComponentFinder finder() {
     return finder;
   }
 
@@ -189,7 +194,8 @@ public class BasicRobot implements Robot {
   @Override
   public void showWindow(@NotNull Window w) {
     try {
-      new java.awt.Robot(RobotFactory.DEFAULT_SCREEN_DEVICE).mouseMove(RobotFactory.DEFAULT_WINDOW_LOCATION.x, RobotFactory.DEFAULT_WINDOW_LOCATION.y);
+      new java.awt.Robot(RobotFactory.DEFAULT_SCREEN_DEVICE).mouseMove(RobotFactory.DEFAULT_WINDOW_LOCATION.x,
+                                                                       RobotFactory.DEFAULT_WINDOW_LOCATION.y);
     } catch (AWTException e) {
       throw new RuntimeException(e);
     }
@@ -257,7 +263,8 @@ public class BasicRobot implements Robot {
    * @return the {@code Applet} descendant of the given AWT {@code Container}, or {@code null} if none is found.
    */
   @RunsInEDT
-  @Nullable private Applet findAppletDescendent(@NotNull Container c) {
+  @Nullable
+  private Applet findAppletDescendent(@NotNull Container c) {
     List<Component> found = newArrayList(finder.findAll(c, new TypeMatcher(Applet.class)));
     if (found.size() == 1) {
       return (Applet) found.get(0);
@@ -330,7 +337,8 @@ public class BasicRobot implements Robot {
         return Pair.of(windowAncestor(one), windowAncestor(two));
       }
 
-      @Nullable private Window windowAncestor(Component c) {
+      @Nullable
+      private Window windowAncestor(Component c) {
         return (c != null) ? windowAncestorOf(c) : null;
       }
     });
@@ -431,7 +439,8 @@ public class BasicRobot implements Robot {
     click(c, where, button, times);
   }
 
-  @NotNull private Point scrollIfNecessary(@NotNull JComponent c) {
+  @NotNull
+  private Point scrollIfNecessary(@NotNull JComponent c) {
     scrollToVisible(this, c);
     return visibleCenterOf(c);
   }
@@ -674,7 +683,8 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Component, Point> invokerAndCenterOfInvoker(final @NotNull JPopupMenu popupMenu) {
+  @NotNull
+  private static Pair<Component, Point> invokerAndCenterOfInvoker(final @NotNull JPopupMenu popupMenu) {
     Pair<Component, Point> result = execute(new GuiQuery<Pair<Component, Point>>() {
       @Override
       protected Pair<Component, Point> executeInEDT() {
@@ -861,15 +871,13 @@ public class BasicRobot implements Robot {
           lock.wait(timeout);
         }
         return (currentTimeMillis() - start) >= settings.idleTimeout();
-      } catch (InterruptedException e) {
-      }
+      } catch (InterruptedException e) {}
       return false;
     }
   }
 
   private static class RobotIdleLock {
-    RobotIdleLock() {
-    }
+    RobotIdleLock() {}
   }
 
   @Override
@@ -879,13 +887,15 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  @NotNull public JPopupMenu showPopupMenu(@NotNull Component invoker) {
+  @NotNull
+  public JPopupMenu showPopupMenu(@NotNull Component invoker) {
     return showPopupMenu(invoker, visibleCenterOf(invoker));
   }
 
   @RunsInEDT
   @Override
-  @NotNull public JPopupMenu showPopupMenu(@NotNull Component invoker, @NotNull Point location) {
+  @NotNull
+  public JPopupMenu showPopupMenu(@NotNull Component invoker, @NotNull Point location) {
     if (isFocusable(invoker)) {
       focusAndWaitForFocusGain(invoker);
     }
@@ -933,7 +943,8 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   @Override
-  @Nullable public JPopupMenu findActivePopupMenu() {
+  @Nullable
+  public JPopupMenu findActivePopupMenu() {
     JPopupMenu popup = activePopupMenu();
     if (popup != null || isEventDispatchThread()) {
       return popup;
@@ -949,7 +960,8 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInEDT
-  @Nullable private JPopupMenu activePopupMenu() {
+  @Nullable
+  private JPopupMenu activePopupMenu() {
     List<Component> found = newArrayList(finder().findAll(POPUP_MATCHER));
 
     if (found.size() == 1) {
@@ -983,7 +995,8 @@ public class BasicRobot implements Robot {
   }
 
   @RunsInEDT
-  @NotNull private static ComponentLookupException multiplePopupMenusFound(@NotNull Collection<Component> found) {
+  @NotNull
+  private static ComponentLookupException multiplePopupMenusFound(@NotNull Collection<Component> found) {
     StringBuilder message = new StringBuilder();
     String format = "Found more than one popup menu.%n%nFound:";
     message.append(String.format(format));
@@ -1074,12 +1087,14 @@ public class BasicRobot implements Robot {
   }
 
   @Override
-  @NotNull public Settings settings() {
+  @NotNull
+  public Settings settings() {
     return settings;
   }
 
   @Override
-  @NotNull public ComponentHierarchy hierarchy() {
+  @NotNull
+  public ComponentHierarchy hierarchy() {
     return hierarchy;
   }
 

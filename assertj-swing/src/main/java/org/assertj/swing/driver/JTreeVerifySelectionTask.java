@@ -112,6 +112,5 @@ final class JTreeVerifySelectionTask {
     });
   }
 
-  private JTreeVerifySelectionTask() {
-  }
+  private JTreeVerifySelectionTask() {}
 }

@@ -40,6 +40,5 @@ final class JListContentQuery {
     return checkNotNull(result);
   }
 
-  private JListContentQuery() {
-  }
+  private JListContentQuery() {}
 }

@@ -35,7 +35,7 @@ public final class TestRobots {
 
   public static Robot newRobotMock() {
     final Robot mock = mock(Robot.class);
-    doAnswer(new Answer<Object>(){
+    doAnswer(new Answer<Object>() {
       @Override
       public Object answer(final InvocationOnMock invocation) throws Throwable {
         invocation.<Runnable> getArgument(1).run();

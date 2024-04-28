@@ -32,6 +32,5 @@ final class JComboBoxItemCountQuery {
     return checkNotNull(result);
   }
 
-  private JComboBoxItemCountQuery() {
-  }
+  private JComboBoxItemCountQuery() {}
 }

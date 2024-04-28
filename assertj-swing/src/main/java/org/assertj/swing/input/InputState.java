@@ -102,8 +102,8 @@ public class InputState {
       }
       if (inputEvent instanceof MouseEvent) {
         MouseEvent mouseEvent = (MouseEvent) inputEvent;
-        //TrayIcon might post events without a component
-        if(mouseEvent.getComponent() != null) {
+        // TrayIcon might post events without a component
+        if (mouseEvent.getComponent() != null) {
           Point eventScreenLocation = screenLocation(mouseEvent);
           synchronized (this) {
             lastEventTime(mouseEvent);
@@ -117,7 +117,8 @@ public class InputState {
     }
   }
 
-  @Nullable private Point screenLocation(@NotNull MouseEvent event) {
+  @Nullable
+  private Point screenLocation(@NotNull MouseEvent event) {
     // childAt and locationOnScreenOf want the tree lock, so be careful not to use any additional locks at the same time
     // to avoid deadlock.
     // Determine the current mouse position in screen coordinates

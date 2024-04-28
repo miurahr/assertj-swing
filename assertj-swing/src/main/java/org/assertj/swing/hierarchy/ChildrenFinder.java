@@ -33,7 +33,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 class ChildrenFinder {
   private static List<ChildrenFinderStrategy> strategies = newArrayList(new JDesktopPaneChildrenFinder(),
-      new JMenuChildrenFinder(), new WindowChildrenFinder());
+                                                                        new JMenuChildrenFinder(), new WindowChildrenFinder());
 
   @RunsInCurrentThread
   @NotNull
@@ -47,7 +47,8 @@ class ChildrenFinder {
     return children;
   }
 
-  @NotNull private Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
+  @NotNull
+  private Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
     Collection<Component> children = newArrayList();
     for (ChildrenFinderStrategy s : strategies) {
       children.addAll(s.nonExplicitChildrenOf(c));

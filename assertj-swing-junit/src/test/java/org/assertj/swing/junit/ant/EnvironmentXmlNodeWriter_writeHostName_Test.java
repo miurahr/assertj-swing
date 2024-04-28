@@ -16,7 +16,6 @@ import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.HOSTNAME
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

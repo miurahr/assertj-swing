@@ -51,8 +51,7 @@ public abstract class InputEventGenerator_TestCase extends SequentialEDTSafeTest
     window.display();
   }
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   abstract InputEventGenerator eventGenerator();
 

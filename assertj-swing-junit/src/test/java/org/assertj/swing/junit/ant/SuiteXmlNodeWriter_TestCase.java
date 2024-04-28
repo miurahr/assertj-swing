@@ -50,8 +50,7 @@ public abstract class SuiteXmlNodeWriter_TestCase {
     onSetUp();
   }
 
-  void onSetUp() {
-  }
+  void onSetUp() {}
 
   public void shouldWriterPropertiesAsAttributes() {
     Properties properties = new Properties();

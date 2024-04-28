@@ -41,6 +41,5 @@ public final class ComponentSetEnabledTask {
     execute(() -> component.setEnabled(enabled));
   }
 
-  private ComponentSetEnabledTask() {
-  }
+  private ComponentSetEnabledTask() {}
 }

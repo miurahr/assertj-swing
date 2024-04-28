@@ -56,9 +56,11 @@ public class FEST65_JListFixtureNotSelectingItemsWithLongText_Test extends Robot
     }
 
     final JList list = new JList(array("aaaaaaaaa0", "aaaaaaaaa1", "aaaaaaaaa2", "aaaaaaaaa3", "aaaaaaaaa4",
-        "aaaaaaaaa5", "aaaaaaaaa6", "aaaaaaaaa7", "aaaaaaaaa8", "aaaaaaaaa9", "bbbbbbbbb0", "bbbbbbbbb1", "bbbbbbbbb2",
-        "bbbbbbbbb3", "bbbbbbbbb4", "bbbbbbbbb5", "bbbbbbbbb6", "bbbbbbbbb7", "bbbbbbbbb8", "bbbbbbbbb9",
-        SUPER_LONG_TEXT));
+                                       "aaaaaaaaa5", "aaaaaaaaa6", "aaaaaaaaa7", "aaaaaaaaa8", "aaaaaaaaa9", "bbbbbbbbb0",
+                                       "bbbbbbbbb1", "bbbbbbbbb2",
+                                       "bbbbbbbbb3", "bbbbbbbbb4", "bbbbbbbbb5", "bbbbbbbbb6", "bbbbbbbbb7", "bbbbbbbbb8",
+                                       "bbbbbbbbb9",
+                                       SUPER_LONG_TEXT));
 
     private MyWindow() {
       super(FEST65_JListFixtureNotSelectingItemsWithLongText_Test.class);

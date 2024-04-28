@@ -37,11 +37,11 @@ public final class ContainerInsetsQuery {
    * @see Container#getInsets()
    */
   @RunsInEDT
-  @NotNull public static Insets insetsOf(final @NotNull Container container) {
+  @NotNull
+  public static Insets insetsOf(final @NotNull Container container) {
     Insets result = execute(() -> container.getInsets());
     return checkNotNull(result);
   }
 
-  private ContainerInsetsQuery() {
-  }
+  private ContainerInsetsQuery() {}
 }

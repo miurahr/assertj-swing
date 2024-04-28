@@ -38,6 +38,5 @@ public abstract class SingleComponentHierarchy_TestCase extends EDTSafeTestCase 
     onSetUp();
   }
 
-  void onSetUp() {
-  }
+  void onSetUp() {}
 }

@@ -47,8 +47,8 @@ public class ComponentDriver_requireEnabledWithTimout_Test extends ComponentDriv
       }
     });
     assertThat(t.getMessage())
-            .contains("Timed out waiting for")
-            .contains(window.button.getClass().getName())
-            .contains("to be enabled");
+                              .contains("Timed out waiting for")
+                              .contains(window.button.getClass().getName())
+                              .contains("to be enabled");
   }
 }

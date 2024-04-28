@@ -41,7 +41,8 @@ public class BasicRobot_clickComponentWithButtonTheGivenTimes_Test extends Basic
   private final int times;
 
   @Parameters
-  @NotNull public static Collection<Object[]> buttons() {
+  @NotNull
+  public static Collection<Object[]> buttons() {
     return newArrayList(clickingData());
   }
 
@@ -50,7 +51,8 @@ public class BasicRobot_clickComponentWithButtonTheGivenTimes_Test extends Basic
     this.times = times;
   }
 
-  @Test @Ignore
+  @Test
+  @Ignore
   public void should_Click_Component_With_Given_Mouse_Button_And_Given_Number_Of_Times() {
     JTextField textField = window().textField();
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(textField);

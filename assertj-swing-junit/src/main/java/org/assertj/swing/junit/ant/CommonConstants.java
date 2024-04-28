@@ -23,7 +23,6 @@ final class CommonConstants {
 
   static final String UTF_8 = "UTF-8";
 
-  private CommonConstants() {
-  }
+  private CommonConstants() {}
 
 }

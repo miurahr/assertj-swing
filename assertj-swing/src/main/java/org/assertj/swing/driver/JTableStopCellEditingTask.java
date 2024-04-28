@@ -62,6 +62,5 @@ final class JTableStopCellEditingTask {
     cellEditor.stopCellEditing();
   }
 
-  private JTableStopCellEditingTask() {
-  }
+  private JTableStopCellEditingTask() {}
 }

@@ -42,6 +42,5 @@ final class JComboBoxMakeEditableAndSelectItemTask {
     });
   }
 
-  private JComboBoxMakeEditableAndSelectItemTask() {
-  }
+  private JComboBoxMakeEditableAndSelectItemTask() {}
 }

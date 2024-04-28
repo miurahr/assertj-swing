@@ -30,7 +30,8 @@ import javax.swing.*;
  * @author Yvonne Wang
  */
 public class JToolBarDriver_floatTo_Test extends JToolBarDriver_TestCase {
-  @Test @Ignore // FIXME
+  @Test
+  @Ignore // FIXME
   public void should_Float_JToolBar() {
     showWindow();
     Window oldAncestor = toolBarAncestor();

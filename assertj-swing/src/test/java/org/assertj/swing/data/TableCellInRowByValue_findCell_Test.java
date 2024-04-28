@@ -34,7 +34,7 @@ public class TableCellInRowByValue_findCell_Test extends TableCellFinder_TestCas
   @Test
   public void should_Find_Cell_In_Selected_Row() {
     TableCellInRowByValue finder = TableCellInRowByValue.rowWithValue("1-0", "1-1", "1-2", "1-3", "1-4", "1-5").column(
-        2);
+                                                                                                                       2);
     TableCell cell = finder.findCell(table, new JTableCellReaderStub());
     assertThat(cell.row).isEqualTo(1);
     assertThat(cell.column).isEqualTo(2);

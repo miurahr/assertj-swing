@@ -31,7 +31,7 @@ public class JTabbedPaneDriver_requireTabTitleAsPattern_Test extends JTabbedPane
   @Test
   public void should_Fail_If_Title_Does_Not_Match_Pattern() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireTabTitle(tabbedPane,
-            Pattern.compile("Hello"), atIndex(0)));
+                                                                                         Pattern.compile("Hello"), atIndex(0)));
     assertThat(t.getMessage()).contains("titleAt").contains("One").contains("to match pattern:").contains("\"Hello\"");
   }
 

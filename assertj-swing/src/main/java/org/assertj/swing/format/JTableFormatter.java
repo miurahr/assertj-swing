@@ -34,7 +34,8 @@ public class JTableFormatter extends ComponentFormatterTemplate {
    * @return the {@code String} representation of the given {@code JTable}.
    */
   @Override
-  @NotNull protected String doFormat(@NotNull Component c) {
+  @NotNull
+  protected String doFormat(@NotNull Component c) {
     JTable table = (JTable) c;
     String format = "%s[name=%s, rowCount=%d, columnCount=%d, enabled=%b, visible=%b, showing=%b]";
     return String.format(format, getRealClassName(c), quote(table.getName()), table.getRowCount(),
@@ -45,7 +46,8 @@ public class JTableFormatter extends ComponentFormatterTemplate {
    * @return {@code JTable.class}.
    */
   @Override
-  @NotNull public Class<? extends Component> targetType() {
+  @NotNull
+  public Class<? extends Component> targetType() {
     return JTable.class;
   }
 }

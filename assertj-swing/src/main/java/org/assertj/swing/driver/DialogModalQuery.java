@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Dialog;
 
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,6 +34,5 @@ final class DialogModalQuery {
     return checkNotNull(result);
   }
 
-  private DialogModalQuery() {
-  }
+  private DialogModalQuery() {}
 }

@@ -43,6 +43,5 @@ final class JInternalFrameDesktopPaneQuery {
     return null;
   }
 
-  private JInternalFrameDesktopPaneQuery() {
-  }
+  private JInternalFrameDesktopPaneQuery() {}
 }

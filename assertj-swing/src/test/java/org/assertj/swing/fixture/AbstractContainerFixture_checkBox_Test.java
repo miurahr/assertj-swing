@@ -57,7 +57,7 @@ public class AbstractContainerFixture_checkBox_Test extends RobotBasedTestCase {
   public void should_Fail_If_Visible_JCheckBox_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='myCheckBox', type=javax.swing.JCheckBox, requireShowing=true");
+                                  "name='myCheckBox', type=javax.swing.JCheckBox, requireShowing=true");
     fixture.checkBox("myCheckBox");
   }
 
@@ -72,7 +72,7 @@ public class AbstractContainerFixture_checkBox_Test extends RobotBasedTestCase {
   public void should_Fail_If_Visible_JCheckBox_Not_Found_By_Type() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.JCheckBox, requireShowing=true");
+                                  "type=javax.swing.JCheckBox, requireShowing=true");
     fixture.checkBox();
   }
 

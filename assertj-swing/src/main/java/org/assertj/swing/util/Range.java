@@ -122,6 +122,5 @@ public final class Range {
     }
   }
 
-  private Range() {
-  }
+  private Range() {}
 }

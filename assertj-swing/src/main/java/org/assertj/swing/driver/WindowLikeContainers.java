@@ -104,6 +104,5 @@ final class WindowLikeContainers {
     return p;
   }
 
-  private WindowLikeContainers() {
-  }
+  private WindowLikeContainers() {}
 }

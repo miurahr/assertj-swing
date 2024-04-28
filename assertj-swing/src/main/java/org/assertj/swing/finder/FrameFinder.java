@@ -65,7 +65,8 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @return this finder.
    */
   @Override
-  @NotNull public FrameFinder withTimeout(@NonNegative long timeout) {
+  @NotNull
+  public FrameFinder withTimeout(@NonNegative long timeout) {
     super.withTimeout(timeout);
     return this;
   }
@@ -78,7 +79,8 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @return this finder.
    */
   @Override
-  @NotNull public FrameFinder withTimeout(@NonNegative long timeout, @NotNull TimeUnit unit) {
+  @NotNull
+  public FrameFinder withTimeout(@NonNegative long timeout, @NotNull TimeUnit unit) {
     super.withTimeout(timeout, unit);
     return this;
   }
@@ -91,7 +93,8 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code Frame} could not be found.
    */
   @Override
-  @NotNull public FrameFixture using(@NotNull Robot robot) {
+  @NotNull
+  public FrameFixture using(@NotNull Robot robot) {
     return new FrameFixture(robot, findComponentWith(robot));
   }
 
@@ -101,7 +104,8 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @return the given {@code Component}, casted to {@code Frame}.
    */
   @Override
-  @Nullable protected Frame cast(@Nullable Component c) {
+  @Nullable
+  protected Frame cast(@Nullable Component c) {
     return (Frame) c;
   }
 }

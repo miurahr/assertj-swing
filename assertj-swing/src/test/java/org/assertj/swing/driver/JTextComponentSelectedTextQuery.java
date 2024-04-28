@@ -31,6 +31,5 @@ final class JTextComponentSelectedTextQuery {
     return execute(() -> textBox.getSelectedText());
   }
 
-  private JTextComponentSelectedTextQuery() {
-  }
+  private JTextComponentSelectedTextQuery() {}
 }

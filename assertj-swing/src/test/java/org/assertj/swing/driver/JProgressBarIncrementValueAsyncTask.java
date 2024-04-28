@@ -51,7 +51,7 @@ class JProgressBarIncrementValueAsyncTask {
   private final long periodInMs;
 
   private JProgressBarIncrementValueAsyncTask(@NotNull Robot robot, @NotNull JProgressBar progressBar, int increment,
-      long periodInMs) {
+                                              long periodInMs) {
     this.robot = robot;
     this.progressBar = progressBar;
     this.increment = increment;
@@ -59,7 +59,8 @@ class JProgressBarIncrementValueAsyncTask {
     task = createInnerTask();
   }
 
-  @NotNull private Runnable createInnerTask() {
+  @NotNull
+  private Runnable createInnerTask() {
     return new Runnable() {
       @Override
       public void run() {

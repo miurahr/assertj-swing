@@ -33,6 +33,6 @@ public class BasicComponentPrinter_printComponentsInRoot_Test extends BasicCompo
   public void should_Print_Components_In_Given_Root() {
     printer.printComponents(out, windowOne);
     assertThat(out.printed()).contains(format(windowOne), format(windowOne.button)).doesNotContain(format(windowTwo),
-        format(windowTwo.button));
+                                                                                                   format(windowTwo.button));
   }
 }

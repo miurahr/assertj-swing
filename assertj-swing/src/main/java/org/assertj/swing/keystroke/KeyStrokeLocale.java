@@ -53,6 +53,5 @@ class KeyStrokeLocale {
     return locale;
   }
 
-  private KeyStrokeLocale() {
-  }
+  private KeyStrokeLocale() {}
 }

@@ -32,6 +32,5 @@ public final class TestImageFileWriters {
     return mock(ImageFileWriter.class);
   }
 
-  private TestImageFileWriters() {
-  }
+  private TestImageFileWriters() {}
 }

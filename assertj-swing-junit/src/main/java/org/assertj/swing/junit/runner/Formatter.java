@@ -49,6 +49,5 @@ public final class Formatter {
     return b.toString();
   }
 
-  private Formatter() {
-  }
+  private Formatter() {}
 }

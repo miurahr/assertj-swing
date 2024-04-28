@@ -17,7 +17,6 @@ import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.driver.JTableClearSelectionTask.clearSelectionOf;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 
 import java.awt.Component;
@@ -31,12 +30,10 @@ import javax.swing.table.JTableHeader;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.data.TableCell;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.MethodInvocations;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestTable;
 import org.assertj.swing.test.swing.TestWindow;
-import org.junit.Rule;
 
 /**
  * Base test case for {@link JTableDriver}.
@@ -60,8 +57,7 @@ public abstract class JTableDriver_TestCase extends RobotBasedTestCase {
     extraSetUp();
   }
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   final void showWindow() {
     robot.showWindow(window);
@@ -193,8 +189,7 @@ public abstract class JTableDriver_TestCase extends RobotBasedTestCase {
   static class JTableCellReaderStub extends BasicJTableCellReader {
     private final MethodInvocations methodInvocations = new MethodInvocations();
 
-    JTableCellReaderStub() {
-    }
+    JTableCellReaderStub() {}
 
     @Override
     public String valueAt(@NotNull JTable table, int row, int column) {

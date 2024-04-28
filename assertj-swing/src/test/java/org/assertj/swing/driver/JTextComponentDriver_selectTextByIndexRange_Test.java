@@ -34,18 +34,18 @@ public class JTextComponentDriver_selectTextByIndexRange_Test extends JTextCompo
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Disabled() {
     disableTextField();
-    assertThatIllegalStateExceptionCauseIsDisabledComponent( () -> driver.selectText(textField, 8, 14));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.selectText(textField, 8, 14));
   }
 
   @Test
   public void should_Throw_Error_If_JTextComponent_Is_Not_Showing_On_The_Screen() {
-    assertThatIllegalStateExceptionCauseIsDisabledComponent( () -> driver.selectText(textField, 8, 14));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.selectText(textField, 8, 14));
   }
 
   @Test
   public void should_Throw_Error_If_Indices_Are_Out_Of_Bounds() {
     showWindow();
     assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectText(textField, 20, 22))
-      .contains("Unable to get location for index <20> in javax.swing.JTextField");
+                                                                                                         .contains("Unable to get location for index <20> in javax.swing.JTextField");
   }
 }

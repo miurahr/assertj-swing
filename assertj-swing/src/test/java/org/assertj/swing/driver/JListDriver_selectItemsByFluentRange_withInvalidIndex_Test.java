@@ -60,6 +60,6 @@ public class JListDriver_selectItemsByFluentRange_withInvalidIndex_Test extends 
     showWindow();
     Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.selectItems(list, from(0), to(index)));
     assertThat(t.getMessage()).contains(concat("Item index (", valueOf(index),
-        ") should be between [0] and [2] (inclusive)"));
+                                               ") should be between [0] and [2] (inclusive)"));
   }
 }

@@ -41,8 +41,9 @@ final class JTableMatchingCellQuery {
   }
 
   @RunsInCurrentThread
-  @NotNull private static TableCell findMatchingCell(@NotNull JTable table, @NotNull TextMatcher matcher,
-                                                     @NotNull JTableCellReader cellReader) {
+  @NotNull
+  private static TableCell findMatchingCell(@NotNull JTable table, @NotNull TextMatcher matcher,
+                                            @NotNull JTableCellReader cellReader) {
     int rCount = table.getRowCount();
     int cCount = table.getColumnCount();
     for (int r = 0; r < rCount; r++) {
@@ -62,6 +63,5 @@ final class JTableMatchingCellQuery {
     return matcher.isMatching(cellReader.valueAt(table, row, column));
   }
 
-  private JTableMatchingCellQuery() {
-  }
+  private JTableMatchingCellQuery() {}
 }

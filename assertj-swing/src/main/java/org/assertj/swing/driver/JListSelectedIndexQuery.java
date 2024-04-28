@@ -33,6 +33,5 @@ final class JListSelectedIndexQuery {
     return checkNotNull(result);
   }
 
-  private JListSelectedIndexQuery() {
-  }
+  private JListSelectedIndexQuery() {}
 }

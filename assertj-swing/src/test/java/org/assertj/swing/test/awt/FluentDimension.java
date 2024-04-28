@@ -20,8 +20,7 @@ import java.awt.Dimension;
  * @author Alex Ruiz
  */
 public class FluentDimension extends Dimension {
-  public FluentDimension() {
-  }
+  public FluentDimension() {}
 
   public FluentDimension(Dimension d) {
     super(d);

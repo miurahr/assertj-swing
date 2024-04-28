@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.fixture;
 
-
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.MouseClickInfo;
 import org.jetbrains.annotations.NotNull;

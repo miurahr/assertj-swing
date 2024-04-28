@@ -104,7 +104,8 @@ public class BasicJTableCellReader implements JTableCellReader {
     return asText(table.getValueAt(row, column));
   }
 
-  @Nullable private String valueAsText(@NotNull JComboBox<?> comboBox) {
+  @Nullable
+  private String valueAsText(@NotNull JComboBox<?> comboBox) {
     int selectedIndex = comboBox.getSelectedIndex();
     if (selectedIndex == -1) {
       return null;
@@ -129,7 +130,8 @@ public class BasicJTableCellReader implements JTableCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable public Font fontAt(@NotNull JTable table, int row, int column) {
+  @Nullable
+  public Font fontAt(@NotNull JTable table, int row, int column) {
     Component c = cellRendererIn(table, row, column);
     return c != null ? c.getFont() : null;
   }
@@ -146,7 +148,8 @@ public class BasicJTableCellReader implements JTableCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable public Color backgroundAt(@NotNull JTable table, int row, int column) {
+  @Nullable
+  public Color backgroundAt(@NotNull JTable table, int row, int column) {
     Component c = cellRendererIn(table, row, column);
     return c != null ? c.getBackground() : null;
   }
@@ -168,13 +171,15 @@ public class BasicJTableCellReader implements JTableCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable public Color foregroundAt(@NotNull JTable table, int row, int column) {
+  @Nullable
+  public Color foregroundAt(@NotNull JTable table, int row, int column) {
     Component c = cellRendererIn(table, row, column);
     return c != null ? c.getForeground() : null;
   }
 
   @RunsInCurrentThread
-  @Nullable private Component cellRendererIn(final @NotNull JTable table, final int row, final int column) {
+  @Nullable
+  private Component cellRendererIn(final @NotNull JTable table, final int row, final int column) {
     return table.prepareRenderer(table.getCellRenderer(row, column), row, column);
   }
 }

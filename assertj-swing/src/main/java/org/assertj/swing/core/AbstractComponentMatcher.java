@@ -89,6 +89,5 @@ public abstract class AbstractComponentMatcher implements ResettableComponentMat
    * @param matchFound indicates whether a match has been found before resetting.
    */
   @Override
-  public void reset(boolean matchFound) {
-  }
+  public void reset(boolean matchFound) {}
 }

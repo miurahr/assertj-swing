@@ -30,8 +30,7 @@ public final class AwtTestData {
   private static final RgbColor BLUE = color(0x0000FF);
   private static final RgbColor YELLOW = color(0xFFFF00);
 
-  private AwtTestData() {
-  }
+  private AwtTestData() {}
 
   public static RgbColor blue() {
     return BLUE;

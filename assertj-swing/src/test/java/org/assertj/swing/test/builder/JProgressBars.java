@@ -92,6 +92,5 @@ public final class JProgressBars {
     }
   }
 
-  private JProgressBars() {
-  }
+  private JProgressBars() {}
 }

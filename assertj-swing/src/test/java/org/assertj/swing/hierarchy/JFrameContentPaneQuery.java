@@ -35,6 +35,5 @@ final class JFrameContentPaneQuery {
     return checkNotNull(result);
   }
 
-  private JFrameContentPaneQuery() {
-  }
+  private JFrameContentPaneQuery() {}
 }

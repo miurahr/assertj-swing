@@ -73,7 +73,8 @@ public class JTreeFixture_constructor_withRobotAndName_Test extends RobotBasedTe
 
     private static TreeModel nodes() {
       MutableTreeNode root = node("root",
-          node("branch1", node("branch1.1", node("branch1.1.1"), node("branch1.1.2")), node("branch1.2")));
+                                  node("branch1", node("branch1.1", node("branch1.1.1"), node("branch1.1.2")),
+                                       node("branch1.2")));
       return new DefaultTreeModel(root);
     }
 

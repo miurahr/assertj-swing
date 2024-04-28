@@ -41,6 +41,5 @@ final class JListCellBoundsQuery {
     return list.getCellBounds(index, index);
   }
 
-  private JListCellBoundsQuery() {
-  }
+  private JListCellBoundsQuery() {}
 }

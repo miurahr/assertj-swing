@@ -47,6 +47,5 @@ public abstract class JTableDriver_withMockCellReader_TestCase extends EDTSafeTe
     onSetUp();
   }
 
-  void onSetUp() {
-  }
+  void onSetUp() {}
 }

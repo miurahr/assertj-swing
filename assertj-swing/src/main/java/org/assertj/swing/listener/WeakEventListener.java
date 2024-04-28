@@ -17,7 +17,6 @@ import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.lang.ref.WeakReference;
 
-
 import org.assertj.core.util.VisibleForTesting;
 import org.jetbrains.annotations.NotNull;
 
@@ -63,7 +62,8 @@ public final class WeakEventListener implements AWTEventListener {
   /**
    * @return the underlying listener.
    */
-  @NotNull public AWTEventListener underlyingListener() {
+  @NotNull
+  public AWTEventListener underlyingListener() {
     return listenerReference.get();
   }
 

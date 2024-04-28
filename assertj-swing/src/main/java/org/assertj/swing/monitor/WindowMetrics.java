@@ -33,6 +33,5 @@ final class WindowMetrics {
     return new Point(x + (w / 2), y + (h / 2));
   }
 
-  private WindowMetrics() {
-  }
+  private WindowMetrics() {}
 }

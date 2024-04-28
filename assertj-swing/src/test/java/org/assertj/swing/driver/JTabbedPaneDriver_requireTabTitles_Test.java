@@ -27,7 +27,8 @@ public class JTabbedPaneDriver_requireTabTitles_Test extends JTabbedPaneDriver_T
   @Test
   public void should_Fail_If_Titles_Are_Not_Equal_To_Expected() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireTabTitles(tabbedPane, array("Four", "Five")));
-    assertThat(t.getMessage()).contains("tabTitles").contains("[Four").contains("Fiv]e").contains("[One").contains("Two").contains("Thre]e");
+    assertThat(t.getMessage()).contains("tabTitles").contains("[Four").contains("Fiv]e").contains("[One").contains("Two")
+                              .contains("Thre]e");
   }
 
   @Test

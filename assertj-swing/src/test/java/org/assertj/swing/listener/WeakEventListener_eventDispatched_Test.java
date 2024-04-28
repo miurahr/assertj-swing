@@ -66,8 +66,7 @@ public class WeakEventListener_eventDispatched_Test {
   private static class UnderlyingEventListener implements AWTEventListener {
     AWTEvent dispatchedEvent;
 
-    UnderlyingEventListener() {
-    }
+    UnderlyingEventListener() {}
 
     @Override
     public void eventDispatched(AWTEvent event) {

@@ -19,7 +19,6 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.util.concurrent.TimeUnit;
 
-
 /**
  * Timeout.
  * 
@@ -47,7 +46,8 @@ public final class Timeout {
    * @param duration the duration of the timeout in milliseconds.
    * @return the created {@code Timeout}.
    */
-  @NotNull public static Timeout timeout(long duration) {
+  @NotNull
+  public static Timeout timeout(long duration) {
     return new Timeout(duration);
   }
 
@@ -59,7 +59,8 @@ public final class Timeout {
    * @return the created {@code Timeout}.
    * @throws NullPointerException if the given time unit is {@code null}.
    */
-  @NotNull public static Timeout timeout(long duration, @NotNull TimeUnit timeUnit) {
+  @NotNull
+  public static Timeout timeout(long duration, @NotNull TimeUnit timeUnit) {
     checkNotNull(timeUnit);
     return new Timeout(timeUnit.toMillis(duration));
   }

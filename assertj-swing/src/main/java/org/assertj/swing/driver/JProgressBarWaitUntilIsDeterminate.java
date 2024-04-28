@@ -44,12 +44,12 @@ final class JProgressBarWaitUntilIsDeterminate {
   private static Description untilIsDeterminate(final @NotNull JProgressBar progressBar) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @NotNull protected String loadDescription() {
+      @NotNull
+      protected String loadDescription() {
         return format(progressBar) + " to be in determinate mode";
       }
     };
   }
 
-  private JProgressBarWaitUntilIsDeterminate() {
-  }
+  private JProgressBarWaitUntilIsDeterminate() {}
 }

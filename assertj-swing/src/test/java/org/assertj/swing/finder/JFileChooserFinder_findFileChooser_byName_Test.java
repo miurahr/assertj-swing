@@ -37,7 +37,7 @@ public class JFileChooserFinder_findFileChooser_byName_Test extends JFileChooser
     window.launchDelay(200);
     clickBrowseButton();
     JFileChooserFixture found = JFileChooserFinder.findFileChooser("fileChooser").withTimeout(500, MILLISECONDS)
-        .using(robot);
+                                                  .using(robot);
     assertThat(found.target()).isSameAs(window.fileChooser());
   }
 

@@ -44,6 +44,5 @@ public final class ComponentParentQuery {
     return execute(() -> component.getParent());
   }
 
-  private ComponentParentQuery() {
-  }
+  private ComponentParentQuery() {}
 }

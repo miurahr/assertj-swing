@@ -37,7 +37,8 @@ class ContainerFocusOwnerFinder {
   }
 
   @RunsInCurrentThread
-  @Nullable private Component focusOwnerOf(@NotNull Window w) {
+  @Nullable
+  private Component focusOwnerOf(@NotNull Window w) {
     if (!w.isShowing()) {
       return null;
     }

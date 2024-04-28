@@ -46,7 +46,8 @@ public class BasicJTableCellReader_fontAt_Test extends BasicJTableCellReader_Tes
   }
 
   @RunsInEDT
-  @NotNull private static Font fontOf(final @NotNull Component component) {
+  @NotNull
+  private static Font fontOf(final @NotNull Component component) {
     Font result = execute(component::getFont);
     return Objects.requireNonNull(result);
   }

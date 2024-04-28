@@ -36,6 +36,5 @@ final class JTextComponentSelectTextTask {
     textBox.moveCaretPosition(end);
   }
 
-  private JTextComponentSelectTextTask() {
-  }
+  private JTextComponentSelectTextTask() {}
 }

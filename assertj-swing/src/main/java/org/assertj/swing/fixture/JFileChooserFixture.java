@@ -67,7 +67,8 @@ public class JFileChooserFixture extends
   }
 
   @Override
-  @NotNull protected JFileChooserDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected JFileChooserDriver createDriver(@NotNull Robot robot) {
     return new JFileChooserDriver(robot);
   }
 
@@ -88,7 +89,8 @@ public class JFileChooserFixture extends
    * @return the found "Approve" button.
    * @throws org.assertj.swing.exception.ComponentLookupException if the "Approve" button cannot be found.
    */
-  @NotNull public JButtonFixture approveButton() {
+  @NotNull
+  public JButtonFixture approveButton() {
     return new JButtonFixture(robot(), driver().approveButton(target()));
   }
 
@@ -109,7 +111,8 @@ public class JFileChooserFixture extends
    * @return the found "Cancel" button.
    * @throws org.assertj.swing.exception.ComponentLookupException if the "Cancel" button cannot be found.
    */
-  @NotNull public JButtonFixture cancelButton() {
+  @NotNull
+  public JButtonFixture cancelButton() {
     return new JButtonFixture(robot(), driver().cancelButton(target()));
   }
 
@@ -120,7 +123,8 @@ public class JFileChooserFixture extends
    * @return the created fixture.
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching textToMatch field could not be found.
    */
-  @NotNull public JTextComponentFixture fileNameTextBox() {
+  @NotNull
+  public JTextComponentFixture fileNameTextBox() {
     return new JTextComponentFixture(robot(), driver().fileNameTextBox(target()));
   }
 
@@ -137,7 +141,8 @@ public class JFileChooserFixture extends
    * @throws IllegalArgumentException if this fixture's {@code JFileChooser} cannot select directories and the file to
    *           select is a directory.
    */
-  @NotNull public JFileChooserFixture selectFile(@NotNull File file) {
+  @NotNull
+  public JFileChooserFixture selectFile(@NotNull File file) {
     driver().selectFile(target(), file);
     return this;
   }
@@ -158,7 +163,8 @@ public class JFileChooserFixture extends
    * @throws IllegalArgumentException if this fixture's {@code JFileChooser} cannot select directories and any of the
    *           files to select is a directory.
    */
-  @NotNull public JFileChooserFixture selectFiles(@NotNull File... files) {
+  @NotNull
+  public JFileChooserFixture selectFiles(@NotNull File... files) {
     driver().selectFiles(target(), files);
     return this;
   }
@@ -171,7 +177,8 @@ public class JFileChooserFixture extends
    * @throws IllegalStateException if this fixture's {@code JFileChooser} is not showing on the screen.
    * @return this fixture.
    */
-  @NotNull public JFileChooserFixture setCurrentDirectory(@NotNull File dir) {
+  @NotNull
+  public JFileChooserFixture setCurrentDirectory(@NotNull File dir) {
     driver().setCurrentDirectory(target(), dir);
     return this;
   }

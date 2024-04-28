@@ -33,7 +33,8 @@ final class JTableContentsQuery {
   static @NotNull String[][] tableContents(final @NotNull JTable table, final @NotNull JTableCellReader cellReader) {
     String[][] result = execute(new GuiQuery<String[][]>() {
       @Override
-      @NotNull protected String[][] executeInEDT() {
+      @NotNull
+      protected String[][] executeInEDT() {
         int rCount = table.getRowCount();
         int cCount = table.getColumnCount();
         String[][] contents = new String[rCount][cCount];
@@ -48,6 +49,5 @@ final class JTableContentsQuery {
     return checkNotNull(result);
   }
 
-  private JTableContentsQuery() {
-  }
+  private JTableContentsQuery() {}
 }

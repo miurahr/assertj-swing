@@ -33,6 +33,6 @@ public class BasicComponentPrinter_printComponents_Test extends BasicComponentPr
   public void should_Print_All_Components() {
     printer.printComponents(out);
     assertThat(out.printed()).contains(format(windowOne), format(windowOne.button), format(windowTwo),
-        format(windowTwo.button));
+                                       format(windowTwo.button));
   }
 }

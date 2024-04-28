@@ -52,8 +52,7 @@ public abstract class XmlJUnitResultFormatter_TestCase {
     onSetUp();
   }
 
-  void onSetUp() {
-  }
+  void onSetUp() {}
 
   static void assertThatThereAreNoPropertiesIn(XmlNode root) {
     XmlNode properties = root.child(0);

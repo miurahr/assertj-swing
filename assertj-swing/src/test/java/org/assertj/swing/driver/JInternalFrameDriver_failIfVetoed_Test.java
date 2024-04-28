@@ -34,7 +34,8 @@ public class JInternalFrameDriver_failIfVetoed_Test extends JInternalFrameDriver
   public void should_Throw_Error_If_SetProperty_Is_Vetoed() {
     final PropertyVetoException vetoed = new PropertyVetoException("Test", null);
     JInternalFrameAction action = MAXIMIZE;
-    Throwable t = Assert.assertThrows(ActionFailedException.class, () -> driver.failIfVetoed(internalFrame, action, new UnexpectedException(vetoed)));
+    Throwable t = Assert.assertThrows(ActionFailedException.class,
+                                      () -> driver.failIfVetoed(internalFrame, action, new UnexpectedException(vetoed)));
     assertThat(t.getMessage()).contains(action.name).contains("was vetoed: <Test>");
   }
 

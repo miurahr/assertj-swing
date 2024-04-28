@@ -85,7 +85,8 @@ public class JTreeMatchingPathQuery_matchingPathFor_Test extends RobotBasedTestC
 
   @Test
   public void should_Throw_Error_If_Path_Not_Found() {
-    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> JTreeMatchingPathQuery.matchingPathFor(window.tree, "hello", pathFinder));
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class,
+                                      () -> JTreeMatchingPathQuery.matchingPathFor(window.tree, "hello", pathFinder));
     assertThat(t.getMessage()).contains("Unable to find path 'hello'");
   }
 
@@ -100,8 +101,8 @@ public class JTreeMatchingPathQuery_matchingPathFor_Test extends RobotBasedTestC
 
     private static MutableTreeNode createRoot() {
       MutableTreeNode root = node("root",
-          node("branch1", node("branch1.1", node("branch1.1.1"), node("branch1.1.2")), node("branch1.2")),
-          node("branch2"));
+                                  node("branch1", node("branch1.1", node("branch1.1.1"), node("branch1.1.2")), node("branch1.2")),
+                                  node("branch2"));
       return root;
     }
 

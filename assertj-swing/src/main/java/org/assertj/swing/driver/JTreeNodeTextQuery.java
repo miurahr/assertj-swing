@@ -47,6 +47,5 @@ final class JTreeNodeTextQuery {
     });
   }
 
-  private JTreeNodeTextQuery() {
-  }
+  private JTreeNodeTextQuery() {}
 }

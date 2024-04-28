@@ -44,6 +44,5 @@ public final class ImageReader {
     return ImageIO.read(file);
   }
 
-  private ImageReader() {
-  }
+  private ImageReader() {}
 }

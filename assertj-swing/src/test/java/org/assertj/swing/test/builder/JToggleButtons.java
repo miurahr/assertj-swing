@@ -25,8 +25,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JToggleButtons {
-  private JToggleButtons() {
-  }
+  private JToggleButtons() {}
 
   public static JToggleButtonFactory toggleButton() {
     return new JToggleButtonFactory();

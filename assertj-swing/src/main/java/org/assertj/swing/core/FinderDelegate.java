@@ -56,8 +56,9 @@ final class FinderDelegate {
   }
 
   @RunsInEDT
-  @NotNull private static Collection<Component> childrenOfComponent(final @NotNull Component c,
-                                                                    final @NotNull ComponentHierarchy h) {
+  @NotNull
+  private static Collection<Component> childrenOfComponent(final @NotNull Component c,
+                                                           final @NotNull ComponentHierarchy h) {
     Collection<Component> children = h.childrenOf(c);
     return checkNotNull(children);
   }
@@ -81,7 +82,8 @@ final class FinderDelegate {
   }
 
   @RunsInEDT
-  @NotNull private static Collection<? extends Component> rootsOf(final @NotNull ComponentHierarchy h) {
+  @NotNull
+  private static Collection<? extends Component> rootsOf(final @NotNull ComponentHierarchy h) {
     return checkNotNull(h.roots());
   }
 

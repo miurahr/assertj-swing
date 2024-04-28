@@ -34,6 +34,5 @@ final class JOptionPaneTitleQuery {
     return execute(() -> ((Dialog) optionPane.getRootPane().getParent()).getTitle());
   }
 
-  private JOptionPaneTitleQuery() {
-  }
+  private JOptionPaneTitleQuery() {}
 }

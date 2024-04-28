@@ -68,7 +68,8 @@ public class AbstractComponentFixture_constructor_withTargetComponent_Test {
     }
 
     @Override
-    @NotNull protected ComponentDriver createDriver(@NotNull Robot robot) {
+    @NotNull
+    protected ComponentDriver createDriver(@NotNull Robot robot) {
       return new ComponentDriver(robot);
     }
   }

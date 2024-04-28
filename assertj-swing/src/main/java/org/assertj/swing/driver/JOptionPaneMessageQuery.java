@@ -32,6 +32,5 @@ final class JOptionPaneMessageQuery {
     return execute(() -> optionPane.getMessage());
   }
 
-  private JOptionPaneMessageQuery() {
-  }
+  private JOptionPaneMessageQuery() {}
 }

@@ -59,7 +59,8 @@ public final class FocusOwnerFinder {
    * @return the focus owner. This method is executed in the event dispatch thread (EDT).
    */
   @RunsInEDT
-  @Nullable public static Component inEdtFocusOwner() {
+  @Nullable
+  public static Component inEdtFocusOwner() {
     return execute(() -> focusOwner());
   }
 
@@ -76,7 +77,8 @@ public final class FocusOwnerFinder {
    * @return the focus owner.
    */
   @RunsInCurrentThread
-  @Nullable public static Component focusOwner() {
+  @Nullable
+  public static Component focusOwner() {
     for (FocusOwnerFinderStrategy strategy : STRATEGIES) {
       Component focusOwner = focusOwnerFrom(checkNotNull(strategy));
       if (focusOwner != null) {
@@ -86,7 +88,8 @@ public final class FocusOwnerFinder {
     return null;
   }
 
-  @Nullable private static Component focusOwnerFrom(@NotNull FocusOwnerFinderStrategy strategy) {
+  @Nullable
+  private static Component focusOwnerFrom(@NotNull FocusOwnerFinderStrategy strategy) {
     try {
       return strategy.focusOwner();
     } catch (Exception e) {
@@ -94,6 +97,5 @@ public final class FocusOwnerFinder {
     }
   }
 
-  private FocusOwnerFinder() {
-  }
+  private FocusOwnerFinder() {}
 }

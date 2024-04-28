@@ -669,8 +669,7 @@ public class ComponentDriver {
   protected final void moveMouseIgnoringAnyError(@NotNull Component c, int x, int y) {
     try {
       robot.moveMouse(c, x, y);
-    } catch (RuntimeException ignored) {
-    }
+    } catch (RuntimeException ignored) {}
   }
 
   /**

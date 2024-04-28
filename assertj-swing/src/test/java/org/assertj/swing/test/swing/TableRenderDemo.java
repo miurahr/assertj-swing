@@ -73,7 +73,7 @@ public class TableRenderDemo extends JPanel {
       comp = headerRenderer.getTableCellRendererComponent(null, column.getHeaderValue(), false, false, 0, 0);
       headerWidth = comp.getPreferredSize().width;
       comp = table.getDefaultRenderer(model.getColumnClass(i)).getTableCellRendererComponent(table, longValues[i],
-          false, false, 0, i);
+                                                                                             false, false, 0, i);
       cellWidth = comp.getPreferredSize().width;
       column.setPreferredWidth(Math.max(headerWidth, cellWidth));
     }

@@ -43,7 +43,8 @@ public class AbstractButtonArmedQuery_isArmed_Test extends RobotBasedTestCase {
   private final boolean armed;
 
   @Parameters
-  @NotNull public static Collection<Object[]> booleans() {
+  @NotNull
+  public static Collection<Object[]> booleans() {
     return newArrayList(BooleanProvider.booleans());
   }
 

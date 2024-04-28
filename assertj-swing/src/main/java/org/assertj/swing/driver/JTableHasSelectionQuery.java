@@ -36,6 +36,5 @@ final class JTableHasSelectionQuery {
     return table.getSelectedRowCount() > 0 || table.getSelectedColumnCount() > 0;
   }
 
-  private JTableHasSelectionQuery() {
-  }
+  private JTableHasSelectionQuery() {}
 }

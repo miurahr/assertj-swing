@@ -32,11 +32,11 @@ public final class JInternalFrameIconifiedQuery {
    * @return <code>true</code> if the given {@link JInternalFrame} is currently iconified.
    */
   @RunsInEDT
-  @NotNull public static Boolean isIconified(final @NotNull JInternalFrame internalFrame) {
+  @NotNull
+  public static Boolean isIconified(final @NotNull JInternalFrame internalFrame) {
     Boolean result = execute(() -> internalFrame.isIcon());
     return checkNotNull(result);
   }
 
-  private JInternalFrameIconifiedQuery() {
-  }
+  private JInternalFrameIconifiedQuery() {}
 }

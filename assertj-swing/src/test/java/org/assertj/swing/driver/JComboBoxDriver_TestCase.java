@@ -155,8 +155,7 @@ public abstract class JComboBoxDriver_TestCase extends RobotBasedTestCase {
   static class JComboBoxCellReaderStub extends BasicJComboBoxCellReader {
     private final MethodInvocations methodInvocations = new MethodInvocations();
 
-    JComboBoxCellReaderStub() {
-    }
+    JComboBoxCellReaderStub() {}
 
     @Override
     public String valueAt(@NotNull JComboBox<?> comboBox, int index) {

@@ -60,7 +60,7 @@ public class AbstractContainerFixture_fileChooser_Test extends RobotBasedTestCas
   public void should_Fail_If_Visible_JFileChooser_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='myFileChooser', type=javax.swing.JFileChooser, requireShowing=true");
+                                  "name='myFileChooser', type=javax.swing.JFileChooser, requireShowing=true");
     fixture.fileChooser("myFileChooser");
   }
 
@@ -90,7 +90,7 @@ public class AbstractContainerFixture_fileChooser_Test extends RobotBasedTestCas
   public void should_Fail_If_Visible_JFileChooser_Not_Found_By_Type() {
     thrown.expect(WaitTimedOutError.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.JFileChooser, requireShowing=true");
+                                  "type=javax.swing.JFileChooser, requireShowing=true");
     fixture.fileChooser();
   }
 
@@ -158,7 +158,8 @@ public class AbstractContainerFixture_fileChooser_Test extends RobotBasedTestCas
     }
 
     @Override
-    @NotNull public String toString() {
+    @NotNull
+    public String toString() {
       return concat("file chooser with title ", quote(TITLE));
     }
   }

@@ -56,11 +56,12 @@ public class ComponentDriver_doubleClick_Test extends ComponentDriver_TestCase {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
     disableButton();
     assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> {
-    try {
-      driver.doubleClick(window.button);
-    } finally {
-      recorder.wasNotClicked();
-    }});
+      try {
+        driver.doubleClick(window.button);
+      } finally {
+        recorder.wasNotClicked();
+      }
+    });
   }
 
   @Test

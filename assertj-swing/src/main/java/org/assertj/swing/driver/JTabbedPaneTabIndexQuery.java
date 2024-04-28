@@ -43,6 +43,5 @@ final class JTabbedPaneTabIndexQuery {
     return checkNotNull(result);
   }
 
-  private JTabbedPaneTabIndexQuery() {
-  }
+  private JTabbedPaneTabIndexQuery() {}
 }

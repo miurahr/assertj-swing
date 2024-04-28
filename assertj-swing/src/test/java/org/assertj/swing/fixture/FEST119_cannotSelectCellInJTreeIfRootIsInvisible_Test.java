@@ -71,8 +71,8 @@ public class FEST119_cannotSelectCellInJTreeIfRootIsInvisible_Test extends Robot
 
     private static TreeModel nodes() {
       MutableTreeNode root = node("root",
-          node("branch1", node("branch1.1", node("branch1.1.1"), node("branch1.1.2")), node("branch1.2")),
-          node("branch2"));
+                                  node("branch1", node("branch1.1", node("branch1.1.1"), node("branch1.1.2")), node("branch1.2")),
+                                  node("branch2"));
       return new DefaultTreeModel(root);
     }
 

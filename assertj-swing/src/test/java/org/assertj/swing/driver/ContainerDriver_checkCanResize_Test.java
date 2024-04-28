@@ -42,8 +42,7 @@ public class ContainerDriver_checkCanResize_Test extends RobotBasedTestCase {
 
   @Override
   protected void onSetUp() {
-    driver = new ContainerDriver(mock(Robot.class)) {
-    };
+    driver = new ContainerDriver(mock(Robot.class)) {};
   }
 
   @Test

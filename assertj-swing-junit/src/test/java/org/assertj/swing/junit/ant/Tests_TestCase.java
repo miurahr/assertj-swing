@@ -27,6 +27,6 @@ public abstract class Tests_TestCase {
 
   final JUnit4TestCaseFacade createJUnit4TestCaseFacade(String description) {
     return constructor().withParameterTypes(Description.class).in(JUnit4TestCaseFacade.class)
-        .newInstance(createSuiteDescription(description));
+                        .newInstance(createSuiteDescription(description));
   }
 }

@@ -81,7 +81,8 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    * @param title the title to match. It can be a regular expression.
    * @return the created matcher.
    */
-  @NotNull public static DialogMatcher withTitle(@Nullable String title) {
+  @NotNull
+  public static DialogMatcher withTitle(@Nullable String title) {
     return new DialogMatcher(anyValue(), title);
   }
 
@@ -110,7 +111,8 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    * @param pattern the regular expression pattern to match.
    * @return the created matcher.
    */
-  @NotNull public static DialogMatcher withTitle(@NotNull Pattern pattern) {
+  @NotNull
+  public static DialogMatcher withTitle(@NotNull Pattern pattern) {
     return new DialogMatcher(anyValue(), pattern);
   }
 
@@ -119,7 +121,8 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    *
    * @return the created matcher.
    */
-  @NotNull public static DialogMatcher any() {
+  @NotNull
+  public static DialogMatcher any() {
     return new DialogMatcher(anyValue(), anyValue());
   }
 
@@ -135,7 +138,8 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    * @param newTitle the new title to match. It can be a regular expression.
    * @return this matcher.
    */
-  @NotNull public DialogMatcher andTitle(@Nullable String newTitle) {
+  @NotNull
+  public DialogMatcher andTitle(@Nullable String newTitle) {
     title = newTitle;
     return this;
   }
@@ -157,7 +161,8 @@ public final class DialogMatcher extends NamedComponentMatcherTemplate<Dialog> {
    *
    * @return this matcher.
    */
-  @NotNull public DialogMatcher andShowing() {
+  @NotNull
+  public DialogMatcher andShowing() {
     requireShowing(true);
     return this;
   }

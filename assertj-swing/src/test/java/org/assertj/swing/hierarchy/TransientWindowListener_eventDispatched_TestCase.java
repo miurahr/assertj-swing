@@ -40,8 +40,7 @@ public class TransientWindowListener_eventDispatched_TestCase extends EDTSafeTes
     onSetUp();
   }
 
-  void onSetUp() {
-  }
+  void onSetUp() {}
 
   @After
   public final void tearDown() {

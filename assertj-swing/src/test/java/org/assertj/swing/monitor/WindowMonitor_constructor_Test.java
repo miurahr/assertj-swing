@@ -32,7 +32,7 @@ import org.junit.Test;
  */
 public class WindowMonitor_constructor_Test extends WindowMonitor_TestCase {
   private static final long WINDOWS_AVAILABILITY_MONITOR_EVENT_MASK = MOUSE_MOTION_EVENT_MASK | MOUSE_EVENT_MASK
-      | PAINT_EVENT_MASK;
+                                                                      | PAINT_EVENT_MASK;
 
   private static final long CONTEXT_MONITOR_EVENT_MASK = WINDOW_EVENT_MASK | COMPONENT_EVENT_MASK;
 
@@ -49,7 +49,7 @@ public class WindowMonitor_constructor_Test extends WindowMonitor_TestCase {
 
   private AWTEventListener listenerUnderMask(long mask) {
     List<WeakEventListener> contextMonitorWrappers = toolkit
-        .eventListenersUnderEventMask(mask, WeakEventListener.class);
+                                                            .eventListenersUnderEventMask(mask, WeakEventListener.class);
     assertThat(contextMonitorWrappers).hasSize(1);
     return contextMonitorWrappers.get(0).underlyingListener();
   }

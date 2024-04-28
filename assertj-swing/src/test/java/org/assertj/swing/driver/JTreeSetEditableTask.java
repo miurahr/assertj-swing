@@ -30,6 +30,5 @@ final class JTreeSetEditableTask {
     execute(() -> tree.setEditable(editable));
   }
 
-  private JTreeSetEditableTask() {
-  }
+  private JTreeSetEditableTask() {}
 }

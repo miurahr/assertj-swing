@@ -56,7 +56,8 @@ public class JProgressBarFixture extends
   }
 
   @Override
-  @NotNull protected JProgressBarDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected JProgressBarDriver createDriver(@NotNull Robot robot) {
     return new JProgressBarDriver(robot);
   }
 
@@ -67,7 +68,8 @@ public class JProgressBarFixture extends
    * @return this fixture.
    * @throws AssertionError if the value of this fixture's {@code JProgressBar} is not equal to the given one.
    */
-  @NotNull public JProgressBarFixture requireValue(int value) {
+  @NotNull
+  public JProgressBarFixture requireValue(int value) {
     driver().requireValue(target(), value);
     return this;
   }
@@ -78,7 +80,8 @@ public class JProgressBarFixture extends
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code JProgressBar} is not in determinate mode.
    */
-  @NotNull public JProgressBarFixture requireDeterminate() {
+  @NotNull
+  public JProgressBarFixture requireDeterminate() {
     driver().requireDeterminate(target());
     return this;
   }
@@ -89,7 +92,8 @@ public class JProgressBarFixture extends
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code JProgressBar} is not in indeterminate mode.
    */
-  @NotNull public JProgressBarFixture requireIndeterminate() {
+  @NotNull
+  public JProgressBarFixture requireIndeterminate() {
     driver().requireIndeterminate(target());
     return this;
   }
@@ -110,7 +114,8 @@ public class JProgressBarFixture extends
    * @throws AssertionError if the text of this fixture's {@code JProgressBar} is not equal to the given one.
    */
   @Override
-  @NotNull public JProgressBarFixture requireText(@Nullable String expected) {
+  @NotNull
+  public JProgressBarFixture requireText(@Nullable String expected) {
     driver().requireText(target(), expected);
     return this;
   }
@@ -125,7 +130,8 @@ public class JProgressBarFixture extends
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
   @Override
-  @NotNull public JProgressBarFixture requireText(@NotNull Pattern pattern) {
+  @NotNull
+  public JProgressBarFixture requireText(@NotNull Pattern pattern) {
     driver().requireText(target(), pattern);
     return this;
   }
@@ -140,7 +146,8 @@ public class JProgressBarFixture extends
    * @throws org.assertj.swing.exception.WaitTimedOutError if the value of the {@code JProgressBar} does not reach the expected value within 30
    *           seconds.
    */
-  @NotNull public JProgressBarFixture waitUntilValueIs(int value) {
+  @NotNull
+  public JProgressBarFixture waitUntilValueIs(int value) {
     driver().waitUntilValueIs(target(), value);
     return this;
   }
@@ -157,7 +164,8 @@ public class JProgressBarFixture extends
    * @throws org.assertj.swing.exception.WaitTimedOutError if the value of the {@code JProgressBar} does not reach the expected value within the
    *           specified timeout.
    */
-  @NotNull public JProgressBarFixture waitUntilValueIs(int value, @NotNull Timeout timeout) {
+  @NotNull
+  public JProgressBarFixture waitUntilValueIs(int value, @NotNull Timeout timeout) {
     driver().waitUntilValueIs(target(), value, timeout);
     return this;
   }
@@ -168,7 +176,8 @@ public class JProgressBarFixture extends
    * @return this fixture.
    * @throws org.assertj.swing.exception.WaitTimedOutError if the {@code JProgressBar} does not reach determinate mode within 30 seconds.
    */
-  @NotNull public JProgressBarFixture waitUntilIsDeterminate() {
+  @NotNull
+  public JProgressBarFixture waitUntilIsDeterminate() {
     driver().waitUntilIsDeterminate(target());
     return this;
   }
@@ -181,7 +190,8 @@ public class JProgressBarFixture extends
    * @throws NullPointerException if the given timeout is {@code null}.
    * @throws org.assertj.swing.exception.WaitTimedOutError if the {@code JProgressBar} does not reach determinate mode within the specified timeout.
    */
-  @NotNull public JProgressBarFixture waitUntilIsDeterminate(@NotNull Timeout timeout) {
+  @NotNull
+  public JProgressBarFixture waitUntilIsDeterminate(@NotNull Timeout timeout) {
     driver().waitUntilIsDeterminate(target(), timeout);
     return this;
   }

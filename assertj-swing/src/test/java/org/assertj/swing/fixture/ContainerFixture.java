@@ -29,7 +29,8 @@ public class ContainerFixture extends AbstractContainerFixture<ContainerFixture,
   }
 
   @Override
-  @NotNull protected FrameDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected FrameDriver createDriver(@NotNull Robot robot) {
     return new FrameDriver(robot);
   }
 }

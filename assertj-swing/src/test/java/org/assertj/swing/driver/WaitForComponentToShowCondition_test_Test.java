@@ -56,8 +56,7 @@ public class WaitForComponentToShowCondition_test_Test extends EDTSafeTestCase {
       return execute(() -> new ComponentStub());
     }
 
-    private ComponentStub() {
-    }
+    private ComponentStub() {}
 
     void showing(boolean isShowing) {
       showing = isShowing;

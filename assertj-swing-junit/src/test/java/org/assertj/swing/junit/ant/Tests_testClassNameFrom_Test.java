@@ -33,7 +33,7 @@ public abstract class Tests_testClassNameFrom_Test extends Tests_TestCase {
   public void shouldReturnTestClassNameFromVmExitErrorTest() {
     Class<?> vmExitErrorTestClass = staticInnerClass("VmExitErrorTest").in(JUnitTaskMirrorImpl.class).get();
     Object test = constructor().withParameterTypes(String.class, JUnitTest.class, String.class)
-        .in(vmExitErrorTestClass).newInstance("someMessage", new JUnitTest("testClassName"), "testName");
+                               .in(vmExitErrorTestClass).newInstance("someMessage", new JUnitTest("testClassName"), "testName");
     assertThat(test).isInstanceOf(junit.framework.Test.class);
     assertThat(Tests.testClassNameFrom((junit.framework.Test) test)).isEqualTo("testClassName");
   }
@@ -52,8 +52,7 @@ public abstract class Tests_testClassNameFrom_Test extends Tests_TestCase {
 
   @Test
   public void shouldReturnToStringAsClassNameIfTestIsInstanceOfTestCase() {
-    TestCase test = new TestCase("Leia") {
-    };
+    TestCase test = new TestCase("Leia") {};
     assertThat(Tests.testClassNameFrom(test)).isEqualTo(test.getClass().getName());
   }
 

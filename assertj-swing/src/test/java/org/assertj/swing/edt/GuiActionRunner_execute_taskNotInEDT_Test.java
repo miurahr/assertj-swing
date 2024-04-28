@@ -72,8 +72,7 @@ public class GuiActionRunner_execute_taskNotInEDT_Test extends SequentialEDTSafe
   private static class TestGuiTask extends GuiTask {
     private final MethodInvocations methodInvocations = new MethodInvocations();
 
-    TestGuiTask() {
-    }
+    TestGuiTask() {}
 
     @Override
     protected void executeInEDT() {

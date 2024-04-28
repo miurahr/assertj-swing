@@ -27,6 +27,6 @@ public class JButtonMatcher_toString_Test {
   public void should_Implement_ToString() {
     JButtonMatcher matcher = JButtonMatcher.withName("button").andText("Hello").andShowing();
     assertThat(matcher.toString()).isEqualTo(
-        "org.assertj.swing.core.matcher.JButtonMatcher[name='button', text='Hello', requireShowing=true]");
+                                             "org.assertj.swing.core.matcher.JButtonMatcher[name='button', text='Hello', requireShowing=true]");
   }
 }

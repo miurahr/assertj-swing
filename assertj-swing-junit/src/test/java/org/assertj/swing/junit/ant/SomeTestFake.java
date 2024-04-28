@@ -22,9 +22,7 @@ import org.assertj.swing.annotation.GUITest;
 public class SomeTestFake {
 
   @GUITest
-  public void guiTest() {
-  }
+  public void guiTest() {}
 
-  public void nonGuiTest() {
-  }
+  public void nonGuiTest() {}
 }

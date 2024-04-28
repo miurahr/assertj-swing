@@ -119,7 +119,8 @@ public class WindowDriver extends ContainerDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Point closeInfo(final @NotNull Window w) {
+  @NotNull
+  private static Point closeInfo(final @NotNull Window w) {
     Point result = execute(() -> {
       checkEnabledAndShowing(w);
       return closeButtonLocation(w);

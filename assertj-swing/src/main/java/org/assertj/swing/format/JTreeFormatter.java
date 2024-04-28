@@ -59,7 +59,8 @@ public class JTreeFormatter extends ComponentFormatterTemplate {
                          tree.isShowing());
   }
 
-  @NotNull private String[] selectionPaths(@NotNull JTree tree) {
+  @NotNull
+  private String[] selectionPaths(@NotNull JTree tree) {
     TreePath[] paths = tree.getSelectionPaths();
     if (paths == null) {
       return EMPTY;
@@ -86,7 +87,8 @@ public class JTreeFormatter extends ComponentFormatterTemplate {
    * @return {@code JTree.class}.
    */
   @Override
-  @NotNull public Class<? extends Component> targetType() {
+  @NotNull
+  public Class<? extends Component> targetType() {
     return JTree.class;
   }
 }

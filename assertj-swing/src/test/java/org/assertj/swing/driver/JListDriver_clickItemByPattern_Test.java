@@ -51,12 +51,14 @@ public class JListDriver_clickItemByPattern_Test extends JListDriver_TestCase {
   @Test
   public void should_Throw_Error_If_JList_Is_Disabled() {
     disableList();
-    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.clickItem(list, Pattern.compile("two"), RIGHT_BUTTON, 2));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.clickItem(list, Pattern.compile("two"), RIGHT_BUTTON,
+                                                                                   2));
   }
 
   @Test
   public void should_Throw_Error_If_JList_Is_Not_Showing_On_The_Screen() {
-    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.clickItem(list, Pattern.compile("two"), RIGHT_BUTTON, 2));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.clickItem(list, Pattern.compile("two"), RIGHT_BUTTON,
+                                                                                     2));
   }
 
   @Test(expected = LocationUnavailableException.class)

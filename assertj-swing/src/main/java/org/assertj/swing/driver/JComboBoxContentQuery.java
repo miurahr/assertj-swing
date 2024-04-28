@@ -41,6 +41,5 @@ final class JComboBoxContentQuery {
     return checkNotNull(result);
   }
 
-  private JComboBoxContentQuery() {
-  }
+  private JComboBoxContentQuery() {}
 }

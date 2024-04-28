@@ -63,7 +63,8 @@ public final class KeyPressInfo {
    * @param keyCode the code of the key to press.
    * @return the created {@code KeyPressInfo}.
    */
-  @NotNull public static KeyPressInfo keyCode(int keyCode) {
+  @NotNull
+  public static KeyPressInfo keyCode(int keyCode) {
     return new KeyPressInfo(keyCode, NO_MODIFIERS);
   }
 
@@ -82,7 +83,8 @@ public final class KeyPressInfo {
   /**
    * @return the modifiers to use when pressing {@link #keyCode() the specified key}.
    */
-  @NotNull public int[] modifiers() {
+  @NotNull
+  public int[] modifiers() {
     return copyOf(modifiers);
   }
 
@@ -101,7 +103,8 @@ public final class KeyPressInfo {
    * @return this object.
    * @throws NullPointerException if {@code newModifiers} is {@code null}.
    */
-  @NotNull public KeyPressInfo modifiers(@NotNull int... newModifiers) {
+  @NotNull
+  public KeyPressInfo modifiers(@NotNull int... newModifiers) {
     modifiers = copyOf(newModifiers);
     return this;
   }

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.keystroke;
 
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

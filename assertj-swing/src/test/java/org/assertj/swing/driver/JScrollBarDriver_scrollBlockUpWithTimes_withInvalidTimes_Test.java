@@ -44,7 +44,8 @@ public class JScrollBarDriver_scrollBlockUpWithTimes_withInvalidTimes_Test exten
   @Test
   public void should_Throw_Error_If_Times_Is_Zero_Or_Negative() {
     thrown.expectIllegalArgumentException(concat(
-        "The number of times to scroll up one block should be greater than zero, but was <", times, ">"));
+                                                 "The number of times to scroll up one block should be greater than zero, but was <",
+                                                 times, ">"));
     driver.scrollBlockUp(scrollBar, times);
   }
 }

@@ -41,7 +41,8 @@ public class MethodInvocations {
    * @param methodName the name of the invoked method.
    * @return {@code this}.
    */
-  @NotNull public MethodInvocations invoked(@NotNull String methodName) {
+  @NotNull
+  public MethodInvocations invoked(@NotNull String methodName) {
     invocations.put(methodName, new Object[0]);
     return this;
   }
@@ -53,7 +54,8 @@ public class MethodInvocations {
    * @param args the arguments passed to the invoked method.
    * @return {@code this}.
    */
-  @NotNull public MethodInvocations invoked(@NotNull String methodName, @NotNull Args args) {
+  @NotNull
+  public MethodInvocations invoked(@NotNull String methodName, @NotNull Args args) {
     checkNotNull(args);
     invocations.put(methodName, args.args);
     return this;
@@ -66,7 +68,8 @@ public class MethodInvocations {
    * @return {@code this}.
    * @throws AssertionError if the method was not invoked.
    */
-  @NotNull public MethodInvocations requireInvoked(@NotNull String methodName) {
+  @NotNull
+  public MethodInvocations requireInvoked(@NotNull String methodName) {
     if (!invocations.containsKey(methodName)) {
       methodNotInvoked(methodName);
     }
@@ -82,7 +85,8 @@ public class MethodInvocations {
    * @throws AssertionError if the method was not invoked.
    * @throws AssertionError if different arguments were passed to the method to verify.
    */
-  @NotNull public MethodInvocations requireInvoked(@NotNull String methodName, @NotNull Args args) {
+  @NotNull
+  public MethodInvocations requireInvoked(@NotNull String methodName, @NotNull Args args) {
     checkNotNull(args);
     if (!invocations.containsKey(methodName)) {
       methodNotInvoked(methodName);
@@ -114,7 +118,8 @@ public class MethodInvocations {
      * @param args the arguments to store.
      * @return the created {@code Args}.
      */
-    @NotNull public static Args args(@Nullable Object... args) {
+    @NotNull
+    public static Args args(@Nullable Object... args) {
       return new Args(args);
     }
 

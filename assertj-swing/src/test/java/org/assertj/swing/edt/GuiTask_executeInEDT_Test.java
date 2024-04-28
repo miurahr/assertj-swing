@@ -41,8 +41,7 @@ public class GuiTask_executeInEDT_Test {
   private static class GuiTaskInEDT extends GuiTask {
     private boolean executed;
 
-    GuiTaskInEDT() {
-    }
+    GuiTaskInEDT() {}
 
     @Override
     protected void executeInEDT() {

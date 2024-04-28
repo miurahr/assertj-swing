@@ -82,6 +82,5 @@ public final class JOptionPaneLauncher {
     return dialog;
   }
 
-  private JOptionPaneLauncher() {
-  }
+  private JOptionPaneLauncher() {}
 }

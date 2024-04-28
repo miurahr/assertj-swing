@@ -66,8 +66,7 @@ abstract class StringTransferHandler<T extends JComponent> extends TransferHandl
       String str = (String) t.getTransferData(stringFlavor);
       importString(type.cast(c), str);
       return true;
-    } catch (Exception ignored) {
-    }
+    } catch (Exception ignored) {}
     return false;
   }
 

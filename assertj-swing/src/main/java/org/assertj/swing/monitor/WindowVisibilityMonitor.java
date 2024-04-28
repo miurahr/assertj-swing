@@ -61,10 +61,8 @@ class WindowVisibilityMonitor extends WindowAdapter implements ComponentListener
   }
 
   @Override
-  public void componentMoved(ComponentEvent e) {
-  }
+  public void componentMoved(ComponentEvent e) {}
 
   @Override
-  public void componentResized(ComponentEvent e) {
-  }
+  public void componentResized(ComponentEvent e) {}
 }

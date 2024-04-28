@@ -34,6 +34,5 @@ public class TestComponents {
     return mock(Component.class);
   }
 
-  private TestComponents() {
-  }
+  private TestComponents() {}
 }

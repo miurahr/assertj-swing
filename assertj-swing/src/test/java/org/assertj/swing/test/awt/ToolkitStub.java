@@ -59,8 +59,7 @@ public class ToolkitStub extends Toolkit {
     return stub;
   }
 
-  public ToolkitStub() {
-  }
+  public ToolkitStub() {}
 
   public void eventQueue(EventQueue newEventQueue) {
     eventQueue = newEventQueue;

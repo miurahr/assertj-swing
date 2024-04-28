@@ -50,7 +50,8 @@ public final class Patterns {
    * @throws NullPointerException if the given array of patterns is {@code null}.
    * @throws NullPointerException if any of the patterns in the given array is {@code null}.
    */
-  @NotNull public static String format(@NotNull Pattern[] patterns) {
+  @NotNull
+  public static String format(@NotNull Pattern[] patterns) {
     checkNotNull(patterns);
     int patternCount = patterns.length;
     String[] patternsAsText = new String[patternCount];
@@ -61,6 +62,5 @@ public final class Patterns {
     return checkNotNull(Arrays.format(patternsAsText));
   }
 
-  private Patterns() {
-  }
+  private Patterns() {}
 }

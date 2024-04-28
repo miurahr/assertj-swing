@@ -64,7 +64,8 @@ public abstract class AbstractButtonFixture<S, T extends AbstractButton> extends
   }
 
   @Override
-  @NotNull protected AbstractButtonDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected AbstractButtonDriver createDriver(@NotNull Robot robot) {
     return new AbstractButtonDriver(robot);
   }
 

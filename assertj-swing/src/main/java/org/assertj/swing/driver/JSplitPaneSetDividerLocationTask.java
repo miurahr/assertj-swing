@@ -31,6 +31,5 @@ final class JSplitPaneSetDividerLocationTask {
     execute(() -> splitPane.setDividerLocation(location));
   }
 
-  private JSplitPaneSetDividerLocationTask() {
-  }
+  private JSplitPaneSetDividerLocationTask() {}
 }

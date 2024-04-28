@@ -80,12 +80,14 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
   }
 
   @RunsInEDT
-  @Nullable private static URL documentBase(final @NotNull JApplet applet) {
+  @Nullable
+  private static URL documentBase(final @NotNull JApplet applet) {
     return execute(() -> applet.getDocumentBase());
   }
 
   @RunsInEDT
-  @Nullable private static String parameter(final @NotNull JApplet applet, final @Nullable String parameterName) {
+  @Nullable
+  private static String parameter(final @NotNull JApplet applet, final @Nullable String parameterName) {
     return execute(() -> applet.getParameter(parameterName));
   }
 
@@ -140,7 +142,8 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
   }
 
   @RunsInEDT
-  @Nullable private static AppletContext appletContext(final @NotNull JApplet applet) {
+  @Nullable
+  private static AppletContext appletContext(final @NotNull JApplet applet) {
     return execute(() -> applet.getAppletContext());
   }
 
@@ -149,7 +152,8 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    */
   @RunsInEDT
   @Override
-  @Nullable public URL getCodeBase() {
+  @Nullable
+  public URL getCodeBase() {
     return getCodeBase(applet);
   }
 
@@ -160,7 +164,8 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @return the URL of the directory that contains the given {@code JApplet}.
    */
   @RunsInEDT
-  @Nullable public URL getCodeBase(@NotNull JApplet applet) {
+  @Nullable
+  public URL getCodeBase(@NotNull JApplet applet) {
     return codeBase(applet);
   }
 
@@ -171,7 +176,8 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    */
   @RunsInEDT
   @Override
-  @Nullable public URL getDocumentBase() {
+  @Nullable
+  public URL getDocumentBase() {
     return getDocumentBase(applet);
   }
 
@@ -182,7 +188,8 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @return the URL of the document the given {@code JApplet} is embedded.
    */
   @RunsInEDT
-  @Nullable public URL getDocumentBase(@NotNull JApplet applet) {
+  @Nullable
+  public URL getDocumentBase(@NotNull JApplet applet) {
     return documentBase(applet);
   }
 
@@ -195,7 +202,8 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    */
   @RunsInEDT
   @Override
-  @Nullable public String getParameter(@Nullable String name) {
+  @Nullable
+  public String getParameter(@Nullable String name) {
     return getParameter(applet, name);
   }
 
@@ -248,7 +256,8 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @return the collection of {@code Applet}s within the {@code AppletContext}.
    */
   @RunsInEDT
-  @NotNull public Enumeration<Applet> getApplets() {
+  @NotNull
+  public Enumeration<Applet> getApplets() {
     Enumeration<Applet> applets = applet.getAppletContext().getApplets();
     return applets != null ? applets : enumeration(Collections.<Applet> emptyList());
   }

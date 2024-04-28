@@ -142,6 +142,5 @@ public final class JTableCellPreconditions {
     throw new IndexOutOfBoundsException(msg);
   }
 
-  private JTableCellPreconditions() {
-  }
+  private JTableCellPreconditions() {}
 }

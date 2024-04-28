@@ -28,8 +28,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JDialogs {
-  private JDialogs() {
-  }
+  private JDialogs() {}
 
   public static JDialogFactory dialog() {
     return new JDialogFactory();
@@ -70,13 +69,13 @@ public final class JDialogs {
     @RunsInEDT
     public JDialog createAndShow() {
       return execute(new GuiQuery<>() {
-          @Override
-          protected JDialog executeInEDT() {
-              JDialog dialog = create();
-              dialog.pack();
-              dialog.setVisible(true);
-              return dialog;
-          }
+        @Override
+        protected JDialog executeInEDT() {
+          JDialog dialog = create();
+          dialog.pack();
+          dialog.setVisible(true);
+          return dialog;
+        }
       });
     }
 

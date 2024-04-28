@@ -97,7 +97,7 @@ public class FEST254_JComboBoxFixtureIsNotUsingCellReaderForRequireSelection_Tes
   private static class MyComboBoxRenderer extends BasicComboBoxRenderer {
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
-        boolean cellHasFocus) {
+                                                  boolean cellHasFocus) {
       return super.getListCellRendererComponent(list, renderIfValue(value), index, isSelected, cellHasFocus);
     }
   }

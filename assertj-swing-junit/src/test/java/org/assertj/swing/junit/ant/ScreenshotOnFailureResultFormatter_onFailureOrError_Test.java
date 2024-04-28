@@ -17,7 +17,6 @@ import static java.security.AccessController.doPrivileged;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.fest.reflect.core.Reflection.field;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 import java.security.PrivilegedAction;
 

@@ -123,7 +123,8 @@ public final class ScreenLock {
    *         {@link #acquired()} is <code>true</code> calling {@link #acquiredBy(Object)} with {@link #getOwner()}
    *         returns <code>true</code>.
    */
-  @Nullable public Object getOwner() {
+  @Nullable
+  public Object getOwner() {
     lock.lock();
     try {
       return owner;
@@ -135,7 +136,8 @@ public final class ScreenLock {
   /**
    * @return the singleton instance of this class.
    */
-  @NotNull public static ScreenLock instance() {
+  @NotNull
+  public static ScreenLock instance() {
     return ScreenLockHolder.instance;
   }
 
@@ -143,6 +145,5 @@ public final class ScreenLock {
     static ScreenLock instance = new ScreenLock();
   }
 
-  ScreenLock() {
-  }
+  ScreenLock() {}
 }

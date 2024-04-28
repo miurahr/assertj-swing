@@ -31,6 +31,5 @@ final class ComponentRequestFocusTask {
     execute(() -> c.requestFocusInWindow());
   }
 
-  private ComponentRequestFocusTask() {
-  }
+  private ComponentRequestFocusTask() {}
 }

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.applet;
 
-
 import org.jetbrains.annotations.NotNull;
 
 /**

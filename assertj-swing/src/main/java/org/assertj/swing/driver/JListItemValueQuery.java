@@ -37,6 +37,5 @@ final class JListItemValueQuery {
     });
   }
 
-  private JListItemValueQuery() {
-  }
+  private JListItemValueQuery() {}
 }

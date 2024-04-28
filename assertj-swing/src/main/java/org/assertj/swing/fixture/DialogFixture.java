@@ -77,7 +77,8 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
   }
 
   @Override
-  @NotNull protected DialogDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected DialogDriver createDriver(@NotNull Robot robot) {
     return new DialogDriver(robot);
   }
 
@@ -87,7 +88,8 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Dialog} is not modal.
    */
-  @NotNull public DialogFixture requireModal() {
+  @NotNull
+  public DialogFixture requireModal() {
     driver().requireModal(target());
     return this;
   }

@@ -32,6 +32,5 @@ final class JTreeEditableQuery {
     return checkNotNull(result);
   }
 
-  private JTreeEditableQuery() {
-  }
+  private JTreeEditableQuery() {}
 }

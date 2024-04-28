@@ -33,6 +33,5 @@ final class JTableRowCountQuery {
     return checkNotNull(result);
   }
 
-  private JTableRowCountQuery() {
-  }
+  private JTableRowCountQuery() {}
 }

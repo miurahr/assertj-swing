@@ -27,8 +27,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JPopupMenus {
-  private JPopupMenus() {
-  }
+  private JPopupMenus() {}
 
   public static JPopupMenuFactory popupMenu() {
     return new JPopupMenuFactory();

@@ -73,7 +73,8 @@ public class KeyStrokeMapping {
   /**
    * @return the {@code KeyStroke} corresponding to this mapping's character.
    */
-  @NotNull public KeyStroke keyStroke() {
+  @NotNull
+  public KeyStroke keyStroke() {
     return keyStroke;
   }
 
@@ -91,7 +92,7 @@ public class KeyStrokeMapping {
     }
     KeyStrokeMapping other = (KeyStrokeMapping) o;
     return character == other.character && keyStroke.getKeyCode() == other.keyStroke.getKeyCode()
-        && keyStroke.getModifiers() == other.keyStroke.getModifiers();
+           && keyStroke.getModifiers() == other.keyStroke.getModifiers();
   }
 
   @Override

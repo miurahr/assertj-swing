@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 class NeverSatisfiedCondition extends Condition {
   private AtomicInteger count;
+
   public NeverSatisfiedCondition() {
     super("Never satisfied");
     count = new AtomicInteger(0);

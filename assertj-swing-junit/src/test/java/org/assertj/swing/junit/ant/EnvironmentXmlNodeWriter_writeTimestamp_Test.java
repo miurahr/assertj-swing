@@ -25,8 +25,6 @@ import java.util.Date;
 import org.assertj.swing.junit.xml.XmlAttribute;
 import org.junit.Test;
 
-import javax.xml.crypto.Data;
-
 /**
  * Test for <code>{@link EnvironmentXmlNodeWriter#writeTimestamp(org.assertj.swing.junit.xml.XmlNode)}</code>.
  * 

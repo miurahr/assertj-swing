@@ -35,6 +35,5 @@ final class JComboBoxSelectedIndexQuery {
     return checkNotNull(result);
   }
 
-  private JComboBoxSelectedIndexQuery() {
-  }
+  private JComboBoxSelectedIndexQuery() {}
 }

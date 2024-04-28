@@ -28,6 +28,5 @@ final class JListSetSelectedIndexTask {
     execute(() -> list.setSelectedIndex(index));
   }
 
-  private JListSetSelectedIndexTask() {
-  }
+  private JListSetSelectedIndexTask() {}
 }

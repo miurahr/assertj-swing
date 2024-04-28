@@ -54,7 +54,8 @@ public final class Scrolling {
    * @param c the given {@code JComponent}.
    * @return the found ancestor or {@code null} if there isn't one.
    */
-  @Nullable private static JComponent findClosestValidatingRootAncestor(@NotNull JComponent c) {
+  @Nullable
+  private static JComponent findClosestValidatingRootAncestor(@NotNull JComponent c) {
     // the candidate validating root at every iteration (candidate = not necessarily a root)
     Container root = c;
     // we go up to the top of the hierarchy
@@ -94,11 +95,10 @@ public final class Scrolling {
    * @param rectangle the rectangular region.
    */
   private static void scrollToVisible(@NotNull Robot robot, final @NotNull JComponent c,
-      final @NotNull Rectangle rectangle) {
+                                      final @NotNull Rectangle rectangle) {
     execute(() -> c.scrollRectToVisible(rectangle));
     robot.waitForIdle();
   }
 
-  private Scrolling() {
-  }
+  private Scrolling() {}
 }

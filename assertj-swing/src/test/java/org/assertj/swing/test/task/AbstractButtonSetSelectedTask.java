@@ -30,6 +30,5 @@ public final class AbstractButtonSetSelectedTask {
     execute(() -> button.setSelected(selected));
   }
 
-  private AbstractButtonSetSelectedTask() {
-  }
+  private AbstractButtonSetSelectedTask() {}
 }

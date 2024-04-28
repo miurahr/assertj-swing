@@ -31,6 +31,5 @@ final class JComboBoxSetEditableTask {
     execute(() -> comboBox.setEditable(editable));
   }
 
-  private JComboBoxSetEditableTask() {
-  }
+  private JComboBoxSetEditableTask() {}
 }

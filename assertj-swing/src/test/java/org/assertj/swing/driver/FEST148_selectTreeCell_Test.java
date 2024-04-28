@@ -82,7 +82,8 @@ public class FEST148_selectTreeCell_Test extends RobotBasedTestCase {
                             node("node111"),
                             node("node112",
                                  node("node1121", node("node11211", node("node112111", node("node1121111")))))),
-                       node("node12")), node("node2"));
+                       node("node12")),
+                  node("node2"));
     }
   }
 }

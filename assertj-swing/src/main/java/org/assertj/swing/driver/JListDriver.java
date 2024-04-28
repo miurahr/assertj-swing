@@ -100,7 +100,8 @@ public class JListDriver extends JComponentDriver {
    * @see #replaceCellReader(JListCellReader)
    */
   @RunsInEDT
-  @NotNull public String[] contentsOf(@NotNull JList<?> list) {
+  @NotNull
+  public String[] contentsOf(@NotNull JList<?> list) {
     return contents(list, cellReader());
   }
 
@@ -456,7 +457,8 @@ public class JListDriver extends JComponentDriver {
     verifyThat(selection).as(selectedIndexProperty(list)).matches(pattern);
   }
 
-  @Nullable private String requiredSelection(final @NotNull JList<?> list) {
+  @Nullable
+  private String requiredSelection(final @NotNull JList<?> list) {
     Object selection = singleSelectionValue(list, cellReader());
     if (NO_SELECTION_VALUE == selection) {
       failNoSelection(list);
@@ -489,7 +491,8 @@ public class JListDriver extends JComponentDriver {
    * @see #replaceCellReader(JListCellReader)
    */
   @RunsInEDT
-  @NotNull public String[] selectionOf(@NotNull JList<?> list) {
+  @NotNull
+  public String[] selectionOf(@NotNull JList<?> list) {
     List<String> selection = selectionValues(list, cellReader());
     return selection.toArray(new String[selection.size()]);
   }
@@ -720,14 +723,16 @@ public class JListDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private JPopupMenu showPopupMenu(@NotNull JList<?> list, @NotNull TextMatcher matcher) {
+  @NotNull
+  private JPopupMenu showPopupMenu(@NotNull JList<?> list, @NotNull TextMatcher matcher) {
     Pair<Integer, Point> scrollInfo = scrollToItem(list, matcher, cellReader());
     robot.waitForIdle();
     checkItemFound(list, scrollInfo, matcher);
     return robot.showPopupMenu(list, cellCenterIn(scrollInfo));
   }
 
-  @NotNull private Point cellCenterIn(@NotNull Pair<Integer, Point> scrollInfo) {
+  @NotNull
+  private Point cellCenterIn(@NotNull Pair<Integer, Point> scrollInfo) {
     return checkNotNull(scrollInfo.second);
   }
 
@@ -744,7 +749,8 @@ public class JListDriver extends JComponentDriver {
    *           {@code JList}.
    */
   @RunsInEDT
-  @NotNull public JPopupMenu showPopupMenu(@NotNull JList<?> list, int index) {
+  @NotNull
+  public JPopupMenu showPopupMenu(@NotNull JList<?> list, int index) {
     Point cellCenter = scrollToItem(list, index);
     robot.waitForIdle();
     return robot.showPopupMenu(list, cellCenter);
@@ -759,7 +765,8 @@ public class JListDriver extends JComponentDriver {
    * @throws LocationUnavailableException if an element matching the given value cannot be found.
    */
   @RunsInEDT
-  @NotNull public Point pointAt(@NotNull JList<?> list, @Nullable String value) {
+  @NotNull
+  public Point pointAt(@NotNull JList<?> list, @Nullable String value) {
     return centerOfMatchingItemCell(list, value, cellReader());
   }
 
@@ -806,8 +813,9 @@ public class JListDriver extends JComponentDriver {
     return checkNotNull(result);
   }
 
-  @NotNull private LocationUnavailableException failMatchingNotFound(@NotNull JList<?> list,
-                                                                     @NotNull TextMatcher matcher) {
+  @NotNull
+  private LocationUnavailableException failMatchingNotFound(@NotNull JList<?> list,
+                                                            @NotNull TextMatcher matcher) {
     String format = "Unable to find item matching the %s %s among the JList contents %s";
     String msg = String.format(format, matcher.description(), matcher.formattedValues(),
                                format(contents(list, cellReader())));
@@ -826,7 +834,8 @@ public class JListDriver extends JComponentDriver {
    * @see #replaceCellReader(JListCellReader)
    */
   @RunsInEDT
-  @Nullable public String value(@NotNull JList<?> list, int index) {
+  @Nullable
+  public String value(@NotNull JList<?> list, int index) {
     return itemValue(list, index, cellReader());
   }
 
@@ -854,7 +863,8 @@ public class JListDriver extends JComponentDriver {
     assertThat(actual).as(propertyName(list, "itemCount")).isEqualTo(expected);
   }
 
-  @NotNull private JListCellReader cellReader() {
+  @NotNull
+  private JListCellReader cellReader() {
     return cellReader;
   }
 }

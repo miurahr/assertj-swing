@@ -16,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-
 /**
  * Provides a mapping between characters and {@code KeyStroke}s.
  * 

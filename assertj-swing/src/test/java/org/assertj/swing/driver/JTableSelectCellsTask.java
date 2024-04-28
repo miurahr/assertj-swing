@@ -33,6 +33,5 @@ final class JTableSelectCellsTask {
     });
   }
 
-  private JTableSelectCellsTask() {
-  }
+  private JTableSelectCellsTask() {}
 }

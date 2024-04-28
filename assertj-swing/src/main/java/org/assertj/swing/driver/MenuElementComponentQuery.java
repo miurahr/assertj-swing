@@ -36,6 +36,5 @@ final class MenuElementComponentQuery {
     return checkNotNull(result);
   }
 
-  private MenuElementComponentQuery() {
-  }
+  private MenuElementComponentQuery() {}
 }

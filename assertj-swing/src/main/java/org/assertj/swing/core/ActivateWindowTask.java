@@ -35,6 +35,5 @@ class ActivateWindowTask {
     });
   }
 
-  private ActivateWindowTask() {
-  }
+  private ActivateWindowTask() {}
 }

@@ -199,7 +199,8 @@ public class JSpinnerDriver extends JComponentDriver {
    * @return the text displayed in the given {@code JSpinner}.
    */
   @RunsInEDT
-  @Nullable public String textOf(@NotNull JSpinner spinner) {
+  @Nullable
+  public String textOf(@NotNull JSpinner spinner) {
     JTextComponent editor = findEditor(spinner);
     if (editor != null) {
       return JTextComponentTextQuery.textOf(editor);
@@ -259,7 +260,8 @@ public class JSpinnerDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nullable private JTextComponent findEditor(@NotNull JSpinner spinner) {
+  @Nullable
+  private JTextComponent findEditor(@NotNull JSpinner spinner) {
     ComponentFinder finder = robot.finder();
     List<Component> found = newArrayList(finder.findAll(spinner, EDITOR_MATCHER));
     if (found.size() != 1) {

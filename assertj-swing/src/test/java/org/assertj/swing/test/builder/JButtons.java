@@ -28,8 +28,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JButtons {
-  private JButtons() {
-  }
+  private JButtons() {}
 
   public static JButtonFactory button() {
     return new JButtonFactory();

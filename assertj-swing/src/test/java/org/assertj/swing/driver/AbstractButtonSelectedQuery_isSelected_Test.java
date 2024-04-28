@@ -44,7 +44,8 @@ public class AbstractButtonSelectedQuery_isSelected_Test extends RobotBasedTestC
   private final boolean selected;
 
   @Parameters
-  @NotNull public static Collection<Object[]> booleans() {
+  @NotNull
+  public static Collection<Object[]> booleans() {
     return newArrayList(BooleanProvider.booleans());
   }
 

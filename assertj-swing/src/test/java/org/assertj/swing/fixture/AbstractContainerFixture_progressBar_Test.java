@@ -58,7 +58,7 @@ public class AbstractContainerFixture_progressBar_Test extends RobotBasedTestCas
   public void should_Fail_If_Visible_JProgressBar_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='myProgressBar', type=javax.swing.JProgressBar, requireShowing=true");
+                                  "name='myProgressBar', type=javax.swing.JProgressBar, requireShowing=true");
     fixture.progressBar("myProgressBar");
   }
 
@@ -73,7 +73,7 @@ public class AbstractContainerFixture_progressBar_Test extends RobotBasedTestCas
   public void should_Fail_If_Visible_JProgressBar_Not_Found_By_Type() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.JProgressBar, requireShowing=true");
+                                  "type=javax.swing.JProgressBar, requireShowing=true");
     fixture.progressBar();
   }
 

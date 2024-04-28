@@ -37,7 +37,8 @@ public class InputModifiers_modifiersMatch_Test {
 
   @Parameters
   public static Collection<Object[]> modifiers() {
-    return newArrayList(new Object[][] { { ALT_DOWN_MASK }, { ALT_GRAPH_DOWN_MASK }, { CTRL_DOWN_MASK }, { META_DOWN_MASK }, { SHIFT_DOWN_MASK } });
+    return newArrayList(new Object[][] { { ALT_DOWN_MASK }, { ALT_GRAPH_DOWN_MASK }, { CTRL_DOWN_MASK }, { META_DOWN_MASK },
+        { SHIFT_DOWN_MASK } });
   }
 
   public InputModifiers_modifiersMatch_Test(int modifier) {

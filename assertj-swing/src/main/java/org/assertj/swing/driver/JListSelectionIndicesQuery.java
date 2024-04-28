@@ -32,6 +32,5 @@ final class JListSelectionIndicesQuery {
     return checkNotNull(result);
   }
 
-  private JListSelectionIndicesQuery() {
-  }
+  private JListSelectionIndicesQuery() {}
 }

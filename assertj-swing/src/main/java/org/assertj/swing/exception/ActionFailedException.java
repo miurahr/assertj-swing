@@ -14,7 +14,6 @@ package org.assertj.swing.exception;
 
 import org.jetbrains.annotations.NotNull;
 
-
 /**
  * Error that occurred when simulation of user input failed.
  *

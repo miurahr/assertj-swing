@@ -86,8 +86,7 @@ public class Bug186_readFilteredTable_Test extends RobotBasedTestCase {
         }
 
         @Override
-        public void changedUpdate(DocumentEvent e) {
-        }
+        public void changedUpdate(DocumentEvent e) {}
       });
       textBox.setName("textBox");
       return textBox;

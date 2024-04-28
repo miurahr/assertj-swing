@@ -116,7 +116,8 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private Pair<Dimension, Insets> resizeInfo(final @NotNull Container c) {
+  @NotNull
+  private Pair<Dimension, Insets> resizeInfo(final @NotNull Container c) {
     Pair<Dimension, Insets> result = execute(new GuiQuery<Pair<Dimension, Insets>>() {
       @Override
       @Nullable
@@ -167,15 +168,18 @@ public abstract class ContainerDriver extends ComponentDriver {
     moveMouseIgnoringAnyError(c, p.x + x, p.y + y);
   }
 
-  @NotNull private static Point resizeLocation(final @NotNull Pair<Dimension, Insets> resizeInfo) {
+  @NotNull
+  private static Point resizeLocation(final @NotNull Pair<Dimension, Insets> resizeInfo) {
     return resizeLocation(checkNotNull(resizeInfo.first), checkNotNull(resizeInfo.second));
   }
 
-  @NotNull private static Point resizeLocation(@NotNull Dimension size, @NotNull Insets insets) {
+  @NotNull
+  private static Point resizeLocation(@NotNull Dimension size, @NotNull Insets insets) {
     return resizeLocation(size.width, size.height, insets.right, insets.bottom);
   }
 
-  @NotNull private static Point resizeLocation(int width, int height, int right, int bottom) {
+  @NotNull
+  private static Point resizeLocation(int width, int height, int right, int bottom) {
     return new Point(width - right / 2, height - bottom / 2);
   }
 
@@ -197,10 +201,12 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private Triple<Dimension, Insets, Point> moveInfo(final @NotNull Container c) {
+  @NotNull
+  private Triple<Dimension, Insets, Point> moveInfo(final @NotNull Container c) {
     Triple<Dimension, Insets, Point> result = execute(new GuiQuery<Triple<Dimension, Insets, Point>>() {
       @Override
-      @Nullable protected Triple<Dimension, Insets, Point> executeInEDT() {
+      @Nullable
+      protected Triple<Dimension, Insets, Point> executeInEDT() {
         checkCanMove(c);
         Point locationOnScreen = null;
         try {
@@ -239,7 +245,7 @@ public abstract class ContainerDriver extends ComponentDriver {
 
   @RunsInEDT
   private void simulateMoveStarted(@NotNull Container c, @NotNull Triple<Dimension, Insets, Point> moveInfo, int x,
-      int y) {
+                                   int y) {
     Point p = moveLocation(checkNotNull(moveInfo.first), checkNotNull(moveInfo.second));
     moveMouseIgnoringAnyError(c, p);
     moveMouseIgnoringAnyError(c, p.x + x, p.y + y);
@@ -247,7 +253,8 @@ public abstract class ContainerDriver extends ComponentDriver {
 
   // Returns where the mouse usually grabs to move a container (or window). Center of the top of the frame is usually a
   // good choice.
-  @NotNull private Point moveLocation(@NotNull Dimension size, @NotNull Insets insets) {
+  @NotNull
+  private Point moveLocation(@NotNull Dimension size, @NotNull Insets insets) {
     return new Point(size.width / 2, insets.top / 2);
   }
 }

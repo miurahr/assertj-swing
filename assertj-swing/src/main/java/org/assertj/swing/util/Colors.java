@@ -35,7 +35,8 @@ public final class Colors {
    * @throws IllegalArgumentException if the hexadecimal code is empty.
    * @throws NumberFormatException if the hexadecimal code is empty.
    */
-  @NotNull public static Color colorFromHexString(@NotNull String hexString) {
+  @NotNull
+  public static Color colorFromHexString(@NotNull String hexString) {
     checkNotNullOrEmpty(hexString);
     try {
       return new Color(Integer.parseInt(hexString, 16));
@@ -44,6 +45,5 @@ public final class Colors {
     }
   }
 
-  private Colors() {
-  }
+  private Colors() {}
 }

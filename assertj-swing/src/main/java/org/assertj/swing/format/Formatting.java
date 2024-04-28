@@ -104,11 +104,13 @@ public class Formatting {
     return new IntrospectionComponentFormatter(targetType, propertyNames);
   }
 
-  @NotNull private static ComponentFormatter empty(@NotNull Class<? extends Component> targetType) {
+  @NotNull
+  private static ComponentFormatter empty(@NotNull Class<? extends Component> targetType) {
     return new IntrospectionComponentFormatter(targetType);
   }
 
-  @NotNull private static ComponentFormatter nameOnly(@NotNull Class<? extends Component> targetType) {
+  @NotNull
+  private static ComponentFormatter nameOnly(@NotNull Class<? extends Component> targetType) {
     return new IntrospectionComponentFormatter(targetType, NAME);
   }
 
@@ -140,7 +142,8 @@ public class Formatting {
    * @return a {@code String} representation of the given {@code Component}.
    */
   @RunsInEDT
-  @NotNull public static String inEdtFormat(final @NotNull Component c) {
+  @NotNull
+  public static String inEdtFormat(final @NotNull Component c) {
     return checkNotNull(execute(() -> format(c)));
   }
 
@@ -158,7 +161,8 @@ public class Formatting {
    * @return a {@code String} representation of the given {@code Component}.
    */
   @RunsInCurrentThread
-  @NotNull public static String format(@Nullable Component c) {
+  @NotNull
+  public static String format(@Nullable Component c) {
     if (c == null) {
       return NULL_COMPONENT_MESSAGE;
     }
@@ -173,7 +177,8 @@ public class Formatting {
     return String.format("%s[name=%s]", c.getClass().getName(), name);
   }
 
-  @Nullable private static ComponentFormatter formatterFor(@NotNull Class<?> type) {
+  @Nullable
+  private static ComponentFormatter formatterFor(@NotNull Class<?> type) {
     ComponentFormatter formatter = FORMATTERS.get(type);
     if (formatter != null) {
       return formatter;
@@ -185,6 +190,5 @@ public class Formatting {
     return null;
   }
 
-  private Formatting() {
-  }
+  private Formatting() {}
 }

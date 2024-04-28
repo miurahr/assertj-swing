@@ -30,6 +30,5 @@ final class JTreeClearSelectionTask {
     execute(() -> tree.clearSelection());
   }
 
-  private JTreeClearSelectionTask() {
-  }
+  private JTreeClearSelectionTask() {}
 }

@@ -54,7 +54,8 @@ class JProgressBarMakeDeterminateAsyncTask {
     task = createInnerTask();
   }
 
-  @NotNull private Runnable createInnerTask() {
+  @NotNull
+  private Runnable createInnerTask() {
     return new Runnable() {
       @Override
       public void run() {

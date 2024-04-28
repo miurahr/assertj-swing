@@ -30,7 +30,8 @@ import org.assertj.swing.timing.Condition;
 public class ComponentHasFocusCondition extends Condition {
   private Component component;
 
-  @NotNull public static ComponentHasFocusCondition untilFocused(@NotNull Component component) {
+  @NotNull
+  public static ComponentHasFocusCondition untilFocused(@NotNull Component component) {
     return new ComponentHasFocusCondition(component);
   }
 

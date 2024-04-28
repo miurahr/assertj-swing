@@ -81,11 +81,13 @@ class JTreePathFinder {
     return new TreePath(newPathValues.toArray());
   }
 
-  @NotNull private LocationUnavailableException pathNotFound(@NotNull String path) {
+  @NotNull
+  private LocationUnavailableException pathNotFound(@NotNull String path) {
     throw new LocationUnavailableException(String.format("Unable to find path %s", quote(path)));
   }
 
-  @NotNull private String[] splitPath(@NotNull String path) {
+  @NotNull
+  private String[] splitPath(@NotNull String path) {
     List<String> result = newArrayList();
     int separatorSize = separator.length();
     int index = 0;
@@ -101,13 +103,15 @@ class JTreePathFinder {
     return result.toArray(new String[result.size()]);
   }
 
-  @NotNull private LocationUnavailableException multipleMatchingNodes(@NotNull String matchingText,
-      @Nullable Object parentText) {
+  @NotNull
+  private LocationUnavailableException multipleMatchingNodes(@NotNull String matchingText,
+                                                             @Nullable Object parentText) {
     String msg = String.format("There is more than one node with value '%s' under", matchingText, quote(parentText));
     throw new LocationUnavailableException(msg);
   }
 
-  @Nullable private String value(@NotNull JTree tree, @Nullable Object modelValue) {
+  @Nullable
+  private String value(@NotNull JTree tree, @Nullable Object modelValue) {
     return cellReader.valueAt(tree, modelValue);
   }
 

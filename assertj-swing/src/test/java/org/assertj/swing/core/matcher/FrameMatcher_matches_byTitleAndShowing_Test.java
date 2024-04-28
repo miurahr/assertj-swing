@@ -40,8 +40,7 @@ public class FrameMatcher_matches_byTitleAndShowing_Test extends EDTSafeTestCase
     } finally {
       try {
         frame.destroy();
-      } catch (RuntimeException e) {
-      }
+      } catch (RuntimeException e) {}
       ScreenLock.instance().release(this);
     }
   }
@@ -64,8 +63,7 @@ public class FrameMatcher_matches_byTitleAndShowing_Test extends EDTSafeTestCase
     } finally {
       try {
         frame.destroy();
-      } catch (RuntimeException e) {
-      }
+      } catch (RuntimeException e) {}
       ScreenLock.instance().release(this);
     }
   }

@@ -54,6 +54,7 @@ public class JTableDriver_selectCells_Test extends JTableDriver_TestCase {
 
   @Test
   public void should_Throw_Error_If_JTable_Is_Not_Showing_On_The_Screen() {
-    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectCells(table, array(row(0).column(0), row(2).column(0))));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.selectCells(table, array(row(0).column(0),
+                                                                                                    row(2).column(0))));
   }
 }

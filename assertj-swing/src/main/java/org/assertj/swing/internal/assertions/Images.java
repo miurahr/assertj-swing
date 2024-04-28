@@ -56,8 +56,7 @@ public class Images {
   Failures failures = Failures.instance();
 
   @VisibleForTesting
-  Images() {
-  }
+  Images() {}
 
   /**
    * Asserts that two images are equal. Two images are equal if:
@@ -180,7 +179,7 @@ public class Images {
   }
 
   private AssertionError imageShouldHaveSize(AssertionInfo info, BufferedImage image, Dimension actual,
-      Dimension expected) {
+                                             Dimension expected) {
     return failures.failure(info, shouldHaveDimension(image, actual, expected));
   }
 

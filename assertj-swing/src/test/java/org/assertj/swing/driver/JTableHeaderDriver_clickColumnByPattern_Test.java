@@ -34,7 +34,8 @@ public class JTableHeaderDriver_clickColumnByPattern_Test extends JTableHeaderDr
 
   @Test
   public void should_Fail_If_Matching_Column_Was_Not_Found() {
-    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.clickColumn(tableHeader, Pattern.compile("hello")));
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class,
+                                      () -> driver.clickColumn(tableHeader, Pattern.compile("hello")));
     assertThat(t.getMessage()).contains("Unable to find column with name matching pattern 'hello'");
   }
 

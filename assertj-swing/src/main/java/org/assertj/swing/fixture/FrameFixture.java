@@ -79,7 +79,8 @@ public class FrameFixture extends AbstractWindowFixture<FrameFixture, Frame, Fra
   }
 
   @Override
-  @NotNull protected FrameDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected FrameDriver createDriver(@NotNull Robot robot) {
     return new FrameDriver(robot);
   }
 
@@ -89,7 +90,8 @@ public class FrameFixture extends AbstractWindowFixture<FrameFixture, Frame, Fra
    * @return this fixture.
    */
   @Override
-  @NotNull public FrameFixture iconify() {
+  @NotNull
+  public FrameFixture iconify() {
     driver().iconify(target());
     return this;
   }
@@ -100,7 +102,8 @@ public class FrameFixture extends AbstractWindowFixture<FrameFixture, Frame, Fra
    * @return this fixture.
    */
   @Override
-  @NotNull public FrameFixture deiconify() {
+  @NotNull
+  public FrameFixture deiconify() {
     driver().deiconify(target());
     return this;
   }
@@ -112,7 +115,8 @@ public class FrameFixture extends AbstractWindowFixture<FrameFixture, Frame, Fra
    * @throws org.assertj.swing.exception.ActionFailedException if the operating system does not support maximizing frames.
    */
   @Override
-  @NotNull public FrameFixture maximize() {
+  @NotNull
+  public FrameFixture maximize() {
     driver().maximize(target());
     return this;
   }
@@ -123,13 +127,15 @@ public class FrameFixture extends AbstractWindowFixture<FrameFixture, Frame, Fra
    * @return this fixture.
    */
   @Override
-  @NotNull public FrameFixture normalize() {
+  @NotNull
+  public FrameFixture normalize() {
     driver().normalize(target());
     return this;
   }
 
   @Override
-  @NotNull public FrameFixture requireTitle(String expected) {
+  @NotNull
+  public FrameFixture requireTitle(String expected) {
     driver().requireTitle(target(), expected);
     return this;
   }

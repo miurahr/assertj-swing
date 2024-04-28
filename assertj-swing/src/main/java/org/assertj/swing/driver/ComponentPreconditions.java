@@ -87,6 +87,5 @@ public final class ComponentPreconditions {
     }
   }
 
-  private ComponentPreconditions() {
-  }
+  private ComponentPreconditions() {}
 }

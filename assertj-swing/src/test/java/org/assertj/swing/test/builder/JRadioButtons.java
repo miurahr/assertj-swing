@@ -25,8 +25,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JRadioButtons {
-  private JRadioButtons() {
-  }
+  private JRadioButtons() {}
 
   public static JRadioButtonFactory radioButton() {
     return new JRadioButtonFactory();

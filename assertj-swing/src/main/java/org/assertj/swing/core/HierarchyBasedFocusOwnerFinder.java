@@ -34,14 +34,15 @@ class HierarchyBasedFocusOwnerFinder implements FocusOwnerFinderStrategy {
   }
 
   HierarchyBasedFocusOwnerFinder(@NotNull ContainerFocusOwnerFinder newDelegate,
-      @NotNull HierarchyRootsSource newRootsSource) {
+                                 @NotNull HierarchyRootsSource newRootsSource) {
     delegate = newDelegate;
     rootsSource = newRootsSource;
   }
 
   @Override
   @RunsInCurrentThread
-  @Nullable public Component focusOwner() {
+  @Nullable
+  public Component focusOwner() {
     for (Container c : rootsSource.existingHierarchyRoots()) {
       Component focus = delegate.focusOwnerOf(c);
       if (focus != null) {

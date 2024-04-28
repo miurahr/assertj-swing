@@ -20,7 +20,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Yvonne Wang
  */
 public class BooleanProvider {
-  @NotNull public static Object[][] booleans() {
+  @NotNull
+  public static Object[][] booleans() {
     return new Object[][] { { true }, { false } };
   }
 }

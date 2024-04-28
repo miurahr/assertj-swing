@@ -47,7 +47,8 @@ public abstract class InputEventGenerator_pressMouse_TestCase extends InputEvent
   private final int buttonMask;
 
   @Parameters
-  @NotNull public static Collection<Object[]> mouseButtons() {
+  @NotNull
+  public static Collection<Object[]> mouseButtons() {
     return newArrayList(MouseButtonProvider.mouseButtons());
   }
 
@@ -56,7 +57,8 @@ public abstract class InputEventGenerator_pressMouse_TestCase extends InputEvent
     buttonMask = button.mask;
   }
 
-  @Test @Ignore
+  @Test
+  @Ignore
   public void should_Press_Mouse_Button_At_Given_Point_And_Release_Mouse_Button() {
     Point center = centerOf(window);
     eventGenerator.moveMouse(window, center.x, center.y); // indirectly testing mouseMove :)

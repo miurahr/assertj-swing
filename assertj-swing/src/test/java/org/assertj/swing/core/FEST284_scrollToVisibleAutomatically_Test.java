@@ -52,7 +52,8 @@ public class FEST284_scrollToVisibleAutomatically_Test extends RobotBasedTestCas
     window = MyWindow.createAndShow();
   }
 
-  @Test @Ignore
+  @Test
+  @Ignore
   public void should_Auto_Scroll_When_Clicking_JButton() {
     ClickRecorder recorder = clickRecorder.attachDirectlyTo(window.button);
     robot.click(window.button);
@@ -79,8 +80,6 @@ public class FEST284_scrollToVisibleAutomatically_Test extends RobotBasedTestCas
       setLayout(new BorderLayout());
       add(buildNestedScrollPanes(32, 1000), CENTER);
     }
-
-
 
     Component buildNestedScrollPanes(int levelCount, int pixelCount) {
       // if no more levels to build, just return the button

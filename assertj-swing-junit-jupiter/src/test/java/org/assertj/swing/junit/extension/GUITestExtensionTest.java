@@ -42,10 +42,8 @@ public class GUITestExtensionTest {
   @Test
   @SuppressWarnings("unchecked")
   void should_Not_Take_Screenshot_If_No_Throwable() throws Throwable {
-    InvocationInterceptor.Invocation<Void> invocation =
-            (InvocationInterceptor.Invocation<Void>) mock(InvocationInterceptor.Invocation.class);
-    ReflectiveInvocationContext<Method> reflectiveInvocationContext =
-            (ReflectiveInvocationContext<Method>) mock(ReflectiveInvocationContext.class);
+    InvocationInterceptor.Invocation<Void> invocation = (InvocationInterceptor.Invocation<Void>) mock(InvocationInterceptor.Invocation.class);
+    ReflectiveInvocationContext<Method> reflectiveInvocationContext = (ReflectiveInvocationContext<Method>) mock(ReflectiveInvocationContext.class);
     ExtensionContext extensionContext = mock(ExtensionContext.class);
 
     guiTestExtension.interceptTestMethod(invocation, reflectiveInvocationContext, extensionContext);
@@ -59,17 +57,15 @@ public class GUITestExtensionTest {
   @SuppressWarnings("unchecked")
   void should_Not_Take_Screenshot_On_Throwable_In_Non_Gui_Test_Method() throws Throwable {
     RuntimeException exception = new RuntimeException("TestExpectedException");
-    InvocationInterceptor.Invocation<Void> invocation =
-            (InvocationInterceptor.Invocation<Void>) mock(InvocationInterceptor.Invocation.class);
+    InvocationInterceptor.Invocation<Void> invocation = (InvocationInterceptor.Invocation<Void>) mock(InvocationInterceptor.Invocation.class);
     doThrow(exception).when(invocation).proceed();
-    ReflectiveInvocationContext<Method> reflectiveInvocationContext =
-            (ReflectiveInvocationContext<Method>) mock(ReflectiveInvocationContext.class);
+    ReflectiveInvocationContext<Method> reflectiveInvocationContext = (ReflectiveInvocationContext<Method>) mock(ReflectiveInvocationContext.class);
     when(reflectiveInvocationContext.getExecutable()).thenReturn(TestGuiTest.class.getMethod("nonGuiTestMethod"));
 
     assertThatThrownBy(() -> guiTestExtension.interceptTestMethod(
-      invocation,
-      reflectiveInvocationContext,
-      mock(ExtensionContext.class))).isEqualTo(exception);
+                                                                  invocation,
+                                                                  reflectiveInvocationContext,
+                                                                  mock(ExtensionContext.class))).isEqualTo(exception);
 
     verify(invocation).proceed();
     verifyZeroInteractions(failureScreenshotTaker);
@@ -79,21 +75,19 @@ public class GUITestExtensionTest {
   @SuppressWarnings("unchecked")
   void should_Take_Screenshot_On_Throwable_In_Gui_Test_Method() throws Throwable {
     RuntimeException exception = new RuntimeException("TestExpectedException");
-    InvocationInterceptor.Invocation<Void> invocation =
-            (InvocationInterceptor.Invocation<Void>) mock(InvocationInterceptor.Invocation.class);
+    InvocationInterceptor.Invocation<Void> invocation = (InvocationInterceptor.Invocation<Void>) mock(InvocationInterceptor.Invocation.class);
     doThrow(exception).when(invocation).proceed();
-    ReflectiveInvocationContext<Method> reflectiveInvocationContext =
-            (ReflectiveInvocationContext<Method>) mock(ReflectiveInvocationContext.class);
+    ReflectiveInvocationContext<Method> reflectiveInvocationContext = (ReflectiveInvocationContext<Method>) mock(ReflectiveInvocationContext.class);
     when(reflectiveInvocationContext.getExecutable()).thenReturn(TestGuiTest.class.getMethod("guiTestMethod"));
 
     assertThatThrownBy(() -> guiTestExtension.interceptTestMethod(
-      invocation,
-      reflectiveInvocationContext,
-      mock(ExtensionContext.class))).isEqualTo(exception);
+                                                                  invocation,
+                                                                  reflectiveInvocationContext,
+                                                                  mock(ExtensionContext.class))).isEqualTo(exception);
 
     verify(invocation).proceed();
     verify(failureScreenshotTaker).saveScreenshot(
-      "org.assertj.swing.junit.extension.GUITestExtensionTest$TestGuiTest.guiTestMethod");
+                                                  "org.assertj.swing.junit.extension.GUITestExtensionTest$TestGuiTest.guiTestMethod");
   }
 
   private static class TestGuiTest {

@@ -33,6 +33,5 @@ final class ComponentLocationQuery {
     return Objects.requireNonNull(result);
   }
 
-  private ComponentLocationQuery() {
-  }
+  private ComponentLocationQuery() {}
 }

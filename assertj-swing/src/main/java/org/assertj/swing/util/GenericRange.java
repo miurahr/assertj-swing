@@ -39,14 +39,16 @@ public final class GenericRange<T> {
   /**
    * @return the initial value of this range.
    */
-  @NotNull public T from() {
+  @NotNull
+  public T from() {
     return from;
   }
 
   /**
    * @return the final value of this range.
    */
-  @NotNull public T to() {
+  @NotNull
+  public T to() {
     return to;
   }
 }

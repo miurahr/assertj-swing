@@ -59,7 +59,7 @@ public class AbstractContainerFixture_slider_Test extends RobotBasedTestCase {
   public void should_Fail_If_Visible_JSlider_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='mySlider', type=javax.swing.JSlider, requireShowing=true");
+                                  "name='mySlider', type=javax.swing.JSlider, requireShowing=true");
     fixture.slider("mySlider");
   }
 
@@ -74,7 +74,7 @@ public class AbstractContainerFixture_slider_Test extends RobotBasedTestCase {
   public void should_Fail_If_Visible_JSlider_Not_Found_By_Type() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.JSlider, requireShowing=true");
+                                  "type=javax.swing.JSlider, requireShowing=true");
     fixture.slider();
   }
 

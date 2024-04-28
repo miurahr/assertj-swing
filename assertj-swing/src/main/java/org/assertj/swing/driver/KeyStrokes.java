@@ -38,7 +38,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 final class KeyStrokes {
   @RunsInCurrentThread
   static @NotNull KeyStroke[] findKeyStrokesForAction(@NotNull String actionName, @NotNull Object actionKey,
-      @NotNull InputMap inputMap) {
+                                                      @NotNull InputMap inputMap) {
     List<KeyStroke> keyStrokes = newArrayList();
     for (KeyStroke keyStroke : inputMap.allKeys()) {
       if (actionKey.equals(inputMap.get(keyStroke))) {
@@ -51,6 +51,5 @@ final class KeyStrokes {
     throw actionFailure(String.format("Unable to find valid input event for action with key '%s'", actionName));
   }
 
-  private KeyStrokes() {
-  }
+  private KeyStrokes() {}
 }

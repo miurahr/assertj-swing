@@ -26,10 +26,9 @@ final class SwingIntEnums {
 
   static {
     SELECTION_MODES.put(SINGLE_SELECTION, "SINGLE_SELECTION")
-        .put(SINGLE_INTERVAL_SELECTION, "SINGLE_INTERVAL_SELECTION")
-        .put(MULTIPLE_INTERVAL_SELECTION, "MULTIPLE_INTERVAL_SELECTION");
+                   .put(SINGLE_INTERVAL_SELECTION, "SINGLE_INTERVAL_SELECTION")
+                   .put(MULTIPLE_INTERVAL_SELECTION, "MULTIPLE_INTERVAL_SELECTION");
   }
 
-  private SwingIntEnums() {
-  }
+  private SwingIntEnums() {}
 }

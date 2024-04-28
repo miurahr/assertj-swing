@@ -30,6 +30,5 @@ final class JTextComponentSelectAllTask {
     execute(() -> textBox.selectAll());
   }
 
-  private JTextComponentSelectAllTask() {
-  }
+  private JTextComponentSelectAllTask() {}
 }

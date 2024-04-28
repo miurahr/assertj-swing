@@ -49,7 +49,8 @@ public class ComponentDriver_clickComponentWithMouseClickInfo_Test extends Compo
             .timesClicked(mouseClickInfo.times());
   }
 
-  @Test @Ignore // FIXME
+  @Test
+  @Ignore // FIXME
   public void should_Click_Disabled_Component() {
     showWindow();
     disableButton();

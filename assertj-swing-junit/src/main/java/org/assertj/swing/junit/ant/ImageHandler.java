@@ -107,6 +107,5 @@ public final class ImageHandler {
     return EMPTY_STRING;
   }
 
-  private ImageHandler() {
-  }
+  private ImageHandler() {}
 }

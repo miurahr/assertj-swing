@@ -27,8 +27,7 @@ public class TestWithGUITestMethods {
 
   @GUITest
   @Test
-  public void successfulGUITest() {
-  }
+  public void successfulGUITest() {}
 
   @Ignore("enable for manual testing")
   @GUITest
@@ -38,8 +37,7 @@ public class TestWithGUITestMethods {
   }
 
   @Test
-  public void successfulNonGUITest() {
-  }
+  public void successfulNonGUITest() {}
 
   @Ignore("enable for manual testing")
   @Test

@@ -34,6 +34,5 @@ public final class TestWindows {
     return mock(Window.class);
   }
 
-  private TestWindows() {
-  }
+  private TestWindows() {}
 }

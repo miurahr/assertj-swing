@@ -36,6 +36,5 @@ final class JTableRowCellSelectedQuery {
     return table.isCellSelected(row, column);
   }
 
-  private JTableRowCellSelectedQuery() {
-  }
+  private JTableRowCellSelectedQuery() {}
 }

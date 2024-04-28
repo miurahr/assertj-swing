@@ -26,6 +26,6 @@ public class NameMatcher_toString_Test {
   public void should_Implement_ToString() {
     NameMatcher matcher = new NameMatcher("my button");
     assertThat(matcher.toString()).contains("name='my button'").contains("type=java.awt.Component")
-        .contains("requireShowing=false");
+                                  .contains("requireShowing=false");
   }
 }

@@ -67,6 +67,6 @@ public class JTreeDriver_requireSelectedPaths_Test extends JTreeDriver_selectCel
     selectFirstChildOfRoot();
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(tree, array("root/branch2")));
     assertThat(t.getMessage()).contains("property:'selection'")
-            .contains("expecting selection:<[\"root/branch2\"]> but was:<[[root, branch1]]>");
+                              .contains("expecting selection:<[\"root/branch2\"]> but was:<[[root, branch1]]>");
   }
 }

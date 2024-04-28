@@ -21,6 +21,5 @@ final class ColorHexCodes {
   static final String BLUE_HEX_CODE = "0000FF";
   static final String BLACK_HEX_CODE = "000000";
 
-  private ColorHexCodes() {
-  }
+  private ColorHexCodes() {}
 }

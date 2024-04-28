@@ -37,10 +37,10 @@ public class ComponentDriver_requireSize_Test extends ComponentDriver_TestCase {
   public void should_Fail_If_Actual_Size_Is_Not_Equal_To_Expected() {
     showWindow();
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSize(window.button,
-            new Dimension(0, 0)));
+                                                                                     new Dimension(0, 0)));
     assertThat(t.getMessage())
-            .contains("property:'size'")
-            .contains("expected:<...awt.Dimension[width=[0,height=0]]>")
-            .contains("but was:<");
+                              .contains("property:'size'")
+                              .contains("expected:<...awt.Dimension[width=[0,height=0]]>")
+                              .contains("but was:<");
   }
 }

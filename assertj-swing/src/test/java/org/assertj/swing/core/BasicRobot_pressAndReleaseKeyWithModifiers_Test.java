@@ -43,14 +43,14 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
     JTextField textField = window().textField();
     robot().focusAndWaitForFocusGain(textField);
     KeyPressRecorder recorder = KeyPressRecorder.attachTo(textField);
-    // FIXME: change deprecated key mask  to new one
+    // FIXME: change deprecated key mask to new one
     robot().pressAndReleaseKey(VK_C, CTRL_MASK, SHIFT_MASK);
     robot().waitForIdle();
     List<KeyAction> actions = recorder.actions;
     assertThat(actions).containsOnly(KeyAction.action(KEY_PRESSED, VK_SHIFT),
-        KeyAction.action(KEY_PRESSED, VK_CONTROL), KeyAction.action(KEY_PRESSED, VK_C),
-        KeyAction.action(KEY_RELEASED, VK_C), KeyAction.action(KEY_RELEASED, VK_CONTROL),
-        KeyAction.action(KEY_RELEASED, VK_SHIFT));
+                                     KeyAction.action(KEY_PRESSED, VK_CONTROL), KeyAction.action(KEY_PRESSED, VK_C),
+                                     KeyAction.action(KEY_RELEASED, VK_C), KeyAction.action(KEY_RELEASED, VK_CONTROL),
+                                     KeyAction.action(KEY_RELEASED, VK_SHIFT));
   }
 
   private static class KeyPressRecorder extends KeyAdapter {
@@ -114,7 +114,8 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
     }
 
     @Override
-    @NotNull public String toString() {
+    @NotNull
+    public String toString() {
       StringBuilder b = new StringBuilder();
       b.append("[type=").append(type).append(", ");
       b.append("keyCode=").append(keyCode).append("]");

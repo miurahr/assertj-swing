@@ -59,7 +59,7 @@ public class AbstractContainerFixture_textBox_Test extends RobotBasedTestCase {
   public void should_Fail_If_Visible_JTextComponent_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='myTextField', type=javax.swing.text.JTextComponent, requireShowing=true");
+                                  "name='myTextField', type=javax.swing.text.JTextComponent, requireShowing=true");
     fixture.textBox("myTextField");
   }
 
@@ -74,7 +74,7 @@ public class AbstractContainerFixture_textBox_Test extends RobotBasedTestCase {
   public void should_Fail_If_Visible_JTextComponent_Not_Found_By_Type() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.text.JTextComponent, requireShowing=true");
+                                  "type=javax.swing.text.JTextComponent, requireShowing=true");
     fixture.textBox();
   }
 

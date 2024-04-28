@@ -28,7 +28,6 @@ import java.awt.Frame;
 import java.awt.Point;
 import java.awt.Toolkit;
 
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.annotation.ThreadSafeAction;
 import org.assertj.swing.core.Robot;
@@ -128,7 +127,8 @@ public class FrameDriver extends WindowDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Point maximizeInfo(final @NotNull Frame frame) {
+  @NotNull
+  private static Point maximizeInfo(final @NotNull Frame frame) {
     Point result = execute(() -> {
       checkEnabledAndShowing(frame);
       return maximizeButtonLocation(frame);

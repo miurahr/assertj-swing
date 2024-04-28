@@ -54,6 +54,5 @@ final class JComboBoxItemIndexPreconditions {
     return concat("Item index (", valueOf(index), ")");
   }
 
-  private JComboBoxItemIndexPreconditions() {
-  }
+  private JComboBoxItemIndexPreconditions() {}
 }

@@ -30,6 +30,5 @@ public final class AbstractButtonSetArmedTask {
     execute(() -> button.getModel().setArmed(armed));
   }
 
-  private AbstractButtonSetArmedTask() {
-  }
+  private AbstractButtonSetArmedTask() {}
 }

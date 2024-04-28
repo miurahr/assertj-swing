@@ -59,6 +59,5 @@ public final class AWTEvents {
     return e.getID() == WINDOW_CLOSED;
   }
 
-  private AWTEvents() {
-  }
+  private AWTEvents() {}
 }

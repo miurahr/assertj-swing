@@ -31,6 +31,5 @@ final class JProgressBarSetIndetermintateTask {
     execute(() -> progressBar.setIndeterminate(indeterminate));
   }
 
-  private JProgressBarSetIndetermintateTask() {
-  }
+  private JProgressBarSetIndetermintateTask() {}
 }

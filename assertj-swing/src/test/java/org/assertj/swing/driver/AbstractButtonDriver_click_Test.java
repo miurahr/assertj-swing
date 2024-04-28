@@ -37,7 +37,8 @@ public class AbstractButtonDriver_click_Test extends AbstractButtonDriver_TestCa
     recorder.wasClickedWith(LEFT_BUTTON);
   }
 
-  @Test @Ignore // FIXME
+  @Test
+  @Ignore // FIXME
   public void should_Click_Disabled_Button() {
     showWindow();
     disableCheckBox();

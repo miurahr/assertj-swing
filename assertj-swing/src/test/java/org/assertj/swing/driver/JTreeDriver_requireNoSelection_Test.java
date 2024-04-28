@@ -34,7 +34,7 @@ public class JTreeDriver_requireNoSelection_Test extends JTreeDriver_selectCell_
     selectFirstChildOfRoot();
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireNoSelection(tree));
     assertThat(t.getMessage())
-            .contains("property:'selection'")
-            .contains("expected no selection but was:<[[root, branch1]]>");
+                              .contains("property:'selection'")
+                              .contains("expected no selection but was:<[[root, branch1]]>");
   }
 }

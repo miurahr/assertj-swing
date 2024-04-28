@@ -33,6 +33,5 @@ final class AbstractButtonArmedQuery {
     return checkNotNull(result);
   }
 
-  private AbstractButtonArmedQuery() {
-  }
+  private AbstractButtonArmedQuery() {}
 }

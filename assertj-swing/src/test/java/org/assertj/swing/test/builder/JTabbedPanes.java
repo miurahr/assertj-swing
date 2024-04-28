@@ -30,8 +30,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JTabbedPanes {
-  private JTabbedPanes() {
-  }
+  private JTabbedPanes() {}
 
   public static JTabbedPaneFactory tabbedPane() {
     return new JTabbedPaneFactory();

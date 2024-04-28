@@ -24,7 +24,8 @@ import org.junit.Test;
  */
 public class TableCell_equals_hashCode_Test {
 
-  @Test @Ignore
+  @Test
+  @Ignore
   public void should_Be_Correct() {
     EqualsVerifier.forClass(TableCell.class).verify();
   }

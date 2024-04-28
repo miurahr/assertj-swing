@@ -37,7 +37,7 @@ public class KeyStrokeMappingsParser_mappingFrom_withInvalidInput_Test {
       parser.mappingFrom("Hello World!");
     } catch (ParsingException e) {
       assertThat(e.getMessage()).isEqualTo(
-          "Line 'Hello World!' does not conform with pattern '{char}, {keycode}, {modifiers}'");
+                                           "Line 'Hello World!' does not conform with pattern '{char}, {keycode}, {modifiers}'");
     }
   }
 

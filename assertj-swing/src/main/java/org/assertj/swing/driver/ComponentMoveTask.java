@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.awt.Point;
 
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,6 +31,5 @@ final class ComponentMoveTask {
     execute(() -> c.setLocation(location));
   }
 
-  private ComponentMoveTask() {
-  }
+  private ComponentMoveTask() {}
 }

@@ -56,8 +56,7 @@ final class JSplitPaneLocationCalculator {
     return checkNotNull(result);
   }
 
-  private JSplitPaneLocationCalculator() {
-  }
+  private JSplitPaneLocationCalculator() {}
 
   private static abstract class LocationFinder {
     abstract int locationToMoveDividerTo(@NotNull JSplitPane splitPane, int desiredLocation);

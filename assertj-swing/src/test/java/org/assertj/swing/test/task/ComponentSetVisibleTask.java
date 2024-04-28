@@ -42,6 +42,5 @@ public final class ComponentSetVisibleTask {
     execute(() -> c.setVisible(visible));
   }
 
-  private ComponentSetVisibleTask() {
-  }
+  private ComponentSetVisibleTask() {}
 }

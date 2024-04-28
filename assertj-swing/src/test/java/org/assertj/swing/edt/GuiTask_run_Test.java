@@ -25,8 +25,7 @@ public class GuiTask_run_Test {
   public void should_Throw_Error_If_Not_Called_In_EDT() {
     new GuiTask() {
       @Override
-      protected void executeInEDT() {
-      }
+      protected void executeInEDT() {}
     }.run();
   }
 }

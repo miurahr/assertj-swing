@@ -30,6 +30,5 @@ final class JTextComponentSetEditableTask {
     execute(() -> textField.setEditable(editable));
   }
 
-  private JTextComponentSetEditableTask() {
-  }
+  private JTextComponentSetEditableTask() {}
 }

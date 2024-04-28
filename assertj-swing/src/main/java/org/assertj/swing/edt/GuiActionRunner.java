@@ -23,7 +23,6 @@ import static org.assertj.swing.exception.UnexpectedException.unexpected;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 
-
 /**
  * Executes instances of {@link GuiQuery} and {@link GuiTask}.
  *
@@ -88,7 +87,8 @@ public class GuiActionRunner {
    * @see #executeInEDT()
    * @see #execute(Callable)
    */
-  @Nullable public static <T> T execute(@NotNull GuiQuery<T> query) {
+  @Nullable
+  public static <T> T execute(@NotNull GuiQuery<T> query) {
     if (!executeInEDT) {
       return executeInCurrentThread(query);
     }
@@ -96,7 +96,8 @@ public class GuiActionRunner {
     return resultOf(query);
   }
 
-  @Nullable private static <T> T executeInCurrentThread(@NotNull GuiQuery<T> query) {
+  @Nullable
+  private static <T> T executeInCurrentThread(@NotNull GuiQuery<T> query) {
     try {
       return query.executeInEDT();
     } catch (Throwable e) {
@@ -167,7 +168,8 @@ public class GuiActionRunner {
     }
   }
 
-  @Nullable private static <T> T resultOf(@NotNull GuiQuery<T> query) {
+  @Nullable
+  private static <T> T resultOf(@NotNull GuiQuery<T> query) {
     T result = query.result();
     query.clearResult();
     rethrowCaughtExceptionIn(query);

@@ -214,7 +214,8 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    */
   @Override
   @RunsInEDT
-  @Nullable public String textOf(@NotNull JProgressBar progressBar) {
+  @Nullable
+  public String textOf(@NotNull JProgressBar progressBar) {
     return stringOf(progressBar);
   }
 }

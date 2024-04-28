@@ -32,8 +32,7 @@ public abstract class DragAwareEventNormalizer_TestCase extends EventNormalizer_
   static class EventQueueStub extends EventQueue {
     EventQueue pushedEventQueue;
 
-    EventQueueStub() {
-    }
+    EventQueueStub() {}
 
     @Override
     public synchronized void push(EventQueue newEventQueue) {

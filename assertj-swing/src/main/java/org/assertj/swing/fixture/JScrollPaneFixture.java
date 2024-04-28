@@ -54,25 +54,29 @@ public class JScrollPaneFixture extends
   }
 
   @Override
-  @NotNull protected JScrollPaneDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected JScrollPaneDriver createDriver(@NotNull Robot robot) {
     return new JScrollPaneDriver(robot);
   }
 
   /**
    * @return a fixture managing the horizontal {@code JScrollBar} of this target's {@code JScrollPane}.
    */
-  @NotNull public JScrollBarFixture horizontalScrollBar() {
+  @NotNull
+  public JScrollBarFixture horizontalScrollBar() {
     return scrollBarFixture(driver().horizontalScrollBarIn(target()));
   }
 
   /**
    * @return a fixture managing the vertical {@code JScrollBar} of this target's {@code JScrollPane}.
    */
-  @NotNull public JScrollBarFixture verticalScrollBar() {
+  @NotNull
+  public JScrollBarFixture verticalScrollBar() {
     return scrollBarFixture(driver().verticalScrollBarIn(target()));
   }
 
-  @NotNull private JScrollBarFixture scrollBarFixture(@NotNull JScrollBar scrollBar) {
+  @NotNull
+  private JScrollBarFixture scrollBarFixture(@NotNull JScrollBar scrollBar) {
     return new JScrollBarFixture(robot(), scrollBar);
   }
 }

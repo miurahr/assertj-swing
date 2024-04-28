@@ -52,7 +52,8 @@ public class JScrollBarFixture extends
   }
 
   @Override
-  @NotNull protected JScrollBarDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected JScrollBarDriver createDriver(@NotNull Robot robot) {
     return new JScrollBarDriver(robot);
   }
 
@@ -63,7 +64,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollBlockDown() {
+  @NotNull
+  public JScrollBarFixture scrollBlockDown() {
     driver().scrollBlockDown(target());
     return this;
   }
@@ -77,7 +79,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollBlockDown(int times) {
+  @NotNull
+  public JScrollBarFixture scrollBlockDown(int times) {
     driver().scrollBlockDown(target(), times);
     return this;
   }
@@ -89,7 +92,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollBlockUp() {
+  @NotNull
+  public JScrollBarFixture scrollBlockUp() {
     driver().scrollBlockUp(target());
     return this;
   }
@@ -103,7 +107,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollBlockUp(int times) {
+  @NotNull
+  public JScrollBarFixture scrollBlockUp(int times) {
     driver().scrollBlockUp(target(), times);
     return this;
   }
@@ -117,7 +122,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    * @throws IllegalArgumentException if the given position is not within the {@code JScrollBar} bounds.
    */
-  @NotNull public JScrollBarFixture scrollTo(int position) {
+  @NotNull
+  public JScrollBarFixture scrollTo(int position) {
     driver().scrollTo(target(), position);
     return this;
   }
@@ -129,7 +135,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollToMaximum() {
+  @NotNull
+  public JScrollBarFixture scrollToMaximum() {
     driver().scrollToMaximum(target());
     return this;
   }
@@ -141,7 +148,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollToMinimum() {
+  @NotNull
+  public JScrollBarFixture scrollToMinimum() {
     driver().scrollToMinimum(target());
     return this;
   }
@@ -153,7 +161,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollUnitDown() {
+  @NotNull
+  public JScrollBarFixture scrollUnitDown() {
     driver().scrollUnitDown(target());
     return this;
   }
@@ -167,7 +176,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollUnitDown(int times) {
+  @NotNull
+  public JScrollBarFixture scrollUnitDown(int times) {
     driver().scrollUnitDown(target(), times);
     return this;
   }
@@ -179,7 +189,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollUnitUp() {
+  @NotNull
+  public JScrollBarFixture scrollUnitUp() {
     driver().scrollUnitUp(target());
     return this;
   }
@@ -193,7 +204,8 @@ public class JScrollBarFixture extends
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is disabled.
    * @throws IllegalStateException if this fixture's {@code JScrollBar} is not showing on the screen.
    */
-  @NotNull public JScrollBarFixture scrollUnitUp(int times) {
+  @NotNull
+  public JScrollBarFixture scrollUnitUp(int times) {
     driver().scrollUnitUp(target(), times);
     return this;
   }
@@ -205,7 +217,8 @@ public class JScrollBarFixture extends
    * @return this fixture.
    * @throws AssertionError if the value of this fixture's {@code JScrollBar} is not equal to the given one.
    */
-  @NotNull public JScrollBarFixture requireValue(int value) {
+  @NotNull
+  public JScrollBarFixture requireValue(int value) {
     driver().requireValue(target(), value);
     return this;
   }

@@ -31,6 +31,5 @@ public final class JComboBoxSetSelectedItemTask {
     execute(() -> comboBox.setSelectedItem(item));
   }
 
-  private JComboBoxSetSelectedItemTask() {
-  }
+  private JComboBoxSetSelectedItemTask() {}
 }

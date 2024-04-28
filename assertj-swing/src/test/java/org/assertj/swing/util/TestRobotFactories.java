@@ -24,6 +24,5 @@ public final class TestRobotFactories {
     return mock(RobotFactory.class);
   }
 
-  private TestRobotFactories() {
-  }
+  private TestRobotFactories() {}
 }

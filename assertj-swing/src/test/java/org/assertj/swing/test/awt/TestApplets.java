@@ -24,7 +24,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Alex Ruiz
  */
 public final class TestApplets {
-  @NotNull public static Applet singletonAppletMock() {
+  @NotNull
+  public static Applet singletonAppletMock() {
     return LazyLoadedSingleton.INSTANCE;
   }
 
@@ -32,10 +33,10 @@ public final class TestApplets {
     static final Applet INSTANCE = newAppletMock();
   }
 
-  @NotNull public static Applet newAppletMock() {
+  @NotNull
+  public static Applet newAppletMock() {
     return mock(Applet.class);
   }
 
-  private TestApplets() {
-  }
+  private TestApplets() {}
 }

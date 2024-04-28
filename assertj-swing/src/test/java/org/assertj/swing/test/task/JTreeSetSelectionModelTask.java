@@ -31,6 +31,5 @@ public final class JTreeSetSelectionModelTask {
     execute(() -> tree.setSelectionModel(selectionModel));
   }
 
-  private JTreeSetSelectionModelTask() {
-  }
+  private JTreeSetSelectionModelTask() {}
 }

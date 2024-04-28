@@ -28,8 +28,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JLists {
-  private JLists() {
-  }
+  private JLists() {}
 
   public static JListFactory list() {
     return new JListFactory();

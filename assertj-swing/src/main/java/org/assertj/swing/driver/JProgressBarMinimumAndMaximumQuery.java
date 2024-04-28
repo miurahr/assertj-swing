@@ -34,6 +34,5 @@ final class JProgressBarMinimumAndMaximumQuery {
     return checkNotNull(result);
   }
 
-  private JProgressBarMinimumAndMaximumQuery() {
-  }
+  private JProgressBarMinimumAndMaximumQuery() {}
 }

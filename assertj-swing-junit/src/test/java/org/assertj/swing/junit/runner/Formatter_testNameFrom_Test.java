@@ -53,12 +53,11 @@ public class Formatter_testNameFrom_Test {
   public void should_Format_Method_With_Parameters() throws Exception {
     Method m = type.getDeclaredMethod("methodWithParameters", String.class, int.class);
     assertThat(Formatter.testNameFrom(type, m)).isEqualTo(
-        concat(typeName, ".methodWithParameters(java.lang.String, int)"));
+                                                          concat(typeName, ".methodWithParameters(java.lang.String, int)"));
   }
 
   static class TestClass {
-    void methodWithNoParameters() {
-    }
+    void methodWithNoParameters() {}
 
     void methodWithOneParameter(float first) {
       if (first > 0)

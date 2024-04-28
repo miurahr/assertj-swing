@@ -142,12 +142,14 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
 
   @RunsInEDT
   @Override
-  @Nullable public Component editorForCell(@NotNull JTable table, int row, int column) {
+  @Nullable
+  public Component editorForCell(@NotNull JTable table, int row, int column) {
     return cellEditorComponent(table, row, column);
   }
 
   @RunsInEDT
-  @Nullable private static Component cellEditorComponent(final @NotNull JTable table, final int row, final int column) {
+  @Nullable
+  private static Component cellEditorComponent(final @NotNull JTable table, final int row, final int column) {
     return execute(() -> {
       checkCellIndicesInBounds(table, row, column);
       return cellEditorIn(table, row, column);
@@ -180,8 +182,9 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @throws ActionFailedException if an editor for the given cell cannot be found or cannot be activated.
    */
   @RunsInCurrentThread
-  @NotNull protected static <T extends Component> T editor(@NotNull JTable table, int row, int column,
-                                                           @NotNull Class<T> supportedType) {
+  @NotNull
+  protected static <T extends Component> T editor(@NotNull JTable table, int row, int column,
+                                                  @NotNull Class<T> supportedType) {
     validate(table, row, column);
     Component editor = cellEditorIn(table, row, column);
     if (supportedType.isInstance(editor)) {
@@ -205,8 +208,9 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @throws IllegalStateException if the table cell in the given coordinates is not editable.
    */
   @RunsInEDT
-  @NotNull protected static Point cellLocation(final @NotNull JTable table, final int row, final int column,
-                                               final @NotNull JTableLocation location) {
+  @NotNull
+  protected static Point cellLocation(final @NotNull JTable table, final int row, final int column,
+                                      final @NotNull JTableLocation location) {
     Point result = execute(() -> {
       validate(table, row, column);
       scrollToCell(table, row, column, location);
@@ -296,7 +300,8 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
    * @param column the column index of the cell.
    * @return the thrown exception.
    */
-  @NotNull protected static ActionFailedException cannotFindOrActivateEditor(int row, int column) {
+  @NotNull
+  protected static ActionFailedException cannotFindOrActivateEditor(int row, int column) {
     String msg = concat("Unable to find or activate editor for cell [", valueOf(row), ",", valueOf(column), "]");
     throw actionFailure(msg);
   }

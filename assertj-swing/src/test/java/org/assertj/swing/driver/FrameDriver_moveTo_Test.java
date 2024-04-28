@@ -41,11 +41,12 @@ public class FrameDriver_moveTo_Test extends FrameDriver_TestCase {
   public void should_Throw_Error_If_Frame_Is_Disabled() {
     disableWindow();
     assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.moveTo(window,
-            windowLocationOnScreen().addToX(10).addToY(10)));
+                                                                                windowLocationOnScreen().addToX(10).addToY(10)));
   }
 
   @Test
   public void should_Throw_Error_If_Frame_Is_Not_Showing_On_The_Screen() {
-    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.moveTo(window, windowLocationOnScreen().addToX(10).addToY(10)));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.moveTo(window, windowLocationOnScreen().addToX(10)
+                                                                                                                  .addToY(10)));
   }
 }

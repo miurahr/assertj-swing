@@ -33,7 +33,8 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 final class WindowChildrenFinder implements ChildrenFinderStrategy {
   @RunsInCurrentThread
   @Override
-  @NotNull public Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
+  @NotNull
+  public Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
     if (!(c instanceof Window)) {
       return emptyList();
     }
@@ -41,11 +42,13 @@ final class WindowChildrenFinder implements ChildrenFinderStrategy {
   }
 
   @RunsInCurrentThread
-  @NotNull private Collection<Component> ownedWindows(Window w) {
+  @NotNull
+  private Collection<Component> ownedWindows(Window w) {
     return windows(w.getOwnedWindows());
   }
 
-  @NotNull private Collection<Component> windows(@NotNull Component[] windows) {
+  @NotNull
+  private Collection<Component> windows(@NotNull Component[] windows) {
     if (isNullOrEmpty(windows)) {
       return emptyList();
     }

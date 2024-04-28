@@ -13,7 +13,6 @@
 package org.assertj.swing.fixture;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.Point;
 import java.awt.Rectangle;

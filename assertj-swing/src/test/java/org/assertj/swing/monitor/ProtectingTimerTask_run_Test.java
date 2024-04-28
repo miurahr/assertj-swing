@@ -58,8 +58,7 @@ public class ProtectingTimerTask_run_Test {
     boolean executed;
     RuntimeException exceptionToThrow;
 
-    MyTimerTask() {
-    }
+    MyTimerTask() {}
 
     @Override
     public void run() {

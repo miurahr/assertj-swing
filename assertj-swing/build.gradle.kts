@@ -1,6 +1,8 @@
 
 plugins {
     id("tokyo.northside.java-conventions")
+    eclipse
+    alias(libs.plugins.spotless)
 }
 
 dependencies {
@@ -29,3 +31,9 @@ tasks.named<Test>("test") {
     maxParallelForks =  1
 }
 
+spotless {
+    java {
+        eclipse().configFile(file("${rootDir}/config/eclipse/assertj-eclipse-formatter.xml"))
+        removeUnusedImports()
+    }
+}

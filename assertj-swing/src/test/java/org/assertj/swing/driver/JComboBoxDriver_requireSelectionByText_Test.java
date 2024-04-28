@@ -68,7 +68,8 @@ public class JComboBoxDriver_requireSelectionByText_Test extends JComboBoxDriver
   public void should_Fail_If_Editable_JComboBox_Does_Not_Have_Expected_Selection() {
     makeEditableAndSelect("Hello World");
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelection(comboBox, "second"));
-    assertThat(t.getMessage()).contains("selectedIndex").contains("Hello World").contains("to match pattern:").contains("\"second\"");
+    assertThat(t.getMessage()).contains("selectedIndex").contains("Hello World").contains("to match pattern:")
+                              .contains("\"second\"");
   }
 
   @Test

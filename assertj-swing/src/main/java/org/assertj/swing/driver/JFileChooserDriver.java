@@ -148,7 +148,8 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the "Cancel" button cannot be found.
    */
   @RunsInEDT
-  @NotNull public JButton cancelButton(@NotNull JFileChooser fileChooser) {
+  @NotNull
+  public JButton cancelButton(@NotNull JFileChooser fileChooser) {
     return findButton(fileChooser, cancelButtonText());
   }
 
@@ -174,13 +175,15 @@ public class JFileChooserDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the "Approve" button cannot be found.
    */
   @RunsInEDT
-  @NotNull public JButton approveButton(@NotNull JFileChooser fileChooser) {
+  @NotNull
+  public JButton approveButton(@NotNull JFileChooser fileChooser) {
     return findButton(fileChooser, approveButtonTextFrom(fileChooser));
   }
 
   @RunsInEDT
-  @NotNull private JButton findButton(@NotNull JFileChooser fileChooser,
-                                      @Nullable String text) {
+  @NotNull
+  private JButton findButton(@NotNull JFileChooser fileChooser,
+                             @Nullable String text) {
     return robot.finder().find(fileChooser, withText(text).andShowing());
   }
 }

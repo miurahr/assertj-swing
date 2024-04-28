@@ -84,14 +84,16 @@ public final class JMenuItemLocation {
   /**
    * @return the parent or the invoker of the {@code JMenuItem}, or its invoker (if it is in a pop-up).
    */
-  @NotNull public Component parentOrInvoker() {
+  @NotNull
+  public Component parentOrInvoker() {
     return parentOrInvoker;
   }
 
   /**
    * @return the parent pop-up menu, or {@code null} if the {@code JMenuItem} is not in a pop-up.
    */
-  @Nullable public JPopupMenu parentPopup() {
+  @Nullable
+  public JPopupMenu parentPopup() {
     return parentPopup;
   }
 }

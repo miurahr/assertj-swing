@@ -51,6 +51,5 @@ public final class JTableColumnByIdentifierQuery {
     }
   }
 
-  private JTableColumnByIdentifierQuery() {
-  }
+  private JTableColumnByIdentifierQuery() {}
 }

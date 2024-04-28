@@ -22,7 +22,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.util.Objects;
 
-
 import org.assertj.swing.core.KeyPressInfo;
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.MouseClickInfo;

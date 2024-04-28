@@ -55,8 +55,7 @@ public class KeyStrokeMappingProviderFactory_createProvider_Test {
   }
 
   static class MyKeyStrokeMappingProvider implements KeyStrokeMappingProvider {
-    private MyKeyStrokeMappingProvider() {
-    }
+    private MyKeyStrokeMappingProvider() {}
 
     @Override
     public Collection<KeyStrokeMapping> keyStrokeMappings() {

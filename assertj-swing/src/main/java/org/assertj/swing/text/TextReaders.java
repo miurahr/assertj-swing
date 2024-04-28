@@ -129,7 +129,8 @@ public class TextReaders {
   /**
    * @return the singleton instance of this class.
    */
-  @NotNull public static TextReaders instance() {
+  @NotNull
+  public static TextReaders instance() {
     return SingletonHolder.INSTANCE;
   }
 

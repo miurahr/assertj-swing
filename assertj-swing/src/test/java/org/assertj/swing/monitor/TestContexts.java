@@ -24,6 +24,5 @@ public final class TestContexts {
     return mock(Context.class);
   }
 
-  private TestContexts() {
-  }
+  private TestContexts() {}
 }

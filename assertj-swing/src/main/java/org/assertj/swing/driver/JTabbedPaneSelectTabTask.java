@@ -32,6 +32,5 @@ final class JTabbedPaneSelectTabTask {
     execute(() -> tabbedPane.setSelectedIndex(index));
   }
 
-  private JTabbedPaneSelectTabTask() {
-  }
+  private JTabbedPaneSelectTabTask() {}
 }

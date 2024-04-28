@@ -27,8 +27,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JTrees {
-  private JTrees() {
-  }
+  private JTrees() {}
 
   public static JTreeFactory tree() {
     return new JTreeFactory();

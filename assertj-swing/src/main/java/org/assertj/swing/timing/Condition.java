@@ -76,7 +76,8 @@ public abstract class Condition {
    * 
    * @return by default, an empty {@code String}.
    */
-  @NotNull protected String descriptionAddendum() {
+  @NotNull
+  protected String descriptionAddendum() {
     return EMPTY_TEXT;
   }
 
@@ -85,6 +86,5 @@ public abstract class Condition {
    * all overloaded methods) when this condition is evaluated (either it was satisfied or it timed-out). This is a good
    * place to do any necessary resource cleanup.
    */
-  protected void done() {
-  }
+  protected void done() {}
 }

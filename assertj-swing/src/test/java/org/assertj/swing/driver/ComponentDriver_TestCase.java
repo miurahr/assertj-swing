@@ -46,8 +46,7 @@ public abstract class ComponentDriver_TestCase extends RobotBasedTestCase {
     extraSetUp();
   }
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   final void showWindow() {
     robot.showWindow(window);

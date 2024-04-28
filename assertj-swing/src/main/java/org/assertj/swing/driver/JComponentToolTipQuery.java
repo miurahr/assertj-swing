@@ -33,6 +33,5 @@ final class JComponentToolTipQuery {
     return execute(() -> c.getToolTipText());
   }
 
-  private JComponentToolTipQuery() {
-  }
+  private JComponentToolTipQuery() {}
 }

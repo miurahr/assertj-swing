@@ -37,6 +37,5 @@ public final class TreeNodeFactory {
     return node;
   }
 
-  private TreeNodeFactory() {
-  }
+  private TreeNodeFactory() {}
 }

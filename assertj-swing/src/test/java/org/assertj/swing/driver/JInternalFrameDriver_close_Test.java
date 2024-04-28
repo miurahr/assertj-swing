@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JInternalFrame;
 
-import org.assertj.core.api.ThrowableAssert;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.junit.Assert;
 import org.junit.Test;

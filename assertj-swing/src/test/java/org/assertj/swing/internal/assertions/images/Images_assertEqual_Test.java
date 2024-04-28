@@ -73,7 +73,7 @@ public class Images_assertEqual_Test extends ImagesBaseTest {
   public void should_Fail_If_Images_Have_Different_Size() {
     AssertionInfo info = someInfo();
     BufferedImage expected = newImage(6, 6, BLUE);
-    Assert.assertThrows(AssertionError.class, () ->  images.assertEqual(info, actual, expected));
+    Assert.assertThrows(AssertionError.class, () -> images.assertEqual(info, actual, expected));
     verify(failures).failure(info, shouldHaveDimension(actual, sizeOf(actual), sizeOf(expected)));
   }
 

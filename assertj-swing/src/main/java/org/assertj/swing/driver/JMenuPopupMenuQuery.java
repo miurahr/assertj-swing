@@ -34,6 +34,5 @@ final class JMenuPopupMenuQuery {
     return checkNotNull(result);
   }
 
-  private JMenuPopupMenuQuery() {
-  }
+  private JMenuPopupMenuQuery() {}
 }

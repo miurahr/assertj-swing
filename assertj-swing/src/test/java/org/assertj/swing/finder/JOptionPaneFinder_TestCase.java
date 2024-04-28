@@ -34,8 +34,7 @@ public abstract class JOptionPaneFinder_TestCase extends RobotBasedTestCase {
     extraSetUp();
   }
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   final void clickMessageButton() {
     frameFixture.show();

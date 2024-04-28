@@ -334,7 +334,8 @@ public class Settings {
    *         {@code org.assertj.swing.fixture}.
    * @see #componentLookupScope(ComponentLookupScope) for default value and configuration key
    */
-  @NotNull public ComponentLookupScope componentLookupScope() {
+  @NotNull
+  public ComponentLookupScope componentLookupScope() {
     return componentLookupScope;
   }
 

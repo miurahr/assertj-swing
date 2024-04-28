@@ -49,6 +49,5 @@ final class JToolBarIsFloatingQuery {
     return !(w instanceof Frame) && toolBar.getParent().getComponentCount() == 1;
   }
 
-  private JToolBarIsFloatingQuery() {
-  }
+  private JToolBarIsFloatingQuery() {}
 }

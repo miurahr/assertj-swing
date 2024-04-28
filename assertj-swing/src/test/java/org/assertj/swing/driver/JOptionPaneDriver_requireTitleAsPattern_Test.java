@@ -39,7 +39,7 @@ public class JOptionPaneDriver_requireTitleAsPattern_Test extends JOptionPaneDri
   public void should_Fail_If_Title_Does_Not_Match_Pattern() {
     JOptionPane optionPane = informationMessage();
     pack(optionPane, title());
-    Throwable t= Assert.assertThrows(AssertionError.class, () -> driver.requireTitle(optionPane, Pattern.compile("Yoda")));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireTitle(optionPane, Pattern.compile("Yoda")));
     assertThat(t.getMessage()).contains("title").contains(title()).contains("to match pattern:").contains("\"Yoda\"");
   }
 }

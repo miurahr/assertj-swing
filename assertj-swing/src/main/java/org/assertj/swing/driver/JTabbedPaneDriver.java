@@ -91,7 +91,8 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @return the titles of all the tabs.
    */
   @RunsInEDT
-  @NotNull public String[] tabTitles(@NotNull JTabbedPane tabbedPane) {
+  @NotNull
+  public String[] tabTitles(@NotNull JTabbedPane tabbedPane) {
     return tabTitlesOf(tabbedPane);
   }
 
@@ -142,9 +143,10 @@ public class JTabbedPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Integer, Point> tabToSelectInfo(final @NotNull JTabbedPaneLocation location,
-                                                               final @NotNull JTabbedPane tabbedPane,
-                                                               final @NotNull TextMatcher matcher) {
+  @NotNull
+  private static Pair<Integer, Point> tabToSelectInfo(final @NotNull JTabbedPaneLocation location,
+                                                      final @NotNull JTabbedPane tabbedPane,
+                                                      final @NotNull TextMatcher matcher) {
     Pair<Integer, Point> result = execute(new GuiQuery<Pair<Integer, Point>>() {
       @Override
       protected Pair<Integer, Point> executeInEDT() {
@@ -154,8 +156,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
         Point point = null;
         try {
           point = location.pointAt(tabbedPane, index);
-        } catch (LocationUnavailableException e) {
-        }
+        } catch (LocationUnavailableException e) {}
         return Pair.of(index, point);
       }
     });
@@ -183,8 +184,9 @@ public class JTabbedPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Point pointAtTabWhenShowing(final @NotNull JTabbedPaneLocation location,
-                                                      final @NotNull JTabbedPane tabbedPane, final int index) {
+  @NotNull
+  private static Point pointAtTabWhenShowing(final @NotNull JTabbedPaneLocation location,
+                                             final @NotNull JTabbedPane tabbedPane, final int index) {
     Point result = execute(() -> {
       location.checkIndexInBounds(tabbedPane, index);
       checkEnabledAndShowing(tabbedPane);
@@ -206,13 +208,13 @@ public class JTabbedPaneDriver extends JComponentDriver {
       Point p = pointAtTab(location(), tabbedPane, index);
       robot.moveMouse(tabbedPane, p);
       robot.waitForIdle();
-    } catch (LocationUnavailableException ignored) {
-    }
+    } catch (LocationUnavailableException ignored) {}
   }
 
   @RunsInEDT
-  @NotNull private static Point pointAtTab(final @NotNull JTabbedPaneLocation location,
-                                           final @NotNull JTabbedPane tabbedPane, final int index) {
+  @NotNull
+  private static Point pointAtTab(final @NotNull JTabbedPaneLocation location,
+                                  final @NotNull JTabbedPane tabbedPane, final int index) {
     Point result = execute(() -> location.pointAt(tabbedPane, index));
     return checkNotNull(result);
   }
@@ -224,12 +226,14 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @return the currently selected component for the given {@code JTabbedPane}.
    */
   @RunsInEDT
-  @Nullable public Component selectedComponentOf(@NotNull JTabbedPane tabbedPane) {
+  @Nullable
+  public Component selectedComponentOf(@NotNull JTabbedPane tabbedPane) {
     return selectedComponent(tabbedPane);
   }
 
   @RunsInEDT
-  @Nullable private static Component selectedComponent(final JTabbedPane tabbedPane) {
+  @Nullable
+  private static Component selectedComponent(final JTabbedPane tabbedPane) {
     return execute(() -> tabbedPane.getSelectedComponent());
   }
 
@@ -352,17 +356,20 @@ public class JTabbedPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nullable private static String titleAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
+  @Nullable
+  private static String titleAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
     return execute(() -> tabbedPane.getTitleAt(index.value));
   }
 
   @RunsInEDT
-  @Nullable private static String toolTipTextAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
+  @Nullable
+  private static String toolTipTextAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
     return execute(() -> tabbedPane.getToolTipTextAt(index.value));
   }
 
   @RunsInEDT
-  @Nullable private static boolean isEnabledAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
+  @Nullable
+  private static boolean isEnabledAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
     return execute(() -> tabbedPane.isEnabledAt(index.value));
   }
 
@@ -381,7 +388,8 @@ public class JTabbedPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static String[] allTabTitlesIn(final @NotNull JTabbedPane tabbedPane) {
+  @NotNull
+  private static String[] allTabTitlesIn(final @NotNull JTabbedPane tabbedPane) {
     String[] result = execute(() -> {
       List<String> allTitles = newArrayList();
       int tabCount = tabbedPane.getTabCount();
@@ -393,7 +401,8 @@ public class JTabbedPaneDriver extends JComponentDriver {
     return checkNotNull(result);
   }
 
-  @NotNull private JTabbedPaneLocation location() {
+  @NotNull
+  private JTabbedPaneLocation location() {
     return location;
   }
 }

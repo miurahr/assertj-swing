@@ -106,8 +106,7 @@ public class FEST194_clickJTableHeaderColumnOutsideJTable_Test extends RobotBase
   private static class HeaderMouseListener extends MouseAdapter {
     int headerClickCounter;
 
-    HeaderMouseListener() {
-    }
+    HeaderMouseListener() {}
 
     @Override
     public void mouseClicked(MouseEvent e) {

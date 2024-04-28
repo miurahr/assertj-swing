@@ -120,7 +120,8 @@ public class WindowMonitor {
   /**
    * @return all known event queues.
    */
-  @NotNull public Collection<EventQueue> allEventQueues() {
+  @NotNull
+  public Collection<EventQueue> allEventQueues() {
     return context.allEventQueues();
   }
 
@@ -131,7 +132,8 @@ public class WindowMonitor {
    *
    * @return all available root {@code Window}s.
    */
-  @NotNull public Collection<Window> rootWindows() {
+  @NotNull
+  public Collection<Window> rootWindows() {
     return context.rootWindows();
   }
 
@@ -139,7 +141,8 @@ public class WindowMonitor {
    * @return the singleton instance of this class.
    */
   @RunsInEDT
-  @NotNull public static WindowMonitor instance() {
+  @NotNull
+  public static WindowMonitor instance() {
     return SingletonLazyLoader.INSTANCE;
   }
 

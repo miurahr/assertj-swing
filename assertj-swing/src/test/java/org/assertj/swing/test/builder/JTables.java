@@ -25,8 +25,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JTables {
-  private JTables() {
-  }
+  private JTables() {}
 
   public static JTableFactory table() {
     return new JTableFactory();

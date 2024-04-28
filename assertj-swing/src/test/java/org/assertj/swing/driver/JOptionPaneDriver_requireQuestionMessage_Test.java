@@ -44,7 +44,7 @@ public class JOptionPaneDriver_requireQuestionMessage_Test extends JOptionPaneDr
   public void should_Fail_If_Error_Type_Is_Not_Equal_To_Expected() {
     JOptionPane optionPane = errorMessage();
     pack(optionPane, title());
-    Throwable t= Assert.assertThrows(AssertionError.class, () -> driver.requireQuestionMessage(optionPane));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireQuestionMessage(optionPane));
     assertThat(t.getMessage()).contains("messageType").contains("[Question] Message").contains("[Error] Message");
   }
 }

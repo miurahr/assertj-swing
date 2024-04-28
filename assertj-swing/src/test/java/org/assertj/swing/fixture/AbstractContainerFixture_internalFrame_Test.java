@@ -57,7 +57,7 @@ public class AbstractContainerFixture_internalFrame_Test extends RobotBasedTestC
   public void should_Fail_If_Visible_JInternalFrame_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='testInternalFrame', type=javax.swing.JInternalFrame, requireShowing=true");
+                                  "name='testInternalFrame', type=javax.swing.JInternalFrame, requireShowing=true");
     fixture.internalFrame("testInternalFrame");
   }
 
@@ -72,20 +72,20 @@ public class AbstractContainerFixture_internalFrame_Test extends RobotBasedTestC
   public void should_Fail_If_Visible_JInternalFrame_Not_Found_By_Type() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.JInternalFrame, requireShowing=true");
+                                  "type=javax.swing.JInternalFrame, requireShowing=true");
     fixture.internalFrame();
   }
 
   @Test
   public void should_Find_Visible_JInternalFrame_By_Matcher() {
     robot.showWindow(window);
-    JInternalFrameFixture internalFrame =
-      fixture.internalFrame(new GenericTypeMatcher<JInternalFrame>(JInternalFrame.class, true) {
-        @Override
-        protected boolean isMatching(@NotNull JInternalFrame j) {
-          return "Test Internal Frame Title".equals(j.getTitle()) && requireShowingMatches(j);
-        }
-      });
+    JInternalFrameFixture internalFrame = fixture.internalFrame(new GenericTypeMatcher<JInternalFrame>(JInternalFrame.class,
+                                                                                                       true) {
+      @Override
+      protected boolean isMatching(@NotNull JInternalFrame j) {
+        return "Test Internal Frame Title".equals(j.getTitle()) && requireShowingMatches(j);
+      }
+    });
     assertThat(internalFrame.target()).isSameAs(window.internalFrame);
   }
 

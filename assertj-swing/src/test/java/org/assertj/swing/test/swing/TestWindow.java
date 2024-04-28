@@ -62,12 +62,14 @@ public class TestWindow extends JFrame {
    * @return the created window.
    */
   @RunsInEDT
-  @NotNull public static TestWindow createNewWindow(final @NotNull Class<?> testClass) {
+  @NotNull
+  public static TestWindow createNewWindow(final @NotNull Class<?> testClass) {
     TestWindow result = execute(() -> createInCurrentThread(testClass));
     return checkNotNull(result);
   }
 
-  @NotNull private static TestWindow createInCurrentThread(@NotNull Class<?> testClass) {
+  @NotNull
+  private static TestWindow createInCurrentThread(@NotNull Class<?> testClass) {
     return new TestWindow(testClass);
   }
 
@@ -133,7 +135,8 @@ public class TestWindow extends JFrame {
    * @return the displayed window.
    */
   @RunsInCurrentThread
-  @NotNull protected static <T extends TestWindow> T display(@NotNull T w) {
+  @NotNull
+  protected static <T extends TestWindow> T display(@NotNull T w) {
     w.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
     packAndShow(w);
     return w;
@@ -180,8 +183,7 @@ public class TestWindow extends JFrame {
    * </p>
    */
   @RunsInCurrentThread
-  protected void chooseLookAndFeel() {
-  }
+  protected void chooseLookAndFeel() {}
 
   /**
    * Hides and disposes this window. This method is executed in the event dispatch thread (EDT).

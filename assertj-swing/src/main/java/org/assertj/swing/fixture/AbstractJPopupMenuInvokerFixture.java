@@ -89,7 +89,8 @@ public abstract class AbstractJPopupMenuInvokerFixture<S, T extends JComponent, 
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  @NotNull public JPopupMenuFixture showPopupMenu() {
+  @NotNull
+  public JPopupMenuFixture showPopupMenu() {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target()));
   }
 
@@ -104,7 +105,8 @@ public abstract class AbstractJPopupMenuInvokerFixture<S, T extends JComponent, 
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  @NotNull public JPopupMenuFixture showPopupMenuAt(@NotNull Point p) {
+  @NotNull
+  public JPopupMenuFixture showPopupMenuAt(@NotNull Point p) {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target(), p));
   }
 }

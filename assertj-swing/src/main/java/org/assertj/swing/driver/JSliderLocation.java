@@ -55,7 +55,8 @@ public final class JSliderLocation {
    * @return the coordinates of the given value in the given {@code JSlider}.
    */
   @RunsInCurrentThread
-  @NotNull public Point pointAt(@NotNull JSlider slider, int value) {
+  @NotNull
+  public Point pointAt(@NotNull JSlider slider, int value) {
     JSliderLocationStrategy strategy = LOCATIONS.get(slider.getOrientation());
     return strategy.locationForValue(slider, value);
   }

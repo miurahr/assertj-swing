@@ -26,7 +26,6 @@ import java.beans.PropertyDescriptor;
 import java.util.List;
 import java.util.Map;
 
-
 import org.assertj.core.presentation.StandardRepresentation;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
@@ -92,7 +91,8 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    */
   @RunsInCurrentThread
   @Override
-  @NotNull protected String doFormat(@NotNull Component c) {
+  @NotNull
+  protected String doFormat(@NotNull Component c) {
     StringBuilder b = new StringBuilder();
     b.append(getRealClassName(c)).append("[");
     int max = propertyNames.size() - 1;
@@ -136,7 +136,8 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    * @return the type of AWT or Swing {@code Component} this formatter supports.
    */
   @Override
-  @NotNull public Class<? extends Component> targetType() {
+  @NotNull
+  public Class<? extends Component> targetType() {
     return targetType;
   }
 

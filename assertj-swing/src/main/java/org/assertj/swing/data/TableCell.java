@@ -69,7 +69,8 @@ public class TableCell {
      * @param column the column index of the table cell to create.
      * @return the created table cell.
      */
-    @NotNull public TableCell column(int column) {
+    @NotNull
+    public TableCell column(int column) {
       return new TableCell(row, column);
     }
   }

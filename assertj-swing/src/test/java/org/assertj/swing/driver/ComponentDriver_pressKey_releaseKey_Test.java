@@ -25,7 +25,8 @@ import org.junit.Test;
  * @author Yvonne Wang
  */
 public class ComponentDriver_pressKey_releaseKey_Test extends ComponentDriver_TestCase {
-  @Test @Ignore // FIXME
+  @Test
+  @Ignore // FIXME
   public void should_Press_Key_And_Release_Key() {
     showWindow();
     assertThatTextFieldIsEmpty();

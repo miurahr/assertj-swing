@@ -27,8 +27,7 @@ import org.assertj.core.util.VisibleForTesting;
 public class NoExitSecurityManager extends SecurityManager {
   private static final ExitCallHook NULL_HOOK = new ExitCallHook() {
     @Override
-    public void exitCalled(int status) {
-    }
+    public void exitCalled(int status) {}
   };
 
   private final ExitCallHook hook;
@@ -67,8 +66,7 @@ public class NoExitSecurityManager extends SecurityManager {
    * @param context a system-dependent security context.
    */
   @Override
-  public void checkPermission(Permission permission, Object context) {
-  }
+  public void checkPermission(Permission permission, Object context) {}
 
   /**
    * Allows everything.
@@ -76,8 +74,7 @@ public class NoExitSecurityManager extends SecurityManager {
    * @param permission the specified permission.
    */
   @Override
-  public void checkPermission(Permission permission) {
-  }
+  public void checkPermission(Permission permission) {}
 
   /**
    * Throws an {@link ExitException} if an application tries to terminate the current JVM (through

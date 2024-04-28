@@ -78,7 +78,8 @@ public class ColorFixture {
    * @throws NumberFormatException if the hexadecimal code is empty.
    * @throws AssertionError if this fixture's {@code Color} is not equal to the given one.
    */
-  @NotNull public ColorFixture requireEqualTo(@NotNull String hexValue) {
+  @NotNull
+  public ColorFixture requireEqualTo(@NotNull String hexValue) {
     return requireEqualTo(colorFromHexString(hexValue));
   }
 
@@ -89,7 +90,8 @@ public class ColorFixture {
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Color} is not equal to the given one.
    */
-  @NotNull public ColorFixture requireEqualTo(@Nullable Color color) {
+  @NotNull
+  public ColorFixture requireEqualTo(@Nullable Color color) {
     AbstractObjectAssert<?, Color> assertThat = assertThat(target);
     describe(assertThat);
     assertThat.isEqualTo(color);
@@ -113,7 +115,8 @@ public class ColorFixture {
    * @throws NumberFormatException if the hexadecimal code is empty.
    * @throws AssertionError if this fixture's {@code Color} is equal to the given one.
    */
-  @NotNull public ColorFixture requireNotEqualTo(@NotNull String hexValue) {
+  @NotNull
+  public ColorFixture requireNotEqualTo(@NotNull String hexValue) {
     return requireNotEqualTo(colorFromHexString(hexValue));
   }
 
@@ -124,7 +127,8 @@ public class ColorFixture {
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Color} is equal to the given one.
    */
-  @NotNull public ColorFixture requireNotEqualTo(@Nullable Color color) {
+  @NotNull
+  public ColorFixture requireNotEqualTo(@Nullable Color color) {
     AbstractObjectAssert<?, Color> assertThat = assertThat(target);
     describe(assertThat);
     assertThat.isNotEqualTo(color);
@@ -134,7 +138,8 @@ public class ColorFixture {
   /**
    * @return this fixture's {@code Color}.
    */
-  @NotNull public Color target() {
+  @NotNull
+  public Color target() {
     return target;
   }
 

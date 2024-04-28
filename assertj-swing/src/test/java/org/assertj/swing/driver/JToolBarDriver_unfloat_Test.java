@@ -29,7 +29,8 @@ import javax.swing.*;
  * @author Yvonne Wang
  */
 public class JToolBarDriver_unfloat_Test extends JToolBarDriver_TestCase {
-  @Test @Ignore // FIXME floatTo
+  @Test
+  @Ignore // FIXME floatTo
   public void should_Unfloat_JToolbar() {
     showWindow();
     Window oldAncestor = toolBarAncestor();

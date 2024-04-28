@@ -92,8 +92,9 @@ public class JSplitPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static GenericRange<Point> findWhereToMoveDividerVertically(final @NotNull JSplitPane splitPane,
-                                                                               final int location) {
+  @NotNull
+  private static GenericRange<Point> findWhereToMoveDividerVertically(final @NotNull JSplitPane splitPane,
+                                                                      final int location) {
     GenericRange<Point> result = execute(new GuiQuery<GenericRange<Point>>() {
       @Override
       protected GenericRange<Point> executeInEDT() {
@@ -105,7 +106,8 @@ public class JSplitPaneDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @NotNull private static GenericRange<Point> whereToMoveDividerVertically(@NotNull JSplitPane splitPane, int location) {
+  @NotNull
+  private static GenericRange<Point> whereToMoveDividerVertically(@NotNull JSplitPane splitPane, int location) {
     int x = splitPane.getWidth() / 2;
     int dividerLocation = splitPane.getDividerLocation();
     return new GenericRange<Point>(new Point(x, dividerLocation), new Point(x, location));
@@ -117,8 +119,9 @@ public class JSplitPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static GenericRange<Point> findWhereToMoveDividerHorizontally(final @NotNull JSplitPane splitPane,
-                                                                                 final int location) {
+  @NotNull
+  private static GenericRange<Point> findWhereToMoveDividerHorizontally(final @NotNull JSplitPane splitPane,
+                                                                        final int location) {
     GenericRange<Point> result = execute(new GuiQuery<GenericRange<Point>>() {
       @Override
       protected GenericRange<Point> executeInEDT() {
@@ -130,7 +133,8 @@ public class JSplitPaneDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @NotNull private static GenericRange<Point> whereToMoveDividerHorizontally(@NotNull JSplitPane splitPane, int location) {
+  @NotNull
+  private static GenericRange<Point> whereToMoveDividerHorizontally(@NotNull JSplitPane splitPane, int location) {
     int y = splitPane.getHeight() / 2;
     int dividerLocation = splitPane.getDividerLocation();
     return new GenericRange<Point>(new Point(dividerLocation, y), new Point(location, y));
@@ -141,7 +145,6 @@ public class JSplitPaneDriver extends JComponentDriver {
     try {
       robot.moveMouse(splitPane, range.from());
       robot.pressMouseWhileRunning(LEFT_BUTTON, () -> robot.moveMouse(splitPane, range.to()));
-    } catch (RuntimeException ignored) {
-    }
+    } catch (RuntimeException ignored) {}
   }
 }

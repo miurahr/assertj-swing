@@ -195,11 +195,13 @@ public class JComponentDriver extends ContainerDriver {
    * @throws NullPointerException if the given key is {@code null}.
    */
   @RunsInEDT
-  @Nullable public Object clientProperty(@NotNull JComponent c, @NotNull Object key) {
+  @Nullable
+  public Object clientProperty(@NotNull JComponent c, @NotNull Object key) {
     return clientPropertyIn(c, checkNotNull(key));
   }
 
-  @Nullable private static Object clientPropertyIn(final @NotNull JComponent c, final @NotNull Object key) {
+  @Nullable
+  private static Object clientPropertyIn(final @NotNull JComponent c, final @NotNull Object key) {
     return execute(() -> c.getClientProperty(key));
   }
 }

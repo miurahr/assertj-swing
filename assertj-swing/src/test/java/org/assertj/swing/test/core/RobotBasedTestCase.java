@@ -32,8 +32,7 @@ public class RobotBasedTestCase extends EDTSafeTestCase {
     onSetUp();
   }
 
-  protected void onSetUp() {
-  }
+  protected void onSetUp() {}
 
   @After
   public final void tearDown() {
@@ -44,6 +43,5 @@ public class RobotBasedTestCase extends EDTSafeTestCase {
     }
   }
 
-  protected void onTearDown() {
-  }
+  protected void onTearDown() {}
 }

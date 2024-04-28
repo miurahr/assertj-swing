@@ -32,6 +32,5 @@ final class JProgressBarMaximumQuery {
     return checkNotNull(result);
   }
 
-  private JProgressBarMaximumQuery() {
-  }
+  private JProgressBarMaximumQuery() {}
 }

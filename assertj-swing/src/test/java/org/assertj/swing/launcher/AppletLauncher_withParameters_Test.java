@@ -42,7 +42,7 @@ public class AppletLauncher_withParameters_Test extends AppletLauncher_TestCase 
   public void should_Set_Given_Parameters() {
     applet = TestApplet.createNew();
     viewer = AppletLauncher.launcherFor(applet)
-        .withParameters(name("bgcolor").value("blue"), name("color").value("red")).start();
+                           .withParameters(name("bgcolor").value("blue"), name("color").value("red")).start();
     assertThatAppletWasLaunched();
     assertThat(applet.getParameter("bgcolor")).isEqualTo("blue");
     assertThat(applet.getParameter("color")).isEqualTo("red");

@@ -41,6 +41,5 @@ public abstract class WindowEventQueueMapping_TestCase {
     onSetUp();
   }
 
-  void onSetUp() {
-  }
+  void onSetUp() {}
 }

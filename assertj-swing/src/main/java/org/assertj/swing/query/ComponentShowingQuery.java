@@ -45,6 +45,5 @@ public final class ComponentShowingQuery {
     return checkNotNull(result);
   }
 
-  private ComponentShowingQuery() {
-  }
+  private ComponentShowingQuery() {}
 }

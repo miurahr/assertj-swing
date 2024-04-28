@@ -47,6 +47,6 @@ public class JListDriver_unselectItemByIndex_withInvalidIndex_Test extends JList
     showWindow();
     Throwable t = Assert.assertThrows(IndexOutOfBoundsException.class, () -> driver.unselectItem(list, index));
     Assert.assertTrue(t.getMessage().contains(concat("Item index (", valueOf(index),
-            ") should be between [0] and [2] (inclusive)")));
+                                                     ") should be between [0] and [2] (inclusive)")));
   }
 }

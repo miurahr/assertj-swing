@@ -50,8 +50,7 @@ public abstract class BasicComponentFinder_TestCase extends SequentialEDTSafeTes
     beforeReleasingScreenLock();
   }
 
-  void beforeReleasingScreenLock() {
-  }
+  void beforeReleasingScreenLock() {}
 
   static class MyWindow extends TestWindow {
     final JButton button = new JButton("A Button");

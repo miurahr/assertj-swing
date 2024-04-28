@@ -42,6 +42,5 @@ public final class ComponentEnabledQuery {
     return checkNotNull(result);
   }
 
-  private ComponentEnabledQuery() {
-  }
+  private ComponentEnabledQuery() {}
 }

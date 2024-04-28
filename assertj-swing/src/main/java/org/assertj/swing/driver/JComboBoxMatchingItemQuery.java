@@ -44,6 +44,5 @@ final class JComboBoxMatchingItemQuery {
     return Preconditions.checkNotNull(result);
   }
 
-  private JComboBoxMatchingItemQuery() {
-  }
+  private JComboBoxMatchingItemQuery() {}
 }

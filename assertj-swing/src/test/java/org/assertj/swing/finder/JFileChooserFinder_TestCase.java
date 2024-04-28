@@ -33,8 +33,7 @@ public abstract class JFileChooserFinder_TestCase extends RobotBasedTestCase {
     extraSetUp();
   }
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   final FrameFixture showWindow() {
     return frameFixture.show();

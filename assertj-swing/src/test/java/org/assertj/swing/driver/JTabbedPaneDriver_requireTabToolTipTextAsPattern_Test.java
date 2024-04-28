@@ -29,7 +29,8 @@ import static org.assertj.swing.data.Index.atIndex;
 public class JTabbedPaneDriver_requireTabToolTipTextAsPattern_Test extends JTabbedPaneDriver_TestCase {
   @Test
   public void should_Fail_If_ToolTipText_Does_Not_Match_Pattern() {
-    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireTabToolTipText(tabbedPane, Pattern.compile("Hello"), atIndex(0)));
+    Throwable t = Assert.assertThrows(AssertionError.class,
+                                      () -> driver.requireTabToolTipText(tabbedPane, Pattern.compile("Hello"), atIndex(0)));
     assertThat(t.getMessage()).contains("toolTipTextAt").contains("tip1").contains("to match pattern:").contains("\"Hello\"");
   }
 

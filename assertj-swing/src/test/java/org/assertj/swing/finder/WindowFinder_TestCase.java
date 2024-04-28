@@ -35,8 +35,7 @@ public abstract class WindowFinder_TestCase extends RobotBasedTestCase {
     extraSetUp();
   }
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   final JButtonFixture clickLaunchFrameButton() {
     window.windowLaunchDelay(1);

@@ -30,6 +30,5 @@ final class JTreeSelectRowsTask {
     execute(() -> tree.setSelectionRows(rows));
   }
 
-  private JTreeSelectRowsTask() {
-  }
+  private JTreeSelectRowsTask() {}
 }

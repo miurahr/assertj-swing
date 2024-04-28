@@ -36,8 +36,7 @@ public class TestApplet extends JApplet {
     return execute(() -> new TestApplet());
   }
 
-  public TestApplet() {
-  }
+  public TestApplet() {}
 
   @Override
   public void init() {

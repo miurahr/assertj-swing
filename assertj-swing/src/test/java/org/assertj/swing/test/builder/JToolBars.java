@@ -26,8 +26,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JToolBars {
-  private JToolBars() {
-  }
+  private JToolBars() {}
 
   public static JToolBarFactory toolBar() {
     return new JToolBarFactory();

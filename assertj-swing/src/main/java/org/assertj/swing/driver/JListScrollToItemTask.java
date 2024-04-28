@@ -102,7 +102,8 @@ final class JListScrollToItemTask {
 
   /** @return the point that the JList was scrolled to. */
   @RunsInCurrentThread
-  @Nullable private static Point scrollToItemWithIndexIfNotSelectedYet(final @NotNull JList<?> list, final int index) {
+  @Nullable
+  private static Point scrollToItemWithIndexIfNotSelectedYet(final @NotNull JList<?> list, final int index) {
     if (list.getSelectedIndex() == index) {
       return null;
     }
@@ -110,12 +111,12 @@ final class JListScrollToItemTask {
   }
 
   @RunsInCurrentThread
-  @NotNull private static Point scrollToItemWithIndex(@NotNull JList<?> list, int index) {
+  @NotNull
+  private static Point scrollToItemWithIndex(@NotNull JList<?> list, int index) {
     Rectangle cellBounds = checkNotNull(cellBounds(list, index));
     list.scrollRectToVisible(cellBounds);
     return cellCenter(list, cellBounds);
   }
 
-  private JListScrollToItemTask() {
-  }
+  private JListScrollToItemTask() {}
 }

@@ -49,7 +49,8 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
    * @see #uninstall()
    * @see RepaintManager#setCurrentManager(RepaintManager)
    */
-  @NotNull public static FailOnThreadViolationRepaintManager install() {
+  @NotNull
+  public static FailOnThreadViolationRepaintManager install() {
     Object m = currentRepaintManager();
     if (m instanceof FailOnThreadViolationRepaintManager) {
       return (FailOnThreadViolationRepaintManager) m;
@@ -67,16 +68,16 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
    * @see #install()
    * @see RepaintManager#setCurrentManager(RepaintManager)
    */
-  @NotNull public static
-  RepaintManager uninstall() {
+  @NotNull
+  public static RepaintManager uninstall() {
     RepaintManager restored = previousRepaintManager;
     setCurrentManager(restored);
     previousRepaintManager = null;
     return restored;
   }
 
-  @Nullable private static
-  RepaintManager currentRepaintManager() {
+  @Nullable
+  private static RepaintManager currentRepaintManager() {
     try {
       Object repaintManager = method("appContextGet").withReturnType(Object.class).withParameterTypes(Object.class)
                                                      .in(SwingUtilities.class).invoke(RepaintManager.class);
@@ -89,15 +90,15 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
     return null;
   }
 
-  @NotNull private static FailOnThreadViolationRepaintManager installNew() {
+  @NotNull
+  private static FailOnThreadViolationRepaintManager installNew() {
     FailOnThreadViolationRepaintManager m = new FailOnThreadViolationRepaintManager();
     previousRepaintManager = currentRepaintManager();
     setCurrentManager(m);
     return m;
   }
 
-  public FailOnThreadViolationRepaintManager() {
-  }
+  public FailOnThreadViolationRepaintManager() {}
 
   public FailOnThreadViolationRepaintManager(boolean completeCheck) {
     super(completeCheck);

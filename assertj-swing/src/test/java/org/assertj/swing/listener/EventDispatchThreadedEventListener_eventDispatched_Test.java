@@ -63,8 +63,7 @@ public class EventDispatchThreadedEventListener_eventDispatched_Test {
     AWTEvent event;
     boolean wasProcessedInEventDispatchThread;
 
-    Listener() {
-    }
+    Listener() {}
 
     @Override
     protected void processEvent(@NotNull AWTEvent newEvent) {

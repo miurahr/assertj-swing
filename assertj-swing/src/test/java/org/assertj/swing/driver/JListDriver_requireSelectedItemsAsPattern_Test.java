@@ -29,8 +29,10 @@ public class JListDriver_requireSelectedItemsAsPattern_Test extends JListDriver_
   @Test
   public void should_Fail_If_There_Is_No_Selection() {
     clearSelection();
-    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireSelectedItems(list, Pattern.compile("one"), Pattern.compile("two")));
-    assertThat(t.getMessage()).contains("property:'selectedIndices'").contains("expected:<[[\"one\"").contains("\"two\"]]> but was:<[[]]>");
+    Throwable t = Assert.assertThrows(AssertionError.class,
+                                      () -> driver.requireSelectedItems(list, Pattern.compile("one"), Pattern.compile("two")));
+    assertThat(t.getMessage()).contains("property:'selectedIndices'").contains("expected:<[[\"one\"")
+                              .contains("\"two\"]]> but was:<[[]]>");
   }
 
   @Test

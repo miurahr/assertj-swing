@@ -37,6 +37,5 @@ public class TestURLs {
     }
   }
 
-  private TestURLs() {
-  }
+  private TestURLs() {}
 }

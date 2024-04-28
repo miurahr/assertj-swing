@@ -58,6 +58,5 @@ final class JTreeAddRootIfInvisibleTask {
     return new TreePath(newPath.toArray());
   }
 
-  private JTreeAddRootIfInvisibleTask() {
-  }
+  private JTreeAddRootIfInvisibleTask() {}
 }

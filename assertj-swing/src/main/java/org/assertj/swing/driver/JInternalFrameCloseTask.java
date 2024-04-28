@@ -30,6 +30,5 @@ final class JInternalFrameCloseTask {
     execute(() -> internalFrame.doDefaultCloseAction());
   }
 
-  private JInternalFrameCloseTask() {
-  }
+  private JInternalFrameCloseTask() {}
 }

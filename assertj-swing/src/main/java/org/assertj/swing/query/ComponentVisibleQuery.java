@@ -42,6 +42,5 @@ public final class ComponentVisibleQuery {
     return checkNotNull(result);
   }
 
-  private ComponentVisibleQuery() {
-  }
+  private ComponentVisibleQuery() {}
 }

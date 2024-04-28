@@ -47,6 +47,7 @@ public class JSpinnerDriver_decrementWithTimes_withInvalidTimes_Test extends JSp
   public void should_Throw_Error_If_Times_Is_Zero_Or_Negative() {
     Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> driver.decrement(spinner, times));
     assertThat(t.getMessage()).contains(concat(
-        "The number of times to decrement the value should be greater than zero, but was <", times, ">"));
+                                               "The number of times to decrement the value should be greater than zero, but was <",
+                                               times, ">"));
   }
 }

@@ -28,7 +28,8 @@ public final class Index {
    * @param value the value of the index to create.
    * @return the created index.
    */
-  @NotNull public static Index atIndex(int value) {
+  @NotNull
+  public static Index atIndex(int value) {
     return new Index(value);
   }
 

@@ -40,8 +40,7 @@ public class BasicAppletContext implements AppletContext {
   private static final Enumeration<Applet> NO_APPLETS = new EmptyAppletEnumeration();
 
   private static final class EmptyAppletEnumeration implements Enumeration<Applet> {
-    EmptyAppletEnumeration() {
-    }
+    EmptyAppletEnumeration() {}
 
     @Override
     public boolean hasMoreElements() {
@@ -49,7 +48,8 @@ public class BasicAppletContext implements AppletContext {
     }
 
     @Override
-    @Nullable public Applet nextElement() {
+    @Nullable
+    public Applet nextElement() {
       return null;
     }
   }
@@ -75,7 +75,8 @@ public class BasicAppletContext implements AppletContext {
    * @see AppletContext#getApplet(String)
    */
   @Override
-  @Nullable public Applet getApplet(@Nullable String name) {
+  @Nullable
+  public Applet getApplet(@Nullable String name) {
     return appletFrom(statusDisplay);
   }
 
@@ -88,12 +89,14 @@ public class BasicAppletContext implements AppletContext {
    * @see AppletContext#getApplets()
    */
   @Override
-  @NotNull public Enumeration<Applet> getApplets() {
+  @NotNull
+  public Enumeration<Applet> getApplets() {
     Applet applet = appletFrom(statusDisplay);
     return applet == null ? NO_APPLETS : enumeration(newArrayList(applet));
   }
 
-  @Nullable private static Applet appletFrom(@Nullable StatusDisplay statusDisplay) {
+  @Nullable
+  private static Applet appletFrom(@Nullable StatusDisplay statusDisplay) {
     if (!(statusDisplay instanceof AppletViewer)) {
       return null;
     }
@@ -107,7 +110,8 @@ public class BasicAppletContext implements AppletContext {
    * @see AppletContext#getAudioClip(URL)
    */
   @Override
-  @Nullable public AudioClip getAudioClip(@Nullable URL url) {
+  @Nullable
+  public AudioClip getAudioClip(@Nullable URL url) {
     return null;
   }
 
@@ -117,7 +121,8 @@ public class BasicAppletContext implements AppletContext {
    * @see AppletContext#getImage(URL)
    */
   @Override
-  @Nullable public Image getImage(@Nullable URL url) {
+  @Nullable
+  public Image getImage(@Nullable URL url) {
     return null;
   }
 
@@ -129,7 +134,8 @@ public class BasicAppletContext implements AppletContext {
    * @param key key whose associated stream is to be returned.
    */
   @Override
-  @Nullable public InputStream getStream(@Nullable String key) {
+  @Nullable
+  public InputStream getStream(@Nullable String key) {
     return streamMap.get(key);
   }
 
@@ -139,7 +145,8 @@ public class BasicAppletContext implements AppletContext {
    * @return an iterator of all the names of the streams in this {@code AppletContext}.
    */
   @Override
-  @NotNull public Iterator<String> getStreamKeys() {
+  @NotNull
+  public Iterator<String> getStreamKeys() {
     return streamMap.keySet().iterator();
   }
 
@@ -165,8 +172,7 @@ public class BasicAppletContext implements AppletContext {
    * @see AppletContext#showDocument(URL)
    */
   @Override
-  public void showDocument(@Nullable URL url) {
-  }
+  public void showDocument(@Nullable URL url) {}
 
   /**
    * Not implemented.
@@ -174,8 +180,7 @@ public class BasicAppletContext implements AppletContext {
    * @see AppletContext#showDocument(URL, String)
    */
   @Override
-  public void showDocument(@Nullable URL url, @Nullable String target) {
-  }
+  public void showDocument(@Nullable URL url, @Nullable String target) {}
 
   /**
    * Requests that the given status be displayed in this context's {@link StatusDisplay}.

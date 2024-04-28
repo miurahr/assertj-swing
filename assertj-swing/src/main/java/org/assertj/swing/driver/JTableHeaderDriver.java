@@ -177,13 +177,15 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @RunsInEDT
-  @NotNull public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, int columnIndex) {
+  @NotNull
+  public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, int columnIndex) {
     return robot.showPopupMenu(tableHeader, pointAtIndex(tableHeader, columnIndex, location));
   }
 
   @RunsInEDT
-  @NotNull private static Point pointAtIndex(final @NotNull JTableHeader tableHeader, final int columnIndex,
-                                             final JTableHeaderLocation location) {
+  @NotNull
+  private static Point pointAtIndex(final @NotNull JTableHeader tableHeader, final int columnIndex,
+                                    final JTableHeaderLocation location) {
     Point result = execute(() -> {
       Point p = location.pointAt(tableHeader, columnIndex);
       checkEnabledAndShowing(tableHeader);
@@ -204,7 +206,8 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @RunsInEDT
-  @NotNull public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, @Nullable String columnName) {
+  @NotNull
+  public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, @Nullable String columnName) {
     return robot.showPopupMenu(tableHeader, pointAtName(tableHeader, new StringTextMatcher(columnName), location()));
   }
 
@@ -220,14 +223,16 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @RunsInEDT
-  @NotNull public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, @NotNull Pattern pattern) {
+  @NotNull
+  public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, @NotNull Pattern pattern) {
     return robot.showPopupMenu(tableHeader, pointAtName(tableHeader, new PatternTextMatcher(pattern), location()));
   }
 
   @RunsInEDT
-  @NotNull private static Point pointAtName(final @NotNull JTableHeader tableHeader,
-                                            final @NotNull TextMatcher matcher,
-                                            final @NotNull JTableHeaderLocation location) {
+  @NotNull
+  private static Point pointAtName(final @NotNull JTableHeader tableHeader,
+                                   final @NotNull TextMatcher matcher,
+                                   final @NotNull JTableHeaderLocation location) {
     Point result = execute(() -> {
       Pair<Integer, Point> indexAndLocation = location.pointAt(tableHeader, matcher);
       checkEnabledAndShowing(tableHeader);
@@ -237,7 +242,8 @@ public class JTableHeaderDriver extends JComponentDriver {
     return checkNotNull(result);
   }
 
-  @NotNull private JTableHeaderLocation location() {
+  @NotNull
+  private JTableHeaderLocation location() {
     return location;
   }
 }

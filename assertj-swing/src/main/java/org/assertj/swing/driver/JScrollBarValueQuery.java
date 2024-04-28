@@ -33,6 +33,5 @@ final class JScrollBarValueQuery {
     return checkNotNull(result);
   }
 
-  private JScrollBarValueQuery() {
-  }
+  private JScrollBarValueQuery() {}
 }

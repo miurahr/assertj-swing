@@ -131,7 +131,8 @@ public final class ComponentFoundCondition extends Condition {
    * failure.
    */
   @Override
-  @NotNull protected String descriptionAddendum() {
+  @NotNull
+  protected String descriptionAddendum() {
     ComponentLookupException error = notFoundError.get();
     if (error == null) {
       return EMPTY_TEXT;
@@ -142,7 +143,8 @@ public final class ComponentFoundCondition extends Condition {
   /**
    * @return the AWT or Swing {@code Component} found.
    */
-  @Nullable public Component found() {
+  @Nullable
+  public Component found() {
     return found;
   }
 

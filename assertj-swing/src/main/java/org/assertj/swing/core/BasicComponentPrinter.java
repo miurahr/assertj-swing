@@ -43,7 +43,8 @@ public final class BasicComponentPrinter implements ComponentPrinter {
 
   private static final ComponentMatcher ALWAYS_MATCHES = alwaysMatches();
 
-  @NotNull private static ComponentMatcher alwaysMatches() {
+  @NotNull
+  private static ComponentMatcher alwaysMatches() {
     return new ComponentMatcher() {
       @Override
       public boolean matches(@Nullable Component c) {
@@ -60,7 +61,8 @@ public final class BasicComponentPrinter implements ComponentPrinter {
    *
    * @return the created finder.
    */
-  @NotNull public static ComponentPrinter printerWithNewAwtHierarchy() {
+  @NotNull
+  public static ComponentPrinter printerWithNewAwtHierarchy() {
     return new BasicComponentPrinter(ignoreExistingComponents());
   }
 
@@ -70,7 +72,8 @@ public final class BasicComponentPrinter implements ComponentPrinter {
    *
    * @return the created printer.
    */
-  @NotNull public static ComponentPrinter printerWithCurrentAwtHierarchy() {
+  @NotNull
+  public static ComponentPrinter printerWithCurrentAwtHierarchy() {
     return new BasicComponentPrinter(new ExistingHierarchy());
   }
 
@@ -125,7 +128,8 @@ public final class BasicComponentPrinter implements ComponentPrinter {
     print(hierarchy(root), checkNotNull(matcher), checkNotNull(out));
   }
 
-  @NotNull private ComponentHierarchy hierarchy(@Nullable Container root) {
+  @NotNull
+  private ComponentHierarchy hierarchy(@Nullable Container root) {
     return root != null ? new SingleComponentHierarchy(root, hierarchy) : hierarchy;
   }
 

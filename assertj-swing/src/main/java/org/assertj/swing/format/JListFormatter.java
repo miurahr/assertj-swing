@@ -50,7 +50,8 @@ public class JListFormatter extends ComponentFormatterTemplate {
                          list.isShowing());
   }
 
-  @NotNull private Object[] contentsOf(JList<?> list) {
+  @NotNull
+  private Object[] contentsOf(JList<?> list) {
     List<Object> contents = newArrayList();
     ListModel<?> model = list.getModel();
     int size = model.getSize();
@@ -64,7 +65,8 @@ public class JListFormatter extends ComponentFormatterTemplate {
    * @return {@code JList.class}.
    */
   @Override
-  @NotNull public Class<? extends Component> targetType() {
+  @NotNull
+  public Class<? extends Component> targetType() {
     return JList.class;
   }
 }

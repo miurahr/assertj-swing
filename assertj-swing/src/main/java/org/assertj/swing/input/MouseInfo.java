@@ -115,7 +115,8 @@ class MouseInfo {
     screenLocationStack.pop();
   }
 
-  @Nullable public Component component() {
+  @Nullable
+  public Component component() {
     if (componentStack.empty()) {
       return null;
     }
@@ -169,7 +170,8 @@ class MouseInfo {
     return pointFrom(locationOnScreen);
   }
 
-  @Nullable private Point pointFrom(Point source) {
+  @Nullable
+  private Point pointFrom(Point source) {
     return source != null ? new Point(source) : null;
   }
 }

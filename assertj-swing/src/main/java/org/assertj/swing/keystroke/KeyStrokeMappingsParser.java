@@ -16,7 +16,6 @@ import static java.lang.Thread.currentThread;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Closeables.closeQuietly;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
@@ -129,7 +128,8 @@ public class KeyStrokeMappingsParser {
     }
   }
 
-  @NotNull private InputStream fileAsStream(String file) {
+  @NotNull
+  private InputStream fileAsStream(String file) {
     InputStream stream = currentThread().getContextClassLoader().getResourceAsStream(file);
     if (stream == null) {
       throw new ParsingException(String.format("Unable to open file %s", file));
@@ -147,7 +147,8 @@ public class KeyStrokeMappingsParser {
    * @throws AssertionError if the given file does not represent an existing file.
    * @throws ParsingException if any error occurs during parsing.
    */
-  @NotNull public KeyStrokeMappingProvider parse(@NotNull File file) {
+  @NotNull
+  public KeyStrokeMappingProvider parse(@NotNull File file) {
     assertThat(file).isFile();
     try {
       return parse(fileAsStream(file));
@@ -156,7 +157,8 @@ public class KeyStrokeMappingsParser {
     }
   }
 
-  @NotNull private InputStream fileAsStream(@NotNull File file) {
+  @NotNull
+  private InputStream fileAsStream(@NotNull File file) {
     try {
       return new FileInputStream(file);
     } catch (FileNotFoundException e) {
@@ -165,7 +167,8 @@ public class KeyStrokeMappingsParser {
     }
   }
 
-  @NotNull private KeyStrokeMappingProvider parse(@NotNull InputStream input) throws IOException {
+  @NotNull
+  private KeyStrokeMappingProvider parse(@NotNull InputStream input) throws IOException {
     List<KeyStrokeMapping> mappings = newArrayList();
     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
     try {

@@ -97,8 +97,7 @@ public class AWT {
    */
   @RunsInCurrentThread
   @Nullable
-  public static
-  Point translate(@NotNull Component c, int x, int y) {
+  public static Point translate(@NotNull Component c, int x, int y) {
     Point p = locationOnScreenOf(c);
     if (p == null) {
       return null;
@@ -114,8 +113,8 @@ public class AWT {
    * @return a point at the center of the visible area of the given {@code Component}.
    */
   @RunsInEDT
-  @NotNull public static
-  Point visibleCenterOf(@NotNull final Component c) {
+  @NotNull
+  public static Point visibleCenterOf(@NotNull final Component c) {
     Point center = execute(() -> {
       if (c instanceof JComponent) {
         return centerOfVisibleRect((JComponent) c);
@@ -139,8 +138,8 @@ public class AWT {
    * @return a point at the center of the given {@code Component}.
    */
   @RunsInCurrentThread
-  @NotNull public static
-  Point centerOf(@NotNull Component c) {
+  @NotNull
+  public static Point centerOf(@NotNull Component c) {
     Dimension size = c.getSize();
     return new Point(size.width / 2, size.height / 2);
   }
@@ -159,8 +158,8 @@ public class AWT {
    * @return a point at the center of the visible rectangle of the given {@code JComponent}.
    */
   @RunsInCurrentThread
-  @NotNull public static
-  Point centerOfVisibleRect(@NotNull JComponent c) {
+  @NotNull
+  public static Point centerOfVisibleRect(@NotNull JComponent c) {
     Rectangle r = c.getVisibleRect();
     return centerOf(checkNotNull(r));
   }
@@ -179,8 +178,8 @@ public class AWT {
    * @return a point at the center of the given {@code Rectangle}.
    */
   @RunsInCurrentThread
-  @NotNull public static
-  Point centerOf(@NotNull Rectangle r) {
+  @NotNull
+  public static Point centerOf(@NotNull Rectangle r) {
     return new Point((r.x + (r.width / 2)), (r.y + (r.height / 2)));
   }
 
@@ -198,15 +197,14 @@ public class AWT {
    * @return the insets of the given {@code Container}, or an empty one if no insets can be found.
    */
   @RunsInCurrentThread
-  @NotNull public static
-  Insets insetsFrom(@NotNull Container c) {
+  @NotNull
+  public static Insets insetsFrom(@NotNull Container c) {
     try {
       Insets insets = c.getInsets();
       if (insets != null) {
         return insets;
       }
-    } catch (Exception e) {
-    }
+    } catch (Exception e) {}
     return new Insets(0, 0, 0, 0);
   }
 
@@ -232,7 +230,7 @@ public class AWT {
     }
     // Must perform an additional check, since applets may have their own version in their AppContext
     return c instanceof Frame
-        && (c == JOptionPane.getRootFrame() || c.getClass().getName().startsWith(ROOT_FRAME_CLASSNAME));
+           && (c == JOptionPane.getRootFrame() || c.getClass().getName().startsWith(ROOT_FRAME_CLASSNAME));
   }
 
   /**
@@ -263,8 +261,8 @@ public class AWT {
   }
 
   @RunsInCurrentThread
-  @Nullable private static
-  String obtainNameSafely(@NotNull Component c) {
+  @Nullable
+  private static String obtainNameSafely(@NotNull Component c) {
     // Work around some components throwing exceptions if getName is called prematurely
     try {
       return c.getName();
@@ -289,8 +287,8 @@ public class AWT {
    *     pop-up of any sort.
    */
   @RunsInCurrentThread
-  @Nullable public static
-  Component invokerOf(final @NotNull Component c) {
+  @Nullable
+  public static Component invokerOf(final @NotNull Component c) {
     if (c instanceof JPopupMenu) {
       return ((JPopupMenu) c).getInvoker();
     }
@@ -312,8 +310,8 @@ public class AWT {
    * @return the a point specifying the {@code Component}'s top-left corner in the screen's coordinate space.
    */
   @RunsInCurrentThread
-  @NotNull public static
-  Point locationOnScreenOf(@NotNull Component c) {
+  @NotNull
+  public static Point locationOnScreenOf(@NotNull Component c) {
     return new Point(c.getLocationOnScreen());
   }
 
@@ -334,6 +332,5 @@ public class AWT {
     return BUTTON3_MASK;
   }
 
-  private AWT() {
-  }
+  private AWT() {}
 }

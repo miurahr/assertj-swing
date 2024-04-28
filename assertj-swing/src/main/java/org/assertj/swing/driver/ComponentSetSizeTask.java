@@ -30,6 +30,5 @@ final class ComponentSetSizeTask {
     execute(() -> c.setSize(width, height));
   }
 
-  private ComponentSetSizeTask() {
-  }
+  private ComponentSetSizeTask() {}
 }

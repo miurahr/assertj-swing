@@ -49,6 +49,5 @@ final class NewAppletViewerQuery {
     return viewer;
   }
 
-  private NewAppletViewerQuery() {
-  }
+  private NewAppletViewerQuery() {}
 }

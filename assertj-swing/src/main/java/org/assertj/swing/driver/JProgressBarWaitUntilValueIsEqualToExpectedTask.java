@@ -34,7 +34,7 @@ import org.assertj.swing.timing.Timeout;
 final class JProgressBarWaitUntilValueIsEqualToExpectedTask {
   @RunsInEDT
   static void waitUntilValueIsEqualToExpected(final @NotNull JProgressBar progressBar, final int expected,
-      final @NotNull Timeout timeout) {
+                                              final @NotNull Timeout timeout) {
     pause(new Condition(untilValueIsEqualTo(progressBar, expected)) {
       @Override
       public boolean test() {
@@ -46,12 +46,12 @@ final class JProgressBarWaitUntilValueIsEqualToExpectedTask {
   private static Description untilValueIsEqualTo(final @NotNull JProgressBar progressBar, final int expected) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @NotNull protected String loadDescription() {
+      @NotNull
+      protected String loadDescription() {
         return String.format("value of %s to be equal to %d", format(progressBar), expected);
       }
     };
   }
 
-  private JProgressBarWaitUntilValueIsEqualToExpectedTask() {
-  }
+  private JProgressBarWaitUntilValueIsEqualToExpectedTask() {}
 }

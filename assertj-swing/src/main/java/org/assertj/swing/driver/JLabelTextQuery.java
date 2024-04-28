@@ -34,6 +34,5 @@ final class JLabelTextQuery {
     return execute(() -> label.getText());
   }
 
-  private JLabelTextQuery() {
-  }
+  private JLabelTextQuery() {}
 }

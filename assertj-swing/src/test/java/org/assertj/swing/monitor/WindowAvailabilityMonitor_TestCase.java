@@ -42,6 +42,5 @@ public abstract class WindowAvailabilityMonitor_TestCase {
     onSetUp();
   }
 
-  void onSetUp() {
-  }
+  void onSetUp() {}
 }

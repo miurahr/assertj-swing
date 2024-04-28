@@ -45,8 +45,7 @@ public class Tests_testMethodNameFrom_Test extends Tests_TestCase {
 
   @Test
   public void should_Return_Name_If_Test_Is_TestCase() {
-    TestCase test = new TestCase("Leia") {
-    };
+    TestCase test = new TestCase("Leia") {};
     assertThat(Tests.testMethodNameFrom(test)).isEqualTo("Leia");
   }
 
@@ -68,8 +67,7 @@ public class Tests_testMethodNameFrom_Test extends Tests_TestCase {
     }
 
     @Override
-    public void run(TestResult result) {
-    }
+    public void run(TestResult result) {}
   }
 
   @Test
@@ -90,8 +88,7 @@ public class Tests_testMethodNameFrom_Test extends Tests_TestCase {
     }
 
     @Override
-    public void run(TestResult result) {
-    }
+    public void run(TestResult result) {}
   }
 
   @Test
@@ -103,8 +100,7 @@ public class Tests_testMethodNameFrom_Test extends Tests_TestCase {
       }
 
       @Override
-      public void run(TestResult result) {
-      }
+      public void run(TestResult result) {}
     };
     assertThat(Tests.testMethodNameFrom(test)).isEqualTo("unknown");
   }

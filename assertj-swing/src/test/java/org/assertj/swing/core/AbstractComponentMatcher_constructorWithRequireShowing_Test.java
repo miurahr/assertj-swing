@@ -35,7 +35,8 @@ public class AbstractComponentMatcher_constructorWithRequireShowing_Test {
   private final boolean requireShowing;
 
   @Parameters
-  @NotNull public static Collection<Object[]> booleans() {
+  @NotNull
+  public static Collection<Object[]> booleans() {
     return newArrayList(BooleanProvider.booleans());
   }
 

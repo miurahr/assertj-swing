@@ -31,6 +31,5 @@ public final class DialogSetModalTask {
     execute(() -> d.setModal(modal));
   }
 
-  private DialogSetModalTask() {
-  }
+  private DialogSetModalTask() {}
 }

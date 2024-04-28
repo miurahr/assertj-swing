@@ -34,6 +34,5 @@ public final class TestContainers {
     return mock(Container.class);
   }
 
-  private TestContainers() {
-  }
+  private TestContainers() {}
 }

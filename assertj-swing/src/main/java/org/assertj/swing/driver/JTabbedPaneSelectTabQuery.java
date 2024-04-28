@@ -33,6 +33,5 @@ final class JTabbedPaneSelectTabQuery {
     return atIndex(selectedTab);
   }
 
-  private JTabbedPaneSelectTabQuery() {
-  }
+  private JTabbedPaneSelectTabQuery() {}
 }

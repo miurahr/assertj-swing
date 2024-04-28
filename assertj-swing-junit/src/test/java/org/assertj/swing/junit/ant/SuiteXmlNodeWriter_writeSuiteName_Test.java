@@ -15,7 +15,6 @@ package org.assertj.swing.junit.ant;
 import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.ATTR_NAME;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
-import static org.mockito.Mockito.verify;
 
 import org.apache.tools.ant.taskdefs.optional.junit.JUnitTest;
 import org.junit.Test;

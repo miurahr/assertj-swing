@@ -76,7 +76,8 @@ public class AbstractComponentFixture_requireShowing_Test {
     }
 
     @Override
-    @NotNull protected ComponentDriver createDriver(@NotNull Robot robot) {
+    @NotNull
+    protected ComponentDriver createDriver(@NotNull Robot robot) {
       return mock(ComponentDriver.class);
     }
   }

@@ -26,6 +26,5 @@ public final class TestComponentHierarchies {
     return mock(ComponentHierarchy.class);
   }
 
-  private TestComponentHierarchies() {
-  }
+  private TestComponentHierarchies() {}
 }

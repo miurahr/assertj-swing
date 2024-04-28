@@ -43,6 +43,5 @@ final class JFileChooserApproveButtonTextQuery {
     });
   }
 
-  private JFileChooserApproveButtonTextQuery() {
-  }
+  private JFileChooserApproveButtonTextQuery() {}
 }

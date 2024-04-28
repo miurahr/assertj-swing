@@ -33,9 +33,9 @@ public class JListDriver_selectItemByPattern_Test extends JListDriver_TestCase {
   public void should_Throw_Error_If_A_Matching_Item_Was_Not_Found() {
     showWindow();
     Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.selectItem(list,
-            Pattern.compile("ten")));
+                                                                                                  Pattern.compile("ten")));
     Assert.assertTrue(t.getMessage().contains(
-            "Unable to find item matching the pattern 'ten' among the JList contents [\"one\", \"two\", \"three\"]"));
+                                              "Unable to find item matching the pattern 'ten' among the JList contents [\"one\", \"two\", \"three\"]"));
   }
 
   @Test

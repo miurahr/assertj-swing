@@ -46,8 +46,7 @@ public abstract class JTableHeaderBasedTestCase extends RobotBasedTestCase {
 
   abstract void setUpTestTarget();
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   static Object[][] columnIndices() {
     return new Object[][] { { 0 }, { 1 } };

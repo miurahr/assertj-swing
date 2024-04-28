@@ -38,7 +38,7 @@ public class ShouldBeEqualColors extends BasicErrorMessageFactory {
    * @return the created {@code ErrorMessageFactory}.
    */
   public static ErrorMessageFactory shouldBeEqualColors(RgbColor expected, RgbColor actual, Point point,
-      Offset<?> offset) {
+                                                        Offset<?> offset) {
     return new ShouldBeEqualColors(expected, actual, point, offset);
   }
 

@@ -109,7 +109,8 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    * @param pattern the title to match.
    * @return the created matcher.
    */
-  @NotNull public static FrameMatcher withTitle(@NotNull Pattern pattern) {
+  @NotNull
+  public static FrameMatcher withTitle(@NotNull Pattern pattern) {
     return new FrameMatcher(anyValue(), pattern);
   }
 
@@ -118,7 +119,8 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    *
    * @return the created matcher.
    */
-  @NotNull public static FrameMatcher any() {
+  @NotNull
+  public static FrameMatcher any() {
     return new FrameMatcher(anyValue(), anyValue());
   }
 
@@ -134,7 +136,8 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    * @param newTitle the new title to match. It can be a regular expression.
    * @return this matcher.
    */
-  @NotNull public FrameMatcher andTitle(@NotNull String newTitle) {
+  @NotNull
+  public FrameMatcher andTitle(@NotNull String newTitle) {
     title = newTitle;
     return this;
   }
@@ -146,7 +149,8 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    * @param titlePattern the regular expression pattern to match.
    * @return this matcher.
    */
-  @NotNull public FrameMatcher andTitle(@NotNull Pattern titlePattern) {
+  @NotNull
+  public FrameMatcher andTitle(@NotNull Pattern titlePattern) {
     title = titlePattern;
     return this;
   }
@@ -156,7 +160,8 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    *
    * @return this matcher.
    */
-  @NotNull public FrameMatcher andShowing() {
+  @NotNull
+  public FrameMatcher andShowing() {
     requireShowing(true);
     return this;
   }

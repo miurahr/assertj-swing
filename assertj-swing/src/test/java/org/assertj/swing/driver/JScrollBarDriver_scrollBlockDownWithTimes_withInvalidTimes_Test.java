@@ -48,6 +48,7 @@ public class JScrollBarDriver_scrollBlockDownWithTimes_withInvalidTimes_Test ext
 
     Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> driver.scrollBlockDown(scrollBar, times));
     assertThat(t.getMessage()).contains((concat(
-        "The number of times to scroll down one block should be greater than zero, but was <", times, ">")));
+                                                "The number of times to scroll down one block should be greater than zero, but was <",
+                                                times, ">")));
   }
 }

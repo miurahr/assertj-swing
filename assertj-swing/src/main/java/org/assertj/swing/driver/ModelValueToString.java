@@ -42,6 +42,5 @@ final class ModelValueToString {
     return null;
   }
 
-  private ModelValueToString() {
-  }
+  private ModelValueToString() {}
 }

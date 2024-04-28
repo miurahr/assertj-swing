@@ -27,8 +27,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JComboBoxes {
-  private JComboBoxes() {
-  }
+  private JComboBoxes() {}
 
   public static JComboBoxFactory comboBox() {
     return new JComboBoxFactory();

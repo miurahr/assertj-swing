@@ -56,7 +56,8 @@ public class JTreeDriver_clickPath_withMouseClickInfo_Test extends JTreeDriver_c
   @Test
   public void should_Throw_Error_If_Path_Not_Found() {
     showWindow();
-    Throwable t = Assert.assertThrows(LocationUnavailableException.class, () -> driver.clickPath(tree, "another", mouseClickInfo));
+    Throwable t = Assert.assertThrows(LocationUnavailableException.class,
+                                      () -> driver.clickPath(tree, "another", mouseClickInfo));
     assertThat(t.getMessage()).contains("Unable to find path 'another'");
   }
 

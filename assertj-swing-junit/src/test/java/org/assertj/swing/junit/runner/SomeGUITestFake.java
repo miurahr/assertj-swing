@@ -27,8 +27,7 @@ import org.junit.runner.RunWith;
 public class SomeGUITestFake {
 
   @Test
-  public void successfulGUITest() {
-  }
+  public void successfulGUITest() {}
 
   @Ignore("enable for manual testing")
   @Test

@@ -59,9 +59,9 @@ public class XmlOutputWriter_write_Test extends XmlOutputWriter_TestCase {
   }
 
   private String expectedXml() {
-      String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" + lineSeparator() + "<root>" +
-              lineSeparator() + "  <child />" + lineSeparator() + "</root>" +
-              lineSeparator();
+    String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" + lineSeparator() + "<root>" +
+                      lineSeparator() + "  <child />" + lineSeparator() + "</root>" +
+                      lineSeparator();
     return expected;
   }
 

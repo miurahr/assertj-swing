@@ -51,7 +51,7 @@ public class GitHub_190_FrameFixture_Test extends RobotBasedTestCase {
   public void test() {
     setup(robot);
     FrameFixture fixture = new FrameFixture(robot, GuiActionRunner.execute(
-                                                                  () -> new MainFrame()));
+                                                                           () -> new MainFrame()));
     fixture.show();
     fixture.textBox().enterText("Acao");
     fixture.textBox().requireText("Acao");

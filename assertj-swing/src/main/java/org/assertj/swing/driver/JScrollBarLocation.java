@@ -58,7 +58,8 @@ public final class JScrollBarLocation {
    * @return the location where to move the mouse pointer to scroll to the given position.
    */
   @RunsInCurrentThread
-  @NotNull public Point thumbLocation(@NotNull JScrollBar scrollBar, int position) {
+  @NotNull
+  public Point thumbLocation(@NotNull JScrollBar scrollBar, int position) {
     double fraction = (double) position / maximumMinusMinimum(scrollBar);
     return locationStrategyFor(scrollBar).thumbLocation(scrollBar, fraction);
   }
@@ -82,7 +83,8 @@ public final class JScrollBarLocation {
    * @return the location where to move the mouse pointer to scroll one block up (or right).
    */
   @RunsInCurrentThread
-  @NotNull public Point blockLocationToScrollUp(@NotNull JScrollBar scrollBar) {
+  @NotNull
+  public Point blockLocationToScrollUp(@NotNull JScrollBar scrollBar) {
     Point p = unitLocationToScrollUp(scrollBar);
     int offset = BLOCK_OFFSET;
     return blockLocation(scrollBar, p, offset);
@@ -102,14 +104,16 @@ public final class JScrollBarLocation {
    * @return the location where to move the mouse pointer to scroll one block down (or left).
    */
   @RunsInCurrentThread
-  @NotNull public Point blockLocationToScrollDown(@NotNull JScrollBar scrollBar) {
+  @NotNull
+  public Point blockLocationToScrollDown(@NotNull JScrollBar scrollBar) {
     Point p = unitLocationToScrollDown(scrollBar);
     int offset = -BLOCK_OFFSET;
     return blockLocation(scrollBar, p, offset);
   }
 
   @RunsInCurrentThread
-  @NotNull private Point blockLocation(@NotNull JScrollBar scrollBar, @NotNull Point unitLocation, int offset) {
+  @NotNull
+  private Point blockLocation(@NotNull JScrollBar scrollBar, @NotNull Point unitLocation, int offset) {
     return locationStrategyFor(scrollBar).blockLocation(scrollBar, unitLocation, offset);
   }
 
@@ -127,7 +131,8 @@ public final class JScrollBarLocation {
    * @return the location where to move the mouse pointer to scroll one unit up (or right).
    */
   @RunsInCurrentThread
-  @NotNull public Point unitLocationToScrollUp(@NotNull JScrollBar scrollBar) {
+  @NotNull
+  public Point unitLocationToScrollUp(@NotNull JScrollBar scrollBar) {
     int arrow = locationStrategyFor(scrollBar).arrow(scrollBar);
     return new Point(arrow / 2, arrow / 2);
   }
@@ -146,12 +151,14 @@ public final class JScrollBarLocation {
    * @return the location where to move the mouse pointer to scroll one unit down (or left).
    */
   @RunsInCurrentThread
-  @NotNull public Point unitLocationToScrollDown(@NotNull JScrollBar scrollBar) {
+  @NotNull
+  public Point unitLocationToScrollDown(@NotNull JScrollBar scrollBar) {
     return locationStrategyFor(scrollBar).unitLocationToScrollDown(scrollBar);
   }
 
   @RunsInCurrentThread
-  @NotNull private JScrollBarLocationStrategy locationStrategyFor(JScrollBar scrollBar) {
+  @NotNull
+  private JScrollBarLocationStrategy locationStrategyFor(JScrollBar scrollBar) {
     JScrollBarLocationStrategy strategy = LOCATIONS.get(scrollBar.getOrientation());
     return checkNotNull(strategy);
   }

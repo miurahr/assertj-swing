@@ -80,8 +80,7 @@ public class Bug209_JComboBoxWithCustomModel_Test extends RobotBasedTestCase {
   }
 
   private static class NamedObjectCellRenderer extends DefaultListCellRenderer {
-    NamedObjectCellRenderer() {
-    }
+    NamedObjectCellRenderer() {}
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,

@@ -46,6 +46,5 @@ final class KeyStrokeMappings {
     return mappings;
   }
 
-  private KeyStrokeMappings() {
-  }
+  private KeyStrokeMappings() {}
 }

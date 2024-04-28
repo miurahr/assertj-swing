@@ -29,17 +29,14 @@ public class GUITestFinder_isGUITest_Test {
   @GUITest
   public static class GUITestClass {
     @GUITest
-    public void guiTestMethodWithAnnotation() {
-    }
+    public void guiTestMethodWithAnnotation() {}
 
-    public void guiTestMethodWithoutAnnotation() {
-    }
+    public void guiTestMethodWithoutAnnotation() {}
   }
 
   public static class NonGUITestClass {
     @GUITest
-    public void guiTestMethod() {
-    }
+    public void guiTestMethod() {}
   }
 
   public static class GUITestSubclass extends GUITestClass {

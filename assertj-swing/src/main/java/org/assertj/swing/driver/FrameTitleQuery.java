@@ -33,6 +33,5 @@ final class FrameTitleQuery {
     return execute(() -> f.getTitle());
   }
 
-  private FrameTitleQuery() {
-  }
+  private FrameTitleQuery() {}
 }

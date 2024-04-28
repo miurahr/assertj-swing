@@ -73,7 +73,8 @@ public class JTabbedPaneFormatter extends ComponentFormatterTemplate {
    * @return {@code JTabbedPane.class}.
    */
   @Override
-  @NotNull public Class<? extends Component> targetType() {
+  @NotNull
+  public Class<? extends Component> targetType() {
     return JTabbedPane.class;
   }
 }

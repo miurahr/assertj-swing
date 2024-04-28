@@ -54,6 +54,5 @@ public final class FrameShowTask {
     }, 20000);
   }
 
-  private FrameShowTask() {
-  }
+  private FrameShowTask() {}
 }

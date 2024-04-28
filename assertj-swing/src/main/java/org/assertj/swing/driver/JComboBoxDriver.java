@@ -102,7 +102,8 @@ public class JComboBoxDriver extends JComponentDriver {
    * @see #replaceCellReader(JComboBoxCellReader)
    */
   @RunsInEDT
-  @NotNull public String[] contentsOf(@NotNull JComboBox<?> comboBox) {
+  @NotNull
+  public String[] contentsOf(@NotNull JComboBox<?> comboBox) {
     return contents(comboBox, cellReader());
   }
 
@@ -182,7 +183,8 @@ public class JComboBoxDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nullable private String requiredSelectionOf(@NotNull JComboBox<?> comboBox) throws AssertionError {
+  @Nullable
+  private String requiredSelectionOf(@NotNull JComboBox<?> comboBox) throws AssertionError {
     Pair<Boolean, String> selection = selection(comboBox, cellReader());
     boolean hasSelection = selection.first;
     if (!hasSelection) {
@@ -239,20 +241,23 @@ public class JComboBoxDriver extends JComponentDriver {
    *           {@code JComboBox}.
    * @see #replaceCellReader(JComboBoxCellReader)
    */
-  @Nullable public String value(@NotNull JComboBox<?> comboBox, int index) {
+  @Nullable
+  public String value(@NotNull JComboBox<?> comboBox, int index) {
     return valueAsText(comboBox, index, cellReader());
   }
 
   @RunsInEDT
-  @Nullable private static String valueAsText(final @NotNull JComboBox<?> comboBox, final int index,
-                                              final @NotNull JComboBoxCellReader cellReader) {
+  @Nullable
+  private static String valueAsText(final @NotNull JComboBox<?> comboBox, final int index,
+                                    final @NotNull JComboBoxCellReader cellReader) {
     return execute(() -> {
       checkItemIndexInBounds(comboBox, index);
       return cellReader.valueAt(comboBox, index);
     });
   }
 
-  @NotNull private Description selectedIndexProperty(@NotNull JComboBox<?> comboBox) {
+  @NotNull
+  private Description selectedIndexProperty(@NotNull JComboBox<?> comboBox) {
     return propertyName(comboBox, SELECTED_INDEX_PROPERTY);
   }
 
@@ -380,7 +385,8 @@ public class JComboBoxDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nullable private static Component accessibleEditorOf(final @NotNull JComboBox<?> comboBox) {
+  @Nullable
+  private static Component accessibleEditorOf(final @NotNull JComboBox<?> comboBox) {
     return execute(() -> {
       checkAccessibleEditor(comboBox);
       return editorComponentOf(comboBox);
@@ -453,12 +459,14 @@ public class JComboBoxDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nullable private static Component editorComponentOf(final @NotNull JComboBox<?> comboBox) {
+  @Nullable
+  private static Component editorComponentOf(final @NotNull JComboBox<?> comboBox) {
     return execute(() -> editorComponent(comboBox));
   }
 
   @RunsInCurrentThread
-  @Nullable private static Component editorComponent(@NotNull JComboBox<?> comboBox) {
+  @Nullable
+  private static Component editorComponent(@NotNull JComboBox<?> comboBox) {
     ComboBoxEditor editor = comboBox.getEditor();
     if (editor == null) {
       return null;
@@ -473,7 +481,8 @@ public class JComboBoxDriver extends JComponentDriver {
    * @throws ComponentLookupException if the {@code JList} in the pop-up could not be found.
    */
   @RunsInEDT
-  @NotNull public JList<?> dropDownList() {
+  @NotNull
+  public JList<?> dropDownList() {
     JList<?> list = dropDownListFinder.findDropDownList();
     if (list == null) {
       throw new ComponentLookupException("Unable to find the pop-up list for the JComboBox");
@@ -545,11 +554,13 @@ public class JComboBoxDriver extends JComponentDriver {
    * @return the selected value of the given {code JComboBox} as plain text, or {@code null} if the {code JComboBox}
    *         does not have any selection.
    */
-  @Nullable public String selectedItemOf(@NotNull JComboBox<?> comboBox) {
+  @Nullable
+  public String selectedItemOf(@NotNull JComboBox<?> comboBox) {
     return selection(comboBox, cellReader()).second;
   }
 
-  @NotNull private JComboBoxCellReader cellReader() {
+  @NotNull
+  private JComboBoxCellReader cellReader() {
     return cellReader;
   }
 }

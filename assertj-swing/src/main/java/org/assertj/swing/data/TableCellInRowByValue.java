@@ -61,7 +61,8 @@ public class TableCellInRowByValue implements TableCellFinder {
    * @return the created builder.
    * @throws NullPointerException if the given array of values is {@code null}.
    */
-  @NotNull public static TableCellBuilder rowWithValue(@NotNull String... values) {
+  @NotNull
+  public static TableCellBuilder rowWithValue(@NotNull String... values) {
     return new TableCellBuilder(values);
   }
 
@@ -90,7 +91,8 @@ public class TableCellInRowByValue implements TableCellFinder {
      * @param column the index of the column in the table cell to find.
      * @return the created finder.
      */
-    @NotNull public TableCellInRowByValue column(int column) {
+    @NotNull
+    public TableCellInRowByValue column(int column) {
       return new TableCellInRowByValue(values, column);
     }
   }
@@ -125,7 +127,8 @@ public class TableCellInRowByValue implements TableCellFinder {
    */
   @RunsInEDT
   @Override
-  @NotNull public TableCell findCell(@NotNull JTable table, @NotNull JTableCellReader cellReader) {
+  @NotNull
+  public TableCell findCell(@NotNull JTable table, @NotNull JTableCellReader cellReader) {
     int row = findRowIndex(table, cellReader, values);
     if (row == -1) {
       throw actionFailure(concat("Unable to find a row with values:<", format(values), ">"));

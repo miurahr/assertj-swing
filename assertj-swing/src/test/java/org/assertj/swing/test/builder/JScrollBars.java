@@ -26,8 +26,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JScrollBars {
-  private JScrollBars() {
-  }
+  private JScrollBars() {}
 
   public static JScrollBarFactory scrollBar() {
     return new JScrollBarFactory();

@@ -30,7 +30,8 @@ public class JInternalFrameDriver_requireTitle_Test extends JInternalFrameDriver
   public void should_Fail_If_Frame_Does_Not_Have_Expected_Title() {
     Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireTitle(internalFrame, "incorrect title"));
     String correctTitle = internalFrame.getTitle();
-    assertThat(t.getMessage()).contains("property:'title'").contains("expected:<\"[incorrect title]\"> but was:<\"[" + correctTitle + "]\">");
+    assertThat(t.getMessage()).contains("property:'title'")
+                              .contains("expected:<\"[incorrect title]\"> but was:<\"[" + correctTitle + "]\">");
   }
 
   @Test

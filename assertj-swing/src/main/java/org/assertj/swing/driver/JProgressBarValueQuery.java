@@ -31,6 +31,5 @@ final class JProgressBarValueQuery {
     return checkNotNull(result);
   }
 
-  private JProgressBarValueQuery() {
-  }
+  private JProgressBarValueQuery() {}
 }

@@ -34,6 +34,5 @@ public final class TestAWTEventListeners {
     return mock(AWTEventListener.class);
   }
 
-  private TestAWTEventListeners() {
-  }
+  private TestAWTEventListeners() {}
 }

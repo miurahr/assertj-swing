@@ -105,7 +105,8 @@ public class AppletLauncher {
   }
 
   @RunsInEDT
-  @NotNull private static Class<?> load(@NotNull String typeName) {
+  @NotNull
+  private static Class<?> load(@NotNull String typeName) {
     try {
       return Class.forName(typeName);
     } catch (Exception e) {
@@ -128,11 +129,13 @@ public class AppletLauncher {
    * @throws UnexpectedException if a new instance of the given type cannot be instantiated.
    */
   @RunsInEDT
-  @NotNull public static AppletLauncher applet(@NotNull Class<? extends Applet> appletType) {
+  @NotNull
+  public static AppletLauncher applet(@NotNull Class<? extends Applet> appletType) {
     return instantiate(checkNotNull(appletType));
   }
 
-  @NotNull private static AppletLauncher instantiate(final @NotNull Class<?> appletType) {
+  @NotNull
+  private static AppletLauncher instantiate(final @NotNull Class<?> appletType) {
     try {
       Object applet = execute(() -> appletType.newInstance());
       return launcherFor(checkNotNull((Applet) applet));
@@ -149,7 +152,8 @@ public class AppletLauncher {
    * @return the created {@code AppletLauncher}.
    * @throws NullPointerException if the given {@code Applet} is {@code null}.
    */
-  @NotNull public static AppletLauncher launcherFor(@NotNull Applet applet) {
+  @NotNull
+  public static AppletLauncher launcherFor(@NotNull Applet applet) {
     return new AppletLauncher(applet);
   }
 
@@ -165,7 +169,8 @@ public class AppletLauncher {
    * @return this launcher.
    * @throws NullPointerException if {@code newParameters} is {@code null}.
    */
-  @NotNull public AppletLauncher withParameters(@NotNull Map<String, String> newParameters) {
+  @NotNull
+  public AppletLauncher withParameters(@NotNull Map<String, String> newParameters) {
     parameters.clear();
     parameters.putAll(checkNotNull(newParameters));
     return this;
@@ -179,7 +184,8 @@ public class AppletLauncher {
    * @throws NullPointerException if {@code newParameters} is {@code null}.
    * @throws NullPointerException if any parameter is {@code null}.
    */
-  @NotNull public AppletLauncher withParameters(@NotNull AppletParameter... newParameters) {
+  @NotNull
+  public AppletLauncher withParameters(@NotNull AppletParameter... newParameters) {
     checkNotNull(newParameters);
     parameters.clear();
     for (AppletParameter parameter : newParameters) {
@@ -200,7 +206,8 @@ public class AppletLauncher {
    *
    * @return the created {@code AppletViewer}.
    */
-  @NotNull public AppletViewer start() {
+  @NotNull
+  public AppletViewer start() {
     return showAppletViewerWith(applet, parameters);
   }
 }

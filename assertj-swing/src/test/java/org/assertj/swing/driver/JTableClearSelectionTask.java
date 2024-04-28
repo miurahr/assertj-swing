@@ -29,6 +29,5 @@ final class JTableClearSelectionTask {
     execute(() -> table.clearSelection());
   }
 
-  private JTableClearSelectionTask() {
-  }
+  private JTableClearSelectionTask() {}
 }

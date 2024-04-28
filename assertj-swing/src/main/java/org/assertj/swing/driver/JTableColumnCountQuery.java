@@ -33,6 +33,5 @@ final class JTableColumnCountQuery {
     return checkNotNull(result);
   }
 
-  private JTableColumnCountQuery() {
-  }
+  private JTableColumnCountQuery() {}
 }

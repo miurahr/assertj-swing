@@ -39,13 +39,15 @@ public class WindowDriver_moveTo_Test extends WindowDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Window_Is_Disabled() {
     disableWindow();
-    assertThatIllegalStateExceptionCauseIsDisabledComponent(() ->
-      driver.moveTo(window, new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100)));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.moveTo(window,
+                                                                                new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100)
+                                                                                                                                     .addToY(100)));
   }
 
   @Test
   public void should_Throw_Error_If_Window_Is_Not_Showing_On_The_Screen() {
-    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() ->
-      driver.moveTo(window, new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100)));
+    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.moveTo(window,
+                                                                                  new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100)
+                                                                                                                                       .addToY(100)));
   }
 }

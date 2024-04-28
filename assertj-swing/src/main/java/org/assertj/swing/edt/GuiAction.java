@@ -17,7 +17,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CountDownLatch;
 
-
 /**
  * Action executed in the event dispatch thread (EDT).
  * 

@@ -36,6 +36,5 @@ final class JTreeExpandedPathQuery {
     return Objects.nonNull(result);
   }
 
-  private JTreeExpandedPathQuery() {
-  }
+  private JTreeExpandedPathQuery() {}
 }

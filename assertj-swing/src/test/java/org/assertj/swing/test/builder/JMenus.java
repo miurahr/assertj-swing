@@ -27,8 +27,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JMenus {
-  private JMenus() {
-  }
+  private JMenus() {}
 
   public static JMenuFactory menu() {
     return new JMenuFactory();

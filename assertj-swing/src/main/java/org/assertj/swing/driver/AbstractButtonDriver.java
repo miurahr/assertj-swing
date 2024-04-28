@@ -95,7 +95,8 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
    */
   @RunsInEDT
   @Override
-  @NotNull public String textOf(@NotNull AbstractButton button) {
+  @NotNull
+  public String textOf(@NotNull AbstractButton button) {
     return AbstractButtonTextQuery.textOf(button);
   }
 
@@ -166,7 +167,8 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInEDT
-  @NotNull private static Description selectedProperty(@NotNull AbstractButton button) {
+  @NotNull
+  private static Description selectedProperty(@NotNull AbstractButton button) {
     return propertyName(button, SELECTED_PROPERTY);
   }
 
@@ -198,7 +200,8 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
   }
 
   @RunsInEDT
-  @NotNull private static Description armedProperty(@NotNull AbstractButton button) {
+  @NotNull
+  private static Description armedProperty(@NotNull AbstractButton button) {
     return propertyName(button, ARMED_PROPERTY);
   }
 }

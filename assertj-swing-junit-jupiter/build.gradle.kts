@@ -1,5 +1,7 @@
 plugins {
     id("tokyo.northside.java-conventions")
+    eclipse
+    alias(libs.plugins.spotless)
 }
 
 dependencies {
@@ -15,4 +17,11 @@ description = "AssertJ-Swing - JUnit Jupiter Extension"
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+spotless {
+    java {
+        eclipse().configFile(file("${rootDir}/config/eclipse/assertj-eclipse-formatter.xml"))
+        removeUnusedImports()
+    }
 }

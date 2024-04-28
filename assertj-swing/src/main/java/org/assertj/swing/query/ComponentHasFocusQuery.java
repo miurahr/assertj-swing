@@ -41,6 +41,5 @@ public final class ComponentHasFocusQuery {
     return checkNotNull(result);
   }
 
-  private ComponentHasFocusQuery() {
-  }
+  private ComponentHasFocusQuery() {}
 }

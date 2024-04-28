@@ -70,8 +70,9 @@ public class JSliderDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Integer, GenericRange<Point>> findSlideToMaximumInfo(final @NotNull JSlider slider,
-      final @NotNull JSliderLocation location) {
+  @NotNull
+  private static Pair<Integer, GenericRange<Point>> findSlideToMaximumInfo(final @NotNull JSlider slider,
+                                                                           final @NotNull JSliderLocation location) {
     Pair<Integer, GenericRange<Point>> result = execute(new GuiQuery<Pair<Integer, GenericRange<Point>>>() {
       @Override
       protected Pair<Integer, GenericRange<Point>> executeInEDT() {
@@ -97,8 +98,9 @@ public class JSliderDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Integer, GenericRange<Point>> findSlideToMinimumInfo(final @NotNull JSlider slider,
-      final @NotNull JSliderLocation location) {
+  @NotNull
+  private static Pair<Integer, GenericRange<Point>> findSlideToMinimumInfo(final @NotNull JSlider slider,
+                                                                           final @NotNull JSliderLocation location) {
     Pair<Integer, GenericRange<Point>> result = execute(new GuiQuery<Pair<Integer, GenericRange<Point>>>() {
       @Override
       protected Pair<Integer, GenericRange<Point>> executeInEDT() {
@@ -140,8 +142,9 @@ public class JSliderDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static GenericRange<Point> findSlideInfo(final @NotNull JSlider slider,
-      final @NotNull JSliderLocation location, final int value) {
+  @NotNull
+  private static GenericRange<Point> findSlideInfo(final @NotNull JSlider slider,
+                                                   final @NotNull JSliderLocation location, final int value) {
     GenericRange<Point> result = execute(new GuiQuery<GenericRange<Point>>() {
       @Override
       protected GenericRange<Point> executeInEDT() {
@@ -171,7 +174,8 @@ public class JSliderDriver extends JComponentDriver {
     return new GenericRange<Point>(from, to);
   }
 
-  @NotNull private JSliderLocation location() {
+  @NotNull
+  private JSliderLocation location() {
     return location;
   }
 }

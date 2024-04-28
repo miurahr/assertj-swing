@@ -28,6 +28,5 @@ final class JScrollBarSetValueTask {
     execute(() -> scrollBar.setValue(value));
   }
 
-  private JScrollBarSetValueTask() {
-  }
+  private JScrollBarSetValueTask() {}
 }

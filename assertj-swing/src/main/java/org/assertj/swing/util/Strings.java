@@ -118,6 +118,5 @@ public final class Strings {
     return s == null || s.isEmpty();
   }
 
-  private Strings() {
-  }
+  private Strings() {}
 }

@@ -32,7 +32,8 @@ public class WindowDriver_moveToBack_Test extends WindowDriver_TestCase {
   private final CountDownLatch latch = new CountDownLatch(1);
 
   /** Timeout is important - to fail if the window is never activated! */
-  @Test(timeout = 5000) @Ignore // FIXME
+  @Test(timeout = 5000)
+  @Ignore // FIXME
   public void should_Move_Window_To_Back() throws InterruptedException {
     // TODO(alruiz): Test on Windows
     showWindow();

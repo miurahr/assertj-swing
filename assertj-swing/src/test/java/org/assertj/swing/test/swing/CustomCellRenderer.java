@@ -41,13 +41,13 @@ public class CustomCellRenderer implements ListCellRenderer, TableCellRenderer, 
 
   @Override
   public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus, int row,
-      int column) {
+                                                 int column) {
     return rendererComponent;
   }
 
   @Override
   public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,
-      boolean leaf, int row, boolean focus) {
+                                                boolean leaf, int row, boolean focus) {
     return rendererComponent;
   }
 }

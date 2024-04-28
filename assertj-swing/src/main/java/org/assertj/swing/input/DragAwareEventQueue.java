@@ -47,7 +47,7 @@ class DragAwareEventQueue extends EventQueue {
   }
 
   DragAwareEventQueue(@NotNull Toolkit toolkit, long mask, @NotNull AWTEventListener eventListener,
-      @NotNull NativeDndIdentifier nativeDnd) {
+                      @NotNull NativeDndIdentifier nativeDnd) {
     this.toolkit = toolkit;
     this.mask = mask;
     this.eventListener = eventListener;

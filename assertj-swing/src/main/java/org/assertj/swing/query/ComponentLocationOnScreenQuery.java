@@ -41,11 +41,11 @@ public final class ComponentLocationOnScreenQuery {
    * @see Component#getLocationOnScreen()
    */
   @RunsInEDT
-  @NotNull public static Point locationOnScreen(final @NotNull Component component) {
+  @NotNull
+  public static Point locationOnScreen(final @NotNull Component component) {
     Point result = execute(() -> component.getLocationOnScreen());
     return checkNotNull(result);
   }
 
-  private ComponentLocationOnScreenQuery() {
-  }
+  private ComponentLocationOnScreenQuery() {}
 }

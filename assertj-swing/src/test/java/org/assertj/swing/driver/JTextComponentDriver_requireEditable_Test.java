@@ -33,7 +33,7 @@ public class JTextComponentDriver_requireEditable_Test extends JTextComponentDri
   @Test
   public void should_Fail_If_JTextComponent_Is_Not_Editable() {
     makeTextFieldNotEditable();
-    Throwable t = Assert.assertThrows(AssertionError.class, () ->  driver.requireEditable(textField));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireEditable(textField));
     assertThat(t.getMessage()).contains("property:'editable'").contains("expected:<[tru]e> but was:<[fals]e>");
   }
 }

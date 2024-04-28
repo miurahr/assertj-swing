@@ -42,7 +42,8 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
   public void should_Throw_Error_When_Selecting_Files_And_JFileChooser_Cannot_Handle_Multiple_Selection() {
     disableMultipleSelection();
     showWindow();
-    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> driver.selectFiles(fileChooser, array(new File("Fake1"), new File("Fake2"))));
+    Throwable t = Assert.assertThrows(IllegalStateException.class,
+                                      () -> driver.selectFiles(fileChooser, array(new File("Fake1"), new File("Fake2"))));
     assertThat(t.getMessage()).contains("Expecting file chooser");
   }
 
@@ -59,12 +60,12 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
     makeFileChooserSelectDirectoriesOnly();
     showWindow();
     Throwable t = Assert.assertThrows(IllegalStateException.class, () -> {
-              try {
-                driver.selectFiles(fileChooser, folderAndFile.contents());
-              } finally {
-                folderAndFile.delete();
-              }
-            });
+      try {
+        driver.selectFiles(fileChooser, folderAndFile.contents());
+      } finally {
+        folderAndFile.delete();
+      }
+    });
     assertThat(t.getMessage()).contains("the file chooser can only open directories");
   }
 
@@ -75,12 +76,12 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
     makeFileChooserSelectFilesOnly();
     showWindow();
     Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> {
-        try {
-          driver.selectFiles(fileChooser, folderAndFile.contents());
-        } finally {
-          folderAndFile.delete();
-        }
-      });
+      try {
+        driver.selectFiles(fileChooser, folderAndFile.contents());
+      } finally {
+        folderAndFile.delete();
+      }
+    });
     assertThat(t.getMessage()).contains("the file chooser can only open files");
   }
 

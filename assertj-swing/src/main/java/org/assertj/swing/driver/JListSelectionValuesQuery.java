@@ -48,6 +48,5 @@ final class JListSelectionValuesQuery {
     return checkNotNull(result);
   }
 
-  private JListSelectionValuesQuery() {
-  }
+  private JListSelectionValuesQuery() {}
 }

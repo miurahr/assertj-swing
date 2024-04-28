@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 import static org.assertj.swing.driver.JListSetSelectedIndexTask.setSelectedIndex;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 
 import java.awt.Dimension;
@@ -26,12 +25,10 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.MethodInvocations;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestList;
 import org.assertj.swing.test.swing.TestWindow;
-import org.junit.Rule;
 
 /**
  * Base test case for {@link JListDriver}.
@@ -55,8 +52,7 @@ public abstract class JListDriver_TestCase extends RobotBasedTestCase {
     extraSetUp();
   }
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   static Object[][] indicesOutOfBounds() {
     return new Object[][] { { -1 }, { 100 } };
@@ -161,8 +157,7 @@ public abstract class JListDriver_TestCase extends RobotBasedTestCase {
   static class JListCellReaderStub extends BasicJListCellReader {
     private final MethodInvocations methodInvocations = new MethodInvocations();
 
-    JListCellReaderStub() {
-    }
+    JListCellReaderStub() {}
 
     @Override
     public String valueAt(@NotNull JList list, int index) {

@@ -32,6 +32,5 @@ final class JTextComponentTextQuery {
     return execute(() -> textComponent.getText());
   }
 
-  private JTextComponentTextQuery() {
-  }
+  private JTextComponentTextQuery() {}
 }

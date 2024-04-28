@@ -53,14 +53,16 @@ public abstract class FocusOwnerFinderStrategy_focusOwner_TestCase extends Seque
     window.destroy();
   }
 
-  @Test @Ignore // FIXME
+  @Test
+  @Ignore // FIXME
   public final void should_Find_Focus_Owner() {
     giveFocusAndWaitTillIsFocused(textField);
     Component focusOwner = execute(() -> finder.focusOwner());
     assertThat(focusOwner).isSameAs(textField);
   }
 
-  @Test @Ignore // FIXME
+  @Test
+  @Ignore // FIXME
   public final void should_Find_Focus_In_Owned_Window() {
     MyDialog dialog = MyDialog.createAndShow(window);
     giveFocusAndWaitTillIsFocused(dialog.button);

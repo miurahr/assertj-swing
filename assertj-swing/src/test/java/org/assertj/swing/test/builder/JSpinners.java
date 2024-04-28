@@ -27,8 +27,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JSpinners {
-  private JSpinners() {
-  }
+  private JSpinners() {}
 
   public static JSpinnerFactory spinner() {
     return new JSpinnerFactory();

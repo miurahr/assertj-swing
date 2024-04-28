@@ -50,8 +50,7 @@ public final class Arrays {
     }
     if (one.length != two.length) {
       return false;
-    }
-    ;
+    } ;
     if (one.length == 0) {
       return true;
     }
@@ -144,7 +143,8 @@ public final class Arrays {
    * @return the created copy.
    * @throws NullPointerException if the array to copy is {@code null}.
    */
-  @NotNull public static int[] copyOf(@NotNull int[] array) {
+  @NotNull
+  public static int[] copyOf(@NotNull int[] array) {
     checkNotNull(array);
     int arraySize = array.length;
     int[] copy = new int[arraySize];
@@ -173,6 +173,5 @@ public final class Arrays {
     return copy;
   }
 
-  private Arrays() {
-  }
+  private Arrays() {}
 }

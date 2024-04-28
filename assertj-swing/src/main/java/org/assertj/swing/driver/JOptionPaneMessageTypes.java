@@ -48,6 +48,5 @@ final class JOptionPaneMessageTypes {
     throw actionFailure(concat("The message type <", messageType, "> is not valid"));
   }
 
-  private JOptionPaneMessageTypes() {
-  }
+  private JOptionPaneMessageTypes() {}
 }

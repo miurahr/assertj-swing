@@ -17,7 +17,6 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 /**
  * Tests for {@link JSpinnerDriver#requireValue(javax.swing.JSpinner, Object)}.
  * 

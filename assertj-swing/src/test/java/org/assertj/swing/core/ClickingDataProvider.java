@@ -24,11 +24,11 @@ import org.jetbrains.annotations.NotNull;
  * @author Alex Ruiz
  */
 public final class ClickingDataProvider {
-  @NotNull public static Object[][] clickingData() {
+  @NotNull
+  public static Object[][] clickingData() {
     return new Object[][] { { LEFT_BUTTON, 1 }, { LEFT_BUTTON, 2 }, { MIDDLE_BUTTON, 1 }, { MIDDLE_BUTTON, 2 },
         { RIGHT_BUTTON, 1 }, { RIGHT_BUTTON, 2 }, };
   }
 
-  private ClickingDataProvider() {
-  }
+  private ClickingDataProvider() {}
 }

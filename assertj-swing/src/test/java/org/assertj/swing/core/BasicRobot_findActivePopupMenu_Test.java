@@ -204,7 +204,7 @@ public class BasicRobot_findActivePopupMenu_Test extends BasicRobot_TestCase {
 
   /** Perform the single cascade test for the popup in the N position. */
   private void should_Return_Outer_PopupMenu_When_Having_A_CascadingPopup_Select_N(int selectMenu)
-      throws InterruptedException {
+                                                                                                   throws InterruptedException {
     int selectMenuIdx = selectMenu - 1;
 
     // build the popup to be tested against
@@ -231,7 +231,7 @@ public class BasicRobot_findActivePopupMenu_Test extends BasicRobot_TestCase {
 
   /** Perform the cascade cascade test for the popup in the N position. */
   private void should_Return_Outer_PopupMenu_When_Having_A_CascadingCascadePopup_Select_N(int selectMenu)
-      throws InterruptedException {
+                                                                                                          throws InterruptedException {
     int selectMenuIdx = selectMenu - 1;
 
     // build the popup to be tested against

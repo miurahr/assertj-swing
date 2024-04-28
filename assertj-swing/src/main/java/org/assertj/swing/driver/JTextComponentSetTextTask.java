@@ -30,6 +30,5 @@ final class JTextComponentSetTextTask {
     execute(() -> textBox.setText(text));
   }
 
-  private JTextComponentSetTextTask() {
-  }
+  private JTextComponentSetTextTask() {}
 }

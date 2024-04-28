@@ -40,7 +40,8 @@ public class UnexpectedException extends RuntimeException {
    *
    * @param cause the unexpected exception.
    */
-  @NotNull public UnexpectedException(@NotNull Throwable cause) {
+  @NotNull
+  public UnexpectedException(@NotNull Throwable cause) {
     super(cause);
   }
 

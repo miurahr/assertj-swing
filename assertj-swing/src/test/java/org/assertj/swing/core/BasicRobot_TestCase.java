@@ -53,8 +53,7 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
     assertThat(locationOnScreen(window)).isEqualTo(RobotFactory.DEFAULT_WINDOW_LOCATION);
   }
 
-  void beforeShowingWindow() {
-  }
+  void beforeShowingWindow() {}
 
   @After
   public final void tearDown() {
@@ -85,13 +84,13 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
     }
 
     private MyWindow(@NotNull Class<?> testClass) {
-        super(testClass);
-        // Workaround: explicit size of textfield.
-        textField = new JTextField(10);
-        textField.setPreferredSize(new Dimension(100, 20));
-        textField.setMinimumSize(new Dimension(100, 16));
-        addComponents(textField);
-        setMinimumSize(new Dimension(100, 50));
+      super(testClass);
+      // Workaround: explicit size of textfield.
+      textField = new JTextField(10);
+      textField.setPreferredSize(new Dimension(100, 20));
+      textField.setMinimumSize(new Dimension(100, 16));
+      addComponents(textField);
+      setMinimumSize(new Dimension(100, 50));
     }
 
     @NotNull

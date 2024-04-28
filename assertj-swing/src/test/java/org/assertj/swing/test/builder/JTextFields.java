@@ -25,8 +25,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JTextFields {
-  private JTextFields() {
-  }
+  private JTextFields() {}
 
   public static JTextFieldFactory textField() {
     return new JTextFieldFactory();

@@ -44,6 +44,5 @@ final class JListCellCenterQuery {
     return centerOf(intersection);
   }
 
-  private JListCellCenterQuery() {
-  }
+  private JListCellCenterQuery() {}
 }

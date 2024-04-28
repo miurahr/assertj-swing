@@ -44,6 +44,5 @@ final class JTableCellEditorQuery {
     return cellEditor.getTableCellEditorComponent(table, table.getValueAt(row, column), false, row, column);
   }
 
-  private JTableCellEditorQuery() {
-  }
+  private JTableCellEditorQuery() {}
 }

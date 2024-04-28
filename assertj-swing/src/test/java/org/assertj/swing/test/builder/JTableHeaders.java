@@ -24,8 +24,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  * @author Alex Ruiz
  */
 public final class JTableHeaders {
-  private JTableHeaders() {
-  }
+  private JTableHeaders() {}
 
   public static JTableHeaderFactory tableHeader() {
     return new JTableHeaderFactory();

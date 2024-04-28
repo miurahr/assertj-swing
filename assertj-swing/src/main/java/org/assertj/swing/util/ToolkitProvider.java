@@ -27,11 +27,13 @@ public class ToolkitProvider {
   /**
    * @return the singleton instance of this class.
    */
-  @NotNull public static ToolkitProvider instance() {
+  @NotNull
+  public static ToolkitProvider instance() {
     return SingletonHolder.instance;
   }
 
-  @NotNull public Toolkit defaultToolkit() {
+  @NotNull
+  public Toolkit defaultToolkit() {
     return checkNotNull(Toolkit.getDefaultToolkit());
   }
 

@@ -17,7 +17,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.regex.Pattern;
 
-
 /**
  * Supports functional testing of {@code JComponent}s.
  * 

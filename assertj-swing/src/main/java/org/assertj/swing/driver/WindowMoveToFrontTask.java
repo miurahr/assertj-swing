@@ -33,6 +33,5 @@ final class WindowMoveToFrontTask {
     execute(() -> w.toFront());
   }
 
-  private WindowMoveToFrontTask() {
-  }
+  private WindowMoveToFrontTask() {}
 }

@@ -110,8 +110,9 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Point, Integer> findScrollUnitInfo(final @NotNull JScrollBar scrollBar,
-      final @NotNull JScrollBarLocation location, final int times) {
+  @NotNull
+  private static Pair<Point, Integer> findScrollUnitInfo(final @NotNull JScrollBar scrollBar,
+                                                         final @NotNull JScrollBarLocation location, final int times) {
     Pair<Point, Integer> result = execute(new GuiQuery<Pair<Point, Integer>>() {
       @Override
       protected Pair<Point, Integer> executeInEDT() {
@@ -123,8 +124,9 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @NotNull private static Pair<Point, Integer> scrollUnitInfo(@NotNull JScrollBar scrollBar,
-      @NotNull JScrollBarLocation location, int times) {
+  @NotNull
+  private static Pair<Point, Integer> scrollUnitInfo(@NotNull JScrollBar scrollBar,
+                                                     @NotNull JScrollBarLocation location, int times) {
     Point where = blockLocation(scrollBar, location, times);
     int count = times * scrollBar.getUnitIncrement();
     return Pair.of(where, scrollBar.getValue() + count);
@@ -191,8 +193,10 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Point, Integer> validateAndFindScrollBlockInfo(final @NotNull JScrollBar scrollBar,
-      final @NotNull JScrollBarLocation location, final int times) {
+  @NotNull
+  private static Pair<Point, Integer> validateAndFindScrollBlockInfo(final @NotNull JScrollBar scrollBar,
+                                                                     final @NotNull JScrollBarLocation location,
+                                                                     final int times) {
     Pair<Point, Integer> result = execute(new GuiQuery<Pair<Point, Integer>>() {
       @Override
       protected Pair<Point, Integer> executeInEDT() {
@@ -205,15 +209,16 @@ public class JScrollBarDriver extends JComponentDriver {
 
   @RunsInCurrentThread
   private static Pair<Point, Integer> scrollBlockInfo(@NotNull JScrollBar scrollBar,
-      @NotNull JScrollBarLocation location, int times) {
+                                                      @NotNull JScrollBarLocation location, int times) {
     Point where = blockLocation(scrollBar, location, times);
     int count = times * scrollBar.getBlockIncrement();
     return Pair.of(where, scrollBar.getValue() + count);
   }
 
   @RunsInCurrentThread
-  @NotNull private static Point blockLocation(@NotNull JScrollBar scrollBar, @NotNull JScrollBarLocation location,
-      int times) {
+  @NotNull
+  private static Point blockLocation(@NotNull JScrollBar scrollBar, @NotNull JScrollBarLocation location,
+                                     int times) {
     return times > 0 ? location.blockLocationToScrollDown(scrollBar) : location.blockLocationToScrollUp(scrollBar);
   }
 
@@ -238,8 +243,10 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Integer, GenericRange<Point>> findScrollToMaximumInfo(
-      final @NotNull JScrollBar scrollBar, final @NotNull JScrollBarLocation location) {
+  @NotNull
+  private static Pair<Integer, GenericRange<Point>> findScrollToMaximumInfo(
+                                                                            final @NotNull JScrollBar scrollBar,
+                                                                            final @NotNull JScrollBarLocation location) {
     Pair<Integer, GenericRange<Point>> result = execute(new GuiQuery<Pair<Integer, GenericRange<Point>>>() {
       @Override
       protected Pair<Integer, GenericRange<Point>> executeInEDT() {
@@ -266,8 +273,10 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Integer, GenericRange<Point>> findScrollToMinimumInfo(
-      final @NotNull JScrollBar scrollBar, final JScrollBarLocation location) {
+  @NotNull
+  private static Pair<Integer, GenericRange<Point>> findScrollToMinimumInfo(
+                                                                            final @NotNull JScrollBar scrollBar,
+                                                                            final JScrollBarLocation location) {
     Pair<Integer, GenericRange<Point>> result = execute(new GuiQuery<Pair<Integer, GenericRange<Point>>>() {
       @Override
       protected Pair<Integer, GenericRange<Point>> executeInEDT() {
@@ -296,8 +305,9 @@ public class JScrollBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static GenericRange<Point> validateAndFindScrollInfo(final @NotNull JScrollBar scrollBar,
-      final @NotNull JScrollBarLocation location, final int position) {
+  @NotNull
+  private static GenericRange<Point> validateAndFindScrollInfo(final @NotNull JScrollBar scrollBar,
+                                                               final @NotNull JScrollBarLocation location, final int position) {
     GenericRange<Point> result = execute(new GuiQuery<GenericRange<Point>>() {
       @Override
       protected GenericRange<Point> executeInEDT() {
@@ -317,12 +327,13 @@ public class JScrollBarDriver extends JComponentDriver {
       return;
     }
     throw new IllegalArgumentException(concat("Position <", position, "> is not within the JScrollBar bounds of <",
-        min, "> and <", max, ">"));
+                                              min, "> and <", max, ">"));
   }
 
   @RunsInCurrentThread
-  @NotNull private static GenericRange<Point> scrollInfo(@NotNull JScrollBar scrollBar,
-      @NotNull JScrollBarLocation location, int position) {
+  @NotNull
+  private static GenericRange<Point> scrollInfo(@NotNull JScrollBar scrollBar,
+                                                @NotNull JScrollBarLocation location, int position) {
     Point from = location.thumbLocation(scrollBar, scrollBar.getValue());
     Point to = location.thumbLocation(scrollBar, position);
     return new GenericRange<Point>(from, to);
@@ -357,7 +368,8 @@ public class JScrollBarDriver extends JComponentDriver {
     assertThat(valueOf(scrollBar)).as(propertyName(scrollBar, VALUE_PROPERTY)).isEqualTo(value);
   }
 
-  @NotNull private JScrollBarLocation location() {
+  @NotNull
+  private JScrollBarLocation location() {
     return location;
   }
 }

@@ -42,8 +42,7 @@ public abstract class TableCellFinder_TestCase extends RobotBasedTestCase {
     extraSetUp();
   }
 
-  void extraSetUp() {
-  }
+  void extraSetUp() {}
 
   static class MyWindow extends TestWindow {
     private static final Dimension TABLE_SIZE = new Dimension(400, 100);

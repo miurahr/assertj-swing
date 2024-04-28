@@ -32,6 +32,5 @@ final class JTreeChildOfPathCountQuery {
     return checkNotNull(execute(() -> tree.getModel().getChildCount(path.getLastPathComponent())));
   }
 
-  private JTreeChildOfPathCountQuery() {
-  }
+  private JTreeChildOfPathCountQuery() {}
 }

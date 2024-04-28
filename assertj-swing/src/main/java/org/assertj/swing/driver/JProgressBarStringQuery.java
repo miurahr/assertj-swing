@@ -31,6 +31,5 @@ final class JProgressBarStringQuery {
     return execute(() -> progressBar.getString());
   }
 
-  private JProgressBarStringQuery() {
-  }
+  private JProgressBarStringQuery() {}
 }

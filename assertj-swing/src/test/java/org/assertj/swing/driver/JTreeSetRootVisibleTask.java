@@ -30,6 +30,5 @@ final class JTreeSetRootVisibleTask {
     execute(() -> tree.setRootVisible(visible));
   }
 
-  private JTreeSetRootVisibleTask() {
-  }
+  private JTreeSetRootVisibleTask() {}
 }

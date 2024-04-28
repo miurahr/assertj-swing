@@ -106,6 +106,5 @@ final class JListMatchingItemQuery {
     return checkNotNull(result);
   }
 
-  private JListMatchingItemQuery() {
-  }
+  private JListMatchingItemQuery() {}
 }

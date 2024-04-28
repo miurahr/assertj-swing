@@ -43,6 +43,5 @@ public final class Toolkits {
     return ToolkitStub.createNew(eventQueue);
   }
 
-  private Toolkits() {
-  }
+  private Toolkits() {}
 }

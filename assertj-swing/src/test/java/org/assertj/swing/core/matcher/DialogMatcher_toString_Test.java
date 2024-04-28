@@ -27,6 +27,6 @@ public class DialogMatcher_toString_Test {
   public void should_Implement_ToString() {
     DialogMatcher matcher = DialogMatcher.withName("dialog").andTitle("Hello").andShowing();
     assertThat(matcher.toString()).isEqualTo(
-        "org.assertj.swing.core.matcher.DialogMatcher[name='dialog', title='Hello', requireShowing=true]");
+                                             "org.assertj.swing.core.matcher.DialogMatcher[name='dialog', title='Hello', requireShowing=true]");
   }
 }

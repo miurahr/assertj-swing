@@ -28,8 +28,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JSplitPanes {
-  private JSplitPanes() {
-  }
+  private JSplitPanes() {}
 
   public static JSplitPaneFactory splitPane() {
     return new JSplitPaneFactory();

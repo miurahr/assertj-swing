@@ -68,7 +68,8 @@ class EventQueueMapping {
     return eventQueues;
   }
 
-  @Nullable private EventQueue queueFrom(@Nullable WeakReference<EventQueue> reference) {
+  @Nullable
+  private EventQueue queueFrom(@Nullable WeakReference<EventQueue> reference) {
     if (reference == null) {
       return null;
     }

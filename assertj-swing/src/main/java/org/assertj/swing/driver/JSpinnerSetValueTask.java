@@ -36,6 +36,5 @@ final class JSpinnerSetValueTask {
     });
   }
 
-  private JSpinnerSetValueTask() {
-  }
+  private JSpinnerSetValueTask() {}
 }

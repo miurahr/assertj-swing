@@ -26,6 +26,6 @@ public class JLabelMatcher_toString_Test {
   public void should_Implement_ToString() {
     JLabelMatcher matcher = JLabelMatcher.withName("label").andText("Hello").andShowing();
     assertThat(matcher.toString()).isEqualTo(
-        "org.assertj.swing.core.matcher.JLabelMatcher[name='label', text='Hello', requireShowing=true]");
+                                             "org.assertj.swing.core.matcher.JLabelMatcher[name='label', text='Hello', requireShowing=true]");
   }
 }

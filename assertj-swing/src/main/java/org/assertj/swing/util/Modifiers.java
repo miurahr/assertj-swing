@@ -130,6 +130,5 @@ public final class Modifiers {
     return updatedModifierMask;
   }
 
-  private Modifiers() {
-  }
+  private Modifiers() {}
 }

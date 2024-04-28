@@ -33,6 +33,5 @@ final class JInternalFrameTitleQuery {
     return execute(() -> f.getTitle());
   }
 
-  private JInternalFrameTitleQuery() {
-  }
+  private JInternalFrameTitleQuery() {}
 }

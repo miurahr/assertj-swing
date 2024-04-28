@@ -107,8 +107,9 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Point, Pair<Window, Point>> floatInfo(final @NotNull JToolBar toolBar,
-                                                                     final @NotNull JToolBarLocation location) {
+  @NotNull
+  private static Pair<Point, Pair<Window, Point>> floatInfo(final @NotNull JToolBar toolBar,
+                                                            final @NotNull JToolBarLocation location) {
     Pair<Point, Pair<Window, Point>> result = execute(new GuiQuery<Pair<Point, Pair<Window, Point>>>() {
       @Override
       protected Pair<Point, Pair<Window, Point>> executeInEDT() {
@@ -130,7 +131,8 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @NotNull private static Pair<Window, Point> ancestorAndLocation(final @NotNull JToolBar toolBar) {
+  @NotNull
+  private static Pair<Window, Point> ancestorAndLocation(final @NotNull JToolBar toolBar) {
     Window window = getWindowAncestor(toolBar);
     return Pair.of(window, window.getLocation());
   }
@@ -175,9 +177,10 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<GenericRange<Point>, Container> unfloatInfo(final @NotNull JToolBar toolBar,
-                                                                           final @NotNull String constraint,
-                                                                           final @NotNull JToolBarLocation location) {
+  @NotNull
+  private static Pair<GenericRange<Point>, Container> unfloatInfo(final @NotNull JToolBar toolBar,
+                                                                  final @NotNull String constraint,
+                                                                  final @NotNull JToolBarLocation location) {
     Pair<GenericRange<Point>, Container> result = execute(new GuiQuery<Pair<GenericRange<Point>, Container>>() {
       @Override
       protected Pair<GenericRange<Point>, Container> executeInEDT() {
@@ -202,7 +205,8 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  @NotNull private static Container dockFor(final @NotNull JToolBar toolBar) {
+  @NotNull
+  private static Container dockFor(final @NotNull JToolBar toolBar) {
     try {
       return checkNotNull(field("dockingSource").ofType(Container.class).in(toolBar.getUI()).get());
     } catch (RuntimeException e) {
@@ -226,14 +230,16 @@ public class JToolBarDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @Nullable private static Window windowAncestorOf(final @NotNull JToolBar toolBar) {
+  @Nullable
+  private static Window windowAncestorOf(final @NotNull JToolBar toolBar) {
     return execute(() -> {
       checkEnabledAndShowing(toolBar);
       return getWindowAncestor(toolBar);
     });
   }
 
-  @NotNull private JToolBarLocation location() {
+  @NotNull
+  private JToolBarLocation location() {
     return location;
   }
 }

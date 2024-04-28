@@ -33,6 +33,5 @@ final class JProgressBarIndeterminateQuery {
     return checkNotNull(result);
   }
 
-  private JProgressBarIndeterminateQuery() {
-  }
+  private JProgressBarIndeterminateQuery() {}
 }

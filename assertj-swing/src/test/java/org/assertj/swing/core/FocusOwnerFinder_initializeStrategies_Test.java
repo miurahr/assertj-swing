@@ -27,7 +27,7 @@ public class FocusOwnerFinder_initializeStrategies_Test {
   @Test
   public void should_Initialize_Correct_Strategies() {
     assertThatFocusOwnerFinderHasStrategiesOfType(ReflectionBasedFocusOwnerFinder.class,
-        HierarchyBasedFocusOwnerFinder.class);
+                                                  HierarchyBasedFocusOwnerFinder.class);
   }
 
   private static void assertThatFocusOwnerFinderHasStrategiesOfType(Class<?>... types) {

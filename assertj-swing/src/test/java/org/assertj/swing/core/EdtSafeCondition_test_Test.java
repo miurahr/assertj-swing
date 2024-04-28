@@ -38,7 +38,8 @@ public class EdtSafeCondition_test_Test {
   private final boolean conditionSatisfied;
 
   @Parameters
-  @NotNull public static Collection<Object[]> booleans() {
+  @NotNull
+  public static Collection<Object[]> booleans() {
     return newArrayList(BooleanProvider.booleans());
   }
 

@@ -62,8 +62,7 @@ public class ComponentFoundCondition_TestAndFound_Test extends RobotBasedTestCas
   private static class TypeMatcher implements ComponentMatcher {
     private Class<? extends Component> type;
 
-    TypeMatcher() {
-    }
+    TypeMatcher() {}
 
     void typeToMatch(@NotNull Class<? extends Component> newType) {
       this.type = newType;

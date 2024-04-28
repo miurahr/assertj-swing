@@ -76,7 +76,8 @@ public class ApplicationLauncher {
    * @param applicationType the class containing the "main" method.
    * @return the created {@code ApplicationStarter}.
    */
-  @NotNull public static ApplicationLauncher application(@NotNull Class<?> applicationType) {
+  @NotNull
+  public static ApplicationLauncher application(@NotNull Class<?> applicationType) {
     return new ApplicationLauncher(applicationType);
   }
 
@@ -95,7 +96,8 @@ public class ApplicationLauncher {
    * @return this {@code ApplicationStarter}.
    * @throws NullPointerException if {@code newArgs} is {@code null}.
    */
-  @NotNull public ApplicationLauncher withArgs(@NotNull String... newArgs) {
+  @NotNull
+  public ApplicationLauncher withArgs(@NotNull String... newArgs) {
     args = copyOf(checkNotNull(newArgs));
     return this;
   }

@@ -66,7 +66,6 @@ public abstract class TestXmlNodeWriter_TestCase {
     }
 
     @Override
-    public void run(TestResult result) {
-    }
+    public void run(TestResult result) {}
   }
 }

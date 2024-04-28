@@ -55,7 +55,8 @@ final class Actions {
     throw actionFailure(message);
   }
 
-  @NotNull private static List<String> formatAllActionKeys(@NotNull Object[] keys) {
+  @NotNull
+  private static List<String> formatAllActionKeys(@NotNull Object[] keys) {
     List<String> formattedKeys = newArrayList();
     for (Object key : keys) {
       String keyAsString = keyAsString(key);
@@ -78,6 +79,5 @@ final class Actions {
     return String.format("%s(%s)", key.toString(), key.getClass().getName());
   }
 
-  private Actions() {
-  }
+  private Actions() {}
 }

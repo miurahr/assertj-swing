@@ -34,6 +34,5 @@ final class JTableHeaderQuery {
     return execute(() -> table.getTableHeader());
   }
 
-  private JTableHeaderQuery() {
-  }
+  private JTableHeaderQuery() {}
 }

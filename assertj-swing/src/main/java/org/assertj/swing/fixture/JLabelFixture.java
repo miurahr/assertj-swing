@@ -54,7 +54,8 @@ public class JLabelFixture extends AbstractJPopupMenuInvokerFixture<JLabelFixtur
   }
 
   @Override
-  @NotNull protected JLabelDriver createDriver(@NotNull Robot robot) {
+  @NotNull
+  protected JLabelDriver createDriver(@NotNull Robot robot) {
     return new JLabelDriver(robot);
   }
 
@@ -62,7 +63,8 @@ public class JLabelFixture extends AbstractJPopupMenuInvokerFixture<JLabelFixtur
    * @return the text of this fixture's {@code JLabel}.
    */
   @Override
-  @Nullable public String text() {
+  @Nullable
+  public String text() {
     return driver().textOf(target());
   }
 
@@ -74,7 +76,8 @@ public class JLabelFixture extends AbstractJPopupMenuInvokerFixture<JLabelFixtur
    * @throws AssertionError if the text of this fixture's {@code JLabel} is not equal to the given one.
    */
   @Override
-  @NotNull public JLabelFixture requireText(@Nullable String expected) {
+  @NotNull
+  public JLabelFixture requireText(@Nullable String expected) {
     driver().requireText(target(), expected);
     return this;
   }
@@ -89,7 +92,8 @@ public class JLabelFixture extends AbstractJPopupMenuInvokerFixture<JLabelFixtur
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
   @Override
-  @NotNull public JLabelFixture requireText(@NotNull Pattern pattern) {
+  @NotNull
+  public JLabelFixture requireText(@NotNull Pattern pattern) {
     driver().requireText(target(), pattern);
     return this;
   }

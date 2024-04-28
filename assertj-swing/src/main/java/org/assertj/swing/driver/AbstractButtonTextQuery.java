@@ -32,6 +32,5 @@ final class AbstractButtonTextQuery {
     return result == null ? "" : result;
   }
 
-  private AbstractButtonTextQuery() {
-  }
+  private AbstractButtonTextQuery() {}
 }

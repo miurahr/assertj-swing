@@ -28,6 +28,5 @@ final class JFileChooserCancelButtonTextQuery {
     return UIManager.getString(CANCEL_BUTTON_TEXT_KEY);
   }
 
-  private JFileChooserCancelButtonTextQuery() {
-  }
+  private JFileChooserCancelButtonTextQuery() {}
 }

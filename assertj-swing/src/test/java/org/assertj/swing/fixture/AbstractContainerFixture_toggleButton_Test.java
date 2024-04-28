@@ -58,7 +58,7 @@ public class AbstractContainerFixture_toggleButton_Test extends RobotBasedTestCa
   public void should_Fail_If_Visible_JToggleButton_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='myButton', type=javax.swing.JToggleButton, requireShowing=true");
+                                  "name='myButton', type=javax.swing.JToggleButton, requireShowing=true");
     fixture.toggleButton("myButton");
   }
 
@@ -73,7 +73,7 @@ public class AbstractContainerFixture_toggleButton_Test extends RobotBasedTestCa
   public void should_Fail_If_Visible_JToggleButton_Not_Found_By_Type() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.JToggleButton, requireShowing=true");
+                                  "type=javax.swing.JToggleButton, requireShowing=true");
     fixture.toggleButton();
   }
 

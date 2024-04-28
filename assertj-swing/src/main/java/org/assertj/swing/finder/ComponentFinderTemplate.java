@@ -101,7 +101,8 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @return this finder.
    * @throws IllegalArgumentException if the timeout is a negative number.
    */
-  @NotNull protected ComponentFinderTemplate<T> withTimeout(@NonNegative long newTimeout) {
+  @NotNull
+  protected ComponentFinderTemplate<T> withTimeout(@NonNegative long newTimeout) {
     if (newTimeout < 0) {
       throw new IllegalArgumentException("Timeout cannot be a negative number");
     }

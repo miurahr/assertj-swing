@@ -30,6 +30,5 @@ final class JSliderSetValueTask {
     execute(() -> slider.setValue(newValue));
   }
 
-  private JSliderSetValueTask() {
-  }
+  private JSliderSetValueTask() {}
 }

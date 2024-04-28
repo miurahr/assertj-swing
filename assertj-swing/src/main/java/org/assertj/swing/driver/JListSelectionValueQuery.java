@@ -38,6 +38,5 @@ final class JListSelectionValueQuery {
     });
   }
 
-  private JListSelectionValueQuery() {
-  }
+  private JListSelectionValueQuery() {}
 }

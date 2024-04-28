@@ -32,6 +32,5 @@ final class JListItemCountQuery {
     return checkNotNull(result);
   }
 
-  private JListItemCountQuery() {
-  }
+  private JListItemCountQuery() {}
 }

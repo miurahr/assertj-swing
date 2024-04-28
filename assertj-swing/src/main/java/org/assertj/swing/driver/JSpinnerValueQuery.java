@@ -32,6 +32,5 @@ final class JSpinnerValueQuery {
     return execute(() -> spinner.getValue());
   }
 
-  private JSpinnerValueQuery() {
-  }
+  private JSpinnerValueQuery() {}
 }

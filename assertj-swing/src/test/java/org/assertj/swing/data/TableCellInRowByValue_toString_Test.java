@@ -33,6 +33,6 @@ public class TableCellInRowByValue_toString_Test {
   @Test
   public void should_Implement_ToString() {
     assertThat(finder.toString()).isEqualTo(
-        "org.assertj.swing.data.TableCellInRowByValue[values=[\"one\", \"two\"], column=1]");
+                                            "org.assertj.swing.data.TableCellInRowByValue[values=[\"one\", \"two\"], column=1]");
   }
 }

@@ -39,7 +39,8 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 final class JMenuChildrenFinder implements ChildrenFinderStrategy {
   @RunsInCurrentThread
   @Override
-  @NotNull public Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
+  @NotNull
+  public Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
     if (!(c instanceof JMenu)) {
       return emptyList();
     }

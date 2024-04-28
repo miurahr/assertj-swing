@@ -69,8 +69,7 @@ public class JAppletDriver_TestCase extends EDTSafeTestCase {
     }
 
     @RunsInCurrentThread
-    private JAppletStub() {
-    }
+    private JAppletStub() {}
 
     void updateAppletContext(AppletContext newContext) {
       context = newContext;

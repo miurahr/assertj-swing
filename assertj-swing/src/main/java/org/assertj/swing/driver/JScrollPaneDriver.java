@@ -53,12 +53,14 @@ public class JScrollPaneDriver extends JComponentDriver {
    * @return the horizontal scroll bar in the given {@code JScrollBar}.
    */
   @RunsInEDT
-  @NotNull public JScrollBar horizontalScrollBarIn(@NotNull JScrollPane scrollPane) {
+  @NotNull
+  public JScrollBar horizontalScrollBarIn(@NotNull JScrollPane scrollPane) {
     return horizontalScrollBar(scrollPane);
   }
 
   @RunsInEDT
-  @NotNull private static JScrollBar horizontalScrollBar(final @NotNull JScrollPane scrollPane) {
+  @NotNull
+  private static JScrollBar horizontalScrollBar(final @NotNull JScrollPane scrollPane) {
     JScrollBar result = execute(() -> scrollPane.getHorizontalScrollBar());
     return checkNotNull(result);
   }
@@ -70,12 +72,14 @@ public class JScrollPaneDriver extends JComponentDriver {
    * @return the vertical scroll bar in the given {@code JScrollBar}.
    */
   @RunsInEDT
-  @NotNull public JScrollBar verticalScrollBarIn(@NotNull JScrollPane scrollPane) {
+  @NotNull
+  public JScrollBar verticalScrollBarIn(@NotNull JScrollPane scrollPane) {
     return verticalScrollBar(scrollPane);
   }
 
   @RunsInEDT
-  @NotNull private static JScrollBar verticalScrollBar(final @NotNull JScrollPane scrollPane) {
+  @NotNull
+  private static JScrollBar verticalScrollBar(final @NotNull JScrollPane scrollPane) {
     JScrollBar result = execute(() -> scrollPane.getVerticalScrollBar());
     return checkNotNull(result);
   }

@@ -41,6 +41,5 @@ public abstract class EnvironmentXmlNodeWriter_TestCase {
     onSetUp();
   }
 
-  void onSetUp() {
-  }
+  void onSetUp() {}
 }

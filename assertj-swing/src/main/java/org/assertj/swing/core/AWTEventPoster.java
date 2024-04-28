@@ -37,7 +37,7 @@ class AWTEventPoster {
   private final Settings settings;
 
   AWTEventPoster(@NotNull Toolkit toolkit, @NotNull InputState inputState, @NotNull WindowMonitor windowMonitor,
-      @NotNull Settings settings) {
+                 @NotNull Settings settings) {
     this.toolkit = toolkit;
     this.inputState = inputState;
     this.windowMonitor = windowMonitor;
@@ -57,7 +57,8 @@ class AWTEventPoster {
   }
 
   /* Usually only needed when dealing with Applets. */
-  @Nullable private EventQueue eventQueueFor(@Nullable Component c) {
+  @Nullable
+  private EventQueue eventQueueFor(@Nullable Component c) {
     return c != null ? windowMonitor.eventQueueFor(c) : toolkit.getSystemEventQueue();
   }
 }

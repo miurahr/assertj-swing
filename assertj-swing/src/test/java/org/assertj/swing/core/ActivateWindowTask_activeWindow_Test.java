@@ -58,7 +58,8 @@ public class ActivateWindowTask_activeWindow_Test extends SequentialEDTSafeTestC
     hideAndDispose(frameTwo);
   }
 
-  @Test @Ignore // FIXME: order of window is wrong on Linux
+  @Test
+  @Ignore // FIXME: order of window is wrong on Linux
   public void should_Activate_Window() {
     pause(new HasFocusCondition(frameTwo));
     ActivateWindowTask.activateWindow(frameOne);

@@ -25,8 +25,7 @@ import org.assertj.swing.edt.GuiQuery;
  * @author Alex Ruiz
  */
 public final class JCheckBoxes {
-  private JCheckBoxes() {
-  }
+  private JCheckBoxes() {}
 
   public static JCheckBoxFactory checkBox() {
     return new JCheckBoxFactory();

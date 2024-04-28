@@ -51,8 +51,8 @@ public class KeyStrokeMappingProviderNames_iterator_Test {
   @Test
   public void should_Return_Iterate_Through_All_Names() {
     assertThat(iterator).toIterable().containsOnly("org.assertj.swing.keystroke.KeyStrokeMappingProvider_win_en_US",
-        "org.assertj.swing.keystroke.KeyStrokeMappingProvider_win_en",
-        "org.assertj.swing.keystroke.KeyStrokeMappingProvider_en");
+                                                   "org.assertj.swing.keystroke.KeyStrokeMappingProvider_win_en",
+                                                   "org.assertj.swing.keystroke.KeyStrokeMappingProvider_en");
   }
 
   @Test

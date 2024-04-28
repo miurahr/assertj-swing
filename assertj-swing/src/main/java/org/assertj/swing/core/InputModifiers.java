@@ -98,6 +98,5 @@ final class InputModifiers {
     return e.isShiftDown() == isShiftDownEx(modifiers);
   }
 
-  private InputModifiers() {
-  }
+  private InputModifiers() {}
 }

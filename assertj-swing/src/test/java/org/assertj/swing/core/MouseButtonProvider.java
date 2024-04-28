@@ -28,6 +28,5 @@ final class MouseButtonProvider {
     return new Object[][] { { LEFT_BUTTON }, { MIDDLE_BUTTON }, { RIGHT_BUTTON } };
   }
 
-  private MouseButtonProvider() {
-  }
+  private MouseButtonProvider() {}
 }

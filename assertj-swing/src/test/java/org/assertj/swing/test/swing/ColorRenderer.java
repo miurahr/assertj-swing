@@ -36,7 +36,7 @@ class ColorRenderer extends JLabel implements TableCellRenderer {
 
   @Override
   public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus,
-      int row, int column) {
+                                                 int row, int column) {
     Color newColor = (Color) color;
     setBackground(newColor);
     if (isBordered) {

@@ -16,7 +16,6 @@ import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.ATTR_MES
 import static org.apache.tools.ant.taskdefs.optional.junit.XMLConstants.ATTR_TYPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
-import static org.mockito.Mockito.verify;
 
 import org.assertj.swing.junit.xml.XmlNode;
 import org.junit.Test;

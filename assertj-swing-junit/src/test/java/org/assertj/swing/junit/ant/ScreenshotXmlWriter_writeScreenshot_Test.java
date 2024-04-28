@@ -58,14 +58,14 @@ public class ScreenshotXmlWriter_writeScreenshot_Test {
   @Test
   public void should_Add_Screenshot_Element_Test_Is_GUI_Test() {
     final BufferedImage image = new BufferedImage(10, 10, TYPE_BYTE_BINARY);
-        when(guiTestRecognizer.isGUITest(testClassNameFrom(test), testMethodNameFrom(test))).thenReturn(true);
-        when(screenshotTaker.takeDesktopScreenshot()).thenReturn(image);
-        writer.writeScreenshot(errorNode, test);
-        assertThat(root.size()).isEqualTo(2);
-        assertThat(root.child(0)).isEqualTo(errorNode);
-        XmlNode secondChild = root.child(1);
-        assertThat(secondChild.name()).isEqualTo("screenshot");
-        assertThat(secondChild.text()).isEqualTo(encodeBase64(image));
+    when(guiTestRecognizer.isGUITest(testClassNameFrom(test), testMethodNameFrom(test))).thenReturn(true);
+    when(screenshotTaker.takeDesktopScreenshot()).thenReturn(image);
+    writer.writeScreenshot(errorNode, test);
+    assertThat(root.size()).isEqualTo(2);
+    assertThat(root.child(0)).isEqualTo(errorNode);
+    XmlNode secondChild = root.child(1);
+    assertThat(secondChild.name()).isEqualTo("screenshot");
+    assertThat(secondChild.text()).isEqualTo(encodeBase64(image));
   }
 
   @Test
@@ -83,7 +83,6 @@ public class ScreenshotXmlWriter_writeScreenshot_Test {
     }
 
     @Override
-    public void run(TestResult result) {
-    }
+    public void run(TestResult result) {}
   }
 }

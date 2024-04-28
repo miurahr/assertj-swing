@@ -39,18 +39,18 @@ public class ExpectedException implements TestRule {
     return new ExpectedException();
   }
 
-  private ExpectedException() {
-  }
+  private ExpectedException() {}
 
   public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsDisabledComponent(ThrowingRunnable r) {
-      Throwable t = Assert.assertThrows(IllegalStateException.class, r);
-      return assertThat(t.getMessage()).contains("Expecting component").contains("to be enabled");
+    Throwable t = Assert.assertThrows(IllegalStateException.class, r);
+    return assertThat(t.getMessage()).contains("Expecting component").contains("to be enabled");
   }
 
   public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsNotShowingComponent(ThrowingRunnable r) {
-      Throwable t = Assert.assertThrows(IllegalStateException.class, r);
-      return assertThat(t.getMessage()).contains("Expecting component").contains("to be shown on the screen");
+    Throwable t = Assert.assertThrows(IllegalStateException.class, r);
+    return assertThat(t.getMessage()).contains("Expecting component").contains("to be shown on the screen");
   }
+
   public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsNotResizableComponent(ThrowingRunnable runnable) {
     Throwable t = Assert.assertThrows(IllegalStateException.class, runnable);
     return assertThat(t.getMessage()).contains("Expecting component").contains("to be resizable by the user");
@@ -147,39 +147,39 @@ public class ExpectedException implements TestRule {
 
   public void expectMessageToContain(final String... strings) {
     delegate.expectMessage(new TypeSafeMatcher<>() {
-        @Override
-        public void describeTo(org.hamcrest.Description description) {
-            description.appendText("containing: " + Arrays.toString(strings));
-        }
+      @Override
+      public void describeTo(org.hamcrest.Description description) {
+        description.appendText("containing: " + Arrays.toString(strings));
+      }
 
-        @Override
-        public boolean matchesSafely(String item) {
-            for (String s : strings) {
-                if (!item.contains(s)) {
-                    return false;
-                }
-            }
-            return true;
+      @Override
+      public boolean matchesSafely(String item) {
+        for (String s : strings) {
+          if (!item.contains(s)) {
+            return false;
+          }
         }
+        return true;
+      }
     });
   }
 
   public void expectMessageNotToContain(final String... strings) {
     delegate.expectMessage(new TypeSafeMatcher<>() {
-        @Override
-        public void describeTo(org.hamcrest.Description description) {
-            description.appendText("not containing: " + Arrays.toString(strings));
-        }
+      @Override
+      public void describeTo(org.hamcrest.Description description) {
+        description.appendText("not containing: " + Arrays.toString(strings));
+      }
 
-        @Override
-        public boolean matchesSafely(String item) {
-            for (String s : strings) {
-                if (item.contains(s)) {
-                    return false;
-                }
-            }
-            return true;
+      @Override
+      public boolean matchesSafely(String item) {
+        for (String s : strings) {
+          if (item.contains(s)) {
+            return false;
+          }
         }
+        return true;
+      }
     });
   }
 

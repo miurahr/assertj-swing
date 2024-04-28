@@ -24,7 +24,6 @@ import static org.assertj.core.util.Objects.areEqual;
 import static org.assertj.core.util.Objects.hashCodeFor;
 import static org.assertj.swing.driver.AbstractButtonTextQuery.textOf;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.test.ExpectedException.none;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -32,9 +31,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
-import org.junit.Rule;
 
 /**
  * Base test case for {@link JOptionPaneDriver}.

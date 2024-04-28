@@ -42,7 +42,7 @@ public class ShouldBeEqualColors_create_Test {
   public void should_Create_Error_Message() {
     String message = factory.create(new TextDescription("Test"), new StandardRepresentation());
     assertEquals(
-        "[Test] expected:<color[r=0, g=0, b=0]> but was:<color[r=0, g=0, b=8]> at:<[6, 10]> within offset:<12>",
-        message);
+                 "[Test] expected:<color[r=0, g=0, b=0]> but was:<color[r=0, g=0, b=8]> at:<[6, 10]> within offset:<12>",
+                 message);
   }
 }

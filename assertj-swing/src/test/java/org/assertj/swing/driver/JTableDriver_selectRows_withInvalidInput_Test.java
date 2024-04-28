@@ -16,7 +16,6 @@ import static org.assertj.swing.test.builder.JTables.table;
 
 import javax.swing.JTable;
 
-import org.assertj.swing.test.ExpectedException;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.junit.Assert;
 import org.junit.BeforeClass;

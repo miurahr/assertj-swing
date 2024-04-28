@@ -44,8 +44,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
       protected JList<T> executeInEDT() {
         return new JList<T>();
       };
-    });
-    ;
+    });;
     return checkNotNull(result);
   }
 
@@ -97,7 +96,8 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
   }
 
   @RunsInCurrentThread
-  @Nullable private Component cellRendererComponent(@NotNull JComboBox comboBox, int index) {
+  @Nullable
+  private Component cellRendererComponent(@NotNull JComboBox comboBox, int index) {
     Object item = comboBox.getItemAt(index);
     ListCellRenderer renderer = comboBox.getRenderer();
     return renderer.getListCellRendererComponent(REFERENCE_JLIST, item, index, true, true);

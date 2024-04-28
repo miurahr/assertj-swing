@@ -53,7 +53,8 @@ public final class JToolBarLocation {
    * @return the point where to grab the given {@code JToolBar}.
    */
   @RunsInCurrentThread
-  @NotNull public Point pointToGrab(@NotNull JToolBar toolBar) {
+  @NotNull
+  public Point pointToGrab(@NotNull JToolBar toolBar) {
     Insets insets = toolBar.getInsets();
     int width = toolBar.getWidth();
     int height = toolBar.getHeight();
@@ -88,7 +89,8 @@ public final class JToolBarLocation {
    * @throws IllegalArgumentException if the constraint has an invalid value.
    */
   @RunsInCurrentThread
-  @NotNull public Point dockLocation(@NotNull JToolBar toolBar, @NotNull Container dock, @NotNull String constraint) {
+  @NotNull
+  public Point dockLocation(@NotNull JToolBar toolBar, @NotNull Container dock, @NotNull String constraint) {
     checkValid(constraint);
     Insets insets = dock.getInsets();
     // BasicToolBarUI prioritizes location N/E/W/S by proximity to the respective border. Close to top border is N, even

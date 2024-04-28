@@ -99,7 +99,8 @@ public class JTabbedPaneLocation {
    * @throws LocationUnavailableException if the tab under the given index is not visible.
    */
   @RunsInCurrentThread
-  @NotNull public Point pointAt(final @NotNull JTabbedPane tabbedPane, final int index) {
+  @NotNull
+  public Point pointAt(final @NotNull JTabbedPane tabbedPane, final int index) {
     checkIndexInBounds(tabbedPane, index);
     Rectangle rect = tabbedPane.getUI().getTabBounds(tabbedPane, index);
     // From Abbot: TODO figure out the effects of tab layout policy sometimes tabs are not directly visible

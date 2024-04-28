@@ -34,6 +34,5 @@ public final class TestAWTEvents {
     return mock(AWTEvent.class);
   }
 
-  private TestAWTEvents() {
-  }
+  private TestAWTEvents() {}
 }

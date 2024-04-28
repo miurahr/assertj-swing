@@ -62,7 +62,7 @@ public class AbstractContainerFixture_toolBar_Test extends RobotBasedTestCase {
   public void should_Fail_If_Visible_JToolBar_Not_Found_By_Name() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "name='myButton', type=javax.swing.JToolBar, requireShowing=true");
+                                  "name='myButton', type=javax.swing.JToolBar, requireShowing=true");
     fixture.toolBar("myButton");
   }
 
@@ -77,7 +77,7 @@ public class AbstractContainerFixture_toolBar_Test extends RobotBasedTestCase {
   public void should_Fail_If_Visible_JToolBar_Not_Found_By_Type() {
     thrown.expect(ComponentLookupException.class);
     thrown.expectMessageToContain("Unable to find component using matcher",
-        "type=javax.swing.JToolBar, requireShowing=true");
+                                  "type=javax.swing.JToolBar, requireShowing=true");
     fixture.toolBar();
   }
 

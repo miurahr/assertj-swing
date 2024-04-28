@@ -30,6 +30,5 @@ final class JProgressBarSetValueTask {
     execute(() -> progressBar.setValue(value));
   }
 
-  private JProgressBarSetValueTask() {
-  }
+  private JProgressBarSetValueTask() {}
 }

@@ -56,7 +56,7 @@ public class Strings_areEqualOrMatch_Test {
   @Test
   public void should_Return_True_If_Pattern_Is_Invalid_Regex_But_Is_Contained_In_String() {
     assertThat(Strings.areEqualOrMatch("\\\\server\\share\\myfolder", "\\\\server\\share\\myfolder\\mysubfolder"))
-        .isTrue();
+                                                                                                                  .isTrue();
   }
 
   @Test

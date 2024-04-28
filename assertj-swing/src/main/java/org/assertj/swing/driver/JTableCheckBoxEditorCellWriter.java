@@ -56,9 +56,10 @@ public class JTableCheckBoxEditorCellWriter extends AbstractJTableCellWriter {
   }
 
   @RunsInEDT
-  @NotNull private static Pair<Boolean, Point> doStartCellEditing(final @NotNull JTable table, final int row,
-                                                                  final int column,
-                                                                  final @NotNull JTableLocation location) {
+  @NotNull
+  private static Pair<Boolean, Point> doStartCellEditing(final @NotNull JTable table, final int row,
+                                                         final int column,
+                                                         final @NotNull JTableLocation location) {
     Pair<Boolean, Point> result = execute(new GuiQuery<Pair<Boolean, Point>>() {
       @Override
       protected Pair<Boolean, Point> executeInEDT() {

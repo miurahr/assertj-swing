@@ -33,6 +33,5 @@ final class JComboBoxSetSelectedIndexTask {
     execute(() -> comboBox.setSelectedIndex(index));
   }
 
-  private JComboBoxSetSelectedIndexTask() {
-  }
+  private JComboBoxSetSelectedIndexTask() {}
 }

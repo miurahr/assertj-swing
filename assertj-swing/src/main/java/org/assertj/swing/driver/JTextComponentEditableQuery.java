@@ -32,6 +32,5 @@ final class JTextComponentEditableQuery {
     return checkNotNull(result);
   }
 
-  private JTextComponentEditableQuery() {
-  }
+  private JTextComponentEditableQuery() {}
 }

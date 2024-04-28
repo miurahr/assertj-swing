@@ -34,6 +34,5 @@ public final class TestAppletContexts {
     return mock(AppletContext.class);
   }
 
-  private TestAppletContexts() {
-  }
+  private TestAppletContexts() {}
 }

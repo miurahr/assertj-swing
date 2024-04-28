@@ -48,8 +48,7 @@ public class BasicRobot_WithoutScreenLock_TestCase extends EDTSafeTestCase {
 
   }
 
-  void beforeShowingWindow() {
-  }
+  void beforeShowingWindow() {}
 
   @After
   public final void tearDown() {

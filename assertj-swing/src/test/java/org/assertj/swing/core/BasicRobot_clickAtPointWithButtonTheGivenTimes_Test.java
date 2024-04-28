@@ -40,7 +40,8 @@ public class BasicRobot_clickAtPointWithButtonTheGivenTimes_Test extends BasicRo
   private final int times;
 
   @Parameters
-  @NotNull public static Collection<Object[]> buttons() {
+  @NotNull
+  public static Collection<Object[]> buttons() {
     return newArrayList(clickingData());
   }
 
