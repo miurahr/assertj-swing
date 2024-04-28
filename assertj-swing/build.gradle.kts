@@ -29,6 +29,7 @@ tasks.named<Test>("test") {
         systemProperties.set("envIsCi", envIsCi)
     }
     maxParallelForks =  1
+    jvmArgs("-Xmx2048m", "--add-opens", "java.base/javax.swing=ALL-UNNAMED")
 }
 
 spotless {
