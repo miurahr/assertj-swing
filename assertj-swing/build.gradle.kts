@@ -23,12 +23,17 @@ tasks.named<Test>("test") {
     if ("true" == envIsCi) {
         filter {
             // exclude time consuming tests
+            excludeTestsMatching("org.assertj.swing.applet.*")
             excludeTestsMatching("org.assertj.swing.finder.*")
             excludeTestsMatching("org.assertj.swing.fixture.*")
+            excludeTestsMatching("org.assertj.swing.format.*")
             excludeTestsMatching("org.assertj.swing.keystroke.*")
+            excludeTestsMatching("org.assertj.swing.lock.*")
             excludeTestsMatching("org.assertj.swing.monitor.*")
+            excludeTestsMatching("org.assertj.swing.security.*")
             excludeTestsMatching("org.assertj.swing.test.*")
             excludeTestsMatching("org.assertj.swing.timing.*")
+            excludeTestsMatching("org.assertj.swing.util.*")
         }
         systemProperties.set("envIsCi", "true")
     }
