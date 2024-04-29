@@ -26,3 +26,12 @@ spotless {
         removeUnusedImports()
     }
 }
+
+val envIsCi: String? by project
+tasks.named<Test>("test") {
+    if ("true" == envIsCi) {
+        systemProperties.set("envIsCi", "true")
+    }
+    maxParallelForks =  1
+    jvmArgs("-Xmx2048m", "--add-opens", "java.desktop/javax.swing=ALL-UNNAMED")
+}
