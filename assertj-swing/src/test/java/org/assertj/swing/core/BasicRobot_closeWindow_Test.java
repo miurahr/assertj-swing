@@ -50,7 +50,7 @@ public class BasicRobot_closeWindow_Test extends EDTSafeTestCase {
 
   @Test
   public void should_Close_Window() {
-    Assume.assumeFalse("true".equals(System.getProperty("envIsCi")));
+    robot.waitForIdle();
     robot.close(w);
     pause(new Condition("Window closed") {
       @Override

@@ -26,10 +26,10 @@ tasks.named<Test>("test") {
             includeTestsMatching("org.assertj.swing.core.*")
             includeTestsMatching("org.assertj.swing.driver.*")
         }
-        systemProperties.set("envIsCi", envIsCi)
+        systemProperties.set("envIsCi", "true")
     }
     maxParallelForks =  1
-    jvmArgs("-Xmx2048m", "--add-opens", "java.base/javax.swing=ALL-UNNAMED")
+    jvmArgs("-Xmx2048m", "--add-opens", "java.desktop/javax.swing=ALL-UNNAMED")
 }
 
 spotless {
