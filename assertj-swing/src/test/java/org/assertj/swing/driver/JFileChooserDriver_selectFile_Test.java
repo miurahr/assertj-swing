@@ -41,13 +41,13 @@ public class JFileChooserDriver_selectFile_Test extends JFileChooserDriver_TestC
       File selectedFile = selectedFileIn(fileChooser);
       assertThat(selectedFile).isSameAs(temporaryFile);
     } finally {
-      temporaryFile.delete();
+      boolean ignored = temporaryFile.delete();
     }
   }
 
   @RunsInEDT
   private static File selectedFileIn(final JFileChooser fileChooser) {
-    return execute(() -> fileChooser.getSelectedFile());
+    return execute(fileChooser::getSelectedFile);
   }
 
   @Test
@@ -65,7 +65,7 @@ public class JFileChooserDriver_selectFile_Test extends JFileChooserDriver_TestC
   public void should_Throw_Error_When_Selecting_File_While_JFileChooser_Can_Only_Select_Folders() {
     makeFileChooserSelectDirectoriesOnly();
     showWindow();
-    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> driver.selectFile(fileChooser, fakeFile()));
+    Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> driver.selectFile(fileChooser, fakeFile()));
     assertThat(t.getMessage()).contains("the file chooser can only open directories");
   }
 
@@ -74,7 +74,7 @@ public class JFileChooserDriver_selectFile_Test extends JFileChooserDriver_TestC
     File temporaryFolder = newTemporaryFolder();
     makeFileChooserSelectFilesOnly();
     showWindow();
-    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> {
+    Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> {
       try {
         driver.selectFile(fileChooser, temporaryFolder);
       } finally {

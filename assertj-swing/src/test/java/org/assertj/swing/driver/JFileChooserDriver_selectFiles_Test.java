@@ -59,7 +59,7 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
     TemporaryFolderAndFile folderAndFile = new TemporaryFolderAndFile();
     makeFileChooserSelectDirectoriesOnly();
     showWindow();
-    Throwable t = Assert.assertThrows(IllegalStateException.class, () -> {
+    Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> {
       try {
         driver.selectFiles(fileChooser, folderAndFile.contents());
       } finally {
@@ -95,7 +95,7 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
       File[] selectedFiles = selectedFilesIn(fileChooser);
       assertThat(selectedFiles).containsOnly(temporaryFile);
     } finally {
-      temporaryFile.delete();
+      boolean ignored = temporaryFile.delete();
     }
   }
 
@@ -128,7 +128,7 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
 
   @RunsInEDT
   private static File[] selectedFilesIn(final JFileChooser fileChooser) {
-    return execute(() -> fileChooser.getSelectedFiles());
+    return execute(fileChooser::getSelectedFiles);
   }
 
   private static class TemporaryFolderAndFile {
@@ -145,8 +145,7 @@ public class JFileChooserDriver_selectFiles_Test extends JFileChooserDriver_Test
     }
 
     void delete() {
-      folder.delete();
-      file.delete();
+      boolean ignored = folder.delete() & file.delete();
     }
   }
 }

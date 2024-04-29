@@ -62,7 +62,7 @@ public class ContainerDriver_checkCanResize_Test extends RobotBasedTestCase {
   public void should_Fail_If_Frame_Is_Resizable_But_Disabled() {
     JFrame f = frame().createNew();
     disable(f);
-    assertThatIllegalStateExceptionCauseIsNotResizableComponent(() -> checkCanResize(f));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> checkCanResize(f));
   }
 
   @Test
@@ -88,7 +88,7 @@ public class ContainerDriver_checkCanResize_Test extends RobotBasedTestCase {
   public void should_Fail_If_Dialog_Is_Resizable_But_Disabled() {
     JDialog d = dialog().createNew();
     disable(d);
-    assertThatIllegalStateExceptionCauseIsNotResizableComponent(() -> checkCanResize(d));
+    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> checkCanResize(d));
   }
 
   @RunsInEDT

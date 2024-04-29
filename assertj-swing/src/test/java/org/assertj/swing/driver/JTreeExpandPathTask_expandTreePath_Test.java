@@ -27,7 +27,9 @@ import javax.swing.tree.TreePath;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link JTreeExpandPathTask#expandTreePath(JTree, TreePath)}.
@@ -35,6 +37,7 @@ import org.junit.Test;
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JTreeExpandPathTask_expandTreePath_Test extends RobotBasedTestCase {
   private MyWindow window;
   private JTree tree;
@@ -77,7 +80,7 @@ public class JTreeExpandPathTask_expandTreePath_Test extends RobotBasedTestCase 
 
     @RunsInEDT
     static MyWindow createNew() {
-      return execute(() -> new MyWindow());
+      return execute(MyWindow::new);
     }
 
     private MyWindow() {

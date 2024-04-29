@@ -33,7 +33,7 @@ final class JTreeExpandedPathQuery {
   @RunsInEDT
   static boolean isExpanded(final @NotNull JTree tree, final @NotNull TreePath path) {
     Boolean result = execute(() -> tree.isExpanded(path));
-    return Objects.nonNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JTreeExpandedPathQuery() {}
