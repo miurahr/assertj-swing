@@ -13,11 +13,11 @@
 package org.assertj.swing.internal.assertions.images;
 
 import static java.awt.Color.BLUE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.assertions.error.ShouldNotBeEqualImages.shouldNotBeEqualImages;
 import static org.assertj.swing.test.awt.AwtTestData.fivePixelBlueImage;
 import static org.assertj.swing.test.awt.AwtTestData.fivePixelYellowImage;
 import static org.assertj.swing.test.awt.AwtTestData.newImage;
-import static org.mockito.Mockito.verify;
 
 import java.awt.image.BufferedImage;
 
@@ -59,18 +59,14 @@ public class Images_assertNotEqual_Test extends ImagesBaseTest {
   public void should_Fail_If_Images_Are_Equal() {
     AssertionInfo info = someInfo();
     BufferedImage other = newImage(5, 5, BLUE);
-    Assert.assertThrows(AssertionError.class, () -> images.assertNotEqual(info, actual, other));
-    verifyFailureThrownWhenImagesAreEqual(info);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> images.assertNotEqual(info, actual, other));
+    assertThat(t.getMessage()).isEqualTo(shouldNotBeEqualImages().create(info.description(), info.representation()));
   }
 
   @Test
   public void should_Fail_If_Images_Are_Same() {
     AssertionInfo info = someInfo();
-    Assert.assertThrows(AssertionError.class, () -> images.assertNotEqual(info, actual, actual));
-    verifyFailureThrownWhenImagesAreEqual(info);
-  }
-
-  private void verifyFailureThrownWhenImagesAreEqual(AssertionInfo info) {
-    verify(failures).failure(info, shouldNotBeEqualImages());
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> images.assertNotEqual(info, actual, actual));
+    assertThat(t.getMessage()).isEqualTo(shouldNotBeEqualImages().create(info.description(), info.representation()));
   }
 }
