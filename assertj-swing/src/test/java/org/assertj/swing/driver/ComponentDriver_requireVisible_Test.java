@@ -19,20 +19,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests for {@link ComponentDriver#requireVisible(java.awt.Component)}.
- * 
+ * <p>
+ * Components are initially visible, with the exception of top level components such as Frame objects.
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */
 public class ComponentDriver_requireVisible_Test extends ComponentDriver_TestCase {
   @Test
   public void should_Pass_If_Component_Is_Visible() {
-    showWindow();
     driver.requireVisible(window.button);
   }
 
   @Test
   public void should_Fail_If_Component_Is_Not_Visible() {
-    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireVisible(window.button));
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> driver.requireVisible(window));
     assertThat(t.getMessage()).contains("property:'visible'").contains("expected:<[tru]e> but was:<[fals]e>");
   }
 }

@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.query;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.jetbrains.annotations.NotNull;
@@ -38,8 +38,8 @@ public final class ComponentVisibleQuery {
    */
   @RunsInEDT
   public static boolean isVisible(final @NotNull Component component) {
-    Boolean result = execute(() -> component.isVisible());
-    return checkNotNull(result);
+    Boolean result = execute(component::isVisible);
+    return Objects.requireNonNull(result);
   }
 
   private ComponentVisibleQuery() {}

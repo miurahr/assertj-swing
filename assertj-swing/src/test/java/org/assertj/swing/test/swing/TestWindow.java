@@ -19,8 +19,8 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.task.FrameShowTask.packAndShow;
 import static org.assertj.swing.test.task.FrameShowTask.waitForShowing;
@@ -49,7 +49,7 @@ public class TestWindow extends JFrame {
       TestWindow.display(window);
       return window;
     });
-    result = checkNotNull(result);
+    Objects.requireNonNull(result);
     waitForShowing(result);
     return result;
   }
@@ -65,7 +65,7 @@ public class TestWindow extends JFrame {
   @NotNull
   public static TestWindow createNewWindow(final @NotNull Class<?> testClass) {
     TestWindow result = execute(() -> createInCurrentThread(testClass));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @NotNull
