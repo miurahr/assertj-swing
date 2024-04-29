@@ -12,14 +12,15 @@
  */
 package org.assertj.swing.driver;
 
+import static org.assertj.core.api.Fail.fail;
 import static org.assertj.core.error.ShouldMatchPattern.shouldMatch;
 import static org.assertj.swing.util.Strings.areEqualOrMatch;
 
+import org.assertj.core.error.MessageFormatter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import org.assertj.core.api.AbstractCharSequenceAssert;
-import org.assertj.core.internal.Failures;
 
 /**
  * Assertion methods related to text.
@@ -27,6 +28,7 @@ import org.assertj.core.internal.Failures;
  * @author Alex Ruiz
  */
 class TextAssert extends AbstractCharSequenceAssert<TextAssert, String> {
+  @SuppressWarnings("unused")
   static @NotNull TextAssert assertThat(@Nullable String s) {
     return new TextAssert(s);
   }
@@ -43,6 +45,10 @@ class TextAssert extends AbstractCharSequenceAssert<TextAssert, String> {
     if (areEqualOrMatch(s, actual)) {
       return;
     }
-    throw Failures.instance().failure(info, shouldMatch(actual, s));
+    String overridingErrorMessage = info.overridingErrorMessage();
+    String message = overridingErrorMessage == null || overridingErrorMessage.isEmpty()
+        ? shouldMatch(actual, s).create(info.description(), info.representation())
+        : MessageFormatter.instance().format(info.description(), info.representation(), overridingErrorMessage);
+    fail(message);
   }
 }

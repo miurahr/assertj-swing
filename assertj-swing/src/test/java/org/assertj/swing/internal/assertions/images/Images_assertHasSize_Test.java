@@ -17,7 +17,6 @@ import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.swing.assertions.Assertions.assertThat;
 import static org.assertj.swing.assertions.error.ShouldHaveDimension.shouldHaveDimension;
 import static org.assertj.swing.test.awt.AwtTestData.newImage;
-import static org.mockito.Mockito.verify;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -65,19 +64,18 @@ public class Images_assertHasSize_Test extends ImagesBaseTest {
   public void should_Fail_If_Actual_Has_Different_Width() {
     AssertionInfo info = someInfo();
     Dimension size = new Dimension(10, 8);
-    Assert.assertThrows(AssertionError.class, () -> images.assertHasSize(someInfo(), actual, size));
-    verifyFailureThrownWhenSizesAreNotEqual(info, size);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> images.assertHasSize(someInfo(), actual, size));
+    assertThat(t.getMessage()).isEqualTo(shouldHaveDimension(actual, sizeOf(actual), size).create(info.description(),
+                                                                                                  info.representation()));
   }
 
   @Test
   public void should_Fail_If_Actual_Has_Different_Height() {
     AssertionInfo info = someInfo();
     Dimension size = new Dimension(6, 10);
-    Assert.assertThrows(AssertionError.class, () -> images.assertHasSize(someInfo(), actual, size));
-    verifyFailureThrownWhenSizesAreNotEqual(info, size);
+    Throwable t = Assert.assertThrows(AssertionError.class, () -> images.assertHasSize(someInfo(), actual, size));
+    assertThat(t.getMessage()).isEqualTo(shouldHaveDimension(actual, sizeOf(actual), size).create(info.description(),
+                                                                                                  info.representation()));
   }
 
-  private void verifyFailureThrownWhenSizesAreNotEqual(AssertionInfo info, Dimension size) {
-    verify(failures).failure(info, shouldHaveDimension(actual, sizeOf(actual), size));
-  }
 }

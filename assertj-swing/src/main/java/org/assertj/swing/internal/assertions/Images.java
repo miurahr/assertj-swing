@@ -12,8 +12,9 @@
  */
 package org.assertj.swing.internal.assertions;
 
+import static java.util.Objects.deepEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.data.Offset.offset;
-import static org.assertj.core.util.Objects.areEqual;
 import static org.assertj.swing.assertions.data.RgbColor.color;
 import static org.assertj.swing.assertions.error.ShouldBeEqualColors.shouldBeEqualColors;
 import static org.assertj.swing.assertions.error.ShouldBeEqualImages.shouldBeEqualImages;
@@ -27,9 +28,8 @@ import java.awt.image.BufferedImage;
 
 import org.assertj.core.api.AssertionInfo;
 import org.assertj.core.data.Offset;
+import org.assertj.core.error.AssertionErrorCreator;
 import org.assertj.core.error.ErrorMessageFactory;
-import org.assertj.core.internal.Failures;
-import org.assertj.core.internal.Objects;
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.assertions.data.RgbColor;
 
@@ -52,8 +52,7 @@ public class Images {
     return INSTANCE;
   }
 
-  @VisibleForTesting
-  Failures failures = Failures.instance();
+  private final AssertionErrorCreator assertionErrorCreator = new AssertionErrorCreator();
 
   @VisibleForTesting
   Images() {}
@@ -93,7 +92,7 @@ public class Images {
   public void assertEqual(AssertionInfo info, BufferedImage actual, BufferedImage expected, Offset<Integer> offset) {
     if (offset == null)
       throw new NullPointerException("The given offset should not be null");
-    if (areEqual(actual, expected))
+    if (deepEquals(actual, expected))
       return;
     if (actual == null || expected == null)
       throw imagesShouldBeEqual(info, offset);
@@ -104,11 +103,12 @@ public class Images {
     ColorComparisonResult haveEqualColor = haveEqualColor(actual, expected, offset);
     if (haveEqualColor == ARE_EQUAL)
       return;
-    throw failures.failure(info, imagesShouldHaveEqualColor(haveEqualColor, offset));
+    throw assertionErrorCreator.assertionError(imagesShouldHaveEqualColor(haveEqualColor, offset).create(info.description(),
+                                                                                                         info.representation()));
   }
 
   private AssertionError imagesShouldBeEqual(AssertionInfo info, Offset<Integer> offset) {
-    return failures.failure(info, shouldBeEqualImages(offset));
+    return assertionErrorCreator.assertionError(shouldBeEqualImages(offset).create(info.description(), info.representation()));
   }
 
   private ErrorMessageFactory imagesShouldHaveEqualColor(ColorComparisonResult r, Offset<Integer> offset) {
@@ -124,7 +124,7 @@ public class Images {
    * @throws AssertionError if {@code actual} is equal to {@code other}.
    */
   public void assertNotEqual(AssertionInfo info, BufferedImage actual, BufferedImage other) {
-    if (areEqual(actual, other))
+    if (deepEquals(actual, other))
       throw imagesShouldNotBeEqual(info);
     if (actual == null || other == null)
       return;
@@ -137,7 +137,7 @@ public class Images {
   }
 
   private AssertionError imagesShouldNotBeEqual(AssertionInfo info) {
-    return failures.failure(info, shouldNotBeEqualImages());
+    return assertionErrorCreator.assertionError(shouldNotBeEqualImages().create(info.description(), info.representation()));
   }
 
   private boolean haveEqualSize(BufferedImage i1, BufferedImage i2) {
@@ -171,16 +171,17 @@ public class Images {
   public void assertHasSize(AssertionInfo info, BufferedImage actual, Dimension size) {
     if (size == null)
       throw new NullPointerException("The given size should not be null");
-    Objects.instance().assertNotNull(info, actual);
+    assertThat(actual).isNotNull();
     Dimension sizeOfActual = sizeOf(actual);
-    if (areEqual(sizeOfActual, size))
+    if (deepEquals(sizeOfActual, size))
       return;
     throw imageShouldHaveSize(info, actual, sizeOfActual, size);
   }
 
   private AssertionError imageShouldHaveSize(AssertionInfo info, BufferedImage image, Dimension actual,
                                              Dimension expected) {
-    return failures.failure(info, shouldHaveDimension(image, actual, expected));
+    return assertionErrorCreator.assertionError(shouldHaveDimension(image, actual, expected).create(info.description(),
+                                                                                                    info.representation()));
   }
 
   @VisibleForTesting
