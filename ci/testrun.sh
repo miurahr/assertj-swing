@@ -14,7 +14,7 @@ rsync -rlD --exclude='.git' --exclude='.gradle' --exclude='build' /code/ /home/w
 export DISPLAY=:99
 Xvfb :99 -screen 0 1024x768x24 &
 fluxbox &
-/opt/gradle/bin/gradle --no-daemon --scan -PenvIsCi=true check
+/opt/gradle/bin/gradle --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false clean fest-reflect:check assertj-swing-junit:check assertj-swing-junit-jupiter:check check
 killall Xvfb
 __EOF__
 cat <<__EOF__ > $CTX/Dockerfile

@@ -23,5 +23,5 @@ steps:
       - export DISPLAY=:99
       - Xvfb :99 -screen 0 1024x768x24 &
       - fluxbox &
-      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false clean check
+      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false clean fest-reflect:check assertj-swing-junit:check assertj-swing-junit-jupiter:check check
       - killall Xvfb
