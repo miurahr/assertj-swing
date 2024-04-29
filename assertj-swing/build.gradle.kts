@@ -22,9 +22,13 @@ val envIsCi: String? by project
 tasks.named<Test>("test") {
     if ("true" == envIsCi) {
         filter {
-            includeTestsMatching("org.assertj.core.api.*")
-            includeTestsMatching("org.assertj.swing.core.*")
-            includeTestsMatching("org.assertj.swing.driver.*")
+            // exclude time consuming tests
+            excludeTestsMatching("org.assertj.swing.finder.*")
+            excludeTestsMatching("org.assertj.swing.fixture.*")
+            excludeTestsMatching("org.assertj.swing.keystroke.*")
+            excludeTestsMatching("org.assertj.swing.monitor.*")
+            excludeTestsMatching("org.assertj.swing.test.*")
+            excludeTestsMatching("org.assertj.swing.timing.*")
         }
         systemProperties.set("envIsCi", "true")
     }
