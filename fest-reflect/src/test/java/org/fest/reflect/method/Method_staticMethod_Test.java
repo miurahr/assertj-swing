@@ -14,14 +14,16 @@
  */
 package org.fest.reflect.method;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.fest.reflect.util.ExpectedFailures.expectIllegalArgumentException;
 import static org.fest.reflect.util.ExpectedFailures.expectNullPointerException;
-import static org.fest.reflect.util.ExpectedFailures.expectReflectionError;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.fest.reflect.exception.ReflectionError;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -82,22 +84,19 @@ public class Method_staticMethod_Test {
 
   @Test
   public void should_throw_error_if_static_method_parameter_array_is_null() {
-    String msg = "The array of parameter types for the static method to access should not be null";
-    expectNullPointerException(msg).on(new CodeToTest() {
-      public void run() {
+    Throwable t = Assert.assertThrows(NullPointerException.class, () -> {
         Class<?>[] parameterTypes = null;
         StaticMethodName.startStaticMethodAccess("commonPowerCount").withParameterTypes(parameterTypes);
-      }
     });
+    assertThat(t.getMessage()).contains("The array of parameter types for the static method to access should not be null");
   }
 
   @Test
   public void should_throw_error_if_static_method_target_is_null() {
-    expectNullPointerException("Target should not be null").on(new CodeToTest() {
-      public void run() {
-        StaticMethodName.startStaticMethodAccess("commonPowerCount").in(null);
-      }
+    Throwable t = Assert.assertThrows(NullPointerException.class, () -> {
+      StaticMethodName.startStaticMethodAccess("commonPowerCount").in(null);
     });
+    assertThat(t.getMessage()).contains("Target should not be null");
   }
 
   @Test
@@ -152,23 +151,21 @@ public class Method_staticMethod_Test {
 
   @Test
   public void should_throw_error_if_static_method_name_is_invalid() {
-    String message = "Unable to find method 'powerSize' in org.fest.reflect.Jedi with parameter type(s) []";
-    expectReflectionError(message).on(new CodeToTest() {
-      public void run() {
-        String invalidName = "powerSize";
-        StaticMethodName.startStaticMethodAccess(invalidName).in(Jedi.class);
-      }
+    Throwable t = Assert.assertThrows(ReflectionError.class, () -> {
+      String invalidName = "powerSize";
+      StaticMethodName.startStaticMethodAccess(invalidName).in(Jedi.class);
     });
+    assertThat(t.getMessage()).contains("Unable to find method 'powerSize' in org.fest.reflect.Jedi with parameter type(s) [");
+
   }
 
   @Test
   public void should_throw_error_if_args_for_static_method_are_invalid() {
-    expectIllegalArgumentException("argument type mismatch").on(new CodeToTest() {
-      public void run() {
-        int invalidArg = 8;
-        StaticMethodName.startStaticMethodAccess("addCommonPower").withParameterTypes(String.class).in(Jedi.class)
-            .invoke(invalidArg);
-      }
+    Throwable t = Assert.assertThrows(IllegalArgumentException.class, () -> {
+      int invalidArg = 8;
+      StaticMethodName.startStaticMethodAccess("addCommonPower").withParameterTypes(String.class).in(Jedi.class)
+              .invoke(invalidArg);
     });
+    assertThat(t.getMessage()).contains("argument type mismatch");
   }
 }

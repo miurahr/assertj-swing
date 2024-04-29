@@ -14,9 +14,9 @@
  */
 package org.fest.reflect.method;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.fest.reflect.util.ExpectedFailures.expectIllegalArgumentException;
 import static org.fest.reflect.util.ExpectedFailures.expectNullPointerException;
-import static org.fest.reflect.util.ExpectedFailures.expectReflectionError;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -26,6 +26,7 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -165,13 +166,11 @@ public class Method_method_Test {
 
   @Test
   public void should_throw_error_if_method_name_is_invalid() {
-    String message = "Unable to find method 'getAge' in org.fest.reflect.Jedi with parameter type(s) []";
-    expectReflectionError(message).on(new CodeToTest() {
-      public void run() {
+    Throwable t = Assert.assertThrows(ReflectionError.class, () -> {
         String invalidName = "getAge";
         MethodName.startMethodAccess(invalidName).withReturnType(Integer.class).in(jedi);
-      }
     });
+    assertThat(t.getMessage()).contains("Unable to find method 'getAge' in org.fest.reflect.Jedi with parameter type(s) [");
   }
 
   @Test
