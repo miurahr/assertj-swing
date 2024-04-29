@@ -16,10 +16,10 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import org.assertj.core.api.AbstractStringAssert;
+import org.hamcrest.TypeSafeMatcher;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.function.ThrowingRunnable;
-import org.junit.internal.matchers.TypeSafeMatcher;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -32,6 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Alex Ruiz
  */
 public class ExpectedException implements TestRule {
+  @SuppressWarnings("deprecation")
   private final org.junit.rules.ExpectedException delegate = org.junit.rules.ExpectedException.none();
 
   @Deprecated
@@ -51,9 +52,14 @@ public class ExpectedException implements TestRule {
     return assertThat(t.getMessage()).contains("Expecting component").contains("to be showing on the screen");
   }
 
-  public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsNotResizableComponent(ThrowingRunnable runnable) {
+  public static void assertThatIllegalStateExceptionCauseIsNotResizableComponent(ThrowingRunnable runnable) {
     Throwable t = Assert.assertThrows(IllegalStateException.class, runnable);
-    return assertThat(t.getMessage()).contains("Expecting component").contains("to be resizable by the user");
+    assertThat(t.getMessage()).contains("Expecting component").contains("to be resizable by the user");
+  }
+
+  public static AbstractStringAssert<?> assertThatIllegalStateExceptionCauseIsNotDetermineLocation(ThrowingRunnable runnable) {
+    Throwable t = Assert.assertThrows(IllegalStateException.class, runnable);
+    return assertThat(t.getMessage()).contains("component must be showing on the screen to determine its location");
   }
 
   @Override
@@ -119,6 +125,7 @@ public class ExpectedException implements TestRule {
     expect(IllegalArgumentException.class, message);
   }
 
+  @SuppressWarnings("unused")
   public void expectIndexOutOfBoundsException(String message) {
     expect(IndexOutOfBoundsException.class, message);
   }

@@ -13,8 +13,7 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
-import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
+import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotDetermineLocation;
 
 import java.awt.Point;
 
@@ -40,13 +39,13 @@ public class FrameDriver_moveTo_Test extends FrameDriver_TestCase {
   @Test
   public void should_Throw_Error_If_Frame_Is_Disabled() {
     disableWindow();
-    assertThatIllegalStateExceptionCauseIsDisabledComponent(() -> driver.moveTo(window,
+    assertThatIllegalStateExceptionCauseIsNotDetermineLocation(() -> driver.moveTo(window,
                                                                                 windowLocationOnScreen().addToX(10).addToY(10)));
   }
 
   @Test
   public void should_Throw_Error_If_Frame_Is_Not_Showing_On_The_Screen() {
-    assertThatIllegalStateExceptionCauseIsNotShowingComponent(() -> driver.moveTo(window, windowLocationOnScreen().addToX(10)
+    assertThatIllegalStateExceptionCauseIsNotDetermineLocation(() -> driver.moveTo(window, windowLocationOnScreen().addToX(10)
                                                                                                                   .addToY(10)));
   }
 }
