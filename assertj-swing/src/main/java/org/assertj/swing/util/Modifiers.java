@@ -14,11 +14,7 @@ package org.assertj.swing.util;
 
 import org.jetbrains.annotations.NotNull;
 
-import static java.awt.event.InputEvent.ALT_GRAPH_MASK;
-import static java.awt.event.InputEvent.ALT_MASK;
-import static java.awt.event.InputEvent.CTRL_MASK;
-import static java.awt.event.InputEvent.META_MASK;
-import static java.awt.event.InputEvent.SHIFT_MASK;
+import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.VK_ALT;
 import static java.awt.event.KeyEvent.VK_ALT_GRAPH;
 import static java.awt.event.KeyEvent.VK_CONTROL;
@@ -51,16 +47,22 @@ public final class Modifiers {
   private static final Map<Integer, Integer> KEY_TO_MODIFIER = new LinkedHashMap<Integer, Integer>();
 
   static {
+    MODIFIER_TO_KEY.put(ALT_GRAPH_DOWN_MASK, VK_ALT_GRAPH);
+    KEY_TO_MODIFIER.put(VK_ALT_GRAPH, ALT_GRAPH_DOWN_MASK);
+    MODIFIER_TO_KEY.put(ALT_DOWN_MASK, VK_ALT);
+    KEY_TO_MODIFIER.put(VK_ALT, ALT_DOWN_MASK);
+    MODIFIER_TO_KEY.put(SHIFT_DOWN_MASK, VK_SHIFT);
+    KEY_TO_MODIFIER.put(VK_SHIFT, SHIFT_DOWN_MASK);
+    MODIFIER_TO_KEY.put(CTRL_DOWN_MASK, VK_CONTROL);
+    KEY_TO_MODIFIER.put(VK_CONTROL, CTRL_DOWN_MASK);
+    MODIFIER_TO_KEY.put(META_DOWN_MASK, VK_META);
+    KEY_TO_MODIFIER.put(VK_META, META_DOWN_MASK);
+    // for compatibility
     MODIFIER_TO_KEY.put(ALT_GRAPH_MASK, VK_ALT_GRAPH);
-    KEY_TO_MODIFIER.put(VK_ALT_GRAPH, ALT_GRAPH_MASK);
     MODIFIER_TO_KEY.put(ALT_MASK, VK_ALT);
-    KEY_TO_MODIFIER.put(VK_ALT, ALT_MASK);
     MODIFIER_TO_KEY.put(SHIFT_MASK, VK_SHIFT);
-    KEY_TO_MODIFIER.put(VK_SHIFT, SHIFT_MASK);
     MODIFIER_TO_KEY.put(CTRL_MASK, VK_CONTROL);
-    KEY_TO_MODIFIER.put(VK_CONTROL, CTRL_MASK);
     MODIFIER_TO_KEY.put(META_MASK, VK_META);
-    KEY_TO_MODIFIER.put(VK_META, META_MASK);
   }
 
   /**

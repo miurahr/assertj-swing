@@ -35,6 +35,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
+import java.util.Objects;
 
 import javax.swing.JMenu;
 import javax.swing.JPopupMenu;
@@ -331,7 +332,7 @@ public class ComponentDriver {
    */
   @RunsInEDT
   public void pressAndReleaseKey(@NotNull Component c, @NotNull KeyPressInfo keyPressInfo) {
-    checkNotNull(keyPressInfo);
+    Objects.requireNonNull(keyPressInfo);
     pressAndReleaseKey(c, keyPressInfo.keyCode(), keyPressInfo.modifiers());
   }
 
@@ -707,7 +708,7 @@ public class ComponentDriver {
   @RunsInEDT
   @NotNull
   public Color foregroundOf(final @NotNull Component c) {
-    Color result = execute(() -> c.getForeground());
-    return checkNotNull(result);
+    Color result = execute(c::getForeground);
+    return Objects.requireNonNull(result);
   }
 }
