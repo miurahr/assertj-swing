@@ -15,13 +15,78 @@ AssertJ project forked the original project because a fest-swing project was sto
 seeking a maintainer of assertj-swing project, and stopped to maintain from Sep., 2020.
 We got several warnings when using assertj-swing framework because of a lack of support for recent Java versions.
 
-There are several forked projects which have individual improvements and there have not been integrated yet.
+There are several forked projects that have individual improvements and there have not been integrated yet.
 OmegaT project uses assertj-swing-junit for testing GUI parts, especially for a vldocking library and plan to test OmegaT
 itself in the future.
 
 Because it is important to keep dependencies secure, and catch up new Java versions, we decided to fork it
 and integrate efforts into our repository.
 
+## What are changed from the original?
+
+### Supported platform
+
+- Build with Java 11
+- Supports Java 11, and Java 17
+- Build with Gradle 8.6 instead of Maven
+
+### Dependencies
+
+- assertj-swing
+    - assertj-core "3.25.3"
+    - jetbrains_annotations "23.0.0"
+- assertj-swing-junit
+    - assertj-core "3.25.3"
+    - commons_codec "1.13"
+    - junit4 "4.13.2"
+    - assertj-swing
+    - fest-reflect
+- assertj-swing-junit-jupiter
+    - assertj-core "3.25.3"
+    - junit-jupiter "5.8.2"
+    - assertj-swing-junit
+- fest-reflect
+    - assertj-core "3.25.3"
+- for unit tests
+    - ant_junit "1.10.14"
+    - mockito "2.28.2"
+    - equals_verifier "2.5.2"
+    - cglib "3.3.0"
+- Bundle an updated `feat-reflect`
+
+### Java Platform Module System
+
+These provide JPMS module definitions.
+ 
+- `org.assertj.swing`
+- `org.assertj.swing.junit`
+- `org.assertj-swing.junit.jupiter`
+
+### Changes and fixes
+
+- Drop dependencies for `fest-assert`, `feat-test` and `feat-util`
+- Change keystroke to use a key modifier extension such as `CTRL_DOWN_KEY` instead of KeyInput `CTRL_KEY`
+- Drop JSR305 annotation and use JetBrains annotations
+- Update unit tests with aseertj-core
+  - Rewrite cases with Mockito instead of EasyMock
+  - Rewrite cases with JUnit 4.13 instead of JUnit 3 and TestNG
+- Import patches from the community
+  - merge PortSwigger's changes  
+  - merge ingokegel's Jdk17 brach
+  - merge wjbakker's junit-jupiter extension
+- Style
+  - Update coding style by Spotless utility with AssertJ standard
+  - Use space characters instead of tab character
+  - Add config/eclipse/assertj-eclipse-formatter.xml
+- Drop assertj-swing-jide
+- test: Drop references for removed Swing peers in TookkitStub class
+- test: Drop dependency for `multithreadedtc` and removal of some unit tests
+  - ScreenLock_acquire_acquireedBy_release_Test
+  - ScreenLock_acquire_Test
+  - ScreenLock_getOwner_Test
+- Release group ID is 'tokyo.northside'
+- Add CI runner on codeberg-ci 
+- Add test runner script with docker
 
 ## How to build
 
