@@ -6,6 +6,7 @@ plugins {
 
 dependencies {
     api(libs.jupiter)
+    api(libs.jupiter.engine)
     api(libs.assertj)
     api(project(":assertj-swing"))
     api(project(":assertj-swing-junit"))

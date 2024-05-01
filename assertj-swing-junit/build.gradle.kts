@@ -21,6 +21,12 @@ dependencies {
 
 description = "AssertJ-Swing - JUnit Extension"
 
+tasks.jar {
+    manifest {
+        attributes("Automatic-Module-Name" to "org.assertj.swing.junit")
+    }
+}
+
 spotless {
     java {
         eclipse().configFile(file("${rootDir}/config/eclipse/assertj-eclipse-formatter.xml"))
