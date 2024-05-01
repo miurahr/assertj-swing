@@ -116,9 +116,8 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
     @Override
     @NotNull
     public String toString() {
-        String b = "[type=" + type + ", " +
-                "keyCode=" + keyCode + "]";
-      return b;
+      return "[type=" + type + ", " +
+             "keyCode=" + keyCode + "]";
     }
   }
 }
