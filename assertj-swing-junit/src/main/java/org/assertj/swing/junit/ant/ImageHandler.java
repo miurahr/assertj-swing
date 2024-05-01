@@ -93,14 +93,14 @@ public final class ImageHandler {
   // makes testing easier
   static String decodeBase64AndSaveAsPng(String encoded, String path, ImageDecoder decoder, ImageFileWriter writer) {
     if (encoded != null && !encoded.isEmpty() && path != null && !path.isEmpty()) {
-        BufferedImage image = decodeBase64(encoded, decoder);
-        if (image != null) {
-            try {
-                writer.writeAsPng(image, path.replace("/", separator));
-            } catch (Exception e) {
-                logger.log(SEVERE, e.getMessage());
-            }
+      BufferedImage image = decodeBase64(encoded, decoder);
+      if (image != null) {
+        try {
+          writer.writeAsPng(image, path.replace("/", separator));
+        } catch (Exception e) {
+          logger.log(SEVERE, e.getMessage());
         }
+      }
     }
     return EMPTY_STRING;
   }
