@@ -21,29 +21,20 @@ variables:
     - export DISPLAY=:99
     - Xvfb :99 -screen 0 1024x768x24 &
     - fluxbox &
-  post_cmds: &post_cmds
-    - killall Xvfb
 
 steps:
-  fest-reflect:
-    image: adoptopenjdk/openjdk11:alpine
-    commands:
-      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false fest-reflect:check
-  assertj-swing-junit:
+  - name: build-all
     image: adoptopenjdk/openjdk11:alpine
     commands:
       - <<: *pre_cmds
-      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false assertj-swing-junit:check
-      - <<: *post_cmds
-  assertj-swing-junit-jupiter:
-    image: adoptopenjdk/openjdk11:alpine
-    commands:
-      - <<: *pre_cmds
-      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false assertj-swing-junit-jupiter:check
-      - <<: *post_cmds
-  assertj-swing:
+      - ./gradlew -PenvIsCi=true fest-reflect:check
+      - ./gradlew -PenvIsCi=true assertj-swing-junit:check
+      - ./gradlew -PenvIsCi=true assertj-swing-junit-jupiter:check
+      - ./gradlew --stop
+      - killall Xvfb
+  - name: assertj-swing
     image: adoptopenjdk/openjdk11:alpine
     commands:
       - <<: *pre_cmds
       - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false assertj-swing:check
-      - <<: *post_cmds
+      - killall Xvfb
