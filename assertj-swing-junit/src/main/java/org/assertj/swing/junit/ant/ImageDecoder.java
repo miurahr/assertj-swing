@@ -12,11 +12,10 @@
  */
 package org.assertj.swing.junit.ant;
 
-import static org.assertj.swing.junit.ant.CommonConstants.UTF_8;
-
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import javax.imageio.ImageIO;
 
@@ -30,8 +29,8 @@ import org.apache.commons.codec.binary.Base64;
 class ImageDecoder {
 
   BufferedImage decodeBase64(String encoded) throws IOException {
-    ByteArrayInputStream in = null;
-    byte[] toDecode = encoded.getBytes(UTF_8);
+    ByteArrayInputStream in;
+    byte[] toDecode = encoded.getBytes(StandardCharsets.UTF_8);
     in = new ByteArrayInputStream(Base64.decodeBase64(toDecode));
     return ImageIO.read(in);
   }

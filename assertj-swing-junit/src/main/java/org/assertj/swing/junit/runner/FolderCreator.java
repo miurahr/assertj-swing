@@ -12,10 +12,9 @@
  */
 package org.assertj.swing.junit.runner;
 
+import org.apache.commons.io.FileUtils;
+
 import static java.io.File.separator;
-import static org.assertj.core.util.Files.delete;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,14 +30,14 @@ class FolderCreator {
   File createFolder(File parent, String name, boolean deleteIfExists) {
     try {
       String canonicalPath = parent.getCanonicalPath();
-      File imageFolder = new File(concat(canonicalPath, separator, name));
-      if (deleteIfExists) {
-        delete(imageFolder);
+      File imageFolder = new File(canonicalPath + separator + name);
+      if (deleteIfExists && imageFolder.exists()) {
+        FileUtils.forceDelete(imageFolder);
       }
-      imageFolder.mkdir();
+      FileUtils.forceMkdir(imageFolder);
       return imageFolder;
     } catch (Exception e) {
-      String message = concat("Unable to create directory ", quote(name));
+      String message = "Unable to create directory " + "'" + name + "'";
 
       if (e instanceof IOException) {
         throw new UncheckedIOException(message, (IOException) e);

@@ -14,7 +14,6 @@ package org.assertj.swing.junit.xml;
 
 import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
 import static org.assertj.core.util.Objects.hashCodeFor;
-import static org.assertj.core.util.Strings.concat;
 
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
@@ -222,6 +221,8 @@ public class XmlNode {
 
   @Override
   public String toString() {
-    return concat(getClass().getSimpleName(), "[", "target=", target, "]");
+    return getClass().getSimpleName() + "[" +
+           "target=" + target +
+           ']';
   }
 }

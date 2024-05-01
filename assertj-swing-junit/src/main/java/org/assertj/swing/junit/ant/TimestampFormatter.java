@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.junit.ant;
 
-import static org.apache.tools.ant.util.DateUtils.ISO8601_DATETIME_PATTERN;
-
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
-
-import org.apache.tools.ant.util.DateUtils;
 
 /**
  * Understands formatting a date using ISO8601-like pattern: <tt>yyyy-MM-ddTHH:mm:ss</tt>. It does not support timezone.
@@ -24,8 +24,9 @@ import org.apache.tools.ant.util.DateUtils;
  * @author Alex Ruiz
  */
 class TimestampFormatter {
-
   String format(Date date) {
-    return DateUtils.format(date, ISO8601_DATETIME_PATTERN);
+    Instant instant = date.toInstant();
+    LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);
+    return DateTimeFormatter.ISO_DATE_TIME.format(localDateTime);
   }
 }

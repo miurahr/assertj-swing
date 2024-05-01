@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.junit.extension;
 
-import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.junit.runner.FailureScreenshotTaker;
 import org.assertj.swing.junit.runner.ImageFolderCreator;
 import org.junit.jupiter.api.extension.Extension;
@@ -40,7 +39,6 @@ public class GUITestExtension implements Extension, InvocationInterceptor {
     screenshotTaker = new FailureScreenshotTaker(new ImageFolderCreator().createImageFolder());
   }
 
-  @VisibleForTesting
   GUITestExtension(FailureScreenshotTaker screenshotTaker) {
     this.screenshotTaker = screenshotTaker;
   }

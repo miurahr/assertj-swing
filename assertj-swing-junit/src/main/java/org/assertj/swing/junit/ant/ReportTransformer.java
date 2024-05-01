@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.junit.ant;
 
-import static org.assertj.core.util.Strings.concat;
-
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -63,7 +61,7 @@ public class ReportTransformer extends AggregateTransformer {
    */
   public ReportTransformer(Task task) {
     super(task);
-    params = new CopyOnWriteArrayList<Param>();
+    params = new CopyOnWriteArrayList<>();
   }
 
   /**
@@ -96,10 +94,10 @@ public class ReportTransformer extends AggregateTransformer {
     try {
       xsltTask.execute();
     } catch (Exception e) {
-      throw new BuildException(concat("Errors while applying transformations: ", e.getMessage()), e);
+      throw new BuildException("Errors while applying transformations: " + e.getMessage(), e);
     }
     long transformTime = System.currentTimeMillis() - startingTime;
-    task.log(concat("Transform time: ", String.valueOf(transformTime), " ms"));
+    task.log("Transform time: " + transformTime + " ms");
     delete(outputFile);
   }
 
@@ -124,7 +122,7 @@ public class ReportTransformer extends AggregateTransformer {
       xslname = "junit-noframes.xsl";
     if (styleDir == null) {
       URLResource stylesheet = new URLResource();
-      URL stylesheetURL = getClass().getClassLoader().getResource(concat(XSL_FILE_PATH, xslname));
+      URL stylesheetURL = getClass().getClassLoader().getResource(XSL_FILE_PATH + xslname);
       stylesheet.setURL(stylesheetURL);
       return stylesheet;
     }
@@ -143,7 +141,7 @@ public class ReportTransformer extends AggregateTransformer {
   private File outputFile(TempFile tempFileTask) {
     Project project = task.getProject();
     if (format.equals(FRAMES)) {
-      String tempFileProperty = concat(getClass().getName(), String.valueOf(counter++));
+      String tempFileProperty = getClass().getName() + counter++;
       setUpTempFileTask(tempFileTask, tempFileProperty);
       return new File(project.getProperty(tempFileProperty));
     }

@@ -14,7 +14,6 @@ package org.assertj.swing.junit.ant;
 
 import static java.io.File.separator;
 import static java.util.logging.Level.SEVERE;
-import static org.assertj.swing.util.Strings.isNullOrEmpty;
 
 import java.awt.image.BufferedImage;
 import java.util.logging.Logger;
@@ -30,11 +29,11 @@ public final class ImageHandler {
 
   private static final String EMPTY_STRING = "";
 
-  private static Logger logger = Logger.getAnonymousLogger();
+  private static final Logger logger = Logger.getAnonymousLogger();
 
-  private static ImageEncoder imageEncoder = new ImageEncoder();
-  private static ImageDecoder imageDecoder = new ImageDecoder();
-  private static ImageFileWriter imageFileWriter = new ImageFileWriter();
+  private static final ImageEncoder imageEncoder = new ImageEncoder();
+  private static final ImageDecoder imageDecoder = new ImageDecoder();
+  private static final ImageFileWriter imageFileWriter = new ImageFileWriter();
 
   /**
    * Encodes the given image using the base64 algorithm. Failures in encoding an image are simply logged, no exceptions
@@ -93,16 +92,15 @@ public final class ImageHandler {
 
   // makes testing easier
   static String decodeBase64AndSaveAsPng(String encoded, String path, ImageDecoder decoder, ImageFileWriter writer) {
-    if (isNullOrEmpty(encoded))
-      return EMPTY_STRING;
-    if (isNullOrEmpty(path))
-      return EMPTY_STRING;
-    String realPath = path.replace("/", separator);
-    BufferedImage image = decodeBase64(encoded, decoder);
-    try {
-      writer.writeAsPng(image, realPath);
-    } catch (Exception ignored) {
-      logger.log(SEVERE, ignored.getMessage());
+    if (encoded != null && !encoded.isEmpty() && path != null && !path.isEmpty()) {
+        BufferedImage image = decodeBase64(encoded, decoder);
+        if (image != null) {
+            try {
+                writer.writeAsPng(image, path.replace("/", separator));
+            } catch (Exception e) {
+                logger.log(SEVERE, e.getMessage());
+            }
+        }
     }
     return EMPTY_STRING;
   }

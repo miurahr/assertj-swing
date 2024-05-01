@@ -12,9 +12,6 @@
  */
 package org.assertj.swing.junit.runner;
 
-import static org.assertj.core.util.Arrays.isNullOrEmpty;
-import static org.assertj.core.util.Strings.concat;
-
 import java.lang.reflect.Method;
 
 /**
@@ -33,11 +30,11 @@ public final class Formatter {
    * @return the name of a test.
    */
   public static String testNameFrom(Class<?> type, Method method) {
-    return concat(type.getName(), ".", method.getName(), format(method.getParameterTypes()));
+    return type.getName() + "." + method.getName() + format(method.getParameterTypes());
   }
 
   private static String format(Class<?>[] parameterTypes) {
-    if (isNullOrEmpty(parameterTypes))
+    if (parameterTypes == null || parameterTypes.length == 0)
       return "";
     StringBuilder b = new StringBuilder("(");
     for (int i = 0; i < parameterTypes.length; i++) {

@@ -6,9 +6,10 @@ plugins {
 }
 
 dependencies {
-    api(libs.commons.codec)
     api(libs.junit4)
     api(project(":assertj-swing"))
+    implementation(libs.commons.codec)
+    implementation(libs.commons.io)
     implementation(project(":fest-reflect"))
     compileOnly(libs.ant.junit)
     testImplementation(project(":assertj-swing"))

@@ -12,12 +12,10 @@
  */
 package org.assertj.swing.junit.xml;
 
-import static java.lang.String.valueOf;
+import java.util.Objects;
+
 import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
-import static org.assertj.core.util.Objects.areEqual;
 import static org.assertj.core.util.Objects.hashCodeFor;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
 
 /**
  * Understands an attribute of a <code>{@link XmlNode}</code>. This class is intended for internal use only. It only
@@ -71,7 +69,7 @@ public class XmlAttribute {
      * @return the created <code>XmlAttribute</code>.
      */
     public XmlAttribute value(long value) {
-      return new XmlAttribute(name, valueOf(value));
+      return new XmlAttribute(name, String.valueOf(value));
     }
 
     /**
@@ -82,7 +80,7 @@ public class XmlAttribute {
      * @return the created <code>XmlAttribute</code>.
      */
     public XmlAttribute value(double value) {
-      return new XmlAttribute(name, valueOf(value));
+      return new XmlAttribute(name, String.valueOf(value));
     }
   }
 
@@ -126,9 +124,9 @@ public class XmlAttribute {
     if (getClass() != obj.getClass())
       return false;
     XmlAttribute other = (XmlAttribute) obj;
-    if (!areEqual(name, other.name))
+    if (!Objects.deepEquals(name, other.name))
       return false;
-    return areEqual(value, other.value);
+    return Objects.deepEquals(value, other.value);
   }
 
   /**
@@ -151,6 +149,9 @@ public class XmlAttribute {
    */
   @Override
   public String toString() {
-    return concat(getClass().getSimpleName(), "[", "name=", quote(name), ",", "value=", quote(value), "]");
+    return getClass().getSimpleName() + "[" +
+           "name='" + name + '\'' +
+           ",value='" + value + '\'' +
+           ']';
   }
 }

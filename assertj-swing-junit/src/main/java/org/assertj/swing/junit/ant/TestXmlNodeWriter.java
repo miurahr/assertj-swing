@@ -24,7 +24,6 @@ import static org.assertj.swing.junit.ant.Tests.testClassNameFrom;
 import static org.assertj.swing.junit.ant.Tests.testMethodNameFrom;
 import static org.assertj.swing.junit.xml.XmlAttribute.name;
 import static org.assertj.swing.junit.xml.XmlAttributes.attributes;
-import static org.assertj.swing.util.Strings.isNullOrEmpty;
 import junit.framework.Test;
 
 import org.assertj.swing.junit.xml.XmlNode;
@@ -67,8 +66,9 @@ class TestXmlNodeWriter {
 
   TestXmlNodeWriter writeError(XmlNode target, Throwable error) {
     String message = error.getMessage();
-    if (!isNullOrEmpty(message))
+    if (message != null && !message.isEmpty()) {
       target.addAttribute(name(ATTR_MESSAGE).value(message));
+    }
     target.addAttribute(name(ATTR_TYPE).value(error.getClass().getName()));
     return this;
   }

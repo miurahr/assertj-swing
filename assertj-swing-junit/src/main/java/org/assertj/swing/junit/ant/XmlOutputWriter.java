@@ -13,12 +13,12 @@
 package org.assertj.swing.junit.ant;
 
 import static java.lang.System.lineSeparator;
-import static org.apache.tools.ant.util.FileUtils.close;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UncheckedIOException;
 import java.io.Writer;
 
 import org.apache.tools.ant.BuildException;
@@ -50,7 +50,7 @@ class XmlOutputWriter {
     write(xml, out, new DOMElementWriter());
   }
 
-  void write(XmlNode xml, OutputStream out, DOMElementWriter xmlWriter) {
+  void write(XmlNode xml, OutputStream out, DOMElementWriter xmlWriter) throws UncheckedIOException {
     Writer writer = null;
     try {
       writer = new BufferedWriter(new OutputStreamWriter(out, CHARSET));
@@ -58,11 +58,18 @@ class XmlOutputWriter {
       writer.write(lineSeparator());
       xmlWriter.write(xml.target(), writer, 0, INDENT);
       writer.flush();
-    } catch (IOException ex) {
+    } catch (Exception ex) {
       throw new BuildException("Unable to write log file", ex);
     } finally {
-      if (!outputStreams.isStandardOutOrErr(out))
-        close(writer);
+      if (!outputStreams.isStandardOutOrErr(out)) {
+        try {
+          if (writer != null) {
+            writer.close();
+          }
+        } catch (IOException e) {
+          throw new UncheckedIOException(e);
+        }
+      }
     }
   }
 }

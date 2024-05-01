@@ -13,11 +13,11 @@
 package org.assertj.swing.junit.ant;
 
 import static org.assertj.swing.image.ImageFileExtensions.PNG;
-import static org.assertj.swing.junit.ant.CommonConstants.UTF_8;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import javax.imageio.ImageIO;
 
@@ -34,7 +34,7 @@ class ImageEncoder {
     try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
       ImageIO.write(image, PNG, out);
       byte[] encoded = Base64.encodeBase64(out.toByteArray());
-      return new String(encoded, UTF_8);
+      return new String(encoded, StandardCharsets.UTF_8);
     }
   }
 }

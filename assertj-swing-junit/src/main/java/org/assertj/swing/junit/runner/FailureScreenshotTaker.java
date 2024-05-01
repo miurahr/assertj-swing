@@ -14,8 +14,6 @@ package org.assertj.swing.junit.runner;
 
 import static java.io.File.separator;
 import static java.util.logging.Level.WARNING;
-import static org.assertj.core.util.Strings.concat;
-import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.image.ImageFileExtensions.PNG;
 
 import java.awt.GraphicsEnvironment;
@@ -33,7 +31,7 @@ import org.assertj.swing.image.ScreenshotTakerIF;
  */
 public class FailureScreenshotTaker {
 
-  private static Logger logger = Logger.getAnonymousLogger();
+  private static final Logger logger = Logger.getAnonymousLogger();
 
   private final File imageFolder;
   private final ScreenshotTakerIF screenshotTaker;
@@ -59,11 +57,11 @@ public class FailureScreenshotTaker {
    */
   public void saveScreenshot(String failedTest) {
     try {
-      String fileName = concat(imageFolder.getCanonicalPath(), separator, failedTest, ".", PNG);
+      String fileName = imageFolder.getCanonicalPath() + separator + failedTest + "." + PNG;
       screenshotTaker.saveDesktopAsPng(fileName);
-      logger.info(concat("Screenshot of failed test saved as ", quote(fileName)));
+      logger.info("Screenshot of failed test saved as " + "'" + fileName + "'");
     } catch (Exception e) {
-      logger.log(WARNING, concat("Unable to take screenshot of failed test ", quote(failedTest)), e);
+      logger.log(WARNING, "Unable to take screenshot of failed test " + "'" + failedTest + "'", e);
     }
   }
 }

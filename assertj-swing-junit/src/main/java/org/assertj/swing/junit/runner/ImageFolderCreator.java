@@ -12,10 +12,11 @@
  */
 package org.assertj.swing.junit.runner;
 
-import static org.assertj.core.util.Files.currentFolder;
 import static org.assertj.swing.core.Settings.shouldPreserveScreenshots;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 
 /**
  * Understands creation of the folder where screenshots of failed GUI tests will be saved to.
@@ -46,6 +47,11 @@ public class ImageFolderCreator {
    * @throws RuntimeException if any error occurs when creating the folder.
    */
   public File createImageFolder() {
-    return folderCreator.createFolder(currentFolder(), FAILED_GUI_TESTS_FOLDER, !shouldPreserveScreenshots());
+    try {
+      return folderCreator.createFolder((new File(".")).getCanonicalFile(), FAILED_GUI_TESTS_FOLDER,
+                                        !shouldPreserveScreenshots());
+    } catch (IOException e) {
+      throw new UncheckedIOException("Unable to get current directory", e);
+    }
   }
 }
