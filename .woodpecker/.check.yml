@@ -15,13 +15,35 @@ clone:
       lfs: false
       tags: true
 
+variables:
+  pre_cmds: &pre_cmds
+    - apk add --no-cache xvfb xvfb-run libsm-dev libxrender libxext-dev libxtst-dev libxcb-dev ttf-dejavu font-xfree86-type1 font-sun-misc fluxbox
+    - export DISPLAY=:99
+    - Xvfb :99 -screen 0 1024x768x24 &
+    - fluxbox &
+  post_cmds: &post_cmds
+    - killall Xvfb
+
 steps:
-  build:
+  fest-reflect:
     image: adoptopenjdk/openjdk11:alpine
     commands:
-      - apk add --no-cache xvfb xvfb-run libsm-dev libxrender libxext-dev libxtst-dev libxcb-dev ttf-dejavu font-xfree86-type1 font-sun-misc fluxbox
-      - export DISPLAY=:99
-      - Xvfb :99 -screen 0 1024x768x24 &
-      - fluxbox &
-      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false clean fest-reflect:check assertj-swing-junit:check assertj-swing-junit-jupiter:check check
-      - killall Xvfb
+      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false fest-reflect:check
+  assertj-swing-junit:
+    image: adoptopenjdk/openjdk11:alpine
+    commands:
+      - <<: *pre_cmds
+      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false assertj-swing-junit:check
+      - <<: *post_cmds
+  assertj-swing-junit-jupiter:
+    image: adoptopenjdk/openjdk11:alpine
+    commands:
+      - <<: *pre_cmds
+      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false assertj-swing-junit-jupiter:check
+      - <<: *post_cmds
+  assertj-swing:
+    image: adoptopenjdk/openjdk11:alpine
+    commands:
+      - <<: *pre_cmds
+      - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false assertj-swing:check
+      - <<: *post_cmds
