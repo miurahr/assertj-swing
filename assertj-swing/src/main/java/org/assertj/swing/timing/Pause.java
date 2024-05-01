@@ -75,10 +75,10 @@ public final class Pause {
     Objects.requireNonNull(condition);
     try {
       Callable<Object> task = () -> {
-          while (!Thread.currentThread().isInterrupted() && !condition.test()) {
-              pause();
-          }
-          return condition;
+        while (!Thread.currentThread().isInterrupted() && !condition.test()) {
+          pause();
+        }
+        return condition;
       };
       performPause(task, timeout, condition);
     } finally {
