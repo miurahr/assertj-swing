@@ -62,6 +62,7 @@ public class BasicRobot_closeWindow_Test extends EDTSafeTestCase {
 
   @Test
   public void should_Not_Close_Window_If_Window_Not_Showing() {
+    robot.waitForIdle();
     hide(w);
     robot.waitForIdle();
     robot.close(w);
