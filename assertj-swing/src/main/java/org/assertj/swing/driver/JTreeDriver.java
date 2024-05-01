@@ -36,6 +36,7 @@ import static org.assertj.swing.util.Platform.controlOrCommandKey;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -366,7 +367,8 @@ public class JTreeDriver extends JComponentDriver {
   public void toggleRow(@NotNull JTree tree, int row) {
     Triple<Boolean, Point, Integer> info = scrollToRowAndGetToggleInfo(tree, row, location());
     robot.waitForIdle();
-    toggleCell(tree, checkNotNull(info.second), info.third);
+    toggleCell(tree, Objects.requireNonNull(info.second), info.third);
+    robot.waitForIdle();
   }
 
   /*
@@ -377,15 +379,15 @@ public class JTreeDriver extends JComponentDriver {
   private static Triple<Boolean, Point, Integer> scrollToRowAndGetToggleInfo(final @NotNull JTree tree,
                                                                              final int row,
                                                                              final @NotNull JTreeLocation location) {
-    Triple<Boolean, Point, Integer> result = execute(new GuiQuery<Triple<Boolean, Point, Integer>>() {
-      @Override
-      protected Triple<Boolean, Point, Integer> executeInEDT() {
-        checkEnabledAndShowing(tree);
-        Point p = scrollToVisible(tree, row, location);
-        return Triple.of(tree.isExpanded(row), p, tree.getToggleClickCount());
-      }
+    Triple<Boolean, Point, Integer> result = execute(new GuiQuery<>() {
+        @Override
+        protected Triple<Boolean, Point, Integer> executeInEDT() {
+            checkEnabledAndShowing(tree);
+            Point p = scrollToVisible(tree, row, location);
+            return Triple.of(tree.isExpanded(row), p, tree.getToggleClickCount());
+        }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -405,10 +407,10 @@ public class JTreeDriver extends JComponentDriver {
   @RunsInEDT
   public void expandPath(@NotNull JTree tree, @NotNull String path) {
     Triple<Boolean, Point, Integer> info = scrollToMatchingPathAndGetToggleInfo(tree, path, pathFinder(), location());
-    if (info.first) {
+    if (Boolean.TRUE.equals(info.first)) {
       return; // already expanded
     }
-    toggleCell(tree, checkNotNull(info.second), info.third);
+    toggleCell(tree, Objects.requireNonNull(info.second), info.third);
   }
 
   /**
@@ -428,10 +430,10 @@ public class JTreeDriver extends JComponentDriver {
   @RunsInEDT
   public void collapsePath(@NotNull JTree tree, @NotNull String path) {
     Triple<Boolean, Point, Integer> info = scrollToMatchingPathAndGetToggleInfo(tree, path, pathFinder(), location());
-    if (!info.first) {
+    if (Boolean.FALSE.equals(info.first)) {
       return; // already collapsed
     }
-    toggleCell(tree, checkNotNull(info.second), info.third);
+    toggleCell(tree, Objects.requireNonNull(info.second), info.third);
   }
 
   /*
@@ -453,7 +455,7 @@ public class JTreeDriver extends JComponentDriver {
         return Triple.of(tree.isExpanded(matchingPath), p, tree.getToggleClickCount());
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT
@@ -491,7 +493,7 @@ public class JTreeDriver extends JComponentDriver {
    * @throws LocationUnavailableException if a tree path for any of the given rows cannot be found.
    */
   @RunsInEDT
-  public void selectRows(final @NotNull JTree tree, final @NotNull int[] rows) {
+  public void selectRows(final @NotNull JTree tree, final int @NotNull [] rows) {
     ArrayPreconditions.checkNotNullOrEmpty(rows);
     clearSelection(tree);
     new MultipleSelectionTemplate(robot) {
@@ -521,7 +523,7 @@ public class JTreeDriver extends JComponentDriver {
    * @throws LocationUnavailableException if a tree path for any of the given rows cannot be found.
    */
   @RunsInEDT
-  public void unselectRows(final @NotNull JTree tree, final @NotNull int[] rows) {
+  public void unselectRows(final @NotNull JTree tree, final int @NotNull [] rows) {
     ArrayPreconditions.checkNotNullOrEmpty(rows);
     new MultipleSelectionTemplate(robot) {
       @Override
@@ -596,7 +598,7 @@ public class JTreeDriver extends JComponentDriver {
 
       @Override
       void selectElement(int index) {
-        selectPath(tree, checkNotNull(paths[index]));
+        selectPath(tree, Objects.requireNonNull(paths[index]));
       }
     }.multiSelect();
   }
@@ -623,7 +625,7 @@ public class JTreeDriver extends JComponentDriver {
 
       @Override
       void unselectElement(int index) {
-        unselectPath(tree, checkNotNull(paths[index]));
+        unselectPath(tree, Objects.requireNonNull(paths[index]));
       }
     }.multiUnselect();
   }
@@ -677,7 +679,7 @@ public class JTreeDriver extends JComponentDriver {
   @NotNull
   public JPopupMenu showPopupMenu(@NotNull JTree tree, int row) {
     Pair<Boolean, Point> info = scrollToRow(tree, row, location(), true);
-    Point p = checkNotNull(info.second);
+    Point p = Objects.requireNonNull(info.second);
     return robot.showPopupMenu(tree, p);
   }
 
@@ -699,7 +701,7 @@ public class JTreeDriver extends JComponentDriver {
   public JPopupMenu showPopupMenu(@NotNull JTree tree, @NotNull String path) {
     Triple<TreePath, Boolean, Point> info = scrollToMatchingPath(tree, path, true);
     robot.waitForIdle();
-    Point where = checkNotNull(info.third);
+    Point where = Objects.requireNonNull(info.third);
     return robot.showPopupMenu(tree, where);
   }
 
@@ -724,8 +726,8 @@ public class JTreeDriver extends JComponentDriver {
   @NotNull
   private Point scrollAndSelectRow(@NotNull JTree tree, int row, boolean select, boolean singleSelectRequired) {
     Pair<Boolean, Point> info = scrollToRow(tree, row, location(), singleSelectRequired);
-    Point p = checkNotNull(info.second);
-    if (info.first != select) {
+    Point p = Objects.requireNonNull(info.second);
+    if (Boolean.TRUE.equals(info.first) != select) {
       robot.click(tree, p);
     }
     return p;
@@ -746,7 +748,7 @@ public class JTreeDriver extends JComponentDriver {
   @RunsInEDT
   public void drop(@NotNull JTree tree, int row) {
     Pair<Boolean, Point> info = scrollToRow(tree, row, location(), true);
-    drop(tree, checkNotNull(info.second));
+    drop(tree, Objects.requireNonNull(info.second));
   }
 
   /*
@@ -766,7 +768,7 @@ public class JTreeDriver extends JComponentDriver {
         return Pair.of(selected, p);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -774,7 +776,7 @@ public class JTreeDriver extends JComponentDriver {
   private static Point scrollToVisible(@NotNull JTree tree, int row, @NotNull JTreeLocation location) {
     Pair<Rectangle, Point> boundsAndCoordinates = location.rowBoundsAndCoordinates(tree, row);
     tree.scrollRectToVisible(boundsAndCoordinates.first);
-    return checkNotNull(boundsAndCoordinates.second);
+    return Objects.requireNonNull(boundsAndCoordinates.second);
   }
 
   /**
@@ -799,8 +801,8 @@ public class JTreeDriver extends JComponentDriver {
                                    boolean singleSelectionRequired) {
     Triple<TreePath, Boolean, Point> info = scrollToMatchingPath(tree, path, singleSelectionRequired);
     robot.waitForIdle();
-    Point where = checkNotNull(info.third);
-    if (info.second != select) {
+    Point where = Objects.requireNonNull(info.third);
+    if (Boolean.TRUE.equals(info.second) != select) {
       robot.click(tree, where);
     }
     return where;
@@ -820,7 +822,7 @@ public class JTreeDriver extends JComponentDriver {
   @RunsInEDT
   public void drop(@NotNull JTree tree, @NotNull String path) {
     Point p = scrollToMatchingPath(tree, path, true).third;
-    drop(tree, checkNotNull(p));
+    drop(tree, Objects.requireNonNull(p));
   }
 
   /*
@@ -853,7 +855,7 @@ public class JTreeDriver extends JComponentDriver {
         return Pair.of(isSelected, scrollToTreePath(tree, path, location));
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -862,12 +864,12 @@ public class JTreeDriver extends JComponentDriver {
                                         @NotNull JTreeLocation location) {
     Pair<Rectangle, Point> boundsAndCoordinates = location.pathBoundsAndCoordinates(tree, path);
     tree.scrollRectToVisible(boundsAndCoordinates.first);
-    return checkNotNull(boundsAndCoordinates.second);
+    return Objects.requireNonNull(boundsAndCoordinates.second);
   }
 
   @RunsInEDT
   private boolean makeParentVisible(@NotNull JTree tree, @NotNull TreePath path) {
-    boolean changed = makeVisible(tree, checkNotNull(path.getParentPath()), true);
+    boolean changed = makeVisible(tree, Objects.requireNonNull(path.getParentPath()), true);
     if (changed) {
       robot.waitForIdle();
     }
@@ -916,8 +918,8 @@ public class JTreeDriver extends JComponentDriver {
    * @throws AssertionError if the given {@code JTree} selection is not equal to the given rows.
    */
   @RunsInEDT
-  public void requireSelection(@NotNull JTree tree, @NotNull int[] rows) {
-    checkNotNull(rows);
+  public void requireSelection(@NotNull JTree tree, int @NotNull [] rows) {
+    Objects.requireNonNull(rows);
     checkHasSelection(tree, rows, selectionProperty(tree));
   }
 
@@ -933,7 +935,7 @@ public class JTreeDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void requireSelection(@NotNull JTree tree, @NotNull String[] paths) {
-    checkNotNull(paths);
+    Objects.requireNonNull(paths);
     checkHasSelection(tree, paths, pathFinder(), selectionProperty(tree));
   }
 
@@ -1002,7 +1004,7 @@ public class JTreeDriver extends JComponentDriver {
    * @throws NullPointerException if the given separator is {@code null}.
    */
   public void replaceSeparator(@NotNull String newSeparator) {
-    pathFinder.replaceSeparator(checkNotNull(newSeparator));
+    pathFinder.replaceSeparator(Objects.requireNonNull(newSeparator));
   }
 
   /**
@@ -1013,7 +1015,7 @@ public class JTreeDriver extends JComponentDriver {
    * @throws NullPointerException if {@code newCellReader} is {@code null}.
    */
   public void replaceCellReader(@NotNull JTreeCellReader newCellReader) {
-    pathFinder.replaceCellReader(checkNotNull(newCellReader));
+    pathFinder.replaceCellReader(Objects.requireNonNull(newCellReader));
   }
 
   /**
