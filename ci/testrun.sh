@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 CMD=nerdctl
-
 IMAGE=miurahr/assertj-swing-test
-CTX="$PWD"
-if ! $CMD build -t $IMAGE $CTX ; then
+
+if ! $CMD build -t $IMAGE ci ; then
   echo Container build error, abort...
   exit 1
 fi
