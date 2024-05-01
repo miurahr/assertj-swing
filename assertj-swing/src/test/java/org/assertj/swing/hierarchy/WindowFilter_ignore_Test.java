@@ -38,6 +38,7 @@ public class WindowFilter_ignore_Test extends WindowFilter_TestCase {
     addToImplicitlyIgnoredMap(c);
     ignore(filter, c);
     assertThat(allIgnored()).containsOnly(c);
+    recognize(filter, c);
     assertThatNoComponentsAreImplicitlyIgnored();
   }
 
@@ -48,6 +49,7 @@ public class WindowFilter_ignore_Test extends WindowFilter_TestCase {
     addToImplicitlyIgnoredMap(window, dialog);
     ignore(filter, window);
     assertThat(allIgnored()).containsOnly(window, dialog);
+    recognize(filter, window);
     assertThatNoComponentsAreImplicitlyIgnored();
   }
 
@@ -57,11 +59,17 @@ public class WindowFilter_ignore_Test extends WindowFilter_TestCase {
     addToImplicitlyIgnoredMap(dialog);
     ignore(filter, dialog.getOwner());
     assertThat(allIgnored()).containsOnly(dialog);
+    recognize(filter, dialog.getOwner());
     assertThatNoComponentsAreImplicitlyIgnored();
   }
 
   @RunsInEDT
   private static void ignore(final WindowFilter filter, final Component c) {
     execute(() -> filter.ignore(c));
+  }
+
+  @RunsInEDT
+  private static void recognize(final WindowFilter filter, final Component c) {
+    execute(() -> filter.recognize(c));
   }
 }
