@@ -40,6 +40,7 @@ public class BasicRobot_closeWindow_Test extends EDTSafeTestCase {
     robot = (BasicRobot) BasicRobot.robotWithNewAwtHierarchy();
     w = TestWindow.createNewWindow(getClass());
     w.display();
+    robot.waitForIdle();
   }
 
   @After
@@ -49,12 +50,11 @@ public class BasicRobot_closeWindow_Test extends EDTSafeTestCase {
 
   @Test
   public void should_Close_Window() {
-    robot.waitForIdle();
     robot.close(w);
     pause(new Condition("Window closed") {
       @Override
       public boolean test() {
-        return !isVisible(w);
+        return !isShowing(w);
       }
     });
     assertThat(isVisible(w)).isFalse();

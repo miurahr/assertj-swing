@@ -44,7 +44,7 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
     robot().focusAndWaitForFocusGain(textField);
     KeyPressRecorder recorder = KeyPressRecorder.attachTo(textField);
     // FIXME: change deprecated key mask to new one
-    robot().pressAndReleaseKey(VK_C, CTRL_MASK, SHIFT_MASK);
+    robot().pressAndReleaseKey(VK_C, CTRL_DOWN_MASK, SHIFT_DOWN_MASK);
     robot().waitForIdle();
     List<KeyAction> actions = recorder.actions;
     assertThat(actions).containsOnly(KeyAction.action(KEY_PRESSED, VK_SHIFT),
@@ -116,10 +116,9 @@ public class BasicRobot_pressAndReleaseKeyWithModifiers_Test extends BasicRobot_
     @Override
     @NotNull
     public String toString() {
-      StringBuilder b = new StringBuilder();
-      b.append("[type=").append(type).append(", ");
-      b.append("keyCode=").append(keyCode).append("]");
-      return b.toString();
+        String b = "[type=" + type + ", " +
+                "keyCode=" + keyCode + "]";
+      return b;
     }
   }
 }

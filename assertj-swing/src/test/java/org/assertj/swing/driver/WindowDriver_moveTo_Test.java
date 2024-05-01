@@ -33,6 +33,7 @@ public class WindowDriver_moveTo_Test extends WindowDriver_TestCase {
     showWindow();
     Point newPosition = new FluentPoint(RobotFactory.DEFAULT_WINDOW_LOCATION).addToX(100).addToY(100);
     driver.moveTo(window, newPosition);
+    robot.waitForIdle();
     assertThat(locationOnScreen(window)).isEqualTo(newPosition);
   }
 
