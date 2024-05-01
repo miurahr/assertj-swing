@@ -380,12 +380,12 @@ public class JTreeDriver extends JComponentDriver {
                                                                              final int row,
                                                                              final @NotNull JTreeLocation location) {
     Triple<Boolean, Point, Integer> result = execute(new GuiQuery<>() {
-        @Override
-        protected Triple<Boolean, Point, Integer> executeInEDT() {
-            checkEnabledAndShowing(tree);
-            Point p = scrollToVisible(tree, row, location);
-            return Triple.of(tree.isExpanded(row), p, tree.getToggleClickCount());
-        }
+      @Override
+      protected Triple<Boolean, Point, Integer> executeInEDT() {
+        checkEnabledAndShowing(tree);
+        Point p = scrollToVisible(tree, row, location);
+        return Triple.of(tree.isExpanded(row), p, tree.getToggleClickCount());
+      }
     });
     return Objects.requireNonNull(result);
   }
