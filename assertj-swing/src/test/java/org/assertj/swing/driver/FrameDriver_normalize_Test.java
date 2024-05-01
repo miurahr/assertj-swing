@@ -18,16 +18,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
 import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
 
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 /**
  * Tests for {@link FrameDriver#normalize(java.awt.Frame)}.
  * 
  * @author Alex Ruiz
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FrameDriver_normalize_Test extends FrameDriver_TestCase {
   @Test
   public void should_Normalize_Frame() {
@@ -36,6 +33,7 @@ public class FrameDriver_normalize_Test extends FrameDriver_TestCase {
     robot.waitForIdle();
     assertThat(frameState()).isEqualTo(MAXIMIZED_BOTH);
     driver.normalize(window);
+    robot.waitForIdle();
     assertThat(frameState()).isEqualTo(NORMAL);
   }
 
