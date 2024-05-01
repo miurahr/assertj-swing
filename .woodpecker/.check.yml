@@ -25,6 +25,8 @@ variables:
 steps:
   - name: build-all
     image: adoptopenjdk/openjdk11:alpine
+    environment:
+      GRADLE_USER_HOME: ${CI_WORKSPACE}/ci
     commands:
       - <<: *pre_cmds
       - ./gradlew -PenvIsCi=true fest-reflect:check
@@ -34,6 +36,8 @@ steps:
       - killall Xvfb
   - name: assertj-swing
     image: adoptopenjdk/openjdk11:alpine
+    environment:
+      GRADLE_USER_HOME: ${CI_WORKSPACE}/ci
     commands:
       - <<: *pre_cmds
       - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false assertj-swing:check
