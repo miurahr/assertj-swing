@@ -36,6 +36,7 @@ public class ComponentDriver_requireFocused_Test extends ComponentDriver_TestCas
   @Test
   public void should_Pass_If_Component_Has_Focus() {
     showWindow();
+    robot.waitForIdle();
     driver.requireFocused(window.textField);
   }
 }

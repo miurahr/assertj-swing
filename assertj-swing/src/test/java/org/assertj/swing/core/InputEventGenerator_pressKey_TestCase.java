@@ -17,12 +17,13 @@ import static java.awt.event.KeyEvent.VK_A;
 import static java.awt.event.KeyEvent.VK_D;
 import static java.awt.event.KeyEvent.VK_S;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.task.ComponentRequestFocusAndWaitForFocusGainTask.giveFocusAndWaitTillIsFocused;
 import static org.assertj.swing.timing.Pause.pause;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import javax.swing.text.JTextComponent;
 
@@ -45,13 +46,14 @@ public abstract class InputEventGenerator_pressKey_TestCase extends InputEventGe
 
   @Parameters
   public static Collection<Object[]> keys() {
-    return newArrayList(new Object[][] { { VK_A, "a" }, { VK_S, "s" }, { VK_D, "d" } });
+    ArrayList<Object[]> params = new ArrayList<>();
+    Collections.addAll(params, new Object[][] { { VK_A, "a" }, { VK_S, "s" }, { VK_D, "d" } });
+    return params;
   }
 
   public InputEventGenerator_pressKey_TestCase(int keyToPress, String expectedText) {
     this.keyToPress = keyToPress;
     this.expectedText = expectedText;
-
   }
 
   @Test

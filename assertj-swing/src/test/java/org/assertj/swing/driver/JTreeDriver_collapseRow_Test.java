@@ -31,6 +31,7 @@ public class JTreeDriver_collapseRow_Test extends JTreeDriver_toggleCell_TestCas
     showWindow();
     requireRowExpanded(0);
     driver.collapseRow(tree, 0);
+    robot.waitForIdle();
     requireRowCollapsed(0);
   }
 
@@ -39,6 +40,7 @@ public class JTreeDriver_collapseRow_Test extends JTreeDriver_toggleCell_TestCas
     showWindow();
     requireRowCollapsed(5);
     driver.collapseRow(tree, 5);
+    robot.waitForIdle();
     requireRowCollapsed(5);
   }
 

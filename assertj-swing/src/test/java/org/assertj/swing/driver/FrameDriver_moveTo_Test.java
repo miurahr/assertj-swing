@@ -33,6 +33,7 @@ public class FrameDriver_moveTo_Test extends FrameDriver_TestCase {
     showWindow();
     Point newLocation = windowLocationOnScreen().addToX(10).addToY(10);
     driver.moveTo(window, newLocation);
+    robot.waitForIdle();
     assertThat(windowLocationOnScreen()).isEqualTo(newLocation);
   }
 
