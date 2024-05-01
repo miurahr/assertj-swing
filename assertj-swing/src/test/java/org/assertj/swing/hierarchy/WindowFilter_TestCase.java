@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.awt.Component;
 import java.util.Set;
 
-import org.assertj.swing.test.core.EDTSafeTestCase;
+import org.assertj.swing.test.core.SequentialEDTSafeTestCase;
 import org.junit.Before;
 
 /**
@@ -25,11 +25,11 @@ import org.junit.Before;
  * 
  * @author Alex Ruiz
  */
-public abstract class WindowFilter_TestCase extends EDTSafeTestCase {
+public abstract class WindowFilter_TestCase extends SequentialEDTSafeTestCase {
   WindowFilter filter;
 
   @Before
-  public final void setUp() {
+  public final void onSetUp() {
     filter = new WindowFilter(new ParentFinder(), new ChildrenFinder());
     filter.ignored.clear();
     filter.implicitlyIgnored.clear();
