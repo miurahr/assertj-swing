@@ -15,6 +15,7 @@ package org.assertj.swing.test.core;
 import static org.assertj.swing.core.BasicRobot.robotWithNewAwtHierarchy;
 
 import org.assertj.swing.core.Robot;
+import org.assertj.swing.lock.ScreenLock;
 import org.junit.After;
 import org.junit.Before;
 
@@ -28,6 +29,7 @@ public class RobotBasedTestCase extends EDTSafeTestCase {
 
   @Before
   public final void setUp() {
+    ScreenLock.instance().acquire(this);
     robot = robotWithNewAwtHierarchy();
     onSetUp();
   }
@@ -40,6 +42,7 @@ public class RobotBasedTestCase extends EDTSafeTestCase {
       onTearDown();
     } finally {
       robot.cleanUp();
+      ScreenLock.instance().release(this);
     }
   }
 
