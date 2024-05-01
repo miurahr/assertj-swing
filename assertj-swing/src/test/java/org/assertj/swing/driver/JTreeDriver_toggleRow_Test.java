@@ -12,9 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsDisabledComponent;
 import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExceptionCauseIsNotShowingComponent;
@@ -24,11 +22,11 @@ import static org.assertj.swing.test.ExpectedException.assertThatIllegalStateExc
  * 
  * @author Alex Ruiz
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JTreeDriver_toggleRow_Test extends JTreeDriver_toggleCell_TestCase {
   @Test
   public void shouldToggleNodeByRow() {
     showWindow();
+    robot.waitForIdle();
     requireRowCollapsed(5);
     driver.toggleRow(tree, 5);
     requireRowExpanded(5);
