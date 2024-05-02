@@ -32,3 +32,12 @@ spotless {
         removeUnusedImports()
     }
 }
+
+publishing {
+    publications.named<MavenPublication>("mavenJava") {
+        pom {
+            name = "assertj-swing-junit-jupiter"
+            description = "Assertj-Swing JUnit5 Jupiter extension"
+        }
+    }
+}

@@ -42,3 +42,12 @@ tasks.named<Test>("test") {
     maxParallelForks =  1
     jvmArgs("-Xmx2048m", "--add-opens", "java.desktop/javax.swing=ALL-UNNAMED")
 }
+
+publishing {
+    publications.named<MavenPublication>("mavenJava") {
+        pom {
+            name = "assertj-swing-junit"
+            description = "Assertj-Swing JUnit4 extension"
+        }
+    }
+}

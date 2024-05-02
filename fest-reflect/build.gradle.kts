@@ -10,3 +10,12 @@ dependencies {
 }
 
 description = "FEST-reflect"
+
+publishing {
+    publications.named<MavenPublication>("mavenJava") {
+        pom {
+            name = "fest-reflect"
+            description = "FEST-reflect"
+        }
+    }
+}

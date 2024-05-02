@@ -47,3 +47,12 @@ spotless {
         removeUnusedImports()
     }
 }
+
+publishing {
+    publications.named<MavenPublication>("mavenJava") {
+        pom {
+            name = "assertj-swing"
+            description = "Assertj-Swing test framework"
+        }
+    }
+}

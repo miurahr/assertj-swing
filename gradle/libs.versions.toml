@@ -32,6 +32,6 @@ cglib = {group = "cglib", name = "cglib", version.ref = "cglib"}
 annotations = {module="org.jetbrains:annotations", version.ref = "jetbrains_annotations"}
 
 [plugins]
-nexus-publish = {id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0-rc-1"}
+nexus-publish = {id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0"}
 spotbugs = {id = "com.github.spotbugs", version = "6.0.9"}
 spotless = {id = "com.diffplug.spotless", version = "6.25.0"}
