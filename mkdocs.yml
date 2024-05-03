@@ -3,18 +3,17 @@ repo_url: https://codeberg.org/miurahr/assertj-swing
 docs_dir: docs
 
 nav:
-  - About
+  - Table of Contents: 'index.md'
   - Overview: 'assertj-swing.md'
   - Quick Start: 'assertj-swing-quick-start.md'
-  - Working with it
   - Getting Started: 'assertj-swing-getting-started.md'
   - Basics: 'assertj-swing-basics.md'
-  - EDT: 'asertj-swing-edt.md'
+  - EDT: 'assertj-swing-edt.md'
   - Component lookup: 'assertj-swing-lookup.md'
   - Launching: 'assertj-swing-launch.md'
   - Input simulation: 'assertj-swing-input.md'
   - Running tests: 'assertj-swing-running.md'
-  - Troubleshooting: 'asertj-swing-troubleshooting.md'
+  - Troubleshooting: 'assertj-swing-troubleshooting.md'
   - Advanced features: 'assertj-swing-advanced.md'
 
 plugins:
@@ -26,6 +25,8 @@ theme:
   - navigation.tracking
   - navigation.top
   - content.code.copy
+  palette:
+    primary: amber
 
 markdown_extensions:
   - tables
