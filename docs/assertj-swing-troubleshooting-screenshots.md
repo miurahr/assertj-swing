@@ -1,11 +1,11 @@
 # Screenshots of test failures
 
-On some occasions a functional GUI test will run perfectly from within the IDE but will break when executed
+On some occasions, a functional GUI test will run perfectly from within the IDE but will break when executed
 in a batch with other tests (such as when you are using Ant). This is because functional GUI tests are
 vulnerable to certain environment-related events, and AssertJ Swing is no exception.
 
-It occasionally may happen that anti-virus software runs a scheduled scan while a GUI is under test. If the
-anti-virus software pops up a dialog in front of the GUI, the AssertJ Swing robot will not be able to
+It occasionally may happen that antivirus software runs a scheduled scan while a GUI is under test. If the
+antivirus software pops up a dialog in front of the GUI, the AssertJ Swing robot will not be able to
 access the GUI and will time out eventually, making the test fail. In this case, the failure is not related
 to a programming error; it is just a case of bad timing.
 
@@ -59,7 +59,7 @@ try {
 
 ## How to take screenshots of test failures with JUnit
 AssertJ Swing can take a screenshot of the desktop when a JUnit GUI test fails, either when running
-tests using Ant or inside an IDE (e.g. Eclipse). To take screenshots of failed GUI tests you have to
+tests using Ant or inside an IDE (e.g., Eclipse). To take screenshots of failed GUI tests you have to
 add the `@GUITest` annotation and make sure that you've included the
 `assertj-swing-junit` artifact.
 

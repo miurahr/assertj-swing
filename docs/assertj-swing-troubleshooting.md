@@ -4,8 +4,8 @@ Although AssertJ Swing makes it easy to write GUI tests, troubleshooting GUI tes
 challenging task. The following links explain the features that AssertJ Swing provides to help us
 figure out why a GUI test failed.
 
-- <a href="assertj-swing-troubleshooting-screenshots.html">Screenshots of Test Failures</a>
-- <a href="assertj-swing-troubleshooting-lookups.html">Troubleshooting Component Lookups</a>
+- [Screenshots of Test Failures](assertj-swing-troubleshooting-screenshots.md)
+- [Troubleshooting Component Lookups](assertj-swing-troubleshooting-lookups.md)
 
 ## AssertJ Swing tests Failing in a CI server
 
