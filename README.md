@@ -9,6 +9,10 @@ layout or look-and-feel will not break your tests.
 
 This project is a fork of https://gitub.com/assertj/assertj-swing , that is a fork of https://github.com/alexruiz/fest-swing-1.x.
 
+## Document
+
+You can check a [manual at readthedocs.org](https://assertj-swing.readthedocs.io/en/latest/)
+
 ## Why forked?
 
 AssertJ project forked the original project because a fest-swing project was stopped to maintain, and AssertJ project has been 
