@@ -14,10 +14,9 @@ package org.assertj.swing.junit.testcase;
 
 import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
 import org.assertj.swing.testing.AssertJSwingTestCaseTemplate;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.*;
+
+import java.awt.*;
 
 /**
  * Understands a template for test cases that use AssertJ-Swing and JUnit. This template installs a
@@ -32,7 +31,9 @@ public abstract class AssertJSwingJUnitTestCase extends AssertJSwingTestCaseTemp
    * Installs a <code>{@link FailOnThreadViolationRepaintManager}</code> to catch violations of Swing threading rules.
    */
   @BeforeClass
-  public static final void setUpOnce() {
+  public static void setUpOnce() {
+    // avoid UI test execution in a headless environment.
+    Assume.assumeFalse("UI Test cannot be executed in headless environment", GraphicsEnvironment.isHeadless());
     FailOnThreadViolationRepaintManager.install();
   }
 
@@ -62,7 +63,7 @@ public abstract class AssertJSwingJUnitTestCase extends AssertJSwingTestCaseTemp
    * tests in the same suite.
    */
   @AfterClass
-  public static final void tearDownOnce() {
+  public static void tearDownOnce() {
     FailOnThreadViolationRepaintManager.uninstall();
   }
 

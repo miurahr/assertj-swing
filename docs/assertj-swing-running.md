@@ -1,0 +1,153 @@
+# Running tests
+
+GUI tests, by nature, are slower and more intrusive than regular unit tests. This section provides
+some practical advices.
+
+## Interrupting running tests
+
+AssertJ Swing provides support for killing an already running test suite.
+
+> **_<a href="http://www.mseedsoft.com/" target="_blank">Simeon H. K. Fitch</a> - inventor of this feature_**
+> Let's say you're running a pretty big FEST-Swing test, one that takes a couple minutes to run. In the
+> middle of it, a Skype call comes in. You need to answer the call, but you currently don't own the mouse!
+> Eventually, some frantic combination of Alt, Ctrl, Cmd, Tab, Esc, F1-12, gets the window buried, and you
+> can accept the call, but you want something more "decisive" to kill the test run.
+
+The `EmergencyAbortListener` implements this feature. After registering this listener in your
+  test, you can terminate your test using the key combination <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+  <kbd>A</kbd>.
+
+```java
+private EmergencyAbortListener listener;
+
+@BeforeMethod public void setUp() {
+  listener = EmergencyAbortListener.registerInToolkit();
+  // set up your test fixture.
+}
+
+@AfterMethod public void tearDown() {
+  listener.unregister();
+  // clean up resources.
+}
+```
+
+The key combination can be configured too:
+```java
+listener = EmergencyAbortListener.registerInToolkit()
+                                 .keyCombination(key(VK_C).modifiers(SHIFT_MASK));
+
+```
+
+
+## Running tests without (disrupting the) desktop
+
+AssertJ Swing tests can be executed in a Continuous Integration (CI) server. The following are
+tips to run and troubleshoot AssertJ Swing tests in CI servers, in different environments.
+
+### Running AssertJ Swing under a vnc server
+
+> **_<a href="http://ineffable.us/" target="_blank">Jason Goodwin</a></div>_**
+> 
+> In order to get the most value from an automated GUI testing tool like FEST-Swing [or AssertJ Swing],
+> you'll want to have the ability to run your full suite of tests frequently.
+> Doing so on your personal desktop can be very time consuming, as you must largely sit and watch
+> while the tests run. If everything goes as planned, your tests will all pass and you need not have
+> been watching it at all. If you're already running a CI (Continuous Integration) server like me
+> (Hudson is my favorite), then the natural thing to do is run your GUI tests as part of your CI
+> process. Even if you're not running a CI server, you would stand to benefit from not being forced t
+> o watch your tests run every time.
+> 
+> If you're running Linux, BSD, or any *NIX style operating system chances are that CI server probably
+> doesn't even have X running, so how are you to run your GUI tests?
+  
+
+<a href="http://www.tightvnc.com/" target="_blank">TightVNC</a> is the answer (or any other vnc server
+you could think of). It creates a desktop that you can access via a vnc viewer locally and even
+remotely. We are using TightVNC for running the tests of AssertJ Swing, too. If you're running Ubuntu
+or Debian, simply `sudo apt-get (or aptitude) install tightvncserver`. For other distributions
+(or OS) follow their normal process for installing packages.
+
+
+Once installed, the process is to start the vnc server, run the tests and then kill the vnc server. Since
+this could be done by an ape, we're using a
+<a href="https://github.com/croesch/beefiles/blob/master/src/execute-on-vnc.sh" target="_blank">script</a>
+to perform all these steps automatically:
+
+```bash
+execute-on-vnc.sh mvn test
+```
+
+This
+
+1. starts a local vnc server at display 42
+1. sets the `DISPLAY` variable
+1. executes `mvn test`
+1. restores the previous `DISPLAY` value
+1. stops the vnc server
+
+  The script makes it easy to start an application (e.g. tests) <em>in the background</em>, without
+  disrupting your desktop. If you need to access it remotely or to run multiple applications (e.g. tests),
+  you'll have to adapt the script to your needs.
+
+
+> **_Important_**
+> Why don't we just use `xvfb-run`? Our tests maximize windows and do other stuff the default
+> window manager of `xvfb` doesn't support. TightVNC makes it easy to use another window
+> manager. Just add `gnome-wm &` (or the window manager of your choice) to
+> `~/.vnc/xstartup` and you're ready to run.
+
+
+  Hopefully this simple idea will help free your desktop (and you) from spending time watching
+  AssertJ Swing work its magic.
+
+<h3>Hudson under Windows
+<em>by Uli Schrempp (written for FEST)</em>
+
+As we develop software with the target platform Windows, we need to run the tests on Windows platform too.
+  So the X-Server approach does not fit. Here are two solutions:
+
+<h4>Running Hudson service in interactive mode
+Open the service properties dialog of the Hudson service. Select in the <em>Log On</em> tab <em>Run as
+  Local System account</em> and check the <em>Allow service to interact with desktop</em>.
+
+This works fine, but when the Hudson system needs to access some shares in the network, then the Local
+  System account might not have the appropriate permissions.
+
+<h4>Running Hudson as application via JNLP
+Here is the challenge to automatically start the Hudson agent via command-line after a restart. Here's a
+  short recipe:
+
+1. Configure auto-logon in Windows registry. Set the following keys
+- `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon=1`
+- `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\DefaultUserName=testuser`
+- `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\DefaultPassword=secret`
+2. Start Hudson agent on start-up
+- Create a batch file to start Hudson
+```bash
+javaws http://HUDSON_MASTER/computer/COMPUTERNAME/slave-agent.jnlp
+```
+- Add this batch file to the start-up folder
+3. Add remote control support for this machine<ul>
+- Create some scheduled tasks to start and stop Hudson and disable them
+- So the Hudson master node can call trigger the agent node remotely via command-line
+
+#### Remote Desktop Issue
+Sometimes when there was a remote-desktop connection to this machine running Hudson in application mode,
+  the Windows session seems to be closed and then the tests could not start the application. Solution for
+  that is using VNC.
+
+### Troubleshooting TeamCity under Windows
+
+The following tips are the result of <a href="http://groups.google.com/group/easytesting/browse_frm/thread/923077e05f4fec63" target="_blank">this thread</a> in the mailing list. Many thanks to (in alphabetical order)
+
+- Olivier DOREMIEUX
+- Eric Kolotyluk
+- Peter Murray
+
+During automated builds
+
+1. Make sure there is a desktop running for the build agent
+2. On Windows, disable Remote Desktop because it can kill the desktop the build agent is using - use VNC
+instead because it won't log you out (if you configure it that way)
+3. On Windows, use a local user account for the build agent, not a service account
+4. On Windows, if you launch the build agent with the `cmd` command use the `/k` option not the `/c` option - this prevents the command window from closing and orphaning the build agent
