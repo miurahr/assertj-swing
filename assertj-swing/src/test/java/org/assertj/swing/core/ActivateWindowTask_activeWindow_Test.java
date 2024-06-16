@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.test.builder.JFrames.frame;
 import static org.assertj.swing.test.task.FrameShowTask.packAndShow;
 import static org.assertj.swing.test.task.WindowDestroyTask.hideAndDispose;
@@ -25,7 +24,6 @@ import javax.swing.JFrame;
 
 import org.assertj.swing.test.core.SequentialEDTSafeTestCase;
 import org.assertj.swing.timing.Condition;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -41,9 +39,9 @@ public class ActivateWindowTask_activeWindow_Test extends SequentialEDTSafeTestC
   @Override
   protected void onSetUp() {
     Dimension size = new Dimension(300, 200);
-    frameOne = frame().withTitle(concat(testName(), " - One")).createNew();
+    frameOne = frame().withTitle("One - " + testName()).createNew();
     packAndShow(frameOne, size);
-    frameTwo = frame().withTitle(concat(testName(), " - Two")).createNew();
+    frameTwo = frame().withTitle("Two - " + testName()).createNew();
     packAndShow(frameTwo, size);
   }
 
@@ -53,18 +51,20 @@ public class ActivateWindowTask_activeWindow_Test extends SequentialEDTSafeTestC
 
   @Override
   protected void onTearDown() {
-    hideAndDispose(frameOne);
-    frameTwo.toFront();
     hideAndDispose(frameTwo);
+    frameOne.toFront();
+    hideAndDispose(frameOne);
   }
 
   @Test
-  @Ignore // FIXME: order of window is wrong on Linux
   public void should_Activate_Window() {
-    pause(new HasFocusCondition(frameTwo));
-    ActivateWindowTask.activateWindow(frameOne);
-    // verify that frameOne was given focus (i.e. was activated)
+    // when smart focus (default) at desktop,
+    // the window raised without interaction does
+    // not take a focus
     pause(new HasFocusCondition(frameOne));
+    ActivateWindowTask.activateWindow(frameTwo);
+    // verify that frameTwo was given focus (i.e. was activated)
+    pause(new HasFocusCondition(frameTwo));
   }
 
   private static class HasFocusCondition extends Condition {
