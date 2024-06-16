@@ -1,7 +1,6 @@
 # Maven build result directory
 target/
 # IntelliJ project files
-/.idea
 *.iml
 # Eclipse project files
 .settings/
