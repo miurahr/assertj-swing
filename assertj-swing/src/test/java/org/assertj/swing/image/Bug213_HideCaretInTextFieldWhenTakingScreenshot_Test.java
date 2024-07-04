@@ -58,8 +58,9 @@ public class Bug213_HideCaretInTextFieldWhenTakingScreenshot_Test extends Sequen
     for (int i = 0; i < 100; i++) {
       BufferedImage newImage = screenshotTaker.takeScreenshotOf(window);
       assertThat(compareImages(newImage, currentImage))
-              .describedAs("No." + (i + 1) + " shot should be same image as the first shot.")
-              .isTrue();
+                                                       .describedAs("No." + (i + 1)
+                                                                    + " shot should be same image as the first shot.")
+                                                       .isTrue();
     }
   }
 
