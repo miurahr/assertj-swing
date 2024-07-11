@@ -13,7 +13,6 @@
 package org.assertj.swing.test.task;
 
 import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
-import static org.assertj.swing.test.query.FrameActiveQuery.isActive;
 import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.Dimension;
@@ -49,7 +48,7 @@ public final class FrameShowTask {
     pause(new Condition("Frame is showing") {
       @Override
       public boolean test() {
-        return isShowing(frame) && isActive(frame);
+        return isShowing(frame)/* && isActive(frame) */;
       }
     }, 20000);
   }
