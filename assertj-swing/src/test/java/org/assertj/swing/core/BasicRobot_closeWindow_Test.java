@@ -38,6 +38,7 @@ public class BasicRobot_closeWindow_Test extends EDTSafeTestCase {
   @Before
   public void setUp() {
     robot = (BasicRobot) BasicRobot.robotWithNewAwtHierarchy();
+    robot.settings().simpleWaitForIdle(true);
     w = TestWindow.createNewWindow(getClass());
     w.display();
     robot.waitForIdle();
