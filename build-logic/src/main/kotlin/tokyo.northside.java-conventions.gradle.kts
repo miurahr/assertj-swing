@@ -36,7 +36,7 @@ publishing {
             from(components["java"])
             setGroupId("tokyo.northside")
             pom {
-                url.set("https://github.com/omegat-org/assertj-swing")
+                url.set("https://codeberg.org/miurahr/assertj-swing")
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")
@@ -51,9 +51,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/omegat-org/assertj-swing.git")
-                    developerConnection.set("scm:git:git://github.com/omegat-org/assertj-swing.git")
-                    url.set("https://github.com/omegat-org/assertj-swing")
+                    connection.set("scm:git:git://codeberg.org/miurahr/assertj-swing.git")
+                    developerConnection.set("scm:git:git://codeberg.org/miurahr/assertj-swing.git")
+                    url.set("https://codeberg.org/miurahr/assertj-swing")
                 }
             }
         }
