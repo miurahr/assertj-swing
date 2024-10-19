@@ -17,10 +17,13 @@ dependencies {
 
 description = "AssertJ-Swing"
 
-val envIsCi: String? by project
-
 tasks.named<Test>("test") {
-    if ("true" == envIsCi) {
+    val envIsCi = project.findProperty("envIsCi")?.toString()?.toBoolean() ?: false
+    val includeSlowTests = project.findProperty("includeSlowTests")?.toString()?.toBoolean() ?: false
+    if (envIsCi) {
+        systemProperties.set("envIsCi", "true")
+    }
+    if (!includeSlowTests) {
         filter {
             // exclude time consuming tests
             excludeTestsMatching("org.assertj.swing.applet.*")
@@ -34,10 +37,19 @@ tasks.named<Test>("test") {
             excludeTestsMatching("org.assertj.swing.test.*")
             excludeTestsMatching("org.assertj.swing.timing.*")
             excludeTestsMatching("org.assertj.swing.util.*")
+            // individual slow tests
+            excludeTestsMatching("org.assertj.swing.driver.Bug219_editTableCellWithEditorHavingCustomDocument_Test")
+            excludeTestsMatching("org.assertj.swing.driver.ComponentDriver_pressAndReleaseKeys_Test")
+            excludeTestsMatching("org.assertj.swing.driver.ComponentDriver_pressAndReleaseKeyWithPressInfo_Test")
+            excludeTestsMatching("org.assertj.swing.driver.BasicJTableCellWriter_enterValue_Test")
+            excludeTestsMatching("org.assertj.swing.driver.ComponentDriver_invokePopupAtPoint_Test")
+            excludeTestsMatching("org.assertj.swing.driver.BasicJTableCellWriter_enterValue_Test")
+            excludeTestsMatching("org.assertj.swing.driver.Bug225_pressF2ToStartEditingTableCell_Test")
+            excludeTestsMatching("org.assertj.swing.core.WindowAncestorFinder_windowAncestorOf_Test")
+            excludeTestsMatching("org.assertj.swing.core.FEST103_modifierNotBeingPressed_Test")
+            excludeTestsMatching("org.assertj.swing.driver.JComboBoxDropDownListFinder_findDropDownList_Test")
         }
-        systemProperties.set("envIsCi", "true")
     }
-    maxParallelForks =  1
     jvmArgs("-Xmx2048m", "--add-opens", "java.desktop/javax.swing=ALL-UNNAMED")
 }
 

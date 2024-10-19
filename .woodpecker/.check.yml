@@ -18,22 +18,22 @@ clone:
 variables:
   pre_cmds: &pre_cmds
     - apk add --no-cache xvfb xvfb-run libsm-dev libxrender libxext-dev libxtst-dev libxcb-dev ttf-dejavu font-xfree86-type1 font-sun-misc fluxbox
-    - export DISPLAY=:99
-    - Xvfb :99 -screen 0 1024x768x24 &
-    - fluxbox &
 
 steps:
-  - name: build-all
+  - name: assertj-swing-junit
     image: adoptopenjdk/openjdk11:alpine
     environment:
       GRADLE_USER_HOME: ${CI_WORKSPACE}/ci
     commands:
       - <<: *pre_cmds
-      - ./gradlew -PenvIsCi=true fest-reflect:check
-      - ./gradlew -PenvIsCi=true assertj-swing-junit:check
-      - ./gradlew -PenvIsCi=true assertj-swing-junit-jupiter:check
-      - ./gradlew --stop
-      - killall Xvfb
+      - ./gradlew --no-daemon -PenvIsCi=true fest-reflect:check assertj-swing-junit:check
+  - name: assertj-swing-junit-jupiter
+    image: adoptopenjdk/openjdk11:alpine
+    environment:
+      GRADLE_USER_HOME: ${CI_WORKSPACE}/ci
+    commands:
+      - <<: *pre_cmds
+      - ./gradlew --no-daemon -PenvIsCi=true assertj-swing-junit-jupiter:check
   - name: assertj-swing
     image: adoptopenjdk/openjdk11:alpine
     environment:
@@ -41,4 +41,3 @@ steps:
     commands:
       - <<: *pre_cmds
       - ./gradlew --no-daemon --scan -PenvIsCi=true -Dscan.uploadInBackground=false assertj-swing:check
-      - killall Xvfb

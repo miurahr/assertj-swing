@@ -58,6 +58,11 @@ and integrate efforts into our repository.
     - cglib "3.3.0"
 - Bundle an updated `feat-reflect`
 
+### testing
+
+The project uses Xvfb virtual X server and fluxbox window manager for test.
+These are automatically launched during a Gradle test task is running.
+
 ### Java Platform Module System
 
 These provide JPMS module definitions.
