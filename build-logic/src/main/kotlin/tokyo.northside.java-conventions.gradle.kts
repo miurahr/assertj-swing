@@ -84,16 +84,15 @@ signing {
 fun startX(display: String): String {
     val outputStream = ByteArrayOutputStream()
     exec {
-        commandLine("sh", "-c", "Xvfb " + display + " -screen 0 1280x1024x24 >>/dev/null 2>&1 & echo $!")
+        commandLine("sh", "-c", "Xvfb :" + display + " -screen 0 1280x1024x24 >>/dev/null 2>&1 & echo $!")
         standardOutput = outputStream
     }
     val xvfbPid = outputStream.toString().trim()
     exec {
-        commandLine("sh", "-c", "fluxbox -display " + display + " -log /dev/null >>/dev/null  & echo $!")
-        standardOutput = outputStream
+        commandLine("sh", "-c", "fluxbox -display :" + display + " -log /dev/null >>/dev/null &")
         errorOutput = outputStream
     }
-    println("Virtual X server is started with DISPLAY $display and PID: $xvfbPid")
+    println("Virtual X server is started with DISPLAY :$display and PID: $xvfbPid")
     return xvfbPid
 }
 
@@ -125,18 +124,27 @@ val test by tasks.existing(Test::class) {
     onlyIf {
         isLinux() && isCommandAvailable("Xvfb") && isCommandAvailable("fluxbox")
     }
+    val display = when (project.name) {
+        "assertj-swing" -> "100"
+        "assertj-swing-junit" -> "101"
+        "assertj-swing-junit-jupiter" -> "102"
+        else -> null
+    }
     doFirst {
-        val display = when (project.name) {
-            "assertj-swing" -> ":96"
-            "assertj-swing-junit" -> ":97"
-            "assertj-swing-junit-jupiter" -> ":98"
-            else -> ":99"
+        if (display != null) {
+            val lockFile = File("/tmp/.X" + display + "-lock")
+            if (!lockFile.exists()) {
+                extensions.extraProperties["xvfbPid"] = startX(display)
+                environment["DISPLAY"] = ":" + display
+            }
         }
-        extensions.extraProperties["xvfbPid"] = startX(display)
-        environment["DISPLAY"] = display
     }
     doLast {
-        val pid = extensions.extraProperties["xvfbPid"] as String
-        stopX(pid)
+        if (display != null) {
+            val pid = extensions.extraProperties["xvfbPid"] as String?
+            if (pid != null) {
+                stopX(pid)
+            }
+        }
     }
 }
