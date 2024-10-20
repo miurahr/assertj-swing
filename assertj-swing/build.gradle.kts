@@ -18,6 +18,7 @@ dependencies {
 description = "AssertJ-Swing"
 
 tasks.named<Test>("test") {
+    useJUnit()
     val envIsCi = project.findProperty("envIsCi")?.toString()?.toBoolean() ?: false
     val includeSlowTests = project.findProperty("includeSlowTests")?.toString()?.toBoolean() ?: false
     if (envIsCi) {

@@ -36,6 +36,7 @@ spotless {
 
 val envIsCi: String? by project
 tasks.named<Test>("test") {
+    useJUnit()
     if ("true" == envIsCi) {
         systemProperties.set("envIsCi", "true")
     }
