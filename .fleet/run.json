@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "gradle",
+            "name": "Gradle check [assertj-swing-junit]",
+            "tasks": ["assertj-swing-junit:check"],
+        },
+       {
+           "type": "gradle",
+           "name": "Gradle check [assertj-swing-junit-jupiter]",
+           "tasks": ["assertj-swing-junit-jupiter:check"],
+       },
+
+    ]
+}
