@@ -100,7 +100,7 @@ fun stopX(pid: String) {
     println("Stopping virtual X server...")
     val outputStream = ByteArrayOutputStream()
     exec {
-        commandLine("sh", "-c", "kill $pid")
+        commandLine("sh", "-c", "kill $pid &")
         standardOutput = outputStream
         errorOutput = outputStream
     }
