@@ -53,7 +53,7 @@ and integrate efforts into our repository.
     - assertj-core "3.27.0"
 - for unit tests
     - ant_junit "1.10.15"
-    - mockito "3.1.13"
+    - mockito "3.2.0"
     - equals_verifier "2.5.2"
     - cglib "3.3.0"
 - Bundle an updated `feat-reflect`
