@@ -37,23 +37,23 @@ and integrate efforts into our repository.
 ### Dependencies
 
 - assertj-swing
-    - assertj-core "3.25.3"
+    - assertj-core "3.27.0"
     - jetbrains_annotations "23.0.0"
 - assertj-swing-junit
-    - assertj-core "3.25.3"
+    - assertj-core "3.27.0"
     - commons_codec "1.13"
     - junit4 "4.13.2"
     - assertj-swing
     - fest-reflect
 - assertj-swing-junit-jupiter
-    - assertj-core "3.25.3"
+    - assertj-core "3.27.0"
     - junit-jupiter "5.8.2"
     - assertj-swing-junit
 - fest-reflect
-    - assertj-core "3.25.3"
+    - assertj-core "3.27.0"
 - for unit tests
-    - ant_junit "1.10.14"
-    - mockito "2.28.2"
+    - ant_junit "1.10.15"
+    - mockito "3.1.13"
     - equals_verifier "2.5.2"
     - cglib "3.3.0"
 - Bundle an updated `feat-reflect`
