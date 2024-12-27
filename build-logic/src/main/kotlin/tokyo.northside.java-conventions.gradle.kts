@@ -81,29 +81,8 @@ signing {
     sign(publishing.publications["mavenJava"])
 }
 
-fun startX(display: String): String {
-    val outputStream = ByteArrayOutputStream()
-    exec {
-        commandLine("sh", "-c", "Xvfb :" + display + " -screen 0 1280x1024x24 >>/dev/null 2>&1 & echo $!")
-        standardOutput = outputStream
-    }
-    val xvfbPid = outputStream.toString().trim()
-    exec {
-        commandLine("sh", "-c", "fluxbox -display :" + display + " -log /dev/null >>/dev/null &")
-        errorOutput = outputStream
-    }
-    println("Virtual X server is started with DISPLAY :$display and PID: $xvfbPid")
-    return xvfbPid
-}
-
-fun stopX(pid: String) {
-    println("Stopping virtual X server...")
-    val outputStream = ByteArrayOutputStream()
-    exec {
-        commandLine("sh", "-c", "kill $pid &")
-        standardOutput = outputStream
-        errorOutput = outputStream
-    }
+interface InjectedExecOps {
+    @get:Inject val execOps: ExecOperations
 }
 
 // Function to detect if the OS is Linux
@@ -111,16 +90,32 @@ fun isLinux(): Boolean = System.getProperty("os.name").lowercase().contains("lin
 
 // Function to check if Xvfb is installed
 fun isCommandAvailable(command: String): Boolean {
-    val outputStream = ByteArrayOutputStream()
-    return exec {
-        commandLine("sh", "-c", "command -v " + command)
-        isIgnoreExitValue = true // Don't fail if command is not found
-        standardOutput = outputStream
-        errorOutput = outputStream
-    }.exitValue.equals(0)
+    return providers.exec {
+        commandLine("sh", "-c", "command -v $command")
+    }.result.get().exitValue.equals(0)
 }
 
-val test by tasks.existing(Test::class) {
+project.extensions.extraProperties["xvfbPid"] = ""
+
+val testFinally by tasks.register("testFinally") {
+    outputs.upToDateWhen { false }
+    doLast {
+        val pid = project.extensions.extraProperties["xvfbPid"] as String
+        if (pid.isNotBlank()) {
+            val injected = project.objects.newInstance<InjectedExecOps>()
+            println("Stopping virtual X server at PID $pid ...")
+            val outputStream = ByteArrayOutputStream()
+            injected.execOps.exec {
+                commandLine("sh", "-c", "kill $pid &")
+                standardOutput = outputStream
+                errorOutput = outputStream
+            }
+            project.extensions.extraProperties["xvfbPid"] = ""
+        }
+    }
+}
+
+tasks.test {
     onlyIf {
         isLinux() && isCommandAvailable("Xvfb") && isCommandAvailable("fluxbox")
     }
@@ -132,19 +127,26 @@ val test by tasks.existing(Test::class) {
     }
     doFirst {
         if (display != null) {
-            val lockFile = File("/tmp/.X" + display + "-lock")
+            val lockFile = File("/tmp/.X$display-lock")
             if (!lockFile.exists()) {
-                extensions.extraProperties["xvfbPid"] = startX(display)
-                environment["DISPLAY"] = ":" + display
-            }
+                val outputStream = ByteArrayOutputStream()
+                val injected = project.objects.newInstance<InjectedExecOps>()
+                val res = injected.execOps.exec {
+                    commandLine("sh", "-c", "Xvfb :$display -screen 0 1280x1024x24 >>/dev/null 2>&1 & echo $!")
+                    standardOutput = outputStream
+                }.exitValue
+                if (res.equals(0)) {
+                    val xvfbPid = outputStream.toString().trim()
+                    project.extensions.extraProperties["xvfbPid"] = xvfbPid
+                    environment["DISPLAY"] = ":$display"
+                    injected.execOps.exec {
+                        commandLine("sh", "-c", "fluxbox -display :$display -log /dev/null >>/dev/null &")
+                        standardOutput = outputStream
+                        errorOutput = outputStream
+                    }
+                    println("Virtual X server is started with DISPLAY :$display and PID: $xvfbPid")         }
+                }
         }
     }
-    doLast {
-        if (display != null) {
-            val pid = extensions.extraProperties["xvfbPid"] as String?
-            if (pid != null) {
-                stopX(pid)
-            }
-        }
-    }
+    finalizedBy(testFinally)
 }
