@@ -17,7 +17,7 @@ import static org.assertj.swing.core.TestComponentHierarchies.newComponentHierar
 import static org.assertj.swing.test.builder.JFrames.frame;
 import static org.assertj.swing.test.task.WindowDestroyTask.hideAndDisposeInEDT;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.awt.Container;
@@ -58,7 +58,7 @@ public class Bug138_disposeWindows_Test extends EDTSafeTestCase {
   @Test
   public void should_Dispose_Windows() {
     frame = frame().withTitle("Hello").createNew();
-    List<Container> roots = newArrayList((Container) frame);
+    List<Container> roots = newArrayList(frame);
     when(hierarchy.roots()).thenReturn(roots);
     robot.cleanUp();
     verify(hierarchy).dispose(frame);
@@ -67,6 +67,6 @@ public class Bug138_disposeWindows_Test extends EDTSafeTestCase {
   @Test
   public void should_Not_Dispose_Windows() {
     robot.cleanUpWithoutDisposingWindows();
-    verifyZeroInteractions(hierarchy);
+    verifyNoMoreInteractions(hierarchy);
   }
 }
