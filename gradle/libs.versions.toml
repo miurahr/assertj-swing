@@ -1,10 +1,10 @@
 [versions]
 junit = "4.13.2"
-jupiter = "5.8.2"
+jupiter = "5.9.3"
 assertj = "3.27.4"
 commons_codec = "1.17.1"
 commons_io = "2.19.0"
-ant_junit = "1.10.14"
+ant_junit = "1.10.15"
 mockito = "5.18.0"
 equals_verifier = "2.5.2"
 jetbrains_annotations = "23.1.0"
