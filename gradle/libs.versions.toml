@@ -1,13 +1,13 @@
 [versions]
 junit = "4.13.2"
 jupiter = "5.9.3"
-assertj = "3.27.0"
+assertj = "3.27.4"
 commons_codec = "1.17.1"
-commons_io = "2.17.0"
+commons_io = "2.19.0"
 ant_junit = "1.10.15"
-mockito = "3.2.0"
+mockito = "5.18.0"
 equals_verifier = "2.5.2"
-jetbrains_annotations = "23.0.0"
+jetbrains_annotations = "23.1.0"
 
 [libraries]
 junit4 = {group = "junit", name = "junit", version.ref = "junit"}
@@ -23,5 +23,5 @@ annotations = {module="org.jetbrains:annotations", version.ref = "jetbrains_anno
 
 [plugins]
 nexus-publish = {id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0"}
-spotbugs = {id = "com.github.spotbugs", version = "6.0.9"}
+spotbugs = {id = "com.github.spotbugs", version = "6.1.5"}
 spotless = {id = "com.diffplug.spotless", version = "6.25.0"}
