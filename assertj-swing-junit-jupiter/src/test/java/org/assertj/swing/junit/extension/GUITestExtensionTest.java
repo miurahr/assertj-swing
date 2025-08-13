@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 public class GUITestExtensionTest {
@@ -49,8 +49,8 @@ public class GUITestExtensionTest {
     guiTestExtension.interceptTestMethod(invocation, reflectiveInvocationContext, extensionContext);
 
     verify(invocation).proceed();
-    verifyZeroInteractions(failureScreenshotTaker);
-    verifyZeroInteractions(reflectiveInvocationContext);
+    verifyNoMoreInteractions(failureScreenshotTaker);
+    verifyNoMoreInteractions(reflectiveInvocationContext);
   }
 
   @Test
@@ -68,7 +68,7 @@ public class GUITestExtensionTest {
                                                                   mock(ExtensionContext.class))).isEqualTo(exception);
 
     verify(invocation).proceed();
-    verifyZeroInteractions(failureScreenshotTaker);
+    verifyNoMoreInteractions(failureScreenshotTaker);
   }
 
   @Test
