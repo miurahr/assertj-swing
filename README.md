@@ -16,14 +16,14 @@ You can check a [manual at readthedocs.org](https://assertj-swing.readthedocs.io
 ## Why forked?
 
 AssertJ project forked the original project because a fest-swing project was stopped to maintain, and AssertJ project has been 
-seeking a maintainer of assertj-swing project, and stopped to maintain from Sep., 2020.
+seeking a maintainer of assertj-swing project and stopped to maintain from Sep., 2020.
 We got several warnings when using assertj-swing framework because of a lack of support for recent Java versions.
 
-There are several forked projects that have individual improvements and there have not been integrated yet.
+There are several forked projects that have individual improvements, and there have not been integrated yet.
 OmegaT project uses assertj-swing-junit for testing GUI parts, especially for a vldocking library and plan to test OmegaT
 itself in the future.
 
-Because it is important to keep dependencies secure, and catch up new Java versions, we decided to fork it
+Because it is important to keep dependencies secure and catch up new Java versions, we decided to fork it
 and integrate efforts into our repository.
 
 ## What are changed from the original?
@@ -32,28 +32,28 @@ and integrate efforts into our repository.
 
 - Build with Java 11
 - Supports Java 11, and Java 17
-- Build with Gradle 8.6 instead of Maven
+- Build with Gradle 8.12 instead of Maven
 
 ### Dependencies
 
 - assertj-swing
-    - assertj-core "3.27.0"
-    - jetbrains_annotations "23.0.0"
+    - assertj-core "3.27.4"
+    - jetbrains_annotations "23.1.0"
 - assertj-swing-junit
-    - assertj-core "3.27.0"
+    - assertj-core "3.27.4"
     - commons_codec "1.13"
     - junit4 "4.13.2"
     - assertj-swing
     - fest-reflect
 - assertj-swing-junit-jupiter
-    - assertj-core "3.27.0"
-    - junit-jupiter "5.8.2"
+    - assertj-core "3.27.4"
+    - junit-jupiter "5.9.3"
     - assertj-swing-junit
 - fest-reflect
-    - assertj-core "3.27.0"
+    - assertj-core "3.27.4"
 - for unit tests
     - ant_junit "1.10.15"
-    - mockito "3.2.0"
+    - mockito "5.18.0"
     - equals_verifier "2.5.2"
     - cglib "3.3.0"
 - Bundle an updated `feat-reflect`
@@ -95,7 +95,7 @@ These provide JPMS module definitions.
   - ScreenLock_getOwner_Test
 - Release group ID is 'tokyo.northside'
 - Add CI runner on codeberg-ci 
-- Add test runner script with docker
+- Add a test runner script with docker
 
 ## How to build
 
@@ -112,7 +112,7 @@ The framework library will be built with Java SDK 11 and compatible with Java 11
 ## License
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
-the License. You may obtain a copy of the License at
+the License. You may get a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
