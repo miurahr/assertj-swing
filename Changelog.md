@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v4.0.0-beta-3]
+* chore: Bump assertj@3.27.4 
 * fix maven pom metadata
 
 ## [v4.0.0-beta-2]

@@ -41,7 +41,7 @@ and integrate efforts into our repository.
     - jetbrains_annotations "23.1.0"
 - assertj-swing-junit
     - assertj-core "3.27.4"
-    - commons_codec "1.13"
+    - commons_codec "1.17.1"
     - junit4 "4.13.2"
     - assertj-swing
     - fest-reflect
