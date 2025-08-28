@@ -11,9 +11,6 @@ repositories {
     mavenCentral()
 }
 
-group = "tokyo.northside"
-version = "4.0.0-beta-2"
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(11)
