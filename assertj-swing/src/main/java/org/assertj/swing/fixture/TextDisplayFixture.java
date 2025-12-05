@@ -14,8 +14,7 @@ package org.assertj.swing.fixture;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Supports functional testing of {@code Component}s that display text.
@@ -39,7 +38,6 @@ public interface TextDisplayFixture<S> {
    * @return this fixture.
    * @throws AssertionError if the text of the target component is not equal to or does not match the given one.
    */
-  @NotNull
   S requireText(@Nullable String expected);
 
   /**
@@ -50,6 +48,5 @@ public interface TextDisplayFixture<S> {
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    * @throws AssertionError if the text of the target component does not match the given regular expression pattern.
    */
-  @NotNull
-  S requireText(@NotNull Pattern pattern);
+  S requireText(Pattern pattern);
 }

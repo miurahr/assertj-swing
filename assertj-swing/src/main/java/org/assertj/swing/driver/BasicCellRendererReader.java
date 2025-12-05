@@ -17,7 +17,6 @@ import java.awt.Component;
 import javax.swing.JLabel;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Default implementation of {@link CellRendererReader}.
@@ -43,8 +42,7 @@ public class BasicCellRendererReader implements CellRendererReader {
    */
   @RunsInCurrentThread
   @Override
-  @Nullable
-  public String valueFrom(@Nullable Component c) {
+  public String valueFrom(Component c) {
     if (c instanceof JLabel) {
       return ((JLabel) c).getText();
     }

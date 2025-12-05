@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.fixture;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Simulates user events on {@code Component}s that accept text input from the user.
  * 
@@ -29,15 +27,13 @@ public interface TextInputFixture<S> extends TextDisplayFixture<S>, EditableComp
    * @param text the text to enter.
    * @return this fixture.
    */
-  @NotNull
-  S enterText(@NotNull String text);
+  S enterText(String text);
 
   /**
    * Simulates a user deleting all the text in the {@code Component} managed by this fixture.
    * 
    * @return this fixture.
    */
-  @NotNull
   S deleteText();
 
   /**
@@ -45,7 +41,6 @@ public interface TextInputFixture<S> extends TextDisplayFixture<S>, EditableComp
    * 
    * @return this fixture.
    */
-  @NotNull
   S selectAll();
 
   /**
@@ -55,7 +50,6 @@ public interface TextInputFixture<S> extends TextDisplayFixture<S>, EditableComp
    * @param end index where selection should end.
    * @return this fixture.
    */
-  @NotNull
   S selectText(int start, int end);
 
   /**
@@ -64,6 +58,5 @@ public interface TextInputFixture<S> extends TextDisplayFixture<S>, EditableComp
    * @param text the text to select.
    * @return this fixture.
    */
-  @NotNull
-  S select(@NotNull String text);
+  S select(String text);
 }

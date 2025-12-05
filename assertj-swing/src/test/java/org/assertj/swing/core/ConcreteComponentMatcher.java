@@ -14,7 +14,7 @@ package org.assertj.swing.core;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Implementation of {@link AbstractComponentMatcher} for testing.

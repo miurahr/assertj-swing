@@ -15,8 +15,7 @@ package org.assertj.swing.driver;
 import java.awt.Component;
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Supports functional testing of an AWT or Swing {@code Component}s that displays text.
@@ -34,7 +33,7 @@ public interface TextDisplayDriver<T extends Component> {
    * @param expected the text to match. It can be a regular expression.
    * @throws AssertionError if the text of the component is not equal to or does not match the given one.
    */
-  void requireText(@NotNull T component, @Nullable String expected);
+  void requireText(T component, @Nullable String expected);
 
   /**
    * Asserts that the text in the given component matches the given regular expression pattern.
@@ -44,7 +43,7 @@ public interface TextDisplayDriver<T extends Component> {
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    * @throws AssertionError if the text of the component does not match the given regular expression pattern.
    */
-  void requireText(@NotNull T component, @NotNull Pattern pattern);
+  void requireText(T component, Pattern pattern);
 
   /**
    * Returns the text of the given component.
@@ -53,5 +52,5 @@ public interface TextDisplayDriver<T extends Component> {
    * @return the text of the given component.
    */
   @Nullable
-  String textOf(@NotNull T component);
+  String textOf(T component);
 }

@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JListSelectedIndexQuery {
   @RunsInEDT
-  static int selectedIndexOf(final @NotNull JList<?> list) {
+  static int selectedIndexOf(final JList<?> list) {
     Integer result = execute(() -> list.getSelectedIndex());
     return checkNotNull(result);
   }

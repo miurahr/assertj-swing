@@ -21,7 +21,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JPopupMenu;
 
 import org.assertj.swing.core.Robot;
@@ -137,8 +136,7 @@ public class AbstractWindowFixture_withMocks_Test {
     }
 
     @Override
-    @NotNull
-    protected WindowDriver createDriver(@NotNull Robot robot) {
+      protected WindowDriver createDriver(Robot robot) {
       return mock(WindowDriver.class);
     }
   }

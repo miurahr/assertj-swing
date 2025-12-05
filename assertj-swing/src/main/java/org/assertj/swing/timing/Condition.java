@@ -16,8 +16,7 @@ import static org.assertj.core.util.Strings.concat;
 
 import org.assertj.core.description.Description;
 import org.assertj.core.description.TextDescription;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * A condition to verify, usually used in the method {@link Pause#pause(Condition)}.
@@ -35,7 +34,7 @@ public abstract class Condition {
    * 
    * @param description describes this condition.
    */
-  public Condition(@NotNull String description) {
+  public Condition(String description) {
     this(new TextDescription(description));
   }
 
@@ -61,7 +60,7 @@ public abstract class Condition {
    * @return the description of this condition.
    */
   @Override
-  public final @NotNull String toString() {
+  public final String toString() {
     String descriptionText = description != null ? description.value() : defaultDescription();
     String addendum = descriptionAddendum();
     return concat(descriptionText, addendum);
@@ -76,7 +75,6 @@ public abstract class Condition {
    * 
    * @return by default, an empty {@code String}.
    */
-  @NotNull
   protected String descriptionAddendum() {
     return EMPTY_TEXT;
   }

@@ -18,7 +18,6 @@ import static org.mockito.Mockito.verify;
 
 import java.awt.Toolkit;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.test.awt.ToolkitStub;
 import org.junit.Before;
@@ -48,7 +47,7 @@ public class DragAwareEventNormalizer_stopListening_Test extends DragAwareEventN
     final DragAwareEventQueue dragAwareEventQueue = mock(DragAwareEventQueue.class);
     eventNormalizer = new DragAwareEventNormalizer() {
       @Override
-      DragAwareEventQueue createEventQueue(@NotNull Toolkit t, long m) {
+      DragAwareEventQueue createEventQueue(Toolkit t, long m) {
         return dragAwareEventQueue;
       }
     };
@@ -62,7 +61,7 @@ public class DragAwareEventNormalizer_stopListening_Test extends DragAwareEventN
   public void should_Gracefully_Stop_Listening_If_DragAwareQueue_Is_Null() {
     eventNormalizer = new DragAwareEventNormalizer() {
       @Override
-      DragAwareEventQueue createEventQueue(@NotNull Toolkit t, long m) {
+      DragAwareEventQueue createEventQueue(Toolkit t, long m) {
         throw new RuntimeException("Thrown on purpose");
       }
     };

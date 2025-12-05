@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -34,7 +33,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JInternalFrameIconQuery {
   @RunsInCurrentThread
-  static boolean isIconified(@NotNull JInternalFrame frame) {
+  static boolean isIconified(JInternalFrame frame) {
     if (frame.isMaximum()) {
       return false;
     }

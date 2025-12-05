@@ -18,7 +18,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.Map;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Monitor for disposed {@code Window}s.
@@ -28,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 class DisposalMonitor extends ComponentAdapter {
   final Map<Window, Boolean> disposedWindows;
 
-  DisposalMonitor(@NotNull Map<Window, Boolean> disposedWindows) {
+  DisposalMonitor(Map<Window, Boolean> disposedWindows) {
     this.disposedWindows = disposedWindows;
   }
 

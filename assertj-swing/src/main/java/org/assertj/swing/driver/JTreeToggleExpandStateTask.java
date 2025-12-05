@@ -17,7 +17,6 @@ import static org.fest.reflect.core.Reflection.method;
 
 import java.awt.Point;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTree;
 import javax.swing.plaf.TreeUI;
 import javax.swing.plaf.basic.BasicTreeUI;
@@ -33,7 +32,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JTreeToggleExpandStateTask {
   @RunsInCurrentThread
-  static void toggleExpandState(final @NotNull JTree tree, final @NotNull Point pathLocation) {
+  static void toggleExpandState(final JTree tree, final Point pathLocation) {
     TreePath path = tree.getPathForLocation(pathLocation.x, pathLocation.y);
     TreeUI treeUI = tree.getUI();
     assertThat(treeUI).isInstanceOf(BasicTreeUI.class);

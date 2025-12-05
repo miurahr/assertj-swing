@@ -19,7 +19,6 @@ import java.awt.Point;
 import java.util.Collection;
 import java.util.Objects;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTextField;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
@@ -40,12 +39,11 @@ public class BasicRobot_clickAtPointWithButtonTheGivenTimes_Test extends BasicRo
   private final int times;
 
   @Parameters
-  @NotNull
   public static Collection<Object[]> buttons() {
     return newArrayList(clickingData());
   }
 
-  public BasicRobot_clickAtPointWithButtonTheGivenTimes_Test(@NotNull MouseButton button, int times) {
+  public BasicRobot_clickAtPointWithButtonTheGivenTimes_Test(MouseButton button, int times) {
     this.button = Objects.requireNonNull(button);
     this.times = times;
   }

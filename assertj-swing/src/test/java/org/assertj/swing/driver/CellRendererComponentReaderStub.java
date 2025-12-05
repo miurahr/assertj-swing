@@ -14,7 +14,7 @@ package org.assertj.swing.driver;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Implementation of {@link CellRendererReader} that returns a pre-set value as the value read from a cell renderer

@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Error thrown when an unexpected error occurs.
  *
@@ -30,8 +28,7 @@ public class UnexpectedException extends RuntimeException {
    * @param cause the unexpected exception.
    * @return the created exception.
    */
-  @NotNull
-  public static UnexpectedException unexpected(@NotNull Throwable cause) {
+  public static UnexpectedException unexpected(Throwable cause) {
     return new UnexpectedException(cause);
   }
 
@@ -40,8 +37,7 @@ public class UnexpectedException extends RuntimeException {
    *
    * @param cause the unexpected exception.
    */
-  @NotNull
-  public UnexpectedException(@NotNull Throwable cause) {
+  public UnexpectedException(Throwable cause) {
     super(cause);
   }
 
@@ -51,7 +47,7 @@ public class UnexpectedException extends RuntimeException {
    * @param message the detail message.
    * @param cause the unexpected exception.
    */
-  public UnexpectedException(@NotNull String message, @NotNull Throwable cause) {
+  public UnexpectedException(String message, Throwable cause) {
     super(message, cause);
   }
 }

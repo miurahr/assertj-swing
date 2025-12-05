@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.fixture;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JCheckBox;
 
 import org.assertj.swing.core.Robot;
@@ -31,7 +30,7 @@ public class JCheckBoxFixture extends AbstractTwoStateButtonFixture<JCheckBoxFix
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JCheckBoxFixture(@NotNull Robot robot, @NotNull JCheckBox target) {
+  public JCheckBoxFixture(Robot robot, JCheckBox target) {
     super(JCheckBoxFixture.class, robot, target);
   }
 
@@ -44,7 +43,7 @@ public class JCheckBoxFixture extends AbstractTwoStateButtonFixture<JCheckBoxFix
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JCheckBox} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JCheckBox} is found.
    */
-  public JCheckBoxFixture(@NotNull Robot robot, @NotNull String checkBoxName) {
+  public JCheckBoxFixture(Robot robot, String checkBoxName) {
     super(JCheckBoxFixture.class, robot, checkBoxName, JCheckBox.class);
   }
 }

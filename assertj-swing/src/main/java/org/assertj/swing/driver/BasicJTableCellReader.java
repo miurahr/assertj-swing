@@ -27,8 +27,7 @@ import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JTableCellReader;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Default implementation of {@link JTableCellReader}.
@@ -54,7 +53,7 @@ public class BasicJTableCellReader implements JTableCellReader {
    * @param reader knows how to read values from the cell renderer component in a {@code JTable}.
    * @throws NullPointerException if {@code reader} is {@code null}.
    */
-  public BasicJTableCellReader(@NotNull CellRendererReader reader) {
+  public BasicJTableCellReader(CellRendererReader reader) {
     rendererReader = checkNotNull(reader);
   }
 
@@ -85,8 +84,7 @@ public class BasicJTableCellReader implements JTableCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable
-  public String valueAt(@NotNull JTable table, int row, int column) {
+  public @Nullable String valueAt(JTable table, int row, int column) {
     Component c = cellRendererIn(table, row, column);
     String value = (c != null) ? rendererReader.valueFrom(c) : null;
     if (value != null) {
@@ -104,8 +102,7 @@ public class BasicJTableCellReader implements JTableCellReader {
     return asText(table.getValueAt(row, column));
   }
 
-  @Nullable
-  private String valueAsText(@NotNull JComboBox<?> comboBox) {
+  private @Nullable String valueAsText(JComboBox<?> comboBox) {
     int selectedIndex = comboBox.getSelectedIndex();
     if (selectedIndex == -1) {
       return null;
@@ -130,8 +127,7 @@ public class BasicJTableCellReader implements JTableCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable
-  public Font fontAt(@NotNull JTable table, int row, int column) {
+  public @Nullable Font fontAt(JTable table, int row, int column) {
     Component c = cellRendererIn(table, row, column);
     return c != null ? c.getFont() : null;
   }
@@ -148,8 +144,7 @@ public class BasicJTableCellReader implements JTableCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable
-  public Color backgroundAt(@NotNull JTable table, int row, int column) {
+  public @Nullable Color backgroundAt(JTable table, int row, int column) {
     Component c = cellRendererIn(table, row, column);
     return c != null ? c.getBackground() : null;
   }
@@ -171,15 +166,13 @@ public class BasicJTableCellReader implements JTableCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable
-  public Color foregroundAt(@NotNull JTable table, int row, int column) {
+  public @Nullable Color foregroundAt(JTable table, int row, int column) {
     Component c = cellRendererIn(table, row, column);
     return c != null ? c.getForeground() : null;
   }
 
   @RunsInCurrentThread
-  @Nullable
-  private Component cellRendererIn(final @NotNull JTable table, final int row, final int column) {
+  private @Nullable Component cellRendererIn(final JTable table, final int row, final int column) {
     return table.prepareRenderer(table.getCellRenderer(row, column), row, column);
   }
 }

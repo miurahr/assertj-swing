@@ -17,7 +17,6 @@ import java.awt.Point;
 import javax.swing.JScrollBar;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -35,16 +34,14 @@ import org.jetbrains.annotations.NotNull;
 class HorizontalJScrollBarLocation extends JScrollBarLocationStrategy {
   @Override
   @RunsInCurrentThread
-  @NotNull
-  Point thumbLocation(@NotNull JScrollBar scrollBar, double fraction) {
+  Point thumbLocation(JScrollBar scrollBar, double fraction) {
     int arrow = arrow(scrollBar);
     return new Point(arrow + (int) (fraction * (scrollBar.getWidth() - 2 * arrow)), arrow / 2);
   }
 
   @Override
   @RunsInCurrentThread
-  @NotNull
-  Point blockLocation(@NotNull JScrollBar scrollBar, @NotNull Point unitLocation, int offset) {
+  Point blockLocation(JScrollBar scrollBar, Point unitLocation, int offset) {
     Point p = new Point(unitLocation);
     p.x += offset;
     return p;
@@ -52,15 +49,14 @@ class HorizontalJScrollBarLocation extends JScrollBarLocationStrategy {
 
   @Override
   @RunsInCurrentThread
-  @NotNull
-  Point unitLocationToScrollDown(@NotNull JScrollBar scrollBar) {
+  Point unitLocationToScrollDown(JScrollBar scrollBar) {
     int arrow = arrow(scrollBar);
     return new Point(scrollBar.getWidth() - arrow / 2, arrow / 2);
   }
 
   @Override
   @RunsInCurrentThread
-  int arrow(@NotNull JScrollBar scrollBar) {
+  int arrow(JScrollBar scrollBar) {
     return scrollBar.getHeight();
   }
 }

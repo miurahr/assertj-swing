@@ -14,8 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTextComponentTextQuery {
   @RunsInEDT
-  static @Nullable String textOf(final @NotNull JTextComponent textComponent) {
+  static @Nullable String textOf(final JTextComponent textComponent) {
     return execute(() -> textComponent.getText());
   }
 

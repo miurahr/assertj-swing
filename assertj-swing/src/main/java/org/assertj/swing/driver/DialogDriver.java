@@ -20,7 +20,6 @@ import java.awt.Dialog;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -41,7 +40,7 @@ public class DialogDriver extends WindowDriver {
    * 
    * @param robot the robot to use to simulate user input.
    */
-  public DialogDriver(@NotNull Robot robot) {
+  public DialogDriver(Robot robot) {
     super(robot);
   }
 
@@ -52,7 +51,7 @@ public class DialogDriver extends WindowDriver {
    * @throws AssertionError if the given {@code Dialog} is not modal.
    */
   @RunsInEDT
-  public void requireModal(@NotNull Dialog dialog) {
+  public void requireModal(Dialog dialog) {
     assertThat(isModal(dialog)).as(propertyName(dialog, "modal")).isTrue();
   }
 }

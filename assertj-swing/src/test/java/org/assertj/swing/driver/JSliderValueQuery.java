@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JSlider;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JSliderValueQuery {
   @RunsInEDT
-  static int valueOf(final @NotNull JSlider slider) {
+  static int valueOf(final JSlider slider) {
     Integer result = execute(() -> slider.getValue());
     return checkNotNull(result);
   }

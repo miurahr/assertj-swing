@@ -25,7 +25,6 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Point;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JToolBar;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -53,8 +52,7 @@ public final class JToolBarLocation {
    * @return the point where to grab the given {@code JToolBar}.
    */
   @RunsInCurrentThread
-  @NotNull
-  public Point pointToGrab(@NotNull JToolBar toolBar) {
+  public Point pointToGrab(JToolBar toolBar) {
     Insets insets = toolBar.getInsets();
     int width = toolBar.getWidth();
     int height = toolBar.getHeight();
@@ -89,8 +87,7 @@ public final class JToolBarLocation {
    * @throws IllegalArgumentException if the constraint has an invalid value.
    */
   @RunsInCurrentThread
-  @NotNull
-  public Point dockLocation(@NotNull JToolBar toolBar, @NotNull Container dock, @NotNull String constraint) {
+  public Point dockLocation(JToolBar toolBar, Container dock, String constraint) {
     checkValid(constraint);
     Insets insets = dock.getInsets();
     // BasicToolBarUI prioritizes location N/E/W/S by proximity to the respective border. Close to top border is N, even
@@ -117,11 +114,11 @@ public final class JToolBarLocation {
   }
 
   @RunsInCurrentThread
-  private boolean isHorizontal(@NotNull JToolBar toolBar) {
+  private boolean isHorizontal(JToolBar toolBar) {
     return toolBar.getOrientation() == HORIZONTAL;
   }
 
-  private void checkValid(@NotNull String constraint) {
+  private void checkValid(String constraint) {
     for (String validConstraint : VALID_CONSTRAINTS) {
       if (validConstraint.equals(constraint)) {
         return;
@@ -130,13 +127,13 @@ public final class JToolBarLocation {
     throw invalidConstraint(constraint);
   }
 
-  private IllegalArgumentException invalidConstraint(@NotNull String constraint) {
+  private IllegalArgumentException invalidConstraint(String constraint) {
     String format = "'%s' is not a valid constraint. Valid constraints are %s";
     String msg = String.format(format, constraint, format(VALID_CONSTRAINTS));
     throw new IllegalArgumentException(msg);
   }
 
-  private int verticalDockingYCoordinate(int dockHeight, @NotNull Insets insets, int offset) {
+  private int verticalDockingYCoordinate(int dockHeight, Insets insets, int offset) {
     int y = dockHeight / 2;
     // Make sure we don't get mistaken for NORTH
     if (y < insets.top + offset) {

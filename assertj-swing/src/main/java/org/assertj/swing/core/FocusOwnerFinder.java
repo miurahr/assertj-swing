@@ -19,8 +19,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -45,13 +44,13 @@ public final class FocusOwnerFinder {
   }
 
   @VisibleForTesting
-  static void replaceStrategiesWith(@NotNull FocusOwnerFinderStrategy... strategies) {
+  static void replaceStrategiesWith(FocusOwnerFinderStrategy... strategies) {
     STRATEGIES.clear();
     STRATEGIES.addAll(newArrayList(strategies));
   }
 
   @VisibleForTesting
-  static @NotNull List<FocusOwnerFinderStrategy> strategies() {
+  static List<FocusOwnerFinderStrategy> strategies() {
     return newArrayList(STRATEGIES);
   }
 
@@ -89,7 +88,7 @@ public final class FocusOwnerFinder {
   }
 
   @Nullable
-  private static Component focusOwnerFrom(@NotNull FocusOwnerFinderStrategy strategy) {
+  private static Component focusOwnerFrom(FocusOwnerFinderStrategy strategy) {
     try {
       return strategy.focusOwner();
     } catch (Exception e) {

@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +25,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JInternalFrameSetIconTask {
   @RunsInEDT
-  static void setIcon(final @NotNull JInternalFrame internalFrame, final @NotNull JInternalFrameAction action) {
+  static void setIcon(final JInternalFrame internalFrame, final JInternalFrameAction action) {
     execute(() -> {
       internalFrame.setMaximum(false);
       internalFrame.setIcon(action.value);

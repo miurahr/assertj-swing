@@ -22,8 +22,7 @@ import javax.swing.ListSelectionModel;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JListCellReader;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Default implementation of {@link JListCellReader}.
@@ -48,7 +47,7 @@ public class BasicJListCellReader implements JListCellReader {
    * @param rendererReader knows how to read values from the cell renderer component in a {@code JList}.
    * @throws NullPointerException if {@code rendererReader} is {@code null}.
    */
-  public BasicJListCellReader(@NotNull CellRendererReader rendererReader) {
+  public BasicJListCellReader(CellRendererReader rendererReader) {
     this.rendererReader = checkNotNull(rendererReader);
   }
 
@@ -69,8 +68,7 @@ public class BasicJListCellReader implements JListCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable
-  public String valueAt(@NotNull JList list, int index) {
+  public @Nullable String valueAt(JList list, int index) {
     Object element = list.getModel().getElementAt(index);
     ListSelectionModel lsm = list.getSelectionModel();
     boolean isSelected = lsm.isSelectedIndex(index);

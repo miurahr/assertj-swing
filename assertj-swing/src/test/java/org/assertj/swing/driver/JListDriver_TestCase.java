@@ -20,7 +20,6 @@ import static org.assertj.swing.test.task.ComponentSetEnabledTask.disable;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
@@ -160,7 +159,7 @@ public abstract class JListDriver_TestCase extends RobotBasedTestCase {
     JListCellReaderStub() {}
 
     @Override
-    public String valueAt(@NotNull JList list, int index) {
+    public String valueAt(JList list, int index) {
       methodInvocations.invoked("valueAt");
       return super.valueAt(list, index);
     }

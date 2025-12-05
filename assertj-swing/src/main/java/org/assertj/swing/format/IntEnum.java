@@ -12,9 +12,6 @@
  */
 package org.assertj.swing.format;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import static java.lang.String.valueOf;
 import static org.assertj.swing.util.Maps.newHashMap;
 
@@ -28,7 +25,6 @@ import java.util.Map;
 final class IntEnum {
   private final Map<Integer, String> map = newHashMap();
 
-  @Nullable
   String get(int key) {
     if (map.containsKey(key)) {
       return map.get(key);
@@ -36,8 +32,7 @@ final class IntEnum {
     return valueOf(key);
   }
 
-  @NotNull
-  IntEnum put(int key, @Nullable String value) {
+  IntEnum put(int key, String value) {
     map.put(key, value);
     return this;
   }

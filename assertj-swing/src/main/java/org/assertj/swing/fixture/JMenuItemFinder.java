@@ -18,7 +18,6 @@ import static org.assertj.swing.format.Formatting.format;
 import java.awt.Component;
 import java.awt.Container;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JMenuItem;
 
 import org.assertj.swing.core.ComponentMatcher;
@@ -35,13 +34,12 @@ class JMenuItemFinder {
   private final Robot robot;
   private final Container target;
 
-  JMenuItemFinder(@NotNull Robot robot, @NotNull Container target) {
+  JMenuItemFinder(Robot robot, Container target) {
     this.robot = robot;
     this.target = target;
   }
 
-  @NotNull
-  JMenuItem menuItemWithPath(@NotNull String... path) {
+  JMenuItem menuItemWithPath(String... path) {
     ComponentMatcher m = new JMenuItemMatcher(path);
     Component item = robot.finder().find(target, m);
     assertThat(item).as(format(item)).isInstanceOf(JMenuItem.class);

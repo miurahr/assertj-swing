@@ -21,8 +21,7 @@ import java.lang.reflect.Array;
 
 import org.assertj.core.presentation.StandardRepresentation;
 import org.assertj.swing.internal.annotation.InternalApi;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Utility methods for arrays.
@@ -41,13 +40,13 @@ public final class Arrays {
    * @param two the second array.
    * @return {@code true} if the arrays are equal, {@code false} otherwise.
    */
-  public static boolean equal(@Nullable String[][] one, @Nullable String[][] two) {
-    if (one == null && two == null) {
-      return true;
-    }
-    if (one == null || two == null) {
-      return false;
-    }
+  public static boolean equal(String @Nullable [][] one, String @Nullable [][] two) {
+      if (one == null && two == null) {
+          return true;
+      }
+      if (one == null || two == null) {
+          return false;
+      }
     if (one.length != two.length) {
       return false;
     } ;
@@ -93,8 +92,7 @@ public final class Arrays {
    * @param array the array to format.
    * @return the data of the given array formatted to make it easier to read.
    */
-  @NotNull
-  public static String format(@Nullable String[][] array) {
+  public static String format(String @Nullable [][] array) {
     if (array == null) {
       return NULL;
     }
@@ -120,7 +118,7 @@ public final class Arrays {
     return b.toString();
   }
 
-  private static void addLine(@Nullable String[] line, @NotNull StringBuilder b) {
+  private static void addLine(String @Nullable [] line, StringBuilder b) {
     if (line == null) {
       b.append(NULL);
       return;
@@ -143,8 +141,7 @@ public final class Arrays {
    * @return the created copy.
    * @throws NullPointerException if the array to copy is {@code null}.
    */
-  @NotNull
-  public static int[] copyOf(@NotNull int[] array) {
+  public static int[] copyOf(int[] array) {
     checkNotNull(array);
     int arraySize = array.length;
     int[] copy = new int[arraySize];
@@ -163,7 +160,7 @@ public final class Arrays {
    * @throws NullPointerException if the array to copy is {@code null}.
    */
   @SuppressWarnings("unchecked")
-  public static <T> T[] copyOf(@NotNull T[] array) {
+  public static <T> T[] copyOf(T[] array) {
     checkNotNull(array);
     int arraySize = array.length;
     T[] copy = (T[]) Array.newInstance(array.getClass().getComponentType(), arraySize);

@@ -14,8 +14,7 @@ package org.assertj.swing.query;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -37,7 +36,7 @@ public final class AbstractButtonTextQuery {
    */
   @RunsInEDT
   @Nullable
-  public static String textOf(final @NotNull AbstractButton button) {
+  public static String textOf(final AbstractButton button) {
     return execute(() -> button.getText());
   }
 

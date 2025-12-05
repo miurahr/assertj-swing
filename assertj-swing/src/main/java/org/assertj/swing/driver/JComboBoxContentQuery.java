@@ -19,7 +19,6 @@ import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JComboBoxCellReader;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns an array of {@code String}s that represents the contents of a given {@code JComboBox}. This action is
@@ -29,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
  */
 final class JComboBoxContentQuery {
   @RunsInEDT
-  static @NotNull String[] contents(final @NotNull JComboBox<?> comboBox, final @NotNull JComboBoxCellReader cellReader) {
+  static String[] contents(final JComboBox<?> comboBox, final JComboBoxCellReader cellReader) {
     String[] result = execute(() -> {
       int itemCount = comboBox.getItemCount();
       String[] values = new String[itemCount];

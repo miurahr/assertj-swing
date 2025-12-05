@@ -16,8 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
@@ -54,7 +53,7 @@ public final class WindowDestroyTask {
    * @param w the {@code Window} to hide and dispose.
    */
   @RunsInCurrentThread
-  public static void hideAndDispose(@NotNull Window w) {
+  public static void hideAndDispose(Window w) {
     w.setVisible(false);
     w.dispose();
   }

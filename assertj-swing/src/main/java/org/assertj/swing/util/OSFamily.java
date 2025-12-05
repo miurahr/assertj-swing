@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Operating System families.
  * 
@@ -24,14 +22,13 @@ public enum OSFamily {
 
   private final String key;
 
-  private OSFamily(@NotNull String key) {
+  OSFamily(String key) {
     this.key = key;
   }
 
   /**
    * @return the key (or abbreviation) of this OS family.
    */
-  @NotNull
   public String key() {
     return key;
   }

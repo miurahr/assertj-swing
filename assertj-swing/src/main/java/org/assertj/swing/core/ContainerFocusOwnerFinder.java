@@ -16,8 +16,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -38,7 +37,7 @@ class ContainerFocusOwnerFinder {
 
   @RunsInCurrentThread
   @Nullable
-  private Component focusOwnerOf(@NotNull Window w) {
+  private Component focusOwnerOf(Window w) {
     if (!w.isShowing()) {
       return null;
     }

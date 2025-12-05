@@ -25,8 +25,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Monitor that maps event queues to GUI components and GUI components to event event queues.
@@ -42,12 +41,12 @@ class Context {
 
   private final Object lock = new Object();
 
-  Context(@NotNull Toolkit toolkit) {
+  Context(Toolkit toolkit) {
     this(toolkit, new WindowEventQueueMapping(), new EventQueueMapping());
   }
 
-  Context(@NotNull Toolkit toolkit, @NotNull WindowEventQueueMapping windowEventQueueMapping,
-          @NotNull EventQueueMapping eventQueueMapping) {
+  Context(Toolkit toolkit, WindowEventQueueMapping windowEventQueueMapping,
+          EventQueueMapping eventQueueMapping) {
     this.windowEventQueueMapping = windowEventQueueMapping;
     this.eventQueueMapping = eventQueueMapping;
     this.windowEventQueueMapping.addQueueFor(toolkit);
@@ -60,7 +59,6 @@ class Context {
    *
    * @return all available root {@code Window}s.
    */
-  @NotNull
   Collection<Window> rootWindows() {
     Set<Window> rootWindows = newLinkedHashSet();
     synchronized (lock) {
@@ -72,19 +70,19 @@ class Context {
   }
 
   @Nullable
-  EventQueue storedQueueFor(@NotNull Component c) {
+  EventQueue storedQueueFor(Component c) {
     synchronized (lock) {
       return eventQueueMapping.storedQueueFor(c);
     }
   }
 
-  void removeContextFor(@NotNull Component component) {
+  void removeContextFor(Component component) {
     synchronized (lock) {
       windowEventQueueMapping.removeMappingFor(component);
     }
   }
 
-  void addContextFor(@NotNull Component component) {
+  void addContextFor(Component component) {
     synchronized (lock) {
       windowEventQueueMapping.addQueueFor(component);
       eventQueueMapping.addQueueFor(component);
@@ -101,7 +99,7 @@ class Context {
    */
   @RunsInEDT
   @Nullable
-  EventQueue eventQueueFor(@NotNull Component c) {
+  EventQueue eventQueueFor(Component c) {
     Component component = topParentOf(c);
     if (component == null) {
       return null;
@@ -113,7 +111,7 @@ class Context {
 
   @RunsInEDT
   @Nullable
-  private static Component topParentOf(final @NotNull Component c) {
+  private static Component topParentOf(final Component c) {
     return execute(() -> {
       Component parent = c;
       // Components above the applet in the hierarchy may or may not share the same context with the applet itself.
@@ -127,7 +125,6 @@ class Context {
   /**
    * @return all known event queues.
    */
-  @NotNull
   Collection<EventQueue> allEventQueues() {
     Set<EventQueue> eventQueues = newLinkedHashSet();
     synchronized (lock) {

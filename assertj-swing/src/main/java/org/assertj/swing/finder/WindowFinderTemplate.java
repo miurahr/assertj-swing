@@ -16,8 +16,7 @@ import java.awt.Window;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.swing.annotation.NonNegative;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.core.Robot;
@@ -38,7 +37,7 @@ public abstract class WindowFinderTemplate<T extends Window> extends ComponentFi
    * @param windowName the name of the {@code Window} to find.
    * @param windowType the type of the {@code Window} to find.
    */
-  protected WindowFinderTemplate(@Nullable String windowName, @NotNull Class<? extends T> windowType) {
+  protected WindowFinderTemplate(@Nullable String windowName, Class<? extends T> windowType) {
     super(windowName, windowType);
   }
 
@@ -47,7 +46,7 @@ public abstract class WindowFinderTemplate<T extends Window> extends ComponentFi
    * 
    * @param matcher specifies the search criteria to use when looking up a {@code Window}.
    */
-  protected WindowFinderTemplate(@NotNull GenericTypeMatcher<? extends T> matcher) {
+  protected WindowFinderTemplate(GenericTypeMatcher<? extends T> matcher) {
     super(matcher);
   }
 
@@ -56,7 +55,7 @@ public abstract class WindowFinderTemplate<T extends Window> extends ComponentFi
    * 
    * @param windowType the type of the {@code Window} to find.
    */
-  protected WindowFinderTemplate(@NotNull Class<? extends T> windowType) {
+  protected WindowFinderTemplate(Class<? extends T> windowType) {
     super(windowType);
   }
 
@@ -68,7 +67,6 @@ public abstract class WindowFinderTemplate<T extends Window> extends ComponentFi
    * @throws IllegalArgumentException if the timeout is a negative number.
    */
   @Override
-  @NotNull
   protected WindowFinderTemplate<T> withTimeout(@NonNegative long timeout) {
     super.withTimeout(timeout);
     return this;
@@ -84,7 +82,7 @@ public abstract class WindowFinderTemplate<T extends Window> extends ComponentFi
    * @throws IllegalArgumentException if the timeout is a negative number.
    */
   @Override
-  protected WindowFinderTemplate<T> withTimeout(@NonNegative long timeout, @NotNull TimeUnit unit) {
+  protected WindowFinderTemplate<T> withTimeout(@NonNegative long timeout, TimeUnit unit) {
     super.withTimeout(timeout, unit);
     return this;
   }
@@ -98,5 +96,5 @@ public abstract class WindowFinderTemplate<T extends Window> extends ComponentFi
    *           could not be found.
    */
   @Override
-  public abstract @NotNull AbstractWindowFixture<?, T, ?> using(@NotNull Robot robot);
+  public abstract AbstractWindowFixture<?, T, ?> using(Robot robot);
 }

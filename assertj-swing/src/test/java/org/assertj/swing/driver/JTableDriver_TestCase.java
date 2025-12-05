@@ -23,7 +23,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
@@ -192,7 +191,7 @@ public abstract class JTableDriver_TestCase extends RobotBasedTestCase {
     JTableCellReaderStub() {}
 
     @Override
-    public String valueAt(@NotNull JTable table, int row, int column) {
+    public String valueAt(JTable table, int row, int column) {
       methodInvocations.invoked("valueAt");
       return super.valueAt(table, row, column);
     }

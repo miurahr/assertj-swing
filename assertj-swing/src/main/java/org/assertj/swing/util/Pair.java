@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Tuple of size 2.
@@ -40,7 +39,6 @@ public class Pair<F, S> {
    * @param second the 2nd. value in this tuple.
    * @return the created {@code Pair}.
    */
-  @NotNull
   public static <F, S> Pair<F, S> of(@Nullable F first, @Nullable S second) {
     return new Pair<F, S>(first, second);
   }

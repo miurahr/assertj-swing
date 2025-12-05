@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.core;
 
-import java.awt.Component;
+import org.jspecify.annotations.Nullable;
 
-import org.jetbrains.annotations.Nullable;
+import java.awt.Component;
 
 /**
  * Finds the current focus owner.
@@ -22,6 +22,5 @@ import org.jetbrains.annotations.Nullable;
  * @author Alex Ruiz
  */
 public interface FocusOwnerFinderStrategy {
-  @Nullable
-  Component focusOwner();
+    @Nullable Component focusOwner();
 }

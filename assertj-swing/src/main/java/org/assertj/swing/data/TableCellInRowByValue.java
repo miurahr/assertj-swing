@@ -19,7 +19,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.util.Arrays.format;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -61,8 +60,7 @@ public class TableCellInRowByValue implements TableCellFinder {
    * @return the created builder.
    * @throws NullPointerException if the given array of values is {@code null}.
    */
-  @NotNull
-  public static TableCellBuilder rowWithValue(@NotNull String... values) {
+  public static TableCellBuilder rowWithValue(String... values) {
     return new TableCellBuilder(values);
   }
 
@@ -79,7 +77,7 @@ public class TableCellInRowByValue implements TableCellFinder {
      *
      * @param values the values of the cells of the row to find.
      */
-    TableCellBuilder(@NotNull String[] values) {
+    TableCellBuilder(String[] values) {
       this.values = checkNotNull(values);
     }
 
@@ -91,7 +89,6 @@ public class TableCellInRowByValue implements TableCellFinder {
      * @param column the index of the column in the table cell to find.
      * @return the created finder.
      */
-    @NotNull
     public TableCellInRowByValue column(int column) {
       return new TableCellInRowByValue(values, column);
     }
@@ -106,7 +103,7 @@ public class TableCellInRowByValue implements TableCellFinder {
    * @param values the values in the cells of the row we are looking for.
    * @param column the index of the column in the table cell to find.
    */
-  protected TableCellInRowByValue(@NotNull String[] values, int column) {
+  protected TableCellInRowByValue(String[] values, int column) {
     this.values = values;
     this.column = column;
   }
@@ -127,8 +124,7 @@ public class TableCellInRowByValue implements TableCellFinder {
    */
   @RunsInEDT
   @Override
-  @NotNull
-  public TableCell findCell(@NotNull JTable table, @NotNull JTableCellReader cellReader) {
+  public TableCell findCell(JTable table, JTableCellReader cellReader) {
     int row = findRowIndex(table, cellReader, values);
     if (row == -1) {
       throw actionFailure(concat("Unable to find a row with values:<", format(values), ">"));
@@ -137,8 +133,8 @@ public class TableCellInRowByValue implements TableCellFinder {
   }
 
   @RunsInEDT
-  private static int findRowIndex(final @NotNull JTable table, final @NotNull JTableCellReader cellReader,
-                                  final @NotNull String[] values) {
+  private static int findRowIndex(final JTable table, final JTableCellReader cellReader,
+                                  final String[] values) {
     Integer result = execute(() -> {
       validateEqualSize(table, values);
       int rowCount = table.getRowCount();
@@ -153,7 +149,7 @@ public class TableCellInRowByValue implements TableCellFinder {
   }
 
   @RunsInCurrentThread
-  private static void validateEqualSize(final @NotNull JTable table, final @NotNull String[] values) {
+  private static void validateEqualSize(final JTable table, final String[] values) {
     int columnCount = table.getColumnCount();
     if (values.length != columnCount) {
       throw new IllegalStateException(concat("The array of values should have size:<", columnCount, ">"));
@@ -161,8 +157,8 @@ public class TableCellInRowByValue implements TableCellFinder {
   }
 
   @RunsInCurrentThread
-  private static boolean matchingRow(@NotNull JTable table, @NotNull JTableCellReader cellReader,
-                                     @NotNull String[] values, int row) {
+  private static boolean matchingRow(JTable table, JTableCellReader cellReader,
+                                     String[] values, int row) {
     int columnCount = table.getColumnCount();
     for (int col = 0; col < columnCount; col++) {
       if (!areEqual(cellReader.valueAt(table, row, col), values[col])) {

@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JCheckBox;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -81,7 +80,7 @@ public class AbstractContainerFixture_checkBox_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JCheckBoxFixture checkBox = fixture.checkBox(new GenericTypeMatcher<JCheckBox>(JCheckBox.class) {
       @Override
-      protected boolean isMatching(@NotNull JCheckBox c) {
+      protected boolean isMatching(JCheckBox c) {
         return "Check Me".equals(c.getText());
       }
     });

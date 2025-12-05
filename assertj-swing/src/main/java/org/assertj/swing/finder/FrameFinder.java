@@ -17,8 +17,7 @@ import java.awt.Frame;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.swing.annotation.NonNegative;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.core.Robot;
@@ -45,7 +44,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * 
    * @param matcher specifies the search criteria to use when looking up a {@code Frame}.
    */
-  protected FrameFinder(@NotNull GenericTypeMatcher<? extends Frame> matcher) {
+  protected FrameFinder(GenericTypeMatcher<? extends Frame> matcher) {
     super(matcher);
   }
 
@@ -54,7 +53,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * 
    * @param frameType the type of {@code Frame} to look for.
    */
-  protected FrameFinder(@NotNull Class<? extends Frame> frameType) {
+  protected FrameFinder(Class<? extends Frame> frameType) {
     super(frameType);
   }
 
@@ -65,7 +64,6 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @return this finder.
    */
   @Override
-  @NotNull
   public FrameFinder withTimeout(@NonNegative long timeout) {
     super.withTimeout(timeout);
     return this;
@@ -79,8 +77,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @return this finder.
    */
   @Override
-  @NotNull
-  public FrameFinder withTimeout(@NonNegative long timeout, @NotNull TimeUnit unit) {
+  public FrameFinder withTimeout(@NonNegative long timeout, TimeUnit unit) {
     super.withTimeout(timeout, unit);
     return this;
   }
@@ -93,8 +90,7 @@ public class FrameFinder extends WindowFinderTemplate<Frame> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code Frame} could not be found.
    */
   @Override
-  @NotNull
-  public FrameFixture using(@NotNull Robot robot) {
+  public FrameFixture using(Robot robot) {
     return new FrameFixture(robot, findComponentWith(robot));
   }
 

@@ -16,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTextField;
 
 import org.junit.Test;
@@ -32,7 +31,7 @@ public class BasicComponentFinder_findAllUsingGenericTypeMatcher_Test extends Ba
   public void should_Return_All_Components_Matching_GenericTypeMatcher() {
     Collection<JTextField> found = finder.findAll(new GenericTypeMatcher<JTextField>(JTextField.class) {
       @Override
-      protected boolean isMatching(@NotNull JTextField c) {
+      protected boolean isMatching(JTextField c) {
         return true;
       }
     });

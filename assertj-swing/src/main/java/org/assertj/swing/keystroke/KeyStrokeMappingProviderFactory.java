@@ -12,17 +12,13 @@
  */
 package org.assertj.swing.keystroke;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 /**
  * Creates {@link KeyStrokeMappingProvider}s from class names.
  * 
  * @author Alex Ruiz
  */
 class KeyStrokeMappingProviderFactory {
-  @Nullable
-  KeyStrokeMappingProvider createProvider(@NotNull String className) {
+  KeyStrokeMappingProvider createProvider(String className) {
     try {
       Class<?> type = Class.forName(className);
       if (!KeyStrokeMappingProvider.class.isAssignableFrom(type)) {

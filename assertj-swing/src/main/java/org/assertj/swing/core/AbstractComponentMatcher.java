@@ -14,8 +14,6 @@ package org.assertj.swing.core;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
 /**
@@ -79,7 +77,7 @@ public abstract class AbstractComponentMatcher implements ResettableComponentMat
    *         this matcher, {@code false} otherwise.
    */
   @RunsInCurrentThread
-  protected final boolean requireShowingMatches(@NotNull Component c) {
+  protected final boolean requireShowingMatches(Component c) {
     return !requireShowing || c.isShowing();
   }
 

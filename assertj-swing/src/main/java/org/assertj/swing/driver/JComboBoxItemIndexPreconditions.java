@@ -18,7 +18,6 @@ import static org.assertj.core.util.Strings.concat;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -34,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
  */
 final class JComboBoxItemIndexPreconditions {
   @RunsInCurrentThread
-  static void checkItemIndexInBounds(@NotNull JComboBox<?> comboBox, int index) {
+  static void checkItemIndexInBounds(JComboBox<?> comboBox, int index) {
     if (index < 0) {
       String msg = String.format("%s should not be less than zero", itemIndex(index));
       throw new IndexOutOfBoundsException(msg);

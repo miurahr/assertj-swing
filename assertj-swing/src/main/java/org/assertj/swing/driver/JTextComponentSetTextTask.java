@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +25,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTextComponentSetTextTask {
   @RunsInEDT
-  static void setTextIn(final @NotNull JTextComponent textBox, final String text) {
+  static void setTextIn(final JTextComponent textBox, final String text) {
     execute(() -> textBox.setText(text));
   }
 

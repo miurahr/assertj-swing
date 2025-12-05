@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.driver;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import static java.util.Collections.sort;
 import static javax.swing.Action.NAME;
@@ -34,7 +33,7 @@ import javax.swing.ActionMap;
  * @author Alex Ruiz
  */
 final class Actions {
-  static @NotNull Object findActionKey(@NotNull String name, @NotNull ActionMap actionMap) {
+  static Object findActionKey(String name, ActionMap actionMap) {
     Action action = actionMap.get(name);
     if (action != null) {
       return name;
@@ -55,8 +54,7 @@ final class Actions {
     throw actionFailure(message);
   }
 
-  @NotNull
-  private static List<String> formatAllActionKeys(@NotNull Object[] keys) {
+  private static List<String> formatAllActionKeys(Object[] keys) {
     List<String> formattedKeys = newArrayList();
     for (Object key : keys) {
       String keyAsString = keyAsString(key);

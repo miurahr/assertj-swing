@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import org.jetbrains.annotations.Nullable;
 import javax.swing.UIManager;
 
 /**
@@ -24,7 +23,7 @@ import javax.swing.UIManager;
 final class JFileChooserCancelButtonTextQuery {
   private static final String CANCEL_BUTTON_TEXT_KEY = "FileChooser.cancelButtonText";
 
-  static @Nullable String cancelButtonText() {
+  static  String cancelButtonText() {
     return UIManager.getString(CANCEL_BUTTON_TEXT_KEY);
   }
 

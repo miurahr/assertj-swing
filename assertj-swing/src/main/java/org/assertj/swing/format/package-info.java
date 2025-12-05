@@ -35,4 +35,7 @@
  *
  * @author Alex Ruiz
  */
+@NullMarked
 package org.assertj.swing.format;
+
+import org.jspecify.annotations.NullMarked;

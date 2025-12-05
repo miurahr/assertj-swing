@@ -28,8 +28,7 @@ import static org.assertj.swing.driver.TextAssert.verifyThat;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -64,7 +63,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JOptionPaneDriver(@NotNull Robot robot) {
+  public JOptionPaneDriver(Robot robot) {
     super(robot);
   }
 
@@ -76,7 +75,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws AssertionError if the {@code JOptionPane} does not have the given title.
    */
   @RunsInEDT
-  public void requireTitle(@NotNull JOptionPane optionPane, @Nullable String title) {
+  public void requireTitle(JOptionPane optionPane, @Nullable String title) {
     verifyThat(title(optionPane)).as(propertyName(optionPane, TITLE_PROPERTY)).isEqualOrMatches(title);
   }
 
@@ -89,7 +88,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws AssertionError if the {@code JOptionPane} does not have the given title.
    */
   @RunsInEDT
-  public void requireTitle(@NotNull JOptionPane optionPane, @NotNull Pattern pattern) {
+  public void requireTitle(JOptionPane optionPane, Pattern pattern) {
     verifyThat(title(optionPane)).as(propertyName(optionPane, TITLE_PROPERTY)).matches(pattern);
   }
 
@@ -101,7 +100,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    */
   @RunsInEDT
   @Nullable
-  public String title(@NotNull JOptionPane optionPane) {
+  public String title(JOptionPane optionPane) {
     return titleOf(optionPane);
   }
 
@@ -117,7 +116,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    *           message.
    */
   @RunsInEDT
-  public void requireMessage(@NotNull JOptionPane optionPane, @Nullable Object message) {
+  public void requireMessage(JOptionPane optionPane, @Nullable Object message) {
     Object actual = messageOf(optionPane);
     if (message instanceof String && actual != null) {
       requireMessage(optionPane, (String) message, actual.toString());
@@ -127,7 +126,7 @@ public class JOptionPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private void requireMessage(@NotNull JOptionPane optionPane, @Nullable String expected, @Nullable String actual) {
+  private void requireMessage(JOptionPane optionPane, @Nullable String expected, @Nullable String actual) {
     verifyThat(actual).as(messageProperty(optionPane)).isEqualOrMatches(expected);
   }
 
@@ -143,13 +142,13 @@ public class JOptionPaneDriver extends JComponentDriver {
    *           pattern.
    */
   @RunsInEDT
-  public void requireMessage(@NotNull JOptionPane optionPane, @NotNull Pattern pattern) {
+  public void requireMessage(JOptionPane optionPane, Pattern pattern) {
     Object actual = messageOf(optionPane);
     String s = actual == null ? null : actual.toString();
     verifyThat(s).as(messageProperty(optionPane)).matches(pattern);
   }
 
-  private Description messageProperty(@NotNull JOptionPane optionPane) {
+  private Description messageProperty(JOptionPane optionPane) {
     return propertyName(optionPane, MESSAGE_PROPERTY);
   }
 
@@ -161,7 +160,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws AssertionError if the {@code JOptionPane} does not have the given options.
    */
   @RunsInEDT
-  public void requireOptions(@NotNull JOptionPane optionPane, @NotNull Object[] options) {
+  public void requireOptions(JOptionPane optionPane, Object[] options) {
     assertThat(optionsOf(optionPane)).as(propertyName(optionPane, OPTIONS_PROPERTY)).isEqualTo(options);
   }
 
@@ -173,8 +172,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the a "OK" button cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JButton okButton(@NotNull JOptionPane optionPane) {
+  public JButton okButton(JOptionPane optionPane) {
     return buttonWithTextFromUIManager(optionPane, "OptionPane.okButtonText");
   }
 
@@ -186,8 +184,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the a "Cancel" button cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JButton cancelButton(@NotNull JOptionPane optionPane) {
+  public JButton cancelButton(JOptionPane optionPane) {
     return buttonWithTextFromUIManager(optionPane, "OptionPane.cancelButtonText");
   }
 
@@ -199,8 +196,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the a "Yes" button cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JButton yesButton(@NotNull JOptionPane optionPane) {
+  public JButton yesButton(JOptionPane optionPane) {
     return buttonWithTextFromUIManager(optionPane, "OptionPane.yesButtonText");
   }
 
@@ -212,14 +208,12 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the a "No" button cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JButton noButton(@NotNull JOptionPane optionPane) {
+  public JButton noButton(JOptionPane optionPane) {
     return buttonWithTextFromUIManager(optionPane, "OptionPane.noButtonText");
   }
 
   @RunsInEDT
-  @NotNull
-  private JButton buttonWithTextFromUIManager(@NotNull JOptionPane optionPane, @NotNull String key) {
+  private JButton buttonWithTextFromUIManager(JOptionPane optionPane, String key) {
     return buttonWithText(optionPane, checkNotNull(UIManager.getString(key)));
   }
 
@@ -232,8 +226,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the a button with the given text cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JButton buttonWithText(@NotNull JOptionPane optionPane, @Nullable String text) {
+  public JButton buttonWithText(JOptionPane optionPane, @Nullable String text) {
     return robot.finder().find(optionPane, JButtonMatcher.withText(text).andShowing());
   }
 
@@ -247,8 +240,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if the a button with the given text cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JButton buttonWithText(@NotNull JOptionPane optionPane, @NotNull Pattern pattern) {
+  public JButton buttonWithText(JOptionPane optionPane, Pattern pattern) {
     return robot.finder().find(optionPane, JButtonMatcher.withText(pattern).andShowing());
   }
 
@@ -258,7 +250,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @param optionPane the target {@code JOptionPane}.
    */
   @RunsInEDT
-  public void requireErrorMessage(@NotNull JOptionPane optionPane) {
+  public void requireErrorMessage(JOptionPane optionPane) {
     assertEqualMessageType(optionPane, ERROR_MESSAGE);
   }
 
@@ -268,7 +260,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @param optionPane the target {@code JOptionPane}.
    */
   @RunsInEDT
-  public void requireInformationMessage(@NotNull JOptionPane optionPane) {
+  public void requireInformationMessage(JOptionPane optionPane) {
     assertEqualMessageType(optionPane, INFORMATION_MESSAGE);
   }
 
@@ -278,7 +270,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @param optionPane the target {@code JOptionPane}.
    */
   @RunsInEDT
-  public void requireWarningMessage(@NotNull JOptionPane optionPane) {
+  public void requireWarningMessage(JOptionPane optionPane) {
     assertEqualMessageType(optionPane, WARNING_MESSAGE);
   }
 
@@ -288,7 +280,7 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @param optionPane the target {@code JOptionPane}.
    */
   @RunsInEDT
-  public void requireQuestionMessage(@NotNull JOptionPane optionPane) {
+  public void requireQuestionMessage(JOptionPane optionPane) {
     assertEqualMessageType(optionPane, QUESTION_MESSAGE);
   }
 
@@ -298,18 +290,18 @@ public class JOptionPaneDriver extends JComponentDriver {
    * @param optionPane the target {@code JOptionPane}.
    */
   @RunsInEDT
-  public void requirePlainMessage(@NotNull JOptionPane optionPane) {
+  public void requirePlainMessage(JOptionPane optionPane) {
     assertEqualMessageType(optionPane, PLAIN_MESSAGE);
   }
 
   @RunsInEDT
-  private void assertEqualMessageType(@NotNull JOptionPane optionPane, int expected) {
+  private void assertEqualMessageType(JOptionPane optionPane, int expected) {
     String actualType = actualMessageTypeAsText(optionPane);
     assertThat(actualType).as(propertyName(optionPane, MESSAGE_TYPE_PROPERTY)).isEqualTo(messageTypeAsText(expected));
   }
 
   @RunsInEDT
-  private String actualMessageTypeAsText(final @NotNull JOptionPane optionPane) {
+  private String actualMessageTypeAsText(final JOptionPane optionPane) {
     return messageTypeAsText(messageTypeOf(optionPane));
   }
 }

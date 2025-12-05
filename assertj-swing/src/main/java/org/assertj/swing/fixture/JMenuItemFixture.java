@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.fixture;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JMenuItem;
 
 import org.assertj.swing.core.Robot;
@@ -34,7 +33,7 @@ public class JMenuItemFixture extends AbstractJComponentFixture<JMenuItemFixture
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JMenuItem} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JMenuItem} is found.
    */
-  public JMenuItemFixture(@NotNull Robot robot, @Nullable String menuItemName) {
+  public JMenuItemFixture(Robot robot, @Nullable String menuItemName) {
     this(robot, robot.finder().findByName(menuItemName, JMenuItem.class, false));
   }
 
@@ -46,13 +45,12 @@ public class JMenuItemFixture extends AbstractJComponentFixture<JMenuItemFixture
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JMenuItemFixture(@NotNull Robot robot, @NotNull JMenuItem target) {
+  public JMenuItemFixture(Robot robot, JMenuItem target) {
     super(JMenuItemFixture.class, robot, target);
   }
 
   @Override
-  @NotNull
-  protected JMenuItemDriver createDriver(@NotNull Robot robot) {
+  protected JMenuItemDriver createDriver(Robot robot) {
     return new JMenuItemDriver(robot);
   }
 }

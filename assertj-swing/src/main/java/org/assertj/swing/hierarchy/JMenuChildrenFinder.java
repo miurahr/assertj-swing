@@ -19,7 +19,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JMenu;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -39,8 +38,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 final class JMenuChildrenFinder implements ChildrenFinderStrategy {
   @RunsInCurrentThread
   @Override
-  @NotNull
-  public Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
+  public Collection<Component> nonExplicitChildrenOf(Container c) {
     if (!(c instanceof JMenu)) {
       return emptyList();
     }

@@ -15,8 +15,7 @@ package org.assertj.swing.fixture;
 import java.awt.Point;
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JPanel;
 
 import org.assertj.swing.core.Robot;
@@ -39,7 +38,7 @@ public class JPanelFixture extends AbstractContainerFixture<JPanelFixture, JPane
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JPanel} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JPanel} is found.
    */
-  public JPanelFixture(@NotNull Robot robot, @NotNull String panelName) {
+  public JPanelFixture(Robot robot, String panelName) {
     super(JPanelFixture.class, robot, panelName, JPanel.class);
   }
 
@@ -51,13 +50,12 @@ public class JPanelFixture extends AbstractContainerFixture<JPanelFixture, JPane
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JPanelFixture(@NotNull Robot robot, @NotNull JPanel target) {
+  public JPanelFixture(Robot robot, JPanel target) {
     super(JPanelFixture.class, robot, target);
   }
 
   @Override
-  @NotNull
-  protected JComponentDriver createDriver(@NotNull Robot robot) {
+  protected JComponentDriver createDriver(Robot robot) {
     return new JComponentDriver(robot);
   }
 
@@ -69,7 +67,6 @@ public class JPanelFixture extends AbstractContainerFixture<JPanelFixture, JPane
    * @throws AssertionError if the toolTip in this fixture's {@code JPanel} does not match the given value.
    */
   @Override
-  @NotNull
   public JPanelFixture requireToolTip(@Nullable String expected) {
     driver().requireToolTip(target(), expected);
     return this;
@@ -84,8 +81,7 @@ public class JPanelFixture extends AbstractContainerFixture<JPanelFixture, JPane
    * @throws AssertionError if the toolTip in this fixture's {@code JPanel} does not match the given regular expression.
    */
   @Override
-  @NotNull
-  public JPanelFixture requireToolTip(@NotNull Pattern pattern) {
+  public JPanelFixture requireToolTip(Pattern pattern) {
     driver().requireToolTip(target(), pattern);
     return this;
   }
@@ -98,8 +94,7 @@ public class JPanelFixture extends AbstractContainerFixture<JPanelFixture, JPane
    * @throws NullPointerException if the given key is {@code null}.
    */
   @Override
-  @Nullable
-  public Object clientProperty(@NotNull Object key) {
+  public @Nullable Object clientProperty(Object key) {
     return driver().clientProperty(target(), key);
   }
 
@@ -113,7 +108,6 @@ public class JPanelFixture extends AbstractContainerFixture<JPanelFixture, JPane
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  @NotNull
   public JPopupMenuFixture showPopupMenu() {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target()));
   }
@@ -129,8 +123,7 @@ public class JPanelFixture extends AbstractContainerFixture<JPanelFixture, JPane
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  @NotNull
-  public JPopupMenuFixture showPopupMenuAt(@NotNull Point p) {
+  public JPopupMenuFixture showPopupMenuAt(Point p) {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target(), p));
   }
 }

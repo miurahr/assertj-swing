@@ -12,15 +12,12 @@
  */
 package org.assertj.swing.core;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Utility methods related to threads.
  * 
  * @author Alex Ruiz
  */
 class ThreadsSource {
-  @NotNull
   Thread[] allThreads() {
     Thread[] all = new Thread[Thread.activeCount()];
     Thread.enumerate(all);

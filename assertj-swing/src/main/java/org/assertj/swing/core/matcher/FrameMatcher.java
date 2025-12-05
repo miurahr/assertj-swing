@@ -15,8 +15,7 @@ package org.assertj.swing.core.matcher;
 import java.awt.Frame;
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -81,7 +80,7 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    * @param title the title to match. It can be a regular expression.
    * @return the created matcher.
    */
-  public static FrameMatcher withTitle(@NotNull String title) {
+  public static FrameMatcher withTitle(String title) {
     return new FrameMatcher(anyValue(), title);
   }
 
@@ -109,8 +108,7 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    * @param pattern the title to match.
    * @return the created matcher.
    */
-  @NotNull
-  public static FrameMatcher withTitle(@NotNull Pattern pattern) {
+  public static FrameMatcher withTitle(Pattern pattern) {
     return new FrameMatcher(anyValue(), pattern);
   }
 
@@ -119,7 +117,6 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    *
    * @return the created matcher.
    */
-  @NotNull
   public static FrameMatcher any() {
     return new FrameMatcher(anyValue(), anyValue());
   }
@@ -136,8 +133,7 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    * @param newTitle the new title to match. It can be a regular expression.
    * @return this matcher.
    */
-  @NotNull
-  public FrameMatcher andTitle(@NotNull String newTitle) {
+  public FrameMatcher andTitle(String newTitle) {
     title = newTitle;
     return this;
   }
@@ -149,8 +145,7 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    * @param titlePattern the regular expression pattern to match.
    * @return this matcher.
    */
-  @NotNull
-  public FrameMatcher andTitle(@NotNull Pattern titlePattern) {
+  public FrameMatcher andTitle(Pattern titlePattern) {
     title = titlePattern;
     return this;
   }
@@ -160,7 +155,6 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    *
    * @return this matcher.
    */
-  @NotNull
   public FrameMatcher andShowing() {
     requireShowing(true);
     return this;
@@ -182,7 +176,7 @@ public final class FrameMatcher extends NamedComponentMatcherTemplate<Frame> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean isMatching(@NotNull Frame frame) {
+  protected boolean isMatching(Frame frame) {
     return isNameMatching(frame.getName()) && arePropertyValuesMatching(title, frame.getTitle());
   }
 

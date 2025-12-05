@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.NotNull;
-
 import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.VK_ALT;
 import static java.awt.event.KeyEvent.VK_ALT_GRAPH;
@@ -71,7 +69,6 @@ public final class Modifiers {
    * @param modifierMask the given modifier mask.
    * @return the key codes for the given modifier mask.
    */
-  @NotNull
   public static int[] keysFor(int modifierMask) {
     List<Integer> keyList = newArrayList();
     for (Integer mask : MODIFIER_TO_KEY.keySet()) {

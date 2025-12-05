@@ -24,8 +24,7 @@ import java.util.logging.Logger;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Registry of {@link TextReader}s.
@@ -54,7 +53,7 @@ public class TextReaders {
    * @throws NullPointerException if the supported {@code Component} type in the given {@code TextReader} is
    *           {@code null}.
    */
-  public void register(@NotNull TextReader<?> reader) {
+  public void register(TextReader<?> reader) {
     checkNotNull(reader);
     Class<?> type = checkNotNull(reader.supportedComponent());
     TextReader<?> old = readers.put(type, reader);
@@ -74,7 +73,7 @@ public class TextReaders {
    * @throws NullPointerException if the given text is {@code null}.
    */
   @RunsInEDT
-  public boolean containsText(final @NotNull Container container, final @NotNull String text) {
+  public boolean containsText(final Container container, final String text) {
     checkNotNull(container);
     checkNotNull(text);
     Boolean result = execute(() -> {
@@ -86,7 +85,7 @@ public class TextReaders {
     return checkNotNull(result);
   }
 
-  private boolean anyComponentContainsText(@NotNull Component[] components, @NotNull String text) {
+  private boolean anyComponentContainsText(Component[] components, String text) {
     for (Component c : components) {
       if (c == null) {
         continue;
@@ -102,7 +101,7 @@ public class TextReaders {
     return false;
   }
 
-  private boolean componentContainsText(@NotNull Component c, @NotNull String text) {
+  private boolean componentContainsText(Component c, String text) {
     TextReader<?> reader = readerFor(c);
     if (reader == null) {
       return false;
@@ -111,7 +110,7 @@ public class TextReaders {
   }
 
   @Nullable
-  private TextReader<?> readerFor(@NotNull Component c) {
+  private TextReader<?> readerFor(Component c) {
     Class<?> type = c.getClass();
     while (type != null) {
       TextReader<?> reader = readers.get(type);
@@ -129,7 +128,6 @@ public class TextReaders {
   /**
    * @return the singleton instance of this class.
    */
-  @NotNull
   public static TextReaders instance() {
     return SingletonHolder.INSTANCE;
   }

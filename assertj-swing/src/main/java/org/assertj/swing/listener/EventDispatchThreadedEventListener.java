@@ -21,7 +21,6 @@ import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -99,5 +98,5 @@ public abstract class EventDispatchThreadedEventListener implements AWTEventList
    * 
    * @param event the event to process.
    */
-  protected abstract void processEvent(@NotNull AWTEvent event);
+  protected abstract void processEvent(AWTEvent event);
 }

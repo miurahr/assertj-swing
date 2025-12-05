@@ -17,8 +17,7 @@ import static org.assertj.core.error.ShouldMatchPattern.shouldMatch;
 import static org.assertj.swing.util.Strings.areEqualOrMatch;
 
 import org.assertj.core.error.MessageFormatter;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.core.api.AbstractCharSequenceAssert;
 
@@ -29,11 +28,11 @@ import org.assertj.core.api.AbstractCharSequenceAssert;
  */
 class TextAssert extends AbstractCharSequenceAssert<TextAssert, String> {
   @SuppressWarnings("unused")
-  static @NotNull TextAssert assertThat(@Nullable String s) {
+  static TextAssert assertThat(@Nullable String s) {
     return new TextAssert(s);
   }
 
-  static @NotNull TextAssert verifyThat(@Nullable String s) {
+  static TextAssert verifyThat(@Nullable String s) {
     return new TextAssert(s);
   }
 

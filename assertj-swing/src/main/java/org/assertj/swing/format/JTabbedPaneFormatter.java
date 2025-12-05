@@ -19,7 +19,6 @@ import java.awt.Component;
 import javax.swing.JTabbedPane;
 
 import org.assertj.swing.util.Arrays;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Formatter for {@code JTabbedPane}s.
@@ -36,8 +35,7 @@ public class JTabbedPaneFormatter extends ComponentFormatterTemplate {
    * @return the {@code String} representation of the given {@code JTabbedPane}.
    */
   @Override
-  @NotNull
-  protected String doFormat(@NotNull Component c) {
+  protected String doFormat(Component c) {
     JTabbedPane tabbedPane = (JTabbedPane) c;
     String format = "%s[name=%s, selectedTabIndex=%d, selectedTabTitle=%s, tabCount=%d, tabTitles=%s, enabled=%b, visible=%s, showing=%s";
     return String.format(format, getRealClassName(c), quote(tabbedPane.getName()),
@@ -73,7 +71,6 @@ public class JTabbedPaneFormatter extends ComponentFormatterTemplate {
    * @return {@code JTabbedPane.class}.
    */
   @Override
-  @NotNull
   public Class<? extends Component> targetType() {
     return JTabbedPane.class;
   }

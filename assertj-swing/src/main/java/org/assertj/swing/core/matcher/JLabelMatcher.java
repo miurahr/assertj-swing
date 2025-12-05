@@ -14,8 +14,7 @@ package org.assertj.swing.core.matcher;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JLabel;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -53,7 +52,6 @@ public final class JLabelMatcher extends NamedComponentMatcherTemplate<JLabel> {
    * @param name the id to match.
    * @return the created matcher.
    */
-  @NotNull
   public static JLabelMatcher withName(@Nullable String name) {
     return new JLabelMatcher(name, anyValue());
   }
@@ -82,7 +80,6 @@ public final class JLabelMatcher extends NamedComponentMatcherTemplate<JLabel> {
    * @param text the text to match. It can be a regular expression.
    * @return the created matcher.
    */
-  @NotNull
   public static JLabelMatcher withText(@Nullable String text) {
     return new JLabelMatcher(anyValue(), text);
   }
@@ -111,8 +108,7 @@ public final class JLabelMatcher extends NamedComponentMatcherTemplate<JLabel> {
    * @param textPattern the regular expression pattern to match.
    * @return the created matcher.
    */
-  @NotNull
-  public static JLabelMatcher withText(@NotNull Pattern textPattern) {
+  public static JLabelMatcher withText(Pattern textPattern) {
     return new JLabelMatcher(anyValue(), textPattern);
   }
 
@@ -121,7 +117,6 @@ public final class JLabelMatcher extends NamedComponentMatcherTemplate<JLabel> {
    *
    * @return the created matcher.
    */
-  @NotNull
   public static JLabelMatcher any() {
     return new JLabelMatcher(anyValue(), anyValue());
   }
@@ -138,7 +133,6 @@ public final class JLabelMatcher extends NamedComponentMatcherTemplate<JLabel> {
    * @param newText the new text to match. It can be a regular expression.
    * @return this matcher.
    */
-  @NotNull
   public JLabelMatcher andText(@Nullable String newText) {
     text = newText;
     return this;
@@ -151,8 +145,7 @@ public final class JLabelMatcher extends NamedComponentMatcherTemplate<JLabel> {
    * @param textPattern the regular expression pattern to match.
    * @return this matcher.
    */
-  @NotNull
-  public JLabelMatcher andText(@NotNull Pattern textPattern) {
+  public JLabelMatcher andText(Pattern textPattern) {
     text = textPattern;
     return this;
   }
@@ -183,7 +176,7 @@ public final class JLabelMatcher extends NamedComponentMatcherTemplate<JLabel> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean isMatching(@NotNull JLabel label) {
+  protected boolean isMatching(JLabel label) {
     return isNameMatching(label.getName()) && arePropertyValuesMatching(text, label.getText());
   }
 

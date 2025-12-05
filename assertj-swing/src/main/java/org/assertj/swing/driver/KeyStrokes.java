@@ -17,7 +17,6 @@ import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.InputMap;
 import javax.swing.KeyStroke;
 
@@ -37,8 +36,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class KeyStrokes {
   @RunsInCurrentThread
-  static @NotNull KeyStroke[] findKeyStrokesForAction(@NotNull String actionName, @NotNull Object actionKey,
-                                                      @NotNull InputMap inputMap) {
+  static KeyStroke[] findKeyStrokesForAction(String actionName, Object actionKey, InputMap inputMap) {
     List<KeyStroke> keyStrokes = newArrayList();
     for (KeyStroke keyStroke : inputMap.allKeys()) {
       if (actionKey.equals(inputMap.get(keyStroke))) {

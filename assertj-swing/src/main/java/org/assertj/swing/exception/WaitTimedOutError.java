@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Error thrown when a wait (for some condition) times out.
@@ -28,7 +27,7 @@ public final class WaitTimedOutError extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public WaitTimedOutError(@NotNull String message) {
+  public WaitTimedOutError(String message) {
     super(message);
   }
 }

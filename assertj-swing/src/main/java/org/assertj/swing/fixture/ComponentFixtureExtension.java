@@ -15,7 +15,6 @@ package org.assertj.swing.fixture;
 import java.awt.Component;
 import java.awt.Container;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.core.Robot;
 
@@ -37,5 +36,5 @@ public abstract class ComponentFixtureExtension<C extends Component, F extends A
    * @param root the container where the component to handle by the created fixture is contained.
    * @return the created {@code ComponentFixture}.
    */
-  public abstract @NotNull F createFixture(@NotNull Robot robot, @NotNull Container root);
+  public abstract F createFixture(Robot robot, Container root);
 }

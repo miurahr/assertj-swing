@@ -27,8 +27,7 @@ import static org.assertj.swing.format.Formatting.format;
 import java.awt.Component;
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JSpinner;
 import javax.swing.text.JTextComponent;
 
@@ -60,7 +59,7 @@ public class JSpinnerDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JSpinnerDriver(@NotNull Robot robot) {
+  public JSpinnerDriver(Robot robot) {
     super(robot);
   }
 
@@ -74,14 +73,14 @@ public class JSpinnerDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JSpinner} is not showing on the screen.
    */
   @RunsInEDT
-  public void increment(@NotNull JSpinner spinner, int times) {
+  public void increment(JSpinner spinner, int times) {
     checkIsPositive(times, "increment the value");
     validateAndIncrementValue(spinner, times);
     robot.waitForIdle();
   }
 
   @RunsInEDT
-  private static void validateAndIncrementValue(final @NotNull JSpinner spinner, final int times) {
+  private static void validateAndIncrementValue(final JSpinner spinner, final int times) {
     execute(() -> {
       checkEnabledAndShowing(spinner);
       incrementValue(spinner, times);
@@ -89,7 +88,7 @@ public class JSpinnerDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static void incrementValue(@NotNull JSpinner spinner, int times) {
+  private static void incrementValue(JSpinner spinner, int times) {
     for (int i = 0; i < times; i++) {
       Object newValue = spinner.getNextValue();
       if (newValue == null) {
@@ -107,13 +106,13 @@ public class JSpinnerDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JSpinner} is not showing on the screen.
    */
   @RunsInEDT
-  public void increment(@NotNull JSpinner spinner) {
+  public void increment(JSpinner spinner) {
     validateAndIncrementValue(spinner);
     robot.waitForIdle();
   }
 
   @RunsInEDT
-  private static void validateAndIncrementValue(final @NotNull JSpinner spinner) {
+  private static void validateAndIncrementValue(final JSpinner spinner) {
     execute(() -> {
       checkEnabledAndShowing(spinner);
       Object newValue = spinner.getNextValue();
@@ -133,13 +132,13 @@ public class JSpinnerDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JSpinner} is not showing on the screen.
    */
   @RunsInEDT
-  public void decrement(@NotNull JSpinner spinner, int times) {
+  public void decrement(JSpinner spinner, int times) {
     checkIsPositive(times, "decrement the value");
     validateAndDecrementValue(spinner, times);
     robot.waitForIdle();
   }
 
-  private void checkIsPositive(int times, @NotNull String action) {
+  private void checkIsPositive(int times, String action) {
     if (times > 0) {
       return;
     }
@@ -148,7 +147,7 @@ public class JSpinnerDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private static void validateAndDecrementValue(final @NotNull JSpinner spinner, final int times) {
+  private static void validateAndDecrementValue(final JSpinner spinner, final int times) {
     execute(() -> {
       checkEnabledAndShowing(spinner);
       decrementValue(spinner, times);
@@ -156,7 +155,7 @@ public class JSpinnerDriver extends JComponentDriver {
   }
 
   @RunsInCurrentThread
-  private static void decrementValue(@NotNull JSpinner spinner, int times) {
+  private static void decrementValue(JSpinner spinner, int times) {
     for (int i = 0; i < times; i++) {
       Object newValue = spinner.getPreviousValue();
       if (newValue == null) {
@@ -174,13 +173,13 @@ public class JSpinnerDriver extends JComponentDriver {
    * @throws IllegalStateException if the {@code JSpinner} is not showing on the screen.
    */
   @RunsInEDT
-  public void decrement(@NotNull JSpinner spinner) {
+  public void decrement(JSpinner spinner) {
     validateAndDecrementValue(spinner);
     robot.waitForIdle();
   }
 
   @RunsInEDT
-  private static void validateAndDecrementValue(final @NotNull JSpinner spinner) {
+  private static void validateAndDecrementValue(final JSpinner spinner) {
     execute(() -> {
       checkEnabledAndShowing(spinner);
       Object newValue = spinner.getPreviousValue();
@@ -199,8 +198,7 @@ public class JSpinnerDriver extends JComponentDriver {
    * @return the text displayed in the given {@code JSpinner}.
    */
   @RunsInEDT
-  @Nullable
-  public String textOf(@NotNull JSpinner spinner) {
+  public @Nullable String textOf(JSpinner spinner) {
     JTextComponent editor = findEditor(spinner);
     if (editor != null) {
       return JTextComponentTextQuery.textOf(editor);
@@ -221,14 +219,14 @@ public class JSpinnerDriver extends JComponentDriver {
    *           {@code JTextComponent} or cannot be found.
    */
   @RunsInEDT
-  public void enterTextAndCommit(@NotNull JSpinner spinner, String text) {
+  public void enterTextAndCommit(JSpinner spinner, String text) {
     enterText(spinner, text);
     commit(spinner);
     robot.waitForIdle();
   }
 
   @RunsInEDT
-  private static void commit(final @NotNull JSpinner spinner) {
+  private static void commit(final JSpinner spinner) {
     execute(() -> spinner.commitEdit());
   }
 
@@ -246,7 +244,7 @@ public class JSpinnerDriver extends JComponentDriver {
    * @see #enterTextAndCommit(JSpinner, String)
    */
   @RunsInEDT
-  public void enterText(@NotNull JSpinner spinner, @NotNull String text) {
+  public void enterText(JSpinner spinner, String text) {
     checkInEdtEnabledAndShowing(spinner);
     JTextComponent editor = findEditor(spinner);
     robot.waitForIdle();
@@ -261,7 +259,7 @@ public class JSpinnerDriver extends JComponentDriver {
 
   @RunsInEDT
   @Nullable
-  private JTextComponent findEditor(@NotNull JSpinner spinner) {
+  private JTextComponent findEditor(JSpinner spinner) {
     ComponentFinder finder = robot.finder();
     List<Component> found = newArrayList(finder.findAll(spinner, EDITOR_MATCHER));
     if (found.size() != 1) {
@@ -275,7 +273,7 @@ public class JSpinnerDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private static void checkEditorNotNull(final @NotNull JSpinner spinner, final @Nullable JTextComponent editor) {
+  private static void checkEditorNotNull(final JSpinner spinner, final @Nullable JTextComponent editor) {
     execute(() -> {
       if (editor == null) {
         throw actionFailure(concat("Unable to find editor for ", format(spinner)));
@@ -293,7 +291,7 @@ public class JSpinnerDriver extends JComponentDriver {
    * @throws IllegalArgumentException if the given {@code JSpinner} does not support the given value.
    */
   @RunsInEDT
-  public void selectValue(@NotNull JSpinner spinner, @NotNull Object value) {
+  public void selectValue(JSpinner spinner, Object value) {
     try {
       setValue(spinner, value);
     } catch (IllegalArgumentException e) {
@@ -312,7 +310,7 @@ public class JSpinnerDriver extends JComponentDriver {
    *           {@code JTextComponent} as editor.
    */
   @RunsInEDT
-  public JTextComponent editor(@NotNull JSpinner spinner) {
+  public JTextComponent editor(JSpinner spinner) {
     return (JTextComponent) robot.finder().find(spinner, EDITOR_MATCHER);
   }
 
@@ -324,7 +322,7 @@ public class JSpinnerDriver extends JComponentDriver {
    * @throws AssertionError if the value of the {@code JSpinner} is not equal to the given one.
    */
   @RunsInEDT
-  public void requireValue(@NotNull JSpinner spinner, Object value) {
+  public void requireValue(JSpinner spinner, Object value) {
     assertThat(valueOf(spinner)).as(propertyName(spinner, VALUE_PROPERTY)).isEqualTo(value);
   }
 }

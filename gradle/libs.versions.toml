@@ -1,13 +1,13 @@
 [versions]
 junit = "4.13.2"
 jupiter = "5.9.3"
-assertj = "3.27.4"
-commons_codec = "1.17.1"
+assertj = "3.27.6"
+commons_codec = "1.19.0"
 commons_io = "2.19.0"
 ant_junit = "1.10.15"
 mockito = "5.18.0"
 equals_verifier = "2.5.2"
-jetbrains_annotations = "23.1.0"
+jspecify = "1.0.0"
 
 [libraries]
 junit4 = {group = "junit", name = "junit", version.ref = "junit"}
@@ -19,7 +19,7 @@ commons-io = {group = "commons-io", name = "commons-io", version.ref = "commons_
 ant-junit = {group = "org.apache.ant", name ="ant-junit", version.ref = "ant_junit"}
 mockito = {group = "org.mockito", name = "mockito-core", version.ref = "mockito"}
 equals-verifier = {group = "nl.jqno.equalsverifier", name = "equalsverifier", version.ref = "equals_verifier"}
-annotations = {module="org.jetbrains:annotations", version.ref = "jetbrains_annotations"}
+annotations = {module="org.jspecify:jspecify", version.ref = "jspecify"}
 
 [plugins]
 nexus-publish = {id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0"}

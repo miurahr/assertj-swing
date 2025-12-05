@@ -18,7 +18,6 @@ import static org.assertj.core.util.Strings.concat;
 import java.awt.Color;
 import java.awt.Font;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.cell.JTableCellReader;
@@ -54,22 +53,22 @@ public class TableCellInRowByValue_findCell_Test extends TableCellFinder_TestCas
 
   private static class JTableCellReaderStub implements JTableCellReader {
     @Override
-    public String valueAt(@NotNull JTable table, int row, int column) {
+    public String valueAt(JTable table, int row, int column) {
       return concat(row, "-", column);
     }
 
     @Override
-    public Color foregroundAt(@NotNull JTable table, int row, int column) {
+    public Color foregroundAt(JTable table, int row, int column) {
       return null;
     }
 
     @Override
-    public Font fontAt(@NotNull JTable table, int row, int column) {
+    public Font fontAt(JTable table, int row, int column) {
       return null;
     }
 
     @Override
-    public Color backgroundAt(@NotNull JTable table, int row, int column) {
+    public Color backgroundAt(JTable table, int row, int column) {
       return null;
     }
   }

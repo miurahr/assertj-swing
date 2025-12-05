@@ -18,7 +18,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -83,7 +82,7 @@ public class AbstractContainerFixture_spinner_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JSpinnerFixture spinner = fixture.spinner(new GenericTypeMatcher<JSpinner>(JSpinner.class) {
       @Override
-      protected boolean isMatching(@NotNull JSpinner s) {
+      protected boolean isMatching(JSpinner s) {
         return s.getValue().equals(8);
       }
     });
@@ -100,11 +99,11 @@ public class AbstractContainerFixture_spinner_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     final JSpinner spinner = new JSpinner(new SpinnerNumberModel(8, 6, 10, 1));
 
-    static @NotNull MyWindow createNew(final @NotNull Class<?> testClass) {
+    static MyWindow createNew(final Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@NotNull Class<?> testClass) {
+    private MyWindow(Class<?> testClass) {
       super(testClass);
       spinner.setName("spinMeSpinner");
       addComponents(spinner);

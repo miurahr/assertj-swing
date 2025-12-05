@@ -22,8 +22,7 @@ import java.awt.AWTEvent;
 import java.awt.Window;
 import java.awt.event.AWTEventListener;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -35,7 +34,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 public final class TransientWindowListener implements AWTEventListener {
   private final WindowFilter filter;
 
-  TransientWindowListener(@NotNull WindowFilter filter) {
+  TransientWindowListener(WindowFilter filter) {
     this.filter = filter;
   }
 
@@ -66,11 +65,11 @@ public final class TransientWindowListener implements AWTEventListener {
   }
 
   @Nullable
-  private Window sourceOf(@NotNull AWTEvent e) {
+  private Window sourceOf(AWTEvent e) {
     return (Window) e.getSource();
   }
 
-  private void filter(@NotNull Window w) {
+  private void filter(Window w) {
     if (filter.isImplicitlyIgnored(w)) {
       filter.recognize(w);
       return;
@@ -79,7 +78,7 @@ public final class TransientWindowListener implements AWTEventListener {
     filterIfParentIsFiltered(w);
   }
 
-  private void filterIfParentIsFiltered(@NotNull Window w) {
+  private void filterIfParentIsFiltered(Window w) {
     if (!filter.isIgnored(w.getParent())) {
       return;
     }

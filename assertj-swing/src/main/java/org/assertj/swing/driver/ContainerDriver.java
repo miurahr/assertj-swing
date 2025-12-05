@@ -39,8 +39,7 @@ import org.assertj.swing.internal.annotation.InternalApi;
 import org.assertj.swing.util.Pair;
 import org.assertj.swing.util.Triple;
 import org.fest.reflect.exception.ReflectionError;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * <p>
@@ -62,7 +61,7 @@ public abstract class ContainerDriver extends ComponentDriver {
    * 
    * @param robot the robot to use to simulate user input.
    */
-  public ContainerDriver(@NotNull Robot robot) {
+  public ContainerDriver(Robot robot) {
     super(robot);
   }
 
@@ -76,7 +75,7 @@ public abstract class ContainerDriver extends ComponentDriver {
    * @throws IllegalStateException if the {@code Container} is not showing on the screen.
    */
   @RunsInEDT
-  protected final void doResizeWidth(@NotNull Container c, int width) {
+  protected final void doResizeWidth(Container c, int width) {
     Pair<Dimension, Insets> resizeInfo = resizeInfo(c);
     Dimension size = resizeInfo.first;
     resizeBy(c, resizeInfo, width - size.width, 0);
@@ -92,7 +91,7 @@ public abstract class ContainerDriver extends ComponentDriver {
    * @throws IllegalStateException if the {@code Container} is not showing on the screen.
    */
   @RunsInEDT
-  protected final void doResizeHeight(@NotNull Container c, int height) {
+  protected final void doResizeHeight(Container c, int height) {
     Pair<Dimension, Insets> resizeInfo = resizeInfo(c);
     Dimension size = resizeInfo.first;
     resizeBy(c, resizeInfo, 0, height - size.height);
@@ -109,15 +108,14 @@ public abstract class ContainerDriver extends ComponentDriver {
    * @throws IllegalStateException if the {@code Container} is not showing on the screen.
    */
   @RunsInEDT
-  protected final void resize(@NotNull Container c, int width, int height) {
+  protected final void resize(Container c, int width, int height) {
     Pair<Dimension, Insets> resizeInfo = resizeInfo(c);
     Dimension size = resizeInfo.first;
     resizeBy(c, resizeInfo, width - size.width, height - size.height);
   }
 
   @RunsInEDT
-  @NotNull
-  private Pair<Dimension, Insets> resizeInfo(final @NotNull Container c) {
+  private Pair<Dimension, Insets> resizeInfo(final Container c) {
     Pair<Dimension, Insets> result = execute(new GuiQuery<Pair<Dimension, Insets>>() {
       @Override
       @Nullable
@@ -131,7 +129,7 @@ public abstract class ContainerDriver extends ComponentDriver {
 
   @VisibleForTesting
   @RunsInCurrentThread
-  void checkCanResize(@NotNull Container c) {
+  void checkCanResize(Container c) {
     if (!isResizable(c)) {
       String msg = String.format("Expecting component %s to be resizable by the user", format(c));
       throw new IllegalStateException(msg);
@@ -144,7 +142,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   @RunsInCurrentThread
-  protected boolean isResizable(@NotNull Container c) {
+  protected boolean isResizable(Container c) {
     try {
       Boolean resizable = method("isResizable").withReturnType(boolean.class).in(c).invoke();
       return checkNotNull(resizable);
@@ -154,7 +152,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   @RunsInEDT
-  private void resizeBy(@NotNull Container c, @NotNull Pair<Dimension, Insets> resizeInfo, int x, int y) {
+  private void resizeBy(Container c, Pair<Dimension, Insets> resizeInfo, int x, int y) {
     simulateResizeStarted(c, resizeInfo, x, y);
     Dimension size = resizeInfo.first;
     setComponentSize(c, size.width + x, size.height + y);
@@ -162,23 +160,20 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   @RunsInEDT
-  private void simulateResizeStarted(@NotNull Container c, @NotNull Pair<Dimension, Insets> resizeInfo, int x, int y) {
+  private void simulateResizeStarted(Container c, Pair<Dimension, Insets> resizeInfo, int x, int y) {
     Point p = resizeLocation(resizeInfo);
     moveMouseIgnoringAnyError(c, p);
     moveMouseIgnoringAnyError(c, p.x + x, p.y + y);
   }
 
-  @NotNull
-  private static Point resizeLocation(final @NotNull Pair<Dimension, Insets> resizeInfo) {
+  private static Point resizeLocation(final Pair<Dimension, Insets> resizeInfo) {
     return resizeLocation(checkNotNull(resizeInfo.first), checkNotNull(resizeInfo.second));
   }
 
-  @NotNull
-  private static Point resizeLocation(@NotNull Dimension size, @NotNull Insets insets) {
+  private static Point resizeLocation(Dimension size, Insets insets) {
     return resizeLocation(size.width, size.height, insets.right, insets.bottom);
   }
 
-  @NotNull
   private static Point resizeLocation(int width, int height, int right, int bottom) {
     return new Point(width - right / 2, height - bottom / 2);
   }
@@ -194,15 +189,14 @@ public abstract class ContainerDriver extends ComponentDriver {
    * @throws IllegalStateException if the {@code Container} is not showing on the screen.
    */
   @RunsInEDT
-  public void move(@NotNull Container c, int x, int y) {
+  public void move(Container c, int x, int y) {
     Triple<Dimension, Insets, Point> moveInfo = moveInfo(c);
     Point locationOnScreen = moveInfo.third;
     moveBy(c, moveInfo, x - locationOnScreen.x, y - locationOnScreen.y);
   }
 
   @RunsInEDT
-  @NotNull
-  private Triple<Dimension, Insets, Point> moveInfo(final @NotNull Container c) {
+  private Triple<Dimension, Insets, Point> moveInfo(final Container c) {
     Triple<Dimension, Insets, Point> result = execute(new GuiQuery<Triple<Dimension, Insets, Point>>() {
       @Override
       @Nullable
@@ -226,7 +220,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   @RunsInCurrentThread
-  private void checkCanMove(@NotNull Container c) {
+  private void checkCanMove(Container c) {
     checkEnabledAndShowing(c);
     if (!isUserMovable(c)) {
       String msg = String.format("Expecting component %s to be movable by the user", format(c));
@@ -235,7 +229,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   @RunsInEDT
-  private void moveBy(@NotNull Container c, @NotNull Triple<Dimension, Insets, Point> moveInfo, int x, int y) {
+  private void moveBy(Container c, Triple<Dimension, Insets, Point> moveInfo, int x, int y) {
     simulateMoveStarted(c, moveInfo, x, y);
     Point locationOnScreen = moveInfo.third;
     Point location = new Point(locationOnScreen.x + x, locationOnScreen.y + y);
@@ -244,7 +238,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   @RunsInEDT
-  private void simulateMoveStarted(@NotNull Container c, @NotNull Triple<Dimension, Insets, Point> moveInfo, int x,
+  private void simulateMoveStarted(Container c, Triple<Dimension, Insets, Point> moveInfo, int x,
                                    int y) {
     Point p = moveLocation(checkNotNull(moveInfo.first), checkNotNull(moveInfo.second));
     moveMouseIgnoringAnyError(c, p);
@@ -253,8 +247,7 @@ public abstract class ContainerDriver extends ComponentDriver {
 
   // Returns where the mouse usually grabs to move a container (or window). Center of the top of the frame is usually a
   // good choice.
-  @NotNull
-  private Point moveLocation(@NotNull Dimension size, @NotNull Insets insets) {
+  private Point moveLocation(Dimension size, Insets insets) {
     return new Point(size.width / 2, insets.top / 2);
   }
 }

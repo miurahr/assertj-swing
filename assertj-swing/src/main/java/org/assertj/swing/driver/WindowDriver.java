@@ -21,8 +21,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
-
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
@@ -46,7 +44,7 @@ public class WindowDriver extends ContainerDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public WindowDriver(@NotNull Robot robot) {
+  public WindowDriver(Robot robot) {
     super(robot);
   }
 
@@ -60,7 +58,7 @@ public class WindowDriver extends ContainerDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not showing on the screen.
    */
   @RunsInEDT
-  public void resizeWidthTo(@NotNull Window w, int width) {
+  public void resizeWidthTo(Window w, int width) {
     doResizeWidth(w, width);
   }
 
@@ -74,7 +72,7 @@ public class WindowDriver extends ContainerDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not showing on the screen.
    */
   @RunsInEDT
-  public void resizeHeightTo(@NotNull Window w, int height) {
+  public void resizeHeightTo(Window w, int height) {
     doResizeHeight(w, height);
   }
 
@@ -88,7 +86,7 @@ public class WindowDriver extends ContainerDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not showing on the screen.
    */
   @RunsInEDT
-  public void resizeTo(@NotNull Window w, @NotNull Dimension size) {
+  public void resizeTo(Window w, Dimension size) {
     resize(w, size.width, size.height);
   }
 
@@ -101,7 +99,7 @@ public class WindowDriver extends ContainerDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not movable by the user.
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Window} is not showing on the screen.
    */
-  public void moveTo(@NotNull Window w, @NotNull Point where) {
+  public void moveTo(Window w, Point where) {
     move(w, where.x, where.y);
   }
 
@@ -113,14 +111,13 @@ public class WindowDriver extends ContainerDriver {
    *           {@code Window} is not showing on the screen.
    */
   @RunsInEDT
-  public void close(@NotNull Window w) {
+  public void close(Window w) {
     moveMouseIgnoringAnyError(w, closeInfo(w));
     robot.close(w);
   }
 
   @RunsInEDT
-  @NotNull
-  private static Point closeInfo(final @NotNull Window w) {
+  private static Point closeInfo(final Window w) {
     Point result = execute(() -> {
       checkEnabledAndShowing(w);
       return closeButtonLocation(w);
@@ -134,7 +131,7 @@ public class WindowDriver extends ContainerDriver {
    * @param w the target {@code Window}.
    */
   @RunsInEDT
-  public void show(@NotNull Window w) {
+  public void show(Window w) {
     robot.showWindow(w);
   }
 
@@ -145,7 +142,7 @@ public class WindowDriver extends ContainerDriver {
    * @param size the size to resize the {@code Window} to.
    */
   @RunsInEDT
-  public void show(@NotNull Window w, @NotNull Dimension size) {
+  public void show(Window w, Dimension size) {
     robot.showWindow(w, size);
   }
 
@@ -155,13 +152,13 @@ public class WindowDriver extends ContainerDriver {
    * @param w the target {@code Window}.
    */
   @RunsInEDT
-  public void moveToFront(@NotNull Window w) {
+  public void moveToFront(Window w) {
     doMoveToFront(w);
     robot.waitForIdle();
   }
 
   @RunsInEDT
-  private static void doMoveToFront(final @NotNull Window w) {
+  private static void doMoveToFront(final Window w) {
     execute(() -> w.toFront());
   }
 
@@ -172,13 +169,13 @@ public class WindowDriver extends ContainerDriver {
    * @param w the target {@code Window}.
    */
   @RunsInEDT
-  public void moveToBack(@NotNull Window w) {
+  public void moveToBack(Window w) {
     doMoveToBack(w);
     robot.waitForIdle();
   }
 
   @RunsInEDT
-  private static void doMoveToBack(final @NotNull Window w) {
+  private static void doMoveToBack(final Window w) {
     execute(() -> w.toBack());
   }
 }

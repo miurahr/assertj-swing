@@ -15,7 +15,6 @@ package org.assertj.swing.input;
 import java.awt.AWTEvent;
 import java.awt.event.MouseEvent;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Detects native drag 'n drop events.
@@ -23,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Alex Ruiz
  */
 class NativeDndIdentifier {
-  boolean isNativeDragAndDrop(@NotNull AWTEvent e) {
+  boolean isNativeDragAndDrop(AWTEvent e) {
     return (e instanceof MouseEvent) && e.getClass().getName().contains("SunDropTargetEvent");
   }
 }

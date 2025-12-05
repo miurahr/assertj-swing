@@ -16,8 +16,7 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.core.MouseButton;
@@ -41,7 +40,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    * @param index index of the list item to be managed by this fixture.
    * @throws NullPointerException if {@code list} is {@code null}.
    */
-  public JListItemFixture(@NotNull JListFixture list, int index) {
+  public JListItemFixture(JListFixture list, int index) {
     this.list = checkNotNull(list);
     this.index = index;
   }
@@ -56,7 +55,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    *           the {@code JList}.
    */
   @Override
-  public final @NotNull JListItemFixture select() {
+  public final JListItemFixture select() {
     list.selectItem(index);
     return this;
   }
@@ -70,7 +69,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    * @throws IndexOutOfBoundsException if this item's index is negative or greater than the index of the last item in
    *           the {@code JList}.
    */
-  public final @NotNull JListItemFixture unselect() {
+  public final JListItemFixture unselect() {
     list.unselectItem(index);
     return this;
   }
@@ -85,7 +84,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    *           the {@code JList}.
    */
   @Override
-  public final @NotNull JListItemFixture click() {
+  public final JListItemFixture click() {
     list.clickItem(index);
     return this;
   }
@@ -102,7 +101,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    *           the {@code JList}.
    */
   @Override
-  public final @NotNull JListItemFixture click(@NotNull MouseButton button) {
+  public final JListItemFixture click(MouseButton button) {
     list.clickItem(index, button, 1);
     return this;
   }
@@ -119,7 +118,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    *           the {@code JList}.
    */
   @Override
-  public final @NotNull JListItemFixture click(@NotNull MouseClickInfo mouseClickInfo) {
+  public final JListItemFixture click(MouseClickInfo mouseClickInfo) {
     list.clickItem(index, mouseClickInfo.button(), mouseClickInfo.times());
     return this;
   }
@@ -134,7 +133,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    *           the {@code JList}.
    */
   @Override
-  public final @NotNull JListItemFixture doubleClick() {
+  public final JListItemFixture doubleClick() {
     list.clickItem(index, LEFT_BUTTON, 2);
     return this;
   }
@@ -149,7 +148,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    *           the {@code JList}.
    */
   @Override
-  public final @NotNull JListItemFixture rightClick() {
+  public final JListItemFixture rightClick() {
     list.clickItem(index, RIGHT_BUTTON, 1);
     return this;
   }
@@ -165,7 +164,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  public final @NotNull JPopupMenuFixture showPopupMenu() {
+  public final JPopupMenuFixture showPopupMenu() {
     return list.showPopupMenuAt(index);
   }
 
@@ -194,7 +193,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    *           the {@code JList}.
    */
   @Override
-  public final @NotNull JListItemFixture drag() {
+  public final JListItemFixture drag() {
     list.drag(index);
     return this;
   }
@@ -210,7 +209,7 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
   @Override
-  public final @NotNull JListItemFixture drop() {
+  public final JListItemFixture drop() {
     list.drop(index);
     return this;
   }
@@ -223,7 +222,6 @@ public class JListItemFixture implements ItemFixture<JListItemFixture> {
   }
 
   @VisibleForTesting
-  @NotNull
   JListFixture listFixture() {
     return list;
   }

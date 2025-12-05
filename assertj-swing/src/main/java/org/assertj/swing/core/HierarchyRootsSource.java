@@ -15,8 +15,6 @@ package org.assertj.swing.core;
 import java.awt.Container;
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
-
 import org.assertj.swing.hierarchy.ExistingHierarchy;
 
 /**
@@ -25,7 +23,6 @@ import org.assertj.swing.hierarchy.ExistingHierarchy;
  * @author Alex Ruiz
  */
 class HierarchyRootsSource {
-  @NotNull
   Container[] existingHierarchyRoots() {
     Collection<? extends Container> roots = new ExistingHierarchy().roots();
     return roots.toArray(new Container[roots.size()]);

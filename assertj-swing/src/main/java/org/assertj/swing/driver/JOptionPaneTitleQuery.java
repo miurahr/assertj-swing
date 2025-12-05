@@ -16,8 +16,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Dialog;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -30,7 +29,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JOptionPaneTitleQuery {
   @RunsInEDT
-  static @Nullable String titleOf(final @NotNull JOptionPane optionPane) {
+  static @Nullable String titleOf(final JOptionPane optionPane) {
     return execute(() -> ((Dialog) optionPane.getRootPane().getParent()).getTitle());
   }
 

@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.timing;
 
-import org.jetbrains.annotations.NotNull;
-
 import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 
@@ -35,7 +33,6 @@ public final class Timeout {
    * 
    * @return the created {@code Timeout}.
    */
-  @NotNull
   public static Timeout timeout() {
     return timeout(DEFAULT_DELAY);
   }
@@ -46,7 +43,6 @@ public final class Timeout {
    * @param duration the duration of the timeout in milliseconds.
    * @return the created {@code Timeout}.
    */
-  @NotNull
   public static Timeout timeout(long duration) {
     return new Timeout(duration);
   }
@@ -59,8 +55,7 @@ public final class Timeout {
    * @return the created {@code Timeout}.
    * @throws NullPointerException if the given time unit is {@code null}.
    */
-  @NotNull
-  public static Timeout timeout(long duration, @NotNull TimeUnit timeUnit) {
+  public static Timeout timeout(long duration, TimeUnit timeUnit) {
     checkNotNull(timeUnit);
     return new Timeout(timeUnit.toMillis(duration));
   }

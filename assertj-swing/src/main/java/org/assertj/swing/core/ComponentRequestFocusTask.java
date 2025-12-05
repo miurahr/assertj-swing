@@ -16,8 +16,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
-
 import org.assertj.swing.annotation.RunsInEDT;
 
 /**
@@ -27,7 +25,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class ComponentRequestFocusTask {
   @RunsInEDT
-  static void giveFocusTo(final @NotNull Component c) {
+  static void giveFocusTo(final Component c) {
     execute(() -> c.requestFocusInWindow());
   }
 

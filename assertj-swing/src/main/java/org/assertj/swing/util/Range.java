@@ -14,8 +14,6 @@ package org.assertj.swing.util;
 
 import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * <p>
  * A range (from, to).
@@ -38,7 +36,7 @@ public final class Range {
    * @param value the starting value of the range.
    * @return the created {@code From}.
    */
-  public static final @NotNull From from(int value) {
+  public static From from(int value) {
     return new From(value);
   }
 
@@ -48,7 +46,7 @@ public final class Range {
    * @param value the ending value of the range.
    * @return the created {@code To}.
    */
-  public static final @NotNull To to(int value) {
+  public static To to(int value) {
     return new To(value);
   }
 

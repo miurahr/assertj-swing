@@ -22,7 +22,6 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.Map;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.core.MouseButton;
 
@@ -46,49 +45,49 @@ public class AbstractClickRecorder {
   private int clickCount;
   private Point pointClicked;
 
-  protected void record(@NotNull MouseEvent e) {
+  protected void record(MouseEvent e) {
     clickedButton = MOUSE_BUTTON_MAP.get(e.getButton());
     clickCount = e.getClickCount();
     pointClicked = e.getPoint();
   }
 
-  public final @NotNull AbstractClickRecorder wasNotClicked() {
+  public final AbstractClickRecorder wasNotClicked() {
     assertThat(clickedButton).isNull();
     return this;
   }
 
-  public final @NotNull AbstractClickRecorder timesClicked(int times) {
+  public final AbstractClickRecorder timesClicked(int times) {
     assertThat(clickCount).isEqualTo(times);
     return this;
   }
 
-  public final @NotNull AbstractClickRecorder wasClicked() {
+  public final AbstractClickRecorder wasClicked() {
     return clicked(LEFT_BUTTON).timesClicked(1);
   }
 
-  public final @NotNull AbstractClickRecorder wasDoubleClicked() {
+  public final AbstractClickRecorder wasDoubleClicked() {
     return clicked(LEFT_BUTTON).timesClicked(2);
   }
 
-  public final @NotNull AbstractClickRecorder wasRightClicked() {
+  public final AbstractClickRecorder wasRightClicked() {
     return clicked(RIGHT_BUTTON).timesClicked(1);
   }
 
-  public final @NotNull AbstractClickRecorder clicked(@NotNull MouseButton button) {
+  public final AbstractClickRecorder clicked(MouseButton button) {
     return wasClickedWith(button);
   }
 
-  public final @NotNull AbstractClickRecorder wasClickedWith(@NotNull MouseButton button) {
+  public final AbstractClickRecorder wasClickedWith(MouseButton button) {
     assertThat(clickedButton).isEqualTo(button);
     return this;
   }
 
-  public final @NotNull AbstractClickRecorder clickedAt(@NotNull Point p) {
+  public final AbstractClickRecorder clickedAt(Point p) {
     assertThat(pointClicked).isEqualTo(p);
     return this;
   }
 
-  public final @NotNull Point pointClicked() {
+  public final Point pointClicked() {
     return pointClicked;
   }
 }

@@ -15,4 +15,7 @@
  * 
  * @author Alex Ruiz
  */
+@NullMarked
 package org.assertj.swing.timing;
+
+import org.jspecify.annotations.NullMarked;

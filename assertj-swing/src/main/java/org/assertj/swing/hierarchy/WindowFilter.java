@@ -20,8 +20,7 @@ import java.awt.Window;
 import java.util.Collection;
 import java.util.Map;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -38,7 +37,7 @@ class WindowFilter {
     this(new ParentFinder(), new ChildrenFinder());
   }
 
-  WindowFilter(@NotNull ParentFinder parentFinder, @NotNull ChildrenFinder childrenFinder) {
+  WindowFilter(ParentFinder parentFinder, ChildrenFinder childrenFinder) {
     this.parentFinder = parentFinder;
     this.childrenFinder = childrenFinder;
   }
@@ -49,7 +48,7 @@ class WindowFilter {
   // Map of components implicitly ignored; these will be removed if they are re-shown.
   final Map<Component, Boolean> implicitlyIgnored = newWeakHashMap();
 
-  boolean isImplicitlyIgnored(@NotNull Component c) {
+  boolean isImplicitlyIgnored(Component c) {
     return implicitlyIgnored.containsKey(c);
   }
 
@@ -73,26 +72,25 @@ class WindowFilter {
     return w != null && isIgnored(w);
   }
 
-  void implicitlyIgnore(@NotNull Component c) {
+  void implicitlyIgnore(Component c) {
     implicitlyIgnored.put(c, true);
   }
 
   @RunsInCurrentThread
-  void ignore(@NotNull Component c) {
+  void ignore(Component c) {
     filter(c, true);
   }
 
   @RunsInCurrentThread
-  void recognize(@NotNull Component c) {
+  void recognize(Component c) {
     filter(c, false);
   }
 
-  @NotNull
   Collection<Component> filtered() {
     return ignored.keySet();
   }
 
-  private void filter(@NotNull Component c, boolean ignore) {
+  private void filter(Component c, boolean ignore) {
     // Never filter the shared frame
     if (isSharedInvisibleFrame(c)) {
       for (Component child : childrenFinder.childrenOf(c)) {
@@ -116,7 +114,7 @@ class WindowFilter {
     }
   }
 
-  private void doFilter(@NotNull Component c, boolean ignore) {
+  private void doFilter(Component c, boolean ignore) {
     if (ignore) {
       ignored.put(c, true);
       return;

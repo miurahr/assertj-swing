@@ -16,7 +16,6 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JFrame;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -70,7 +69,7 @@ public class WindowFinder_findFrame_withMatcher_Test extends WindowFinder_TestCa
     }
 
     @Override
-    protected boolean isMatching(@NotNull JFrame frame) {
+    protected boolean isMatching(JFrame frame) {
       return "frame".equals(frame.getName()) && isShowing(frame);
     }
   }

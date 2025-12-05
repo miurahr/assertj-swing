@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.driver.AbstractButtonTextQuery.textOf;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JMenuItem;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -32,7 +31,7 @@ public class JPopupMenuDriver_menuItemUsingGenericTypeMatcher_Test extends JPopu
   public void should_Find_JMenuItems_With_GenericTypeMatcher() {
     JMenuItem found = driver.menuItem(popupMenu, new GenericTypeMatcher<JMenuItem>(JMenuItem.class) {
       @Override
-      protected boolean isMatching(@NotNull JMenuItem menuItem) {
+      protected boolean isMatching(JMenuItem menuItem) {
         return "Second".equals(textOf(menuItem));
       }
     });

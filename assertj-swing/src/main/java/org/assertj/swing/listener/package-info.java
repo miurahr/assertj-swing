@@ -22,4 +22,7 @@
  * 
  * @author Alex Ruiz
  */
+@NullMarked
 package org.assertj.swing.listener;
+
+import org.jspecify.annotations.NullMarked;

@@ -24,7 +24,6 @@ import javax.swing.ListModel;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Formatter for {@code JList}s.
@@ -40,8 +39,7 @@ public class JListFormatter extends ComponentFormatterTemplate {
    */
   @RunsInCurrentThread
   @Override
-  @NotNull
-  protected String doFormat(@NotNull Component c) {
+  protected String doFormat(Component c) {
     JList<?> list = (JList<?>) c;
     String format = "%s[name=%s, selectedValues=%s, contents=%s, selectionMode=%s, enabled=%b, visible=%b, showing=%b]";
     return String.format(format, getRealClassName(c), quote(list.getName()),
@@ -50,7 +48,6 @@ public class JListFormatter extends ComponentFormatterTemplate {
                          list.isShowing());
   }
 
-  @NotNull
   private Object[] contentsOf(JList<?> list) {
     List<Object> contents = newArrayList();
     ListModel<?> model = list.getModel();
@@ -65,7 +62,6 @@ public class JListFormatter extends ComponentFormatterTemplate {
    * @return {@code JList.class}.
    */
   @Override
-  @NotNull
   public Class<? extends Component> targetType() {
     return JList.class;
   }

@@ -20,7 +20,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -62,8 +61,7 @@ public class AbstractComponentFixture_equals_hashCode_Test extends RobotBasedTes
     }
 
     @Override
-    @NotNull
-    protected ComponentDriver createDriver(@NotNull Robot robot) {
+      protected ComponentDriver createDriver(Robot robot) {
       return mock(ComponentDriver.class);
     }
   }

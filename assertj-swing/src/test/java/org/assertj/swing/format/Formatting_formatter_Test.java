@@ -16,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JComboBox;
 
 import org.junit.After;
@@ -40,7 +39,7 @@ public class Formatting_formatter_Test {
     oldFormatter = Formatting.formatter(type);
     newFormatter = new ComponentFormatterTemplate() {
       @Override
-      protected String doFormat(@NotNull Component c) {
+      protected String doFormat(Component c) {
         return null;
       }
 

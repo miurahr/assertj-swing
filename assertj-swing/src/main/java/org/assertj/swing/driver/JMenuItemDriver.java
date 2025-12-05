@@ -28,8 +28,7 @@ import static org.assertj.swing.util.Platform.isOSX;
 import java.awt.Component;
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -58,7 +57,7 @@ public class JMenuItemDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JMenuItemDriver(@NotNull Robot robot) {
+  public JMenuItemDriver(Robot robot) {
     super(robot);
   }
 
@@ -85,14 +84,14 @@ public class JMenuItemDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ActionFailedException if the menu has a pop-up and it fails to show up.
    */
   @RunsInEDT
-  public void click(@NotNull JMenuItem menuItem) {
+  public void click(JMenuItem menuItem) {
     show(menuItem);
     doClick(menuItem);
     ensurePopupIsShowing(menuItem);
   }
 
   @RunsInEDT
-  private void show(@NotNull JMenuItem menuItem) {
+  private void show(JMenuItem menuItem) {
     JMenuItemLocation location = locationOf(menuItem);
     activateParentIfIsMenu(location);
     moveParentWindowToFront(location);
@@ -102,14 +101,13 @@ public class JMenuItemDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull
-  private static JMenuItemLocation locationOf(final @NotNull JMenuItem menuItem) {
+  private static JMenuItemLocation locationOf(final JMenuItem menuItem) {
     JMenuItemLocation result = execute(() -> new JMenuItemLocation(menuItem));
     return checkNotNull(result);
   }
 
   @RunsInEDT
-  private void activateParentIfIsMenu(@NotNull JMenuItemLocation location) {
+  private void activateParentIfIsMenu(JMenuItemLocation location) {
     if (!location.isParentAMenu()) {
       return;
     }
@@ -120,7 +118,7 @@ public class JMenuItemDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private void moveParentWindowToFront(@NotNull JMenuItemLocation location) {
+  private void moveParentWindowToFront(JMenuItemLocation location) {
     if (!location.inMenuBar()) {
       return;
     }
@@ -129,7 +127,7 @@ public class JMenuItemDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private void doClick(@NotNull JMenuItem menuItem) {
+  private void doClick(JMenuItem menuItem) {
     if (isMacOSMenuBar(menuItem)) {
       validateAndDoClick(menuItem);
       return;
@@ -138,13 +136,13 @@ public class JMenuItemDriver extends JComponentDriver {
     robot.waitForIdle();
   }
 
-  private boolean isMacOSMenuBar(@NotNull JMenuItem menuItem) {
+  private boolean isMacOSMenuBar(JMenuItem menuItem) {
     return menuItem instanceof JMenu && locationOf(menuItem).inMenuBar() && isOSX()
            && (getBoolean("apple.laf.useScreenMenuBar") || getBoolean("com.apple.macos.useScreenMenuBar"));
   }
 
   @RunsInEDT
-  private static void validateAndDoClick(final @NotNull JMenuItem menuItem) {
+  private static void validateAndDoClick(final JMenuItem menuItem) {
     execute(() -> {
       checkEnabledAndShowing(menuItem);
       menuItem.doClick();
@@ -152,7 +150,7 @@ public class JMenuItemDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  private void ensurePopupIsShowing(@NotNull JMenuItem menuItem) {
+  private void ensurePopupIsShowing(JMenuItem menuItem) {
     if (!(menuItem instanceof JMenu)) {
       return;
     }

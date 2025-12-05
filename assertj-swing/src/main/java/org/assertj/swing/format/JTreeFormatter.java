@@ -24,8 +24,7 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.assertj.swing.util.Arrays;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Formatter for {@code JTree}s.
@@ -50,8 +49,7 @@ public class JTreeFormatter extends ComponentFormatterTemplate {
    * @return the {@code String} representation of the given {@code JTree}.
    */
   @Override
-  @NotNull
-  protected String doFormat(@NotNull Component c) {
+  protected String doFormat(Component c) {
     JTree tree = (JTree) c;
     String format = "%s[name=%s, selectionCount=%d, selectionPaths=%s, selectionMode=%s, enabled=%b, visible=%b, showing=%b";
     return String.format(format, getRealClassName(c), quote(tree.getName()), tree.getSelectionCount(),
@@ -59,8 +57,7 @@ public class JTreeFormatter extends ComponentFormatterTemplate {
                          tree.isShowing());
   }
 
-  @NotNull
-  private String[] selectionPaths(@NotNull JTree tree) {
+  private String[] selectionPaths(JTree tree) {
     TreePath[] paths = tree.getSelectionPaths();
     if (paths == null) {
       return EMPTY;
@@ -87,7 +84,6 @@ public class JTreeFormatter extends ComponentFormatterTemplate {
    * @return {@code JTree.class}.
    */
   @Override
-  @NotNull
   public Class<? extends Component> targetType() {
     return JTree.class;
   }

@@ -27,8 +27,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Basic (and limited) implementation of {@code AppletContext}.
@@ -48,8 +47,7 @@ public class BasicAppletContext implements AppletContext {
     }
 
     @Override
-    @Nullable
-    public Applet nextElement() {
+    public @Nullable Applet nextElement() {
       return null;
     }
   }
@@ -63,7 +61,7 @@ public class BasicAppletContext implements AppletContext {
    * @param statusDisplay where the application can inform users of its current state.
    * @throws NullPointerException if {@code statusDisplay} is {@code null}.
    */
-  public BasicAppletContext(@NotNull StatusDisplay statusDisplay) {
+  public BasicAppletContext(StatusDisplay statusDisplay) {
     this.statusDisplay = checkNotNull(statusDisplay);
   }
 
@@ -89,7 +87,6 @@ public class BasicAppletContext implements AppletContext {
    * @see AppletContext#getApplets()
    */
   @Override
-  @NotNull
   public Enumeration<Applet> getApplets() {
     Applet applet = appletFrom(statusDisplay);
     return applet == null ? NO_APPLETS : enumeration(newArrayList(applet));
@@ -145,7 +142,6 @@ public class BasicAppletContext implements AppletContext {
    * @return an iterator of all the names of the streams in this {@code AppletContext}.
    */
   @Override
-  @NotNull
   public Iterator<String> getStreamKeys() {
     return streamMap.keySet().iterator();
   }

@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.hierarchy;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JInternalFrame.JDesktopIcon;
@@ -35,7 +34,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JInternalFrameDesktopPaneQuery {
   @RunsInCurrentThread
-  static @Nullable JDesktopPane desktopPaneOf(@NotNull JInternalFrame internalFrame) {
+  static @Nullable JDesktopPane desktopPaneOf(JInternalFrame internalFrame) {
     JDesktopIcon icon = internalFrame.getDesktopIcon();
     if (icon != null) {
       return icon.getDesktopPane();

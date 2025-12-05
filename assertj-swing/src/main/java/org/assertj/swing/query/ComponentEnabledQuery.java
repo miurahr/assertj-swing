@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.query;
 
-import org.jetbrains.annotations.NotNull;
-
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
@@ -37,7 +35,7 @@ public final class ComponentEnabledQuery {
    * @return {@code true} if the given {@code Component} is enabled, {@code false} otherwise.
    * @see Component#isEnabled()
    */
-  public static boolean isEnabled(final @NotNull Component component) {
+  public static boolean isEnabled(final Component component) {
     Boolean result = execute(() -> component.isEnabled());
     return checkNotNull(result);
   }

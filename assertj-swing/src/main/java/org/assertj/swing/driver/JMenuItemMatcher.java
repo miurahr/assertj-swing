@@ -20,8 +20,7 @@ import static org.assertj.swing.driver.AbstractButtonTextQuery.textOf;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -45,7 +44,7 @@ public class JMenuItemMatcher implements ComponentMatcher {
    * 
    * @param path the path of the menu to match.
    */
-  public JMenuItemMatcher(@NotNull String... path) {
+  public JMenuItemMatcher(String... path) {
     this.label = join(path).with(SEPARATOR);
   }
 
@@ -74,7 +73,7 @@ public class JMenuItemMatcher implements ComponentMatcher {
   }
 
   @RunsInCurrentThread
-  private String pathOf(@NotNull JMenuItem menuItem) {
+  private String pathOf(JMenuItem menuItem) {
     Component parent = parentOrInvokerOf(menuItem);
     if (parent instanceof JMenuItem) {
       return concat(pathOf((JMenuItem) parent), SEPARATOR, textOf(menuItem));
@@ -83,7 +82,7 @@ public class JMenuItemMatcher implements ComponentMatcher {
   }
 
   @RunsInCurrentThread
-  private Component parentOrInvokerOf(@NotNull JMenuItem menuItem) {
+  private Component parentOrInvokerOf(JMenuItem menuItem) {
     Component parent = menuItem.getParent();
     if (parent instanceof JPopupMenu) {
       parent = ((JPopupMenu) parent).getInvoker();

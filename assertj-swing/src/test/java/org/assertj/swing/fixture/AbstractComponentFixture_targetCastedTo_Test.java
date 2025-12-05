@@ -18,7 +18,6 @@ import static org.mockito.Mockito.mock;
 import java.awt.Component;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.core.Robot;
@@ -59,8 +58,7 @@ public class AbstractComponentFixture_targetCastedTo_Test {
     }
 
     @Override
-    @NotNull
-    protected ComponentDriver createDriver(@NotNull Robot robot) {
+      protected ComponentDriver createDriver(Robot robot) {
       return mock(ComponentDriver.class);
     }
   }

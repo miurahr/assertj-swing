@@ -18,8 +18,7 @@ import java.awt.Component;
 import java.awt.Container;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Returns the parent of an AWT or Swing {@code Component}. This query is executed in the event dispatch thread (EDT).
@@ -40,7 +39,7 @@ public final class ComponentParentQuery {
    */
   @RunsInEDT
   @Nullable
-  public static Container parentOf(final @NotNull Component component) {
+  public static Container parentOf(final Component component) {
     return execute(() -> component.getParent());
   }
 

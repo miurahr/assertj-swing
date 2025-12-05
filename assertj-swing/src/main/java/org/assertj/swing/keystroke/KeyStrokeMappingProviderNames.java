@@ -19,7 +19,6 @@ import java.util.Locale;
 import java.util.NoSuchElementException;
 
 import org.assertj.swing.util.OSFamily;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * A generated name for a {@link KeyStrokeMappingProvider} to use, based on operating system family and locale.
@@ -31,18 +30,18 @@ class KeyStrokeMappingProviderNames implements Iterable<String> {
   private final String language;
   private final String country;
 
-  static KeyStrokeMappingProviderNames generateNamesFrom(@NotNull OSFamily osFamily, @NotNull Locale locale) {
+  static KeyStrokeMappingProviderNames generateNamesFrom(OSFamily osFamily, Locale locale) {
     return new KeyStrokeMappingProviderNames(osFamily, locale);
   }
 
-  private KeyStrokeMappingProviderNames(@NotNull OSFamily osFamily, @NotNull Locale locale) {
+  private KeyStrokeMappingProviderNames(OSFamily osFamily, Locale locale) {
     this.osFamily = osFamily.key();
     language = locale.getLanguage();
     country = locale.getCountry();
   }
 
   @Override
-  public @NotNull Iterator<String> iterator() {
+  public Iterator<String> iterator() {
     return new NameIterator(osFamily, language, country);
   }
 

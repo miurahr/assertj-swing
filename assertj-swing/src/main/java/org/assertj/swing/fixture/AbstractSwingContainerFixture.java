@@ -15,8 +15,7 @@ package org.assertj.swing.fixture;
 import java.awt.Point;
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComponent;
 
 import org.assertj.swing.core.Robot;
@@ -47,8 +46,8 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see org.assertj.swing.core.ComponentFinder#findByType(Class)
    */
-  public AbstractSwingContainerFixture(@NotNull Class<S> selfType, @NotNull Robot robot,
-                                       @NotNull Class<? extends C> type) {
+  public AbstractSwingContainerFixture(Class<S> selfType, Robot robot,
+                                       Class<? extends C> type) {
     super(selfType, robot, type);
   }
 
@@ -65,8 +64,8 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see org.assertj.swing.core.ComponentFinder#findByName(String, Class)
    */
-  public AbstractSwingContainerFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @Nullable String name,
-                                       @NotNull Class<? extends C> type) {
+  public AbstractSwingContainerFixture(Class<S> selfType, Robot robot, @Nullable String name,
+                                       Class<? extends C> type) {
     super(selfType, robot, name, type);
   }
 
@@ -79,7 +78,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public AbstractSwingContainerFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @NotNull C target) {
+  public AbstractSwingContainerFixture(Class<S> selfType, Robot robot, C target) {
     super(selfType, robot, target);
   }
 
@@ -91,7 +90,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws AssertionError if the toolTip in this fixture's {@code JScrollPane} does not match the given value.
    */
   @Override
-  public final @NotNull S requireToolTip(@Nullable String expected) {
+  public final S requireToolTip(@Nullable String expected) {
     driver().requireToolTip(target(), expected);
     return myself();
   }
@@ -106,7 +105,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    *           expression.
    */
   @Override
-  public final @NotNull S requireToolTip(@NotNull Pattern pattern) {
+  public final S requireToolTip(Pattern pattern) {
     driver().requireToolTip(target(), pattern);
     return myself();
   }
@@ -119,7 +118,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws NullPointerException if the given key is {@code null}.
    */
   @Override
-  public final @Nullable Object clientProperty(@NotNull Object key) {
+  public final @Nullable Object clientProperty(Object key) {
     return driver().clientProperty(target(), key);
   }
 
@@ -133,7 +132,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  public final @NotNull JPopupMenuFixture showPopupMenu() {
+  public final JPopupMenuFixture showPopupMenu() {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target()));
   }
 
@@ -148,7 +147,7 @@ public abstract class AbstractSwingContainerFixture<S, C extends JComponent, D e
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @Override
-  public final @NotNull JPopupMenuFixture showPopupMenuAt(@NotNull Point p) {
+  public final JPopupMenuFixture showPopupMenuAt(Point p) {
     return new JPopupMenuFixture(robot(), driver().invokePopupMenu(target(), p));
   }
 }

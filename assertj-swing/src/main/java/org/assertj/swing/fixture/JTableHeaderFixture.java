@@ -16,8 +16,7 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JPopupMenu;
 import javax.swing.table.JTableHeader;
 
@@ -41,13 +40,12 @@ public class JTableHeaderFixture extends
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JTableHeaderFixture(@NotNull Robot robot, @NotNull JTableHeader target) {
+  public JTableHeaderFixture(Robot robot, JTableHeader target) {
     super(JTableHeaderFixture.class, robot, target);
   }
 
   @Override
-  @NotNull
-  protected JTableHeaderDriver createDriver(@NotNull Robot robot) {
+  protected JTableHeaderDriver createDriver(Robot robot) {
     return new JTableHeaderDriver(robot);
   }
 
@@ -60,7 +58,6 @@ public class JTableHeaderFixture extends
    * @throws IllegalStateException if this fixture's {@code JTableHeader} is not showing on the screen.
    * @throws IndexOutOfBoundsException if the index is out of bounds.
    */
-  @NotNull
   public JTableHeaderFixture clickColumn(int index) {
     driver().clickColumn(target(), index);
     return this;
@@ -75,7 +72,6 @@ public class JTableHeaderFixture extends
    * @throws IllegalStateException if this fixture's {@code JTableHeader} is not showing on the screen.
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
-  @NotNull
   public JTableHeaderFixture clickColumn(@Nullable String columnName) {
     driver().clickColumn(target(), columnName);
     return this;
@@ -92,8 +88,7 @@ public class JTableHeaderFixture extends
    * @throws NullPointerException if the given regular expression is {@code null}.
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
-  @NotNull
-  public JTableHeaderFixture clickColumn(@NotNull Pattern columnNamePattern) {
+  public JTableHeaderFixture clickColumn(Pattern columnNamePattern) {
     driver().clickColumn(target(), columnNamePattern);
     return this;
   }
@@ -110,8 +105,7 @@ public class JTableHeaderFixture extends
    * @throws IllegalStateException if this fixture's {@code JTableHeader} is not showing on the screen.
    * @throws IndexOutOfBoundsException if the index is out of bounds.
    */
-  @NotNull
-  public JTableHeaderFixture clickColumn(int index, @NotNull MouseClickInfo mouseClickInfo) {
+  public JTableHeaderFixture clickColumn(int index, MouseClickInfo mouseClickInfo) {
     checkNotNull(mouseClickInfo);
     driver().clickColumn(target(), index, mouseClickInfo.button(), mouseClickInfo.times());
     return this;
@@ -129,8 +123,7 @@ public class JTableHeaderFixture extends
    * @throws IllegalStateException if this fixture's {@code JTableHeader} is not showing on the screen.
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
-  @NotNull
-  public JTableHeaderFixture clickColumn(@Nullable String columnName, @NotNull MouseClickInfo mouseClickInfo) {
+  public JTableHeaderFixture clickColumn(@Nullable String columnName, MouseClickInfo mouseClickInfo) {
     checkNotNull(mouseClickInfo);
     driver().clickColumn(target(), columnName, mouseClickInfo.button(), mouseClickInfo.times());
     return this;
@@ -149,9 +142,8 @@ public class JTableHeaderFixture extends
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
-  @NotNull
-  public JTableHeaderFixture clickColumn(@NotNull Pattern columnNamePattern,
-                                         @NotNull MouseClickInfo mouseClickInfo) {
+  public JTableHeaderFixture clickColumn(Pattern columnNamePattern,
+                                         MouseClickInfo mouseClickInfo) {
     checkNotNull(mouseClickInfo);
     driver().clickColumn(target(), columnNamePattern, mouseClickInfo.button(), mouseClickInfo.times());
     return this;
@@ -167,7 +159,6 @@ public class JTableHeaderFixture extends
    * @throws IndexOutOfBoundsException if the index is out of bounds.
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
-  @NotNull
   public JPopupMenuFixture showPopupMenuAt(int columnIndex) {
     JPopupMenu popupMenu = driver().showPopupMenu(target(), columnIndex);
     return new JPopupMenuFixture(robot(), popupMenu);
@@ -182,7 +173,6 @@ public class JTableHeaderFixture extends
    * @throws IllegalStateException if this fixture's {@code JTableHeader} is not showing on the screen.
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
-  @NotNull
   public JPopupMenuFixture showPopupMenuAt(@Nullable String columnName) {
     JPopupMenu popupMenu = driver().showPopupMenu(target(), columnName);
     return new JPopupMenuFixture(robot(), popupMenu);
@@ -199,8 +189,7 @@ public class JTableHeaderFixture extends
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
-  @NotNull
-  public JPopupMenuFixture showPopupMenuAt(@NotNull Pattern columnNamePattern) {
+  public JPopupMenuFixture showPopupMenuAt(Pattern columnNamePattern) {
     JPopupMenu popupMenu = driver().showPopupMenu(target(), columnNamePattern);
     return new JPopupMenuFixture(robot(), popupMenu);
   }

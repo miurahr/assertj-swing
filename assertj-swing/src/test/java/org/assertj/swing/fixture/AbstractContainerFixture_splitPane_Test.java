@@ -21,7 +21,6 @@ import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMat
 
 import java.awt.Dimension;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JList;
 import javax.swing.JSplitPane;
 
@@ -86,7 +85,7 @@ public class AbstractContainerFixture_splitPane_Test extends RobotBasedTestCase 
     robot.showWindow(window);
     JSplitPaneFixture splitPane = fixture.splitPane(new GenericTypeMatcher<JSplitPane>(JSplitPane.class) {
       @Override
-      protected boolean isMatching(@NotNull JSplitPane s) {
+      protected boolean isMatching(JSplitPane s) {
         return s.getLeftComponent() instanceof JList;
       }
     });
@@ -103,11 +102,11 @@ public class AbstractContainerFixture_splitPane_Test extends RobotBasedTestCase 
   private static class MyWindow extends TestWindow {
     final JSplitPane splitPane = new JSplitPane(VERTICAL_SPLIT);
 
-    static @NotNull MyWindow createNew(final @NotNull Class<?> testClass) {
+    static MyWindow createNew(final Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@NotNull Class<?> testClass) {
+    private MyWindow(Class<?> testClass) {
       super(testClass);
       splitPane.setName("slideMeSplitPane");
       splitPane.setLeftComponent(list("One", "Two"));
@@ -115,7 +114,7 @@ public class AbstractContainerFixture_splitPane_Test extends RobotBasedTestCase 
       addComponents(splitPane);
     }
 
-    private static JList list(@NotNull Object... elements) {
+    private static JList list(Object... elements) {
       JList list = new JList(elements);
       list.setPreferredSize(new Dimension(100, 50));
       return list;

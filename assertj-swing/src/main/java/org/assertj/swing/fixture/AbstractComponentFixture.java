@@ -29,8 +29,7 @@ import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.ComponentDriver;
 import org.assertj.swing.query.ComponentEnabledQuery;
 import org.assertj.swing.timing.Timeout;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Supports functional testing of AWT and Swing {@code Component}s.
@@ -73,12 +72,11 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  public AbstractComponentFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @NotNull Class<? extends C> type) {
+  public AbstractComponentFixture(Class<S> selfType, Robot robot, Class<? extends C> type) {
     this(selfType, robot, findTarget(robot, type));
   }
 
-  @NotNull
-  private static <C extends Component> C findTarget(@NotNull Robot robot, @NotNull Class<? extends C> type) {
+  private static <C extends Component> C findTarget(Robot robot, Class<? extends C> type) {
     checkNotNull(robot);
     checkNotNull(type);
     return robot.finder().findByType(type, requireShowing(robot));
@@ -96,14 +94,13 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  public AbstractComponentFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @Nullable String name,
-                                  @NotNull Class<? extends C> type) {
+  public AbstractComponentFixture(Class<S> selfType, Robot robot, @Nullable String name,
+                                  Class<? extends C> type) {
     this(selfType, robot, findTarget(robot, name, type));
   }
 
-  @NotNull
-  private static <C extends Component> C findTarget(@NotNull Robot robot, @Nullable String name,
-                                                    @NotNull Class<? extends C> type) {
+  private static <C extends Component> C findTarget(Robot robot, @Nullable String name,
+                                                    Class<? extends C> type) {
     checkNotNull(robot);
     checkNotNull(type);
     return robot.finder().findByName(name, type, requireShowing(robot));
@@ -119,7 +116,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public AbstractComponentFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @NotNull C target) {
+  public AbstractComponentFixture(Class<S> selfType, Robot robot, C target) {
     myself = checkNotNull(selfType).cast(this);
     this.robot = checkNotNull(robot);
     this.target = checkNotNull(target);
@@ -146,13 +143,13 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
     return Objects.equals(target, other.target);
   }
 
-  protected abstract @NotNull D createDriver(@NotNull Robot robot);
+  protected abstract D createDriver(Robot robot);
 
-  protected final @NotNull D driver() {
+  protected final D driver() {
     return driver;
   }
 
-  public final void replaceDriverWith(@NotNull D driver) {
+  public final void replaceDriverWith(D driver) {
     this.driver = checkNotNull(driver);
   }
 
@@ -166,7 +163,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    */
   @Override
-  public final @NotNull S click() {
+  public final S click() {
     driver.click(target());
     return myself();
   }
@@ -183,7 +180,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    */
   @Override
-  public final @NotNull S click(@NotNull MouseButton button) {
+  public final S click(MouseButton button) {
     driver.click(target(), button);
     return myself();
   }
@@ -200,7 +197,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    */
   @Override
-  public final @NotNull S click(@NotNull MouseClickInfo mouseClickInfo) {
+  public final S click(MouseClickInfo mouseClickInfo) {
     driver.click(target(), mouseClickInfo);
     return myself();
   }
@@ -215,7 +212,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    */
   @Override
-  public final @NotNull S doubleClick() {
+  public final S doubleClick() {
     driver.doubleClick(target());
     return myself();
   }
@@ -228,7 +225,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    * @throws org.assertj.swing.exception.ActionFailedException if there is no drag action in effect.
    */
-  public final @NotNull S drop() {
+  public final S drop() {
     driver().drop(target());
     return myself();
   }
@@ -243,7 +240,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    */
   @Override
-  public final @NotNull S rightClick() {
+  public final S rightClick() {
     driver.rightClick(target());
     return myself();
   }
@@ -255,7 +252,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is disabled.
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    */
-  public final @NotNull S focus() {
+  public final S focus() {
     driver.focus(target());
     return myself();
   }
@@ -272,7 +269,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    * @see KeyPressInfo
    */
-  public final @NotNull S pressAndReleaseKey(@NotNull KeyPressInfo keyPressInfo) {
+  public final S pressAndReleaseKey(KeyPressInfo keyPressInfo) {
     driver.pressAndReleaseKey(target(), keyPressInfo);
     return myself();
   }
@@ -288,7 +285,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    * @see java.awt.event.KeyEvent
    */
-  public final @NotNull S pressAndReleaseKeys(@NotNull int... keyCodes) {
+  public final S pressAndReleaseKeys(int... keyCodes) {
     driver.pressAndReleaseKeys(target(), keyCodes);
     return myself();
   }
@@ -304,7 +301,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @see #pressKeyWhileRunning(int, Runnable)
    * @see java.awt.event.KeyEvent
    */
-  public final @NotNull S pressKey(int keyCode) {
+  public final S pressKey(int keyCode) {
     driver.pressKey(target(), keyCode);
     return myself();
   }
@@ -322,7 +319,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @see #pressKey(int)
    * @see java.awt.event.KeyEvent
    */
-  public final @NotNull S pressKeyWhileRunning(int keyCode, @NotNull Runnable runnable) {
+  public final S pressKeyWhileRunning(int keyCode, Runnable runnable) {
     driver.pressKeyWhileRunning(target(), keyCode, runnable);
     return myself();
   }
@@ -337,7 +334,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws IllegalStateException if this fixture's {@code Component} is not showing on the screen.
    * @see java.awt.event.KeyEvent
    */
-  public final @NotNull S releaseKey(int keyCode) {
+  public final S releaseKey(int keyCode) {
     driver.releaseKey(target(), keyCode);
     return myself();
   }
@@ -348,7 +345,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Component} does not have input focus.
    */
-  public final @NotNull S requireFocused() {
+  public final S requireFocused() {
     driver.requireFocused(target());
     return myself();
   }
@@ -359,7 +356,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Component} is disabled.
    */
-  public final @NotNull S requireEnabled() {
+  public final S requireEnabled() {
     driver.requireEnabled(target());
     return myself();
   }
@@ -371,7 +368,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @return this fixture.
    * @throws org.assertj.swing.exception.WaitTimedOutError if this fixture's {@code Component} is never enabled.
    */
-  public final @NotNull S requireEnabled(@NotNull Timeout timeout) {
+  public final S requireEnabled(Timeout timeout) {
     driver.requireEnabled(target(), timeout);
     return myself();
   }
@@ -382,7 +379,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Component} is enabled.
    */
-  public final @NotNull S requireDisabled() {
+  public final S requireDisabled() {
     driver.requireDisabled(target());
     return myself();
   }
@@ -393,7 +390,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Component} is not visible.
    */
-  public final @NotNull S requireVisible() {
+  public final S requireVisible() {
     driver.requireVisible(target());
     return myself();
   }
@@ -404,7 +401,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Component} is visible.
    */
-  public final @NotNull S requireNotVisible() {
+  public final S requireNotVisible() {
     driver.requireNotVisible(target());
     return myself();
   }
@@ -420,14 +417,14 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
     return requireShowing(robot());
   }
 
-  private static boolean requireShowing(@NotNull Robot robot) {
+  private static boolean requireShowing(Robot robot) {
     return robot.settings().componentLookupScope().requireShowing();
   }
 
   /**
    * @return a fixture that checks properties of the font of this fixture's {@code Component}.
    */
-  public final @NotNull FontFixture font() {
+  public final FontFixture font() {
     Font font = driver.fontOf(target);
     return new FontFixture(font, propertyName(target(), FONT_PROPERTY));
   }
@@ -435,7 +432,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
   /**
    * @return a fixture that checks properties of the background color of this fixture's {@code Component}.
    */
-  public final @NotNull ColorFixture background() {
+  public final ColorFixture background() {
     Color background = driver.backgroundOf(target);
     return new ColorFixture(background, propertyName(target(), BACKGROUND_PROPERTY));
   }
@@ -443,7 +440,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
   /**
    * @return a fixture that checks properties of the foreground color of this fixture's {@code Component}.
    */
-  public final @NotNull ColorFixture foreground() {
+  public final ColorFixture foreground() {
     Color foreground = driver.foregroundOf(target);
     return new ColorFixture(foreground, propertyName(target(), FOREGROUND_PROPERTY));
   }
@@ -465,7 +462,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @return this fixture's {@code Component} casted to the given sub-type.
    * @throws AssertionError if this fixture's {@code Component} is not an instance of the given type.
    */
-  public final @NotNull <T extends C> T targetCastedTo(@NotNull Class<T> type) {
+  public final <T extends C> T targetCastedTo(Class<T> type) {
     assertThat(target).as(format(target)).isInstanceOf(type);
     return type.cast(target);
   }
@@ -485,19 +482,19 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    *
    * @return the GUI component in this fixture.
    */
-  public final @NotNull C target() {
+  public final C target() {
     return target;
   }
 
   /** @return the {@link Robot} that simulates user events on {@link #target()}. */
-  public final @NotNull Robot robot() {
+  public final Robot robot() {
     return robot;
   }
 
   /**
    * @return {@code this} casted to the "self type".
    */
-  protected final @NotNull S myself() {
+  protected final S myself() {
     return myself;
   }
 }

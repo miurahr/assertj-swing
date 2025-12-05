@@ -15,8 +15,7 @@ package org.assertj.swing.cell;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * <p>
@@ -47,5 +46,5 @@ public interface JListCellReader {
    * @return the internal value of a cell in a {@code JList} as expected in a test.
    */
   @Nullable
-  String valueAt(@NotNull JList list, int index);
+  String valueAt(JList list, int index);
 }

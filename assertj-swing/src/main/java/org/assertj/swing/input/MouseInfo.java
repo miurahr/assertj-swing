@@ -27,8 +27,7 @@ import java.awt.event.MouseEvent;
 import java.lang.ref.WeakReference;
 import java.util.Stack;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * A description mouse-related operations.
@@ -59,7 +58,7 @@ class MouseInfo {
     screenLocationStack.clear();
   }
 
-  void update(@NotNull MouseEvent event, @Nullable Point eventScreenLocation) {
+  void update(MouseEvent event, @Nullable Point eventScreenLocation) {
     // When a button is released, only that button appears in the modifier mask
     clickCount(event.getClickCount());
     updateOnMousePressed(event);
@@ -74,7 +73,7 @@ class MouseInfo {
     }
   }
 
-  private void updateOnMousePressed(@NotNull MouseEvent event) {
+  private void updateOnMousePressed(MouseEvent event) {
     if (event.getID() != MOUSE_PRESSED) {
       return;
     }
@@ -83,7 +82,7 @@ class MouseInfo {
     modifiers |= buttonUsed;
   }
 
-  private void updateOnMouseReleased(@NotNull MouseEvent event) {
+  private void updateOnMouseReleased(MouseEvent event) {
     if (event.getID() != MOUSE_RELEASED) {
       return;
     }
@@ -92,11 +91,11 @@ class MouseInfo {
     modifiers &= ~buttonUsed;
   }
 
-  private int buttonUsed(@NotNull MouseEvent event) {
+  private int buttonUsed(MouseEvent event) {
     return event.getModifiers() & BUTTON_MASK;
   }
 
-  private void updateOnMouseEntered(@NotNull MouseEvent event, @Nullable Point eventScreenLocation) {
+  private void updateOnMouseEntered(MouseEvent event, @Nullable Point eventScreenLocation) {
     if (event.getID() != MOUSE_ENTERED) {
       return;
     }
@@ -106,7 +105,7 @@ class MouseInfo {
     screenLocationStack.push(eventScreenLocation != null ? eventScreenLocation : eventPoint);
   }
 
-  private void updateOnMouseExited(@NotNull MouseEvent event) {
+  private void updateOnMouseExited(MouseEvent event) {
     if (event.getID() != MOUSE_EXITED || componentStack.empty()) {
       return;
     }

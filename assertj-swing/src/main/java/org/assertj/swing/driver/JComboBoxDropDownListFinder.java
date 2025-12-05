@@ -28,8 +28,7 @@ import org.assertj.swing.core.ComponentMatcher;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.core.TypeMatcher;
 import org.assertj.swing.util.TimeoutWatch;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Looks up the {@code JList} in the pop-up raised by a {@code JComboBox}, if the LAF actually uses one.
@@ -69,7 +68,7 @@ final class JComboBoxDropDownListFinder {
   }
 
   @Nullable
-  private JList<?> findListIn(@NotNull Container parent) {
+  private JList<?> findListIn(Container parent) {
     List<Component> found = newArrayList(robot.finder().findAll(parent, LIST_MATCHER));
     if (found.size() != 1) {
       return null;

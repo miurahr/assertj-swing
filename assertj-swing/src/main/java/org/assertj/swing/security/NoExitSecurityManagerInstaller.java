@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.security;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Installs/uninstalls a {@link NoExitSecurityManager}.
  * 
@@ -25,7 +23,6 @@ public class NoExitSecurityManagerInstaller {
    * 
    * @return this installer.
    */
-  @NotNull
   public static NoExitSecurityManagerInstaller installNoExitSecurityManager() {
     return new NoExitSecurityManagerInstaller(new NoExitSecurityManager());
   }
@@ -37,14 +34,13 @@ public class NoExitSecurityManagerInstaller {
    * @return this installer.
    * @throws NullPointerException if the given hook is {@code null}.
    */
-  @NotNull
-  public static NoExitSecurityManagerInstaller installNoExitSecurityManager(@NotNull ExitCallHook hook) {
+  public static NoExitSecurityManagerInstaller installNoExitSecurityManager(ExitCallHook hook) {
     return new NoExitSecurityManagerInstaller(new NoExitSecurityManager(hook));
   }
 
   private final SecurityManager oldManager;
 
-  private NoExitSecurityManagerInstaller(@NotNull NoExitSecurityManager newManager) {
+  private NoExitSecurityManagerInstaller(NoExitSecurityManager newManager) {
     oldManager = System.getSecurityManager();
     System.setSecurityManager(newManager);
   }

@@ -18,7 +18,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns the number of items in a given {@code JComboBox}. This action is executed in the event dispatch thread (EDT).
@@ -27,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @RunsInEDT
 final class JComboBoxItemCountQuery {
-  static int itemCountIn(final @NotNull JComboBox<?> comboBox) {
+  static int itemCountIn(final JComboBox<?> comboBox) {
     Integer result = execute(() -> comboBox.getItemCount());
     return checkNotNull(result);
   }

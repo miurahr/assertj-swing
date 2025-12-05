@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JProgressBarSetIndetermintateTask {
   @RunsInEDT
-  static void setIntedeterminate(final @NotNull JProgressBar progressBar, final boolean indeterminate) {
+  static void setIntedeterminate(final JProgressBar progressBar, final boolean indeterminate) {
     execute(() -> progressBar.setIndeterminate(indeterminate));
   }
 

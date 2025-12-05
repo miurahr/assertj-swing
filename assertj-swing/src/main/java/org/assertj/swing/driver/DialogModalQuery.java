@@ -18,7 +18,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Dialog;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Indicates whether an AWT or Swing {@code Dialog} is modal. This action is executed in the event dispatch thread
@@ -29,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
  */
 final class DialogModalQuery {
   @RunsInEDT
-  static boolean isModal(final @NotNull Dialog dialog) {
+  static boolean isModal(final Dialog dialog) {
     Boolean result = execute(() -> dialog.isModal());
     return checkNotNull(result);
   }

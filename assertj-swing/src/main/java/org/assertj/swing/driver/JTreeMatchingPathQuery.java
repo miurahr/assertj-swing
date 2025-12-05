@@ -17,7 +17,6 @@ import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndSho
 import static org.assertj.swing.driver.JTreeAddRootIfInvisibleTask.addRootIfInvisible;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
@@ -35,12 +34,11 @@ import org.assertj.swing.edt.GuiQuery;
  */
 final class JTreeMatchingPathQuery {
   @RunsInEDT
-  static @NotNull TreePath verifyJTreeIsReadyAndFindMatchingPath(final @NotNull JTree tree, final @NotNull String path,
-                                                                 final @NotNull JTreePathFinder pathFinder) {
+  static TreePath verifyJTreeIsReadyAndFindMatchingPath(final JTree tree, final String path,
+                                                                 final JTreePathFinder pathFinder) {
     TreePath result = execute(new GuiQuery<TreePath>() {
       @Override
-      @NotNull
-      protected TreePath executeInEDT() {
+          protected TreePath executeInEDT() {
         checkEnabledAndShowing(tree);
         return matchingPathWithRootIfInvisible(tree, path, pathFinder);
       }
@@ -49,15 +47,15 @@ final class JTreeMatchingPathQuery {
   }
 
   @RunsInEDT
-  static @NotNull TreePath matchingPathFor(final @NotNull JTree tree, final @NotNull String path,
-                                           final @NotNull JTreePathFinder pathFinder) {
+  static TreePath matchingPathFor(final JTree tree, final String path,
+                                           final JTreePathFinder pathFinder) {
     TreePath result = execute(() -> matchingPathWithRootIfInvisible(tree, path, pathFinder));
     return checkNotNull(result);
   }
 
   @RunsInCurrentThread
-  static @NotNull TreePath matchingPathWithRootIfInvisible(@NotNull JTree tree, @NotNull String path,
-                                                           @NotNull JTreePathFinder pathFinder) {
+  static TreePath matchingPathWithRootIfInvisible(JTree tree, String path,
+                                                           JTreePathFinder pathFinder) {
     TreePath matchingPath = pathFinder.findMatchingPath(tree, path);
     return addRootIfInvisible(tree, matchingPath);
   }

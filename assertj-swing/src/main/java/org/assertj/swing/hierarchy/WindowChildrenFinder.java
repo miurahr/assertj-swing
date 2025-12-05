@@ -21,7 +21,6 @@ import java.awt.Container;
 import java.awt.Window;
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -33,8 +32,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
 final class WindowChildrenFinder implements ChildrenFinderStrategy {
   @RunsInCurrentThread
   @Override
-  @NotNull
-  public Collection<Component> nonExplicitChildrenOf(@NotNull Container c) {
+  public Collection<Component> nonExplicitChildrenOf(Container c) {
     if (!(c instanceof Window)) {
       return emptyList();
     }
@@ -42,13 +40,11 @@ final class WindowChildrenFinder implements ChildrenFinderStrategy {
   }
 
   @RunsInCurrentThread
-  @NotNull
   private Collection<Component> ownedWindows(Window w) {
     return windows(w.getOwnedWindows());
   }
 
-  @NotNull
-  private Collection<Component> windows(@NotNull Component[] windows) {
+  private Collection<Component> windows(Component[] windows) {
     if (isNullOrEmpty(windows)) {
       return emptyList();
     }

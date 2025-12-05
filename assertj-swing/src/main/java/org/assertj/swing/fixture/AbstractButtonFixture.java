@@ -14,8 +14,7 @@ package org.assertj.swing.fixture;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.core.Robot;
@@ -42,7 +41,7 @@ public abstract class AbstractButtonFixture<S, T extends AbstractButton> extends
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public AbstractButtonFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @NotNull T target) {
+  public AbstractButtonFixture(Class<S> selfType, Robot robot, T target) {
     super(selfType, robot, target);
   }
 
@@ -58,14 +57,13 @@ public abstract class AbstractButtonFixture<S, T extends AbstractButton> extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code AbstractButton} could not be
    *           found. Or if more than one matching {@code AbstractButton} is found.
    */
-  public AbstractButtonFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @Nullable String buttonName,
-                               @NotNull Class<? extends T> type) {
+  public AbstractButtonFixture(Class<S> selfType, Robot robot, @Nullable String buttonName,
+                               Class<? extends T> type) {
     super(selfType, robot, buttonName, type);
   }
 
   @Override
-  @NotNull
-  protected AbstractButtonDriver createDriver(@NotNull Robot robot) {
+  protected AbstractButtonDriver createDriver(Robot robot) {
     return new AbstractButtonDriver(robot);
   }
 
@@ -85,7 +83,7 @@ public abstract class AbstractButtonFixture<S, T extends AbstractButton> extends
    * @throws AssertionError if the text of the target {@code AbstractButton} does not match the given one.
    */
   @Override
-  public final @NotNull S requireText(@Nullable String expected) {
+  public final S requireText(@Nullable String expected) {
     driver().requireText(target(), expected);
     return myself();
   }
@@ -100,7 +98,7 @@ public abstract class AbstractButtonFixture<S, T extends AbstractButton> extends
    *           pattern.
    */
   @Override
-  public final @NotNull S requireText(@NotNull Pattern pattern) {
+  public final S requireText(Pattern pattern) {
     driver().requireText(target(), pattern);
     return myself();
   }

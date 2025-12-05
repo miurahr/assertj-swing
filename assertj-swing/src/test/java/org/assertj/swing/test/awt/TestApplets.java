@@ -16,7 +16,6 @@ import static org.mockito.Mockito.mock;
 
 import java.applet.Applet;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Implementations of {@link Applet}s to be used for testing.
@@ -24,7 +23,6 @@ import org.jetbrains.annotations.NotNull;
  * @author Alex Ruiz
  */
 public final class TestApplets {
-  @NotNull
   public static Applet singletonAppletMock() {
     return LazyLoadedSingleton.INSTANCE;
   }
@@ -33,7 +31,6 @@ public final class TestApplets {
     static final Applet INSTANCE = newAppletMock();
   }
 
-  @NotNull
   public static Applet newAppletMock() {
     return mock(Applet.class);
   }

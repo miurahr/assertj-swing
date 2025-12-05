@@ -16,7 +16,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -42,6 +41,5 @@ interface ChildrenFinderStrategy {
    * @return a collection containing the non-explicit children found.
    */
   @RunsInCurrentThread
-  @NotNull
-  Collection<Component> nonExplicitChildrenOf(@NotNull Container c);
+  Collection<Component> nonExplicitChildrenOf(Container c);
 }

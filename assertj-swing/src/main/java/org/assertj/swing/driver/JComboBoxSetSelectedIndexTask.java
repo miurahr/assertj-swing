@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -29,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JComboBoxSetSelectedIndexTask {
   @RunsInEDT
-  static void setSelectedIndex(final @NotNull JComboBox<?> comboBox, final int index) {
+  static void setSelectedIndex(final JComboBox<?> comboBox, final int index) {
     execute(() -> comboBox.setSelectedIndex(index));
   }
 

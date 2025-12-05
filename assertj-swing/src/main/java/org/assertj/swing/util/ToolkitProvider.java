@@ -16,8 +16,6 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Toolkit;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Provider of {@code Toolkit}s.
  * 
@@ -27,12 +25,10 @@ public class ToolkitProvider {
   /**
    * @return the singleton instance of this class.
    */
-  @NotNull
   public static ToolkitProvider instance() {
     return SingletonHolder.instance;
   }
 
-  @NotNull
   public Toolkit defaultToolkit() {
     return checkNotNull(Toolkit.getDefaultToolkit());
   }

@@ -14,7 +14,6 @@ package org.assertj.swing.fixture;
 
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.MouseClickInfo;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Simulates mouse input on an AWT or Swing {@code Component}.
@@ -32,7 +31,6 @@ public interface MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the {@code Component} is disabled.
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
-  @NotNull
   S click();
 
   /**
@@ -43,8 +41,7 @@ public interface MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the {@code Component} is disabled.
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
-  @NotNull
-  S click(@NotNull MouseButton button);
+  S click(MouseButton button);
 
   /**
    * Simulates a user clicking this fixture's {@code Component}.
@@ -55,8 +52,7 @@ public interface MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the {@code Component} is disabled.
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
-  @NotNull
-  S click(@NotNull MouseClickInfo mouseClickInfo);
+  S click(MouseClickInfo mouseClickInfo);
 
   /**
    * Simulates a user double-clicking this fixture's {@code Component}.
@@ -65,7 +61,6 @@ public interface MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the {@code Component} is disabled.
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
-  @NotNull
   S doubleClick();
 
   /**
@@ -75,6 +70,5 @@ public interface MouseInputSimulationFixture<S> {
    * @throws IllegalStateException if the {@code Component} is disabled.
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
-  @NotNull
   S rightClick();
 }

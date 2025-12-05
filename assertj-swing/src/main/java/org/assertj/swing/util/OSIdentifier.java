@@ -20,7 +20,6 @@ import static org.assertj.swing.util.OSFamily.UNIX;
 import static org.assertj.swing.util.OSFamily.WINDOWS;
 
 import org.assertj.core.util.VisibleForTesting;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Identifies the current Operating System.
@@ -43,7 +42,7 @@ class OSIdentifier {
   }
 
   @VisibleForTesting
-  OSIdentifier(@NotNull SystemPropertyReader reader) {
+  OSIdentifier(SystemPropertyReader reader) {
     String osName = checkNotNull(reader.systemProperty("os.name")).toLowerCase(ENGLISH);
     isWindows = osName.startsWith("windows");
     isWindows9x = isWindows && containsAny(osName, "95", "98", "me");
@@ -56,7 +55,7 @@ class OSIdentifier {
     osFamily = findOSFamily();
   }
 
-  private static boolean containsAny(@NotNull String target, @NotNull String... subs) {
+  private static boolean containsAny(String target, String... subs) {
     for (String sub : subs) {
       if (target.contains(sub)) {
         return true;
@@ -65,7 +64,6 @@ class OSIdentifier {
     return false;
   }
 
-  @NotNull
   private OSFamily findOSFamily() {
     if (isWindows()) {
       return WINDOWS;
@@ -117,7 +115,6 @@ class OSIdentifier {
   }
 
   /* Since 1.2 */
-  @NotNull
   OSFamily osFamily() {
     return osFamily;
   }

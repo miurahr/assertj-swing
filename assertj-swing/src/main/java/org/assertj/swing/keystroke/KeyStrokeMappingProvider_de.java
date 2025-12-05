@@ -67,7 +67,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.assertj.core.util.Lists;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Mapping between characters and {@code KeyStroke}s for locale {@code Locale.GERMAN}.
@@ -80,7 +79,6 @@ public class KeyStrokeMappingProvider_de implements KeyStrokeMappingProvider {
    * @return the mapping between characters and {@code KeyStroke}s for locale {@code Locale.GERMAN}.
    */
   @Override
-  @NotNull
   public Collection<KeyStrokeMapping> keyStrokeMappings() {
     List<KeyStrokeMapping> mappings = Lists.newArrayList(defaultMappings());
     mappings.add(mapping('0', VK_0, NO_MASK));

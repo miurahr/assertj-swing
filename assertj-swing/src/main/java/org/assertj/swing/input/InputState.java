@@ -30,8 +30,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.exception.UnexpectedException;
 import org.assertj.swing.listener.EventDispatchThreadedEventListener;
@@ -57,11 +56,11 @@ public class InputState {
 
   private EventNormalizer normalizer;
 
-  public InputState(@NotNull Toolkit toolkit) {
+  public InputState(Toolkit toolkit) {
     long mask = MOUSE_MOTION_EVENT_MASK | MOUSE_EVENT_MASK | KEY_EVENT_MASK;
     AWTEventListener listener = new EventDispatchThreadedEventListener() {
       @Override
-      protected void processEvent(@NotNull AWTEvent event) {
+      protected void processEvent(AWTEvent event) {
         update(event);
       }
     };
@@ -86,7 +85,7 @@ public class InputState {
    * 
    * @param event the event to use to update the internal state.
    */
-  public void update(@NotNull AWTEvent event) {
+  public void update(AWTEvent event) {
     if (event instanceof InputEvent) {
       InputEvent inputEvent = (InputEvent) event;
       if (inputEvent.getWhen() < lastEventTime()) {
@@ -118,7 +117,7 @@ public class InputState {
   }
 
   @Nullable
-  private Point screenLocation(@NotNull MouseEvent event) {
+  private Point screenLocation(MouseEvent event) {
     // childAt and locationOnScreenOf want the tree lock, so be careful not to use any additional locks at the same time
     // to avoid deadlock.
     // Determine the current mouse position in screen coordinates
@@ -135,7 +134,7 @@ public class InputState {
     return null;
   }
 
-  private void lastEventTime(@NotNull InputEvent event) {
+  private void lastEventTime(InputEvent event) {
     lastEventTime = event.getWhen();
   }
 
@@ -189,7 +188,7 @@ public class InputState {
    * @param where the given coordinates.
    * @return the {@code Component} under the given coordinates in the given parent {@code Component}.
    */
-  public static Component childAt(@NotNull Component parent, @NotNull Point where) {
+  public static Component childAt(Component parent, Point where) {
     return getDeepestComponentAt(parent, where.x, where.y);
   }
 

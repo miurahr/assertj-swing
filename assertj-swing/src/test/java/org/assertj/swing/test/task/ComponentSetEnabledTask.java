@@ -16,7 +16,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -27,17 +26,17 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class ComponentSetEnabledTask {
   @RunsInEDT
-  public static void enable(@NotNull Component component) {
+  public static void enable(Component component) {
     setEnabled(component, true);
   }
 
   @RunsInEDT
-  public static void disable(@NotNull Component component) {
+  public static void disable(Component component) {
     setEnabled(component, false);
   }
 
   @RunsInEDT
-  public static void setEnabled(final @NotNull Component component, final boolean enabled) {
+  public static void setEnabled(final Component component, final boolean enabled) {
     execute(() -> component.setEnabled(enabled));
   }
 

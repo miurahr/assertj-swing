@@ -20,7 +20,6 @@ import static org.mockito.Mockito.when;
 import java.awt.Component;
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.test.core.EDTSafeTestCase;
 import org.assertj.swing.test.data.BooleanProvider;
@@ -41,7 +40,6 @@ public class ComponentIsFocusableQuery_isFocusable_Test extends EDTSafeTestCase 
   private Component component;
 
   @Parameters
-  @NotNull
   public static Collection<Object[]> isFocusable() {
     return newArrayList(BooleanProvider.booleans());
   }

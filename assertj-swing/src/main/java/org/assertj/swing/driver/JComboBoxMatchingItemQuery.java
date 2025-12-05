@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JComboBox;
 
 import org.assertj.core.util.Preconditions;
@@ -29,8 +28,8 @@ import org.assertj.swing.util.TextMatcher;
  */
 final class JComboBoxMatchingItemQuery {
   @RunsInEDT
-  static int matchingItemIndex(final @NotNull JComboBox<?> comboBox, final @NotNull TextMatcher matcher,
-                               final @NotNull JComboBoxCellReader cellReader) {
+  static int matchingItemIndex(final JComboBox<?> comboBox, final TextMatcher matcher,
+                               final JComboBoxCellReader cellReader) {
     Integer result = execute(() -> {
       int itemCount = comboBox.getItemCount();
       for (int i = 0; i < itemCount; i++) {

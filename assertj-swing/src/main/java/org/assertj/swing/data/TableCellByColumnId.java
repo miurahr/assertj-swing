@@ -20,7 +20,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.query.JTableColumnByIdentifierQuery.columnIndexByIdentifier;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -84,12 +83,12 @@ public class TableCellByColumnId implements TableCellFinder {
      * @param columnId the name of the column in the table cell to find.
      * @return the created finder.
      */
-    public TableCellByColumnId columnId(@NotNull Object columnId) {
+    public TableCellByColumnId columnId(Object columnId) {
       return new TableCellByColumnId(row, columnId);
     }
   }
 
-  protected TableCellByColumnId(int row, @NotNull Object columnId) {
+  protected TableCellByColumnId(int row, Object columnId) {
     this.row = row;
     this.columnId = columnId;
   }
@@ -104,14 +103,12 @@ public class TableCellByColumnId implements TableCellFinder {
    */
   @RunsInEDT
   @Override
-  @NotNull
-  public TableCell findCell(@NotNull JTable table, @NotNull JTableCellReader cellReader) {
+  public TableCell findCell(JTable table, JTableCellReader cellReader) {
     return findCell(table, row, columnId);
   }
 
   @RunsInEDT
-  @NotNull
-  private static TableCell findCell(final @NotNull JTable table, final int row, final @NotNull Object columnId) {
+  private static TableCell findCell(final JTable table, final int row, final Object columnId) {
     TableCell result = execute(() -> {
       int column = columnIndexByIdentifier(table, columnId);
       if (column == -1) {

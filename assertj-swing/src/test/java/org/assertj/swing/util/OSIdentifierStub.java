@@ -15,7 +15,6 @@ package org.assertj.swing.util;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Alex Ruiz
@@ -75,7 +74,7 @@ class OSIdentifierStub extends OSIdentifier {
     }
 
     @Override
-    String systemProperty(@NotNull String propertyName) {
+    String systemProperty(String propertyName) {
       if ("os.name".equals(propertyName)) {
         return osName;
       }

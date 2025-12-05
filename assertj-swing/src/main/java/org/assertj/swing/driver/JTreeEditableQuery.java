@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTree;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTreeEditableQuery {
   @RunsInEDT
-  static boolean isEditable(final @NotNull JTree tree) {
+  static boolean isEditable(final JTree tree) {
     Boolean result = execute(() -> tree.isEditable());
     return checkNotNull(result);
   }

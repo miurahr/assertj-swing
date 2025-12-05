@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.launcher;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -39,7 +38,7 @@ public class AppletParameter {
   public final String name;
   public final String value;
 
-  AppletParameter(@NotNull String name, @NotNull String value) {
+  AppletParameter(String name, String value) {
     this.name = name;
     this.value = value;
   }
@@ -50,7 +49,6 @@ public class AppletParameter {
    * @param name the name of the {@code Applet} parameter.
    * @return a builder of {@code AppletParameter}s.
    */
-  @NotNull
   public static AppletParameterBuilder name(String name) {
     return new AppletParameterBuilder(name);
   }
@@ -63,7 +61,7 @@ public class AppletParameter {
   public static class AppletParameterBuilder {
     private final String name;
 
-    AppletParameterBuilder(@NotNull String name) {
+    AppletParameterBuilder(String name) {
       this.name = name;
     }
 
@@ -73,7 +71,7 @@ public class AppletParameter {
      * @param value the value for the {@code AppletParameter}.
      * @return the created {@code AppletParameter}.
      */
-    public AppletParameter value(@NotNull String value) {
+    public AppletParameter value(String value) {
       return new AppletParameter(name, value);
     }
   }

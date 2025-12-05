@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
 
 import org.assertj.core.api.AbstractStringAssert;
 import org.hamcrest.TypeSafeMatcher;
-import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.function.ThrowingRunnable;
 import org.junit.rules.TestRule;
@@ -63,7 +62,7 @@ public class ExpectedException implements TestRule {
   }
 
   @Override
-  public @NotNull Statement apply(@NotNull Statement base, @NotNull Description description) {
+  public Statement apply(Statement base, Description description) {
     return delegate.apply(base, description);
   }
 

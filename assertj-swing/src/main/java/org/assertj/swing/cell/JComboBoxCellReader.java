@@ -15,8 +15,7 @@ package org.assertj.swing.cell;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * <p>
@@ -46,6 +45,5 @@ public interface JComboBoxCellReader {
    * @param index the index of the cell.
    * @return the internal value of a cell in a {@code JComboBox} as expected in a test.
    */
-  @Nullable
-  String valueAt(@NotNull JComboBox<?> comboBox, int index);
+  @Nullable String valueAt(JComboBox<?> comboBox, int index);
 }

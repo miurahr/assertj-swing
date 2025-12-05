@@ -14,8 +14,7 @@ package org.assertj.swing.core.matcher;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -53,7 +52,6 @@ public final class JTextComponentMatcher extends NamedComponentMatcherTemplate<J
    * @param name the id to match.
    * @return the created matcher.
    */
-  @NotNull
   public static JTextComponentMatcher withName(@Nullable String name) {
     return new JTextComponentMatcher(name, anyValue());
   }
@@ -83,8 +81,7 @@ public final class JTextComponentMatcher extends NamedComponentMatcherTemplate<J
    * @param text the text to match. It can be a regular expression.
    * @return the created matcher.
    */
-  @NotNull
-  public static JTextComponentMatcher withText(@NotNull String text) {
+  public static JTextComponentMatcher withText(String text) {
     return new JTextComponentMatcher(anyValue(), text);
   }
 
@@ -113,8 +110,7 @@ public final class JTextComponentMatcher extends NamedComponentMatcherTemplate<J
    * @param textPattern the text to match. It can be a regular expression.
    * @return the created matcher.
    */
-  @NotNull
-  public static JTextComponentMatcher withText(@NotNull Pattern textPattern) {
+  public static JTextComponentMatcher withText(Pattern textPattern) {
     return new JTextComponentMatcher(anyValue(), textPattern);
   }
 
@@ -123,7 +119,6 @@ public final class JTextComponentMatcher extends NamedComponentMatcherTemplate<J
    *
    * @return the created matcher.
    */
-  @NotNull
   public static JTextComponentMatcher any() {
     return new JTextComponentMatcher(anyValue(), anyValue());
   }
@@ -140,8 +135,7 @@ public final class JTextComponentMatcher extends NamedComponentMatcherTemplate<J
    * @param newText the new text to match. It can be a regular expression.
    * @return this matcher.
    */
-  @NotNull
-  public JTextComponentMatcher andText(@NotNull String newText) {
+  public JTextComponentMatcher andText(String newText) {
     text = newText;
     return this;
   }
@@ -153,8 +147,7 @@ public final class JTextComponentMatcher extends NamedComponentMatcherTemplate<J
    * @param textPattern the regular expression pattern to match.
    * @return this matcher.
    */
-  @NotNull
-  public JTextComponentMatcher andText(@NotNull Pattern textPattern) {
+  public JTextComponentMatcher andText(Pattern textPattern) {
     text = textPattern;
     return this;
   }
@@ -164,7 +157,6 @@ public final class JTextComponentMatcher extends NamedComponentMatcherTemplate<J
    *
    * @return this matcher.
    */
-  @NotNull
   public JTextComponentMatcher andShowing() {
     requireShowing(true);
     return this;
@@ -186,7 +178,7 @@ public final class JTextComponentMatcher extends NamedComponentMatcherTemplate<J
    */
   @RunsInCurrentThread
   @Override
-  protected boolean isMatching(@NotNull JTextComponent textComponent) {
+  protected boolean isMatching(JTextComponent textComponent) {
     return isNameMatching(textComponent.getName()) && arePropertyValuesMatching(text, textComponent.getText());
   }
 

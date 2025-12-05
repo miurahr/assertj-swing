@@ -18,7 +18,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Indicates whether an AWT or Swing {@code Component} has input focus. This query is executed in the event dispatch
@@ -36,7 +35,7 @@ public final class ComponentHasFocusQuery {
    * @see Component#hasFocus()
    */
   @RunsInEDT
-  public static boolean hasFocus(final @NotNull Component component) {
+  public static boolean hasFocus(final Component component) {
     Boolean result = execute(() -> component.hasFocus());
     return checkNotNull(result);
   }

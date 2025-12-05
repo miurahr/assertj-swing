@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Verifies correct state of arrays.
@@ -28,7 +28,7 @@ public final class ArrayPreconditions {
    * @throws NullPointerException if the given array is {@code null}.
    * @throws IllegalArgumentException if the given array is empty.
    */
-  public static int[] checkNotNullOrEmpty(@Nullable int[] array) {
+  public static int[] checkNotNullOrEmpty(int @Nullable [] array) {
     if (array == null) {
       throw new NullPointerException();
     }

@@ -14,8 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTableCellValueQuery {
   @RunsInEDT
-  static @Nullable Object cellValueOf(final @NotNull JTable table, final int row, final int column) {
+  static @Nullable Object cellValueOf(final JTable table, final int row, final int column) {
     return execute(() -> table.getValueAt(row, column));
   }
 

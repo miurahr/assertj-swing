@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.core;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * <p>
  * Exception handler for the AWT event thread, to make sure we can get a back-trace dump when running AssertJ-Swing are
@@ -38,7 +36,7 @@ public class SimpleFallbackExceptionHandler {
    *
    * @param t the given exception.
    */
-  public void handle(@NotNull Throwable t) {
+  public void handle(Throwable t) {
     t.printStackTrace();
   }
 }

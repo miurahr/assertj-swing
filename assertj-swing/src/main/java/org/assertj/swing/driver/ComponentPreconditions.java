@@ -18,7 +18,6 @@ import static org.assertj.swing.format.Formatting.format;
 import java.awt.Component;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Verifies correct state of a {@code Component}.
@@ -41,7 +40,7 @@ public final class ComponentPreconditions {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInCurrentThread
-  public static void checkEnabledAndShowing(@NotNull Component c) {
+  public static void checkEnabledAndShowing(Component c) {
     checkEnabled(c);
     checkShowing(c);
   }
@@ -60,7 +59,7 @@ public final class ComponentPreconditions {
    * @throws IllegalStateException if the {@code Component} is disabled.
    */
   @RunsInCurrentThread
-  public static void checkEnabled(@NotNull Component c) {
+  public static void checkEnabled(Component c) {
     if (!c.isEnabled()) {
       throw new IllegalStateException(concat("Expecting component ", format(c), " to be enabled"));
     }
@@ -80,7 +79,7 @@ public final class ComponentPreconditions {
    * @throws IllegalStateException if the {@code Component} is not showing on the screen.
    */
   @RunsInCurrentThread
-  public static void checkShowing(@NotNull Component c) {
+  public static void checkShowing(Component c) {
     if (!c.isShowing()) {
       String msg = String.format("Expecting component %s to be showing on the screen", format(c));
       throw new IllegalStateException(msg);

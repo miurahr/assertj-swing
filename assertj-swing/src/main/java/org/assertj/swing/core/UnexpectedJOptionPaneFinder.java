@@ -19,7 +19,6 @@ import static org.assertj.swing.format.Formatting.format;
 import java.awt.Component;
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -34,7 +33,7 @@ class UnexpectedJOptionPaneFinder {
 
   private final ComponentFinder finder;
 
-  UnexpectedJOptionPaneFinder(@NotNull ComponentFinder finder) {
+  UnexpectedJOptionPaneFinder(ComponentFinder finder) {
     this.finder = finder;
   }
 
@@ -46,11 +45,11 @@ class UnexpectedJOptionPaneFinder {
     }
   }
 
-  private List<Component> findAll(@NotNull ComponentMatcher m) {
+  private List<Component> findAll(ComponentMatcher m) {
     return newArrayList(finder.findAll(m));
   }
 
-  private void unexpectedJOptionPanesFound(@NotNull List<Component> found) {
+  private void unexpectedJOptionPanesFound(List<Component> found) {
     StringBuilder message = new StringBuilder();
     message.append("Expecting no JOptionPane to be showing, but found:<[");
     int size = found.size();

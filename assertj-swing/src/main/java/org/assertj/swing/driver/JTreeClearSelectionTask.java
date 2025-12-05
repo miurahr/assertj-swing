@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTree;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +25,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JTreeClearSelectionTask {
   @RunsInEDT
-  static void clearSelectionOf(final @NotNull JTree tree) {
+  static void clearSelectionOf(final JTree tree) {
     execute(() -> tree.clearSelection());
   }
 

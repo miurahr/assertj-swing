@@ -20,7 +20,6 @@ import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.AWTEvent;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.timing.Condition;
 import org.junit.Before;
@@ -66,7 +65,7 @@ public class EventDispatchThreadedEventListener_eventDispatched_Test {
     Listener() {}
 
     @Override
-    protected void processEvent(@NotNull AWTEvent newEvent) {
+    protected void processEvent(AWTEvent newEvent) {
       this.event = newEvent;
       wasProcessedInEventDispatchThread = isEventDispatchThread();
     }

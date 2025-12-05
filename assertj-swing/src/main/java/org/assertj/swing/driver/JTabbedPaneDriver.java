@@ -27,8 +27,7 @@ import java.awt.Point;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JTabbedPane;
 
 import org.assertj.core.description.Description;
@@ -68,7 +67,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JTabbedPaneDriver(@NotNull Robot robot) {
+  public JTabbedPaneDriver(Robot robot) {
     this(robot, new JTabbedPaneLocation());
   }
 
@@ -79,7 +78,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @param location knows how to find the location of a tab.
    */
   @VisibleForTesting
-  JTabbedPaneDriver(@NotNull Robot robot, @NotNull JTabbedPaneLocation location) {
+  JTabbedPaneDriver(Robot robot, JTabbedPaneLocation location) {
     super(robot);
     this.location = location;
   }
@@ -91,8 +90,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @return the titles of all the tabs.
    */
   @RunsInEDT
-  @NotNull
-  public String[] tabTitles(@NotNull JTabbedPane tabbedPane) {
+  public String[] tabTitles(JTabbedPane tabbedPane) {
     return tabTitlesOf(tabbedPane);
   }
 
@@ -106,7 +104,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws LocationUnavailableException if a tab matching the given title could not be found.
    */
   @RunsInEDT
-  public void selectTab(@NotNull JTabbedPane tabbedPane, @Nullable String title) {
+  public void selectTab(JTabbedPane tabbedPane, @Nullable String title) {
     selectTab(tabbedPane, new StringTextMatcher(title));
   }
 
@@ -121,12 +119,12 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws LocationUnavailableException if a tab matching the given regular expression pattern could not be found.
    */
   @RunsInEDT
-  public void selectTab(@NotNull JTabbedPane tabbedPane, @NotNull Pattern pattern) {
+  public void selectTab(JTabbedPane tabbedPane, Pattern pattern) {
     selectTab(tabbedPane, new PatternTextMatcher(pattern));
   }
 
   @RunsInEDT
-  private void selectTab(@NotNull JTabbedPane tabbedPane, @NotNull TextMatcher matcher) {
+  private void selectTab(JTabbedPane tabbedPane, TextMatcher matcher) {
     Pair<Integer, Point> tabToSelectInfo = tabToSelectInfo(location(), tabbedPane, matcher);
     Point target = tabToSelectInfo.second;
     if (target != null) {
@@ -143,10 +141,9 @@ public class JTabbedPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull
-  private static Pair<Integer, Point> tabToSelectInfo(final @NotNull JTabbedPaneLocation location,
-                                                      final @NotNull JTabbedPane tabbedPane,
-                                                      final @NotNull TextMatcher matcher) {
+  private static Pair<Integer, Point> tabToSelectInfo(final JTabbedPaneLocation location,
+                                                      final JTabbedPane tabbedPane,
+                                                      final TextMatcher matcher) {
     Pair<Integer, Point> result = execute(new GuiQuery<Pair<Integer, Point>>() {
       @Override
       protected Pair<Integer, Point> executeInEDT() {
@@ -173,7 +170,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws IndexOutOfBoundsException if the given index is not within the {@code JTabbedPane} bounds.
    */
   @RunsInEDT
-  public void selectTab(@NotNull JTabbedPane tabbedPane, int index) {
+  public void selectTab(JTabbedPane tabbedPane, int index) {
     try {
       Point p = pointAtTabWhenShowing(location(), tabbedPane, index);
       checkInEdtEnabledAndShowing(tabbedPane);
@@ -184,9 +181,8 @@ public class JTabbedPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull
-  private static Point pointAtTabWhenShowing(final @NotNull JTabbedPaneLocation location,
-                                             final @NotNull JTabbedPane tabbedPane, final int index) {
+  private static Point pointAtTabWhenShowing(final JTabbedPaneLocation location,
+                                             final JTabbedPane tabbedPane, final int index) {
     Point result = execute(() -> {
       location.checkIndexInBounds(tabbedPane, index);
       checkEnabledAndShowing(tabbedPane);
@@ -197,13 +193,13 @@ public class JTabbedPaneDriver extends JComponentDriver {
 
   @RunsInEDT
   @VisibleForTesting
-  void setTabDirectly(@NotNull JTabbedPane tabbedPane, int index) {
+  void setTabDirectly(JTabbedPane tabbedPane, int index) {
     setSelectedTab(tabbedPane, index);
     robot.waitForIdle();
     moveMouseToTab(tabbedPane, index);
   }
 
-  private void moveMouseToTab(@NotNull JTabbedPane tabbedPane, int index) {
+  private void moveMouseToTab(JTabbedPane tabbedPane, int index) {
     try {
       Point p = pointAtTab(location(), tabbedPane, index);
       robot.moveMouse(tabbedPane, p);
@@ -212,9 +208,8 @@ public class JTabbedPaneDriver extends JComponentDriver {
   }
 
   @RunsInEDT
-  @NotNull
-  private static Point pointAtTab(final @NotNull JTabbedPaneLocation location,
-                                  final @NotNull JTabbedPane tabbedPane, final int index) {
+  private static Point pointAtTab(final JTabbedPaneLocation location,
+                                  final JTabbedPane tabbedPane, final int index) {
     Point result = execute(() -> location.pointAt(tabbedPane, index));
     return checkNotNull(result);
   }
@@ -226,14 +221,12 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @return the currently selected component for the given {@code JTabbedPane}.
    */
   @RunsInEDT
-  @Nullable
-  public Component selectedComponentOf(@NotNull JTabbedPane tabbedPane) {
+  public @Nullable Component selectedComponentOf(JTabbedPane tabbedPane) {
     return selectedComponent(tabbedPane);
   }
 
   @RunsInEDT
-  @Nullable
-  private static Component selectedComponent(final JTabbedPane tabbedPane) {
+  private static @Nullable Component selectedComponent(final JTabbedPane tabbedPane) {
     return execute(() -> tabbedPane.getSelectedComponent());
   }
 
@@ -247,7 +240,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws AssertionError if the title of the tab at the given index does not match the given one.
    */
   @RunsInEDT
-  public void requireTabTitle(@NotNull JTabbedPane tabbedPane, @Nullable String title, @NotNull Index index) {
+  public void requireTabTitle(JTabbedPane tabbedPane, @Nullable String title, Index index) {
     String actualTitle = titleAt(tabbedPane, index);
     verifyThat(actualTitle).as(titleAtProperty(tabbedPane)).isEqualOrMatches(title);
   }
@@ -263,7 +256,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws AssertionError if the title of the tab at the given index does not match the given one.
    */
   @RunsInEDT
-  public void requireTabTitle(@NotNull JTabbedPane tabbedPane, @NotNull Pattern pattern, @NotNull Index index) {
+  public void requireTabTitle(JTabbedPane tabbedPane, Pattern pattern, Index index) {
     String actualTitle = titleAt(tabbedPane, index);
     verifyThat(actualTitle).as(titleAtProperty(tabbedPane)).matches(pattern);
   }
@@ -276,7 +269,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws AssertionError if the index of the selected tab does not match the given one.
    */
   @RunsInEDT
-  public void requireSelectedTab(@NotNull JTabbedPane tabbedPane, @NotNull Index index) {
+  public void requireSelectedTab(JTabbedPane tabbedPane, Index index) {
     assertThat(selectedTabIndexOf(tabbedPane).value).as(propertyName(tabbedPane, "selectedIndex"))
                                                     .isEqualTo(index.value);
   }
@@ -291,7 +284,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws AssertionError if the toolTipText of the tab at the given index does not match the given one.
    */
   @RunsInEDT
-  public void requireTabToolTipText(@NotNull JTabbedPane tabbedPane, @Nullable String toolTipText, @NotNull Index index) {
+  public void requireTabToolTipText(JTabbedPane tabbedPane, @Nullable String toolTipText, Index index) {
     String actualToolTipText = toolTipTextAt(tabbedPane, index);
     verifyThat(actualToolTipText).as(toolTipTextAtProperty(tabbedPane)).isEqualOrMatches(toolTipText);
   }
@@ -307,7 +300,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws AssertionError if the toolTipText of the tab at the given index does not match the given one.
    */
   @RunsInEDT
-  public void requireTabToolTipText(@NotNull JTabbedPane tabbedPane, @NotNull Pattern pattern, @NotNull Index index) {
+  public void requireTabToolTipText(JTabbedPane tabbedPane, Pattern pattern, Index index) {
     String actualToolTipText = toolTipTextAt(tabbedPane, index);
     verifyThat(actualToolTipText).as(toolTipTextAtProperty(tabbedPane)).matches(pattern);
   }
@@ -321,7 +314,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws AssertionError if the tab at the given index is not enabled.
    */
   @RunsInEDT
-  public void requireTabEnabled(@NotNull JTabbedPane tabbedPane, @NotNull Index index) {
+  public void requireTabEnabled(JTabbedPane tabbedPane, Index index) {
     boolean actualEnabled = isEnabledAt(tabbedPane, index);
     assertThat(actualEnabled).as(enabledAtProperty(tabbedPane)).isTrue();
   }
@@ -335,41 +328,41 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws AssertionError if the tab at the given index is not disabled.
    */
   @RunsInEDT
-  public void requireTabDisabled(@NotNull JTabbedPane tabbedPane, @NotNull Index index) {
+  public void requireTabDisabled(JTabbedPane tabbedPane, Index index) {
     boolean actualEnabled = isEnabledAt(tabbedPane, index);
     assertThat(actualEnabled).as(enabledAtProperty(tabbedPane)).isFalse();
   }
 
   @RunsInEDT
-  private Description titleAtProperty(@NotNull JTabbedPane tabbedPane) {
+  private Description titleAtProperty(JTabbedPane tabbedPane) {
     return propertyName(tabbedPane, "titleAt");
   }
 
   @RunsInEDT
-  private Description toolTipTextAtProperty(@NotNull JTabbedPane tabbedPane) {
+  private Description toolTipTextAtProperty(JTabbedPane tabbedPane) {
     return propertyName(tabbedPane, "toolTipTextAt");
   }
 
   @RunsInEDT
-  private Description enabledAtProperty(@NotNull JTabbedPane tabbedPane) {
+  private Description enabledAtProperty(JTabbedPane tabbedPane) {
     return propertyName(tabbedPane, "enabledAt");
   }
 
   @RunsInEDT
   @Nullable
-  private static String titleAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
+  private static String titleAt(final JTabbedPane tabbedPane, final Index index) {
     return execute(() -> tabbedPane.getTitleAt(index.value));
   }
 
   @RunsInEDT
   @Nullable
-  private static String toolTipTextAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
+  private static String toolTipTextAt(final JTabbedPane tabbedPane, final Index index) {
     return execute(() -> tabbedPane.getToolTipTextAt(index.value));
   }
 
   @RunsInEDT
   @Nullable
-  private static boolean isEnabledAt(final @NotNull JTabbedPane tabbedPane, final @NotNull Index index) {
+  private static boolean isEnabledAt(final JTabbedPane tabbedPane, final Index index) {
     return execute(() -> tabbedPane.isEnabledAt(index.value));
   }
 
@@ -382,14 +375,13 @@ public class JTabbedPaneDriver extends JComponentDriver {
    * @throws AssertionError if the title of any of the tabs is not equal to the expected titles.
    */
   @RunsInEDT
-  public void requireTabTitles(@NotNull JTabbedPane tabbedPane, @NotNull String[] titles) {
+  public void requireTabTitles(JTabbedPane tabbedPane, String[] titles) {
     String[] actualTitles = allTabTitlesIn(tabbedPane);
     assertThat(actualTitles).as(propertyName(tabbedPane, "tabTitles")).isEqualTo(titles);
   }
 
   @RunsInEDT
-  @NotNull
-  private static String[] allTabTitlesIn(final @NotNull JTabbedPane tabbedPane) {
+  private static String[] allTabTitlesIn(final JTabbedPane tabbedPane) {
     String[] result = execute(() -> {
       List<String> allTitles = newArrayList();
       int tabCount = tabbedPane.getTabCount();
@@ -401,7 +393,6 @@ public class JTabbedPaneDriver extends JComponentDriver {
     return checkNotNull(result);
   }
 
-  @NotNull
   private JTabbedPaneLocation location() {
     return location;
   }

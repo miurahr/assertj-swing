@@ -19,7 +19,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JScrollBar;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -83,7 +82,7 @@ public class AbstractContainerFixture_scrollBar_Test extends RobotBasedTestCase 
     robot.showWindow(window);
     JScrollBarFixture scrollBar = fixture.scrollBar(new GenericTypeMatcher<JScrollBar>(JScrollBar.class) {
       @Override
-      protected boolean isMatching(@NotNull JScrollBar s) {
+      protected boolean isMatching(JScrollBar s) {
         return s.getOrientation() == VERTICAL && s.getValue() == 8;
       }
     });
@@ -100,11 +99,11 @@ public class AbstractContainerFixture_scrollBar_Test extends RobotBasedTestCase 
   private static class MyWindow extends TestWindow {
     final JScrollBar scrollBar = new JScrollBar(VERTICAL, 8, 1, 6, 10);
 
-    static @NotNull MyWindow createNew(final @NotNull Class<?> testClass) {
+    static MyWindow createNew(final Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@NotNull Class<?> testClass) {
+    private MyWindow(Class<?> testClass) {
       super(testClass);
       scrollBar.setName("scrollMeScrollBar");
       addComponents(scrollBar);
