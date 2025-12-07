@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.data;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
@@ -20,6 +19,8 @@ import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellReader;
+
+import java.util.Objects;
 
 /**
  * <p>
@@ -101,7 +102,7 @@ public class TableCellInSelectedRow implements TableCellFinder {
   @RunsInEDT
   private static int selectedRowOf(final JTable table) {
     Integer result = execute(() -> table.getSelectedRow());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @Override

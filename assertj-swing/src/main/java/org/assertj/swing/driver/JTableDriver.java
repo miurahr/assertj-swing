@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
@@ -38,6 +37,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Point;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -148,7 +148,7 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public TableCell cell(JTable table, TableCellFinder cellFinder) {
-    checkNotNull(cellFinder);
+    Objects.requireNonNull(cellFinder);
     TableCell cell = cellFinder.findCell(table, cellReader());
     checkCellIndicesInBounds(table, cell);
     return cell;
@@ -195,7 +195,7 @@ public class JTableDriver extends JComponentDriver {
   @RunsInEDT
   @Nullable
   public String value(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     return cellValue(table, cell, cellReader());
   }
 
@@ -246,15 +246,13 @@ public class JTableDriver extends JComponentDriver {
    * @throws IndexOutOfBoundsException if any of the indices (row and column) is out of bounds.
    */
   @RunsInEDT
-  @Nullable
-  public Font font(JTable table, TableCell cell) {
-    checkNotNull(cell);
+  public @Nullable Font font(JTable table, TableCell cell) {
+    Objects.requireNonNull(cell);
     return cellFont(table, cell, cellReader());
   }
 
   @RunsInEDT
-  @Nullable
-  private static Font cellFont(final JTable table, final TableCell cell,
+  private static @Nullable Font cellFont(final JTable table, final TableCell cell,
                                final JTableCellReader cellReader) {
     return execute(() -> {
       JTableCellPreconditions.checkCellIndicesInBounds(table, cell);
@@ -273,13 +271,12 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public Color background(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     return cellBackground(table, cell, cellReader());
   }
 
   @RunsInEDT
-  @Nullable
-  private static Color cellBackground(final JTable table, final TableCell cell,
+  private static @Nullable Color cellBackground(final JTable table, final TableCell cell,
                                       final JTableCellReader cellReader) {
     return execute(() -> {
       JTableCellPreconditions.checkCellIndicesInBounds(table, cell);
@@ -299,7 +296,7 @@ public class JTableDriver extends JComponentDriver {
   @RunsInEDT
   @Nullable
   public Color foreground(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     return cellForeground(table, cell, cellReader());
   }
 
@@ -335,7 +332,7 @@ public class JTableDriver extends JComponentDriver {
 
       @Override
       void selectElement(int index) {
-        selectCell(table, checkNotNull(cells[index]));
+        selectCell(table, Objects.requireNonNull(cells[index]));
       }
     }.multiSelect();
   }
@@ -362,7 +359,7 @@ public class JTableDriver extends JComponentDriver {
 
       @Override
       void unselectElement(int index) {
-        TableCell cell = checkNotNull(cells[index]);
+        TableCell cell = Objects.requireNonNull(cells[index]);
         selectCell(table, cell.row, cell.column, false);
       }
     }.multiUnselect();
@@ -404,7 +401,7 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void selectCell(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     selectCell(table, cell.row, cell.column, true);
   }
 
@@ -420,7 +417,7 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void unselectCell(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     int key = controlOrCommandKey();
     robot.pressKeyWhileRunning(key, () -> selectCell(table, cell.row, cell.column, false));
   }
@@ -499,12 +496,12 @@ public class JTableDriver extends JComponentDriver {
   @RunsInEDT
   private Point scrollToPointAtCell(final JTable table, final TableCell cell,
                                     final JTableLocation location) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     Point result = execute(() -> {
       scrollToCell(table, cell, location);
       return location.pointAt(table, cell.row, cell.column);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -535,7 +532,7 @@ public class JTableDriver extends JComponentDriver {
       JTableCellPreconditions.checkCellIndicesInBounds(table, cell);
       return location.pointAt(table, cell.row, cell.column);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -627,7 +624,7 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void enterValueInCell(JTable table, TableCell cell, String value) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     cellWriter.enterValue(table, cell.row, cell.column, value);
   }
 
@@ -662,8 +659,8 @@ public class JTableDriver extends JComponentDriver {
   @RunsInEDT
   private static void requireEditableEqualTo(final JTable table, final TableCell cell,
                                              boolean editable) {
-    checkNotNull(cell);
-    boolean cellEditable = checkNotNull(execute(() -> isCellEditable(table, cell)));
+    Objects.requireNonNull(cell);
+    boolean cellEditable = Objects.requireNonNull(execute(() -> isCellEditable(table, cell)));
     assertThat(cellEditable).as(cellProperty(table, concat(EDITABLE_PROPERTY, " ", cell))).isEqualTo(editable);
   }
 
@@ -685,7 +682,7 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public Component cellEditor(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     return cellWriter.editorForCell(table, cell.row, cell.column);
   }
 
@@ -705,7 +702,7 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void startCellEditing(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     cellWriter.startCellEditing(table, cell.row, cell.column);
   }
 
@@ -725,7 +722,7 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void stopCellEditing(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     cellWriter.stopCellEditing(table, cell.row, cell.column);
   }
 
@@ -745,7 +742,7 @@ public class JTableDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void cancelCellEditing(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     cellWriter.cancelCellEditing(table, cell.row, cell.column);
   }
 
@@ -770,7 +767,7 @@ public class JTableDriver extends JComponentDriver {
    * @throws NullPointerException if {@code newCellReader} is {@code null}.
    */
   public void replaceCellReader(JTableCellReader newCellReader) {
-    cellReader = checkNotNull(newCellReader);
+    cellReader = Objects.requireNonNull(newCellReader);
   }
 
   /**
@@ -780,7 +777,7 @@ public class JTableDriver extends JComponentDriver {
    * @throws NullPointerException if {@code newCellWriter} is {@code null}.
    */
   public void replaceCellWriter(JTableCellWriter newCellWriter) {
-    cellWriter = checkNotNull(newCellWriter);
+    cellWriter = Objects.requireNonNull(newCellWriter);
   }
 
   /**
@@ -817,7 +814,7 @@ public class JTableDriver extends JComponentDriver {
       }
       return index;
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private static ActionFailedException failColumnIndexNotFound(Object columnId) {
@@ -910,7 +907,7 @@ public class JTableDriver extends JComponentDriver {
     if (cellSelectionInfo.first == select) {
       return; // cell selection already correct
     }
-    robot.click(table, checkNotNull(cellSelectionInfo.second), LEFT_BUTTON, 1);
+    robot.click(table, Objects.requireNonNull(cellSelectionInfo.second), LEFT_BUTTON, 1);
   }
 
   @RunsInEDT
@@ -925,7 +922,7 @@ public class JTableDriver extends JComponentDriver {
         return Pair.of(isCellSelected(table, row, column), pointAtCell);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -953,7 +950,7 @@ public class JTableDriver extends JComponentDriver {
   @RunsInEDT
   private static int[] selectedRowsOf(final JTable table) {
     int[] result = execute(() -> table.getSelectedRows());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @VisibleForTesting

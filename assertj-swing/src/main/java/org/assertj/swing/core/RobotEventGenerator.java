@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.awt.AWT.isPointInScreenBoundaries;
 import static org.assertj.swing.awt.AWT.translate;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -26,6 +25,7 @@ import java.awt.AWTException;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.Robot;
+import java.util.Objects;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.RobotFactory;
@@ -69,7 +69,7 @@ class RobotEventGenerator implements InputEventGenerator {
   @RunsInEDT
   @Override
   public void pressMouse(Component c, Point where, int buttons) {
-    Point p = checkNotNull(execute(() -> translate(c, where.x, where.y)));
+    Point p = Objects.requireNonNull(execute(() -> translate(c, where.x, where.y)));
     if (!isPointInScreenBoundaries(p)) {
       throw actionFailure("The component to click is out of the boundaries of the screen");
     }
@@ -100,7 +100,7 @@ class RobotEventGenerator implements InputEventGenerator {
   @RunsInEDT
   @Override
   public void moveMouse(Component c, int x, int y) {
-    Point p = checkNotNull(execute(() -> translate(c, x, y)));
+    Point p = Objects.requireNonNull(execute(() -> translate(c, x, y)));
     moveMouse(p.x, p.y);
   }
 

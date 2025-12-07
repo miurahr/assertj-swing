@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the choices the user can make in a {@code JOptionPane}. This query is executed in the event dispatch thread
@@ -30,7 +31,7 @@ final class JOptionPaneOptionsQuery {
   @RunsInEDT
   static Object[] optionsOf(final JOptionPane optionPane) {
     Object[] result = execute(() -> optionPane.getOptions());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JOptionPaneOptionsQuery() {}

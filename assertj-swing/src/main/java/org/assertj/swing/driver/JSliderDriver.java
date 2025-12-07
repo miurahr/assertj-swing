@@ -12,12 +12,12 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JSliderSetValueTask.setValue;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Point;
+import java.util.Objects;
 
 import javax.swing.JSlider;
 
@@ -80,7 +80,7 @@ public class JSliderDriver extends JComponentDriver {
         return Pair.of(value, fromAndTo);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -107,12 +107,12 @@ public class JSliderDriver extends JComponentDriver {
         return Pair.of(value, fromAndTo);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT
   private void slide(JSlider slider, Pair<Integer, GenericRange<Point>> slideInfo) {
-    slide(slider, slideInfo.first, checkNotNull(slideInfo.second));
+    slide(slider, slideInfo.first, Objects.requireNonNull(slideInfo.second));
   }
 
   /**
@@ -149,7 +149,7 @@ public class JSliderDriver extends JComponentDriver {
         return slideInfo(slider, location, value);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread

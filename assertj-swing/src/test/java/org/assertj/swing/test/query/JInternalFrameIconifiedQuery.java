@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.query;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JInternalFrame;
@@ -33,7 +32,7 @@ public final class JInternalFrameIconifiedQuery {
   @RunsInEDT
   public static Boolean isIconified(final JInternalFrame internalFrame) {
     Boolean result = execute(() -> internalFrame.isIcon());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JInternalFrameIconifiedQuery() {}

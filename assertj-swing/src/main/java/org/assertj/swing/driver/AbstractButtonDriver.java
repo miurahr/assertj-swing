@@ -13,13 +13,13 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.AbstractButtonArmedQuery.isArmed;
 import static org.assertj.swing.driver.AbstractButtonSelectedQuery.isSelected;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.TextAssert.verifyThat;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import javax.swing.AbstractButton;
@@ -134,7 +134,7 @@ public class AbstractButtonDriver extends JComponentDriver implements TextDispla
       checkEnabledAndShowing(button);
       return button.isSelected();
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**

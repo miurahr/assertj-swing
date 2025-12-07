@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static java.lang.Boolean.getBoolean;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.core.WindowAncestorFinder.windowAncestorOf;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
@@ -27,6 +26,7 @@ import static org.assertj.swing.util.Platform.isOSX;
 
 import java.awt.Component;
 import java.awt.Window;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JMenu;
@@ -103,7 +103,7 @@ public class JMenuItemDriver extends JComponentDriver {
   @RunsInEDT
   private static JMenuItemLocation locationOf(final JMenuItem menuItem) {
     JMenuItemLocation result = execute(() -> new JMenuItemLocation(menuItem));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT

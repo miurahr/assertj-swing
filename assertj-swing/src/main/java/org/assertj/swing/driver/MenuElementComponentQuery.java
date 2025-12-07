@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import javax.swing.MenuElement;
 
@@ -32,7 +32,7 @@ final class MenuElementComponentQuery {
   @RunsInEDT
   static Component componentIn(final MenuElement menuElement) {
     Component result = execute(() -> menuElement.getComponent());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private MenuElementComponentQuery() {}

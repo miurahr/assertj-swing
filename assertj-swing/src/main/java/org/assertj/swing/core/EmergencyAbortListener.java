@@ -16,7 +16,6 @@ import static java.awt.AWTEvent.KEY_EVENT_MASK;
 import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.KEY_PRESSED;
 import static java.awt.event.KeyEvent.VK_A;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.InputModifiers.modifiersMatch;
 import static org.assertj.swing.core.InputModifiers.unify;
 
@@ -24,6 +23,7 @@ import java.awt.AWTEvent;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.util.ToolkitProvider;
@@ -120,9 +120,9 @@ public class EmergencyAbortListener implements AWTEventListener {
    * @throws NullPointerException if the {@code KeyPressInfo} is {@code null}.
    */
   public EmergencyAbortListener keyCombination(KeyPressInfo keyPressInfo) {
-    checkNotNull(keyPressInfo);
+    Objects.requireNonNull(keyPressInfo);
     keyCode = keyPressInfo.keyCode();
-    modifiers = unify(checkNotNull(keyPressInfo.modifiers()));
+    modifiers = unify(Objects.requireNonNull(keyPressInfo.modifiers()));
     return this;
   }
 

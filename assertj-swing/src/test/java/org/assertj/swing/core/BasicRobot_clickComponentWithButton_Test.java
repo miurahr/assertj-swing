@@ -13,12 +13,12 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.MIDDLE_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.swing.JTextField;
 
@@ -44,7 +44,7 @@ public class BasicRobot_clickComponentWithButton_Test extends BasicRobot_ClickTe
   }
 
   public BasicRobot_clickComponentWithButton_Test(MouseButton button) {
-    this.button = checkNotNull(button);
+    this.button = Objects.requireNonNull(button);
   }
 
   @Test

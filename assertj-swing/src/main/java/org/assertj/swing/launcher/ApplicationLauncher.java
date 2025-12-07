@@ -12,13 +12,14 @@
  */
 package org.assertj.swing.launcher;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.util.Arrays.copyOf;
 import static org.fest.reflect.core.Reflection.method;
 
 import org.assertj.swing.exception.UnexpectedException;
+
+import java.util.Objects;
 
 /**
  * <p>
@@ -94,7 +95,7 @@ public class ApplicationLauncher {
    * @throws NullPointerException if {@code newArgs} is {@code null}.
    */
   public ApplicationLauncher withArgs(String... newArgs) {
-    args = copyOf(checkNotNull(newArgs));
+    args = copyOf(Objects.requireNonNull(newArgs));
     return this;
   }
 

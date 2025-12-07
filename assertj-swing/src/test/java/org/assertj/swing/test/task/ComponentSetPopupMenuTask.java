@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.task;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JComponent;
@@ -42,7 +41,7 @@ public final class ComponentSetPopupMenuTask {
       c.setComponentPopupMenu(popupMenu);
       return popupMenu;
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private ComponentSetPopupMenuTask() {}

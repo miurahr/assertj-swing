@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.format;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -49,7 +49,7 @@ public abstract class ComponentFormatterTemplate implements ComponentFormatter {
   protected abstract String doFormat(Component c);
 
   private void checkTypeOf(Component c) {
-    checkNotNull(c);
+    Objects.requireNonNull(c);
     if (!targetType().isAssignableFrom(c.getClass())) {
       String msg = String.format("This formatter only supports components of type %s", targetType().getName());
       throw new IllegalArgumentException(msg);

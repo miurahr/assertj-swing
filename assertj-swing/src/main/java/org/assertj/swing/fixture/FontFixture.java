@@ -13,11 +13,11 @@
 package org.assertj.swing.fixture;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.isNullOrEmpty;
 
 import java.awt.Font;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -72,7 +72,7 @@ public class FontFixture {
    * @throws NullPointerException if {@code target} is {@code null}.
    */
   public FontFixture(Font target, @Nullable Description description) {
-    this.target = checkNotNull(target);
+    this.target = Objects.requireNonNull(target);
     this.description = description;
   }
 

@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the type of message of a {@code JOptionPane}. This query is executed in the event dispatch thread (EDT).
@@ -29,7 +30,7 @@ class JOptionPaneMessageTypeQuery {
   @RunsInEDT
   static int messageTypeOf(final JOptionPane optionPane) {
     Integer result = execute(() -> optionPane.getMessageType());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JOptionPaneMessageTypeQuery() {}

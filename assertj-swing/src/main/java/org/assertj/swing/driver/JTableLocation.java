@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Objects;
 
 import javax.swing.JTable;
 
@@ -87,6 +87,6 @@ public final class JTableLocation {
    */
   @RunsInCurrentThread
   public Rectangle cellBounds(JTable table, int row, int column) {
-    return checkNotNull(table.getCellRect(row, column, false));
+    return Objects.requireNonNull(table.getCellRect(row, column, false));
   }
 }

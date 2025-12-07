@@ -14,7 +14,6 @@ package org.assertj.swing.fixture;
 
 import static javax.swing.SwingConstants.HORIZONTAL;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
@@ -28,6 +27,8 @@ import org.assertj.swing.test.core.RobotBasedTestCase;
 import org.assertj.swing.test.swing.TestWindow;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.Objects;
 
 /**
  * Tests lookups of {@code JSlider}s in {@link AbstractContainerFixture}.
@@ -100,7 +101,7 @@ public class AbstractContainerFixture_slider_Test extends RobotBasedTestCase {
     final JSlider slider = new JSlider(HORIZONTAL, 6, 10, 8);
 
     static MyWindow createNew(final Class<?> testClass) {
-      return checkNotNull(execute(() -> new MyWindow(testClass)));
+      return Objects.requireNonNull(execute(() -> new MyWindow(testClass)));
     }
 
     private MyWindow(Class<?> testClass) {

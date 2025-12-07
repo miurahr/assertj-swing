@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.util;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Toolkit;
+import java.util.Objects;
 
 /**
  * Provider of {@code Toolkit}s.
@@ -30,7 +30,7 @@ public class ToolkitProvider {
   }
 
   public Toolkit defaultToolkit() {
-    return checkNotNull(Toolkit.getDefaultToolkit());
+    return Objects.requireNonNull(Toolkit.getDefaultToolkit());
   }
 
   // Thread-safe, lazy-loading singleton.

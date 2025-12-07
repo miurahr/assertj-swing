@@ -13,12 +13,12 @@
 package org.assertj.swing.core;
 
 import static javax.swing.SwingUtilities.convertRectangle;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Rectangle;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JComponent;
@@ -83,7 +83,7 @@ public final class Scrolling {
    */
   private static void scrollToVisible(Robot robot, JComponent container, Component target) {
     Rectangle r = convertRectangle(target.getParent(), target.getBounds(), container);
-    scrollToVisible(robot, container, checkNotNull(r));
+    scrollToVisible(robot, container, Objects.requireNonNull(r));
   }
 
   /**

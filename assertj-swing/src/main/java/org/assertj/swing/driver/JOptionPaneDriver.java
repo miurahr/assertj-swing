@@ -18,7 +18,6 @@ import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.JOptionPaneMessageQuery.messageOf;
 import static org.assertj.swing.driver.JOptionPaneMessageTypeQuery.messageTypeOf;
 import static org.assertj.swing.driver.JOptionPaneMessageTypes.messageTypeAsText;
@@ -26,6 +25,7 @@ import static org.assertj.swing.driver.JOptionPaneOptionsQuery.optionsOf;
 import static org.assertj.swing.driver.JOptionPaneTitleQuery.titleOf;
 import static org.assertj.swing.driver.TextAssert.verifyThat;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -214,7 +214,7 @@ public class JOptionPaneDriver extends JComponentDriver {
 
   @RunsInEDT
   private JButton buttonWithTextFromUIManager(JOptionPane optionPane, String key) {
-    return buttonWithText(optionPane, checkNotNull(UIManager.getString(key)));
+    return buttonWithText(optionPane, Objects.requireNonNull(UIManager.getString(key)));
   }
 
   /**

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JListCellBoundsQuery.cellBounds;
 import static org.assertj.swing.driver.JListCellCenterQuery.cellCenter;
@@ -22,6 +21,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JList;
@@ -49,7 +49,7 @@ final class JListScrollToItemTask {
       checkIndexInBounds(list, index);
       return scrollToItemWithIndex(list, index);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /** @return the index of first matching element and the point that the JList was scrolled to. */
@@ -67,7 +67,7 @@ final class JListScrollToItemTask {
         return Pair.of(index, scrollToItemWithIndex(list, index));
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /** @return the index of first matching element and the point that the JList was scrolled to. */
@@ -86,7 +86,7 @@ final class JListScrollToItemTask {
         return Pair.of(index, scrollToItemWithIndexIfNotSelectedYet(list, index));
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /** @return the point that the JList was scrolled to. */
@@ -111,7 +111,7 @@ final class JListScrollToItemTask {
 
   @RunsInCurrentThread
   private static Point scrollToItemWithIndex(JList<?> list, int index) {
-    Rectangle cellBounds = checkNotNull(cellBounds(list, index));
+    Rectangle cellBounds = Objects.requireNonNull(cellBounds(list, index));
     list.scrollRectToVisible(cellBounds);
     return cellCenter(list, cellBounds);
   }

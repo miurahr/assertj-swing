@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ModelValueToString.asText;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
@@ -48,7 +48,7 @@ public class BasicJListCellReader implements JListCellReader {
    * @throws NullPointerException if {@code rendererReader} is {@code null}.
    */
   public BasicJListCellReader(CellRendererReader rendererReader) {
-    this.rendererReader = checkNotNull(rendererReader);
+    this.rendererReader = Objects.requireNonNull(rendererReader);
   }
 
   /**

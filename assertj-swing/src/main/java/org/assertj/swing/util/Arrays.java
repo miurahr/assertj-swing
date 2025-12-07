@@ -14,10 +14,10 @@ package org.assertj.swing.util;
 
 import static java.lang.System.lineSeparator;
 import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.quote;
 
 import java.lang.reflect.Array;
+import java.util.Objects;
 
 import org.assertj.core.presentation.StandardRepresentation;
 import org.assertj.swing.internal.annotation.InternalApi;
@@ -142,7 +142,7 @@ public final class Arrays {
    * @throws NullPointerException if the array to copy is {@code null}.
    */
   public static int[] copyOf(int[] array) {
-    checkNotNull(array);
+    Objects.requireNonNull(array);
     int arraySize = array.length;
     int[] copy = new int[arraySize];
     for (int i = 0; i < arraySize; i++) {
@@ -161,7 +161,7 @@ public final class Arrays {
    */
   @SuppressWarnings("unchecked")
   public static <T> T[] copyOf(T[] array) {
-    checkNotNull(array);
+    Objects.requireNonNull(array);
     int arraySize = array.length;
     T[] copy = (T[]) Array.newInstance(array.getClass().getComponentType(), arraySize);
     for (int i = 0; i < arraySize; i++) {

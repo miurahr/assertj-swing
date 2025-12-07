@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.query;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Container;
@@ -38,7 +37,7 @@ public final class ContainerInsetsQuery {
   @RunsInEDT
   public static Insets insetsOf(final Container container) {
     Insets result = execute(() -> container.getInsets());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private ContainerInsetsQuery() {}

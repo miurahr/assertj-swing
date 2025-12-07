@@ -13,10 +13,10 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -80,7 +80,7 @@ public final class NameMatcher extends AbstractComponentMatcher {
   public NameMatcher(@Nullable String name, Class<? extends Component> type, boolean requireShowing) {
     super(requireShowing);
     this.name = checkNotNullOrEmpty(name).toString();
-    this.type = checkNotNull(type);
+    this.type = Objects.requireNonNull(type);
   }
 
   /**

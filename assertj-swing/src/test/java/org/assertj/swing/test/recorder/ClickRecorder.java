@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.recorder;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Component;
 import java.awt.Container;
@@ -44,7 +43,7 @@ public class ClickRecorder extends AbstractClickRecorder {
       return;
     }
     for (Component c : ((Container) target).getComponents()) {
-      attach(listener, checkNotNull(c));
+      attach(listener, Objects.requireNonNull(c));
     }
   }
 
@@ -57,12 +56,12 @@ public class ClickRecorder extends AbstractClickRecorder {
 
     @Override
     public void mousePressed(MouseEvent e) {
-      owner.record(checkNotNull(e));
+      owner.record(Objects.requireNonNull(e));
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-      owner.record(checkNotNull(e));
+      owner.record(Objects.requireNonNull(e));
     }
   }
 }

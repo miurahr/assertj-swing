@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
 import static org.assertj.swing.core.matcher.JButtonMatcher.withText;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
@@ -23,6 +22,7 @@ import static org.assertj.swing.driver.JFileChooserSelectFileTask.setSelectedFil
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.io.File;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JButton;
@@ -70,7 +70,7 @@ public class JFileChooserDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void selectFile(JFileChooser fileChooser, File file) {
-    setSelectedFile(fileChooser, checkNotNull(file));
+    setSelectedFile(fileChooser, Objects.requireNonNull(file));
   }
 
   /**
@@ -90,9 +90,9 @@ public class JFileChooserDriver extends JComponentDriver {
    *           files to select is a directory.
    */
   public void selectFiles(JFileChooser fileChooser, File[] files) {
-    checkNotNull(files);
+    Objects.requireNonNull(files);
     for (File file : checkNotNullOrEmpty(files)) {
-      checkNotNull(file);
+      Objects.requireNonNull(file);
     }
     setSelectedFiles(fileChooser, files);
   }

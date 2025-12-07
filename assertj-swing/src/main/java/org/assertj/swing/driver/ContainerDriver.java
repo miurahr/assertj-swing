@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentMovableQuery.isUserMovable;
 import static org.assertj.swing.driver.ComponentMoveTask.moveComponent;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
@@ -125,7 +124,7 @@ public abstract class ContainerDriver extends ComponentDriver {
         return Pair.of(c.getSize(), c.getInsets());
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @VisibleForTesting
@@ -146,7 +145,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   protected boolean isResizable(Container c) {
     try {
       Boolean resizable = method("isResizable").withReturnType(boolean.class).in(c).invoke();
-      return checkNotNull(resizable);
+      return Objects.requireNonNull(resizable);
     } catch (ReflectionError e) {
       return false;
     }
@@ -168,7 +167,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   }
 
   private static Point resizeLocation(final Pair<Dimension, Insets> resizeInfo) {
-    return resizeLocation(checkNotNull(resizeInfo.first), checkNotNull(resizeInfo.second));
+    return resizeLocation(Objects.requireNonNull(resizeInfo.first), Objects.requireNonNull(resizeInfo.second));
   }
 
   private static Point resizeLocation(Dimension size, Insets insets) {
@@ -216,7 +215,7 @@ public abstract class ContainerDriver extends ComponentDriver {
         return Triple.of(c.getSize(), c.getInsets(), locationOnScreen);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -240,7 +239,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   @RunsInEDT
   private void simulateMoveStarted(Container c, Triple<Dimension, Insets, Point> moveInfo, int x,
                                    int y) {
-    Point p = moveLocation(checkNotNull(moveInfo.first), checkNotNull(moveInfo.second));
+    Point p = moveLocation(Objects.requireNonNull(moveInfo.first), Objects.requireNonNull(moveInfo.second));
     moveMouseIgnoringAnyError(c, p);
     moveMouseIgnoringAnyError(c, p.x + x, p.y + y);
   }

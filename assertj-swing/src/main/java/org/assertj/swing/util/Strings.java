@@ -14,12 +14,11 @@ package org.assertj.swing.util;
 
 import static org.assertj.core.util.Objects.areEqual;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.jspecify.annotations.Nullable;
-
-import org.assertj.core.util.Preconditions;
 
 /**
  * Utility methods related to {@code String}s.
@@ -100,7 +99,7 @@ public final class Strings {
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
   public static boolean match(Pattern p, @Nullable CharSequence s) {
-    Preconditions.checkNotNull(p);
+    Objects.requireNonNull(p);
     if (s == null) {
       return false;
     }

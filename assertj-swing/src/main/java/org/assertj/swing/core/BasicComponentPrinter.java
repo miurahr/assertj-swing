@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.format.Formatting.format;
 import static org.assertj.swing.hierarchy.NewHierarchy.ignoreExistingComponents;
@@ -20,6 +19,7 @@ import static org.assertj.swing.hierarchy.NewHierarchy.ignoreExistingComponents;
 import java.awt.Component;
 import java.awt.Container;
 import java.io.PrintStream;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -111,7 +111,7 @@ public final class BasicComponentPrinter implements ComponentPrinter {
   @Override
   public void printComponents(PrintStream out, Class<? extends Component> type,
                               @Nullable Container root) {
-    print(hierarchy(root), new TypeMatcher(checkNotNull(type)), checkNotNull(out));
+    print(hierarchy(root), new TypeMatcher(Objects.requireNonNull(type)), Objects.requireNonNull(out));
   }
 
   @Override
@@ -121,7 +121,7 @@ public final class BasicComponentPrinter implements ComponentPrinter {
 
   @Override
   public void printComponents(PrintStream out, ComponentMatcher matcher, @Nullable Container root) {
-    print(hierarchy(root), checkNotNull(matcher), checkNotNull(out));
+    print(hierarchy(root), Objects.requireNonNull(matcher), Objects.requireNonNull(out));
   }
 
   private ComponentHierarchy hierarchy(@Nullable Container root) {
@@ -133,7 +133,7 @@ public final class BasicComponentPrinter implements ComponentPrinter {
                             final PrintStream out) {
     execute(() -> {
       for (Component c : hierarchy.roots()) {
-        print(checkNotNull(c), hierarchy, matcher, 0, out);
+        print(Objects.requireNonNull(c), hierarchy, matcher, 0, out);
       }
     });
   }
@@ -145,7 +145,7 @@ public final class BasicComponentPrinter implements ComponentPrinter {
       print(c, level, out);
     }
     for (Component child : h.childrenOf(c)) {
-      print(checkNotNull(child), h, matcher, level + 1, out);
+      print(Objects.requireNonNull(child), h, matcher, level + 1, out);
     }
   }
 

@@ -13,12 +13,12 @@
 package org.assertj.swing.driver;
 
 import static java.lang.String.valueOf;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ModelValueToString.asText;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.Objects;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -54,7 +54,7 @@ public class BasicJTableCellReader implements JTableCellReader {
    * @throws NullPointerException if {@code reader} is {@code null}.
    */
   public BasicJTableCellReader(CellRendererReader reader) {
-    rendererReader = checkNotNull(reader);
+    rendererReader = Objects.requireNonNull(reader);
   }
 
   /**

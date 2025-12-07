@@ -13,10 +13,10 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.JList;
 
@@ -44,7 +44,7 @@ final class JListSelectionValuesQuery {
         return values;
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JListSelectionValuesQuery() {}

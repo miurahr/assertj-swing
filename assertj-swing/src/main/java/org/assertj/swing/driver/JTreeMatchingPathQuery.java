@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JTreeAddRootIfInvisibleTask.addRootIfInvisible;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -23,6 +22,8 @@ import javax.swing.tree.TreePath;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.edt.GuiQuery;
+
+import java.util.Objects;
 
 /**
  * Finds a path in a {@code JTree} that matches a given {@code String}. This query is executed in the event dispatch
@@ -43,14 +44,14 @@ final class JTreeMatchingPathQuery {
         return matchingPathWithRootIfInvisible(tree, path, pathFinder);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT
   static TreePath matchingPathFor(final JTree tree, final String path,
                                            final JTreePathFinder pathFinder) {
     TreePath result = execute(() -> matchingPathWithRootIfInvisible(tree, path, pathFinder));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread

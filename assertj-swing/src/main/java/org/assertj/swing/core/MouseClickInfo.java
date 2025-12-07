@@ -12,11 +12,12 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.MIDDLE_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
+
+import java.util.Objects;
 
 /**
  * <p>
@@ -90,7 +91,7 @@ public final class MouseClickInfo {
   }
 
   private MouseClickInfo(MouseButton button, int times) {
-    this.button = checkNotNull(button);
+    this.button = Objects.requireNonNull(button);
     this.times = times;
   }
 

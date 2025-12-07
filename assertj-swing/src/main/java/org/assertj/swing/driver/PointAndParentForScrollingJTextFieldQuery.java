@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Objects;
 
 import javax.swing.CellRendererPane;
 import javax.swing.JComponent;
@@ -44,7 +44,7 @@ final class PointAndParentForScrollingJTextFieldQuery {
     Point origin = new Point(textField.getX(), textField.getY());
     Container parent = textField.getParent();
     while (parent != null && !(parent instanceof JComponent) && !(parent instanceof CellRendererPane)) {
-      origin = addRectangleToPoint(checkNotNull(parent.getBounds()), origin);
+      origin = addRectangleToPoint(Objects.requireNonNull(parent.getBounds()), origin);
       parent = parent.getParent();
     }
     return Pair.of(origin, parent);

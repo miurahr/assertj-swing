@@ -16,7 +16,6 @@ import static javax.swing.text.DefaultEditorKit.deletePrevCharAction;
 import static javax.swing.text.DefaultEditorKit.selectAllAction;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JComboBoxContentQuery.contents;
@@ -34,6 +33,7 @@ import static org.assertj.swing.format.Formatting.format;
 import static org.assertj.swing.util.Arrays.format;
 
 import java.awt.Component;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import javax.swing.ComboBoxEditor;
@@ -353,7 +353,7 @@ public class JComboBoxDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void replaceText(JComboBox<?> comboBox, String text) {
-    checkNotNull(text);
+    Objects.requireNonNull(text);
     if (text.isEmpty()) {
       deleteText(comboBox);
     } else {
@@ -425,7 +425,7 @@ public class JComboBoxDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void pressAndReleaseKeys(JComboBox<?> comboBox, int... keyCodes) {
-    checkNotNull(keyCodes);
+    Objects.requireNonNull(keyCodes);
     checkInEdtEnabledAndShowing(comboBox);
     Component target = editorIfEditable(comboBox);
     if (target == null) {
@@ -525,7 +525,7 @@ public class JComboBoxDriver extends JComponentDriver {
    * @throws NullPointerException if {@code newCellReader} is {@code null}.
    */
   public void replaceCellReader(JComboBoxCellReader newCellReader) {
-    cellReader = checkNotNull(newCellReader);
+    cellReader = Objects.requireNonNull(newCellReader);
   }
 
   /**

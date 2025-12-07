@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the number of items in a given {@code JList}. This query is executed in the event dispatch thread (EDT).
@@ -28,7 +29,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 final class JListItemCountQuery {
   static int itemCountIn(final JList<?> list) {
     Integer result = execute(() -> list.getModel().getSize());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JListItemCountQuery() {}

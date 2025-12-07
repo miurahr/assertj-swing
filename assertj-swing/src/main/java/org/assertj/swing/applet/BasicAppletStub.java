@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.applet;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.applet.AppletContext;
@@ -20,6 +19,7 @@ import java.applet.AppletStub;
 import java.awt.Window;
 import java.net.URL;
 import java.util.Map;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -44,7 +44,7 @@ public class BasicAppletStub implements AppletStub {
    */
   public BasicAppletStub(Window viewer, AppletContext context, Map<String, String> parameters) {
     this(viewer, context);
-    this.parameters.putAll(checkNotNull(parameters));
+    this.parameters.putAll(Objects.requireNonNull(parameters));
   }
 
   /**
@@ -55,8 +55,8 @@ public class BasicAppletStub implements AppletStub {
    * @throws NullPointerException if {@code viewer} or {@code context} are {@code null}.
    */
   public BasicAppletStub(Window viewer, AppletContext context) {
-    this.viewer = checkNotNull(viewer);
-    this.context = checkNotNull(context);
+    this.viewer = Objects.requireNonNull(viewer);
+    this.context = Objects.requireNonNull(context);
   }
 
   /**

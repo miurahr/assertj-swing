@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.JTreeMatchingPathQuery.matchingPathWithRootIfInvisible;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
@@ -21,6 +20,8 @@ import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the text of a node in a {@code JTree}.
@@ -33,7 +34,7 @@ final class JTreeNodeTextQuery {
                                    final JTreePathFinder pathFinder) {
     return execute(() -> {
       TreePath matchingPath = location.pathFor(tree, row);
-      return pathFinder.cellReader().valueAt(tree, checkNotNull(matchingPath.getLastPathComponent()));
+      return pathFinder.cellReader().valueAt(tree, Objects.requireNonNull(matchingPath.getLastPathComponent()));
     });
   }
 
@@ -42,7 +43,7 @@ final class JTreeNodeTextQuery {
                                    final JTreePathFinder pathFinder) {
     return execute(() -> {
       TreePath matchingPath = matchingPathWithRootIfInvisible(tree, path, pathFinder);
-      return pathFinder.cellReader().valueAt(tree, checkNotNull(matchingPath.getLastPathComponent()));
+      return pathFinder.cellReader().valueAt(tree, Objects.requireNonNull(matchingPath.getLastPathComponent()));
     });
   }
 

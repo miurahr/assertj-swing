@@ -14,7 +14,6 @@ package org.assertj.swing.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.awt.AWT.centerOf;
 import static org.assertj.swing.timing.Pause.pause;
 
@@ -51,7 +50,7 @@ public abstract class InputEventGenerator_pressMouse_TestCase extends InputEvent
   }
 
   public InputEventGenerator_pressMouse_TestCase(MouseButton button) {
-    this.button = checkNotNull(button);
+    this.button = Objects.requireNonNull(button);
     buttonMask = button.mask;
   }
 

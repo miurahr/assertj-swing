@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.MenuElementComponentQuery.componentIn;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JMenuItem;
@@ -41,13 +41,13 @@ final class JPopupMenuElementsAsTextQuery {
         MenuElement[] subElements = popupMenu.getSubElements();
         String[] result = new String[subElements.length];
         for (int i = 0; i < subElements.length; i++) {
-          MenuElement subElement = checkNotNull(subElements[i]);
+          MenuElement subElement = Objects.requireNonNull(subElements[i]);
           result[i] = textOf(subElement);
         }
         return result;
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @Nullable

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import org.jspecify.annotations.Nullable;
@@ -22,6 +21,8 @@ import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JComboBoxCellReader;
 import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.util.Pair;
+
+import java.util.Objects;
 
 /**
  * Returns the selected value of a {@code JComboBox} as plain text. This query is executed in the event dispatch thread
@@ -45,7 +46,7 @@ final class JComboBoxSelectionValueQuery {
         return selection(cellReader.valueAt(comboBox, selectedIndex));
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private static Pair<Boolean, String> valueForNoSelection(JComboBox<?> comboBox) {

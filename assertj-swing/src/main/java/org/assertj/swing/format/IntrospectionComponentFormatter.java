@@ -13,7 +13,6 @@
 package org.assertj.swing.format;
 
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
@@ -25,6 +24,7 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.assertj.core.presentation.StandardRepresentation;
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -53,7 +53,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
    */
   public IntrospectionComponentFormatter(Class<? extends Component> targetType,
                                          String... propertyNames) {
-    this.targetType = checkNotNull(targetType);
+    this.targetType = Objects.requireNonNull(targetType);
     this.propertyNames = newArrayList(propertyNames);
     populate();
   }
@@ -66,7 +66,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
       throw actionFailure(concat("Unable to get BeanInfo for type ", targetType.getName()), e);
     }
     for (PropertyDescriptor d : beanInfo.getPropertyDescriptors()) {
-      register(checkNotNull(d));
+      register(Objects.requireNonNull(d));
     }
   }
 
@@ -95,7 +95,7 @@ public final class IntrospectionComponentFormatter extends ComponentFormatterTem
     b.append(getRealClassName(c)).append("[");
     int max = propertyNames.size() - 1;
     for (int i = 0; i <= max; i++) {
-      appendProperty(b, checkNotNull(propertyNames.get(i)), c);
+      appendProperty(b, Objects.requireNonNull(propertyNames.get(i)), c);
       if (i < max) {
         b.append(", ");
       }

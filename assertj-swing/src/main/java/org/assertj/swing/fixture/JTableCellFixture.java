@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
 import java.awt.Component;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -70,8 +70,8 @@ public class JTableCellFixture implements ItemFixture<JTableCellFixture> {
   @VisibleForTesting
   JTableCellFixture(JTableFixture table, TableCell cell, JTable target,
                     JTableDriver driver) {
-    this.table = checkNotNull(table);
-    this.cell = checkNotNull(cell);
+    this.table = Objects.requireNonNull(table);
+    this.cell = Objects.requireNonNull(cell);
     this.target = target;
     this.driver = driver;
   }

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.WindowLikeContainers.closeButtonLocation;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -20,6 +19,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Window;
+import java.util.Objects;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
@@ -122,7 +122,7 @@ public class WindowDriver extends ContainerDriver {
       checkEnabledAndShowing(w);
       return closeButtonLocation(w);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**

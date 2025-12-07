@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -47,7 +47,7 @@ public final class TypeMatcher extends AbstractComponentMatcher {
    */
   public TypeMatcher(Class<? extends Component> type, boolean requireShowing) {
     super(requireShowing);
-    this.type = checkNotNull(type);
+    this.type = Objects.requireNonNull(type);
   }
 
   /**

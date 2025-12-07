@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the value of a {@code JProgressBar}. This query is executed in the event dispatch thread (EDT).
@@ -28,7 +29,7 @@ final class JProgressBarValueQuery {
   @RunsInEDT
   static int valueOf(final JProgressBar progressBar) {
     Integer result = execute(() -> progressBar.getValue());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JProgressBarValueQuery() {}

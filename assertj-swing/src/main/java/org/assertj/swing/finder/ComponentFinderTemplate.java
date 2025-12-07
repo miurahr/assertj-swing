@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.finder;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.Component;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.swing.annotation.NonNegative;
@@ -75,7 +75,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
   }
 
   private ComponentFinderTemplate(ComponentMatcher matcher) {
-    this.matcher = checkNotNull(matcher);
+    this.matcher = Objects.requireNonNull(matcher);
     searchDescription = concat("component to be found using matcher ", matcher);
   }
 
@@ -89,7 +89,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @throws IllegalArgumentException if the timeout is a negative number.
    */
   protected ComponentFinderTemplate<T> withTimeout(long newTimeout, TimeUnit unit) {
-    checkNotNull(unit);
+    Objects.requireNonNull(unit);
     return withTimeout(unit.toMillis(newTimeout));
   }
 
@@ -129,7 +129,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
   protected final T findComponentWith(Robot robot) {
     ComponentFoundCondition condition = new ComponentFoundCondition(searchDescription, robot.finder(), matcher);
     pause(condition, timeout);
-    return checkNotNull(cast(condition.found()));
+    return Objects.requireNonNull(cast(condition.found()));
   }
 
   /**

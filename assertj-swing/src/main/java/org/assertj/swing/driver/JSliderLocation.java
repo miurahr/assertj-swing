@@ -14,12 +14,12 @@ package org.assertj.swing.driver;
 
 import static javax.swing.SwingConstants.HORIZONTAL;
 import static javax.swing.SwingConstants.VERTICAL;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.awt.Insets;
 import java.awt.Point;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.swing.JSlider;
 
@@ -91,7 +91,7 @@ public final class JSliderLocation {
     @RunsInCurrentThread
     final Point locationForValue(JSlider slider, int value) {
       Point center = new Point(slider.getWidth() / 2, slider.getHeight() / 2);
-      int max = max(slider, checkNotNull(slider.getInsets()));
+      int max = max(slider, Objects.requireNonNull(slider.getInsets()));
       int coordinate = (int) (percent(slider, value) * max);
       if (!slider.getInverted()) {
         coordinate = max - coordinate;

@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentPreconditions.checkShowing;
 import static org.assertj.swing.driver.JInternalFrameAction.DEICONIFY;
 import static org.assertj.swing.driver.JInternalFrameAction.ICONIFY;
@@ -34,6 +33,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.beans.PropertyVetoException;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JInternalFrame;
@@ -121,7 +121,7 @@ public class JInternalFrameDriver extends JComponentDriver {
             return findMaximizeLocation(internalFrame);
         }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -167,7 +167,7 @@ public class JInternalFrameDriver extends JComponentDriver {
   @RunsInCurrentThread
   private static Pair<Container, Point> findMaximizeLocation(JInternalFrame internalFrame) {
     Container clickTarget = internalFrame.isIcon() ? internalFrame.getDesktopIcon() : internalFrame;
-    Point location = maximizeButtonLocation(checkNotNull(clickTarget));
+    Point location = maximizeButtonLocation(Objects.requireNonNull(clickTarget));
     return Pair.of(clickTarget, location);
   }
 
@@ -220,7 +220,7 @@ public class JInternalFrameDriver extends JComponentDriver {
         return iconifyInfo(internalFrame);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -259,7 +259,7 @@ public class JInternalFrameDriver extends JComponentDriver {
         return deiconifyInfo(internalFrame);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -268,13 +268,13 @@ public class JInternalFrameDriver extends JComponentDriver {
     if (deiconified) {
       return Triple.of(true, null, null);
     }
-    Container desktopIcon = checkNotNull(internalFrame.getDesktopIcon());
+    Container desktopIcon = Objects.requireNonNull(internalFrame.getDesktopIcon());
     return Triple.of(deiconified, desktopIcon, iconifyButtonLocation(desktopIcon));
   }
 
   @RunsInCurrentThread
   private static Point findIconifyLocation(JInternalFrame internalFrame) {
-    JDesktopIcon desktopIcon = checkNotNull(internalFrame.getDesktopIcon());
+    JDesktopIcon desktopIcon = Objects.requireNonNull(internalFrame.getDesktopIcon());
     return iconifyButtonLocation(desktopIcon);
   }
 

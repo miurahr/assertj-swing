@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.JTableCellPreconditions.checkCellIndicesInBounds;
 import static org.assertj.swing.driver.JTableCellPreconditions.validateCellIsEditable;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -22,6 +21,8 @@ import javax.swing.table.TableCellEditor;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Stops editing of a cell in a {@code JTable}. This task is executed in the event dispatch thread (EDT).
@@ -51,13 +52,13 @@ final class JTableStopCellEditingTask {
 
   @RunsInCurrentThread
   private static void doStopCellEditing(JTable table, int row, int column) {
-    TableCellEditor editor = checkNotNull(table.getCellEditor(row, column));
+    TableCellEditor editor = Objects.requireNonNull(table.getCellEditor(row, column));
     doStopCellEditing(editor);
   }
 
   @RunsInCurrentThread
   private static void doStopCellEditing(TableCellEditor cellEditor) {
-    checkNotNull(cellEditor);
+    Objects.requireNonNull(cellEditor);
     cellEditor.stopCellEditing();
   }
 

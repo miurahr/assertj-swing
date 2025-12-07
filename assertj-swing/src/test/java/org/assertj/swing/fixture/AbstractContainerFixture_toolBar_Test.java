@@ -14,12 +14,12 @@ package org.assertj.swing.fixture;
 
 import static java.awt.BorderLayout.NORTH;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
 import java.awt.BorderLayout;
+import java.util.Objects;
 
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
@@ -103,7 +103,7 @@ public class AbstractContainerFixture_toolBar_Test extends RobotBasedTestCase {
     final JToolBar toolBar = new JToolBar();
 
     static MyWindow createNew(final Class<?> testClass) {
-      return checkNotNull(execute(() -> new MyWindow(testClass)));
+      return Objects.requireNonNull(execute(() -> new MyWindow(testClass)));
     }
 
     private MyWindow(Class<?> testClass) {

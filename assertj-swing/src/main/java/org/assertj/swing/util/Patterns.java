@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.util;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 
@@ -50,14 +50,14 @@ public final class Patterns {
    * @throws NullPointerException if any of the patterns in the given array is {@code null}.
    */
   public static String format(Pattern[] patterns) {
-    checkNotNull(patterns);
+    Objects.requireNonNull(patterns);
     int patternCount = patterns.length;
     String[] patternsAsText = new String[patternCount];
     for (int i = 0; i < patternCount; i++) {
-      Pattern p = checkNotNull(patterns[i]);
+      Pattern p = Objects.requireNonNull(patterns[i]);
       patternsAsText[i] = p.pattern();
     }
-    return checkNotNull(Arrays.format(patternsAsText));
+    return Objects.requireNonNull(Arrays.format(patternsAsText));
   }
 
   private Patterns() {}

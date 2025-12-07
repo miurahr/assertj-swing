@@ -14,7 +14,6 @@ package org.assertj.swing.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Arrays.array;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
@@ -62,7 +61,7 @@ public class BasicRobot_rotateMouseWheelTest extends BasicRobot_TestCase {
   @RunsInEDT
   private static int firstVisibleIndexOf(final JList list) {
     Integer result = execute(() -> list.getFirstVisibleIndex());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private static class MouseWheelRecorder implements MouseWheelListener {

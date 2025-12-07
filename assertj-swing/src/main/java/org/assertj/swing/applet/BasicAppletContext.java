@@ -14,7 +14,6 @@ package org.assertj.swing.applet;
 
 import static java.util.Collections.enumeration;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.applet.Applet;
@@ -26,6 +25,7 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -62,7 +62,7 @@ public class BasicAppletContext implements AppletContext {
    * @throws NullPointerException if {@code statusDisplay} is {@code null}.
    */
   public BasicAppletContext(StatusDisplay statusDisplay) {
-    this.statusDisplay = checkNotNull(statusDisplay);
+    this.statusDisplay = Objects.requireNonNull(statusDisplay);
   }
 
   /**
@@ -73,8 +73,7 @@ public class BasicAppletContext implements AppletContext {
    * @see AppletContext#getApplet(String)
    */
   @Override
-  @Nullable
-  public Applet getApplet(@Nullable String name) {
+  public @Nullable Applet getApplet(@Nullable String name) {
     return appletFrom(statusDisplay);
   }
 
@@ -185,6 +184,6 @@ public class BasicAppletContext implements AppletContext {
    */
   @Override
   public void showStatus(String status) {
-    statusDisplay.showStatus(checkNotNull(status));
+    statusDisplay.showStatus(Objects.requireNonNull(status));
   }
 }
