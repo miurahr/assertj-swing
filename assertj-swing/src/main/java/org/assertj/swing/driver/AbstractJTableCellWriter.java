@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static java.lang.String.valueOf;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JTableCancelCellEditingTask.cancelEditing;
@@ -28,6 +27,7 @@ import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.Component;
 import java.awt.Point;
+import java.util.Objects;
 
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
@@ -213,7 +213,7 @@ public abstract class AbstractJTableCellWriter implements JTableCellWriter {
       scrollToCell(table, row, column, location);
       return location.pointAt(table, row, column);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**

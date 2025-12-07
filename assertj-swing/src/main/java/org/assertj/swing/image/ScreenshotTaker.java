@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.image;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.FocusOwnerFinder.focusOwner;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.image.ImageFileExtensions.PNG;
@@ -28,6 +27,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.text.Caret;
@@ -122,7 +122,7 @@ public class ScreenshotTaker implements ScreenshotTakerIF {
   // TODO(Alex): Verify that this method really needs to be executed in the EDT.
   private static BufferedImage takeScreenshot(final Robot robot, final Rectangle r) {
     BufferedImage result = execute(() -> robot.createScreenCapture(r));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private void showCaretIfPossible(@Nullable JTextComponent textComponent) {

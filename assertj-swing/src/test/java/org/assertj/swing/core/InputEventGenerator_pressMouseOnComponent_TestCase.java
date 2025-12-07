@@ -14,12 +14,12 @@ package org.assertj.swing.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.awt.AWT.centerOf;
 import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.Point;
 import java.util.Collection;
+import java.util.Objects;
 
 
 import org.assertj.swing.test.recorder.ClickRecorder;
@@ -50,7 +50,7 @@ public abstract class InputEventGenerator_pressMouseOnComponent_TestCase extends
   }
 
   public InputEventGenerator_pressMouseOnComponent_TestCase(MouseButton button) {
-    this.button = checkNotNull(button);
+    this.button = Objects.requireNonNull(button);
     buttonMask = button.mask;
   }
 

@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Indicates whether a {@code JTextComponent} is editable. This query is executed in the event dispatch thread (EDT).
@@ -28,7 +29,7 @@ final class JTextComponentEditableQuery {
   @RunsInEDT
   static boolean isEditable(final JTextComponent textBox) {
     Boolean result = execute(() -> textBox.isEditable());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JTextComponentEditableQuery() {}

@@ -12,13 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JComboBoxCellReader;
+
+import java.util.Objects;
 
 /**
  * Returns an array of {@code String}s that represents the contents of a given {@code JComboBox}. This action is
@@ -37,7 +38,7 @@ final class JComboBoxContentQuery {
       }
       return values;
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JComboBoxContentQuery() {}

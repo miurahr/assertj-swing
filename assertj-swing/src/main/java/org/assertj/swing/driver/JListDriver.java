@@ -16,7 +16,6 @@ import static java.awt.event.KeyEvent.VK_SHIFT;
 import static java.util.Arrays.sort;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.driver.JListContentQuery.contents;
 import static org.assertj.swing.driver.JListItemCountQuery.itemCountIn;
@@ -41,6 +40,7 @@ import static org.assertj.swing.util.Arrays.format;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -728,7 +728,7 @@ public class JListDriver extends JComponentDriver {
   }
 
   private Point cellCenterIn(Pair<Integer, Point> scrollInfo) {
-    return checkNotNull(scrollInfo.second);
+    return Objects.requireNonNull(scrollInfo.second);
   }
 
   /**
@@ -803,7 +803,7 @@ public class JListDriver extends JComponentDriver {
   private static int itemIndex(final JList<?> list, final TextMatcher matcher,
                                final JListCellReader cellReader) {
     Integer result = execute(() -> matchingItemIndex(list, matcher, cellReader));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private LocationUnavailableException failMatchingNotFound(JList<?> list,
@@ -839,7 +839,7 @@ public class JListDriver extends JComponentDriver {
    * @throws NullPointerException if {@code newCellReader} is {@code null}.
    */
   public void replaceCellReader(JListCellReader newCellReader) {
-    cellReader = checkNotNull(newCellReader);
+    cellReader = Objects.requireNonNull(newCellReader);
   }
 
   /**

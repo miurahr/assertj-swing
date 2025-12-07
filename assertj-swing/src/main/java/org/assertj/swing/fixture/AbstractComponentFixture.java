@@ -13,7 +13,6 @@
 package org.assertj.swing.fixture;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentDriver.propertyName;
 import static org.assertj.swing.format.Formatting.format;
 
@@ -77,8 +76,8 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
   }
 
   private static <C extends Component> C findTarget(Robot robot, Class<? extends C> type) {
-    checkNotNull(robot);
-    checkNotNull(type);
+    Objects.requireNonNull(robot);
+    Objects.requireNonNull(type);
     return robot.finder().findByType(type, requireShowing(robot));
   }
 
@@ -100,9 +99,9 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
   }
 
   private static <C extends Component> C findTarget(Robot robot, @Nullable String name,
-                                                    Class<? extends C> type) {
-    checkNotNull(robot);
-    checkNotNull(type);
+              Class<? extends C> type) {
+    Objects.requireNonNull(robot);
+    Objects.requireNonNull(type);
     return robot.finder().findByName(name, type, requireShowing(robot));
   }
 
@@ -117,9 +116,9 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
    * @throws NullPointerException if {@code target} is {@code null}.
    */
   public AbstractComponentFixture(Class<S> selfType, Robot robot, C target) {
-    myself = checkNotNull(selfType).cast(this);
-    this.robot = checkNotNull(robot);
-    this.target = checkNotNull(target);
+    myself = Objects.requireNonNull(selfType).cast(this);
+    this.robot = Objects.requireNonNull(robot);
+    this.target = Objects.requireNonNull(target);
     replaceDriverWith(createDriver(robot));
   }
 
@@ -150,7 +149,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
   }
 
   public final void replaceDriverWith(D driver) {
-    this.driver = checkNotNull(driver);
+    this.driver = Objects.requireNonNull(driver);
   }
 
   /**

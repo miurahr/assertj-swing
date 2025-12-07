@@ -12,13 +12,14 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JMenu;
 import javax.swing.JPopupMenu;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the pop-up menu associated with a {@link JMenu}. This query is executed in the event dispatch thread (EDT).
@@ -30,7 +31,7 @@ final class JMenuPopupMenuQuery {
   @RunsInEDT
   static JPopupMenu popupMenuOf(final JMenu menu) {
     JPopupMenu result = execute(() -> menu.getPopupMenu());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JMenuPopupMenuQuery() {}

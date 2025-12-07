@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.JProgressBarIndeterminateQuery.isIndeterminate;
 import static org.assertj.swing.driver.JProgressBarMinimumAndMaximumQuery.minimumAndMaximumOf;
 import static org.assertj.swing.driver.JProgressBarStringQuery.stringOf;
@@ -23,6 +22,7 @@ import static org.assertj.swing.driver.JProgressBarWaitUntilValueIsEqualToExpect
 import static org.assertj.swing.driver.TextAssert.verifyThat;
 import static org.assertj.swing.timing.Timeout.timeout;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -160,7 +160,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
   @RunsInEDT
   public void waitUntilValueIs(JProgressBar progressBar, int value, Timeout timeout) {
     checkInBetweenMinAndMax(progressBar, value);
-    checkNotNull(timeout);
+    Objects.requireNonNull(timeout);
     waitUntilValueIsEqualToExpected(progressBar, value, timeout);
   }
 
@@ -201,7 +201,7 @@ public class JProgressBarDriver extends JComponentDriver implements TextDisplayD
    */
   @RunsInEDT
   public void waitUntilIsDeterminate(JProgressBar progressBar, Timeout timeout) {
-    checkNotNull(timeout);
+    Objects.requireNonNull(timeout);
     waitUntilValueIsDeterminate(progressBar, timeout);
   }
 

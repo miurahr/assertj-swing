@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.edt;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 
 import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInCurrentThread;
+
+import java.util.Objects;
 
 /**
  * {@code Description} that loads its text lazily, in the event dispatch thread (EDT).
@@ -34,7 +35,7 @@ public abstract class GuiLazyLoadingDescription extends Description {
   @Override
   public final String value() {
     String result = execute(() -> loadDescription());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**

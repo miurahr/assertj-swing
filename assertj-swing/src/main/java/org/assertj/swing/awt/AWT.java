@@ -14,7 +14,6 @@ package org.assertj.swing.awt;
 
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 import static java.awt.event.InputEvent.BUTTON3_MASK;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.util.Platform.isWindows;
 
@@ -29,6 +28,7 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Window;
+import java.util.Objects;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -119,7 +119,7 @@ public class AWT {
       }
       return centerOf(c);
     });
-    return checkNotNull(center);
+    return Objects.requireNonNull(center);
   }
 
   /**
@@ -157,7 +157,7 @@ public class AWT {
   @RunsInCurrentThread
   public static Point centerOfVisibleRect(JComponent c) {
     Rectangle r = c.getVisibleRect();
-    return centerOf(checkNotNull(r));
+    return centerOf(Objects.requireNonNull(r));
   }
 
   /**

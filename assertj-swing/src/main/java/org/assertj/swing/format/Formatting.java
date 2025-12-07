@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.format;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.isNullOrEmpty;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.util.Maps.newConcurrentHashMap;
@@ -20,6 +19,7 @@ import static org.assertj.swing.util.Maps.newConcurrentHashMap;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Frame;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Logger;
 
@@ -139,7 +139,7 @@ public class Formatting {
    */
   @RunsInEDT
   public static String inEdtFormat(final Component c) {
-    return checkNotNull(execute(() -> format(c)));
+    return Objects.requireNonNull(execute(() -> format(c)));
   }
 
   /**

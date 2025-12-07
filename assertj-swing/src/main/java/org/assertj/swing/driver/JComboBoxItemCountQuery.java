@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the number of items in a given {@code JComboBox}. This action is executed in the event dispatch thread (EDT).
@@ -28,7 +29,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 final class JComboBoxItemCountQuery {
   static int itemCountIn(final JComboBox<?> comboBox) {
     Integer result = execute(() -> comboBox.getItemCount());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JComboBoxItemCountQuery() {}

@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -106,7 +106,7 @@ public class JTableHeaderFixture extends
    * @throws IndexOutOfBoundsException if the index is out of bounds.
    */
   public JTableHeaderFixture clickColumn(int index, MouseClickInfo mouseClickInfo) {
-    checkNotNull(mouseClickInfo);
+    Objects.requireNonNull(mouseClickInfo);
     driver().clickColumn(target(), index, mouseClickInfo.button(), mouseClickInfo.times());
     return this;
   }
@@ -124,7 +124,7 @@ public class JTableHeaderFixture extends
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
   public JTableHeaderFixture clickColumn(@Nullable String columnName, MouseClickInfo mouseClickInfo) {
-    checkNotNull(mouseClickInfo);
+    Objects.requireNonNull(mouseClickInfo);
     driver().clickColumn(target(), columnName, mouseClickInfo.button(), mouseClickInfo.times());
     return this;
   }
@@ -144,7 +144,7 @@ public class JTableHeaderFixture extends
    */
   public JTableHeaderFixture clickColumn(Pattern columnNamePattern,
                                          MouseClickInfo mouseClickInfo) {
-    checkNotNull(mouseClickInfo);
+    Objects.requireNonNull(mouseClickInfo);
     driver().clickColumn(target(), columnNamePattern, mouseClickInfo.button(), mouseClickInfo.times());
     return this;
   }

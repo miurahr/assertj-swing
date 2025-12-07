@@ -13,7 +13,6 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.awt.AWT.centerOf;
 import static org.assertj.swing.core.ClickingDataProvider.clickingData;
 
@@ -45,7 +44,7 @@ public class BasicRobot_clickComponentWithButtonTheGivenTimes_Test extends Basic
   }
 
   public BasicRobot_clickComponentWithButtonTheGivenTimes_Test(MouseButton button, int times) {
-    this.button = checkNotNull(button);
+    this.button = Objects.requireNonNull(button);
     this.times = times;
   }
 

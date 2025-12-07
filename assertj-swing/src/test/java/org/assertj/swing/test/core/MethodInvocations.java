@@ -14,7 +14,6 @@ package org.assertj.swing.test.core;
 
 import static java.util.Arrays.deepEquals;
 import static org.assertj.core.api.Fail.fail;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.util.Arrays.copyOf;
@@ -22,6 +21,7 @@ import static org.assertj.swing.util.Arrays.format;
 import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.util.Map;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -53,7 +53,7 @@ public class MethodInvocations {
    * @return {@code this}.
    */
   public MethodInvocations invoked(String methodName, Args args) {
-    checkNotNull(args);
+    Objects.requireNonNull(args);
     invocations.put(methodName, args.args);
     return this;
   }
@@ -82,7 +82,7 @@ public class MethodInvocations {
    * @throws AssertionError if different arguments were passed to the method to verify.
    */
   public MethodInvocations requireInvoked(String methodName, Args args) {
-    checkNotNull(args);
+    Objects.requireNonNull(args);
     if (!invocations.containsKey(methodName)) {
       methodNotInvoked(methodName);
     }

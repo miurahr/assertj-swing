@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ModelValueToString.asText;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -43,7 +43,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
         return new JList<T>();
       };
     });;
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private final CellRendererReader rendererReader;
@@ -63,7 +63,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
    * @throws NullPointerException if the given {@link CellRendererReader} is {@code null}.
    */
   public BasicJComboBoxCellReader(CellRendererReader rendererReader) {
-    this.rendererReader = checkNotNull(rendererReader);
+    this.rendererReader = Objects.requireNonNull(rendererReader);
   }
 
   /**

@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
@@ -124,7 +123,7 @@ public class JTreeDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void clickRow(JTree tree, int row, MouseButton button) {
-    checkNotNull(button);
+    Objects.requireNonNull(button);
     clickRow(tree, row, button, 1);
   }
 
@@ -143,7 +142,7 @@ public class JTreeDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void clickRow(JTree tree, int row, MouseClickInfo mouseClickInfo) {
-    checkNotNull(mouseClickInfo);
+    Objects.requireNonNull(mouseClickInfo);
     clickRow(tree, row, mouseClickInfo.button(), mouseClickInfo.times());
   }
 
@@ -191,7 +190,7 @@ public class JTreeDriver extends JComponentDriver {
   private Point scrollToRow(JTree tree, int row) {
     Point p = scrollToRow(tree, row, location(), false).second;
     robot.waitForIdle();
-    return checkNotNull(p);
+    return Objects.requireNonNull(p);
   }
 
   /**
@@ -222,7 +221,7 @@ public class JTreeDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void clickPath(JTree tree, String path, MouseButton button) {
-    checkNotNull(button);
+    Objects.requireNonNull(button);
     clickPath(tree, path, button, 1);
   }
 
@@ -239,7 +238,7 @@ public class JTreeDriver extends JComponentDriver {
    */
   @RunsInEDT
   public void clickPath(JTree tree, String path, MouseClickInfo mouseClickInfo) {
-    checkNotNull(mouseClickInfo);
+    Objects.requireNonNull(mouseClickInfo);
     clickPath(tree, path, mouseClickInfo.button(), mouseClickInfo.times());
   }
 
@@ -266,7 +265,7 @@ public class JTreeDriver extends JComponentDriver {
   private Point scrollToPath(JTree tree, String path) {
     Point p = scrollToMatchingPath(tree, path, false).third;
     robot.waitForIdle();
-    return checkNotNull(p);
+    return Objects.requireNonNull(p);
   }
 
   private void doubleClick(JTree tree, Point p) {
@@ -315,7 +314,7 @@ public class JTreeDriver extends JComponentDriver {
     if (info.first) {
       return; // already expanded
     }
-    toggleCell(tree, checkNotNull(info.second), info.third);
+    toggleCell(tree, Objects.requireNonNull(info.second), info.third);
   }
 
   /**
@@ -341,7 +340,7 @@ public class JTreeDriver extends JComponentDriver {
     if (!info.first) {
       return; // already collapsed
     }
-    toggleCell(tree, checkNotNull(info.second), info.third);
+    toggleCell(tree, Objects.requireNonNull(info.second), info.third);
   }
 
   /**

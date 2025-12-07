@@ -12,13 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.Point;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -189,7 +189,7 @@ public class JTableHeaderDriver extends JComponentDriver {
       tableHeader.getTable().scrollRectToVisible(tableHeader.getHeaderRect(columnIndex));
       return p;
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -233,7 +233,7 @@ public class JTableHeaderDriver extends JComponentDriver {
       tableHeader.getTable().scrollRectToVisible(tableHeader.getHeaderRect(indexAndLocation.first));
       return indexAndLocation.second;
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JTableHeaderLocation location() {

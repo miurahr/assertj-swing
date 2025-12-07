@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import org.jspecify.annotations.Nullable;
@@ -20,6 +19,8 @@ import org.jspecify.annotations.Nullable;
 import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.timing.Condition;
+
+import java.util.Objects;
 
 /**
  * {@link Condition} that is evaluated in the event dispatch thread (EDT).
@@ -53,7 +54,7 @@ public abstract class EdtSafeCondition extends Condition {
   @Override
   public final boolean test() {
     Boolean result = execute(() -> testInEDT());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.monitor;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
@@ -21,6 +20,7 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.util.Collection;
+import java.util.Objects;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -73,7 +73,7 @@ public class WindowMonitor {
 
   private void populateExistingWindows() {
     for (Frame f : Frame.getFrames()) {
-      examine(checkNotNull(f));
+      examine(Objects.requireNonNull(f));
     }
   }
 
@@ -81,7 +81,7 @@ public class WindowMonitor {
   private void examine(Window w) {
     windows.attachNewWindowVisibilityMonitor(w);
     for (Window owned : w.getOwnedWindows()) {
-      examine(checkNotNull(owned));
+      examine(Objects.requireNonNull(owned));
     }
     windows.markExisting(w);
     context.addContextFor(w);

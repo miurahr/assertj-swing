@@ -15,11 +15,11 @@ package org.assertj.swing.listener;
 import static javax.swing.SwingUtilities.invokeLater;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -71,7 +71,7 @@ public abstract class EventDispatchThreadedEventListener implements AWTEventList
     }
     // Ensure any deferred events are processed prior to subsequently posted events.
     processDeferredEvents();
-    processEvent(checkNotNull(event));
+    processEvent(Objects.requireNonNull(event));
   }
 
   /** Processes any events that were generated off the event queue but not immediately handled. */
@@ -88,7 +88,7 @@ public abstract class EventDispatchThreadedEventListener implements AWTEventList
     while (queue.size() > 0) {
       AWTEvent event = queue.get(0);
       queue.remove(0);
-      processEvent(checkNotNull(event));
+      processEvent(Objects.requireNonNull(event));
     }
   }
 

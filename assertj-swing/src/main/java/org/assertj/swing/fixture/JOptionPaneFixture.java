@@ -12,8 +12,8 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -41,7 +41,7 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
   }
 
   private static JOptionPane findShowingOptionPane(Robot robot) {
-    checkNotNull(robot);
+    Objects.requireNonNull(robot);
     return robot.finder().findByType(JOptionPane.class, true);
   }
 

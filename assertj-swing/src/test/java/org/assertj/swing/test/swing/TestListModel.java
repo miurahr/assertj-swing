@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.swing;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import javax.swing.DefaultListModel;
 
@@ -29,7 +28,7 @@ public class TestListModel extends DefaultListModel {
 
   public void setElements(Object... elements) {
     clear();
-    checkNotNull(elements);
+    Objects.requireNonNull(elements);
     for (Object e : elements) {
       addElement(e);
     }

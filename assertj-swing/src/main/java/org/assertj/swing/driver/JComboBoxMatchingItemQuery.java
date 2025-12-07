@@ -16,10 +16,11 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JComboBox;
 
-import org.assertj.core.util.Preconditions;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JComboBoxCellReader;
 import org.assertj.swing.util.TextMatcher;
+
+import java.util.Objects;
 
 /**
  * Looks up the first item in a {@code JComboBox} whose value matches a given one.
@@ -40,7 +41,7 @@ final class JComboBoxMatchingItemQuery {
       }
       return -1;
     });
-    return Preconditions.checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JComboBoxMatchingItemQuery() {}

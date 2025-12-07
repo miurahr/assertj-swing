@@ -14,11 +14,11 @@ package org.assertj.swing.driver;
 
 import static java.awt.Adjustable.HORIZONTAL;
 import static java.awt.Adjustable.VERTICAL;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.awt.Point;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.swing.JScrollBar;
 
@@ -152,6 +152,6 @@ public final class JScrollBarLocation {
   @RunsInCurrentThread
   private JScrollBarLocationStrategy locationStrategyFor(JScrollBar scrollBar) {
     JScrollBarLocationStrategy strategy = LOCATIONS.get(scrollBar.getOrientation());
-    return checkNotNull(strategy);
+    return Objects.requireNonNull(strategy);
   }
 }

@@ -13,9 +13,9 @@
 package org.assertj.swing.edt;
 
 import static javax.swing.SwingUtilities.isEventDispatchThread;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.lang.ref.WeakReference;
+import java.util.Objects;
 
 import javax.swing.JComponent;
 import javax.swing.RepaintManager;
@@ -55,13 +55,13 @@ abstract class CheckThreadViolationRepaintManager extends RepaintManager {
 
   @Override
   public synchronized void addInvalidComponent(JComponent component) {
-    checkThreadViolations(checkNotNull(component));
+    checkThreadViolations(Objects.requireNonNull(component));
     super.addInvalidComponent(component);
   }
 
   @Override
   public void addDirtyRegion(JComponent component, int x, int y, int w, int h) {
-    checkThreadViolations(checkNotNull(component));
+    checkThreadViolations(Objects.requireNonNull(component));
     super.addDirtyRegion(component, x, y, w, h);
   }
 

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.data.TableCell.row;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
@@ -25,6 +24,8 @@ import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.data.TableCell;
 import org.assertj.swing.util.TextMatcher;
 
+import java.util.Objects;
+
 /**
  * Returns the first cell in a {@code JTable} whose value matches the given one. This query is executed in the event
  * dispatch thread (EDT).
@@ -36,7 +37,7 @@ final class JTableMatchingCellQuery {
   static TableCell cellWithValue(final JTable table, final TextMatcher matcher,
                                           final JTableCellReader cellReader) {
     TableCell result = execute(() -> findMatchingCell(table, matcher, cellReader));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread

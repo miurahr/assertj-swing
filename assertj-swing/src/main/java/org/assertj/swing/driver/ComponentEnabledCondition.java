@@ -12,12 +12,12 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.format.Formatting.format;
 import static org.assertj.swing.query.ComponentEnabledQuery.isEnabled;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
@@ -53,7 +53,7 @@ class ComponentEnabledCondition extends Condition {
   @RunsInEDT
   @Override
   public boolean test() {
-    return isEnabled(checkNotNull(c));
+    return isEnabled(Objects.requireNonNull(c));
   }
 
   @Override

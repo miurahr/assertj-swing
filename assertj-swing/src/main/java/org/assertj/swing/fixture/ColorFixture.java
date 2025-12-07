@@ -13,10 +13,10 @@
 package org.assertj.swing.fixture;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Colors.colorFromHexString;
 
 import java.awt.Color;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -62,7 +62,7 @@ public class ColorFixture {
    * @throws NullPointerException if {@code target} is {@code null}.
    */
   public ColorFixture(Color target, @Nullable Description description) {
-    this.target = checkNotNull(target);
+    this.target = Objects.requireNonNull(target);
     this.description = description;
   }
 

@@ -12,11 +12,11 @@
  */
 package org.assertj.swing.query;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 import java.awt.Point;
+import java.util.Objects;
 
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -42,7 +42,7 @@ public final class ComponentLocationOnScreenQuery {
   @RunsInEDT
   public static Point locationOnScreen(final Component component) {
     Point result = execute(() -> component.getLocationOnScreen());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private ComponentLocationOnScreenQuery() {}

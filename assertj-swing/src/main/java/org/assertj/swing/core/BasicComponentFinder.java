@@ -14,7 +14,6 @@ package org.assertj.swing.core;
 
 import static java.lang.System.lineSeparator;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.format.Formatting.format;
@@ -25,6 +24,7 @@ import java.awt.Container;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Collection;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JLabel;
@@ -273,7 +273,7 @@ public final class BasicComponentFinder implements ComponentFinder {
     if (found.size() > 1) {
       throw multipleComponentsFound(found, m);
     }
-    return checkNotNull(found.iterator().next());
+    return Objects.requireNonNull(found.iterator().next());
   }
 
   @RunsInEDT

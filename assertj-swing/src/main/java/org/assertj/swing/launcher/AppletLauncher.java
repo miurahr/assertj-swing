@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.launcher;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.launcher.NewAppletViewerQuery.showAppletViewerWith;
@@ -20,6 +19,7 @@ import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.applet.Applet;
 import java.util.Map;
+import java.util.Objects;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.applet.AppletViewer;
@@ -127,13 +127,13 @@ public class AppletLauncher {
    */
   @RunsInEDT
   public static AppletLauncher applet(Class<? extends Applet> appletType) {
-    return instantiate(checkNotNull(appletType));
+    return instantiate(Objects.requireNonNull(appletType));
   }
 
   private static AppletLauncher instantiate(final Class<?> appletType) {
     try {
       Object applet = execute(() -> appletType.newInstance());
-      return launcherFor(checkNotNull((Applet) applet));
+      return launcherFor(Objects.requireNonNull((Applet) applet));
     } catch (Exception e) {
       String msg = String.format("Unable to create a new instance of %s", appletType.getName());
       throw new UnexpectedException(msg, e);
@@ -152,7 +152,7 @@ public class AppletLauncher {
   }
 
   private AppletLauncher(Applet applet) {
-    this.applet = checkNotNull(applet);
+    this.applet = Objects.requireNonNull(applet);
   }
 
   /**
@@ -165,7 +165,7 @@ public class AppletLauncher {
    */
   public AppletLauncher withParameters(Map<String, String> newParameters) {
     parameters.clear();
-    parameters.putAll(checkNotNull(newParameters));
+    parameters.putAll(Objects.requireNonNull(newParameters));
     return this;
   }
 
@@ -178,10 +178,10 @@ public class AppletLauncher {
    * @throws NullPointerException if any parameter is {@code null}.
    */
   public AppletLauncher withParameters(AppletParameter... newParameters) {
-    checkNotNull(newParameters);
+    Objects.requireNonNull(newParameters);
     parameters.clear();
     for (AppletParameter parameter : newParameters) {
-      add(checkNotNull(parameter));
+      add(Objects.requireNonNull(parameter));
     }
     return this;
   }

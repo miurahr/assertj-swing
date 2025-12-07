@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Strings.isDefaultToString;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import javax.swing.JTree;
 import javax.swing.tree.TreeCellRenderer;
@@ -48,7 +48,7 @@ public class BasicJTreeCellReader implements JTreeCellReader {
    * @throws NullPointerException if {@code reader} is {@code null}.
    */
   public BasicJTreeCellReader(CellRendererReader reader) {
-    this.rendererReader = checkNotNull(reader);
+    this.rendererReader = Objects.requireNonNull(reader);
   }
 
   /**

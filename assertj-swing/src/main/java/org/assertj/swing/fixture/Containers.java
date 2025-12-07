@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Container;
+import java.util.Objects;
 
 import javax.swing.JFrame;
 
@@ -123,7 +123,7 @@ public final class Containers {
         return frame;
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private Containers() {}

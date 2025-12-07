@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.data.TableCell;
+
+import java.util.Objects;
 
 /**
  * Verifies correct argument values and state of {@code JTable} cells.
@@ -65,7 +66,7 @@ public final class JTableCellPreconditions {
    */
   @RunsInCurrentThread
   public static void checkCellIndicesInBounds(JTable table, TableCell cell) {
-    checkNotNull(cell);
+    Objects.requireNonNull(cell);
     checkCellIndicesInBounds(table, cell.row, cell.column);
   }
 

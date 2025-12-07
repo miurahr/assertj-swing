@@ -12,13 +12,13 @@
  */
 package org.assertj.swing.text;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.util.Maps.newConcurrentHashMap;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Logger;
 
@@ -54,8 +54,8 @@ public class TextReaders {
    *           {@code null}.
    */
   public void register(TextReader<?> reader) {
-    checkNotNull(reader);
-    Class<?> type = checkNotNull(reader.supportedComponent());
+    Objects.requireNonNull(reader);
+    Class<?> type = Objects.requireNonNull(reader.supportedComponent());
     TextReader<?> old = readers.put(type, reader);
     if (old != null) {
       logger.info(concat("Replaced reader for type ", type.getName()));
@@ -74,15 +74,15 @@ public class TextReaders {
    */
   @RunsInEDT
   public boolean containsText(final Container container, final String text) {
-    checkNotNull(container);
-    checkNotNull(text);
+    Objects.requireNonNull(container);
+    Objects.requireNonNull(text);
     Boolean result = execute(() -> {
       if (componentContainsText(container, text)) {
         return true;
       }
       return anyComponentContainsText(container.getComponents(), text);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private boolean anyComponentContainsText(Component[] components, String text) {

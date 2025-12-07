@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.keystroke;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.keystroke.KeyStrokeMappingProviderNames.generateNamesFrom;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import org.assertj.core.util.VisibleForTesting;
@@ -43,7 +43,7 @@ class KeyStrokeMappingProviderPicker {
     LOGGER.finer("providing keystroke mappings for OS=" + osFamily + ", locale=" + locale);
     for (String name : generateNamesFrom(osFamily, locale)) {
       LOGGER.finer("trying >" + name + "<");
-      String typeName = checkNotNull(name);
+      String typeName = Objects.requireNonNull(name);
       KeyStrokeMappingProvider provider = factory.createProvider(typeName);
       if (provider != null) {
         LOGGER.finer("created successfully.");

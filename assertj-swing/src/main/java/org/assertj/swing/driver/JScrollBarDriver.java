@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JScrollBarSetValueTask.setValue;
@@ -21,6 +20,7 @@ import static org.assertj.swing.driver.JScrollBarValueQuery.valueOf;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Point;
+import java.util.Objects;
 
 import javax.swing.JScrollBar;
 
@@ -118,7 +118,7 @@ public class JScrollBarDriver extends JComponentDriver {
         return scrollUnitInfo(scrollBar, location, times);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -200,7 +200,7 @@ public class JScrollBarDriver extends JComponentDriver {
         return scrollBlockInfo(scrollBar, location, times);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -220,7 +220,7 @@ public class JScrollBarDriver extends JComponentDriver {
   @RunsInEDT
   private void scroll(JScrollBar scrollBar, Pair<Point, Integer> scrollInfo) {
     // For now, do it programmatically, faking the mouse movement and clicking
-    robot.moveMouse(scrollBar, checkNotNull(scrollInfo.first));
+    robot.moveMouse(scrollBar, Objects.requireNonNull(scrollInfo.first));
     setValueProperty(scrollBar, scrollInfo.second);
   }
 
@@ -234,7 +234,7 @@ public class JScrollBarDriver extends JComponentDriver {
   @RunsInEDT
   public void scrollToMaximum(JScrollBar scrollBar) {
     Pair<Integer, GenericRange<Point>> scrollInfo = findScrollToMaximumInfo(scrollBar, location());
-    scroll(scrollBar, scrollInfo.first, checkNotNull(scrollInfo.second));
+    scroll(scrollBar, scrollInfo.first, Objects.requireNonNull(scrollInfo.second));
   }
 
   @RunsInEDT
@@ -250,7 +250,7 @@ public class JScrollBarDriver extends JComponentDriver {
         return Pair.of(position, scrollInfo);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -263,7 +263,7 @@ public class JScrollBarDriver extends JComponentDriver {
   @RunsInEDT
   public void scrollToMinimum(JScrollBar scrollBar) {
     Pair<Integer, GenericRange<Point>> scrollInfo = findScrollToMinimumInfo(scrollBar, location);
-    scroll(scrollBar, scrollInfo.first, checkNotNull(scrollInfo.second));
+    scroll(scrollBar, scrollInfo.first, Objects.requireNonNull(scrollInfo.second));
   }
 
   @RunsInEDT
@@ -279,7 +279,7 @@ public class JScrollBarDriver extends JComponentDriver {
         return Pair.of(position, scrollInfo);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -308,7 +308,7 @@ public class JScrollBarDriver extends JComponentDriver {
         return scrollInfo(scrollBar, location, position);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread

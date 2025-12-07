@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static javax.swing.SwingUtilities.getWindowAncestor;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JToolBarIsFloatingQuery.isJToolBarFloating;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -24,6 +23,7 @@ import static org.fest.reflect.core.Reflection.field;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Window;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JToolBar;
@@ -71,7 +71,7 @@ public class JToolBarDriver extends JComponentDriver {
   @RunsInEDT
   public boolean isFloating(final JToolBar toolBar) {
     Boolean result = execute(() -> isJToolBarFloating(toolBar));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -117,7 +117,7 @@ public class JToolBarDriver extends JComponentDriver {
         return Pair.of(location.pointToGrab(toolBar), windowAndLocation);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -136,10 +136,10 @@ public class JToolBarDriver extends JComponentDriver {
 
   @RunsInEDT
   private void doFloat(JToolBar toolBar, int x, int y, Pair<Point, Pair<Window, Point>> floatInfo) {
-    drag(toolBar, checkNotNull(floatInfo.first));
+    drag(toolBar, Objects.requireNonNull(floatInfo.first));
     Pair<Window, Point> locationAndAncestor = floatInfo.second;
     Point ancestorLocation = locationAndAncestor.second;
-    drop(checkNotNull(locationAndAncestor.first), new Point(x - ancestorLocation.x, y - ancestorLocation.y));
+    drop(Objects.requireNonNull(locationAndAncestor.first), new Point(x - ancestorLocation.x, y - ancestorLocation.y));
     checkFloated(toolBar);
   }
 
@@ -169,7 +169,7 @@ public class JToolBarDriver extends JComponentDriver {
     Pair<GenericRange<Point>, Container> unfloatInfo = unfloatInfo(toolBar, constraint, location());
     GenericRange<Point> fromAndTo = unfloatInfo.first;
     drag(toolBar, fromAndTo.from());
-    drop(checkNotNull(unfloatInfo.second), fromAndTo.to());
+    drop(Objects.requireNonNull(unfloatInfo.second), fromAndTo.to());
     validateIsNotFloating(toolBar, constraint);
   }
 
@@ -187,7 +187,7 @@ public class JToolBarDriver extends JComponentDriver {
         return Pair.of(new GenericRange<Point>(from, to), dock);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT
@@ -203,7 +203,7 @@ public class JToolBarDriver extends JComponentDriver {
   @RunsInCurrentThread
   private static Container dockFor(final JToolBar toolBar) {
     try {
-      return checkNotNull(field("dockingSource").ofType(Container.class).in(toolBar.getUI()).get());
+      return Objects.requireNonNull(field("dockingSource").ofType(Container.class).in(toolBar.getUI()).get());
     } catch (RuntimeException e) {
       throw actionFailure("Unabled to determine dock for JToolBar");
     }

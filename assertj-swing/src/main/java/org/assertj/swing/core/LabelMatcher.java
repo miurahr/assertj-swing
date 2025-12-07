@@ -13,11 +13,11 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Preconditions.checkNotNullOrEmpty;
 import static org.assertj.core.util.Strings.quote;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import javax.swing.JLabel;
 
@@ -86,7 +86,7 @@ public class LabelMatcher extends AbstractComponentMatcher {
   public LabelMatcher(@Nullable String label, Class<? extends Component> type, boolean requireShowing) {
     super(requireShowing);
     this.label = checkNotNullOrEmpty(label).toString();
-    this.type = checkNotNull(type);
+    this.type = Objects.requireNonNull(type);
   }
 
   /**
@@ -119,7 +119,7 @@ public class LabelMatcher extends AbstractComponentMatcher {
       return false;
     }
     Component labeled = labelForComponent.getLabelFor();
-    return type.isInstance(labeled) && requireShowingMatches(checkNotNull(labeled));
+    return type.isInstance(labeled) && requireShowingMatches(Objects.requireNonNull(labeled));
   }
 
   @Override

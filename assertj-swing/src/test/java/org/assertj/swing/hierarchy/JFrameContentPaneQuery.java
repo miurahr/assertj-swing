@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.hierarchy;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Container;
@@ -31,7 +30,7 @@ import org.assertj.swing.annotation.RunsInEDT;
 final class JFrameContentPaneQuery {
   static Container contentPaneOf(final JFrame frame) {
     Container result = execute(() -> frame.getContentPane());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JFrameContentPaneQuery() {}

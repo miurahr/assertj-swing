@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the maximum value of a {@code JProgressBar}. This query is executed in the event dispatch thread (EDT).
@@ -28,7 +29,7 @@ final class JProgressBarMaximumQuery {
   @RunsInEDT
   static int maximumOf(final JProgressBar progressBar) {
     Integer result = execute(() -> progressBar.getMaximum());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JProgressBarMaximumQuery() {}

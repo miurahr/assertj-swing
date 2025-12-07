@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.query;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.io.File;
@@ -38,7 +37,7 @@ public final class JFileChooserCurrentDirectoryQuery {
   @RunsInEDT
   public static File currentDirectoryOf(final JFileChooser fileChooser) {
     File result = execute(() -> fileChooser.getCurrentDirectory());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JFileChooserCurrentDirectoryQuery() {}

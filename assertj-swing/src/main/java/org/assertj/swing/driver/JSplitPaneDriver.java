@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static javax.swing.JSplitPane.VERTICAL_SPLIT;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JSplitPaneLocationCalculator.locationToMoveDividerTo;
@@ -21,6 +20,7 @@ import static org.assertj.swing.driver.JSplitPaneSetDividerLocationTask.setDivid
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Point;
+import java.util.Objects;
 
 import javax.swing.JSplitPane;
 
@@ -100,7 +100,7 @@ public class JSplitPaneDriver extends JComponentDriver {
         return whereToMoveDividerVertically(splitPane, location);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -125,7 +125,7 @@ public class JSplitPaneDriver extends JComponentDriver {
         return whereToMoveDividerHorizontally(splitPane, location);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread

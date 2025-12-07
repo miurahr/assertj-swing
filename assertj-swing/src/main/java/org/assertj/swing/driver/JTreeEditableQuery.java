@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JTree;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Indicates whether a {@code JTree} is editable.
@@ -28,7 +29,7 @@ final class JTreeEditableQuery {
   @RunsInEDT
   static boolean isEditable(final JTree tree) {
     Boolean result = execute(() -> tree.isEditable());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JTreeEditableQuery() {}

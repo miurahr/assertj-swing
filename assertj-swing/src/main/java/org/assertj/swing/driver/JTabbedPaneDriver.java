@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.JTabbedPaneSelectTabQuery.selectedTabIndexOf;
 import static org.assertj.swing.driver.JTabbedPaneSelectTabTask.setSelectedTab;
@@ -25,6 +24,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.awt.Point;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -157,7 +157,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
         return Pair.of(index, point);
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -188,7 +188,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
       checkEnabledAndShowing(tabbedPane);
       return location.pointAt(tabbedPane, index);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT
@@ -211,7 +211,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
   private static Point pointAtTab(final JTabbedPaneLocation location,
                                   final JTabbedPane tabbedPane, final int index) {
     Point result = execute(() -> location.pointAt(tabbedPane, index));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -390,7 +390,7 @@ public class JTabbedPaneDriver extends JComponentDriver {
       }
       return allTitles.toArray(new String[allTitles.size()]);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JTabbedPaneLocation location() {

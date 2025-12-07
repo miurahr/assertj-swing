@@ -13,7 +13,6 @@
 package org.assertj.swing.data;
 
 import static org.assertj.core.util.Objects.areEqual;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
@@ -24,6 +23,8 @@ import javax.swing.JTable;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellReader;
+
+import java.util.Objects;
 
 /**
  * <p>
@@ -78,7 +79,7 @@ public class TableCellInRowByValue implements TableCellFinder {
      * @param values the values of the cells of the row to find.
      */
     TableCellBuilder(String[] values) {
-      this.values = checkNotNull(values);
+      this.values = Objects.requireNonNull(values);
     }
 
     /**
@@ -145,7 +146,7 @@ public class TableCellInRowByValue implements TableCellFinder {
       }
       return -1;
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread

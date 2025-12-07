@@ -16,13 +16,13 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static javax.swing.JSplitPane.HORIZONTAL_SPLIT;
 import static javax.swing.JSplitPane.VERTICAL_SPLIT;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.awt.Component;
 import java.awt.Insets;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.swing.JSplitPane;
 
@@ -52,7 +52,7 @@ final class JSplitPaneLocationCalculator {
   static int locationToMoveDividerTo(final JSplitPane splitPane, final int desiredLocation) {
     Integer result = execute(() -> FINDERS.get(splitPane.getOrientation()).locationToMoveDividerTo(splitPane,
                                                                                                    desiredLocation));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JSplitPaneLocationCalculator() {}

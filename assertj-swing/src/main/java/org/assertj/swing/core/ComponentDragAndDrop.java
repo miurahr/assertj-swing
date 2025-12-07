@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import static org.assertj.swing.timing.Pause.pause;
 import static org.assertj.swing.util.Platform.isMacintosh;
@@ -22,6 +21,7 @@ import static org.assertj.swing.util.TimeoutWatch.startWatchWithTimeoutOf;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.Objects;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.TimeoutWatch;
@@ -152,7 +152,7 @@ public class ComponentDragAndDrop {
 
   private void mouseMove(Component target, Point... points) {
     for (Point p : points) {
-      checkNotNull(p);
+      Objects.requireNonNull(p);
       robot.moveMouse(target, p.x, p.y);
     }
   }

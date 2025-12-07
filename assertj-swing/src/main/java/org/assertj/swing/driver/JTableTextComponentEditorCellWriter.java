@@ -13,10 +13,10 @@
 package org.assertj.swing.driver;
 
 import static java.awt.event.KeyEvent.VK_F2;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 
 import java.awt.Point;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JTable;
@@ -64,7 +64,7 @@ public class JTableTextComponentEditorCellWriter extends AbstractJTableCellWrite
       textComponent = activateEditorWithDoubleClick(table, row, column, cellLocation);
     }
     cellEditor(cellEditor(table, row, column));
-    return checkNotNull(textComponent);
+    return Objects.requireNonNull(textComponent);
   }
 
   @RunsInEDT

@@ -12,9 +12,9 @@
  */
 package org.assertj.swing.core;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -51,7 +51,7 @@ public abstract class GenericTypeMatcher<T extends Component> extends AbstractCo
    */
   public GenericTypeMatcher(Class<T> supportedType, boolean requireShowing) {
     super(requireShowing);
-    this.supportedType = checkNotNull(supportedType);
+    this.supportedType = Objects.requireNonNull(supportedType);
   }
 
   /**

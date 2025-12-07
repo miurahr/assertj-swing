@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Indicates whether a Swing {@code AbstractButton} is selected. This action is executed in the event dispatch thread
@@ -30,7 +31,7 @@ final class AbstractButtonSelectedQuery {
   @RunsInEDT
   static boolean isSelected(final AbstractButton button) {
     Boolean result = execute(() -> button.isSelected());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private AbstractButtonSelectedQuery() {}

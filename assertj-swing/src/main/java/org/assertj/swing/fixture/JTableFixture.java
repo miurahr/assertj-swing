@@ -12,13 +12,13 @@
  */
 package org.assertj.swing.fixture;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.driver.ComponentDriver.propertyName;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import javax.swing.JTable;
@@ -94,7 +94,7 @@ public class JTableFixture extends AbstractJPopupMenuInvokerFixture<JTableFixtur
    */
   public FontFixture fontAt(TableCell cell) {
     Font font = driver().font(target(), cell);
-    return new FontFixture(checkNotNull(font), cellProperty(cell, FONT_PROPERTY));
+    return new FontFixture(Objects.requireNonNull(font), cellProperty(cell, FONT_PROPERTY));
   }
 
   /**
@@ -107,7 +107,7 @@ public class JTableFixture extends AbstractJPopupMenuInvokerFixture<JTableFixtur
    */
   public ColorFixture backgroundAt(TableCell cell) {
     Color background = driver().background(target(), cell);
-    return new ColorFixture(checkNotNull(background), cellProperty(cell, BACKGROUND_PROPERTY));
+    return new ColorFixture(Objects.requireNonNull(background), cellProperty(cell, BACKGROUND_PROPERTY));
   }
 
   /**
@@ -120,7 +120,7 @@ public class JTableFixture extends AbstractJPopupMenuInvokerFixture<JTableFixtur
    */
   public ColorFixture foregroundAt(TableCell cell) {
     Color foreground = driver().foreground(target(), cell);
-    return new ColorFixture(checkNotNull(foreground), cellProperty(cell, FOREGROUND_PROPERTY));
+    return new ColorFixture(Objects.requireNonNull(foreground), cellProperty(cell, FOREGROUND_PROPERTY));
   }
 
   private Description cellProperty(TableCell cell, String propertyName) {
@@ -187,7 +187,7 @@ public class JTableFixture extends AbstractJPopupMenuInvokerFixture<JTableFixtur
    */
   public JTableHeaderFixture tableHeader() {
     JTableHeader tableHeader = driver().tableHeaderOf(target());
-    return new JTableHeaderFixture(robot(), checkNotNull(tableHeader));
+    return new JTableHeaderFixture(robot(), Objects.requireNonNull(tableHeader));
   }
 
   /**
@@ -405,7 +405,7 @@ public class JTableFixture extends AbstractJPopupMenuInvokerFixture<JTableFixtur
    * @throws IndexOutOfBoundsException if any of the indices (row and column) is out of bounds.
    */
   public JTableFixture click(TableCell cell, MouseClickInfo mouseClickInfo) {
-    checkNotNull(mouseClickInfo);
+    Objects.requireNonNull(mouseClickInfo);
     click(cell, mouseClickInfo.button(), mouseClickInfo.times());
     return this;
   }

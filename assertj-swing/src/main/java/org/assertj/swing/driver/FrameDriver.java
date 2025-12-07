@@ -16,7 +16,6 @@ import static java.awt.Frame.ICONIFIED;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import static java.awt.Frame.NORMAL;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.driver.FrameTitleQuery.titleOf;
 import static org.assertj.swing.driver.WindowLikeContainers.iconifyButtonLocation;
@@ -27,6 +26,7 @@ import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 import java.awt.Frame;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.util.Objects;
 
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.annotation.ThreadSafeAction;
@@ -131,7 +131,7 @@ public class FrameDriver extends WindowDriver {
       checkEnabledAndShowing(frame);
       return maximizeButtonLocation(frame);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @ThreadSafeAction

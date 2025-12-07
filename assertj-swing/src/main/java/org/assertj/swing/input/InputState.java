@@ -16,7 +16,6 @@ import static java.awt.AWTEvent.KEY_EVENT_MASK;
 import static java.awt.AWTEvent.MOUSE_EVENT_MASK;
 import static java.awt.AWTEvent.MOUSE_MOTION_EVENT_MASK;
 import static javax.swing.SwingUtilities.getDeepestComponentAt;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.awt.AWT.locationOnScreenOf;
 import static org.assertj.swing.input.MouseInfo.BUTTON_MASK;
 
@@ -29,6 +28,7 @@ import java.awt.event.AWTEventListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -122,7 +122,7 @@ public class InputState {
     // to avoid deadlock.
     // Determine the current mouse position in screen coordinates
     try {
-      Component component = checkNotNull(event.getComponent());
+      Component component = Objects.requireNonNull(event.getComponent());
       return locationOnScreenOf(component);
     } catch (IllegalComponentStateException e) {
       // component might be hidden by the time we process this event

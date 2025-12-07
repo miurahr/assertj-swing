@@ -17,12 +17,12 @@ import org.jspecify.annotations.Nullable;
 import static java.util.Collections.sort;
 import static javax.swing.Action.NAME;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -43,7 +43,7 @@ final class Actions {
       for (Object key : allKeys) {
         action = actionMap.get(key);
         if (name.equals(action.getValue(NAME))) {
-          return checkNotNull(key);
+          return Objects.requireNonNull(key);
         }
       }
     }

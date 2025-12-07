@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static java.util.Collections.sort;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Sets.newHashSet;
 import static org.assertj.swing.driver.JListCellBoundsQuery.cellBounds;
 import static org.assertj.swing.driver.JListCellCenterQuery.cellCenter;
@@ -23,6 +22,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.jspecify.annotations.Nullable;
@@ -47,10 +47,10 @@ final class JListMatchingItemQuery {
                                                  final JListCellReader cellReader) {
     Point result = execute(() -> {
       int itemIndex = matchingItemIndex(list, new StringTextMatcher(value), cellReader);
-      Rectangle cellBounds = checkNotNull(cellBounds(list, itemIndex));
+      Rectangle cellBounds = Objects.requireNonNull(cellBounds(list, itemIndex));
       return cellCenter(list, cellBounds);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
@@ -82,7 +82,7 @@ final class JListMatchingItemQuery {
         return indexList;
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT
@@ -102,7 +102,7 @@ final class JListMatchingItemQuery {
         return values;
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JListMatchingItemQuery() {}

@@ -13,10 +13,10 @@
 package org.assertj.swing.driver;
 
 import static java.lang.Boolean.parseBoolean;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Point;
+import java.util.Objects;
 
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
@@ -45,7 +45,7 @@ public class JTableCheckBoxEditorCellWriter extends AbstractJTableCellWriter {
     if (editingInfo.first == realValue) {
       return; // JCheckBox already has value to set.
     }
-    robot.click(table, checkNotNull(editingInfo.second));
+    robot.click(table, Objects.requireNonNull(editingInfo.second));
   }
 
   @RunsInEDT
@@ -66,6 +66,6 @@ public class JTableCheckBoxEditorCellWriter extends AbstractJTableCellWriter {
         return Pair.of(editor.isSelected(), location.pointAt(table, row, column));
       }
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 }

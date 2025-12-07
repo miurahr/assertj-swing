@@ -13,12 +13,12 @@
 package org.assertj.swing.fixture;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
 import java.awt.Dimension;
+import java.util.Objects;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -102,7 +102,7 @@ public class AbstractContainerFixture_tabbedPane_Test extends RobotBasedTestCase
     final JTabbedPane tabbedPane = new JTabbedPane();
 
     static MyWindow createNew(final Class<?> testClass) {
-      return checkNotNull(execute(() -> new MyWindow(testClass)));
+      return Objects.requireNonNull(execute(() -> new MyWindow(testClass)));
     }
 
     private MyWindow(Class<?> testClass) {

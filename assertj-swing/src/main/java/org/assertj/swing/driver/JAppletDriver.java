@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static java.util.Collections.enumeration;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.applet.Applet;
@@ -22,6 +21,7 @@ import java.applet.AppletStub;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.Objects;
 
 import javax.swing.JApplet;
 
@@ -93,7 +93,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
   @RunsInEDT
   private static boolean active(final JApplet applet) {
     Boolean result = execute(() -> applet.isActive());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**

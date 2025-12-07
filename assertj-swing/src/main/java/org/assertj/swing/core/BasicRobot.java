@@ -24,7 +24,6 @@ import static java.lang.System.lineSeparator;
 import static javax.swing.SwingUtilities.getWindowAncestor;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Sets.newHashSet;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.awt.AWT.centerOf;
@@ -244,7 +243,7 @@ public class BasicRobot implements Robot {
     // applet's context (assists AppletViewer cleanup).
     Component applet = findAppletDescendent(w);
     EventQueue eventQueue = windowMonitor.eventQueueFor(applet != null ? applet : w);
-    checkNotNull(eventQueue).postEvent(event);
+    Objects.requireNonNull(eventQueue).postEvent(event);
     waitForIdle();
   }
 
@@ -317,7 +316,7 @@ public class BasicRobot implements Robot {
     if (currentOwnerAncestor == targetAncestor) {
       return;
     }
-    activate(checkNotNull(targetAncestor));
+    activate(Objects.requireNonNull(targetAncestor));
     waitForIdle();
   }
 
@@ -901,7 +900,7 @@ public class BasicRobot implements Robot {
 
   @RunsInEDT
   private boolean isWindowAncestorReadyForInput(final JPopupMenu popup) {
-    return Objects.requireNonNull(execute(() -> isReadyForInput(checkNotNull(getWindowAncestor(popup)))));
+    return Objects.requireNonNull(execute(() -> isReadyForInput(Objects.requireNonNull(getWindowAncestor(popup)))));
   }
 
   /**

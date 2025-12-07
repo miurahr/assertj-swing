@@ -17,7 +17,6 @@ import static java.lang.Math.min;
 import static java.lang.String.valueOf;
 import static javax.swing.text.DefaultEditorKit.deletePrevCharAction;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.isNullOrEmpty;
 import static org.assertj.core.util.Strings.quote;
@@ -35,6 +34,7 @@ import static org.assertj.swing.format.Formatting.format;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -104,7 +104,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
    */
   @RunsInEDT
   public void replaceText(JTextComponent textBox, String text) {
-    checkNotNull(text);
+    Objects.requireNonNull(text);
     if (text.isEmpty()) {
       deleteText(textBox);
     } else {
@@ -190,7 +190,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
       }
       return actualText.indexOf(text);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -216,13 +216,13 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
       checkEnabledAndShowing(textBox);
       return scrollToVisible(textBox, index);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   @RunsInEDT
   private static Point scrollToPosition(final JTextComponent textBox, final int index) {
     Point result = execute(() -> scrollToVisible(textBox, index));
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -300,7 +300,7 @@ public class JTextComponentDriver extends JComponentDriver implements TextDispla
     if (parent == null || parent instanceof CellRendererPane || !(parent instanceof JComponent)) {
       return;
     }
-    ((JComponent) parent).scrollRectToVisible(addPointToRectangle(checkNotNull(pointAndParent.first), r));
+    ((JComponent) parent).scrollRectToVisible(addPointToRectangle(Objects.requireNonNull(pointAndParent.first), r));
   }
 
   private static Rectangle addPointToRectangle(Point p, Rectangle r) {

@@ -13,7 +13,6 @@
 package org.assertj.swing.test.recorder;
 
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.util.Maps.newHashMap;
 
 import java.awt.AWTEvent;
@@ -63,7 +62,7 @@ public class ToolkitClickRecorder extends AbstractClickRecorder {
       return;
     }
     for (Component c : ((Container) target).getComponents()) {
-      attach(listener, checkNotNull(c));
+      attach(listener, Objects.requireNonNull(c));
     }
   }
 

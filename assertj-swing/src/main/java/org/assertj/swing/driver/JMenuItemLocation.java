@@ -12,10 +12,10 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
 
 import java.awt.Component;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 import javax.swing.JMenuBar;
@@ -53,7 +53,7 @@ public final class JMenuItemLocation {
     parentOrInvoker = menuItem.getParent();
     if (parentOrInvoker instanceof JPopupMenu) {
       parentPopup = (JPopupMenu) parentOrInvoker;
-      parentOrInvoker = checkNotNull(parentPopup.getInvoker());
+      parentOrInvoker = Objects.requireNonNull(parentPopup.getInvoker());
     }
     inMenuBar = parentOrInvoker instanceof JMenuBar;
   }

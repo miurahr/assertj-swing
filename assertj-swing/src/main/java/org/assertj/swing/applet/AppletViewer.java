@@ -18,7 +18,6 @@ import static javax.swing.BorderFactory.createEmptyBorder;
 import static javax.swing.SwingUtilities.invokeLater;
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 import static javax.swing.border.BevelBorder.LOWERED;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
@@ -27,6 +26,7 @@ import java.applet.AppletStub;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -125,7 +125,7 @@ public class AppletViewer extends JFrame implements StatusDisplay {
    */
   @RunsInEDT
   public static AppletViewer newViewer(Applet applet, AppletStub stub) {
-    checkNotNull(applet);
+    Objects.requireNonNull(applet);
     AppletViewer viewer = createInEDT(applet);
     viewer.appletStub(stub);
     return viewer;
@@ -137,7 +137,7 @@ public class AppletViewer extends JFrame implements StatusDisplay {
   }
 
   private AppletViewer(Applet applet) {
-    this.applet = checkNotNull(applet);
+    this.applet = Objects.requireNonNull(applet);
     setUpFrame();
     addContent();
   }
@@ -156,7 +156,7 @@ public class AppletViewer extends JFrame implements StatusDisplay {
   }
 
   private void appletStub(AppletStub newAppletStub) {
-    checkNotNull(newAppletStub);
+    Objects.requireNonNull(newAppletStub);
     stub = newAppletStub;
     applet.setStub(stub);
     setUpApplet();

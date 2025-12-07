@@ -13,7 +13,6 @@
 package org.assertj.swing.data;
 
 import static java.lang.String.valueOf;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
@@ -25,6 +24,8 @@ import javax.swing.JTable;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.exception.ActionFailedException;
+
+import java.util.Objects;
 
 /**
  * <p>
@@ -117,7 +118,7 @@ public class TableCellByColumnId implements TableCellFinder {
       table.convertColumnIndexToView(table.getColumn(columnId).getModelIndex());
       return new TableCell(row, column);
     });
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private static ActionFailedException failColumnIndexNotFound(Object columnId) {

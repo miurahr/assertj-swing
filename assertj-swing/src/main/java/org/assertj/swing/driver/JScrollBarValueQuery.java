@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JScrollBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the value of a {@code JScrollBar}. This query is executed in the event dispatch thread (EDT).
@@ -29,7 +30,7 @@ final class JScrollBarValueQuery {
   @RunsInEDT
   static int valueOf(final JScrollBar scrollBar) {
     Integer result = execute(() -> scrollBar.getValue());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JScrollBarValueQuery() {}

@@ -12,12 +12,13 @@
  */
 package org.assertj.swing.driver;
 
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInEDT;
+
+import java.util.Objects;
 
 /**
  * Returns the selected indices in a {@code JList}. This query is executed in the event dispatch thread (EDT).
@@ -28,7 +29,7 @@ final class JListSelectionIndicesQuery {
   @RunsInEDT
   static int[] selectedIndices(final JList<?> list) {
     int[] result = execute(() -> list.getSelectedIndices());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   private JListSelectionIndicesQuery() {}

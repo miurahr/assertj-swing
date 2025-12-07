@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.awt.AWT.visibleCenterOf;
 import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
@@ -127,7 +126,7 @@ public class ComponentDriver {
    */
   @RunsInEDT
   public void click(Component c, MouseClickInfo mouseClickInfo) {
-    checkNotNull(mouseClickInfo);
+    Objects.requireNonNull(mouseClickInfo);
     click(c, mouseClickInfo.button(), mouseClickInfo.times());
   }
 
@@ -170,7 +169,7 @@ public class ComponentDriver {
    */
   @RunsInEDT
   public void click(Component c, MouseButton button, int times) {
-    checkNotNull(button);
+    Objects.requireNonNull(button);
     checkClickAllowed(c);
     robot.click(c, button, times);
   }
@@ -305,7 +304,7 @@ public class ComponentDriver {
    */
   @RunsInEDT
   public void pressAndReleaseKeys(Component c, int... keyCodes) {
-    checkNotNull(keyCodes);
+    Objects.requireNonNull(keyCodes);
     checkInEdtEnabledAndShowing(c);
     focusAndWaitForFocusGain(c);
     robot.pressAndReleaseKeys(keyCodes);
@@ -569,7 +568,7 @@ public class ComponentDriver {
    */
   @RunsInEDT
   public JPopupMenu invokePopupMenu(Component c, Point p) {
-    checkNotNull(p);
+    Objects.requireNonNull(p);
     checkClickAllowed(c);
     return robot.showPopupMenu(c, p);
   }
@@ -672,7 +671,7 @@ public class ComponentDriver {
   @RunsInEDT
   public Font fontOf(final Component c) {
     Font result = execute(() -> c.getFont());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**
@@ -684,7 +683,7 @@ public class ComponentDriver {
   @RunsInEDT
   public Color backgroundOf(final Component c) {
     Color result = execute(() -> c.getBackground());
-    return checkNotNull(result);
+    return Objects.requireNonNull(result);
   }
 
   /**

@@ -13,7 +13,6 @@
 package org.assertj.swing.driver;
 
 import static java.awt.event.KeyEvent.VK_UNDEFINED;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.driver.Actions.findActionKey;
 import static org.assertj.swing.driver.JComponentToolTipQuery.toolTipOf;
 import static org.assertj.swing.driver.KeyStrokes.findKeyStrokesForAction;
@@ -23,6 +22,7 @@ import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.jspecify.annotations.Nullable;
@@ -137,7 +137,7 @@ public class JComponentDriver extends ContainerDriver {
     robot.focusAndWaitForFocusGain(c);
     for (KeyStroke keyStroke : keyStrokesForAction(c, name)) {
       try {
-        type(checkNotNull(keyStroke));
+        type(Objects.requireNonNull(keyStroke));
         robot.waitForIdle();
         return;
       } catch (IllegalArgumentException e) { /* try the next one, if any */
@@ -148,8 +148,8 @@ public class JComponentDriver extends ContainerDriver {
 
   @RunsInCurrentThread
   private static KeyStroke[] keyStrokesForAction(JComponent component, String actionName) {
-    Object key = findActionKey(actionName, checkNotNull(component.getActionMap()));
-    return findKeyStrokesForAction(actionName, key, checkNotNull(component.getInputMap()));
+    Object key = findActionKey(actionName, Objects.requireNonNull(component.getActionMap()));
+    return findKeyStrokesForAction(actionName, key, Objects.requireNonNull(component.getInputMap()));
   }
 
   private void type(KeyStroke keyStroke) {
@@ -196,7 +196,7 @@ public class JComponentDriver extends ContainerDriver {
   @RunsInEDT
   @Nullable
   public Object clientProperty(JComponent c, Object key) {
-    return clientPropertyIn(c, checkNotNull(key));
+    return clientPropertyIn(c, Objects.requireNonNull(key));
   }
 
   @Nullable

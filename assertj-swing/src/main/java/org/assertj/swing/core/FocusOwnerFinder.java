@@ -13,11 +13,11 @@
 package org.assertj.swing.core;
 
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 import java.util.List;
+import java.util.Objects;
 
 import org.jspecify.annotations.Nullable;
 
@@ -79,7 +79,7 @@ public final class FocusOwnerFinder {
   @Nullable
   public static Component focusOwner() {
     for (FocusOwnerFinderStrategy strategy : STRATEGIES) {
-      Component focusOwner = focusOwnerFrom(checkNotNull(strategy));
+      Component focusOwner = focusOwnerFrom(Objects.requireNonNull(strategy));
       if (focusOwner != null) {
         return focusOwner;
       }
