@@ -18,8 +18,7 @@ import javax.swing.JComponent;
 
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.JComponentDriver;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Supports functional testing of {@code JComponent}s.
@@ -44,7 +43,7 @@ public abstract class AbstractJComponentFixture<S, T extends JComponent, D exten
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  public AbstractJComponentFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @NotNull Class<? extends T> type) {
+  public AbstractJComponentFixture(Class<S> selfType, Robot robot, Class<? extends T> type) {
     super(selfType, robot, type);
   }
 
@@ -60,8 +59,8 @@ public abstract class AbstractJComponentFixture<S, T extends JComponent, D exten
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found. Or if more
    *           than one matching component is found.
    */
-  public AbstractJComponentFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @Nullable String name,
-                                   @NotNull Class<? extends T> type) {
+  public AbstractJComponentFixture(Class<S> selfType, Robot robot, @Nullable String name,
+                                   Class<? extends T> type) {
     super(selfType, robot, name, type);
   }
 
@@ -74,7 +73,7 @@ public abstract class AbstractJComponentFixture<S, T extends JComponent, D exten
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public AbstractJComponentFixture(@NotNull Class<S> selfType, @NotNull Robot robot, @NotNull T target) {
+  public AbstractJComponentFixture(Class<S> selfType, Robot robot, T target) {
     super(selfType, robot, target);
   }
 
@@ -86,7 +85,7 @@ public abstract class AbstractJComponentFixture<S, T extends JComponent, D exten
    * @throws NullPointerException if the given key is {@code null}.
    */
   @Override
-  public final @Nullable Object clientProperty(@NotNull Object key) {
+  public final @Nullable Object clientProperty(Object key) {
     return driver().clientProperty(target(), key);
   }
 
@@ -98,7 +97,7 @@ public abstract class AbstractJComponentFixture<S, T extends JComponent, D exten
    * @throws AssertionError if the toolTip in this fixture's {@code JComponent} does not match the given value.
    */
   @Override
-  public final @NotNull S requireToolTip(@Nullable String expected) {
+  public final S requireToolTip(@Nullable String expected) {
     driver().requireToolTip(target(), expected);
     return myself();
   }
@@ -112,7 +111,7 @@ public abstract class AbstractJComponentFixture<S, T extends JComponent, D exten
    * @throws AssertionError if the toolTip in this fixture's {@code JComponent} does not match the given value.
    */
   @Override
-  public final @NotNull S requireToolTip(@NotNull Pattern pattern) {
+  public final S requireToolTip(Pattern pattern) {
     driver().requireToolTip(target(), pattern);
     return myself();
   }

@@ -16,8 +16,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -32,7 +31,6 @@ public interface ComponentFinder {
   /**
    * @return the {@code ComponentPrinter} in this finder.
    */
-  @NotNull
   ComponentPrinter printer();
 
   /**
@@ -60,8 +58,7 @@ public interface ComponentFinder {
    * @see Settings#componentLookupScope()
    * @see ComponentLookupScope
    */
-  @NotNull
-  <T extends Component> T findByType(@NotNull Class<T> type);
+  <T extends Component> T findByType(Class<T> type);
 
   /**
    * Finds an AWT or Swing {@code Component} by type. For example:
@@ -74,8 +71,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see #findByType(Class)
    */
-  @NotNull
-  <T extends Component> T findByType(@NotNull Class<T> type, boolean showing);
+  <T extends Component> T findByType(Class<T> type, boolean showing);
 
   /**
    * <p>
@@ -113,8 +109,7 @@ public interface ComponentFinder {
    * @see Settings#componentLookupScope()
    * @see ComponentLookupScope
    */
-  @NotNull
-  <T extends Component> T findByType(@NotNull Container root, @NotNull Class<T> type);
+  <T extends Component> T findByType(Container root, Class<T> type);
 
   /**
    * Finds an AWT or Swing {@code Component} by type in the hierarchy under the given root.
@@ -128,8 +123,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see #findByType(Container, Class)
    */
-  @NotNull
-  <T extends Component> T findByType(@NotNull Container root, @NotNull Class<T> type, boolean showing);
+  <T extends Component> T findByType(Container root, Class<T> type, boolean showing);
 
   /**
    * <p>
@@ -178,7 +172,6 @@ public interface ComponentFinder {
    * @see Settings#componentLookupScope()
    * @see ComponentLookupScope
    */
-  @NotNull
   Component findByLabel(@Nullable String label);
 
   /**
@@ -200,8 +193,7 @@ public interface ComponentFinder {
    * @see Settings#componentLookupScope()
    * @see ComponentLookupScope
    */
-  @NotNull
-  <T extends Component> T findByLabel(@Nullable String label, @NotNull Class<T> type);
+  <T extends Component> T findByLabel(@Nullable String label, Class<T> type);
 
   /**
    * Finds an AWT or Swing {@code Component} by the text of its associated {@code JLabel} and type.
@@ -217,8 +209,7 @@ public interface ComponentFinder {
    * @see javax.swing.JLabel#getLabelFor()
    * @see javax.swing.JLabel#setLabelFor(Component)
    */
-  @NotNull
-  <T extends Component> T findByLabel(@Nullable String label, @NotNull Class<T> type, boolean showing);
+  <T extends Component> T findByLabel(@Nullable String label, Class<T> type, boolean showing);
 
   /**
    * Finds an AWT or Swing {@code Component} by by the text of its associated {@code JLabel}.
@@ -232,7 +223,6 @@ public interface ComponentFinder {
    * @see javax.swing.JLabel#getLabelFor()
    * @see javax.swing.JLabel#setLabelFor(Component)
    */
-  @NotNull
   Component findByLabel(@Nullable String label, boolean showing);
 
   /**
@@ -253,8 +243,7 @@ public interface ComponentFinder {
    * @see Settings#componentLookupScope()
    * @see ComponentLookupScope
    */
-  @NotNull
-  Component findByLabel(@NotNull Container root, @Nullable String label);
+  Component findByLabel(Container root, @Nullable String label);
 
   /**
    * Finds an AWT or Swing {@code Component} by the text of its associated {@code JLabel}, in the hierarchy under the
@@ -270,8 +259,7 @@ public interface ComponentFinder {
    * @see javax.swing.JLabel#getLabelFor()
    * @see javax.swing.JLabel#setLabelFor(Component)
    */
-  @NotNull
-  Component findByLabel(@NotNull Container root, @Nullable String label, boolean showing);
+  Component findByLabel(Container root, @Nullable String label, boolean showing);
 
   /**
    * Finds an AWT or Swing {@code Component} by the text of its associated {@code JLabel} and type, in the hierarchy
@@ -293,8 +281,7 @@ public interface ComponentFinder {
    * @see Settings#componentLookupScope()
    * @see ComponentLookupScope
    */
-  @NotNull
-  <T extends Component> T findByLabel(@NotNull Container root, @Nullable String label, @NotNull Class<T> type);
+  <T extends Component> T findByLabel(Container root, @Nullable String label, Class<T> type);
 
   /**
    * Finds an AWT or Swing {@code Component} by the text of its associated {@code JLabel} and type, in the hierarchy
@@ -312,8 +299,7 @@ public interface ComponentFinder {
    * @see javax.swing.JLabel#getLabelFor()
    * @see javax.swing.JLabel#setLabelFor(Component)
    */
-  @NotNull
-  <T extends Component> T findByLabel(@NotNull Container root, @Nullable String label, @NotNull Class<T> type,
+  <T extends Component> T findByLabel(Container root, @Nullable String label, Class<T> type,
                                       boolean showing);
 
   /**
@@ -360,7 +346,6 @@ public interface ComponentFinder {
    * @see Settings#componentLookupScope()
    * @see ComponentLookupScope
    */
-  @NotNull
   Component findByName(@Nullable String name);
 
   /**
@@ -380,8 +365,7 @@ public interface ComponentFinder {
    * @see ComponentLookupScope
    * @see #findByName(String)
    */
-  @NotNull
-  <T extends Component> T findByName(@Nullable String name, @NotNull Class<T> type);
+  <T extends Component> T findByName(@Nullable String name, Class<T> type);
 
   /**
    * Finds an AWT or Swing {@code Component} by name and type.
@@ -395,8 +379,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see #findByName(String)
    */
-  @NotNull
-  <T extends Component> T findByName(@Nullable String name, @NotNull Class<T> type, boolean showing);
+  <T extends Component> T findByName(@Nullable String name, Class<T> type, boolean showing);
 
   /**
    * Finds an AWT or Swing {@code Component} by name.
@@ -408,7 +391,6 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see #findByName(String)
    */
-  @NotNull
   Component findByName(@Nullable String name, boolean showing);
 
   /**
@@ -427,8 +409,7 @@ public interface ComponentFinder {
    * @see ComponentLookupScope
    * @see #findByName(String)
    */
-  @NotNull
-  Component findByName(@NotNull Container root, @Nullable String name);
+  Component findByName(Container root, @Nullable String name);
 
   /**
    * Finds an AWT or Swing {@code Component} by name, in the hierarchy under the given root.
@@ -441,8 +422,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see #findByName(String)
    */
-  @NotNull
-  Component findByName(@NotNull Container root, @Nullable String name, boolean showing);
+  Component findByName(Container root, @Nullable String name, boolean showing);
 
   /**
    * Finds an AWT or Swing {@code Component} by name and type, in the hierarchy under the given root. If this finder is
@@ -462,8 +442,7 @@ public interface ComponentFinder {
    * @see ComponentLookupScope
    * @see #findByName(String)
    */
-  @NotNull
-  <T extends Component> T findByName(@NotNull Container root, @Nullable String name, @NotNull Class<T> type);
+  <T extends Component> T findByName(Container root, @Nullable String name, Class<T> type);
 
   /**
    * Finds an AWT or Swing {@code Component} by name and type, in the hierarchy under the given root.
@@ -478,8 +457,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    * @see #findByName(String)
    */
-  @NotNull
-  <T extends Component> T findByName(@NotNull Container root, @Nullable String name, @NotNull Class<T> type,
+  <T extends Component> T findByName(Container root, @Nullable String name, Class<T> type,
                                      boolean showing);
 
   /**
@@ -492,8 +470,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  @NotNull
-  Component find(@NotNull ComponentMatcher m);
+  Component find(ComponentMatcher m);
 
   /**
    * Finds an AWT or Swing {@code Component} using the given {@link GenericTypeMatcher}. The given matcher will be
@@ -506,8 +483,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  @NotNull
-  <T extends Component> T find(@NotNull GenericTypeMatcher<T> m);
+  <T extends Component> T find(GenericTypeMatcher<T> m);
 
   /**
    * Finds an AWT or Swing {@code Component} using the given {@link GenericTypeMatcher} in the hierarchy under the given
@@ -521,8 +497,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  @NotNull
-  <T extends Component> T find(@NotNull Container root, @NotNull GenericTypeMatcher<T> m);
+  <T extends Component> T find(Container root, GenericTypeMatcher<T> m);
 
   /**
    * Finds an AWT or Swing {@code Component} using the given {@link ComponentMatcher} in the hierarchy under the given
@@ -535,8 +510,7 @@ public interface ComponentFinder {
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching component could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching component is found.
    */
-  @NotNull
-  Component find(@Nullable Container root, @NotNull ComponentMatcher m);
+  Component find(@Nullable Container root, ComponentMatcher m);
 
   /**
    * Returns all the AWT or Swing {@code Component}s that match the search criteria specified in the given
@@ -546,8 +520,7 @@ public interface ComponentFinder {
    * @return all the {@code Component}s that match the search criteria specified in the given {@code ComponentMatcher};
    *         or an empty collection, if there are no matching components.
    */
-  @NotNull
-  Collection<Component> findAll(@NotNull ComponentMatcher m);
+  Collection<Component> findAll(ComponentMatcher m);
 
   /**
    * Returns all the AWT or Swing {@code Component}s under the given root that match the search criteria specified in
@@ -558,8 +531,7 @@ public interface ComponentFinder {
    * @return all the {@code Component}s under the given root that match the search criteria specified in the given
    *         {@code ComponentMatcher}; or an empty collection, if there are no matching components.
    */
-  @NotNull
-  Collection<Component> findAll(@NotNull Container root, @NotNull ComponentMatcher m);
+  Collection<Component> findAll(Container root, ComponentMatcher m);
 
   /**
    * Returns all the AWT or Swing {@code Component}s that match the search criteria specified in the given
@@ -570,8 +542,7 @@ public interface ComponentFinder {
    * @return all the {@code Component}s that match the search criteria specified in the given {@code GenericTypeMatcher}
    *         ; or an empty collection, if there are no matching components.
    */
-  @NotNull
-  <T extends Component> Collection<T> findAll(@NotNull GenericTypeMatcher<T> m);
+  <T extends Component> Collection<T> findAll(GenericTypeMatcher<T> m);
 
   /**
    * Returns all the AWT or Swing {@code Component}s under the given root that match the search criteria specified in
@@ -583,8 +554,7 @@ public interface ComponentFinder {
    * @return all the {@code Component}s under the given root that match the search criteria specified in the given
    *         {@code GenericTypeMatcher}; or an empty collection, if there are no matching components.
    */
-  @NotNull
-  <T extends Component> Collection<T> findAll(@NotNull Container root, @NotNull GenericTypeMatcher<T> m);
+  <T extends Component> Collection<T> findAll(Container root, GenericTypeMatcher<T> m);
 
   /**
    * Returns whether the message in a {@link org.assertj.swing.exception.ComponentLookupException} should include the

@@ -19,7 +19,6 @@ import static org.assertj.swing.util.Arrays.copyOf;
 import static org.fest.reflect.core.Reflection.method;
 
 import org.assertj.swing.exception.UnexpectedException;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -60,8 +59,7 @@ public class ApplicationLauncher {
    * @return the created {@code ApplicationStarter}.
    * @throws UnexpectedException if the class specified in the given name cannot be loaded.
    */
-  @NotNull
-  public static ApplicationLauncher application(@NotNull String applicationTypeName) {
+  public static ApplicationLauncher application(String applicationTypeName) {
     try {
       Class<?> applicationType = Thread.currentThread().getContextClassLoader().loadClass(applicationTypeName);
       return application(applicationType);
@@ -76,15 +74,14 @@ public class ApplicationLauncher {
    * @param applicationType the class containing the "main" method.
    * @return the created {@code ApplicationStarter}.
    */
-  @NotNull
-  public static ApplicationLauncher application(@NotNull Class<?> applicationType) {
+  public static ApplicationLauncher application(Class<?> applicationType) {
     return new ApplicationLauncher(applicationType);
   }
 
   private final Class<?> applicationType;
   private String[] args = {};
 
-  private ApplicationLauncher(@NotNull Class<?> applicationType) {
+  private ApplicationLauncher(Class<?> applicationType) {
     this.applicationType = applicationType;
   }
 
@@ -96,8 +93,7 @@ public class ApplicationLauncher {
    * @return this {@code ApplicationStarter}.
    * @throws NullPointerException if {@code newArgs} is {@code null}.
    */
-  @NotNull
-  public ApplicationLauncher withArgs(@NotNull String... newArgs) {
+  public ApplicationLauncher withArgs(String... newArgs) {
     args = copyOf(checkNotNull(newArgs));
     return this;
   }

@@ -17,8 +17,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Frame;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Returns the title of a given {@code Frame}. This task is executed in the event dispatch thread (EDT).
@@ -29,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
  */
 final class FrameTitleQuery {
   @RunsInEDT
-  static @Nullable String titleOf(final @NotNull Frame f) {
+  static @Nullable String titleOf(final Frame f) {
     return execute(() -> f.getTitle());
   }
 

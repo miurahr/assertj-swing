@@ -18,7 +18,6 @@ import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.timing.Timeout.timeout;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JFileChooser;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -153,13 +152,12 @@ public class AbstractContainerFixture_fileChooser_Test extends RobotBasedTestCas
     }
 
     @Override
-    protected boolean isMatching(@NotNull JFileChooser fileChooser) {
+    protected boolean isMatching(JFileChooser fileChooser) {
       return TITLE.equals(fileChooser.getDialogTitle());
     }
 
     @Override
-    @NotNull
-    public String toString() {
+      public String toString() {
       return concat("file chooser with title ", quote(TITLE));
     }
   }

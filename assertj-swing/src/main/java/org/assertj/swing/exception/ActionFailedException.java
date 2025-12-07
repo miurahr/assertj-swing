@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Error that occurred when simulation of user input failed.
  *
@@ -29,8 +27,7 @@ public class ActionFailedException extends RuntimeException {
    * @param message the detail message.
    * @return the created exception.
    */
-  @NotNull
-  public static ActionFailedException actionFailure(@NotNull String message) {
+  public static ActionFailedException actionFailure(String message) {
     return new ActionFailedException(message);
   }
 
@@ -41,15 +38,15 @@ public class ActionFailedException extends RuntimeException {
    * @param cause the cause of the error.
    * @return the created exception.
    */
-  public static ActionFailedException actionFailure(@NotNull String message, @NotNull Throwable cause) {
+  public static ActionFailedException actionFailure(String message, Throwable cause) {
     return new ActionFailedException(message, cause);
   }
 
-  private ActionFailedException(@NotNull String message) {
+  private ActionFailedException(String message) {
     super(message);
   }
 
-  private ActionFailedException(@NotNull String message, @NotNull Throwable cause) {
+  private ActionFailedException(String message, Throwable cause) {
     super(message, cause);
   }
 }

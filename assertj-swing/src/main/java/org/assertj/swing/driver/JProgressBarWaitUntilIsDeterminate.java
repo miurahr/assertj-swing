@@ -16,7 +16,6 @@ import static org.assertj.swing.driver.JProgressBarIndeterminateQuery.isIndeterm
 import static org.assertj.swing.format.Formatting.format;
 import static org.assertj.swing.timing.Pause.pause;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.core.description.Description;
@@ -32,7 +31,7 @@ import org.assertj.swing.timing.Timeout;
  */
 final class JProgressBarWaitUntilIsDeterminate {
   @RunsInEDT
-  static void waitUntilValueIsDeterminate(final @NotNull JProgressBar progressBar, final @NotNull Timeout timeout) {
+  static void waitUntilValueIsDeterminate(final JProgressBar progressBar, final Timeout timeout) {
     pause(new Condition(untilIsDeterminate(progressBar)) {
       @Override
       public boolean test() {
@@ -41,10 +40,9 @@ final class JProgressBarWaitUntilIsDeterminate {
     }, timeout);
   }
 
-  private static Description untilIsDeterminate(final @NotNull JProgressBar progressBar) {
+  private static Description untilIsDeterminate(final JProgressBar progressBar) {
     return new GuiLazyLoadingDescription() {
       @Override
-      @NotNull
       protected String loadDescription() {
         return format(progressBar) + " to be in determinate mode";
       }

@@ -16,8 +16,7 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.core.Robot;
@@ -37,12 +36,11 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @throws org.assertj.swing.exception.ComponentLookupException if a showing {@code JOptionPane} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one showing {@code JOptionPane} is found.
    */
-  public JOptionPaneFixture(@NotNull Robot robot) {
+  public JOptionPaneFixture(Robot robot) {
     this(robot, findShowingOptionPane(robot));
   }
 
-  @NotNull
-  private static JOptionPane findShowingOptionPane(@NotNull Robot robot) {
+  private static JOptionPane findShowingOptionPane(Robot robot) {
     checkNotNull(robot);
     return robot.finder().findByType(JOptionPane.class, true);
   }
@@ -55,21 +53,19 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws IllegalArgumentException if {@code target} is {@code null}.
    */
-  public JOptionPaneFixture(@NotNull Robot robot, @NotNull JOptionPane target) {
+  public JOptionPaneFixture(Robot robot, JOptionPane target) {
     super(JOptionPaneFixture.class, robot, target);
   }
 
   @Override
-  @NotNull
-  protected JOptionPaneDriver createDriver(@NotNull Robot robot) {
+  protected JOptionPaneDriver createDriver(Robot robot) {
     return new JOptionPaneDriver(robot);
   }
 
   /**
    * @return the title of this fixture's {@code JOptionPane}.
    */
-  @Nullable
-  public String title() {
+  public @Nullable String title() {
     return driver().title(target());
   }
 
@@ -80,7 +76,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @return a fixture wrapping the "OK" button.
    * @throws org.assertj.swing.exception.ComponentLookupException if the a "OK" button cannot be found.
    */
-  @NotNull
   public JButtonFixture okButton() {
     return new JButtonFixture(robot(), driver().okButton(target()));
   }
@@ -92,7 +87,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @return a fixture wrapping the "Cancel" button.
    * @throws org.assertj.swing.exception.ComponentLookupException if the a "Cancel" button cannot be found.
    */
-  @NotNull
   public JButtonFixture cancelButton() {
     return new JButtonFixture(robot(), driver().cancelButton(target()));
   }
@@ -104,7 +98,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @return a fixture wrapping the "Yes" button.
    * @throws org.assertj.swing.exception.ComponentLookupException if the a "Yes" button cannot be found.
    */
-  @NotNull
   public JButtonFixture yesButton() {
     return new JButtonFixture(robot(), driver().yesButton(target()));
   }
@@ -116,7 +109,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @return a fixture wrapping the "No" button.
    * @throws org.assertj.swing.exception.ComponentLookupException if the a "No" button cannot be found.
    */
-  @NotNull
   public JButtonFixture noButton() {
     return new JButtonFixture(robot(), driver().noButton(target()));
   }
@@ -128,7 +120,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @return a fixture wrapping a button matching the given text.
    * @throws org.assertj.swing.exception.ComponentLookupException if the a button with the given text cannot be found.
    */
-  @NotNull
   public JButtonFixture buttonWithText(@Nullable String text) {
     return new JButtonFixture(robot(), driver().buttonWithText(target(), text));
   }
@@ -141,8 +132,7 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    * @throws org.assertj.swing.exception.ComponentLookupException if the a button with the given text cannot be found.
    */
-  @NotNull
-  public JButtonFixture buttonWithText(@NotNull Pattern pattern) {
+  public JButtonFixture buttonWithText(Pattern pattern) {
     return new JButtonFixture(robot(), driver().buttonWithText(target(), pattern));
   }
 
@@ -151,7 +141,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * 
    * @return this fixture.
    */
-  @NotNull
   public JOptionPaneFixture requireErrorMessage() {
     driver().requireErrorMessage(target());
     return this;
@@ -162,7 +151,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * 
    * @return this fixture.
    */
-  @NotNull
   public JOptionPaneFixture requireInformationMessage() {
     driver().requireInformationMessage(target());
     return this;
@@ -173,7 +161,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * 
    * @return this fixture.
    */
-  @NotNull
   public JOptionPaneFixture requireWarningMessage() {
     driver().requireWarningMessage(target());
     return this;
@@ -184,7 +171,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * 
    * @return this fixture.
    */
-  @NotNull
   public JOptionPaneFixture requireQuestionMessage() {
     driver().requireQuestionMessage(target());
     return this;
@@ -195,7 +181,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * 
    * @return this fixture.
    */
-  @NotNull
   public JOptionPaneFixture requirePlainMessage() {
     driver().requirePlainMessage(target());
     return this;
@@ -208,7 +193,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code JOptionPaneFixture} does not have the given title.
    */
-  @NotNull
   public JOptionPaneFixture requireTitle(@Nullable String title) {
     driver().requireTitle(target(), title);
     return this;
@@ -222,8 +206,7 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @throws NullPointerException if the given regular expression is {@code null}.
    * @throws AssertionError if this fixture's {@code JOptionPaneFixture} does not have the given title.
    */
-  @NotNull
-  public JOptionPaneFixture requireTitle(@NotNull Pattern pattern) {
+  public JOptionPaneFixture requireTitle(Pattern pattern) {
     driver().requireTitle(target(), pattern);
     return this;
   }
@@ -236,7 +219,6 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @throws AssertionError if the message in this fixture's {@code JOptionPaneFixture} is not equal to or does not
    *           match the given message.
    */
-  @NotNull
   public JOptionPaneFixture requireMessage(@Nullable Object message) {
     driver().requireMessage(target(), message);
     return this;
@@ -253,8 +235,7 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @throws AssertionError if the message in this fixture's {@code JOptionPaneFixture} does not match the given regular
    *           expression pattern.
    */
-  @NotNull
-  public JOptionPaneFixture requireMessage(@NotNull Pattern pattern) {
+  public JOptionPaneFixture requireMessage(Pattern pattern) {
     driver().requireMessage(target(), pattern);
     return this;
   }
@@ -266,8 +247,7 @@ public class JOptionPaneFixture extends AbstractContainerFixture<JOptionPaneFixt
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code JOptionPaneFixture} does not have the given options.
    */
-  @NotNull
-  public JOptionPaneFixture requireOptions(@NotNull Object[] options) {
+  public JOptionPaneFixture requireOptions(Object[] options) {
     driver().requireOptions(target(), options);
     return this;
   }

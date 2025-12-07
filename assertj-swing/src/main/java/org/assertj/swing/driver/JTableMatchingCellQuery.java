@@ -17,7 +17,6 @@ import static org.assertj.swing.data.TableCell.row;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -34,16 +33,15 @@ import org.assertj.swing.util.TextMatcher;
  */
 final class JTableMatchingCellQuery {
   @RunsInEDT
-  static @NotNull TableCell cellWithValue(final @NotNull JTable table, final @NotNull TextMatcher matcher,
-                                          final @NotNull JTableCellReader cellReader) {
+  static TableCell cellWithValue(final JTable table, final TextMatcher matcher,
+                                          final JTableCellReader cellReader) {
     TableCell result = execute(() -> findMatchingCell(table, matcher, cellReader));
     return checkNotNull(result);
   }
 
   @RunsInCurrentThread
-  @NotNull
-  private static TableCell findMatchingCell(@NotNull JTable table, @NotNull TextMatcher matcher,
-                                            @NotNull JTableCellReader cellReader) {
+  private static TableCell findMatchingCell(JTable table, TextMatcher matcher,
+                                            JTableCellReader cellReader) {
     int rCount = table.getRowCount();
     int cCount = table.getColumnCount();
     for (int r = 0; r < rCount; r++) {
@@ -58,8 +56,8 @@ final class JTableMatchingCellQuery {
   }
 
   @RunsInCurrentThread
-  private static boolean cellHasValue(@NotNull JTable table, int row, int column, @NotNull TextMatcher matcher,
-                                      @NotNull JTableCellReader cellReader) {
+  private static boolean cellHasValue(JTable table, int row, int column, TextMatcher matcher,
+                                      JTableCellReader cellReader) {
     return matcher.isMatching(cellReader.valueAt(table, row, column));
   }
 

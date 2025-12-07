@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JLabel;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -81,7 +80,7 @@ public class AbstractContainerFixture_label_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JLabelFixture label = fixture.label(new GenericTypeMatcher<JLabel>(JLabel.class) {
       @Override
-      protected boolean isMatching(@NotNull JLabel l) {
+      protected boolean isMatching(JLabel l) {
         return "Read Me".equals(l.getText());
       }
     });

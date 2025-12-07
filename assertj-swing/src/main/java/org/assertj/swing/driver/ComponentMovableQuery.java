@@ -19,7 +19,7 @@ import java.awt.Frame;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Indicates whether it is possible for the user to move the given AWT or Swing {{@code Component}. This query is

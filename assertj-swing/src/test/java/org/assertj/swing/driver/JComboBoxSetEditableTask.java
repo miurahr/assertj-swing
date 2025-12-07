@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JComboBox;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -27,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JComboBoxSetEditableTask {
   @RunsInEDT
-  static void setEditable(final @NotNull JComboBox comboBox, final boolean editable) {
+  static void setEditable(final JComboBox comboBox, final boolean editable) {
     execute(() -> comboBox.setEditable(editable));
   }
 

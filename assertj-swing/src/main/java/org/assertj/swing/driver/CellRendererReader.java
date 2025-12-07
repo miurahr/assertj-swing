@@ -15,7 +15,7 @@ package org.assertj.swing.driver;
 import java.awt.Component;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * <p>

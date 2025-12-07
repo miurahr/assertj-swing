@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.keystroke;
 
-import org.jetbrains.annotations.NotNull;
-
 import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 
@@ -36,7 +34,6 @@ public class KeyStrokeMapping {
    * @param modifiers the set of modifiers for the intended {@code KeyStroke}.
    * @return the created {@code KeyStrokeMapping}.
    */
-  @NotNull
   public static KeyStrokeMapping mapping(char character, int keyCode, int modifiers) {
     return new KeyStrokeMapping(character, keyCode, modifiers);
   }
@@ -58,7 +55,7 @@ public class KeyStrokeMapping {
    * @param character the character corresponding to the given {@code KeyStroke}.
    * @param keyStroke the {@code KeyStroke} corresponding to the given character.
    */
-  public KeyStrokeMapping(char character, @NotNull KeyStroke keyStroke) {
+  public KeyStrokeMapping(char character, KeyStroke keyStroke) {
     this.character = character;
     this.keyStroke = keyStroke;
   }
@@ -73,7 +70,6 @@ public class KeyStrokeMapping {
   /**
    * @return the {@code KeyStroke} corresponding to this mapping's character.
    */
-  @NotNull
   public KeyStroke keyStroke() {
     return keyStroke;
   }

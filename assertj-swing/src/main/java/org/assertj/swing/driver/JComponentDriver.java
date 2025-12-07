@@ -25,8 +25,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
@@ -57,7 +56,7 @@ public class JComponentDriver extends ContainerDriver {
    *
    * @param robot the robot the robot to use to simulate user input.
    */
-  public JComponentDriver(@NotNull Robot robot) {
+  public JComponentDriver(Robot robot) {
     super(robot);
   }
 
@@ -75,7 +74,7 @@ public class JComponentDriver extends ContainerDriver {
    * @param r the visible {@code Rectangle}.
    */
   @RunsInCurrentThread
-  protected final void scrollToVisible(@NotNull JComponent c, @NotNull Rectangle r) {
+  protected final void scrollToVisible(JComponent c, Rectangle r) {
     // From Abbot:
     // Ideally, we'd use scrollBar commands to effect the scrolling, but that gets really complicated for no real gain
     // in function. Fortunately, Swing's Scrollable makes for a simple solution.
@@ -100,7 +99,7 @@ public class JComponentDriver extends ContainerDriver {
    *         {@code Rectangle}.
    */
   @RunsInCurrentThread
-  protected static boolean isVisible(@NotNull JComponent c, @NotNull Rectangle r) {
+  protected static boolean isVisible(JComponent c, Rectangle r) {
     return c.getVisibleRect().contains(r);
   }
 
@@ -120,7 +119,7 @@ public class JComponentDriver extends ContainerDriver {
    *         {@code Rectangle}.
    */
   @RunsInCurrentThread
-  protected final boolean isVisible(@NotNull JComponent c, @NotNull Point p) {
+  protected final boolean isVisible(JComponent c, Point p) {
     return c.getVisibleRect().contains(p);
   }
 
@@ -134,7 +133,7 @@ public class JComponentDriver extends ContainerDriver {
    *           not possible to type any of the found {@code KeyStroke}s.
    */
   @RunsInEDT
-  protected final void invokeAction(@NotNull JComponent c, @NotNull String name) {
+  protected final void invokeAction(JComponent c, String name) {
     robot.focusAndWaitForFocusGain(c);
     for (KeyStroke keyStroke : keyStrokesForAction(c, name)) {
       try {
@@ -148,12 +147,12 @@ public class JComponentDriver extends ContainerDriver {
   }
 
   @RunsInCurrentThread
-  private static KeyStroke[] keyStrokesForAction(@NotNull JComponent component, @NotNull String actionName) {
+  private static KeyStroke[] keyStrokesForAction(JComponent component, String actionName) {
     Object key = findActionKey(actionName, checkNotNull(component.getActionMap()));
     return findKeyStrokesForAction(actionName, key, checkNotNull(component.getInputMap()));
   }
 
-  private void type(@NotNull KeyStroke keyStroke) {
+  private void type(KeyStroke keyStroke) {
     if (keyStroke.getKeyCode() == VK_UNDEFINED) {
       robot.type(keyStroke.getKeyChar());
       return;
@@ -169,7 +168,7 @@ public class JComponentDriver extends ContainerDriver {
    * @throws AssertionError if the toolTip of the given {@code JComponent} does not match the given value.
    */
   @RunsInEDT
-  public void requireToolTip(@NotNull JComponent c, @Nullable String expected) {
+  public void requireToolTip(JComponent c, @Nullable String expected) {
     verifyThat(toolTipOf(c)).as(propertyName(c, TOOL_TIP_TEXT_PROPERTY)).isEqualOrMatches(expected);
   }
 
@@ -182,7 +181,7 @@ public class JComponentDriver extends ContainerDriver {
    * @throws AssertionError if the toolTip of the given {@code JComponent} does not match the given value.
    */
   @RunsInEDT
-  public void requireToolTip(@NotNull JComponent c, @NotNull Pattern pattern) {
+  public void requireToolTip(JComponent c, Pattern pattern) {
     verifyThat(toolTipOf(c)).as(propertyName(c, TOOL_TIP_TEXT_PROPERTY)).matches(pattern);
   }
 
@@ -196,12 +195,12 @@ public class JComponentDriver extends ContainerDriver {
    */
   @RunsInEDT
   @Nullable
-  public Object clientProperty(@NotNull JComponent c, @NotNull Object key) {
+  public Object clientProperty(JComponent c, Object key) {
     return clientPropertyIn(c, checkNotNull(key));
   }
 
   @Nullable
-  private static Object clientPropertyIn(final @NotNull JComponent c, final @NotNull Object key) {
+  private static Object clientPropertyIn(final JComponent c, final Object key) {
     return execute(() -> c.getClientProperty(key));
   }
 }

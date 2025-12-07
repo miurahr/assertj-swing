@@ -15,7 +15,6 @@ package org.assertj.swing.text;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Reads the text displayed in a {@code JTextComponent}.
@@ -27,7 +26,6 @@ public class JTextComponentTextReader extends TextReader<JTextComponent> {
    * @return {@code JTextComponent.class}.
    */
   @Override
-  @NotNull
   public Class<JTextComponent> supportedComponent() {
     return JTextComponent.class;
   }
@@ -41,7 +39,7 @@ public class JTextComponentTextReader extends TextReader<JTextComponent> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean checkContainsText(@NotNull JTextComponent textComponent, @NotNull String text) {
+  protected boolean checkContainsText(JTextComponent textComponent, String text) {
     String componentText = textComponent.getText();
     if (componentText == null) {
       return false;

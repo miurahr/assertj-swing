@@ -23,8 +23,7 @@ import java.awt.dnd.InvalidDnDOperationException;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.fest.reflect.exception.ReflectionError;
 
@@ -42,7 +41,7 @@ class DragDropInfo {
     source(null);
   }
 
-  void update(@NotNull MouseEvent event) {
+  void update(MouseEvent event) {
     int mouseEventId = event.getID();
     if (mouseEventId == MOUSE_RELEASED || mouseEventId == MOUSE_MOVED) {
       clear();
@@ -68,12 +67,11 @@ class DragDropInfo {
     return source != null;
   }
 
-  @NotNull
   Point origin() {
     return new Point(x, y);
   }
 
-  void origin(@NotNull Point origin) {
+  void origin(Point origin) {
     x = origin.x;
     y = origin.y;
   }

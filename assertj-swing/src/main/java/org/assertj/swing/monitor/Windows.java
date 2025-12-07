@@ -22,7 +22,6 @@ import java.util.TimerTask;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Information collected by the monitors in this package.
@@ -70,7 +69,7 @@ class Windows {
    * @param w the given window.
    */
   @RunsInCurrentThread
-  void markExisting(@NotNull Window w) {
+  void markExisting(Window w) {
     synchronized (lock) {
       open.put(w, true);
       if (!w.isShowing()) {
@@ -84,7 +83,7 @@ class Windows {
    *
    * @param w the given window.
    */
-  void markAsHidden(@NotNull Window w) {
+  void markAsHidden(Window w) {
     synchronized (lock) {
       hidden.put(w, true);
       removeWindowFrom(w, pending);
@@ -96,7 +95,7 @@ class Windows {
    *
    * @param w the given window.
    */
-  void markAsShowing(final @NotNull Window w) {
+  void markAsShowing(final Window w) {
     synchronized (lock) {
       TimerTask task = new TimerTask() {
         @Override
@@ -114,7 +113,7 @@ class Windows {
    *
    * @param w the given window.
    */
-  void markAsReady(@NotNull Window w) {
+  void markAsReady(Window w) {
     synchronized (lock) {
       if (!pending.containsKey(w)) {
         return;
@@ -129,7 +128,7 @@ class Windows {
    *
    * @param w the given window.
    */
-  void markAsClosed(@NotNull Window w) {
+  void markAsClosed(Window w) {
     synchronized (lock) {
       removeWindowFrom(w, open, hidden, pending);
       closed.put(w, true);
@@ -148,7 +147,7 @@ class Windows {
    * @param c the given {@code Component}.
    * @return {@code true} if the given {@code Component} is a closed {@code Window}, {@code false} otherwise.
    */
-  boolean isClosed(@NotNull Component c) {
+  boolean isClosed(Component c) {
     synchronized (lock) {
       return closed.containsKey(c);
     }
@@ -160,7 +159,7 @@ class Windows {
    * @param w the given {@code Window}.
    * @return {@code true} if the given {@code Window} is ready to receive OS-level event input, {@code false} otherwise.
    */
-  boolean isReady(@NotNull Window w) {
+  boolean isReady(Window w) {
     synchronized (lock) {
       return open.containsKey(w) && !hidden.containsKey(w);
     }
@@ -172,7 +171,7 @@ class Windows {
    * @param w the given {@code Window}.
    * @return {@code true} if the given {@code Window} is hidden, {@code false} otherwise.
    */
-  boolean isHidden(@NotNull Window w) {
+  boolean isHidden(Window w) {
     synchronized (lock) {
       return hidden.containsKey(w);
     }
@@ -185,7 +184,7 @@ class Windows {
    * @return {@code true} if the given {@code Window} is showing but not not ready to receive OS-level event input,
    *         {@code false} otherwise.
    */
-  boolean isShowingButNotReady(@NotNull Window w) {
+  boolean isShowingButNotReady(Window w) {
     synchronized (lock) {
       return pending.containsKey(w);
     }

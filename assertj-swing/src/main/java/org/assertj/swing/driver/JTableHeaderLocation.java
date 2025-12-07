@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.table.JTableHeader;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -46,8 +45,7 @@ public class JTableHeaderLocation {
    * @throws LocationUnavailableException if a column with a matching value cannot be found.
    */
   @RunsInCurrentThread
-  @NotNull
-  public Pair<Integer, Point> pointAt(@NotNull JTableHeader tableHeader, @NotNull TextMatcher matcher) {
+  public Pair<Integer, Point> pointAt(JTableHeader tableHeader, TextMatcher matcher) {
     int index = indexOf(tableHeader, matcher);
     if (isValidIndex(tableHeader, index)) {
       return Pair.of(index, point(tableHeader, index));
@@ -58,7 +56,7 @@ public class JTableHeaderLocation {
   }
 
   @RunsInCurrentThread
-  private boolean isValidIndex(@NotNull JTableHeader tableHeader, int index) {
+  private boolean isValidIndex(JTableHeader tableHeader, int index) {
     int itemCount = columnCount(tableHeader);
     return (index >= 0 && index < itemCount);
   }
@@ -79,20 +77,18 @@ public class JTableHeaderLocation {
    * @throws IndexOutOfBoundsException if the index is out of bounds.
    */
   @RunsInCurrentThread
-  @NotNull
-  public Point pointAt(@NotNull JTableHeader tableHeader, int index) {
+  public Point pointAt(JTableHeader tableHeader, int index) {
     return point(tableHeader, checkIndexInBounds(tableHeader, index));
   }
 
   @RunsInCurrentThread
-  @NotNull
-  private static Point point(@NotNull JTableHeader tableHeader, int index) {
+  private static Point point(JTableHeader tableHeader, int index) {
     Rectangle r = tableHeader.getHeaderRect(index);
     return new Point(r.x + r.width / 2, r.y + r.height / 2);
   }
 
   @RunsInCurrentThread
-  private int checkIndexInBounds(@NotNull JTableHeader tableHeader, int index) {
+  private int checkIndexInBounds(JTableHeader tableHeader, int index) {
     int itemCount = columnCount(tableHeader);
     if (index >= 0 && index < itemCount) {
       return index;
@@ -117,7 +113,7 @@ public class JTableHeaderLocation {
    * @return the index of a matching column or -1 if a matching column was not found.
    */
   @RunsInCurrentThread
-  public int indexOf(@NotNull JTableHeader tableHeader, @NotNull TextMatcher matcher) {
+  public int indexOf(JTableHeader tableHeader, TextMatcher matcher) {
     int size = columnCount(tableHeader);
     for (int i = 0; i < size; i++) {
       if (matcher.isMatching(columnName(tableHeader, i))) {
@@ -128,12 +124,12 @@ public class JTableHeaderLocation {
   }
 
   @RunsInCurrentThread
-  private int columnCount(@NotNull JTableHeader header) {
+  private int columnCount(JTableHeader header) {
     return header.getColumnModel().getColumnCount();
   }
 
   @RunsInCurrentThread
-  private String columnName(@NotNull JTableHeader tableHeader, int index) {
+  private String columnName(JTableHeader tableHeader, int index) {
     return tableHeader.getTable().getModel().getColumnName(index);
   }
 }

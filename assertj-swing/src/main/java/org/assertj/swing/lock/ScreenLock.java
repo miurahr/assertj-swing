@@ -16,8 +16,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.exception.ScreenLockException;
 
@@ -42,7 +41,7 @@ public final class ScreenLock {
    * 
    * @param newOwner the new owner of the lock.
    */
-  public void acquire(@NotNull Object newOwner) {
+  public void acquire(Object newOwner) {
     lock.lock();
     try {
       if (alreadyAcquiredBy(newOwner)) {
@@ -67,7 +66,7 @@ public final class ScreenLock {
    * @throws ScreenLockException if the lock has not been previously acquired.
    * @throws ScreenLockException if the given owner is not the same as the current owner of the lock.
    */
-  public void release(@NotNull Object currentOwner) {
+  public void release(Object currentOwner) {
     lock.lock();
     try {
       if (!acquired) {
@@ -90,7 +89,7 @@ public final class ScreenLock {
    * @param possibleOwner the given object, which could be owning the lock.
    * @return {@code true} if the given object is owning the lock; {@code false} otherwise.
    */
-  public boolean acquiredBy(@NotNull Object possibleOwner) {
+  public boolean acquiredBy(Object possibleOwner) {
     lock.lock();
     try {
       return alreadyAcquiredBy(possibleOwner);
@@ -99,7 +98,7 @@ public final class ScreenLock {
     }
   }
 
-  private boolean alreadyAcquiredBy(@NotNull Object possibleOwner) {
+  private boolean alreadyAcquiredBy(Object possibleOwner) {
     return acquired && owner == possibleOwner;
   }
 
@@ -136,7 +135,6 @@ public final class ScreenLock {
   /**
    * @return the singleton instance of this class.
    */
-  @NotNull
   public static ScreenLock instance() {
     return ScreenLockHolder.instance;
   }

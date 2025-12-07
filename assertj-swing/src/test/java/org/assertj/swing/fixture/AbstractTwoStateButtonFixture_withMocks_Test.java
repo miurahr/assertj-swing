@@ -16,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.core.Robot;
@@ -117,8 +116,7 @@ public class AbstractTwoStateButtonFixture_withMocks_Test {
     }
 
     @Override
-    @NotNull
-    protected AbstractButtonDriver createDriver(@NotNull Robot robot) {
+      protected AbstractButtonDriver createDriver(Robot robot) {
       return mock(AbstractButtonDriver.class);
     }
   }

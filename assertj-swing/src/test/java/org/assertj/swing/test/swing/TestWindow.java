@@ -15,7 +15,6 @@ package org.assertj.swing.test.swing;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.util.RobotFactory;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,8 +41,7 @@ public class TestWindow extends JFrame {
    * @return the created window.
    */
   @RunsInEDT
-  @NotNull
-  public static TestWindow createAndShowNewWindow(final @NotNull Class<?> testClass) {
+  public static TestWindow createAndShowNewWindow(final Class<?> testClass) {
     TestWindow result = execute(() -> {
       TestWindow window = createInCurrentThread(testClass);
       TestWindow.display(window);
@@ -62,14 +60,12 @@ public class TestWindow extends JFrame {
    * @return the created window.
    */
   @RunsInEDT
-  @NotNull
-  public static TestWindow createNewWindow(final @NotNull Class<?> testClass) {
+  public static TestWindow createNewWindow(final Class<?> testClass) {
     TestWindow result = execute(() -> createInCurrentThread(testClass));
     return Objects.requireNonNull(result);
   }
 
-  @NotNull
-  private static TestWindow createInCurrentThread(@NotNull Class<?> testClass) {
+  private static TestWindow createInCurrentThread(Class<?> testClass) {
     return new TestWindow(testClass);
   }
 
@@ -87,7 +83,7 @@ public class TestWindow extends JFrame {
    *          will be used as the title of the created window.
    */
   @RunsInCurrentThread
-  protected TestWindow(@NotNull Class<?> testClass) {
+  protected TestWindow(Class<?> testClass) {
     setTitle(testClass.getSimpleName());
     setLayout(new FlowLayout());
     chooseLookAndFeel();
@@ -106,7 +102,7 @@ public class TestWindow extends JFrame {
    * @param components the components to add.
    */
   @RunsInCurrentThread
-  public void addComponents(@NotNull Component... components) {
+  public void addComponents(Component... components) {
     for (Component c : components) {
       add(c);
     }
@@ -135,8 +131,7 @@ public class TestWindow extends JFrame {
    * @return the displayed window.
    */
   @RunsInCurrentThread
-  @NotNull
-  protected static <T extends TestWindow> T display(@NotNull T w) {
+  protected static <T extends TestWindow> T display(T w) {
     w.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
     packAndShow(w);
     return w;
@@ -149,7 +144,7 @@ public class TestWindow extends JFrame {
    * @param preferredSize the preferred size to set to this window before displaying it on the screen.
    */
   @RunsInEDT
-  public void display(final @NotNull Dimension preferredSize) {
+  public void display(final Dimension preferredSize) {
     execute(() -> display(TestWindow.this, preferredSize));
   }
 
@@ -167,7 +162,7 @@ public class TestWindow extends JFrame {
    * @param preferredSize the preferred size to set to the given window before displaying it on the screen.
    */
   @RunsInCurrentThread
-  protected static void display(@NotNull TestWindow window, @NotNull Dimension preferredSize) {
+  protected static void display(TestWindow window, Dimension preferredSize) {
     window.setLocation(RobotFactory.DEFAULT_WINDOW_LOCATION);
     packAndShow(window, preferredSize);
   }
@@ -206,7 +201,7 @@ public class TestWindow extends JFrame {
    * @param window the window to destroy.
    */
   @RunsInCurrentThread
-  protected static void destroy(@NotNull TestWindow window) {
+  protected static void destroy(TestWindow window) {
     hideAndDispose(window);
   }
 }

@@ -14,8 +14,7 @@ package org.assertj.swing.fixture;
 
 import java.awt.Dialog;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.DialogDriver;
@@ -34,7 +33,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @throws NullPointerException if {@code target} is {@code null}.
    * @see org.assertj.swing.core.BasicRobot#robotWithCurrentAwtHierarchy()
    */
-  public DialogFixture(@NotNull Dialog target) {
+  public DialogFixture(Dialog target) {
     super(DialogFixture.class, target);
   }
 
@@ -46,7 +45,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public DialogFixture(@NotNull Robot robot, @NotNull Dialog target) {
+  public DialogFixture(Robot robot, Dialog target) {
     super(DialogFixture.class, robot, target);
   }
 
@@ -59,7 +58,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @throws org.assertj.swing.exception.ComponentLookupException if a {@code Dialog} having a matching name could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one {@code Dialog} having a matching name is found.
    */
-  public DialogFixture(@NotNull Robot robot, @Nullable String dialogName) {
+  public DialogFixture(Robot robot, @Nullable String dialogName) {
     super(DialogFixture.class, robot, dialogName, Dialog.class);
   }
 
@@ -77,8 +76,8 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
   }
 
   @Override
-  @NotNull
-  protected DialogDriver createDriver(@NotNull Robot robot) {
+
+  protected DialogDriver createDriver(Robot robot) {
     return new DialogDriver(robot);
   }
 
@@ -88,7 +87,7 @@ public class DialogFixture extends AbstractWindowFixture<DialogFixture, Dialog, 
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Dialog} is not modal.
    */
-  @NotNull
+
   public DialogFixture requireModal() {
     driver().requireModal(target());
     return this;

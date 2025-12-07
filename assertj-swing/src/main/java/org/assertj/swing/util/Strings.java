@@ -17,8 +17,7 @@ import static org.assertj.core.util.Objects.areEqual;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.core.util.Preconditions;
 
@@ -87,7 +86,7 @@ public final class Strings {
    *         otherwise. It also returns {@code false} if the given {@code String} is {@code null}.
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
-  public static boolean match(@NotNull Pattern p, @Nullable String s) {
+  public static boolean match(Pattern p, @Nullable String s) {
     return match(p, (CharSequence) s);
   }
 
@@ -100,7 +99,7 @@ public final class Strings {
    *         otherwise. It also returns {@code false} if the given {@code CharSequence} is {@code null}.
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
-  public static boolean match(@NotNull Pattern p, @Nullable CharSequence s) {
+  public static boolean match(Pattern p, @Nullable CharSequence s) {
     Preconditions.checkNotNull(p);
     if (s == null) {
       return false;

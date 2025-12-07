@@ -15,7 +15,6 @@ package org.assertj.swing.text;
 import javax.swing.JLabel;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Reads the text displayed in a {@code JLabel}.
@@ -27,7 +26,6 @@ public class JLabelTextReader extends TextReader<JLabel> {
    * @return {@code JLabel.class}.
    */
   @Override
-  @NotNull
   public Class<JLabel> supportedComponent() {
     return JLabel.class;
   }
@@ -41,7 +39,7 @@ public class JLabelTextReader extends TextReader<JLabel> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean checkContainsText(@NotNull JLabel label, @NotNull String text) {
+  protected boolean checkContainsText(JLabel label, String text) {
     String labelText = label.getText();
     if (labelText == null) {
       return false;

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.query;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
@@ -42,7 +41,7 @@ public final class JTableColumnByIdentifierQuery {
    * @return the index of a column with a matching identifier. Otherwise it returns -1.
    */
   @RunsInCurrentThread
-  public static int columnIndexByIdentifier(final @NotNull JTable table, final @NotNull Object identifier) {
+  public static int columnIndexByIdentifier(final JTable table, final Object identifier) {
     try {
       TableColumn column = table.getColumn(identifier);
       return table.convertColumnIndexToView(column.getModelIndex());

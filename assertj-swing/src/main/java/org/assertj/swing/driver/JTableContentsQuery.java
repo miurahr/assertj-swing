@@ -20,7 +20,6 @@ import javax.swing.JTable;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.cell.JTableCellReader;
 import org.assertj.swing.edt.GuiQuery;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns the contents of a {@code JTable} as a two-dimensional {@code String} array. This query is executed in the
@@ -30,10 +29,9 @@ import org.jetbrains.annotations.NotNull;
  */
 final class JTableContentsQuery {
   @RunsInEDT
-  static @NotNull String[][] tableContents(final @NotNull JTable table, final @NotNull JTableCellReader cellReader) {
+  static String[][] tableContents(final JTable table, final JTableCellReader cellReader) {
     String[][] result = execute(new GuiQuery<String[][]>() {
       @Override
-      @NotNull
       protected String[][] executeInEDT() {
         int rCount = table.getRowCount();
         int cCount = table.getColumnCount();

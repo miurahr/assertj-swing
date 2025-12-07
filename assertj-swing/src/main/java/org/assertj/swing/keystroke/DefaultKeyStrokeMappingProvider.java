@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.keystroke;
 
-import org.jetbrains.annotations.NotNull;
-
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.swing.keystroke.KeyStrokeMappings.defaultMappings;
 
@@ -40,7 +38,6 @@ public class DefaultKeyStrokeMappingProvider implements KeyStrokeMappingProvider
    * @return the default mapping of characters and {@code KeyStroke}s
    */
   @Override
-  @NotNull
   public Collection<KeyStrokeMapping> keyStrokeMappings() {
     return LazyLoadingSingleton.instance;
   }

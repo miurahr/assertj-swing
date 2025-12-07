@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -32,7 +31,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JTableRowCellSelectedQuery {
   @RunsInCurrentThread
-  static boolean isCellSelected(final @NotNull JTable table, final int row, final int column) {
+  static boolean isCellSelected(final JTable table, final int row, final int column) {
     return table.isCellSelected(row, column);
   }
 

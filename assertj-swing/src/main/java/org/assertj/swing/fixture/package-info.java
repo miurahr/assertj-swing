@@ -91,4 +91,7 @@
  *
  * @author Alex Ruiz
  */
+@NullMarked
 package org.assertj.swing.fixture;
+
+import org.jspecify.annotations.NullMarked;

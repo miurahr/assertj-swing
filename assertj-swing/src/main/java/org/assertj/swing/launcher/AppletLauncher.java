@@ -24,7 +24,6 @@ import java.util.Map;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.applet.AppletViewer;
 import org.assertj.swing.exception.UnexpectedException;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -93,8 +92,7 @@ public class AppletLauncher {
    * @throws UnexpectedException if a new instance of the given type cannot be instantiated.
    */
   @RunsInEDT
-  @NotNull
-  public static AppletLauncher applet(@NotNull String appletType) {
+  public static AppletLauncher applet(String appletType) {
     checkNotNullOrEmpty(appletType);
     Class<?> type = load(appletType);
     if (!(Applet.class.isAssignableFrom(type))) {
@@ -105,8 +103,7 @@ public class AppletLauncher {
   }
 
   @RunsInEDT
-  @NotNull
-  private static Class<?> load(@NotNull String typeName) {
+  private static Class<?> load(String typeName) {
     try {
       return Class.forName(typeName);
     } catch (Exception e) {
@@ -129,13 +126,11 @@ public class AppletLauncher {
    * @throws UnexpectedException if a new instance of the given type cannot be instantiated.
    */
   @RunsInEDT
-  @NotNull
-  public static AppletLauncher applet(@NotNull Class<? extends Applet> appletType) {
+  public static AppletLauncher applet(Class<? extends Applet> appletType) {
     return instantiate(checkNotNull(appletType));
   }
 
-  @NotNull
-  private static AppletLauncher instantiate(final @NotNull Class<?> appletType) {
+  private static AppletLauncher instantiate(final Class<?> appletType) {
     try {
       Object applet = execute(() -> appletType.newInstance());
       return launcherFor(checkNotNull((Applet) applet));
@@ -152,12 +147,11 @@ public class AppletLauncher {
    * @return the created {@code AppletLauncher}.
    * @throws NullPointerException if the given {@code Applet} is {@code null}.
    */
-  @NotNull
-  public static AppletLauncher launcherFor(@NotNull Applet applet) {
+  public static AppletLauncher launcherFor(Applet applet) {
     return new AppletLauncher(applet);
   }
 
-  private AppletLauncher(@NotNull Applet applet) {
+  private AppletLauncher(Applet applet) {
     this.applet = checkNotNull(applet);
   }
 
@@ -169,8 +163,7 @@ public class AppletLauncher {
    * @return this launcher.
    * @throws NullPointerException if {@code newParameters} is {@code null}.
    */
-  @NotNull
-  public AppletLauncher withParameters(@NotNull Map<String, String> newParameters) {
+  public AppletLauncher withParameters(Map<String, String> newParameters) {
     parameters.clear();
     parameters.putAll(checkNotNull(newParameters));
     return this;
@@ -184,8 +177,7 @@ public class AppletLauncher {
    * @throws NullPointerException if {@code newParameters} is {@code null}.
    * @throws NullPointerException if any parameter is {@code null}.
    */
-  @NotNull
-  public AppletLauncher withParameters(@NotNull AppletParameter... newParameters) {
+  public AppletLauncher withParameters(AppletParameter... newParameters) {
     checkNotNull(newParameters);
     parameters.clear();
     for (AppletParameter parameter : newParameters) {
@@ -194,7 +186,7 @@ public class AppletLauncher {
     return this;
   }
 
-  private void add(@NotNull AppletParameter parameter) {
+  private void add(AppletParameter parameter) {
     parameters.put(parameter.name, parameter.value);
   }
 
@@ -206,7 +198,6 @@ public class AppletLauncher {
    *
    * @return the created {@code AppletViewer}.
    */
-  @NotNull
   public AppletViewer start() {
     return showAppletViewerWith(applet, parameters);
   }

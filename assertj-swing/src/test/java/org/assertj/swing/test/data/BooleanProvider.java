@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.data;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * A provider of {@code boolean} values.
@@ -20,7 +19,6 @@ import org.jetbrains.annotations.NotNull;
  * @author Yvonne Wang
  */
 public class BooleanProvider {
-  @NotNull
   public static Object[][] booleans() {
     return new Object[][] { { true }, { false } };
   }

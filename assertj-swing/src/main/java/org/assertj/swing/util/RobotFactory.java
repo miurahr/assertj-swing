@@ -12,7 +12,8 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.NotNull;
+
+import org.jspecify.annotations.Nullable;
 
 import java.awt.*;
 
@@ -31,7 +32,7 @@ public class RobotFactory {
     }
   }
 
-  private static GraphicsDevice getOverriddenScreenDevice() {
+  private static @Nullable GraphicsDevice getOverriddenScreenDevice() {
     String testDisplay = System.getenv().get("TEST_DISPLAY");
     if (testDisplay != null) {
       for (GraphicsDevice screenDevice : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()) {
@@ -43,7 +44,7 @@ public class RobotFactory {
     return null;
   }
 
-  public static final GraphicsDevice OVERRIDDEN_SCREEN_DEVICE = getOverriddenScreenDevice();
+  public static final @Nullable GraphicsDevice OVERRIDDEN_SCREEN_DEVICE = getOverriddenScreenDevice();
   public static final GraphicsDevice DEFAULT_SCREEN_DEVICE = getScreenDevice();
   public static final Point DEFAULT_WINDOW_LOCATION = getDefaultWindowLocation();
 
@@ -60,7 +61,6 @@ public class RobotFactory {
    *           thrown when {@code GraphicsEnvironment.isHeadless()} returns {@code true}.
    * @throws SecurityException if {@code createRobot} permission is not granted.
    */
-  @NotNull
   public Robot newRobotInPrimaryScreen() throws AWTException {
     return new Robot(DEFAULT_SCREEN_DEVICE);
   }
@@ -73,7 +73,6 @@ public class RobotFactory {
    *           thrown when {@code GraphicsEnvironment.isHeadless()} returns {@code true}.
    * @throws SecurityException if {@code createRobot} permission is not granted.
    */
-  @NotNull
   public Robot newRobotInLeftScreen() throws AWTException {
     int lowestX = Integer.MAX_VALUE;
     GraphicsDevice lowestScreen = null;

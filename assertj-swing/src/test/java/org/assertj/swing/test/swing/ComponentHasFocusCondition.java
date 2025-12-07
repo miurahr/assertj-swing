@@ -18,7 +18,6 @@ import static org.assertj.swing.query.ComponentHasFocusQuery.hasFocus;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.timing.Condition;
 
@@ -30,12 +29,11 @@ import org.assertj.swing.timing.Condition;
 public class ComponentHasFocusCondition extends Condition {
   private Component component;
 
-  @NotNull
-  public static ComponentHasFocusCondition untilFocused(@NotNull Component component) {
+  public static ComponentHasFocusCondition untilFocused(Component component) {
     return new ComponentHasFocusCondition(component);
   }
 
-  private ComponentHasFocusCondition(@NotNull Component component) {
+  private ComponentHasFocusCondition(Component component) {
     super(concat(format(component), " has focus"));
     this.component = component;
   }

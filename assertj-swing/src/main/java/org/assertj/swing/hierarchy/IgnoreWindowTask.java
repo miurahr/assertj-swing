@@ -14,7 +14,6 @@ package org.assertj.swing.hierarchy;
 
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -28,7 +27,7 @@ class IgnoreWindowTask implements Runnable {
   private final Window w;
   private final WindowFilter filter;
 
-  IgnoreWindowTask(@NotNull Window w, @NotNull WindowFilter filter) {
+  IgnoreWindowTask(Window w, WindowFilter filter) {
     this.w = w;
     this.filter = filter;
   }

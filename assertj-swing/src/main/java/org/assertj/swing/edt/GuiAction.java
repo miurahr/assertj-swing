@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.edt;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -24,8 +23,8 @@ import java.util.concurrent.CountDownLatch;
  */
 abstract class GuiAction implements Runnable {
   private boolean executedInEDT;
-  private Throwable caughtException;
-  private CountDownLatch executionNotification;
+  private @Nullable Throwable caughtException;
+  private @Nullable CountDownLatch executionNotification;
 
   final @Nullable Throwable catchedException() {
     return caughtException;
@@ -43,7 +42,7 @@ abstract class GuiAction implements Runnable {
     caughtException = null;
   }
 
-  final void executionNotification(@NotNull CountDownLatch c) {
+  final void executionNotification(CountDownLatch c) {
     executionNotification = c;
   }
 

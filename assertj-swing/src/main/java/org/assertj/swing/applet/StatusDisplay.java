@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.applet;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Displays the state of an {@code Applet}.
  * 
@@ -25,5 +23,5 @@ public interface StatusDisplay {
    * 
    * @param status the status to display.
    */
-  void showStatus(@NotNull String status);
+  void showStatus(String status);
 }

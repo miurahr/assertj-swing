@@ -14,7 +14,6 @@ package org.assertj.swing.test.task;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +25,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class AbstractButtonSetSelectedTask {
   @RunsInEDT
-  public static void setSelected(final @NotNull AbstractButton button, final boolean selected) {
+  public static void setSelected(final AbstractButton button, final boolean selected) {
     execute(() -> button.setSelected(selected));
   }
 

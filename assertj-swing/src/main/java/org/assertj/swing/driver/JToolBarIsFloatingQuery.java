@@ -17,7 +17,6 @@ import static javax.swing.SwingUtilities.getWindowAncestor;
 import java.awt.Frame;
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JToolBar;
 import javax.swing.plaf.ToolBarUI;
 import javax.swing.plaf.basic.BasicToolBarUI;
@@ -39,7 +38,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JToolBarIsFloatingQuery {
   @RunsInCurrentThread
-  static boolean isJToolBarFloating(@NotNull JToolBar toolBar) {
+  static boolean isJToolBarFloating(JToolBar toolBar) {
     ToolBarUI ui = toolBar.getUI();
     if (ui instanceof BasicToolBarUI) {
       return ((BasicToolBarUI) ui).isFloating();

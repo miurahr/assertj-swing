@@ -14,8 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.driver.JPopupMenuElementsAsTextQuery.menuElementsAsText;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -44,7 +43,7 @@ public class JPopupMenuDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JPopupMenuDriver(@NotNull Robot robot) {
+  public JPopupMenuDriver(Robot robot) {
     super(robot);
   }
 
@@ -55,8 +54,7 @@ public class JPopupMenuDriver extends JComponentDriver {
    * @return the contents of the pop-up menu as a {@code String} array.
    */
   @RunsInEDT
-  @NotNull
-  public String[] menuLabelsOf(@NotNull JPopupMenu popupMenu) {
+  public String[] menuLabelsOf(JPopupMenu popupMenu) {
     return menuElementsAsText(popupMenu);
   }
 
@@ -72,8 +70,7 @@ public class JPopupMenuDriver extends JComponentDriver {
    *           name is found.
    */
   @RunsInEDT
-  @NotNull
-  public JMenuItem menuItem(@NotNull JPopupMenu popupMenu, @Nullable String name) {
+  public JMenuItem menuItem(JPopupMenu popupMenu, @Nullable String name) {
     return robot.finder().findByName(popupMenu, name, JMenuItem.class, false);
   }
 
@@ -87,9 +84,8 @@ public class JPopupMenuDriver extends JComponentDriver {
    *           criteria could not be found. Or if more than one {@code JMenuItem} that matches the given search criteria
    *           is found.
    */
-  @NotNull
-  public JMenuItem menuItem(@NotNull JPopupMenu popupMenu,
-                            @NotNull GenericTypeMatcher<? extends JMenuItem> matcher) {
+  public JMenuItem menuItem(JPopupMenu popupMenu,
+                            GenericTypeMatcher<? extends JMenuItem> matcher) {
     return robot.finder().find(popupMenu, matcher);
   }
 }

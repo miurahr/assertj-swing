@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import static org.assertj.swing.driver.ComponentPreconditions.checkEnabledAndShowing;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JSpinner;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -29,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JSpinnerSetValueTask {
   @RunsInEDT
-  static void setValue(final @NotNull JSpinner spinner, final @NotNull Object value) {
+  static void setValue(final JSpinner spinner, final Object value) {
     execute(() -> {
       checkEnabledAndShowing(spinner);
       spinner.setValue(value);

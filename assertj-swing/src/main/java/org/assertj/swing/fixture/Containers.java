@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Container;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -47,8 +46,7 @@ public final class Containers {
    * @see #frameFor(Container)
    */
   @RunsInEDT
-  @NotNull
-  public static FrameFixture showInFrame(@NotNull Container contentPane) {
+  public static FrameFixture showInFrame(Container contentPane) {
     FrameFixture frameFixture = frameFixtureFor(contentPane);
     frameFixture.show();
     return frameFixture;
@@ -65,8 +63,7 @@ public final class Containers {
    * @see #frameFor(Container)
    */
   @RunsInEDT
-  @NotNull
-  public static FrameFixture showInFrame(@NotNull Robot robot, @NotNull Container contentPane) {
+  public static FrameFixture showInFrame(Robot robot, Container contentPane) {
     FrameFixture frameFixture = frameFixtureFor(robot, contentPane);
     frameFixture.show();
     return frameFixture;
@@ -88,8 +85,7 @@ public final class Containers {
    * @see #frameFor(Container)
    */
   @RunsInEDT
-  @NotNull
-  public static FrameFixture frameFixtureFor(@NotNull Container contentPane) {
+  public static FrameFixture frameFixtureFor(Container contentPane) {
     return new FrameFixture(frameFor(contentPane));
   }
 
@@ -105,8 +101,7 @@ public final class Containers {
    * @see #frameFor(Container)
    */
   @RunsInEDT
-  @NotNull
-  public static FrameFixture frameFixtureFor(@NotNull Robot robot, @NotNull Container contentPane) {
+  public static FrameFixture frameFixtureFor(Robot robot, Container contentPane) {
     return new FrameFixture(robot, frameFor(contentPane));
   }
 
@@ -118,8 +113,7 @@ public final class Containers {
    * @return the created {@code JFrame}.
    */
   @RunsInEDT
-  @NotNull
-  public static JFrame frameFor(final @NotNull Container contentPane) {
+  public static JFrame frameFor(final Container contentPane) {
     JFrame result = execute(new GuiQuery<JFrame>() {
       @Override
       protected JFrame executeInEDT() throws Throwable {

@@ -79,4 +79,7 @@
  *
  * @author Alex Ruiz
  */
+@NullMarked
 package org.assertj.swing.finder;
+
+import org.jspecify.annotations.NullMarked;

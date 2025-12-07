@@ -18,8 +18,7 @@ import static org.assertj.swing.util.Colors.colorFromHexString;
 
 import java.awt.Color;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.core.api.AbstractObjectAssert;
 import org.assertj.core.description.Description;
@@ -40,7 +39,7 @@ public class ColorFixture {
    * @param target the color to manage.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public ColorFixture(@NotNull Color target) {
+  public ColorFixture(Color target) {
     this(target, (Description) null);
   }
 
@@ -51,7 +50,7 @@ public class ColorFixture {
    * @param description this fixture's description.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public ColorFixture(@NotNull Color target, @NotNull String description) {
+  public ColorFixture(Color target, String description) {
     this(target, new TextDescription(description));
   }
 
@@ -62,7 +61,7 @@ public class ColorFixture {
    * @param description this fixture's description.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public ColorFixture(@NotNull Color target, @Nullable Description description) {
+  public ColorFixture(Color target, @Nullable Description description) {
     this.target = checkNotNull(target);
     this.description = description;
   }
@@ -78,8 +77,7 @@ public class ColorFixture {
    * @throws NumberFormatException if the hexadecimal code is empty.
    * @throws AssertionError if this fixture's {@code Color} is not equal to the given one.
    */
-  @NotNull
-  public ColorFixture requireEqualTo(@NotNull String hexValue) {
+  public ColorFixture requireEqualTo(String hexValue) {
     return requireEqualTo(colorFromHexString(hexValue));
   }
 
@@ -90,7 +88,6 @@ public class ColorFixture {
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Color} is not equal to the given one.
    */
-  @NotNull
   public ColorFixture requireEqualTo(@Nullable Color color) {
     AbstractObjectAssert<?, Color> assertThat = assertThat(target);
     describe(assertThat);
@@ -115,8 +112,7 @@ public class ColorFixture {
    * @throws NumberFormatException if the hexadecimal code is empty.
    * @throws AssertionError if this fixture's {@code Color} is equal to the given one.
    */
-  @NotNull
-  public ColorFixture requireNotEqualTo(@NotNull String hexValue) {
+  public ColorFixture requireNotEqualTo(String hexValue) {
     return requireNotEqualTo(colorFromHexString(hexValue));
   }
 
@@ -127,7 +123,6 @@ public class ColorFixture {
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Color} is equal to the given one.
    */
-  @NotNull
   public ColorFixture requireNotEqualTo(@Nullable Color color) {
     AbstractObjectAssert<?, Color> assertThat = assertThat(target);
     describe(assertThat);
@@ -138,7 +133,6 @@ public class ColorFixture {
   /**
    * @return this fixture's {@code Color}.
    */
-  @NotNull
   public Color target() {
     return target;
   }

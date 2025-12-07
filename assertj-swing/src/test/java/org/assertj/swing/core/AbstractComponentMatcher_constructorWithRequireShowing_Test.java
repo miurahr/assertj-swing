@@ -17,7 +17,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.test.data.BooleanProvider;
 import org.junit.Test;
@@ -35,7 +34,6 @@ public class AbstractComponentMatcher_constructorWithRequireShowing_Test {
   private final boolean requireShowing;
 
   @Parameters
-  @NotNull
   public static Collection<Object[]> booleans() {
     return newArrayList(BooleanProvider.booleans());
   }

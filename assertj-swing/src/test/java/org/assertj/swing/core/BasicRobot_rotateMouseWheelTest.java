@@ -22,7 +22,6 @@ import java.awt.Dimension;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
@@ -69,7 +68,7 @@ public class BasicRobot_rotateMouseWheelTest extends BasicRobot_TestCase {
   private static class MouseWheelRecorder implements MouseWheelListener {
     private int wheelRotation;
 
-    static @NotNull MouseWheelRecorder attachTo(@NotNull Component c) {
+    static MouseWheelRecorder attachTo(Component c) {
       MouseWheelRecorder recorder = new MouseWheelRecorder();
       c.addMouseWheelListener(recorder);
       return recorder;

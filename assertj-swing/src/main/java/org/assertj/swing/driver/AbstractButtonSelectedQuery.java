@@ -18,7 +18,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Indicates whether a Swing {@code AbstractButton} is selected. This action is executed in the event dispatch thread
@@ -29,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
  */
 final class AbstractButtonSelectedQuery {
   @RunsInEDT
-  static boolean isSelected(final @NotNull AbstractButton button) {
+  static boolean isSelected(final AbstractButton button) {
     Boolean result = execute(() -> button.isSelected());
     return checkNotNull(result);
   }

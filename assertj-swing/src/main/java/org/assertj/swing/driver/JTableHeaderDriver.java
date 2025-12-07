@@ -21,8 +21,7 @@ import static org.assertj.swing.timing.Pause.pause;
 import java.awt.Point;
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JPopupMenu;
 import javax.swing.table.JTableHeader;
 
@@ -57,7 +56,7 @@ public class JTableHeaderDriver extends JComponentDriver {
    *
    * @param robot the robot to use to simulate user input.
    */
-  public JTableHeaderDriver(@NotNull Robot robot) {
+  public JTableHeaderDriver(Robot robot) {
     super(robot);
   }
 
@@ -71,7 +70,7 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws IndexOutOfBoundsException if the index is out of bounds.
    */
   @RunsInEDT
-  public void clickColumn(@NotNull JTableHeader tableHeader, int columnIndex) {
+  public void clickColumn(JTableHeader tableHeader, int columnIndex) {
     clickColumn(tableHeader, columnIndex, LEFT_BUTTON, 1);
   }
 
@@ -87,7 +86,7 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws IndexOutOfBoundsException if the index is out of bounds.
    */
   @RunsInEDT
-  public void clickColumn(@NotNull JTableHeader tableHeader, int columnIndex, @NotNull MouseButton button, int times) {
+  public void clickColumn(JTableHeader tableHeader, int columnIndex, MouseButton button, int times) {
     Point p = pointAtIndex(tableHeader, columnIndex, location);
     robot.click(tableHeader, p, button, times);
     pause(300); // needs more time when sorting a column (JDK 1.6)
@@ -103,7 +102,7 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
   @RunsInEDT
-  public void clickColumn(@NotNull JTableHeader tableHeader, @Nullable String columnName) {
+  public void clickColumn(JTableHeader tableHeader, @Nullable String columnName) {
     clickColumn(tableHeader, columnName, LEFT_BUTTON, 1);
   }
 
@@ -118,7 +117,7 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
   @RunsInEDT
-  public void clickColumn(@NotNull JTableHeader tableHeader, @NotNull Pattern columnNamePattern) {
+  public void clickColumn(JTableHeader tableHeader, Pattern columnNamePattern) {
     clickColumn(tableHeader, columnNamePattern, LEFT_BUTTON, 1);
   }
 
@@ -134,7 +133,7 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
   @RunsInEDT
-  public void clickColumn(@NotNull JTableHeader tableHeader, @Nullable String columnName, @NotNull MouseButton button,
+  public void clickColumn(JTableHeader tableHeader, @Nullable String columnName, MouseButton button,
                           int times) {
     clickColumn(tableHeader, new StringTextMatcher(columnName), button, times);
   }
@@ -153,14 +152,14 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.LocationUnavailableException if a column with a matching name cannot be found.
    */
   @RunsInEDT
-  public void clickColumn(@NotNull JTableHeader tableHeader, @NotNull Pattern columnNamePattern,
-                          @NotNull MouseButton button, int times) {
+  public void clickColumn(JTableHeader tableHeader, Pattern columnNamePattern,
+                          MouseButton button, int times) {
     clickColumn(tableHeader, new PatternTextMatcher(columnNamePattern), button, times);
   }
 
   @RunsInEDT
-  private void clickColumn(@NotNull JTableHeader tableHeader, @NotNull TextMatcher matcher,
-                           @NotNull MouseButton button, int times) {
+  private void clickColumn(JTableHeader tableHeader, TextMatcher matcher,
+                           MouseButton button, int times) {
     Point p = pointAtName(tableHeader, matcher, location());
     robot.click(tableHeader, p, button, times);
   }
@@ -177,14 +176,12 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, int columnIndex) {
+  public JPopupMenu showPopupMenu(JTableHeader tableHeader, int columnIndex) {
     return robot.showPopupMenu(tableHeader, pointAtIndex(tableHeader, columnIndex, location));
   }
 
   @RunsInEDT
-  @NotNull
-  private static Point pointAtIndex(final @NotNull JTableHeader tableHeader, final int columnIndex,
+  private static Point pointAtIndex(final JTableHeader tableHeader, final int columnIndex,
                                     final JTableHeaderLocation location) {
     Point result = execute(() -> {
       Point p = location.pointAt(tableHeader, columnIndex);
@@ -206,8 +203,7 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, @Nullable String columnName) {
+  public JPopupMenu showPopupMenu(JTableHeader tableHeader, @Nullable String columnName) {
     return robot.showPopupMenu(tableHeader, pointAtName(tableHeader, new StringTextMatcher(columnName), location()));
   }
 
@@ -223,16 +219,14 @@ public class JTableHeaderDriver extends JComponentDriver {
    * @throws org.assertj.swing.exception.ComponentLookupException if a pop-up menu cannot be found.
    */
   @RunsInEDT
-  @NotNull
-  public JPopupMenu showPopupMenu(@NotNull JTableHeader tableHeader, @NotNull Pattern pattern) {
+  public JPopupMenu showPopupMenu(JTableHeader tableHeader, Pattern pattern) {
     return robot.showPopupMenu(tableHeader, pointAtName(tableHeader, new PatternTextMatcher(pattern), location()));
   }
 
   @RunsInEDT
-  @NotNull
-  private static Point pointAtName(final @NotNull JTableHeader tableHeader,
-                                   final @NotNull TextMatcher matcher,
-                                   final @NotNull JTableHeaderLocation location) {
+  private static Point pointAtName(final JTableHeader tableHeader,
+                                   final TextMatcher matcher,
+                                   final JTableHeaderLocation location) {
     Point result = execute(() -> {
       Pair<Integer, Point> indexAndLocation = location.pointAt(tableHeader, matcher);
       checkEnabledAndShowing(tableHeader);
@@ -242,7 +236,6 @@ public class JTableHeaderDriver extends JComponentDriver {
     return checkNotNull(result);
   }
 
-  @NotNull
   private JTableHeaderLocation location() {
     return location;
   }

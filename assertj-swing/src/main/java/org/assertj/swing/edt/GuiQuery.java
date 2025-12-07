@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.edt;
 
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import static javax.swing.SwingUtilities.isEventDispatchThread;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;

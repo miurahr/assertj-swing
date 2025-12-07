@@ -19,8 +19,7 @@ import static org.assertj.swing.util.Platform.osFamily;
 import javax.swing.KeyStroke;
 
 import org.assertj.core.util.VisibleForTesting;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * A collection of {@link KeyStrokeMapping}.
@@ -45,7 +44,7 @@ public class KeyStrokeMap {
   }
 
   @VisibleForTesting
-  static void updateKeyStrokeMapCollection(@NotNull KeyStrokeMapCollection c) {
+  static void updateKeyStrokeMapCollection(KeyStrokeMapCollection c) {
     maps = c;
   }
 
@@ -54,13 +53,13 @@ public class KeyStrokeMap {
    * 
    * @param provider the given {@code KeyStrokeMappingProvider}.
    */
-  public static void addKeyStrokesFrom(@NotNull KeyStrokeMappingProvider provider) {
+  public static void addKeyStrokesFrom(KeyStrokeMappingProvider provider) {
     for (KeyStrokeMapping entry : provider.keyStrokeMappings()) {
       add(entry.character(), entry.keyStroke());
     }
   }
 
-  private static void add(@NotNull Character character, @NotNull KeyStroke keyStroke) {
+  private static void add(Character character, KeyStroke keyStroke) {
     maps.add(character, keyStroke);
   }
 
@@ -101,7 +100,7 @@ public class KeyStrokeMap {
    * @param keyStroke the given {@code KeyStroke}.
    * @return {@code KeyEvent.VK_UNDEFINED} if the result is unknown.
    */
-  public static char charFor(@NotNull KeyStroke keyStroke) {
+  public static char charFor(KeyStroke keyStroke) {
     Character character = maps.charFor(keyStroke);
     // Try again, but strip all modifiers but shift
     if (character == null) {
@@ -114,7 +113,7 @@ public class KeyStrokeMap {
   }
 
   @Nullable
-  private static Character charWithoutModifiersButShift(@NotNull KeyStroke keyStroke) {
+  private static Character charWithoutModifiersButShift(KeyStroke keyStroke) {
     int mask = keyStroke.getModifiers() & ~SHIFT_DOWN_MASK;
     return maps.charFor(KeyStroke.getKeyStroke(keyStroke.getKeyCode(), mask));
   }

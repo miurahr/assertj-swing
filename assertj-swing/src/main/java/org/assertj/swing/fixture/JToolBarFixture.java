@@ -15,8 +15,7 @@ package org.assertj.swing.fixture;
 import java.awt.BorderLayout;
 import java.awt.Point;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JToolBar;
 
 import org.assertj.swing.core.Robot;
@@ -38,11 +37,10 @@ public class JToolBarFixture extends AbstractSwingContainerFixture<JToolBarFixtu
 
     private final String value;
 
-    UnfloatConstraint(@NotNull String value) {
+    UnfloatConstraint(String value) {
       this.value = value;
     }
 
-    @NotNull
     public String value() {
       return value;
     }
@@ -56,7 +54,7 @@ public class JToolBarFixture extends AbstractSwingContainerFixture<JToolBarFixtu
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JToolBarFixture(@NotNull Robot robot, @NotNull JToolBar target) {
+  public JToolBarFixture(Robot robot, JToolBar target) {
     super(JToolBarFixture.class, robot, target);
   }
 
@@ -69,13 +67,12 @@ public class JToolBarFixture extends AbstractSwingContainerFixture<JToolBarFixtu
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JToolBar} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JToolBar} is found.
    */
-  public JToolBarFixture(@NotNull Robot robot, @Nullable String toolbarName) {
+  public JToolBarFixture(Robot robot, @Nullable String toolbarName) {
     super(JToolBarFixture.class, robot, toolbarName, JToolBar.class);
   }
 
   @Override
-  @NotNull
-  protected JToolBarDriver createDriver(@NotNull Robot robot) {
+  protected JToolBarDriver createDriver(Robot robot) {
     return new JToolBarDriver(robot);
   }
 
@@ -87,8 +84,7 @@ public class JToolBarFixture extends AbstractSwingContainerFixture<JToolBarFixtu
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code JToolBar} is not floatable.
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code JToolBar} cannot be dragged.
    */
-  @NotNull
-  public JToolBarFixture floatTo(@NotNull Point point) {
+  public JToolBarFixture floatTo(Point point) {
     driver().floatTo(target(), point.x, point.y);
     return this;
   }
@@ -99,7 +95,6 @@ public class JToolBarFixture extends AbstractSwingContainerFixture<JToolBarFixtu
    * @return this fixture.
    * @throws org.assertj.swing.exception.ActionFailedException if the dock container cannot be found.
    */
-  @NotNull
   public JToolBarFixture unfloat() {
     driver().unfloat(target());
     return this;
@@ -112,8 +107,7 @@ public class JToolBarFixture extends AbstractSwingContainerFixture<JToolBarFixtu
    * @return this fixture.
    * @throws org.assertj.swing.exception.ActionFailedException if the dock container cannot be found.
    */
-  @NotNull
-  public JToolBarFixture unfloat(@NotNull UnfloatConstraint constraint) {
+  public JToolBarFixture unfloat(UnfloatConstraint constraint) {
     driver().unfloat(target(), constraint.value());
     return this;
   }

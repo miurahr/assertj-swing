@@ -23,8 +23,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JList;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -44,7 +43,7 @@ final class JListScrollToItemTask {
 
   /** @return the point that the JList was scrolled to. */
   @RunsInEDT
-  static @NotNull Point scrollToItem(final @NotNull JList<?> list, final int index) {
+  static Point scrollToItem(final JList<?> list, final int index) {
     Point result = execute(() -> {
       checkEnabledAndShowing(list);
       checkIndexInBounds(list, index);
@@ -55,8 +54,8 @@ final class JListScrollToItemTask {
 
   /** @return the index of first matching element and the point that the JList was scrolled to. */
   @RunsInEDT
-  static @NotNull Pair<Integer, Point> scrollToItem(final @NotNull JList<?> list, final @NotNull TextMatcher matcher,
-                                                    final @NotNull JListCellReader cellReader) {
+  static Pair<Integer, Point> scrollToItem(final JList<?> list, final TextMatcher matcher,
+                                                    final JListCellReader cellReader) {
     Pair<Integer, Point> result = execute(new GuiQuery<Pair<Integer, Point>>() {
       @Override
       protected Pair<Integer, Point> executeInEDT() {
@@ -73,9 +72,9 @@ final class JListScrollToItemTask {
 
   /** @return the index of first matching element and the point that the JList was scrolled to. */
   @RunsInEDT
-  static @NotNull Pair<Integer, Point> scrollToItemIfNotSelectedYet(final @NotNull JList<?> list,
-                                                                    final @NotNull TextMatcher matcher,
-                                                                    final @NotNull JListCellReader cellReader) {
+  static Pair<Integer, Point> scrollToItemIfNotSelectedYet(final JList<?> list,
+                                                                    final TextMatcher matcher,
+                                                                    final JListCellReader cellReader) {
     Pair<Integer, Point> result = execute(new GuiQuery<Pair<Integer, Point>>() {
       @Override
       protected Pair<Integer, Point> executeInEDT() {
@@ -92,7 +91,7 @@ final class JListScrollToItemTask {
 
   /** @return the point that the JList was scrolled to. */
   @RunsInEDT
-  static @Nullable Point scrollToItemIfNotSelectedYet(final @NotNull JList<?> list, final int index) {
+  static @Nullable Point scrollToItemIfNotSelectedYet(final JList<?> list, final int index) {
     return execute(() -> {
       checkEnabledAndShowing(list);
       checkIndexInBounds(list, index);
@@ -103,7 +102,7 @@ final class JListScrollToItemTask {
   /** @return the point that the JList was scrolled to. */
   @RunsInCurrentThread
   @Nullable
-  private static Point scrollToItemWithIndexIfNotSelectedYet(final @NotNull JList<?> list, final int index) {
+  private static Point scrollToItemWithIndexIfNotSelectedYet(final JList<?> list, final int index) {
     if (list.getSelectedIndex() == index) {
       return null;
     }
@@ -111,8 +110,7 @@ final class JListScrollToItemTask {
   }
 
   @RunsInCurrentThread
-  @NotNull
-  private static Point scrollToItemWithIndex(@NotNull JList<?> list, int index) {
+  private static Point scrollToItemWithIndex(JList<?> list, int index) {
     Rectangle cellBounds = checkNotNull(cellBounds(list, index));
     list.scrollRectToVisible(cellBounds);
     return cellCenter(list, cellBounds);

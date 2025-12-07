@@ -14,8 +14,7 @@ package org.assertj.swing.core.matcher;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JButton;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -52,7 +51,6 @@ public final class JButtonMatcher extends NamedComponentMatcherTemplate<JButton>
    * @param name the name to match.
    * @return the created matcher.
    */
-  @NotNull
   public static JButtonMatcher withName(@Nullable String name) {
     return new JButtonMatcher(name, anyValue());
   }
@@ -81,7 +79,6 @@ public final class JButtonMatcher extends NamedComponentMatcherTemplate<JButton>
    * @param text the text to match. It can be a regular expression.
    * @return the created matcher.
    */
-  @NotNull
   public static JButtonMatcher withText(@Nullable String text) {
     return new JButtonMatcher(anyValue(), text);
   }
@@ -111,8 +108,7 @@ public final class JButtonMatcher extends NamedComponentMatcherTemplate<JButton>
    * @param pattern the regular expression pattern to match.
    * @return the created matcher.
    */
-  @NotNull
-  public static JButtonMatcher withText(@NotNull Pattern pattern) {
+  public static JButtonMatcher withText(Pattern pattern) {
     return new JButtonMatcher(anyValue(), pattern);
   }
 
@@ -137,7 +133,6 @@ public final class JButtonMatcher extends NamedComponentMatcherTemplate<JButton>
    * @param newText the new text to match. It can be a regular expression.
    * @return this matcher.
    */
-  @NotNull
   public JButtonMatcher andText(@Nullable String newText) {
     text = newText;
     return this;
@@ -150,7 +145,7 @@ public final class JButtonMatcher extends NamedComponentMatcherTemplate<JButton>
    * @param textPattern the regular expression pattern to match.
    * @return this matcher.
    */
-  public JButtonMatcher andText(@NotNull Pattern textPattern) {
+  public JButtonMatcher andText(Pattern textPattern) {
     text = textPattern;
     return this;
   }
@@ -160,7 +155,6 @@ public final class JButtonMatcher extends NamedComponentMatcherTemplate<JButton>
    *
    * @return this matcher.
    */
-  @NotNull
   public JButtonMatcher andShowing() {
     requireShowing(true);
     return this;
@@ -181,7 +175,7 @@ public final class JButtonMatcher extends NamedComponentMatcherTemplate<JButton>
    */
   @RunsInCurrentThread
   @Override
-  protected boolean isMatching(@NotNull JButton button) {
+  protected boolean isMatching(JButton button) {
     return isNameMatching(button.getName()) && arePropertyValuesMatching(text, button.getText());
   }
 

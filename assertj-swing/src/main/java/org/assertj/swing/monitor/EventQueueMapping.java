@@ -23,8 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * A mapping of AWT or Swing {@code Component}s, and their respective {@link EventQueue}.
@@ -36,14 +35,14 @@ class EventQueueMapping {
   final Map<Component, WeakReference<EventQueue>> queueMap = newWeakHashMap();
 
   @RunsInCurrentThread
-  void addQueueFor(@NotNull Component c) {
+  void addQueueFor(Component c) {
     EventQueue queue = c.getToolkit().getSystemEventQueue();
     queueMap.put(c, new WeakReference<EventQueue>(queue));
   }
 
   @RunsInCurrentThread
   @Nullable
-  EventQueue queueFor(@NotNull Component c) {
+  EventQueue queueFor(Component c) {
     EventQueue queue = storedQueueFor(c);
     if (queue == null) {
       return c.getToolkit().getSystemEventQueue();
@@ -52,11 +51,10 @@ class EventQueueMapping {
   }
 
   @Nullable
-  EventQueue storedQueueFor(@NotNull Component c) {
+  EventQueue storedQueueFor(Component c) {
     return queueFrom(queueMap.get(c));
   }
 
-  @NotNull
   Collection<EventQueue> eventQueues() {
     Set<EventQueue> eventQueues = newHashSet();
     for (WeakReference<EventQueue> reference : queueMap.values()) {

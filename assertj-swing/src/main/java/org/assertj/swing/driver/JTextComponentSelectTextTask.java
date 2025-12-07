@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -31,7 +30,7 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 final class JTextComponentSelectTextTask {
   @RunsInCurrentThread
-  static void selectTextInRange(@NotNull JTextComponent textBox, int start, int end) {
+  static void selectTextInRange(JTextComponent textBox, int start, int end) {
     textBox.setCaretPosition(start);
     textBox.moveCaretPosition(end);
   }

@@ -15,4 +15,7 @@
  * 
  * @author Alex Ruiz
  */
+@NullMarked
 package org.assertj.swing.core.matcher;
+
+import org.jspecify.annotations.NullMarked;

@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JScrollBar;
 
 /**
@@ -24,7 +23,7 @@ import javax.swing.JScrollBar;
  * @author Yvonne Wang
  */
 final class JScrollBarSetValueTask {
-  static void setValue(final @NotNull JScrollBar scrollBar, final int value) {
+  static void setValue(final JScrollBar scrollBar, final int value) {
     execute(() -> scrollBar.setValue(value));
   }
 

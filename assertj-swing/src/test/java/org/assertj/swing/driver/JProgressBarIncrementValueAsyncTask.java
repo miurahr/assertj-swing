@@ -21,7 +21,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.core.Robot;
@@ -35,7 +34,7 @@ import org.assertj.swing.core.Robot;
 class JProgressBarIncrementValueAsyncTask {
   private static Logger logger = Logger.getAnonymousLogger();
 
-  static @NotNull TaskBuilder with(@NotNull JProgressBar progressBar) {
+  static TaskBuilder with(JProgressBar progressBar) {
     return new TaskBuilder(progressBar);
   }
 
@@ -50,7 +49,7 @@ class JProgressBarIncrementValueAsyncTask {
   private final int increment;
   private final long periodInMs;
 
-  private JProgressBarIncrementValueAsyncTask(@NotNull Robot robot, @NotNull JProgressBar progressBar, int increment,
+  private JProgressBarIncrementValueAsyncTask(Robot robot, JProgressBar progressBar, int increment,
                                               long periodInMs) {
     this.robot = robot;
     this.progressBar = progressBar;
@@ -59,7 +58,6 @@ class JProgressBarIncrementValueAsyncTask {
     task = createInnerTask();
   }
 
-  @NotNull
   private Runnable createInnerTask() {
     return new Runnable() {
       @Override
@@ -98,24 +96,21 @@ class JProgressBarIncrementValueAsyncTask {
     private int increment = 10;
     private long periodInMs = 1000;
 
-    TaskBuilder(@NotNull JProgressBar progressBar) {
+    TaskBuilder(JProgressBar progressBar) {
       this.progressBar = progressBar;
     }
 
-    @NotNull
-    TaskBuilder increment(int value) {
+      TaskBuilder increment(int value) {
       increment = value;
       return this;
     }
 
-    @NotNull
-    TaskBuilder every(long duration, TimeUnit timeUnit) {
+      TaskBuilder every(long duration, TimeUnit timeUnit) {
       periodInMs = timeUnit.toMillis(duration);
       return this;
     }
 
-    @NotNull
-    JProgressBarIncrementValueAsyncTask createTask(@NotNull Robot robot) {
+      JProgressBarIncrementValueAsyncTask createTask(Robot robot) {
       return new JProgressBarIncrementValueAsyncTask(robot, progressBar, increment, periodInMs);
     }
   }

@@ -22,7 +22,6 @@ import javax.swing.JComboBox;
 import org.assertj.core.util.Lists;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.util.Arrays;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Formatter for {@code JComboBox}es.
@@ -38,8 +37,7 @@ public class JComboBoxFormatter extends ComponentFormatterTemplate {
    */
   @RunsInCurrentThread
   @Override
-  @NotNull
-  protected String doFormat(@NotNull Component c) {
+  protected String doFormat(Component c) {
     JComboBox<?> comboBox = (JComboBox<?>) c;
     String format = "%s[name=%s, selectedItem=%s, contents=%s, editable=%b, enabled=%b, visible=%b, showing=%b]";
     return String.format(format, getRealClassName(c), quote(comboBox.getName()),
@@ -48,8 +46,7 @@ public class JComboBoxFormatter extends ComponentFormatterTemplate {
   }
 
   @RunsInCurrentThread
-  @NotNull
-  private Object[] contentsOf(@NotNull JComboBox<?> comboBox) {
+  private Object[] contentsOf(JComboBox<?> comboBox) {
     List<Object> contents = Lists.newArrayList();
     int count = comboBox.getItemCount();
     for (int i = 0; i < count; i++) {
@@ -62,7 +59,6 @@ public class JComboBoxFormatter extends ComponentFormatterTemplate {
    * @return {@code JComboBox.class}.
    */
   @Override
-  @NotNull
   public Class<? extends Component> targetType() {
     return JComboBox.class;
   }

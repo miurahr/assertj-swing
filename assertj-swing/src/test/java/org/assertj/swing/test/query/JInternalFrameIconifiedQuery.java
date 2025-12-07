@@ -15,7 +15,6 @@ package org.assertj.swing.test.query;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -32,8 +31,7 @@ public final class JInternalFrameIconifiedQuery {
    * @return <code>true</code> if the given {@link JInternalFrame} is currently iconified.
    */
   @RunsInEDT
-  @NotNull
-  public static Boolean isIconified(final @NotNull JInternalFrame internalFrame) {
+  public static Boolean isIconified(final JInternalFrame internalFrame) {
     Boolean result = execute(() -> internalFrame.isIcon());
     return checkNotNull(result);
   }

@@ -16,7 +16,6 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.exception.ActionFailedException.actionFailure;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -55,7 +54,6 @@ public class TableCellInSelectedRow implements TableCellFinder {
    *
    * @return the created builder.
    */
-  @NotNull
   public static TableCellBuilder selectedRow() {
     return new TableCellBuilder();
   }
@@ -72,7 +70,6 @@ public class TableCellInSelectedRow implements TableCellFinder {
      * @param column the column index of the cell to find.
      * @return the created finder.
      */
-    @NotNull
     public TableCellInSelectedRow column(int column) {
       return new TableCellInSelectedRow(column);
     }
@@ -93,8 +90,7 @@ public class TableCellInSelectedRow implements TableCellFinder {
    * @throws org.assertj.swing.exception.ActionFailedException if a matching cell could not be found.
    */
   @Override
-  @NotNull
-  public TableCell findCell(@NotNull JTable table, @NotNull JTableCellReader cellReader) {
+  public TableCell findCell(JTable table, JTableCellReader cellReader) {
     int selectedRow = selectedRowOf(table);
     if (selectedRow == -1) {
       throw actionFailure("The given JTable does not have any selection");

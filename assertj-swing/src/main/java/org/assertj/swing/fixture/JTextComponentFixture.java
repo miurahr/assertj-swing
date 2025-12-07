@@ -14,8 +14,7 @@ package org.assertj.swing.fixture;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.text.JTextComponent;
 
 import org.assertj.swing.core.Robot;
@@ -37,7 +36,7 @@ public class JTextComponentFixture extends
    * @throws NullPointerException if {@code robot} is {@code null}.
    * @throws NullPointerException if {@code target} is {@code null}.
    */
-  public JTextComponentFixture(@NotNull Robot robot, @NotNull JTextComponent target) {
+  public JTextComponentFixture(Robot robot, JTextComponent target) {
     super(JTextComponentFixture.class, robot, target);
   }
 
@@ -50,13 +49,12 @@ public class JTextComponentFixture extends
    * @throws org.assertj.swing.exception.ComponentLookupException if a matching {@code JTextComponent} could not be found.
    * @throws org.assertj.swing.exception.ComponentLookupException if more than one matching {@code JTextComponent} is found.
    */
-  public JTextComponentFixture(@NotNull Robot robot, @Nullable String textComponentName) {
+  public JTextComponentFixture(Robot robot, @Nullable String textComponentName) {
     super(JTextComponentFixture.class, robot, textComponentName, JTextComponent.class);
   }
 
   @Override
-  @NotNull
-  protected JTextComponentDriver createDriver(@NotNull Robot robot) {
+  protected JTextComponentDriver createDriver(Robot robot) {
     return new JTextComponentDriver(robot);
   }
 
@@ -81,8 +79,7 @@ public class JTextComponentFixture extends
    * @throws org.assertj.swing.exception.ActionFailedException if the selecting the text in the given range fails.
    */
   @Override
-  @NotNull
-  public JTextComponentFixture select(@NotNull String text) {
+  public JTextComponentFixture select(String text) {
     driver().selectText(target(), text);
     return this;
   }
@@ -98,7 +95,6 @@ public class JTextComponentFixture extends
    * @throws org.assertj.swing.exception.ActionFailedException if the selecting the text in the given range fails.
    */
   @Override
-  @NotNull
   public JTextComponentFixture selectText(int start, int end) {
     driver().selectText(target(), start, end);
     return this;
@@ -112,7 +108,6 @@ public class JTextComponentFixture extends
    * @throws IllegalStateException if this fixture's {@code JTextComponent} is not showing on the screen.
    */
   @Override
-  @NotNull
   public JTextComponentFixture selectAll() {
     driver().selectAll(target());
     return this;
@@ -126,7 +121,6 @@ public class JTextComponentFixture extends
    * @throws IllegalStateException if this fixture's {@code JTextComponent} is not showing on the screen.
    */
   @Override
-  @NotNull
   public JTextComponentFixture deleteText() {
     driver().deleteText(target());
     return this;
@@ -141,8 +135,7 @@ public class JTextComponentFixture extends
    * @throws IllegalStateException if this fixture's {@code JTextComponent} is not showing on the screen.
    */
   @Override
-  @NotNull
-  public JTextComponentFixture enterText(@NotNull String text) {
+  public JTextComponentFixture enterText(String text) {
     driver().enterText(target(), text);
     return this;
   }
@@ -159,7 +152,6 @@ public class JTextComponentFixture extends
    * @throws IllegalStateException if this fixture's {@code JTextComponent} is disabled.
    * @throws IllegalStateException if this fixture's {@code JTextComponent} is not showing on the screen.
    */
-  @NotNull
   public JTextComponentFixture setText(@Nullable String text) {
     driver().setText(target(), text);
     return this;
@@ -173,7 +165,6 @@ public class JTextComponentFixture extends
    * @throws AssertionError if the text of this fixture's {@code JTextComponent} is not equal to the given one.
    */
   @Override
-  @NotNull
   public JTextComponentFixture requireText(@Nullable String expected) {
     driver().requireText(target(), expected);
     return this;
@@ -188,8 +179,7 @@ public class JTextComponentFixture extends
    * @throws AssertionError if the text of this fixture's {@code JTextComponent} is not eual to the given one.
    */
   @Override
-  @NotNull
-  public JTextComponentFixture requireText(@NotNull Pattern pattern) {
+  public JTextComponentFixture requireText(Pattern pattern) {
     driver().requireText(target(), pattern);
     return this;
   }
@@ -201,7 +191,6 @@ public class JTextComponentFixture extends
    * @return this fixture.
    */
   @Override
-  @NotNull
   public JTextComponentFixture requireEditable() {
     driver().requireEditable(target());
     return this;
@@ -214,7 +203,6 @@ public class JTextComponentFixture extends
    * @return this fixture.
    */
   @Override
-  @NotNull
   public JTextComponentFixture requireNotEditable() {
     driver().requireNotEditable(target());
     return this;
@@ -226,7 +214,6 @@ public class JTextComponentFixture extends
    * @return this fixture.
    * @throws AssertionError if the target text component is not empty.
    */
-  @NotNull
   public JTextComponentFixture requireEmpty() {
     driver().requireEmpty(target());
     return this;

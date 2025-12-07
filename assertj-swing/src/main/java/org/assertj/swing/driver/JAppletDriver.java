@@ -28,8 +28,7 @@ import javax.swing.JApplet;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.internal.annotation.InternalApi;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * <p>
@@ -53,7 +52,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    *
    * @param robot the robot used to simulate user input.
    */
-  public JAppletDriver(@NotNull Robot robot) {
+  public JAppletDriver(Robot robot) {
     super(robot);
   }
 
@@ -63,36 +62,36 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @param robot the robot used to simulate user input.
    * @param newApplet the applet to simulate user input against.
    */
-  public JAppletDriver(@NotNull Robot robot, @NotNull JApplet newApplet) {
+  public JAppletDriver(Robot robot, JApplet newApplet) {
     this(robot);
     applet = newApplet;
   }
 
   @RunsInEDT
-  private static void doResize(final @NotNull JApplet applet, final int width, final int height) {
+  private static void doResize(final JApplet applet, final int width, final int height) {
     execute(() -> applet.resize(width, height));
   }
 
   @RunsInEDT
   @Nullable
-  private static URL codeBase(final @NotNull JApplet applet) {
+  private static URL codeBase(final JApplet applet) {
     return execute(() -> applet.getCodeBase());
   }
 
   @RunsInEDT
   @Nullable
-  private static URL documentBase(final @NotNull JApplet applet) {
+  private static URL documentBase(final JApplet applet) {
     return execute(() -> applet.getDocumentBase());
   }
 
   @RunsInEDT
   @Nullable
-  private static String parameter(final @NotNull JApplet applet, final @Nullable String parameterName) {
+  private static String parameter(final JApplet applet, final @Nullable String parameterName) {
     return execute(() -> applet.getParameter(parameterName));
   }
 
   @RunsInEDT
-  private static boolean active(final @NotNull JApplet applet) {
+  private static boolean active(final JApplet applet) {
     Boolean result = execute(() -> applet.isActive());
     return checkNotNull(result);
   }
@@ -117,7 +116,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @param height the new height.
    */
   @RunsInEDT
-  public void appletResize(@NotNull JApplet applet, int width, int height) {
+  public void appletResize(JApplet applet, int width, int height) {
     doResize(applet, width, height);
   }
 
@@ -143,7 +142,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
 
   @RunsInEDT
   @Nullable
-  private static AppletContext appletContext(final @NotNull JApplet applet) {
+  private static AppletContext appletContext(final JApplet applet) {
     return execute(() -> applet.getAppletContext());
   }
 
@@ -165,7 +164,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    */
   @RunsInEDT
   @Nullable
-  public URL getCodeBase(@NotNull JApplet applet) {
+  public URL getCodeBase(JApplet applet) {
     return codeBase(applet);
   }
 
@@ -189,7 +188,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    */
   @RunsInEDT
   @Nullable
-  public URL getDocumentBase(@NotNull JApplet applet) {
+  public URL getDocumentBase(JApplet applet) {
     return documentBase(applet);
   }
 
@@ -215,7 +214,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @return the value of the named parameter in the given {code JApplet} in the HTML tag, or {@code null} if not set.
    */
   @RunsInEDT
-  public String getParameter(@NotNull JApplet applet, @Nullable String name) {
+  public String getParameter(JApplet applet, @Nullable String name) {
     return parameter(applet, name);
   }
 
@@ -237,7 +236,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @return {@code true} if the given {@code JApplet} is active; {@code false} otherwise.
    */
   @RunsInEDT
-  public boolean isActive(@NotNull JApplet applet) {
+  public boolean isActive(JApplet applet) {
     return active(applet);
   }
 
@@ -248,7 +247,7 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @return the {@code Applet} with the given name.
    */
   @RunsInEDT
-  public Applet getApplet(@NotNull String name) {
+  public Applet getApplet(String name) {
     return applet.getAppletContext().getApplet(name);
   }
 
@@ -256,7 +255,6 @@ public class JAppletDriver extends ComponentDriver implements AppletStub {
    * @return the collection of {@code Applet}s within the {@code AppletContext}.
    */
   @RunsInEDT
-  @NotNull
   public Enumeration<Applet> getApplets() {
     Enumeration<Applet> applets = applet.getAppletContext().getApplets();
     return applets != null ? applets : enumeration(Collections.<Applet> emptyList());

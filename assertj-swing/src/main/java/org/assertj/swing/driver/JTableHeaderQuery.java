@@ -18,8 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Returns the {@code JTableHeader} in a {@code JTable}. This query is executed in the event dispatch thread (EDT).
@@ -30,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
  */
 final class JTableHeaderQuery {
   @RunsInEDT
-  static @Nullable JTableHeader tableHeader(final @NotNull JTable table) {
+  static @Nullable JTableHeader tableHeader(final JTable table) {
     return execute(() -> table.getTableHeader());
   }
 

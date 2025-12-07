@@ -16,4 +16,7 @@
  * 
  * @author Alex Ruiz
  */
+@NullMarked
 package org.assertj.swing.cell;
+
+import org.jspecify.annotations.NullMarked;

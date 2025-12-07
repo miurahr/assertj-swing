@@ -29,7 +29,6 @@ import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 import java.util.EmptyStackException;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Catches native drop target events, which are normally hidden from AWTEventListeners.
@@ -42,12 +41,12 @@ class DragAwareEventQueue extends EventQueue {
   private final AWTEventListener eventListener;
   private final NativeDndIdentifier nativeDnd;
 
-  DragAwareEventQueue(@NotNull Toolkit toolkit, long mask, @NotNull AWTEventListener eventListener) {
+  DragAwareEventQueue(Toolkit toolkit, long mask, AWTEventListener eventListener) {
     this(toolkit, mask, eventListener, new NativeDndIdentifier());
   }
 
-  DragAwareEventQueue(@NotNull Toolkit toolkit, long mask, @NotNull AWTEventListener eventListener,
-                      @NotNull NativeDndIdentifier nativeDnd) {
+  DragAwareEventQueue(Toolkit toolkit, long mask, AWTEventListener eventListener,
+                      NativeDndIdentifier nativeDnd) {
     this.toolkit = toolkit;
     this.mask = mask;
     this.eventListener = eventListener;
@@ -90,7 +89,7 @@ class DragAwareEventQueue extends EventQueue {
     super.dispatchEvent(e);
   }
 
-  private void relayDndEvent(@NotNull MouseEvent event) {
+  private void relayDndEvent(MouseEvent event) {
     int eventId = event.getID();
     if (eventId == MOUSE_MOVED || eventId == MOUSE_DRAGGED) {
       if ((mask & MOUSE_MOTION_EVENT_MASK) != 0) {

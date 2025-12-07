@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.core;
 
-import org.jetbrains.annotations.NotNull;
-
 import static java.awt.event.InputEvent.BUTTON1_MASK;
 import static java.awt.event.InputEvent.BUTTON2_MASK;
 import static java.awt.event.InputEvent.BUTTON3_MASK;
@@ -45,7 +43,6 @@ public enum MouseButton {
    * @return the found button.
    * @throws IllegalArgumentException if the given mask is not a valid one.
    */
-  @NotNull
   public static MouseButton lookup(int mask) {
     for (MouseButton button : values()) {
       if (button.mask == mask) {

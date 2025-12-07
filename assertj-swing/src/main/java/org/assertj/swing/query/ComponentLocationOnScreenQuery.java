@@ -18,7 +18,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Component;
 import java.awt.Point;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -41,8 +40,7 @@ public final class ComponentLocationOnScreenQuery {
    * @see Component#getLocationOnScreen()
    */
   @RunsInEDT
-  @NotNull
-  public static Point locationOnScreen(final @NotNull Component component) {
+  public static Point locationOnScreen(final Component component) {
     Point result = execute(() -> component.getLocationOnScreen());
     return checkNotNull(result);
   }

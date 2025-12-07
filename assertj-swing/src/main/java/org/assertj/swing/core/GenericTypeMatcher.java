@@ -16,8 +16,7 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -39,7 +38,7 @@ public abstract class GenericTypeMatcher<T extends Component> extends AbstractCo
    * @param supportedType the type supported by this matcher.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public GenericTypeMatcher(@NotNull Class<T> supportedType) {
+  public GenericTypeMatcher(Class<T> supportedType) {
     this(supportedType, false);
   }
 
@@ -50,7 +49,7 @@ public abstract class GenericTypeMatcher<T extends Component> extends AbstractCo
    * @param requireShowing indicates if the {@code Component} to match should be showing or not.
    * @throws NullPointerException if the given type is {@code null}.
    */
-  public GenericTypeMatcher(@NotNull Class<T> supportedType, boolean requireShowing) {
+  public GenericTypeMatcher(Class<T> supportedType, boolean requireShowing) {
     super(requireShowing);
     this.supportedType = checkNotNull(supportedType);
   }
@@ -92,7 +91,7 @@ public abstract class GenericTypeMatcher<T extends Component> extends AbstractCo
   /**
    * @return the supported type of this matcher.
    */
-  public final @NotNull Class<T> supportedType() {
+  public final Class<T> supportedType() {
     return supportedType;
   }
 
@@ -110,5 +109,5 @@ public abstract class GenericTypeMatcher<T extends Component> extends AbstractCo
    * @return {@code true} if the given {@code Component} matches the defined search criteria; otherwise, {@code false} .
    */
   @RunsInCurrentThread
-  protected abstract boolean isMatching(@NotNull T component);
+  protected abstract boolean isMatching(T component);
 }

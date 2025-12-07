@@ -14,8 +14,7 @@ package org.assertj.swing.edt;
 
 import static org.fest.reflect.core.Reflection.method;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JComponent;
 import javax.swing.RepaintManager;
 import javax.swing.SwingUtilities;
@@ -49,7 +48,6 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
    * @see #uninstall()
    * @see RepaintManager#setCurrentManager(RepaintManager)
    */
-  @NotNull
   public static FailOnThreadViolationRepaintManager install() {
     Object m = currentRepaintManager();
     if (m instanceof FailOnThreadViolationRepaintManager) {
@@ -68,7 +66,6 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
    * @see #install()
    * @see RepaintManager#setCurrentManager(RepaintManager)
    */
-  @NotNull
   public static RepaintManager uninstall() {
     RepaintManager restored = previousRepaintManager;
     setCurrentManager(restored);
@@ -90,7 +87,6 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
     return null;
   }
 
-  @NotNull
   private static FailOnThreadViolationRepaintManager installNew() {
     FailOnThreadViolationRepaintManager m = new FailOnThreadViolationRepaintManager();
     previousRepaintManager = currentRepaintManager();
@@ -112,7 +108,7 @@ public class FailOnThreadViolationRepaintManager extends CheckThreadViolationRep
    * @throws EdtViolationException when a EDT access violation is found.
    */
   @Override
-  void violationFound(@NotNull JComponent c, @NotNull StackTraceElement[] stackTraceElements) {
+  void violationFound(JComponent c, StackTraceElement[] stackTraceElements) {
     EdtViolationException e = new EdtViolationException("EDT violation detected");
     e.setStackTrace(stackTraceElements);
     throw e;

@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.keystroke;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Collection;
 
 /**
@@ -28,6 +26,5 @@ public interface KeyStrokeMappingProvider {
   /**
    * @return the {@code KeyStrokeMapping}s to be used by {@link KeyStrokeMap}.
    */
-  @NotNull
   Collection<KeyStrokeMapping> keyStrokeMappings();
 }

@@ -19,7 +19,6 @@ import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JListCellReader;
 import org.assertj.swing.driver.BasicJListCellReader;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Reads the text displayed in a {@code JList}.
@@ -34,7 +33,7 @@ public class JListTextReader extends TextReader<JList> {
   }
 
   @VisibleForTesting
-  JListTextReader(@NotNull JListCellReader cellReader) {
+  JListTextReader(JListCellReader cellReader) {
     this.cellReader = cellReader;
   }
 
@@ -42,7 +41,6 @@ public class JListTextReader extends TextReader<JList> {
    * @return {@code JList.class}.
    */
   @Override
-  @NotNull
   public Class<JList> supportedComponent() {
     return JList.class;
   }
@@ -58,7 +56,7 @@ public class JListTextReader extends TextReader<JList> {
    */
   @RunsInCurrentThread
   @Override
-  protected boolean checkContainsText(@NotNull JList list, @NotNull String text) {
+  protected boolean checkContainsText(JList list, String text) {
     ListModel model = list.getModel();
     int elementCount = model.getSize();
     for (int i = 0; i < elementCount; i++) {

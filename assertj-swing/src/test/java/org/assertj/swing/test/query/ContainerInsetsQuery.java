@@ -18,7 +18,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Container;
 import java.awt.Insets;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -37,8 +36,7 @@ public final class ContainerInsetsQuery {
    * @see Container#getInsets()
    */
   @RunsInEDT
-  @NotNull
-  public static Insets insetsOf(final @NotNull Container container) {
+  public static Insets insetsOf(final Container container) {
     Insets result = execute(() -> container.getInsets());
     return checkNotNull(result);
   }

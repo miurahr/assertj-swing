@@ -21,7 +21,6 @@ import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMat
 
 import java.awt.Dimension;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
@@ -86,7 +85,7 @@ public class AbstractContainerFixture_scrollPane_Test extends RobotBasedTestCase
     robot.showWindow(window);
     JScrollPaneFixture scrollPane = fixture.scrollPane(new GenericTypeMatcher<JScrollPane>(JScrollPane.class) {
       @Override
-      protected boolean isMatching(@NotNull JScrollPane s) {
+      protected boolean isMatching(JScrollPane s) {
         return s.getViewport().getView() instanceof JList;
       }
     });
@@ -103,11 +102,11 @@ public class AbstractContainerFixture_scrollPane_Test extends RobotBasedTestCase
   private static class MyWindow extends TestWindow {
     final JScrollPane scrollPane = new JScrollPane(new JList(array("One", "Two")));
 
-    static @NotNull MyWindow createNew(final @NotNull Class<?> testClass) {
+    static MyWindow createNew(final Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@NotNull Class<?> testClass) {
+    private MyWindow(Class<?> testClass) {
       super(testClass);
       scrollPane.setName("scrollMeScrollBar");
       scrollPane.setPreferredSize(new Dimension(100, 50));

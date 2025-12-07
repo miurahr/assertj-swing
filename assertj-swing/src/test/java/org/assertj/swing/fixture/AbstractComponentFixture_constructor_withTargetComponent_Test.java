@@ -18,7 +18,6 @@ import static org.mockito.Mockito.mock;
 import java.awt.Component;
 import java.awt.Frame;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.driver.ComponentDriver;
@@ -63,13 +62,12 @@ public class AbstractComponentFixture_constructor_withTargetComponent_Test {
   }
 
   private static class ComponentFixture extends AbstractComponentFixture<ComponentFixture, Component, ComponentDriver> {
-    ComponentFixture(@NotNull Class<ComponentFixture> selfType, @NotNull Robot robot, @NotNull Component target) {
+    ComponentFixture(Class<ComponentFixture> selfType, Robot robot, Component target) {
       super(selfType, robot, target);
     }
 
     @Override
-    @NotNull
-    protected ComponentDriver createDriver(@NotNull Robot robot) {
+      protected ComponentDriver createDriver(Robot robot) {
       return new ComponentDriver(robot);
     }
   }

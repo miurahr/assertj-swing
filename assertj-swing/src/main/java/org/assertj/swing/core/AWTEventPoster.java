@@ -19,8 +19,7 @@ import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.input.InputState;
 import org.assertj.swing.monitor.WindowMonitor;
@@ -36,8 +35,8 @@ class AWTEventPoster {
   private final WindowMonitor windowMonitor;
   private final Settings settings;
 
-  AWTEventPoster(@NotNull Toolkit toolkit, @NotNull InputState inputState, @NotNull WindowMonitor windowMonitor,
-                 @NotNull Settings settings) {
+  AWTEventPoster(Toolkit toolkit, InputState inputState, WindowMonitor windowMonitor,
+                 Settings settings) {
     this.toolkit = toolkit;
     this.inputState = inputState;
     this.windowMonitor = windowMonitor;
@@ -45,7 +44,7 @@ class AWTEventPoster {
   }
 
   // Post the given event to the corresponding event queue for the given component.
-  void postEvent(@Nullable Component c, @NotNull AWTEvent event) {
+  void postEvent(@Nullable Component c, AWTEvent event) {
     // Force an update of the input state, so that we're in synch internally. Otherwise we might post more events before
     // this one gets processed and end up using stale values for those events.
     inputState.update(event);

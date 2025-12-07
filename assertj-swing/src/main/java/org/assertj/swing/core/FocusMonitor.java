@@ -18,8 +18,6 @@ import java.awt.Component;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Attaches itself to an AWT or Swing {@code Component} and keeps record of when such {@code Component} gains or loses
  * focus.
@@ -29,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 final class FocusMonitor implements FocusListener {
   private volatile boolean hasFocus;
 
-  static @NotNull FocusMonitor attachTo(@NotNull Component c) {
+  static FocusMonitor attachTo(Component c) {
     FocusMonitor monitor = new FocusMonitor(c);
     c.addFocusListener(monitor);
     return monitor;

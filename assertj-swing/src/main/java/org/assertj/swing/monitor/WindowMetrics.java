@@ -17,14 +17,13 @@ import java.awt.Point;
 import java.awt.Window;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Alex Ruiz
  */
 final class WindowMetrics {
   @RunsInCurrentThread
-  static @NotNull Point absoluteCenterOf(@NotNull Window window) {
+  static Point absoluteCenterOf(Window window) {
     Insets insets = window.getInsets();
     int w = window.getWidth() - (insets.left + insets.right);
     int h = window.getHeight() - (insets.top + insets.bottom);

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Error thrown when a EDT violation is detected. For more details, please read the <a
@@ -30,7 +29,7 @@ public class EdtViolationException extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public EdtViolationException(@NotNull String message) {
+  public EdtViolationException(String message) {
     super(message);
   }
 }

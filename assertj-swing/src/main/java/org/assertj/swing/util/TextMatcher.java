@@ -12,8 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Matches a given text to one or more values.
@@ -32,12 +31,10 @@ public interface TextMatcher {
   /**
    * @return the description of the type of value this matcher supports.
    */
-  @NotNull
   String description();
 
   /**
    * @return the values in this matcher, formatted as a {@code String}.
    */
-  @NotNull
   String formattedValues();
 }

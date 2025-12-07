@@ -18,8 +18,6 @@ import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.MIDDLE_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * <p>
  * Information about a mouse button to click.
@@ -58,7 +56,6 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @NotNull
   public static MouseClickInfo leftButton() {
     return button(LEFT_BUTTON);
   }
@@ -68,7 +65,6 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @NotNull
   public static MouseClickInfo middleButton() {
     return button(MIDDLE_BUTTON);
   }
@@ -78,7 +74,6 @@ public final class MouseClickInfo {
    *
    * @return the created click info.
    */
-  @NotNull
   public static MouseClickInfo rightButton() {
     return button(RIGHT_BUTTON);
   }
@@ -90,12 +85,11 @@ public final class MouseClickInfo {
    * @return the created click info.
    * @throws NullPointerException if {@code button} is {@code null}.
    */
-  @NotNull
-  public static MouseClickInfo button(@NotNull MouseButton button) {
+  public static MouseClickInfo button(MouseButton button) {
     return new MouseClickInfo(button, 1);
   }
 
-  private MouseClickInfo(@NotNull MouseButton button, int times) {
+  private MouseClickInfo(MouseButton button, int times) {
     this.button = checkNotNull(button);
     this.times = times;
   }
@@ -103,7 +97,6 @@ public final class MouseClickInfo {
   /**
    * @return the button to click.
    */
-  @NotNull
   public MouseButton button() {
     return button;
   }
@@ -127,7 +120,6 @@ public final class MouseClickInfo {
   }
 
   @Override
-  @NotNull
   public String toString() {
     return concat(String.format("%s[button=%s, times=%d]", getClass().getName(), button.toString(), times));
   }

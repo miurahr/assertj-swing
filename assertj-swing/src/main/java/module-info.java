@@ -4,7 +4,7 @@ module org.assertj.swing {
   requires java.datatransfer;
   requires java.desktop;
   requires java.logging;
-  requires org.jetbrains.annotations;
+  requires org.jspecify;
 
   exports org.assertj.swing.annotation;
   exports org.assertj.swing.applet;

@@ -17,8 +17,7 @@ import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -50,7 +49,7 @@ public final class JMenuItemLocation {
    * @param menuItem the target {@code JMenuItem}.
    */
   @RunsInCurrentThread
-  public JMenuItemLocation(@NotNull JMenuItem menuItem) {
+  public JMenuItemLocation(JMenuItem menuItem) {
     parentOrInvoker = menuItem.getParent();
     if (parentOrInvoker instanceof JPopupMenu) {
       parentPopup = (JPopupMenu) parentOrInvoker;
@@ -84,7 +83,6 @@ public final class JMenuItemLocation {
   /**
    * @return the parent or the invoker of the {@code JMenuItem}, or its invoker (if it is in a pop-up).
    */
-  @NotNull
   public Component parentOrInvoker() {
     return parentOrInvoker;
   }
@@ -92,8 +90,7 @@ public final class JMenuItemLocation {
   /**
    * @return the parent pop-up menu, or {@code null} if the {@code JMenuItem} is not in a pop-up.
    */
-  @Nullable
-  public JPopupMenu parentPopup() {
+  public @Nullable JPopupMenu parentPopup() {
     return parentPopup;
   }
 }

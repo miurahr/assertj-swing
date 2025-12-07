@@ -22,7 +22,6 @@ import java.util.Map;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.applet.AppletViewer;
 import org.assertj.swing.timing.Condition;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Creates and shows a new {@link AppletViewer}. This task is executed in the event dispatch thread (EDT).
@@ -33,8 +32,8 @@ import org.jetbrains.annotations.NotNull;
 final class NewAppletViewerQuery {
   // TODO test
   @RunsInEDT
-  static @NotNull AppletViewer showAppletViewerWith(final @NotNull Applet applet,
-                                                    final @NotNull Map<String, String> parameters) {
+  static AppletViewer showAppletViewerWith(final Applet applet,
+                                                    final Map<String, String> parameters) {
     final AppletViewer viewer = newViewer(applet, parameters);
     execute(() -> {
       viewer.pack();

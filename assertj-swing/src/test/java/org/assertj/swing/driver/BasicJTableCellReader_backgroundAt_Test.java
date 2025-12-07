@@ -19,7 +19,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.util.Objects;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
@@ -47,8 +46,7 @@ public class BasicJTableCellReader_backgroundAt_Test extends BasicJTableCellRead
   }
 
   @RunsInEDT
-  @NotNull
-  private static Color backgroundOf(final @NotNull Component component) {
+  private static Color backgroundOf(final Component component) {
     Color result = execute(component::getBackground);
     return Objects.requireNonNull(result);
   }

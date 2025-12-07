@@ -17,9 +17,9 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import javax.swing.JPopupMenu;
+
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.hierarchy.ComponentHierarchy;
 
@@ -33,19 +33,16 @@ public interface Robot {
   /**
    * @return the {@code ComponentHierarchy} being used by this robot.
    */
-  @NotNull
   ComponentHierarchy hierarchy();
 
   /**
    * @return the {@code ComponentFinder} being used by this robot.
    */
-  @NotNull
   ComponentFinder finder();
 
   /**
    * @return the {@code ComponentPrinter} being used by this robot.
    */
-  @NotNull
   ComponentPrinter printer();
 
   /**
@@ -54,7 +51,7 @@ public interface Robot {
    *
    * @param w the window to display.
    */
-  void showWindow(@NotNull Window w);
+  void showWindow(Window w);
 
   /**
    * Safely display an AWT or Swing {@code Window} with proper EDT synchronization. This method blocks until the
@@ -63,7 +60,7 @@ public interface Robot {
    * @param w the window to display.
    * @param size the size of the window to display.
    */
-  void showWindow(@NotNull Window w, @NotNull Dimension size);
+  void showWindow(Window w, Dimension size);
 
   /**
    * <p>
@@ -82,14 +79,14 @@ public interface Robot {
    *          resized.
    * @param pack flag that indicates if the window should be packed or not. By packed we mean calling {@code w.pack()}.
    */
-  void showWindow(@NotNull Window w, @Nullable Dimension size, boolean pack);
+  void showWindow(Window w, @Nullable Dimension size, boolean pack);
 
   /**
    * Simulates a user closing the given AWT or Swing {@code Window}.
    *
    * @param w the {@code Window} to close.
    */
-  void close(@NotNull Window w);
+  void close(Window w);
 
   /**
    * Gives input focus to the given AWT or Swing {@code Component}. Note that the {@code Component} may not yet have
@@ -97,14 +94,14 @@ public interface Robot {
    *
    * @param c the {@code Component} to give focus to.
    */
-  void focus(@NotNull Component c);
+  void focus(Component c);
 
   /**
    * Gives input focus to the given AWT or Swing {@code Component} and waits until the {@code Component} has focus.
    *
    * @param c the {@code Component} to give focus to.
    */
-  void focusAndWaitForFocusGain(@NotNull Component c);
+  void focusAndWaitForFocusGain(Component c);
 
   /**
    * Cleans up any used resources (keyboard, mouse, open windows and {@link org.assertj.swing.lock.ScreenLock}) used by
@@ -134,7 +131,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Component} to click is out of the
    *           boundaries of the screen.
    */
-  void click(@NotNull Component c);
+  void click(Component c);
 
   /**
    * Simulates a user right-clicking the given AWT or Swing {@code Component}.
@@ -143,7 +140,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Component} to click is out of the
    *           boundaries of the screen.
    */
-  void rightClick(@NotNull Component c);
+  void rightClick(Component c);
 
   /**
    * Simulates a user clicking once the given AWT or Swing {@code Component} using the given mouse button.
@@ -153,7 +150,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Component} to click is out of the
    *           boundaries of the screen.
    */
-  void click(@NotNull Component c, @NotNull MouseButton button);
+  void click(Component c, MouseButton button);
 
   /**
    * Simulates a user double-clicking the given AWT or Swing {@code Component}.
@@ -162,7 +159,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Component} to click is out of the
    *           boundaries of the screen.
    */
-  void doubleClick(@NotNull Component c);
+  void doubleClick(Component c);
 
   /**
    * Simulates a user clicking the given mouse button, the given times on the given AWT or Swing {@code Component}.
@@ -173,7 +170,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Component} to click is out of the
    *           boundaries of the screen.
    */
-  void click(@NotNull Component c, @NotNull MouseButton button, int times);
+  void click(Component c, MouseButton button, int times);
 
   /**
    * Simulates a user clicking at the given position on the given AWT or Swing {@code Component}.
@@ -183,7 +180,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Component} to click is out of the
    *           boundaries of the screen.
    */
-  void click(@NotNull Component c, @NotNull Point where);
+  void click(Component c, Point where);
 
   /**
    * Simulates a user clicking the given mouse button, the given times at the given position on the given AWT or Swing
@@ -196,7 +193,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the {@code Component} to click is out of the
    *           boundaries of the screen.
    */
-  void click(@NotNull Component c, @NotNull Point where, @NotNull MouseButton button, int times);
+  void click(Component c, Point where, MouseButton button, int times);
 
   /**
    * Simulates a user clicking the given mouse button, the given times at the given absolute coordinates.
@@ -205,7 +202,7 @@ public interface Robot {
    * @param button the mouse button to click.
    * @param times the number of times to click the given mouse button.
    */
-  void click(@NotNull Point where, @NotNull MouseButton button, int times);
+  void click(Point where, MouseButton button, int times);
 
   /**
    * Simulates a user pressing a mouse button.
@@ -213,7 +210,7 @@ public interface Robot {
    * @param button the mouse button to press.
    * @see #pressMouseWhileRunning(MouseButton, Runnable)
    */
-  void pressMouse(@NotNull MouseButton button);
+  void pressMouse(MouseButton button);
 
   /**
    * Simulates a user pressing a mouse button, running the given runnable and releasing the mouse button again.
@@ -223,7 +220,7 @@ public interface Robot {
    * @see #pressMouse(MouseButton)
    * @see #releaseMouse(MouseButton)
    */
-  void pressMouseWhileRunning(@NotNull MouseButton button, @NotNull Runnable runnable);
+  void pressMouseWhileRunning(MouseButton button, Runnable runnable);
 
   /**
    * Simulates a user pressing the left mouse button on the given AWT or Swing {@code Component}.
@@ -232,7 +229,7 @@ public interface Robot {
    * @param where the given coordinates, relative to the given {@code Component}.
    * @see #pressMouseWhileRunning(Component, Point, Runnable)
    */
-  void pressMouse(@NotNull Component c, @NotNull Point where);
+  void pressMouse(Component c, Point where);
 
   /**
    * Simulates a user pressing the left mouse button on the given AWT or Swing {@code Component}, running the given
@@ -243,7 +240,7 @@ public interface Robot {
    * @param runnable the {@link Runnable} to run while the mouse is pressed
    * @see #pressMouse(Component, Point)
    */
-  void pressMouseWhileRunning(@NotNull Component c, @NotNull Point where, @NotNull Runnable runnable);
+  void pressMouseWhileRunning(Component c, Point where, Runnable runnable);
 
   /**
    * Simulates a user pressing the given mouse button on the given AWT or Swing {@code Component}.
@@ -253,7 +250,7 @@ public interface Robot {
    * @param button the mouse button to press.
    * @see #pressMouseWhileRunning(Component, Point, MouseButton, Runnable)
    */
-  void pressMouse(@NotNull Component c, @NotNull Point where, @NotNull MouseButton button);
+  void pressMouse(Component c, Point where, MouseButton button);
 
   /**
    * Simulates a user pressing the given mouse button on the given AWT or Swing {@code Component}, running the given
@@ -265,8 +262,8 @@ public interface Robot {
    * @param runnable the {@link Runnable} to run while the mouse is pressed
    * @see #pressMouse(Component, Point, MouseButton)
    */
-  void pressMouseWhileRunning(@NotNull Component c, @NotNull Point where, @NotNull MouseButton button,
-                              @NotNull Runnable runnable);
+  void pressMouseWhileRunning(Component c, Point where, MouseButton button,
+                              Runnable runnable);
 
   /**
    * Simulates a user pressing the given mouse button on the given coordinates.
@@ -275,7 +272,7 @@ public interface Robot {
    * @param button the mouse button to press.
    * @see #pressMouseWhileRunning(Point, MouseButton, Runnable)
    */
-  void pressMouse(@NotNull Point where, @NotNull MouseButton button);
+  void pressMouse(Point where, MouseButton button);
 
   /**
    * Simulates a user pressing the given mouse button on the given coordinates, running the given
@@ -286,14 +283,14 @@ public interface Robot {
    * @param runnable the {@link Runnable} to run while the mouse is pressed
    * @see #pressMouse(Point, MouseButton)
    */
-  void pressMouseWhileRunning(@NotNull Point where, @NotNull MouseButton button, @NotNull Runnable runnable);
+  void pressMouseWhileRunning(Point where, MouseButton button, Runnable runnable);
 
   /**
    * Simulates a user moving the mouse pointer to the center of the given AWT or Swing {@code Component}.
    *
    * @param c the given {@code Component}.
    */
-  void moveMouse(@NotNull Component c);
+  void moveMouse(Component c);
 
   /**
    * Simulates a user moving the mouse pointer to the given coordinates relative to the given AWT or Swing
@@ -304,7 +301,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the given {@code Component} is not showing and ready
    *           for input.
    */
-  void moveMouse(@NotNull Component c, @NotNull Point p);
+  void moveMouse(Component c, Point p);
 
   /**
    * Simulates a user moving the mouse pointer to the given coordinates relative to the given AWT or Swing
@@ -316,14 +313,14 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the given {@code Component} is not showing and ready
    *           for input.
    */
-  void moveMouse(@NotNull Component c, int x, int y);
+  void moveMouse(Component c, int x, int y);
 
   /**
    * Simulates a user moving the mouse pointer to the given coordinates.
    *
    * @param p the given coordinates.
    */
-  void moveMouse(@NotNull Point p);
+  void moveMouse(Point p);
 
   /**
    * Simulates a user moving the mouse pointer to the given coordinates.
@@ -342,7 +339,7 @@ public interface Robot {
    * @see #pressMouseWhileRunning(Point, MouseButton, Runnable)
    * @see #pressMouseWhileRunning(Component, Point, MouseButton, Runnable)
    */
-  void releaseMouse(@NotNull MouseButton button);
+  void releaseMouse(MouseButton button);
 
   /**
    * Releases any mouse button(s) used by the robot.
@@ -357,7 +354,7 @@ public interface Robot {
    * @param amount number of "notches" to move the mouse wheel. Negative values indicate movement up/away from the user,
    *          while positive values indicate movement down/towards the user.
    */
-  void rotateMouseWheel(@NotNull Component c, int amount);
+  void rotateMouseWheel(Component c, int amount);
 
   /**
    * Rotates the scroll wheel on wheel-equipped mice.
@@ -372,7 +369,7 @@ public interface Robot {
    *
    * @param c the given {@code Component}.
    */
-  void jitter(@NotNull Component c);
+  void jitter(Component c);
 
   /**
    * Makes the mouse pointer show small quick jumpy movements on the given AWT or Swing {@code Component} at the given
@@ -381,7 +378,7 @@ public interface Robot {
    * @param c the given {@code Component}.
    * @param where the given point.
    */
-  void jitter(@NotNull Component c, @NotNull Point where);
+  void jitter(Component c, Point where);
 
   /**
    * Simulates a user entering the given text. Note that this method the key strokes to the AWT or Swing
@@ -389,7 +386,7 @@ public interface Robot {
    *
    * @param text the text to enter.
    */
-  void enterText(@NotNull String text);
+  void enterText(String text);
 
   /**
    * Types the given character. Note that this method sends the key strokes to the AWT or Swing {@code Component} that
@@ -407,7 +404,7 @@ public interface Robot {
    * @param modifiers the given modifiers.
    * @throws IllegalArgumentException if the given code is not a valid key code.
    */
-  void pressAndReleaseKey(int keyCode, @NotNull int... modifiers);
+  void pressAndReleaseKey(int keyCode, int... modifiers);
 
   /**
    * Simulates a user pressing and releasing the given keys. This method does not affect the current focus.
@@ -416,7 +413,7 @@ public interface Robot {
    * @see java.awt.event.KeyEvent
    * @throws IllegalArgumentException if any of the given codes is not a valid key code.
    */
-  void pressAndReleaseKeys(@NotNull int... keyCodes);
+  void pressAndReleaseKeys(int... keyCodes);
 
   /**
    * Simulates a user pressing given key. This method does not affect the current focus.
@@ -438,7 +435,7 @@ public interface Robot {
    * @see #pressKey(int)
    * @throws IllegalArgumentException if the given code is not a valid key code.
    */
-  void pressKeyWhileRunning(int keyCode, @NotNull Runnable runnable);
+  void pressKeyWhileRunning(int keyCode, Runnable runnable);
 
   /**
    * Simulates a user releasing the given key. This method does not affect the current focus.
@@ -468,7 +465,7 @@ public interface Robot {
    * @see #pressModifiers(int)
    * @see java.awt.event.InputEvent
    */
-  void pressModifiersWhileRunning(int modifierMask, @NotNull Runnable runnable);
+  void pressModifiersWhileRunning(int modifierMask, Runnable runnable);
 
   /**
    * Releases the appropriate modifiers corresponding to the given mask. Use mask values from
@@ -504,7 +501,7 @@ public interface Robot {
    * @throws org.assertj.swing.exception.ActionFailedException if the given {@code Component} does not have a
    *           {@code Window} ancestor.
    */
-  boolean isReadyForInput(@NotNull Component c);
+  boolean isReadyForInput(Component c);
 
   /**
    * Shows a {@code JPopupMenu}.
@@ -513,8 +510,7 @@ public interface Robot {
    * @return the displayed {@code JPopupMenu}.
    * @throws org.assertj.swing.exception.ComponentLookupException if a {@code JPopupMenu} cannot be found.
    */
-  @NotNull
-  JPopupMenu showPopupMenu(@NotNull Component invoker);
+  JPopupMenu showPopupMenu(Component invoker);
 
   /**
    * Shows a {@code JPopupMenu} at the given coordinates.
@@ -524,8 +520,7 @@ public interface Robot {
    * @return the displayed {@code JPopupMenu}.
    * @throws org.assertj.swing.exception.ComponentLookupException if a {@code JPopupMenu} cannot be found.
    */
-  @NotNull
-  JPopupMenu showPopupMenu(@NotNull Component invoker, @NotNull Point location);
+  JPopupMenu showPopupMenu(Component invoker, Point location);
 
   /**
    * @return the currently active {@code JPopupMenu} or {@code null}, if no pop-up is currently showing.
@@ -543,7 +538,6 @@ public interface Robot {
   /**
    * @return the configuration settings for this {@code Robot}.
    */
-  @NotNull
   Settings settings();
 
   /**

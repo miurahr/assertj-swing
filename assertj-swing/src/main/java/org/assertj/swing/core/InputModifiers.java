@@ -14,8 +14,7 @@ package org.assertj.swing.core;
 
 import java.awt.event.InputEvent;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Utility methods related to input modifiers.
@@ -82,7 +81,7 @@ final class InputModifiers {
     return (modifiers & InputEvent.ALT_GRAPH_DOWN_MASK) != 0;
   }
 
-  static boolean modifiersMatch(@NotNull InputEvent e, int modifiers) {
+  static boolean modifiersMatch(InputEvent e, int modifiers) {
     if (e.isAltDown() != isAltDownEx(modifiers)) {
       return false;
     }

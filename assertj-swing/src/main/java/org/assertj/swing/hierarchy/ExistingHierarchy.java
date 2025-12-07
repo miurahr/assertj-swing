@@ -22,8 +22,6 @@ import java.awt.Window;
 import java.util.Collection;
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
-
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.monitor.WindowMonitor;
@@ -45,13 +43,12 @@ public class ExistingHierarchy implements ComponentHierarchy {
   }
 
   @VisibleForTesting
-  ExistingHierarchy(@NotNull ParentFinder parentFinder, @NotNull ChildrenFinder childrenFinder) {
+  ExistingHierarchy(ParentFinder parentFinder, ChildrenFinder childrenFinder) {
     this.parentFinder = parentFinder;
     this.childrenFinder = childrenFinder;
   }
 
   @Override
-  @NotNull
   public Collection<Container> roots() {
     List<Container> roots = newArrayList();
     for (Window w : windowMonitor.rootWindows()) {
@@ -75,7 +72,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  public Container parentOf(@NotNull Component c) {
+  public Container parentOf(Component c) {
     return parentFinder.parentOf(c);
   }
 
@@ -87,7 +84,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    * @return {@code true}.
    */
   @Override
-  public boolean contains(@NotNull Component c) {
+  public boolean contains(Component c) {
     return true;
   }
 
@@ -106,8 +103,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @RunsInCurrentThread
   @Override
-  @NotNull
-  public Collection<Component> childrenOf(@NotNull Component c) {
+  public Collection<Component> childrenOf(Component c) {
     return childrenFinder.childrenOf(c);
   }
 
@@ -125,7 +121,7 @@ public class ExistingHierarchy implements ComponentHierarchy {
    */
   @Override
   @RunsInCurrentThread
-  public void dispose(@NotNull Window w) {
+  public void dispose(Window w) {
     if (isAppletViewer(w)) {
       return;
     }
@@ -140,12 +136,10 @@ public class ExistingHierarchy implements ComponentHierarchy {
     w.dispose();
   }
 
-  @NotNull
   ParentFinder parentFinder() {
     return parentFinder;
   }
 
-  @NotNull
   ChildrenFinder childrenFinder() {
     return childrenFinder;
   }

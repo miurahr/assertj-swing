@@ -12,7 +12,7 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * A tuple of size 3.
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Triple<F, S, T> extends Pair<F, S> {
   /** The third value in this tuple. */
-  public final T third;
+  public final @Nullable T third;
 
   /**
    * Creates a new {@link Triple}.
@@ -38,12 +38,11 @@ public class Triple<F, S, T> extends Pair<F, S> {
    * @param third the 3rd. value in this tuple.
    * @return the created {@code Triple}.
    */
-  @NotNull
-  public static <F, S, T> Triple<F, S, T> of(F first, S second, T third) {
-    return new Triple<F, S, T>(first, second, third);
+  public static <F, S, T> Triple<F, S, T> of(F first, @Nullable S second, @Nullable T third) {
+    return new Triple<>(first, second, third);
   }
 
-  private Triple(F first, S second, T third) {
+  private Triple(F first, @Nullable S second, @Nullable T third) {
     super(first, second);
     this.third = third;
   }

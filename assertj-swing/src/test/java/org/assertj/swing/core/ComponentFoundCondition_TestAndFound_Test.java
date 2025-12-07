@@ -18,8 +18,7 @@ import static org.assertj.swing.test.swing.TestWindow.createNewWindow;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JTextField;
 
 import org.assertj.swing.test.core.RobotBasedTestCase;
@@ -64,7 +63,7 @@ public class ComponentFoundCondition_TestAndFound_Test extends RobotBasedTestCas
 
     TypeMatcher() {}
 
-    void typeToMatch(@NotNull Class<? extends Component> newType) {
+    void typeToMatch(Class<? extends Component> newType) {
       this.type = newType;
     }
 

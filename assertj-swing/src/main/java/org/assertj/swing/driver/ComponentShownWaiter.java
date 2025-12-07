@@ -23,8 +23,7 @@ import java.awt.event.ComponentEvent;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.exception.WaitTimedOutError;
 import org.assertj.swing.util.TimeoutWatch;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Waits until a particular AWT or Swing {@code Component} shows up on the screen.
@@ -44,7 +43,7 @@ public final class ComponentShownWaiter extends ComponentAdapter {
    * @param toWaitFor the {@code Component} to wait for.
    * @throws WaitTimedOutError if the {@code Component} is not shown before the default timeout of 5 seconds.
    */
-  public static void waitTillShown(@NotNull Component toWaitFor) {
+  public static void waitTillShown(Component toWaitFor) {
     new ComponentShownWaiter(toWaitFor).startWaiting(DEFAULT_TIMEOUT);
   }
 
@@ -55,11 +54,11 @@ public final class ComponentShownWaiter extends ComponentAdapter {
    * @param timeout the amount to time (in milliseconds) to wait for the {@code Component} to be shown.
    * @throws WaitTimedOutError if the {@code Component} is not shown before the given timeout expires.
    */
-  public static void waitTillShown(@NotNull Component toWaitFor, long timeout) {
+  public static void waitTillShown(Component toWaitFor, long timeout) {
     new ComponentShownWaiter(toWaitFor).startWaiting(timeout);
   }
 
-  private ComponentShownWaiter(@NotNull Component toWaitFor) {
+  private ComponentShownWaiter(Component toWaitFor) {
     this.toWaitFor = toWaitFor;
     toWaitFor.addComponentListener(this);
   }

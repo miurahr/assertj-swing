@@ -25,8 +25,7 @@ import javax.swing.ListCellRenderer;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.cell.JComboBoxCellReader;
 import org.assertj.swing.edt.GuiQuery;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Default implementation of {@link JComboBoxCellReader}.
@@ -37,7 +36,6 @@ import org.jetbrains.annotations.Nullable;
 public class BasicJComboBoxCellReader implements JComboBoxCellReader {
   private static final JList<?> REFERENCE_JLIST = newJList();
 
-  @NotNull
   private static <T> JList<T> newJList() {
     JList<T> result = execute(new GuiQuery<JList<T>>() {
       @Override
@@ -64,7 +62,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
    * @param rendererReader knows how to read values from the cell renderer {@code Component} in a {@code JComboBox}.
    * @throws NullPointerException if the given {@link CellRendererReader} is {@code null}.
    */
-  public BasicJComboBoxCellReader(@NotNull CellRendererReader rendererReader) {
+  public BasicJComboBoxCellReader(CellRendererReader rendererReader) {
     this.rendererReader = checkNotNull(rendererReader);
   }
 
@@ -85,8 +83,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
    */
   @Override
   @RunsInCurrentThread
-  @Nullable
-  public String valueAt(@NotNull JComboBox<?> comboBox, int index) {
+  public @Nullable String valueAt(JComboBox<?> comboBox, int index) {
     Component c = cellRendererComponent(comboBox, index);
     String value = (c != null) ? rendererReader.valueFrom(c) : null;
     if (value != null) {
@@ -96,8 +93,7 @@ public class BasicJComboBoxCellReader implements JComboBoxCellReader {
   }
 
   @RunsInCurrentThread
-  @Nullable
-  private Component cellRendererComponent(@NotNull JComboBox comboBox, int index) {
+  private @Nullable Component cellRendererComponent(JComboBox comboBox, int index) {
     Object item = comboBox.getItemAt(index);
     ListCellRenderer renderer = comboBox.getRenderer();
     return renderer.getListCellRendererComponent(REFERENCE_JLIST, item, index, true, true);

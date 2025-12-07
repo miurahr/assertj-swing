@@ -16,8 +16,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
-
 import org.assertj.core.util.Preconditions;
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -30,7 +28,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class ComponentIsFocusableQuery {
   @RunsInEDT
-  static boolean isFocusable(final @NotNull Component component) {
+  static boolean isFocusable(final Component component) {
     Boolean result = execute(() -> component.isFocusable());
     return Preconditions.checkNotNull(result);
   }

@@ -15,8 +15,7 @@ package org.assertj.swing.core;
 import java.awt.Component;
 import java.awt.Container;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
@@ -33,16 +32,15 @@ class HierarchyBasedFocusOwnerFinder implements FocusOwnerFinderStrategy {
     this(new ContainerFocusOwnerFinder(), new HierarchyRootsSource());
   }
 
-  HierarchyBasedFocusOwnerFinder(@NotNull ContainerFocusOwnerFinder newDelegate,
-                                 @NotNull HierarchyRootsSource newRootsSource) {
+  HierarchyBasedFocusOwnerFinder(ContainerFocusOwnerFinder newDelegate,
+                                 HierarchyRootsSource newRootsSource) {
     delegate = newDelegate;
     rootsSource = newRootsSource;
   }
 
   @Override
   @RunsInCurrentThread
-  @Nullable
-  public Component focusOwner() {
+  public @Nullable Component focusOwner() {
     for (Container c : rootsSource.existingHierarchyRoots()) {
       Component focus = delegate.focusOwnerOf(c);
       if (focus != null) {

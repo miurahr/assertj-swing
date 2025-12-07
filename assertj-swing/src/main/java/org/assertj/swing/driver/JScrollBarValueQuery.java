@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JScrollBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JScrollBarValueQuery {
   @RunsInEDT
-  static int valueOf(final @NotNull JScrollBar scrollBar) {
+  static int valueOf(final JScrollBar scrollBar) {
     Integer result = execute(() -> scrollBar.getValue());
     return checkNotNull(result);
   }

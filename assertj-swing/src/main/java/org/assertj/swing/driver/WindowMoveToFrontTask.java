@@ -16,8 +16,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Window;
 
-import org.jetbrains.annotations.NotNull;
-
 import org.assertj.swing.annotation.RunsInEDT;
 
 /**
@@ -29,7 +27,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class WindowMoveToFrontTask {
   @RunsInEDT
-  static void toFront(final @NotNull Window w) {
+  static void toFront(final Window w) {
     execute(() -> w.toFront());
   }
 

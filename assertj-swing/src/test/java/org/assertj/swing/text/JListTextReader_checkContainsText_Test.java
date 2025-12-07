@@ -21,7 +21,6 @@ import javax.swing.JList;
 import org.assertj.swing.cell.JListCellReader;
 import org.assertj.swing.test.core.EDTSafeTestCase;
 import org.assertj.swing.test.swing.TestListModel;
-import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,7 +55,7 @@ public class JListTextReader_checkContainsText_Test extends EDTSafeTestCase {
 
   private static class TestJListCellReader implements JListCellReader {
     @Override
-    public String valueAt(@NotNull JList list, int index) {
+    public String valueAt(JList list, int index) {
       Object element = list.getModel().getElementAt(index);
       return element != null ? element.toString() : null;
     }

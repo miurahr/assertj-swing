@@ -20,7 +20,6 @@ import static org.assertj.swing.util.Modifiers.keysFor;
 import java.awt.Toolkit;
 
 import org.assertj.core.util.VisibleForTesting;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Platform-specific functionality.
@@ -41,7 +40,7 @@ public final class Platform {
   }
 
   @VisibleForTesting
-  static void initialize(@NotNull OSIdentifier osIdentifier, @NotNull Toolkit toolkit) {
+  static void initialize(OSIdentifier osIdentifier, Toolkit toolkit) {
     Platform.osIdentifier = osIdentifier;
     Platform.toolkit = toolkit;
   }
@@ -178,7 +177,6 @@ public final class Platform {
   /**
    * @return the current operating system family.
    */
-  @NotNull
   public static OSFamily osFamily() {
     return osIdentifier.osFamily();
   }

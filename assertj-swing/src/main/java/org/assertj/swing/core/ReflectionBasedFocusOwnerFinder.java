@@ -17,7 +17,7 @@ import static org.fest.reflect.core.Reflection.field;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Finds the current focus owner using Java reflection.
@@ -26,8 +26,7 @@ import org.jetbrains.annotations.Nullable;
  */
 class ReflectionBasedFocusOwnerFinder implements FocusOwnerFinderStrategy {
   @Override
-  @Nullable
-  public Component focusOwner() {
+  public @Nullable Component focusOwner() {
     return field("focusOwner").ofType(Component.class).in(KeyboardFocusManager.class).get();
   }
 }

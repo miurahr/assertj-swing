@@ -18,8 +18,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.MenuElement;
@@ -35,7 +34,7 @@ import org.assertj.swing.edt.GuiQuery;
  */
 final class JPopupMenuElementsAsTextQuery {
   @RunsInEDT
-  static @NotNull String[] menuElementsAsText(final @NotNull JPopupMenu popupMenu) {
+  static String[] menuElementsAsText(final JPopupMenu popupMenu) {
     String[] result = execute(new GuiQuery<String[]>() {
       @Override
       protected String[] executeInEDT() throws Throwable {
@@ -52,7 +51,7 @@ final class JPopupMenuElementsAsTextQuery {
   }
 
   @Nullable
-  private static String textOf(@NotNull MenuElement e) {
+  private static String textOf(MenuElement e) {
     Component c = componentIn(e);
     if (c instanceof JMenuItem) {
       return ((JMenuItem) c).getText();

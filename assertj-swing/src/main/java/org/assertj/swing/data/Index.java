@@ -14,8 +14,6 @@ package org.assertj.swing.data;
 
 import static org.assertj.core.util.Objects.HASH_CODE_PRIME;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * An integer-based index.
  * 
@@ -28,7 +26,6 @@ public final class Index {
    * @param value the value of the index to create.
    * @return the created index.
    */
-  @NotNull
   public static Index atIndex(int value) {
     return new Index(value);
   }

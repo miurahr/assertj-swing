@@ -18,7 +18,6 @@ import java.awt.Component;
 import java.awt.Point;
 import java.util.Objects;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns the location (top-left corner) of a {@code Component}. This query is executed in the event dispatch thread
@@ -28,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Yvonne Wang
  */
 final class ComponentLocationQuery {
-  static @NotNull Point locationOf(final @NotNull Component component) {
+  static Point locationOf(final Component component) {
     Point result = execute(() -> component.getLocation());
     return Objects.requireNonNull(result);
   }

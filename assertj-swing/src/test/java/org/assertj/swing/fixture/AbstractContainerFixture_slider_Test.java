@@ -19,7 +19,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMatches;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JSlider;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -83,7 +82,7 @@ public class AbstractContainerFixture_slider_Test extends RobotBasedTestCase {
     robot.showWindow(window);
     JSliderFixture slider = fixture.slider(new GenericTypeMatcher<JSlider>(JSlider.class) {
       @Override
-      protected boolean isMatching(@NotNull JSlider s) {
+      protected boolean isMatching(JSlider s) {
         return s.getOrientation() == HORIZONTAL && s.getValue() == 8;
       }
     });
@@ -100,11 +99,11 @@ public class AbstractContainerFixture_slider_Test extends RobotBasedTestCase {
   private static class MyWindow extends TestWindow {
     final JSlider slider = new JSlider(HORIZONTAL, 6, 10, 8);
 
-    static @NotNull MyWindow createNew(final @NotNull Class<?> testClass) {
+    static MyWindow createNew(final Class<?> testClass) {
       return checkNotNull(execute(() -> new MyWindow(testClass)));
     }
 
-    private MyWindow(@NotNull Class<?> testClass) {
+    private MyWindow(Class<?> testClass) {
       super(testClass);
       slider.setName("slideMeSlider");
       addComponents(slider);

@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JProgressBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -26,7 +25,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JProgressBarSetValueTask {
   @RunsInEDT
-  static void setValue(final @NotNull JProgressBar progressBar, final int value) {
+  static void setValue(final JProgressBar progressBar, final int value) {
     execute(() -> progressBar.setValue(value));
   }
 

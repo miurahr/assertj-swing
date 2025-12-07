@@ -15,7 +15,6 @@ package org.assertj.swing.format;
 import java.awt.Component;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns a {@code String} representation of a given AWT or Swing {@code Component}.
@@ -30,14 +29,12 @@ public interface ComponentFormatter {
    * @return a {@code String} representation of the given {@code Component}.
    */
   @RunsInCurrentThread
-  @NotNull
-  String format(@NotNull Component c);
+  String format(Component c);
 
   /**
    * Returns the type of AWT or Swing {@code Component} this formatter supports.
    * 
    * @return the type of {@code Component} this formatter supports.
    */
-  @NotNull
   Class<? extends Component> targetType();
 }

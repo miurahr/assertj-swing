@@ -14,7 +14,6 @@ package org.assertj.swing.driver;
 
 import java.awt.Point;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JScrollBar;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -34,11 +33,11 @@ import org.assertj.swing.annotation.RunsInCurrentThread;
  */
 @RunsInCurrentThread
 abstract class JScrollBarLocationStrategy {
-  abstract int arrow(@NotNull JScrollBar scrollBar);
+  abstract int arrow(JScrollBar scrollBar);
 
-  abstract @NotNull Point thumbLocation(@NotNull JScrollBar scrollBar, double fraction);
+  abstract Point thumbLocation(JScrollBar scrollBar, double fraction);
 
-  abstract @NotNull Point blockLocation(@NotNull JScrollBar scrollBar, @NotNull Point unitLocation, int offset);
+  abstract Point blockLocation(JScrollBar scrollBar, Point unitLocation, int offset);
 
-  abstract @NotNull Point unitLocationToScrollDown(@NotNull JScrollBar scrollBar);
+  abstract Point unitLocationToScrollDown(JScrollBar scrollBar);
 }

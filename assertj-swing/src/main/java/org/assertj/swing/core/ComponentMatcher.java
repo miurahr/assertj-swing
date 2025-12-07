@@ -14,8 +14,6 @@ package org.assertj.swing.core;
 
 import java.awt.Component;
 
-import org.jetbrains.annotations.Nullable;
-
 /**
  * Indicates whether an AWT or Swing {@code Component} matches some desired criteria.
  * 
@@ -28,5 +26,5 @@ public interface ComponentMatcher {
    * @param c the {@code Component} to verify.
    * @return {@code true} if the given {@code Component} matches some lookup criteria, otherwise {@code false}.
    */
-  boolean matches(@Nullable Component c);
+  boolean matches(Component c);
 }

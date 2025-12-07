@@ -15,7 +15,6 @@ package org.assertj.swing.driver;
 import static org.assertj.swing.data.Index.atIndex;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTabbedPane;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -28,7 +27,7 @@ import org.assertj.swing.data.Index;
  */
 final class JTabbedPaneSelectTabQuery {
   @RunsInEDT
-  static Index selectedTabIndexOf(final @NotNull JTabbedPane tabbedPane) {
+  static Index selectedTabIndexOf(final JTabbedPane tabbedPane) {
     Integer selectedTab = execute(() -> tabbedPane.getSelectedIndex());
     return atIndex(selectedTab);
   }

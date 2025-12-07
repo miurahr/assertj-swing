@@ -17,7 +17,6 @@ import static org.assertj.swing.test.core.NeverMatchingComponentMatcher.neverMat
 
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTextField;
 
 import org.junit.Test;
@@ -32,7 +31,7 @@ public class FinderDelegate_findInHierarchyWithGenericTypeMatcher_Test extends F
   public void should_Return_Components_Matching_GenericTypeMatcher() {
     GenericTypeMatcher<JTextField> matcher = new GenericTypeMatcher<JTextField>(JTextField.class) {
       @Override
-      protected boolean isMatching(@NotNull JTextField textField) {
+      protected boolean isMatching(JTextField textField) {
         return "textBox".equals(textField.getName());
       }
     };

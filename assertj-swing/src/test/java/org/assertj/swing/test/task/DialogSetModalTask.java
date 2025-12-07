@@ -16,7 +16,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Dialog;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
@@ -27,7 +26,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 public final class DialogSetModalTask {
   @RunsInEDT
-  public static void makeModal(final @NotNull Dialog d, final boolean modal) {
+  public static void makeModal(final Dialog d, final boolean modal) {
     execute(() -> d.setModal(modal));
   }
 

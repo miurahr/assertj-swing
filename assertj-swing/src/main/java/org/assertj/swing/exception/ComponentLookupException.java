@@ -18,7 +18,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 import java.awt.Component;
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Error thrown when looking up a component using a {@link org.assertj.swing.core.ComponentFinder}.
@@ -36,7 +35,7 @@ public class ComponentLookupException extends RuntimeException {
    * @param message the detail message.
    * @param found the AWT and Swing {@code Component}s found by the lookup (if any).
    */
-  public ComponentLookupException(@NotNull String message, @NotNull Collection<? extends Component> found) {
+  public ComponentLookupException(String message, Collection<? extends Component> found) {
     this(message);
     this.found.addAll(found);
   }
@@ -46,14 +45,14 @@ public class ComponentLookupException extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public ComponentLookupException(@NotNull String message) {
+  public ComponentLookupException(String message) {
     super(message);
   }
 
   /**
    * @return the AWT and Swing {@code Component}s found by the lookup (if any).
    */
-  public final @NotNull Collection<Component> found() {
+  public final Collection<Component> found() {
     return unmodifiableCollection(found);
   }
 }

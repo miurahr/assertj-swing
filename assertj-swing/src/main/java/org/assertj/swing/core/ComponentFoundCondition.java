@@ -21,8 +21,7 @@ import java.awt.Container;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.core.description.Description;
 import org.assertj.core.description.TextDescription;
@@ -51,8 +50,8 @@ public final class ComponentFoundCondition extends Condition {
    * @param finder performs the search.
    * @param matcher specifies the condition that the AWT or Swing {@code Component} we are looking for needs to match.
    */
-  public ComponentFoundCondition(@NotNull String description, @NotNull ComponentFinder finder,
-                                 @NotNull ComponentMatcher matcher) {
+  public ComponentFoundCondition(String description, ComponentFinder finder,
+                                 ComponentMatcher matcher) {
     this(description, finder, matcher, null);
   }
 
@@ -64,8 +63,8 @@ public final class ComponentFoundCondition extends Condition {
    * @param matcher specifies the condition that the AWT or Swing {@code Component} we are looking for needs to match.
    * @param root the root {@code Container} used as the starting point of the search.
    */
-  public ComponentFoundCondition(@NotNull String description, @NotNull ComponentFinder finder,
-                                 @NotNull ComponentMatcher matcher, @Nullable Container root) {
+  public ComponentFoundCondition(String description, ComponentFinder finder,
+                                 ComponentMatcher matcher, @Nullable Container root) {
     this(new TextDescription(description), finder, matcher, root);
   }
 
@@ -76,8 +75,8 @@ public final class ComponentFoundCondition extends Condition {
    * @param finder performs the search.
    * @param matcher specifies the condition that the AWT or Swing {@code Component} we are looking for needs to match.
    */
-  public ComponentFoundCondition(@NotNull Description description, @NotNull ComponentFinder finder,
-                                 @NotNull ComponentMatcher matcher) {
+  public ComponentFoundCondition(Description description, ComponentFinder finder,
+                                 ComponentMatcher matcher) {
     this(description, finder, matcher, null);
   }
 
@@ -89,8 +88,8 @@ public final class ComponentFoundCondition extends Condition {
    * @param matcher specifies the condition that the AWT or Swing {@code Component} we are looking for needs to match.
    * @param root the root {@code Container} used as the starting point of the search.
    */
-  public ComponentFoundCondition(@NotNull Description description, @NotNull ComponentFinder finder,
-                                 @NotNull ComponentMatcher matcher, @Nullable Container root) {
+  public ComponentFoundCondition(Description description, ComponentFinder finder,
+                                 ComponentMatcher matcher, @Nullable Container root) {
     super(description);
     this.finder = finder;
     this.matcher = matcher;
@@ -131,7 +130,6 @@ public final class ComponentFoundCondition extends Condition {
    * failure.
    */
   @Override
-  @NotNull
   protected String descriptionAddendum() {
     ComponentLookupException error = notFoundError.get();
     if (error == null) {

@@ -17,7 +17,6 @@ import static org.assertj.core.util.Preconditions.checkNotNull;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
@@ -47,8 +46,7 @@ public final class JTableLocation {
    * @return the coordinates of the given row and column.
    */
   @RunsInCurrentThread
-  @NotNull
-  public Point pointAt(@NotNull JTable table, int row, int column) {
+  public Point pointAt(JTable table, int row, int column) {
     Rectangle cellBounds = cellBounds(table, row, column);
     return new Point(cellBounds.x + cellBounds.width / 2, cellBounds.y + cellBounds.height / 2);
   }
@@ -68,8 +66,7 @@ public final class JTableLocation {
    * @return the bounds of the given cell.
    */
   @RunsInCurrentThread
-  @NotNull
-  public Rectangle cellBounds(@NotNull JTable table, @NotNull TableCell cell) {
+  public Rectangle cellBounds(JTable table, TableCell cell) {
     return cellBounds(table, cell.row, cell.column);
   }
 
@@ -89,7 +86,6 @@ public final class JTableLocation {
    * @return the bounds of the given row and column.
    */
   @RunsInCurrentThread
-  @NotNull
   public Rectangle cellBounds(JTable table, int row, int column) {
     return checkNotNull(table.getCellRect(row, column, false));
   }

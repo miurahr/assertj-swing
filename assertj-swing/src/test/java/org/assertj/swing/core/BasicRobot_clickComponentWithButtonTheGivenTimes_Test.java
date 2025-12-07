@@ -19,7 +19,6 @@ import static org.assertj.swing.core.ClickingDataProvider.clickingData;
 
 import java.util.Collection;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JTextField;
 
 import org.assertj.swing.test.recorder.ClickRecorder;
@@ -41,12 +40,11 @@ public class BasicRobot_clickComponentWithButtonTheGivenTimes_Test extends Basic
   private final int times;
 
   @Parameters
-  @NotNull
   public static Collection<Object[]> buttons() {
     return newArrayList(clickingData());
   }
 
-  public BasicRobot_clickComponentWithButtonTheGivenTimes_Test(@NotNull MouseButton button, int times) {
+  public BasicRobot_clickComponentWithButtonTheGivenTimes_Test(MouseButton button, int times) {
     this.button = checkNotNull(button);
     this.times = times;
   }

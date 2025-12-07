@@ -29,8 +29,7 @@ package org.assertj.swing.internal.annotation;
 
 import java.io.IOException;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Signals that an I/O exception of some sort has occurred.
@@ -46,7 +45,7 @@ public final class IORuntimeException extends RuntimeException {
    * 
    * @param message the detail message.
    */
-  public IORuntimeException(@NotNull String message) {
+  public IORuntimeException(String message) {
     super(message);
   }
 
@@ -56,7 +55,7 @@ public final class IORuntimeException extends RuntimeException {
    * @param message the detail message.
    * @param cause the cause of the error.
    */
-  public IORuntimeException(@NotNull String message, @Nullable IOException cause) {
+  public IORuntimeException(String message, @Nullable IOException cause) {
     super(message, cause);
   }
 }

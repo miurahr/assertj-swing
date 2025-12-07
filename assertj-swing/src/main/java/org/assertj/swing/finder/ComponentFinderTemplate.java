@@ -20,8 +20,7 @@ import java.awt.Component;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.swing.annotation.NonNegative;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.swing.core.ComponentFoundCondition;
 import org.assertj.swing.core.ComponentMatcher;
@@ -53,7 +52,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @param componentName the name of the {@code Component} to find.
    * @param componentType the type of the {@code Component} to find.
    */
-  protected ComponentFinderTemplate(@Nullable String componentName, @NotNull Class<? extends T> componentType) {
+  protected ComponentFinderTemplate(@Nullable String componentName, Class<? extends T> componentType) {
     this(new NameMatcher(componentName, componentType, true));
   }
 
@@ -62,7 +61,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    *
    * @param matcher specifies the search criteria to use when looking up a {@code Component}.
    */
-  protected ComponentFinderTemplate(@NotNull GenericTypeMatcher<? extends T> matcher) {
+  protected ComponentFinderTemplate(GenericTypeMatcher<? extends T> matcher) {
     this((ComponentMatcher) matcher);
   }
 
@@ -71,11 +70,11 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    *
    * @param componentType the type of the {@code Component} to find.
    */
-  protected ComponentFinderTemplate(@NotNull Class<? extends T> componentType) {
+  protected ComponentFinderTemplate(Class<? extends T> componentType) {
     this(new TypeMatcher(componentType, true));
   }
 
-  private ComponentFinderTemplate(@NotNull ComponentMatcher matcher) {
+  private ComponentFinderTemplate(ComponentMatcher matcher) {
     this.matcher = checkNotNull(matcher);
     searchDescription = concat("component to be found using matcher ", matcher);
   }
@@ -89,7 +88,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @throws NullPointerException if the time unit is {@code null}.
    * @throws IllegalArgumentException if the timeout is a negative number.
    */
-  protected ComponentFinderTemplate<T> withTimeout(long newTimeout, @NotNull TimeUnit unit) {
+  protected ComponentFinderTemplate<T> withTimeout(long newTimeout, TimeUnit unit) {
     checkNotNull(unit);
     return withTimeout(unit.toMillis(newTimeout));
   }
@@ -101,7 +100,6 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @return this finder.
    * @throws IllegalArgumentException if the timeout is a negative number.
    */
-  @NotNull
   protected ComponentFinderTemplate<T> withTimeout(@NonNegative long newTimeout) {
     if (newTimeout < 0) {
       throw new IllegalArgumentException("Timeout cannot be a negative number");
@@ -118,7 +116,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a component with the given name or of the given type could
    *           not be found.
    */
-  public abstract @NotNull AbstractComponentFixture<?, T, ?> using(@NotNull Robot robot);
+  public abstract AbstractComponentFixture<?, T, ?> using(Robot robot);
 
   /**
    * Finds the component using either by name or type.
@@ -128,7 +126,7 @@ public abstract class ComponentFinderTemplate<T extends Component> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a component with the given name or of the given type could
    *           not be found.
    */
-  protected final @NotNull T findComponentWith(@NotNull Robot robot) {
+  protected final T findComponentWith(Robot robot) {
     ComponentFoundCondition condition = new ComponentFoundCondition(searchDescription, robot.finder(), matcher);
     pause(condition, timeout);
     return checkNotNull(cast(condition.found()));

@@ -18,7 +18,6 @@ import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.data.TableCell;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>
@@ -37,7 +36,7 @@ import org.jetbrains.annotations.NotNull;
  */
 final class JTableCellEditableQuery {
   @RunsInCurrentThread
-  static boolean isCellEditable(@NotNull JTable table, @NotNull TableCell cell) {
+  static boolean isCellEditable(JTable table, TableCell cell) {
     checkCellIndicesInBounds(table, cell);
     return table.isCellEditable(cell.row, cell.column);
   }

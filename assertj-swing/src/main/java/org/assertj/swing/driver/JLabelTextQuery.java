@@ -14,8 +14,7 @@ package org.assertj.swing.driver;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JLabel;
 
 import org.assertj.swing.annotation.RunsInEDT;
@@ -30,7 +29,7 @@ import org.assertj.swing.annotation.RunsInEDT;
  */
 final class JLabelTextQuery {
   @RunsInEDT
-  static @Nullable String textOf(final @NotNull JLabel label) {
+  static @Nullable String textOf(final JLabel label) {
     return execute(() -> label.getText());
   }
 

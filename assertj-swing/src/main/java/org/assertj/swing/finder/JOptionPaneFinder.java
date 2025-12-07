@@ -16,8 +16,7 @@ import java.awt.Component;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.swing.annotation.NonNegative;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -87,7 +86,7 @@ public class JOptionPaneFinder extends ComponentFinderTemplate<JOptionPane> {
    *
    * @param matcher specifies the search criteria to use when looking up a {@code JOptionPane}.
    */
-  protected JOptionPaneFinder(@NotNull GenericTypeMatcher<? extends JOptionPane> matcher) {
+  protected JOptionPaneFinder(GenericTypeMatcher<? extends JOptionPane> matcher) {
     super(matcher);
   }
 
@@ -96,7 +95,6 @@ public class JOptionPaneFinder extends ComponentFinderTemplate<JOptionPane> {
    *
    * @return the created finder.
    */
-  @NotNull
   public static JOptionPaneFinder findOptionPane() {
     return new JOptionPaneFinder();
   }
@@ -107,8 +105,7 @@ public class JOptionPaneFinder extends ComponentFinderTemplate<JOptionPane> {
    * @param matcher the given matcher.
    * @return the created finder.
    */
-  @NotNull
-  public static JOptionPaneFinder findOptionPane(@NotNull GenericTypeMatcher<? extends JOptionPane> matcher) {
+  public static JOptionPaneFinder findOptionPane(GenericTypeMatcher<? extends JOptionPane> matcher) {
     return new JOptionPaneFinder(matcher);
   }
 
@@ -120,8 +117,7 @@ public class JOptionPaneFinder extends ComponentFinderTemplate<JOptionPane> {
    * @throws org.assertj.swing.exception.WaitTimedOutError if a {@code JOptionPane} could not be found.
    */
   @Override
-  @NotNull
-  public JOptionPaneFixture using(@NotNull Robot robot) {
+  public JOptionPaneFixture using(Robot robot) {
     return new JOptionPaneFixture(robot, findComponentWith(robot));
   }
 
@@ -132,7 +128,6 @@ public class JOptionPaneFinder extends ComponentFinderTemplate<JOptionPane> {
    * @return this finder.
    */
   @Override
-  @NotNull
   public JOptionPaneFinder withTimeout(@NonNegative long timeout) {
     super.withTimeout(timeout);
     return this;
@@ -146,8 +141,7 @@ public class JOptionPaneFinder extends ComponentFinderTemplate<JOptionPane> {
    * @return this finder.
    */
   @Override
-  @NotNull
-  public JOptionPaneFinder withTimeout(@NonNegative long timeout, @NotNull TimeUnit unit) {
+  public JOptionPaneFinder withTimeout(@NonNegative long timeout, TimeUnit unit) {
     super.withTimeout(timeout, unit);
     return this;
   }

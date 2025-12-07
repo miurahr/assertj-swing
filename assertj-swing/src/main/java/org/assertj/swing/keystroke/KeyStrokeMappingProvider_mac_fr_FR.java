@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.keystroke;
 
-import org.jetbrains.annotations.NotNull;
-
 import static java.awt.event.InputEvent.SHIFT_DOWN_MASK;
 import static java.awt.event.KeyEvent.VK_0;
 import static java.awt.event.KeyEvent.VK_1;
@@ -77,7 +75,6 @@ public class KeyStrokeMappingProvider_mac_fr_FR implements KeyStrokeMappingProvi
    * @return the mapping between characters and {@code KeyStroke}s for Mac OS and {@code Locale.FRENCH}.
    */
   @Override
-  @NotNull
   public Collection<KeyStrokeMapping> keyStrokeMappings() {
     return SingletonHolder.instance;
   }
@@ -87,7 +84,6 @@ public class KeyStrokeMappingProvider_mac_fr_FR implements KeyStrokeMappingProvi
     static List<KeyStrokeMapping> instance = createMappings();
   }
 
-  @NotNull
   private static List<KeyStrokeMapping> createMappings() {
     List<KeyStrokeMapping> mappings = newArrayList();
     mappings.add(mapping('\b', VK_BACK_SPACE, NO_MASK));

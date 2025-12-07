@@ -22,4 +22,7 @@
  * 
  * @author Alex Ruiz
  */
+@NullMarked
 package org.assertj.swing.hierarchy;
+
+import org.jspecify.annotations.NullMarked;

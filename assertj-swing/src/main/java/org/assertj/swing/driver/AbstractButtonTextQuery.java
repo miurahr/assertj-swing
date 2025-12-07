@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import javax.swing.AbstractButton;
 
 import org.assertj.swing.annotation.RunsInEDT;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Returns the text of a Swing {@code AbstractButton}. This query is executed in the event dispatch thread (EDT).
@@ -27,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
  */
 final class AbstractButtonTextQuery {
   @RunsInEDT
-  static @NotNull String textOf(final @NotNull AbstractButton button) {
+  static String textOf(final AbstractButton button) {
     String result = execute(() -> button.getText());
     return result == null ? "" : result;
   }

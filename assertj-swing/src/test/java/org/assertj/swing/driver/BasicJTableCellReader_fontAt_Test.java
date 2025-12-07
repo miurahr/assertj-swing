@@ -19,7 +19,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.util.Objects;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
@@ -46,8 +45,7 @@ public class BasicJTableCellReader_fontAt_Test extends BasicJTableCellReader_Tes
   }
 
   @RunsInEDT
-  @NotNull
-  private static Font fontOf(final @NotNull Component component) {
+  private static Font fontOf(final Component component) {
     Font result = execute(component::getFont);
     return Objects.requireNonNull(result);
   }

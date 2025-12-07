@@ -15,8 +15,7 @@ package org.assertj.swing.core;
 import static org.assertj.core.util.Preconditions.checkNotNull;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInEDT;
@@ -33,7 +32,7 @@ public abstract class EdtSafeCondition extends Condition {
    * 
    * @param description describes this condition.
    */
-  public EdtSafeCondition(@NotNull String description) {
+  public EdtSafeCondition(String description) {
     super(description);
   }
 

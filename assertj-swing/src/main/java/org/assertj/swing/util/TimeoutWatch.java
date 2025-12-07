@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.NotNull;
-
 import static java.lang.System.currentTimeMillis;
 
 /**
@@ -31,7 +29,6 @@ public final class TimeoutWatch {
    * @param timeout the given timeout.
    * @return the new timeout watch.
    */
-  @NotNull
   public static TimeoutWatch startWatchWithTimeoutOf(long timeout) {
     TimeoutWatch watch = new TimeoutWatch(timeout);
     watch.start();

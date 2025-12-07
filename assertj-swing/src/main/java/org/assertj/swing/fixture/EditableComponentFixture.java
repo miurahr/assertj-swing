@@ -12,8 +12,6 @@
  */
 package org.assertj.swing.fixture;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Verifies the state of editable {@code Component}s.
  * 
@@ -30,7 +28,6 @@ public interface EditableComponentFixture<S> {
    * @throws AssertionError if the {@code Component} is not editable.
    * @return this fixture.
    */
-  @NotNull
   S requireEditable();
 
   /**
@@ -39,7 +36,6 @@ public interface EditableComponentFixture<S> {
    * @throws AssertionError if the {@code Component} is editable.
    * @return this fixture.
    */
-  @NotNull
   S requireNotEditable();
 
 }

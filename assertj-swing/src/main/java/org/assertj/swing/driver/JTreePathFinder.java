@@ -17,8 +17,7 @@ import static org.assertj.core.util.Strings.quote;
 
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import javax.swing.JTree;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -45,8 +44,7 @@ class JTreePathFinder {
   }
 
   @RunsInCurrentThread
-  @NotNull
-  TreePath findMatchingPath(@NotNull JTree tree, @NotNull String path) {
+  TreePath findMatchingPath(JTree tree, String path) {
     String[] pathStrings = splitPath(path);
     TreeModel model = tree.getModel();
     List<Object> newPathValues = newArrayList();
@@ -81,13 +79,11 @@ class JTreePathFinder {
     return new TreePath(newPathValues.toArray());
   }
 
-  @NotNull
-  private LocationUnavailableException pathNotFound(@NotNull String path) {
+  private LocationUnavailableException pathNotFound(String path) {
     throw new LocationUnavailableException(String.format("Unable to find path %s", quote(path)));
   }
 
-  @NotNull
-  private String[] splitPath(@NotNull String path) {
+  private String[] splitPath(String path) {
     List<String> result = newArrayList();
     int separatorSize = separator.length();
     int index = 0;
@@ -103,32 +99,29 @@ class JTreePathFinder {
     return result.toArray(new String[result.size()]);
   }
 
-  @NotNull
-  private LocationUnavailableException multipleMatchingNodes(@NotNull String matchingText,
+  private LocationUnavailableException multipleMatchingNodes(String matchingText,
                                                              @Nullable Object parentText) {
     String msg = String.format("There is more than one node with value '%s' under", matchingText, quote(parentText));
     throw new LocationUnavailableException(msg);
   }
 
   @Nullable
-  private String value(@NotNull JTree tree, @Nullable Object modelValue) {
+  private String value(JTree tree, @Nullable Object modelValue) {
     return cellReader.valueAt(tree, modelValue);
   }
 
-  @NotNull
   String separator() {
     return separator;
   }
 
-  void replaceSeparator(@NotNull String newSeparator) {
+  void replaceSeparator(String newSeparator) {
     separator = newSeparator;
   }
 
-  void replaceCellReader(@NotNull JTreeCellReader newCellReader) {
+  void replaceCellReader(JTreeCellReader newCellReader) {
     cellReader = newCellReader;
   }
 
-  @NotNull
   JTreeCellReader cellReader() {
     return cellReader;
   }

@@ -18,7 +18,6 @@ import static org.assertj.core.util.Strings.quote;
 import static org.assertj.swing.test.ExpectedException.none;
 import static org.assertj.swing.timing.Timeout.timeout;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JDialog;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -151,13 +150,12 @@ public class AbstractContainerFixture_dialog_Test extends RobotBasedTestCase {
     }
 
     @Override
-    protected boolean isMatching(@NotNull JDialog dialog) {
+    protected boolean isMatching(JDialog dialog) {
       return TITLE.equals(dialog.getTitle());
     }
 
     @Override
-    @NotNull
-    public String toString() {
+      public String toString() {
       return concat("dialog with title ", quote(TITLE));
     }
   }

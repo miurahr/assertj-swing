@@ -18,7 +18,6 @@ import java.awt.event.AWTEventListener;
 import java.lang.ref.WeakReference;
 
 import org.assertj.core.util.VisibleForTesting;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Event listener that wraps a given {@code AWTEventListener} and:
@@ -46,15 +45,14 @@ public final class WeakEventListener implements AWTEventListener {
    * @param eventMask the event mask to use to attach the {@code WeakEventListener} to the toolkit.
    * @return the created {@code WeakEventListener}.
    */
-  @NotNull
-  public static WeakEventListener attachAsWeakEventListener(@NotNull Toolkit toolkit,
-                                                            @NotNull AWTEventListener listener, long eventMask) {
+  public static WeakEventListener attachAsWeakEventListener(Toolkit toolkit,
+                                                            AWTEventListener listener, long eventMask) {
     WeakEventListener l = new WeakEventListener(toolkit, listener);
     toolkit.addAWTEventListener(l, eventMask);
     return l;
   }
 
-  private WeakEventListener(@NotNull Toolkit toolkit, @NotNull AWTEventListener listener) {
+  private WeakEventListener(Toolkit toolkit, AWTEventListener listener) {
     listenerReference = new WeakReference<AWTEventListener>(listener);
     this.toolkit = toolkit;
   }
@@ -62,7 +60,6 @@ public final class WeakEventListener implements AWTEventListener {
   /**
    * @return the underlying listener.
    */
-  @NotNull
   public AWTEventListener underlyingListener() {
     return listenerReference.get();
   }

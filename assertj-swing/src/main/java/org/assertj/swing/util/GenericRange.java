@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.util;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * A range of values.
@@ -31,7 +30,7 @@ public final class GenericRange<T> {
    * @param from the initial value of this range.
    * @param to the final value of this range.
    */
-  public GenericRange(@NotNull T from, @NotNull T to) {
+  public GenericRange(T from, T to) {
     this.from = from;
     this.to = to;
   }
@@ -39,7 +38,6 @@ public final class GenericRange<T> {
   /**
    * @return the initial value of this range.
    */
-  @NotNull
   public T from() {
     return from;
   }
@@ -47,7 +45,6 @@ public final class GenericRange<T> {
   /**
    * @return the final value of this range.
    */
-  @NotNull
   public T to() {
     return to;
   }

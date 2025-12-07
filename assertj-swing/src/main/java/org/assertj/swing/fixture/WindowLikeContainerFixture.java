@@ -15,8 +15,6 @@ package org.assertj.swing.fixture;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Supports functional testing of window-like containers (not necessarily subclasses of {@code Window}).
  * 
@@ -38,7 +36,6 @@ public interface WindowLikeContainerFixture<S> {
    * @param width the width that this fixture's window-like container should have after being resized.
    * @return this fixture.
    */
-  @NotNull
   S resizeWidthTo(int width);
 
   /**
@@ -47,7 +44,6 @@ public interface WindowLikeContainerFixture<S> {
    * @param height the height that this fixture's window-like container should have after being resized.
    * @return this fixture.
    */
-  @NotNull
   S resizeHeightTo(int height);
 
   /**
@@ -56,8 +52,7 @@ public interface WindowLikeContainerFixture<S> {
    * @param size the size that the target window should have after being resized.
    * @return this fixture.
    */
-  @NotNull
-  S resizeTo(@NotNull Dimension size);
+  S resizeTo(Dimension size);
 
   /**
    * Asserts that the size of this fixture's window-like container is equal to given one.
@@ -66,8 +61,7 @@ public interface WindowLikeContainerFixture<S> {
    * @return this fixture.
    * @throws AssertionError if the size of this fixture's window-like container is not equal to the given size.
    */
-  @NotNull
-  S requireSize(@NotNull Dimension size);
+  S requireSize(Dimension size);
 
   /**
    * Simulates a user moving this fixture's window-like container to the given point.
@@ -75,15 +69,13 @@ public interface WindowLikeContainerFixture<S> {
    * @param p the point to move this fixture's window-like container to.
    * @return this fixture.
    */
-  @NotNull
-  S moveTo(@NotNull Point p);
+  S moveTo(Point p);
 
   /**
    * Brings this fixture's window-like component to the front.
    * 
    * @return this fixture.
    */
-  @NotNull
   S moveToFront();
 
   /**
@@ -91,6 +83,5 @@ public interface WindowLikeContainerFixture<S> {
    * 
    * @return this fixture.
    */
-  @NotNull
   S moveToBack();
 }

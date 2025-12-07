@@ -14,8 +14,7 @@ package org.assertj.swing.fixture;
 
 import java.util.regex.Pattern;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Supports functional testing of {@code Component}s that contains or display a group of items.
@@ -30,7 +29,6 @@ public interface ItemGroupFixture<S> {
   /**
    * @return the {@code String} representation of the elements in this fixture's {@code Component}.
    */
-  @NotNull
   String[] contents();
 
   /**
@@ -38,7 +36,6 @@ public interface ItemGroupFixture<S> {
    * 
    * @return this fixture.
    */
-  @NotNull
   S clearSelection();
 
   /**
@@ -47,7 +44,6 @@ public interface ItemGroupFixture<S> {
    * @param index the index of the item to select.
    * @return this fixture.
    */
-  @NotNull
   S selectItem(int index);
 
   /**
@@ -56,7 +52,6 @@ public interface ItemGroupFixture<S> {
    * @param value the value of the item to select. It can be a regular expression.
    * @return this fixture.
    */
-  @NotNull
   S selectItem(@Nullable String value);
 
   /**
@@ -67,8 +62,7 @@ public interface ItemGroupFixture<S> {
    * @return this fixture.
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    */
-  @NotNull
-  S selectItem(@NotNull Pattern pattern);
+  S selectItem(Pattern pattern);
 
   /**
    * Returns the value of an item in the {@code Component} managed by this fixture. If the value is not meaningful, this
@@ -87,7 +81,6 @@ public interface ItemGroupFixture<S> {
    * @return this fixture.
    * @throws AssertionError if the selected item does not match the given value.
    */
-  @NotNull
   S requireSelection(@Nullable String value);
 
   /**
@@ -99,8 +92,7 @@ public interface ItemGroupFixture<S> {
    * @throws NullPointerException if the given regular expression pattern is {@code null}.
    * @throws AssertionError if the selected item does not match the given regular expression pattern.
    */
-  @NotNull
-  S requireSelection(@NotNull Pattern pattern);
+  S requireSelection(Pattern pattern);
 
   /**
    * Verifies that the index of the selected item in this fixture's {@code Component} is equal to the given value.
@@ -109,7 +101,6 @@ public interface ItemGroupFixture<S> {
    * @return this fixture.
    * @throws AssertionError if the selection index is not equal to the given value.
    */
-  @NotNull
   S requireSelection(int index);
 
   /**
@@ -118,7 +109,6 @@ public interface ItemGroupFixture<S> {
    * @return this fixture.
    * @throws AssertionError if this fixture's {@code Component} has a selection.
    */
-  @NotNull
   S requireNoSelection();
 
   /**
@@ -128,6 +118,5 @@ public interface ItemGroupFixture<S> {
    * @return this fixture.
    * @throws AssertionError if the number of items in this fixture's {@code Component} is not equal to the expected one.
    */
-  @NotNull
   S requireItemCount(int expected);
 }

@@ -15,7 +15,6 @@ package org.assertj.swing.finder;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JFileChooser;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -70,7 +69,7 @@ public class JFileChooserFinder_findFileChooser_withMatcher_Test extends JFileCh
     }
 
     @Override
-    protected boolean isMatching(@NotNull JFileChooser fileChooser) {
+    protected boolean isMatching(JFileChooser fileChooser) {
       return "fileChooser".equals(fileChooser.getName());
     }
   }

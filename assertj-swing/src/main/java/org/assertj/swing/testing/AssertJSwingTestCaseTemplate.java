@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.testing;
 
-import org.jetbrains.annotations.NotNull;
 
 import org.assertj.swing.core.BasicRobot;
 import org.assertj.swing.core.Robot;
@@ -46,7 +45,7 @@ public abstract class AssertJSwingTestCaseTemplate {
   /**
    * @return this test's {@link Robot}
    */
-  protected final @NotNull Robot robot() {
+  protected final Robot robot() {
     return robot;
   }
 }

@@ -15,7 +15,6 @@ package org.assertj.swing.finder;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.jetbrains.annotations.NotNull;
 import javax.swing.JOptionPane;
 
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -71,7 +70,7 @@ public class JOptionPaneFinder_findOptionPane_withMatcher_Test extends JOptionPa
     }
 
     @Override
-    protected boolean isMatching(@NotNull JOptionPane optionPane) {
+    protected boolean isMatching(JOptionPane optionPane) {
       return optionPane.isShowing();
     }
   }
