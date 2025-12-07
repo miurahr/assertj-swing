@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-
 /**
  * Error raised when the location of an AWT or Swing {@code Component} cannot be provided.
  *

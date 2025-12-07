@@ -17,7 +17,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 import java.awt.Component;
 import java.util.List;
 
-
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;

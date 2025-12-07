@@ -33,8 +33,7 @@ import org.fest.reflect.reference.TypeRef;
  *   powers.add("heal");
  *   {@link org.fest.reflect.core.Reflection#property(String) property}("powers").{@link PropertyName#ofType(TypeRef) ofType}(new {@link TypeRef TypeRef}&lt;List&lt;String&gt;&gt;() {}).{@link #in(Object) in}(jedi).{@link Invoker#set(Object) set}(powers);
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the generic type of the property.
  * 
  * @author Alex Ruiz

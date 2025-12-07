@@ -33,8 +33,7 @@ import org.fest.reflect.reference.TypeRef;
  *   commonPowers.add("jump");
  *   {@link org.fest.reflect.core.Reflection#staticField(String) staticField}("commonPowers").{@link StaticFieldName#ofType(TypeRef) ofType}(new {@link TypeRef TypeRef}&lt;List&lt;String&gt;&gt;() {}).{@link StaticFieldTypeRef#in(Class) in}(Jedi.class).{@link Invoker#set(Object) set}(commonPowers);
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the generic type of the field.
  * 
  * @author Alex Ruiz

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-
 /**
  * Error thrown when a wait (for some condition) times out.
  *

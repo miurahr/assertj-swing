@@ -18,7 +18,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.Map;
 
-
 /**
  * Monitor for disposed {@code Window}s.
  * 

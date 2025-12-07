@@ -114,6 +114,7 @@ public final class DecoratedInvoker<T> {
    *                   .<b>pre</b>DecorateWith(preDecoratorService)
    *                   .returningDecoratorResult();
    * </pre>
+   * @return the DecoratedInvoker returning decorator result.
    */
   public DecoratedInvoker<T> returningDecoratorResult() {
     decoratorInvocationHandler.setReturnDecoratorResult(true);

@@ -92,7 +92,7 @@ public abstract class BasicRobot_TestCase extends EDTSafeTestCase {
       setMinimumSize(new Dimension(100, 50));
     }
 
-      JTextField textField() {
+    JTextField textField() {
       return Objects.requireNonNull(textField);
     }
   }

@@ -115,11 +115,11 @@ public class JInternalFrameDriver extends JComponentDriver {
   @RunsInEDT
   private static Pair<Container, Point> maximizeLocationOf(final JInternalFrame internalFrame) {
     Pair<Container, Point> result = execute(new GuiQuery<>() {
-        @Override
-        protected Pair<Container, Point> executeInEDT() {
-            checkCanMaximize(internalFrame);
-            return findMaximizeLocation(internalFrame);
-        }
+      @Override
+      protected Pair<Container, Point> executeInEDT() {
+        checkCanMaximize(internalFrame);
+        return findMaximizeLocation(internalFrame);
+      }
     });
     return Objects.requireNonNull(result);
   }

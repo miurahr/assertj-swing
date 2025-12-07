@@ -30,8 +30,7 @@ import org.fest.reflect.exception.ReflectionError;
  *   // Sets the value of the property "name" to "Yoda"
  *   {@link org.fest.reflect.core.Reflection#property(String) property}("name").{@link PropertyName#ofType(Class) ofType}(String.class).{@link PropertyType#in(Object) in}(person).{@link Invoker#set(Object) set}("Yoda");
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the generic type of the property.
  * 
  * @author Alex Ruiz

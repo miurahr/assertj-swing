@@ -41,12 +41,12 @@ public final class Arrays {
    * @return {@code true} if the arrays are equal, {@code false} otherwise.
    */
   public static boolean equal(String @Nullable [][] one, String @Nullable [][] two) {
-      if (one == null && two == null) {
-          return true;
-      }
-      if (one == null || two == null) {
-          return false;
-      }
+    if (one == null && two == null) {
+      return true;
+    }
+    if (one == null || two == null) {
+      return false;
+    }
     if (one.length != two.length) {
       return false;
     } ;

@@ -18,7 +18,6 @@ import static org.mockito.Mockito.verify;
 
 import java.awt.Toolkit;
 
-
 import org.assertj.swing.test.awt.ToolkitStub;
 import org.junit.Before;
 import org.junit.Test;

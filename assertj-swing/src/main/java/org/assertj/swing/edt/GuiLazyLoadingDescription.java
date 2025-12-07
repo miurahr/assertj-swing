@@ -14,7 +14,6 @@ package org.assertj.swing.edt;
 
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
-
 import org.assertj.core.description.Description;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 

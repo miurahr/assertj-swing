@@ -14,7 +14,6 @@ package org.assertj.swing.hierarchy;
 
 import java.awt.Window;
 
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
 /**

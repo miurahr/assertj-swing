@@ -12,10 +12,8 @@
  */
 package org.assertj.swing.util;
 
-
 import java.util.Objects;
 import java.util.regex.Pattern;
-
 
 /**
  * Utility methods for regular expression patterns.

@@ -116,7 +116,7 @@ public class AbstractTwoStateButtonFixture_withMocks_Test {
     }
 
     @Override
-      protected AbstractButtonDriver createDriver(Robot robot) {
+    protected AbstractButtonDriver createDriver(Robot robot) {
       return mock(AbstractButtonDriver.class);
     }
   }

@@ -121,5 +121,6 @@ public interface JTableCellWriter {
    * @throws IllegalStateException if the {@code JTable} cell is not editable.
    * @throws IndexOutOfBoundsException if any of the indices (row and column) is out of bounds.
    */
-  @Nullable Component editorForCell(JTable table, int row, int column);
+  @Nullable
+  Component editorForCell(JTable table, int row, int column);
 }

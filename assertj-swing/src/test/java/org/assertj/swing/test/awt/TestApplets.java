@@ -16,7 +16,6 @@ import static org.mockito.Mockito.mock;
 
 import java.applet.Applet;
 
-
 /**
  * Implementations of {@link Applet}s to be used for testing.
  * 

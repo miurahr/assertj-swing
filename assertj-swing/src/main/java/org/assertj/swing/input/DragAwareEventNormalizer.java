@@ -19,7 +19,6 @@ import java.awt.event.AWTEventListener;
 import java.util.EmptyStackException;
 import java.util.logging.Logger;
 
-
 import org.assertj.core.util.VisibleForTesting;
 
 /**

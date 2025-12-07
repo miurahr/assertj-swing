@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.fixture;
 
-
 import java.util.Objects;
 import java.util.regex.Pattern;
 

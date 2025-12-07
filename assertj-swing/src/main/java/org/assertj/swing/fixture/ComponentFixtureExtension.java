@@ -15,7 +15,6 @@ package org.assertj.swing.fixture;
 import java.awt.Component;
 import java.awt.Container;
 
-
 import org.assertj.swing.core.Robot;
 
 /**

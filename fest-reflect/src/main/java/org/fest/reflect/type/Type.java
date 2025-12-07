@@ -34,8 +34,7 @@ import static org.fest.reflect.type.TypeLoader.newLoader;
  *   // Loads the class 'org.republic.Jedi' using a custom class loader
  *   Class&lt;?&gt; jediType = {@link org.fest.reflect.core.Reflection#type(String) type}("org.republic.Jedi").{@link Type#withClassLoader(ClassLoader) withClassLoader}(myClassLoader).{@link TypeLoader#load() load}();
  * </pre>
- * </p>
- * 
+ *
  * @author Alex Ruiz
  * 
  * @since 1.1
@@ -79,7 +78,6 @@ public final class Type {
    * <pre>
    * Class&lt;Person&gt; type = {@link org.fest.reflect.core.Reflection#type(String) type}("org.republic.Jedi").{@link Type#loadAs(Class) loadAs}(Person.class);
    * </pre>
-   * </p>
    * @param type the given type.
    * @param <T> the generic type of the type.
    * @return the loaded class.
@@ -102,7 +100,6 @@ public final class Type {
    * <pre>
    * Class&lt;?&gt; type = {@link org.fest.reflect.core.Reflection#type(String) type}("org.republic.Jedi").{@link Type#withClassLoader(ClassLoader) withClassLoader}(myClassLoader).{@link TypeLoader#load() load}();
    * </pre>
-   * </p>
    * @param classLoader the given <code>ClassLoader</code>.
    * @return an object responsible of loading a class with the given <code>ClassLoader</code>.
    * @throws NullPointerException if the given <code>ClassLoader</code> is <code>null</code>.

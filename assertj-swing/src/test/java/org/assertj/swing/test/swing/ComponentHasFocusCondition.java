@@ -18,7 +18,6 @@ import static org.assertj.swing.query.ComponentHasFocusQuery.hasFocus;
 
 import java.awt.Component;
 
-
 import org.assertj.swing.timing.Condition;
 
 /**

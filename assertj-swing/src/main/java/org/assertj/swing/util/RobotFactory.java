@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.util;
 
-
 import org.jspecify.annotations.Nullable;
 
 import java.awt.*;

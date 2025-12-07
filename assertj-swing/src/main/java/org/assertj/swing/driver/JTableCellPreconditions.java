@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-
 import javax.swing.JTable;
 
 import org.assertj.swing.annotation.RunsInCurrentThread;

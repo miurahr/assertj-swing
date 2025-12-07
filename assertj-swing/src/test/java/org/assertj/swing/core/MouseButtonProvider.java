@@ -16,7 +16,6 @@ import static org.assertj.swing.core.MouseButton.LEFT_BUTTON;
 import static org.assertj.swing.core.MouseButton.MIDDLE_BUTTON;
 import static org.assertj.swing.core.MouseButton.RIGHT_BUTTON;
 
-
 /**
  * Provider of {@link MouseButton} values.
  * 

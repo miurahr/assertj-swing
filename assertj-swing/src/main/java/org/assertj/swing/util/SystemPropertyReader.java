@@ -18,7 +18,8 @@ import org.jspecify.annotations.Nullable;
  * @author Alex Ruiz
  */
 class SystemPropertyReader {
-  @Nullable String systemProperty(String propertyName) {
+  @Nullable
+  String systemProperty(String propertyName) {
     return System.getProperty(propertyName);
   }
 }

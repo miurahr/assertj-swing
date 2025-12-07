@@ -30,8 +30,7 @@ import org.fest.reflect.exception.ReflectionError;
  *   // Sets the value of the static field "count" to 3
  *   {@link org.fest.reflect.core.Reflection#staticField(String) staticField}("count").{@link StaticFieldName#ofType(Class) ofType}(int.class).{@link StaticFieldType#in(Class) in}(Person.class).{@link Invoker#set(Object) set}(3);
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the generic type of the field.
  * 
  * @author Alex Ruiz

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.util;
 
-
 /**
  * A range of values.
  * 

@@ -14,7 +14,6 @@ package org.assertj.swing.test.core;
 
 import java.awt.Component;
 
-
 import org.assertj.swing.core.GenericTypeMatcher;
 
 /**

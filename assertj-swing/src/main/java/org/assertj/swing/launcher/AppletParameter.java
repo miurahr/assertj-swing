@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.launcher;
 
-
 /**
  * <p>
  * Fluent interface for creation of {@code Applet} parameters.

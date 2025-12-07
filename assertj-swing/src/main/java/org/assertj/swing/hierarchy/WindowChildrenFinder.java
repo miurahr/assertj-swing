@@ -21,7 +21,6 @@ import java.awt.Container;
 import java.awt.Window;
 import java.util.Collection;
 
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
 /**

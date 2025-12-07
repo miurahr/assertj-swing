@@ -19,7 +19,6 @@ import static org.assertj.swing.test.ExpectedException.none;
 import java.awt.Frame;
 import java.util.List;
 
-
 import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.exception.UnexpectedException;
 import org.assertj.swing.finder.WindowFinder;

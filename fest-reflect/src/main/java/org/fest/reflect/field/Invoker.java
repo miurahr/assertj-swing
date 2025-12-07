@@ -48,8 +48,6 @@ import org.fest.reflect.reference.TypeRef;
  *   {@link org.fest.reflect.core.Reflection#staticField(String) field}("count").{@link StaticFieldName#ofType(Class) ofType}(int.class).{@link StaticFieldType#in(Class) in}(Person.class).{@link Invoker#set(Object) set}(3);
  * </pre>
  * 
- * </p>
- * 
  * @param <T> the declared type for the field to access.
  * 
  * @author Alex Ruiz
@@ -152,9 +150,11 @@ public final class Invoker<T> {
    * decorator result if you want to.
    * <p>
    * Be aware:
+   * <ul>
    * <li>The type of a targeted object should be an interface for this functionality to work</li>
    * <li>Any exception caused by an invocation of a {@code decorator} object's method will result in disrupting the default
    * program's flow</li>
+   * </ul>
    * <p>
    * Example: Assuming we have the following code:
    * 
@@ -213,9 +213,11 @@ public final class Invoker<T> {
    * decorator result if you want to.
    * <p>
    * Be aware:
+   * <ul>
    * <li>The type of a targeted object should be an interface for this functionality to work</li>
    * <li>Any exception caused by an invocation of a {@code decorator} object's method will result in disrupting the default
    * program's flow</li>
+   * </ul>
    * <p>
    * Example: Assuming we have the following code:
    * 

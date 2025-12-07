@@ -35,7 +35,7 @@ import java.util.Objects;
 final class JTableMatchingCellQuery {
   @RunsInEDT
   static TableCell cellWithValue(final JTable table, final TextMatcher matcher,
-                                          final JTableCellReader cellReader) {
+                                 final JTableCellReader cellReader) {
     TableCell result = execute(() -> findMatchingCell(table, matcher, cellReader));
     return Objects.requireNonNull(result);
   }

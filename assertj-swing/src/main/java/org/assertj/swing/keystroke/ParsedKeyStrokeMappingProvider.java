@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.keystroke;
 
-
 import static java.util.Collections.unmodifiableList;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.assertj.swing.keystroke.KeyStrokeMappings.defaultMappings;

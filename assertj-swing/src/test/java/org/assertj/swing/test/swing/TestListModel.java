@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.swing;
 
-
 import javax.swing.DefaultListModel;
 
 /**

@@ -32,8 +32,7 @@ import org.fest.reflect.exception.ReflectionError;
  * // Sets the value of the field "name" to "Yoda"
  * {@link org.fest.reflect.core.Reflection#field(String) field}("name").{@link FieldName#ofType(Class) ofType}(String.class).{@link FieldType#in(Object) in}(person).{@link Invoker#set(Object) set}("Yoda");
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the generic type of the field.
  * 
  * @author Alex Ruiz

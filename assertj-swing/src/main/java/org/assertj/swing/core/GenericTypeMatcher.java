@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.core;
 
-
 import java.awt.Component;
 import java.util.Objects;
 

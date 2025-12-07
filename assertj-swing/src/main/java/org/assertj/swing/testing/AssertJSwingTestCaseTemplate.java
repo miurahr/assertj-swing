@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.testing;
 
-
 import org.assertj.swing.core.BasicRobot;
 import org.assertj.swing.core.Robot;
 

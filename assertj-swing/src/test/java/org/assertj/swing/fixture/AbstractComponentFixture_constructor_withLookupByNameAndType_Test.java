@@ -82,7 +82,7 @@ public class AbstractComponentFixture_constructor_withLookupByNameAndType_Test {
     }
 
     @Override
-      protected ComponentDriver createDriver(Robot robot) {
+    protected ComponentDriver createDriver(Robot robot) {
       return new ComponentDriver(robot);
     }
   }

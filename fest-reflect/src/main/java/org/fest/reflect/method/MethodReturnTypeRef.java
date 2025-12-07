@@ -30,8 +30,7 @@ import org.fest.reflect.reference.TypeRef;
  *                                            .{@link MethodReturnTypeRef#in(Object) in}(person)
  *                                            .{@link Invoker#invoke(Object...) invoke}();
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the generic type of the method's return type reference.
  * 
  * @author Alex Ruiz

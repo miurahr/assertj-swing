@@ -24,7 +24,6 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * An event listener that records mouse events on a specific component as {@link AWTEventListener} in the
  * {@link Toolkit}.

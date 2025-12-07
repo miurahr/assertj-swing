@@ -36,10 +36,10 @@ import java.util.Objects;
 final class JTreeMatchingPathQuery {
   @RunsInEDT
   static TreePath verifyJTreeIsReadyAndFindMatchingPath(final JTree tree, final String path,
-                                                                 final JTreePathFinder pathFinder) {
+                                                        final JTreePathFinder pathFinder) {
     TreePath result = execute(new GuiQuery<TreePath>() {
       @Override
-          protected TreePath executeInEDT() {
+      protected TreePath executeInEDT() {
         checkEnabledAndShowing(tree);
         return matchingPathWithRootIfInvisible(tree, path, pathFinder);
       }
@@ -49,14 +49,14 @@ final class JTreeMatchingPathQuery {
 
   @RunsInEDT
   static TreePath matchingPathFor(final JTree tree, final String path,
-                                           final JTreePathFinder pathFinder) {
+                                  final JTreePathFinder pathFinder) {
     TreePath result = execute(() -> matchingPathWithRootIfInvisible(tree, path, pathFinder));
     return Objects.requireNonNull(result);
   }
 
   @RunsInCurrentThread
   static TreePath matchingPathWithRootIfInvisible(JTree tree, String path,
-                                                           JTreePathFinder pathFinder) {
+                                                  JTreePathFinder pathFinder) {
     TreePath matchingPath = pathFinder.findMatchingPath(tree, path);
     return addRootIfInvisible(tree, matchingPath);
   }

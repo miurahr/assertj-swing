@@ -100,17 +100,17 @@ class JProgressBarIncrementValueAsyncTask {
       this.progressBar = progressBar;
     }
 
-      TaskBuilder increment(int value) {
+    TaskBuilder increment(int value) {
       increment = value;
       return this;
     }
 
-      TaskBuilder every(long duration, TimeUnit timeUnit) {
+    TaskBuilder every(long duration, TimeUnit timeUnit) {
       periodInMs = timeUnit.toMillis(duration);
       return this;
     }
 
-      JProgressBarIncrementValueAsyncTask createTask(Robot robot) {
+    JProgressBarIncrementValueAsyncTask createTask(Robot robot) {
       return new JProgressBarIncrementValueAsyncTask(robot, progressBar, increment, periodInMs);
     }
   }

@@ -15,7 +15,6 @@ package org.assertj.swing.util;
 import static org.assertj.core.util.Strings.concat;
 import static org.assertj.core.util.Strings.quote;
 
-
 /**
  * @author Alex Ruiz
  */

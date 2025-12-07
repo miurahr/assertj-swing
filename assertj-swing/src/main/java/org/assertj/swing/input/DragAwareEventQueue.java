@@ -29,7 +29,6 @@ import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 import java.util.EmptyStackException;
 
-
 /**
  * Catches native drop target events, which are normally hidden from AWTEventListeners.
  * 

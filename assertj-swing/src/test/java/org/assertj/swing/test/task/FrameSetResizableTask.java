@@ -16,7 +16,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Frame;
 
-
 import org.assertj.swing.annotation.RunsInEDT;
 
 /**

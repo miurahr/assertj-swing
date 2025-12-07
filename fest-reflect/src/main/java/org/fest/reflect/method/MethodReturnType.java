@@ -36,8 +36,7 @@ import static org.fest.reflect.method.MethodParameterTypes.newParameterTypes;
  *                                  .{@link MethodReturnType#in(Object) in}(person)
  *                                  .{@link Invoker#invoke(Object...) invoke}();
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the generic type of the method's return type.
  * 
  * @author Yvonne Wang

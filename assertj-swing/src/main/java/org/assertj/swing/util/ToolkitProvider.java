@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.util;
 
-
 import java.awt.Toolkit;
 import java.util.Objects;
 

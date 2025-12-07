@@ -46,14 +46,13 @@ import org.fest.reflect.reference.TypeRef;
  *                                                        .{@link StaticMethodReturnTypeRef#in(Class) in}(Jedi.class)
  *                                                        .{@link Invoker#invoke(Object...) invoke}();
  * </pre>
- * </p>
- * 
+ *
  * @author Alex Ruiz
  */
 public final class StaticMethodName {
 
   /**
-   * Creates a new </code>{@link StaticMethodName}</code>: the starting point of the fluent interface for accessing static methods
+   * Creates a new <code>{@link StaticMethodName}</code>: the starting point of the fluent interface for accessing static methods
    * using Java Reflection.
    * @param name the name of the method to access using Java Reflection.
    * @return the created <code>StaticMethodName</code>.

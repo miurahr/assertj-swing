@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.format;
 
-
 import java.awt.Component;
 import java.util.Objects;
 

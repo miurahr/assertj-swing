@@ -155,7 +155,7 @@ public class AbstractContainerFixture_dialog_Test extends RobotBasedTestCase {
     }
 
     @Override
-      public String toString() {
+    public String toString() {
       return concat("dialog with title ", quote(TITLE));
     }
   }

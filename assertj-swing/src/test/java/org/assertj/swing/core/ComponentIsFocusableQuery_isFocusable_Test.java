@@ -20,7 +20,6 @@ import static org.mockito.Mockito.when;
 import java.awt.Component;
 import java.util.Collection;
 
-
 import org.assertj.swing.test.core.EDTSafeTestCase;
 import org.assertj.swing.test.data.BooleanProvider;
 import org.junit.Before;

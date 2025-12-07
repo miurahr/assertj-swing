@@ -18,7 +18,6 @@ import static org.assertj.swing.timing.Pause.pause;
 import java.awt.Dimension;
 import java.awt.Frame;
 
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.timing.Condition;

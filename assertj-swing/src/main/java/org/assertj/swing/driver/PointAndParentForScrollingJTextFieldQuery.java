@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.driver;
 
-
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;

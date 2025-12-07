@@ -55,7 +55,7 @@ final class JListScrollToItemTask {
   /** @return the index of first matching element and the point that the JList was scrolled to. */
   @RunsInEDT
   static Pair<Integer, Point> scrollToItem(final JList<?> list, final TextMatcher matcher,
-                                                    final JListCellReader cellReader) {
+                                           final JListCellReader cellReader) {
     Pair<Integer, Point> result = execute(new GuiQuery<Pair<Integer, Point>>() {
       @Override
       protected Pair<Integer, Point> executeInEDT() {
@@ -73,8 +73,8 @@ final class JListScrollToItemTask {
   /** @return the index of first matching element and the point that the JList was scrolled to. */
   @RunsInEDT
   static Pair<Integer, Point> scrollToItemIfNotSelectedYet(final JList<?> list,
-                                                                    final TextMatcher matcher,
-                                                                    final JListCellReader cellReader) {
+                                                           final TextMatcher matcher,
+                                                           final JListCellReader cellReader) {
     Pair<Integer, Point> result = execute(new GuiQuery<Pair<Integer, Point>>() {
       @Override
       protected Pair<Integer, Point> executeInEDT() {

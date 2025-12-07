@@ -21,7 +21,6 @@ import java.awt.event.AWTEventListener;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
  * <p>
  * AWT event listener that ensures all events are handled on the event dispatch thread (EDT).

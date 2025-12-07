@@ -124,8 +124,7 @@ import org.fest.reflect.type.Type;
  *   // Sets the value of the property "name" to "Yoda"
  *   {@link Reflection#property(String) property}("name").{@link PropertyName#ofType(Class) ofType}(String.class).{@link PropertyType#in(Object) in}(person).{@link org.fest.reflect.beanproperty.Invoker#set(Object) set}("Yoda");
  * </pre>
- * </p>
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  * @author Ivan Hristov

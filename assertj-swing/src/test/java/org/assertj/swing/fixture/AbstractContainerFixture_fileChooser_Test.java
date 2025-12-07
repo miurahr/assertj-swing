@@ -157,7 +157,7 @@ public class AbstractContainerFixture_fileChooser_Test extends RobotBasedTestCas
     }
 
     @Override
-      public String toString() {
+    public String toString() {
       return concat("file chooser with title ", quote(TITLE));
     }
   }

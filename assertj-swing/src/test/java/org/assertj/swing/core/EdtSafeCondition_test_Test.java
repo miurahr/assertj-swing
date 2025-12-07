@@ -18,7 +18,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import java.util.Collection;
 
-
 import org.assertj.swing.exception.EdtViolationException;
 import org.assertj.swing.test.data.BooleanProvider;
 import org.junit.Before;

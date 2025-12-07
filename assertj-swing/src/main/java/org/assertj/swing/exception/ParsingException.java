@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-
 /**
  * Error thrown when an unexpected error occurs while parsing a file.
  *

@@ -28,8 +28,7 @@ import static org.fest.reflect.constructor.Invoker.newInvoker;
  *   // Equivalent to call 'new Person("Yoda")'
  *   Person p = {@link org.fest.reflect.core.Reflection#constructor() constructor}().{@link TargetType#withParameterTypes(Class...) withParameterTypes}(String.class).{@link ParameterTypes#in(Class) in}(Person.class).{@link Invoker#newInstance newInstance}("Yoda");
  * </pre>
- * </p>
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */

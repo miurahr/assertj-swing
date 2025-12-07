@@ -40,8 +40,7 @@ import org.fest.reflect.reference.TypeRef;
  *   powers.add("heal");
  *   {@link org.fest.reflect.core.Reflection#property(String) property}("powers").{@link #ofType(TypeRef) ofType}(new {@link TypeRef TypeRef}&lt;List&lt;String&gt;&gt;() {}).{@link PropertyTypeRef#in(Object) in}(jedi).{@link Invoker#set(Object) set}(powers);
  * </pre>
- * </p>
- * 
+ *
  * @author Alex Ruiz
  * 
  * @since 1.2
@@ -92,7 +91,6 @@ public final class PropertyName {
    * <pre>
    *   List&lt;String&gt; powers = {@link org.fest.reflect.core.Reflection#property(String) property}("powers").{@link #ofType(TypeRef) ofType}(new {@link TypeRef TypeRef}&lt;List&lt;String&gt;&gt;() {}).{@link PropertyTypeRef#in(Object) in}(jedi).{@link Invoker#get() get}();
    * </pre>
-   * </p>
    * @param <T> the generic type of the property type.
    * @param type the type of the property to access.
    * @return a recipient for the property type.

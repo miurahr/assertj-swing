@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.fixture;
 
-
 /**
  * Supports functional testing of single nodes in {@code JTree}s
  * 

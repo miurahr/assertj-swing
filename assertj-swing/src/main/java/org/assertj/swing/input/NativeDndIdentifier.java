@@ -15,7 +15,6 @@ package org.assertj.swing.input;
 import java.awt.AWTEvent;
 import java.awt.event.MouseEvent;
 
-
 /**
  * Detects native drag 'n drop events.
  * 

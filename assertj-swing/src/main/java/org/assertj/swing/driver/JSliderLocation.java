@@ -68,7 +68,7 @@ public final class JSliderLocation {
 
     @Override
     @RunsInCurrentThread
-      Point update(Point center, int coordinate) {
+    Point update(Point center, int coordinate) {
       return new Point(coordinate, center.y);
     }
   }
@@ -82,7 +82,7 @@ public final class JSliderLocation {
 
     @RunsInCurrentThread
     @Override
-      Point update(Point center, int coordinate) {
+    Point update(Point center, int coordinate) {
       return new Point(center.x, coordinate);
     }
   }

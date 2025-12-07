@@ -20,7 +20,6 @@ import java.awt.Container;
 import java.util.Collection;
 import java.util.List;
 
-
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.annotation.RunsInCurrentThread;
 

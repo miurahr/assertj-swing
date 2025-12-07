@@ -37,8 +37,7 @@ import org.fest.reflect.exception.ReflectionError;
  *   // Equivalent to call 'new Person("Yoda")'
  *   Person p = {@link org.fest.reflect.core.Reflection#constructor() constructor}().{@link TargetType#withParameterTypes(Class...) withParameterTypes}(String.class).{@link ParameterTypes#in(Class) in}(Person.class).{@link #newInstance newInstance}("Yoda");
  * </pre>
- *          </p>
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */

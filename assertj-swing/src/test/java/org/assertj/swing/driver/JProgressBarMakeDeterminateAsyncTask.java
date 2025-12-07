@@ -92,12 +92,12 @@ class JProgressBarMakeDeterminateAsyncTask {
       this.progressBar = progressBar;
     }
 
-      TaskBuilder after(long duration, TimeUnit timeUnit) {
+    TaskBuilder after(long duration, TimeUnit timeUnit) {
       periodInMs = timeUnit.toMillis(duration);
       return this;
     }
 
-      JProgressBarMakeDeterminateAsyncTask createTask(Robot robot) {
+    JProgressBarMakeDeterminateAsyncTask createTask(Robot robot) {
       return new JProgressBarMakeDeterminateAsyncTask(robot, progressBar, periodInMs);
     }
   }

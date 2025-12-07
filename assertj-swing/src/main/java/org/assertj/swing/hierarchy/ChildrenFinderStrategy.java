@@ -16,7 +16,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.Collection;
 
-
 import org.assertj.swing.annotation.RunsInCurrentThread;
 
 /**

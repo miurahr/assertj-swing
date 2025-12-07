@@ -58,7 +58,7 @@ public class AbstractComponentFixture_targetCastedTo_Test {
     }
 
     @Override
-      protected ComponentDriver createDriver(Robot robot) {
+    protected ComponentDriver createDriver(Robot robot) {
       return mock(ComponentDriver.class);
     }
   }

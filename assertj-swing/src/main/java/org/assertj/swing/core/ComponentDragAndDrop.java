@@ -89,7 +89,6 @@ public class ComponentDragAndDrop {
     return coordinate + DRAG_THRESHOLD < dimension ? DRAG_THRESHOLD : 0;
   }
 
-
   private Point point(int x, int y) {
     return new Point(x, y);
   }

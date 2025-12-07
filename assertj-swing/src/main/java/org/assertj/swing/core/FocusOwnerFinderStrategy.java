@@ -22,5 +22,6 @@ import java.awt.Component;
  * @author Alex Ruiz
  */
 public interface FocusOwnerFinderStrategy {
-    @Nullable Component focusOwner();
+  @Nullable
+  Component focusOwner();
 }

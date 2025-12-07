@@ -43,8 +43,7 @@ import org.fest.reflect.reference.TypeRef;
  *                                                        .{@link StaticMethodReturnTypeRef#in(Class) in}(Jedi.class)
  *                                                        .{@link Invoker#invoke(Object...) invoke}();
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the generic type of the static method's return type.
  * 
  * @author Alex Ruiz

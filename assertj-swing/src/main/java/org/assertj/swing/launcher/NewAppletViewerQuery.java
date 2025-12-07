@@ -33,7 +33,7 @@ final class NewAppletViewerQuery {
   // TODO test
   @RunsInEDT
   static AppletViewer showAppletViewerWith(final Applet applet,
-                                                    final Map<String, String> parameters) {
+                                           final Map<String, String> parameters) {
     final AppletViewer viewer = newViewer(applet, parameters);
     execute(() -> {
       viewer.pack();

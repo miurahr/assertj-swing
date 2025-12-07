@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.test.data;
 
-
 /**
  * A provider of {@code boolean} values.
  * 

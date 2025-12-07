@@ -44,8 +44,7 @@ import org.fest.reflect.reference.TypeRef;
  *   powers.add("heal");
  *   {@link org.fest.reflect.core.Reflection#field(String) field}("powers").{@link #ofType(TypeRef) ofType}(new {@link TypeRef TypeRef}&lt;List&lt;String&gt;&gt;() {}).{@link FieldTypeRef#in(Object) in}(jedi).{@link Invoker#set(Object) set}(powers);
  * </pre>
- * </p>
- * 
+ *
  * @author Alex Ruiz
  * @author Ivan Hristov
  */
@@ -98,7 +97,6 @@ public final class FieldName {
    * <pre>
    *   List&lt;String&gt; powers = {@link org.fest.reflect.core.Reflection#field(String) field}("powers").{@link #ofType(TypeRef) ofType}(new {@link TypeRef TypeRef}&lt;List&lt;String&gt;&gt;() {}).{@link FieldTypeRef#in(Object) in}(jedi).{@link Invoker#get() get}();
    * </pre>
-   * </p>
    * @param <T> the generic type of the field type.
    * @param type the type of the field to access.
    * @return a recipient for the field type.

@@ -49,7 +49,8 @@ public interface JTableCellReader {
    * @param column the column index of the cell.
    * @return the internal value of a cell in a {@code JTable} as expected in a test.
    */
-  @Nullable String valueAt(JTable table, int row, int column);
+  @Nullable
+  String valueAt(JTable table, int row, int column);
 
   /**
    * <p>

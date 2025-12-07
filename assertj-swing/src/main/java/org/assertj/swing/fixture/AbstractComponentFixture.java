@@ -99,7 +99,7 @@ public abstract class AbstractComponentFixture<S, C extends Component, D extends
   }
 
   private static <C extends Component> C findTarget(Robot robot, @Nullable String name,
-              Class<? extends C> type) {
+                                                    Class<? extends C> type) {
     Objects.requireNonNull(robot);
     Objects.requireNonNull(type);
     return robot.finder().findByName(name, type, requireShowing(robot));

@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-
 /**
  * Error thrown when a EDT violation is detected. For more details, please read the <a
  * href="http://java.sun.com/javase/6/docs/api/javax/swing/package-summary.html#threading" target="_blank">Swing's

@@ -16,7 +16,6 @@ import static org.assertj.swing.util.Platform.controlOrCommandKey;
 
 import java.util.function.Consumer;
 
-
 import org.assertj.core.api.Fail;
 import org.assertj.swing.annotation.RunsInEDT;
 import org.assertj.swing.core.Robot;

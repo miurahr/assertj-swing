@@ -20,7 +20,6 @@ import static org.mockito.Mockito.when;
 import java.awt.Component;
 import java.awt.Frame;
 
-
 import org.assertj.swing.core.ComponentFinder;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.core.Settings;
@@ -79,7 +78,7 @@ public class AbstractComponentFixture_constructor_withLookupByType_Test {
     }
 
     @Override
-      protected ComponentDriver createDriver(Robot robot) {
+    protected ComponentDriver createDriver(Robot robot) {
       return new ComponentDriver(robot);
     }
   }

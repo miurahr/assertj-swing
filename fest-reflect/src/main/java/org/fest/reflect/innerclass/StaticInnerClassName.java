@@ -32,15 +32,13 @@ import static org.fest.reflect.innerclass.Invoker.newInvoker;
  *   public static class Padawan {}
  * }
  * </pre>
- * </p>
  * <p>
  * The following example shows how to get a reference to the inner class <code>Master</code>:
  * 
  * <pre>
  * Class&lt;?&gt; masterClass = {@link org.fest.reflect.core.Reflection#staticInnerClass(String) staticInnerClass}("Master").{@link StaticInnerClassName#in(Class) in}(Jedi.class).{@link Invoker#get() get}();
  * </pre>
- * </p>
- * 
+ *
  * @author Alex Ruiz
  * 
  * @since 1.1
@@ -48,7 +46,7 @@ import static org.fest.reflect.innerclass.Invoker.newInvoker;
 public final class StaticInnerClassName {
 
   /**
-   * Creates a new </code>{@link StaticInnerClassName}</code>.
+   * Creates a new <code>{@link StaticInnerClassName}</code>.
    * @param name the name of the static inner class to obtain.
    * @return the created <code>StaticInnerClassName</code>.
    * @throws NullPointerException if the given name is <code>null</code>.

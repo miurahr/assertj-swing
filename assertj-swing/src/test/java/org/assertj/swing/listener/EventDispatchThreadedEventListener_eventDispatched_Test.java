@@ -20,7 +20,6 @@ import static org.assertj.swing.timing.Pause.pause;
 
 import java.awt.AWTEvent;
 
-
 import org.assertj.swing.timing.Condition;
 import org.junit.Before;
 import org.junit.Test;

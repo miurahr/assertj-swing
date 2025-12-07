@@ -47,7 +47,6 @@ public final class TypeLoader {
    * <pre>
    * Class&lt;?&gt; type = {@link org.fest.reflect.core.Reflection#type(String) type}("org.republic.Jedi").{@link Type#withClassLoader(ClassLoader) withClassLoader}(myClassLoader).{@link TypeLoader#load() load}();
    * </pre>
-   * </p>
    * @return the loaded class.
    * @throws ReflectionError wrapping any error that occurred during class loading.
    */
@@ -68,7 +67,6 @@ public final class TypeLoader {
    * <pre>
    * Class&lt;Person&gt; type = {@link org.fest.reflect.core.Reflection#type(String) type}("org.republic.Jedi").{@link Type#withClassLoader(ClassLoader) withClassLoader}(myClassLoader).{@link TypeLoader#loadAs(Class) loadAs}(Person.class);
    * </pre>
-   * </p>
    * @param type the given type.
    * @param <T> the generic type of the type.
    * @return the loaded class.

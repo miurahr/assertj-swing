@@ -487,7 +487,7 @@ public class JTreeDriver extends JComponentDriver {
    * @throws LocationUnavailableException if a tree path for any of the given rows cannot be found.
    */
   @RunsInEDT
-  public void selectRows(final JTree tree, final int [] rows) {
+  public void selectRows(final JTree tree, final int[] rows) {
     ArrayPreconditions.checkNotNullOrEmpty(rows);
     clearSelection(tree);
     new MultipleSelectionTemplate(robot) {
@@ -517,7 +517,7 @@ public class JTreeDriver extends JComponentDriver {
    * @throws LocationUnavailableException if a tree path for any of the given rows cannot be found.
    */
   @RunsInEDT
-  public void unselectRows(final JTree tree, final int [] rows) {
+  public void unselectRows(final JTree tree, final int[] rows) {
     ArrayPreconditions.checkNotNullOrEmpty(rows);
     new MultipleSelectionTemplate(robot) {
       @Override
@@ -903,7 +903,7 @@ public class JTreeDriver extends JComponentDriver {
    * @throws AssertionError if the given {@code JTree} selection is not equal to the given rows.
    */
   @RunsInEDT
-  public void requireSelection(JTree tree, int [] rows) {
+  public void requireSelection(JTree tree, int[] rows) {
     Objects.requireNonNull(rows);
     checkHasSelection(tree, rows, selectionProperty(tree));
   }

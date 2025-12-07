@@ -18,7 +18,6 @@ import java.awt.AWTEvent;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 
-
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.listener.WeakEventListener;
 

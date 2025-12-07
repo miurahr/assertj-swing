@@ -21,7 +21,6 @@ import java.awt.Point;
 import java.util.Collection;
 import java.util.Objects;
 
-
 import org.assertj.swing.test.recorder.ClickRecorder;
 import org.assertj.swing.test.recorder.ClickRecorderManager;
 import org.junit.Rule;

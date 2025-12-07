@@ -19,7 +19,6 @@ import static org.assertj.swing.query.ComponentShowingQuery.isShowing;
 import java.awt.Component;
 import java.util.Objects;
 
-
 import org.assertj.swing.timing.Condition;
 
 /**

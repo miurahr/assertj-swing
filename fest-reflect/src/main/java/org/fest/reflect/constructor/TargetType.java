@@ -29,15 +29,14 @@ import static org.fest.reflect.constructor.ParameterTypes.newParameterTypes;
  *   // Equivalent to call 'new Person("Yoda")'
  *   Person p = {@link org.fest.reflect.core.Reflection#constructor() constructor}().{@link TargetType#withParameterTypes(Class...) withParameterTypes}(String.class).{@link ParameterTypes#in(Class) in}(Person.class).{@link Invoker#newInstance newInstance}("Yoda");
  * </pre>
- * </p>
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */
 public final class TargetType {
 
   /**
-   * Creates a new </code>{@link TargetType}</code>.
+   * Creates a new <code>{@link TargetType}</code>.
    * @return the created <code>TargetType</code>.
    */
   public static TargetType startConstructorAccess() {

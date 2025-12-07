@@ -46,8 +46,7 @@ import org.fest.reflect.reference.TypeRef;
  *                                            .{@link MethodReturnTypeRef#in(Object) in}(person)
  *                                            .{@link Invoker#invoke(Object...) invoke}();
  * </pre>
- * </p>
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */

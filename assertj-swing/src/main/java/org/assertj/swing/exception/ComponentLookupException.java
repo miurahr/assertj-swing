@@ -18,7 +18,6 @@ import static org.assertj.core.util.Lists.newArrayList;
 import java.awt.Component;
 import java.util.Collection;
 
-
 /**
  * Error thrown when looking up a component using a {@link org.assertj.swing.core.ComponentFinder}.
  *

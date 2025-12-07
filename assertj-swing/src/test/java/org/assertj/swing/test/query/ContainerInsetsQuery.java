@@ -17,7 +17,6 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import java.awt.Container;
 import java.awt.Insets;
 
-
 import org.assertj.swing.annotation.RunsInEDT;
 
 /**

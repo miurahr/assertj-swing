@@ -19,7 +19,6 @@ import static org.assertj.swing.timing.Timeout.timeout;
 
 import java.awt.Component;
 
-
 import org.assertj.swing.annotation.RunsInEDT;
 
 /**

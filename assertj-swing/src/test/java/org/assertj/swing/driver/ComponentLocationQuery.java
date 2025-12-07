@@ -18,7 +18,6 @@ import java.awt.Component;
 import java.awt.Point;
 import java.util.Objects;
 
-
 /**
  * Returns the location (top-left corner) of a {@code Component}. This query is executed in the event dispatch thread
  * (EDT).

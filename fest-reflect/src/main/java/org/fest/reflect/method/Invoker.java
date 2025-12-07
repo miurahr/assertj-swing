@@ -26,8 +26,6 @@ import org.fest.reflect.exception.ReflectionError;
 
 /**
  * Understands the use of reflection to access a method from an object.
- * <p>
- * 
  * <pre>
  *   // Equivalent to call 'person.setName("Luke")'
  *   {@link org.fest.reflect.core.Reflection#method(String) method}("setName").{@link MethodName#withParameterTypes(Class...) withParameterTypes}(String.class)
@@ -42,8 +40,7 @@ import org.fest.reflect.exception.ReflectionError;
  *                                  .{@link MethodReturnType#in(Object) in}(person)
  *                                  .{@link Invoker#invoke(Object...) invoke}();
  * </pre>
- * </p>
- * 
+ *
  * @param <T> the return type of the method invocation.
  * 
  * @author Yvonne Wang

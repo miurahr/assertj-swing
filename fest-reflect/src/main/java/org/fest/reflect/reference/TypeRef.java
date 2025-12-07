@@ -34,7 +34,7 @@ public abstract class TypeRef<T> {
   private final Class<?> rawType;
 
   /**
-   * Creates a new </code>{@link TypeRef}</code>.
+   * Creates a new <code>{@link TypeRef}</code>.
    * @throws ReflectionError if the generic type of this reference is missing type parameter.
    */
   public TypeRef() {

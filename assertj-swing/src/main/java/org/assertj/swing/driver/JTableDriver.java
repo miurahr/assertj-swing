@@ -253,7 +253,7 @@ public class JTableDriver extends JComponentDriver {
 
   @RunsInEDT
   private static @Nullable Font cellFont(final JTable table, final TableCell cell,
-                               final JTableCellReader cellReader) {
+                                         final JTableCellReader cellReader) {
     return execute(() -> {
       JTableCellPreconditions.checkCellIndicesInBounds(table, cell);
       return cellReader.fontAt(table, cell.row, cell.column);
@@ -277,7 +277,7 @@ public class JTableDriver extends JComponentDriver {
 
   @RunsInEDT
   private static @Nullable Color cellBackground(final JTable table, final TableCell cell,
-                                      final JTableCellReader cellReader) {
+                                                final JTableCellReader cellReader) {
     return execute(() -> {
       JTableCellPreconditions.checkCellIndicesInBounds(table, cell);
       return cellReader.backgroundAt(table, cell.row, cell.column);

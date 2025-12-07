@@ -19,7 +19,6 @@ import static java.awt.event.WindowEvent.WINDOW_OPENED;
 import java.awt.AWTEvent;
 import java.awt.Window;
 
-
 /**
  * Utility methods related to AWT events.
  * 

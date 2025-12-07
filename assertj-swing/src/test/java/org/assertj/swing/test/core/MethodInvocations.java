@@ -113,7 +113,7 @@ public class MethodInvocations {
      * @param args the arguments to store.
      * @return the created {@code Args}.
      */
-      public static Args args(@Nullable Object... args) {
+    public static Args args(@Nullable Object... args) {
       return new Args(args);
     }
 

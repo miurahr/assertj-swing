@@ -12,7 +12,6 @@
  */
 package org.assertj.swing.exception;
 
-
 /**
  * Error thrown when acquiring or releasing a {@link org.assertj.swing.lock.ScreenLock}.
  *

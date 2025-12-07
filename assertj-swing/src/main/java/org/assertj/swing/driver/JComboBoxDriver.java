@@ -253,7 +253,6 @@ public class JComboBoxDriver extends JComponentDriver {
     });
   }
 
-
   private Description selectedIndexProperty(JComboBox<?> comboBox) {
     return propertyName(comboBox, SELECTED_INDEX_PROPERTY);
   }
