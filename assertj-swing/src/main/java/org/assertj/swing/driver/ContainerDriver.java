@@ -27,6 +27,7 @@ import java.awt.Dimension;
 import java.awt.IllegalComponentStateException;
 import java.awt.Insets;
 import java.awt.Point;
+import java.util.Objects;
 
 import javax.swing.JInternalFrame;
 
@@ -191,7 +192,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   @RunsInEDT
   public void move(Container c, int x, int y) {
     Triple<Dimension, Insets, Point> moveInfo = moveInfo(c);
-    Point locationOnScreen = moveInfo.third;
+    Point locationOnScreen = Objects.requireNonNull(moveInfo.third);
     moveBy(c, moveInfo, x - locationOnScreen.x, y - locationOnScreen.y);
   }
 
@@ -199,7 +200,6 @@ public abstract class ContainerDriver extends ComponentDriver {
   private Triple<Dimension, Insets, Point> moveInfo(final Container c) {
     Triple<Dimension, Insets, Point> result = execute(new GuiQuery<Triple<Dimension, Insets, Point>>() {
       @Override
-      @Nullable
       protected Triple<Dimension, Insets, Point> executeInEDT() {
         checkCanMove(c);
         Point locationOnScreen = null;
@@ -231,7 +231,7 @@ public abstract class ContainerDriver extends ComponentDriver {
   @RunsInEDT
   private void moveBy(Container c, Triple<Dimension, Insets, Point> moveInfo, int x, int y) {
     simulateMoveStarted(c, moveInfo, x, y);
-    Point locationOnScreen = moveInfo.third;
+    Point locationOnScreen = Objects.requireNonNull(moveInfo.third);
     Point location = new Point(locationOnScreen.x + x, locationOnScreen.y + y);
     moveComponent(c, location);
     robot.waitForIdle();
