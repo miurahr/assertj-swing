@@ -17,6 +17,7 @@ import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.assertj.swing.query.ComponentSizeQuery.sizeOf;
 
 import java.awt.Dimension;
+import java.util.Objects;
 
 import javax.swing.JWindow;
 

@@ -18,6 +18,8 @@ import javax.swing.JSlider;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
+import java.util.Objects;
+
 /**
  * Returns the value of a {@code JSlider}. This query is executed in the event dispatch thread (EDT).
  * 

@@ -15,6 +15,7 @@ package org.assertj.swing.test.query;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.io.File;
+import java.util.Objects;
 
 import javax.swing.JFileChooser;
 

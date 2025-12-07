@@ -20,6 +20,8 @@ import javax.swing.JPopupMenu;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
+import java.util.Objects;
+
 /**
  * Sets the {@code JPopupMenu} for a {@code JComponent}. This task is executed in the event dispatch thread (EDT).
  *

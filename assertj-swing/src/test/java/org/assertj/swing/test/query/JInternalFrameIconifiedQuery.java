@@ -18,6 +18,8 @@ import javax.swing.JInternalFrame;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
+import java.util.Objects;
+
 /**
  * Returns whether a {@code JInternalFrame} is currently iconified. This query is executed in the event dispatch thread
  * (EDT).

@@ -17,6 +17,7 @@ import static org.assertj.swing.awt.AWT.centerOf;
 import static org.assertj.swing.core.ClickingDataProvider.clickingData;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.swing.JTextField;
 

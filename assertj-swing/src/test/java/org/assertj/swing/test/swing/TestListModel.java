@@ -13,6 +13,7 @@
 package org.assertj.swing.test.swing;
 
 import javax.swing.DefaultListModel;
+import java.util.Objects;
 
 /**
  * Simplified version of {@link DefaultListModel}.

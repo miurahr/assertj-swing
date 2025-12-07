@@ -18,6 +18,8 @@ import javax.swing.JProgressBar;
 
 import org.assertj.swing.annotation.RunsInEDT;
 
+import java.util.Objects;
+
 /**
  * Increments the value in a {@code JProgressBar}. This task is executed in the event dispatch thread (EDT).
  *

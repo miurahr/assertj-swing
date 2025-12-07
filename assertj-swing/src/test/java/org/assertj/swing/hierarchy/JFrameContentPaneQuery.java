@@ -15,6 +15,7 @@ package org.assertj.swing.hierarchy;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 
 import java.awt.Container;
+import java.util.Objects;
 
 import javax.swing.JFrame;
 
