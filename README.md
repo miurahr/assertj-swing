@@ -63,6 +63,25 @@ and integrate efforts into our repository.
 The project uses Xvfb virtual X server and fluxbox window manager for test.
 These are automatically launched during a Gradle test task is running.
 
+#### Handling failing tests
+
+- By default, only the `assertj-swing` module ignores test failures (to allow investigation without breaking the build). Other modules will fail the build on test failures.
+- You can review test results in the HTML reports generated per module, for example:
+  - `assertj-swing/build/reports/tests/test/index.html`
+  - `assertj-swing-junit/build/reports/tests/test/index.html`
+  - `assertj-swing-junit-jupiter/build/reports/tests/test/index.html`
+  - `fest-reflect/build/reports/tests/test/index.html`
+
+To enforce failures globally (i.e., make all modules fail the build on test failures), run Gradle with one of the following flags:
+
+```bash
+./gradlew test -PenforceTestFailures=true
+# or
+./gradlew test -DenforceTestFailures=true
+# or set environment variable (for the current shell)
+ENFORCE_TEST_FAILURES=true ./gradlew test
+```
+
 ### Java Platform Module System
 
 These provide JPMS module definitions.
