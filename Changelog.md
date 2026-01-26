@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+* chore: Bump assertj@3.27.7
+* chore: Bump junit-jupiter@5.14.2
+* chore: Bump commons-io@2.21.0
+* chore: Bump commons-codec@1.20.0
+* chore: Bump mockito-core@5.21.0
 
 ## [v4.0.0-beta-3]
 * chore: Bump assertj@3.27.4 
