@@ -19,8 +19,8 @@ If you follow these tips you ensure that your GUI tests respect Swing's threadin
        using a `GuiQuery or `GuiTask, because JUnit and TestNG tests do not run on
        the EDT. More details <a href="#accessing-on-edt">below on this page</a>.
 - Access of Swing components through AssertJ Swing APIs is already EDT-safe.
-- It is strongly recommended to use `FailOnThreadViolationRepaintManager to catch EDT-access
-       violations. More details <a href="#testing-violations">below on this page</a>.
+- It is strongly recommended to use `FailOnThreadViolationRepaintManager` to catch EDT-access violations.
+  More details [below on this page](#Testing-that-access-to-Swing-components-is-done-in-the-EDT)
 
 Alex Ruiz wrote an <a href="http://alexruiz.developerblogs.com/?p=160" target="_blank">entry on his blog</a>
          about how to write EDT-safe GUI tests.
@@ -42,18 +42,18 @@ If you use lambda expressions, you don't need to use this class directly.
 
 #### Examples
 
-         When you would like to **read** the text of a label, execute the following code:
+When you would like to **read** the text of a label, execute the following code:
 
 ```java
 final JLabel nameLabel = ... // get a reference to a JLabel
-String text = GuiActionRunner.execute(() -&gt; nameLabel.getText());
+String text = GuiActionRunner.execute(() -> nameLabel.getText());
 ```
 
 When you would like to **set** the text of a label, execute:
 
 ```java
 final JLabel nameLabel = ... // get a reference to a JLabel
-GuiActionRunner.execute(() -&gt; nameLabel.setText("Name:"));
+GuiActionRunner.execute(() -> nameLabel.setText("Name:"));
 ```
 
 > **_Note_**

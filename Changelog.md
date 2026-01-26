@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+* Move repository to GitHub
 * chore: Bump assertj@3.27.7
 * chore: Bump junit-jupiter@5.14.2
 * chore: Bump commons-io@2.21.0

@@ -18,3 +18,5 @@ build/
 out/
 .gradle/
 .run/
+.venv/
+site/

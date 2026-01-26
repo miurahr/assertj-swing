@@ -6,20 +6,20 @@ AssertJ Swing is based on JDK standard types assertions and can be used with JUn
 
 ### Features of (forked) AssertJ Swing
 
-- [Simulation of user interaction](assertj-swing-input.html) with a GUI (e.g. drag 'n drop)
-- Reliable [GUI component lookup](assertj-swing-lookup.html) (by type, by name or custom search criteria)
+- [Simulation of user interaction](assertj-swing-input.md) with a GUI (e.g. drag 'n drop)
+- Reliable [GUI component lookup](assertj-swing-lookup.md) (by type, by name or custom search criteria)
 - Support for all Swing components included in the JDK
 - Compact and powerful API for creation and maintenance of functional GUI tests
-- Supports [Applet testing](assertj-swing-launch.html#applets)
-- Ability to embed [screenshots of failed GUI tests](assertj-swing-troubleshooting-screenshots.html) in HTML test reports
+- Supports [Applet testing](assertj-swing-launch.md#applets)
+- Ability to embed [screenshots of failed GUI tests](assertj-swing-troubleshooting-screenshots.md) in HTML test reports
 - Can be used with either [JUnit4](https://junit.org/junit4/) or [JUnit5](https://junit.org/junit5/)
-- Supports [testing violations](assertj-swing-edt.html#testing-violations) of Swing's threading rules
+- Supports [testing violations](assertj-swing-edt.md#Testing-that-access-to-Swing-components-is-done-in-the-EDT) of Swing's threading rules
 
 ## Getting started
 
-To get quickly started, just have a look at our [one minute starting guide](assertj-swing-quick-start.html)
+To get quickly started, just have a look at our [one minute starting guide](assertj-swing-quick-start.md)
 
- If you have a bit more time, start with our [getting started guide](assertj-swing-getting-started.html)
+ If you have a bit more time, start with our [getting started guide](assertj-swing-getting-started.md)
 
 ### Why have I forked Fest Swing?
 
@@ -40,9 +40,9 @@ __Joel Costigliola (AssertJ creator) and Christian R&ouml;sch (maintainer of Ass
 
 ## Code and issue tracker
 
- Forked AssertJ Swing is hosted on CodeBerg.org: https://codeberg.org/miurahr/assertj-swing
+- The forked AssertJ Swing is hosted on https://github.com/miurahr/assertj-swing
 
- Please report bugs or missing features in [AssertJ Swing issue tracker](https://codeberg.org/miurahr/assertj-swing/issues)
+- Please report bugs or missing features in [AssertJ Swing issue tracker](https://github.com/miurahr/assertj-swing/issues)
 
 ## Contributing to AssertJ Swing
 
