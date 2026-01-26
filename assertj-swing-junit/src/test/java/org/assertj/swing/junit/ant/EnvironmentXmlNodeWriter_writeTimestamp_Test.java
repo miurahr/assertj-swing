@@ -52,8 +52,7 @@ public class EnvironmentXmlNodeWriter_writeTimestamp_Test extends EnvironmentXml
         try {
           Date other = sdf.parse(value);
           return date.after(other) || date.equals(other);
-        } catch (ParseException ignored) {
-        }
+        } catch (ParseException ignored) {}
       }
       return false;
     }));

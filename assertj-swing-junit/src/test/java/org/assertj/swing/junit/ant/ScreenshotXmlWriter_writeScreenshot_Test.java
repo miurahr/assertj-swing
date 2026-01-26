@@ -70,10 +70,10 @@ public class ScreenshotXmlWriter_writeScreenshot_Test {
 
   @Test
   public void should_Not_Add_Screenshot_Element_Test_Is_Not_GUI_Test() {
-      when(guiTestRecognizer.isGUITest(testClassNameFrom(test), testMethodNameFrom(test))).thenReturn(false);
-      writer.writeScreenshot(errorNode, test);
-      assertThat(root.size()).isEqualTo(1);
-      assertThat(root.child(0)).isEqualTo(errorNode);
+    when(guiTestRecognizer.isGUITest(testClassNameFrom(test), testMethodNameFrom(test))).thenReturn(false);
+    writer.writeScreenshot(errorNode, test);
+    assertThat(root.size()).isEqualTo(1);
+    assertThat(root.child(0)).isEqualTo(errorNode);
   }
 
   private static class MyTest implements junit.framework.Test {
