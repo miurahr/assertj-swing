@@ -1,0 +1,30 @@
+name: Unit Tests and Quality checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  gradle:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: setup xvfb environment
+      run: sudo apt-get install -f -q xvfb libsm-dev libxrender1 libxext-dev libxtst-dev libxcb1-dev fonts-dejavu xfonts-base xfonts-scalable
+    - uses: actions/setup-java@v5
+      with:
+        java-version: 17
+        distribution: 'temurin'
+    - uses: gradle/actions/setup-gradle@v5
+      name: Setup Gradle
+      id: setup-gradle
+    - name: Run gradle build
+      run: ./gradlew -PenvIsCi --scan build
+      id: gradle
+    - name: "Add Build Scan URL to summary"
+      if: always() && steps.gradle.outputs.build-scan-url != ''
+      run: |
+        echo "### Gradle Build Scan" >> $GITHUB_STEP_SUMMARY
+        echo "${{ steps.gradle.outputs.build-scan-url }}" >> $GITHUB_STEP_SUMMARY
