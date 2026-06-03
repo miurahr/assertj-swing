@@ -47,12 +47,12 @@ public class AbstractComponentFixture_equals_hashCode_Test extends RobotBasedTes
     listOne.add(execute(() -> new JCheckBox()));
     listTwo.add(execute(() -> new JPanel()));
     EqualsVerifier.forClass(AbstractComponentFixture.class)
-            .withPrefabValues(ConcreteComponentFixture.class, one, two)
-            .withPrefabValues(Component.class, execute(() -> new JLabel()), execute(() -> new JButton()))
-            .withPrefabValues(Container.class, execute(Container::new), execute(Container::new))
-            .withPrefabValues(List.class, listOne, listTwo)
-            .usingGetClass().withIgnoredFields("robot", "myself", "driver")
-            .verify();
+                  .withPrefabValues(ConcreteComponentFixture.class, one, two)
+                  .withPrefabValues(Component.class, execute(() -> new JLabel()), execute(() -> new JButton()))
+                  .withPrefabValues(Container.class, execute(Container::new), execute(Container::new))
+                  .withPrefabValues(List.class, listOne, listTwo)
+                  .usingGetClass().withIgnoredFields("robot", "myself", "driver")
+                  .verify();
   }
 
   private static class ConcreteComponentFixture extends
