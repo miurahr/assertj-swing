@@ -42,7 +42,7 @@ The source code of this sample application can be found <a href="https://github.
 
 AssertJ Swing provides the class <code>FailOnThreadViolationRepaintManager</code> that forces a test to fail if
 access to GUI components is not performed on the EDT. You can find more details
-[Testing violations](assertj-swing-edt.html#testing-violations)
+[Testing violations](assertj-swing-edt.md#Testing-that-access-to-Swing-components-is-done-in-the-EDT)
 
 #### 2. Create a fixture for the frame
 
@@ -63,7 +63,7 @@ private FrameFixture window;
 
 @Before
 public void setUp() {
-  SimpleCopyApplication frame = GuiActionRunner.execute(() -&gt; new SimpleCopyApplication());
+  SimpleCopyApplication frame = GuiActionRunner.execute(() -> new SimpleCopyApplication());
   window = new FrameFixture(frame);
   window.show(); // shows the frame to test
 }
@@ -80,7 +80,7 @@ with the GUI in order to verify that such GUI behave as we expect. For our examp
 the text in the text field is copied to the label when the button is clicked:
 
 ```java
- class="language-java">@Test
+@Test
 public void shouldCopyTextInLabelWhenClickingButton() {
   window.textBox("textToCopy").enterText("Some random text");
   window.button("copyButton").click();
@@ -103,7 +103,7 @@ each test method releases the lock on such semaphore. To clean up resources simp
 
 
 ```java
- class="language-java">@After
+@After
 public void tearDown() {
   window.cleanUp();
 }
@@ -122,7 +122,7 @@ public class SimpleCopyApplicationTest {
 
   @Before
   public void setUp() {
-    SimpleCopyApplication frame = GuiActionRunner.execute(() -&gt; new SimpleCopyApplication());
+    SimpleCopyApplication frame = GuiActionRunner.execute(() -> new SimpleCopyApplication());
     window = new FrameFixture(frame);
     window.show(); // shows the frame to test
   }
@@ -155,7 +155,7 @@ public class SimpleCopyApplication_UseBaseTest extends AssertJSwingJUnitTestCase
 
   @Override
   protected void onSetUp() {
-    SimpleCopyApplication frame = GuiActionRunner.execute(() -&gt; new SimpleCopyApplication());
+    SimpleCopyApplication frame = GuiActionRunner.execute(() -> new SimpleCopyApplication());
     // IMPORTANT: note the call to 'robot()'
     // we must use the Robot from AssertJSwingJUnitTestCase
     window = new FrameFixture(robot(), frame);

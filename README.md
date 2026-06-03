@@ -13,6 +13,11 @@ This project is a fork of https://gitub.com/assertj/assertj-swing , that is a fo
 
 You can check a [manual at readthedocs.org](https://assertj-swing.readthedocs.io/en/latest/)
 
+## How to use
+
+See [Getting Started](https://assertj-swing.readthedocs.io/en/latest/getting_started.html)
+
+
 ## Why forked?
 
 AssertJ project forked the original project because a fest-swing project was stopped to maintain, and AssertJ project has been 
@@ -20,11 +25,7 @@ seeking a maintainer of assertj-swing project and stopped to maintain from Sep.,
 We got several warnings when using assertj-swing framework because of a lack of support for recent Java versions.
 
 There are several forked projects that have individual improvements, and there have not been integrated yet.
-OmegaT project uses assertj-swing-junit for testing GUI parts, especially for a vldocking library and plan to test OmegaT
-itself in the future.
-
-Because it is important to keep dependencies secure and catch up new Java versions, we decided to fork it
-and integrate efforts into our repository.
+Because it is important to keep dependencies secure and catch up new Java versions, I decided to fork it and integrate efforts.
 
 ## What are changed from the original?
 
