@@ -1,5 +1,5 @@
 site_name: AssertJ Swing test framework
-repo_url: https://codeberg.org/miurahr/assertj-swing
+repo_url: https://github.com/miurahr/assertj-swing
 docs_dir: docs
 
 nav:
