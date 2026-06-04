@@ -1,4 +1,6 @@
+import tokyo.northside.XvfbService
 import java.io.ByteArrayOutputStream
+import java.util.concurrent.atomic.AtomicReference
 
 plugins {
     `java-library`
@@ -87,27 +89,68 @@ fun isLinux(): Boolean = System.getProperty("os.name").lowercase().contains("lin
 
 // Function to check if Xvfb is installed
 fun isCommandAvailable(command: String): Boolean {
+    if (!isLinux()) {
+        return false
+    }
     return providers.exec {
         commandLine("sh", "-c", "command -v $command")
-    }.result.get().exitValue.equals(0)
+        setIgnoreExitValue(true)
+    }.result.get().exitValue == 0
+}
+val xvfbServiceName = "xvfbService-${project.path.replace(':', '-')}"
+val xvfbService = gradle.sharedServices.registerIfAbsent(
+    xvfbServiceName,
+    XvfbService::class
+) {}
+
+val display = when (project.name) {
+    "assertj-swing" -> "100"
+    "assertj-swing-junit" -> "101"
+    "assertj-swing-junit-jupiter" -> "102"
+    else -> null
 }
 
-project.extensions.extraProperties["xvfbPid"] = ""
-
 val testFinally by tasks.register("testFinally") {
+    usesService(xvfbService)
     outputs.upToDateWhen { false }
     doLast {
-        val pid = project.extensions.extraProperties["xvfbPid"] as String
-        if (pid.isNotBlank()) {
-            val injected = project.objects.newInstance<InjectedExecOps>()
-            println("Stopping virtual X server at PID $pid ...")
-            val outputStream = ByteArrayOutputStream()
-            injected.execOps.exec {
-                commandLine("sh", "-c", "kill $pid &")
-                standardOutput = outputStream
-                errorOutput = outputStream
+        val service = xvfbService.get()
+        if (service.hasPid()) {
+            val pid = service.getPid()
+            logger.lifecycle("Stopping virtual X server at PID $pid ...")
+            try {
+                val outputStream = ByteArrayOutputStream()
+                val errStream = ByteArrayOutputStream()
+                val injected = project.objects.newInstance<InjectedExecOps>()
+                val result = injected.execOps.exec {
+                    commandLine("sh", "-c", "kill $pid")
+                    standardOutput = outputStream
+                    errorOutput = errStream
+                    setIgnoreExitValue(true)
+                }
+                if (result.exitValue == 0) {
+                    logger.lifecycle("Stopped virtual X server at PID $pid successfully.")
+                } else if (result.exitValue == 1) {
+                    logger.warn("Virtual X server (PID: ${pid}) was not found (may have already stopped)")
+                } else {
+                    logger.warn("Failed to stop virtual X server: $errStream")
+                }
+                Thread.sleep(500)
+                try {
+                    injected.execOps.exec {
+                        commandLine("sh", "-c", "kill -9 $pid")
+                        standardOutput = ByteArrayOutputStream()
+                        errorOutput = ByteArrayOutputStream()
+                        setIgnoreExitValue(true)
+                    }
+                } catch (e: Exception) {
+                    logger.debug("Failed to kill virtual X server: ${e.message}")
+                }
+                service.clearPid()
+            } catch (e: Exception) {
+                logger.error("Error stopping virtual X server: ${e.message}")
             }
-            project.extensions.extraProperties["xvfbPid"] = ""
+
         }
     }
 }
@@ -116,33 +159,46 @@ tasks.test {
     onlyIf {
         isLinux() && isCommandAvailable("Xvfb") && isCommandAvailable("fluxbox")
     }
-    val display = when (project.name) {
-        "assertj-swing" -> "100"
-        "assertj-swing-junit" -> "101"
-        "assertj-swing-junit-jupiter" -> "102"
-        else -> null
-    }
+
+    val xvfbStarted = AtomicReference(false)
     doFirst {
         if (display != null) {
             val lockFile = File("/tmp/.X$display-lock")
             if (!lockFile.exists()) {
-                val outputStream = ByteArrayOutputStream()
-                val injected = project.objects.newInstance<InjectedExecOps>()
-                val res = injected.execOps.exec {
-                    commandLine("sh", "-c", "Xvfb :$display -screen 0 1280x1024x24 >>/dev/null 2>&1 & echo $!")
-                    standardOutput = outputStream
-                }.exitValue
-                if (res.equals(0)) {
-                    val xvfbPid = outputStream.toString().trim()
-                    project.extensions.extraProperties["xvfbPid"] = xvfbPid
-                    environment["DISPLAY"] = ":$display"
-                    injected.execOps.exec {
-                        commandLine("sh", "-c", "fluxbox -display :$display -log /dev/null >>/dev/null &")
+                try {
+                    val outputStream = ByteArrayOutputStream()
+                    val errStream = ByteArrayOutputStream()
+                    val injected = project.objects.newInstance<InjectedExecOps>()
+                    val result = injected.execOps.exec {
+                        commandLine("sh", "-c", "Xvfb :$display -screen 0 1280x1024x24 >>/dev/null 2>&1 & echo $!")
                         standardOutput = outputStream
-                        errorOutput = outputStream
+                        errorOutput = errStream
+                        setIgnoreExitValue(true)
                     }
-                    println("Virtual X server is started with DISPLAY :$display and PID: $xvfbPid")         }
+                    if (result.exitValue.equals(0)) {
+                        val xvfbPid = outputStream.toString().trim()
+                        if (xvfbPid.isNotEmpty() && xvfbPid.matches(Regex("[0-9]+"))) {
+                            val checkResult = injected.execOps.exec {
+                                commandLine("sh", "-c", "kill -0 $xvfbPid 2>/dev/null")
+                                setIgnoreExitValue(true)
+                            }
+                            if (checkResult.exitValue == 0) {
+                                xvfbService.get().setPid(xvfbPid)
+                                xvfbStarted.set(true)
+                                environment["DISPLAY"] = ":$display"
+                                injected.execOps.exec {
+                                    commandLine("sh", "-c", "fluxbox -display :$display -log /dev/null >>/dev/null &")
+                                    standardOutput = outputStream
+                                    errorOutput = outputStream
+                                }
+                                logger.lifecycle("Virtual X server is started with DISPLAY :$display and PID: $xvfbPid")
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    logger.error("Error starting virtual X server: ${e.message}")
                 }
+            }
         }
     }
     finalizedBy(testFinally)
