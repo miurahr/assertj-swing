@@ -1,8 +1,6 @@
-import org.gradle.api.services.BuildService
-import org.gradle.api.services.BuildServiceParameters
+import tokyo.northside.XvfbService
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.atomic.AtomicReference
-import java.util.concurrent.ConcurrentHashMap
 
 plugins {
     `java-library`
@@ -96,29 +94,8 @@ fun isCommandAvailable(command: String): Boolean {
     }
     return providers.exec {
         commandLine("sh", "-c", "command -v $command")
-        isIgnoreExitValue = true
+        setIgnoreExitValue(true)
     }.result.get().exitValue == 0
-}
-
-abstract class XvfbService : BuildService<BuildServiceParameters.None> {
-    private val pidByDisplay = ConcurrentHashMap<String, String>()
-
-    fun setPid(display: String, pid: String?) {
-        if (pid.isNullOrBlank()) {
-            pidByDisplay.remove(display)
-        } else {
-            pidByDisplay[display] = pid
-        }
-    }
-
-    fun getPid(display: String): String? {
-        return pidByDisplay[display]
-    }
-
-    fun hasPid(display: String): Boolean {
-        return pidByDisplay.containsKey(display)
-    }
-    fun allDisplays(): Set<String> = pidByDisplay.keys.toSet()
 }
 
 val xvfbService = gradle.sharedServices.registerIfAbsent(
