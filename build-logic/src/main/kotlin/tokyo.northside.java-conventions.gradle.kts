@@ -1,7 +1,9 @@
 import org.gradle.api.services.BuildService
 import org.gradle.api.services.BuildServiceParameters
+import org.gradle.internal.dispatch.Dispatch
 import java.util.concurrent.atomic.AtomicReference
 import java.io.ByteArrayOutputStream
+import java.util.concurrent.ConcurrentHashMap
 
 plugins {
     `java-library`
@@ -99,63 +101,78 @@ fun isCommandAvailable(command: String): Boolean {
 }
 
 abstract class XvfbService : BuildService<BuildServiceParameters.None> {
-    private val pidRef = AtomicReference("")
+    private val pidByDisplay = ConcurrentHashMap<String, String>()
 
-    fun setPid(pid: String?) {
-        pidRef.set(pid ?: "")
+    fun setPid(display: String, pid: String?) {
+        if (pid.isNullOrBlank()) {
+            pidByDisplay.remove(display)
+        } else {
+            pidByDisplay[display] = pid
+        }
     }
 
-    fun getPid(): String {
-        return pidRef.get() ?: ""
+    fun getPid(display: String): String? {
+        return pidByDisplay[display]
     }
 
-    fun hasPid(): Boolean {
-        return !pidRef.get().isNullOrEmpty()
+    fun hasPid(display: String): Boolean {
+        return pidByDisplay.containsKey(display)
     }
+    fun allDisplays(): Set<String> = pidByDisplay.keys.toSet()
 }
+
 val xvfbService = gradle.sharedServices.registerIfAbsent(
     "xvfbService",
     XvfbService::class
 ) {}
 
+val display = when (project.name) {
+    "assertj-swing" -> "100"
+    "assertj-swing-junit" -> "101"
+    "assertj-swing-junit-jupiter" -> "102"
+    else -> null
+}
+
 val testFinally by tasks.register("testFinally") {
     outputs.upToDateWhen { false }
     doLast {
         val service = xvfbService.get()
-        if (service.hasPid()) {
-            val pid = service.getPid()
-            logger.lifecycle("Stopping virtual X server at PID $pid ...")
-            try {
-                val outputStream = ByteArrayOutputStream()
-                val errStream = ByteArrayOutputStream()
-                val injected = project.objects.newInstance<InjectedExecOps>()
-                val result = injected.execOps.exec {
-                    commandLine("sh", "-c", "kill $pid &")
-                    standardOutput = outputStream
-                    errorOutput = errStream
-                    setIgnoreExitValue(true)
-                }
-                if (result.exitValue == 0) {
-                    logger.lifecycle("Stopped virtual X server at PID $pid successfully.")
-                } else if (result.exitValue == 1) {
-                    logger.warn("Virtual X server (PID: ${pid}) was not found (may have already stopped)")
-                } else {
-                    logger.warn("Failed to stop virtual X server: $errStream")
-                }
-                Thread.sleep(500)
+        display?.let {
+            if (service.hasPid(it)) {
+                val pid = service.getPid(display)
+                logger.lifecycle("Stopping virtual X server at PID $pid ...")
                 try {
-                    injected.execOps.exec {
-                        commandLine("sh", "-c", "kill -9 $pid &")
-                        standardOutput = ByteArrayOutputStream()
-                        errorOutput = ByteArrayOutputStream()
+                    val outputStream = ByteArrayOutputStream()
+                    val errStream = ByteArrayOutputStream()
+                    val injected = project.objects.newInstance<InjectedExecOps>()
+                    val result = injected.execOps.exec {
+                        commandLine("sh", "-c", "kill $pid")
+                        standardOutput = outputStream
+                        errorOutput = errStream
                         setIgnoreExitValue(true)
                     }
+                    if (result.exitValue == 0) {
+                        logger.lifecycle("Stopped virtual X server at PID $pid successfully.")
+                    } else if (result.exitValue == 1) {
+                        logger.warn("Virtual X server (PID: ${pid}) was not found (may have already stopped)")
+                    } else {
+                        logger.warn("Failed to stop virtual X server: $errStream")
+                    }
+                    Thread.sleep(500)
+                    try {
+                        injected.execOps.exec {
+                            commandLine("sh", "-c", "kill -9 $pid")
+                            standardOutput = ByteArrayOutputStream()
+                            errorOutput = ByteArrayOutputStream()
+                            setIgnoreExitValue(true)
+                        }
+                    } catch (e: Exception) {
+                        logger.debug("Failed to kill virtual X server: ${e.message}")
+                    }
+                    service.setPid(display, null)
                 } catch (e: Exception) {
-                    logger.debug("Failed to kill virtual X server: ${e.message}")
+                    logger.error("Error stopping virtual X server: ${e.message}")
                 }
-                service.setPid("")
-            } catch (e: Exception) {
-                logger.error("Error stopping virtual X server: ${e.message}")
             }
         }
     }
@@ -166,12 +183,7 @@ tasks.test {
     onlyIf {
         isLinux() && isCommandAvailable("Xvfb") && isCommandAvailable("fluxbox")
     }
-    val display = when (project.name) {
-        "assertj-swing" -> "100"
-        "assertj-swing-junit" -> "101"
-        "assertj-swing-junit-jupiter" -> "102"
-        else -> null
-    }
+
     val xvfbStarted = AtomicReference(false)
     doFirst {
         if (display != null) {
@@ -195,7 +207,7 @@ tasks.test {
                                 setIgnoreExitValue(true)
                             }
                             if (checkResult.exitValue == 0) {
-                                xvfbService.get().setPid(xvfbPid)
+                                xvfbService.get().setPid(display, xvfbPid)
                                 xvfbStarted.set(true)
                                 environment["DISPLAY"] = ":$display"
                                 injected.execOps.exec {
@@ -203,9 +215,9 @@ tasks.test {
                                     standardOutput = outputStream
                                     errorOutput = outputStream
                                 }
+                                logger.lifecycle("Virtual X server is started with DISPLAY :$display and PID: $xvfbPid")
                             }
                         }
-                        logger.lifecycle("Virtual X server is started with DISPLAY :$display and PID: $xvfbPid")
                     }
                 } catch (e: Exception) {
                     logger.error("Error starting virtual X server: ${e.message}")
