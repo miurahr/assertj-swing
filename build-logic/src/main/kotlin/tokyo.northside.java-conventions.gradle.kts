@@ -97,9 +97,9 @@ fun isCommandAvailable(command: String): Boolean {
         setIgnoreExitValue(true)
     }.result.get().exitValue == 0
 }
-
+val xvfbServiceName = "xvfbService-${project.path.replace(':', '-')}"
 val xvfbService = gradle.sharedServices.registerIfAbsent(
-    "xvfbService",
+    xvfbServiceName,
     XvfbService::class
 ) {}
 
@@ -111,46 +111,46 @@ val display = when (project.name) {
 }
 
 val testFinally by tasks.register("testFinally") {
+    usesService(xvfbService)
     outputs.upToDateWhen { false }
     doLast {
         val service = xvfbService.get()
-        display?.let {
-            if (service.hasPid(it)) {
-                val pid = service.getPid(display)
-                logger.lifecycle("Stopping virtual X server at PID $pid ...")
+        if (service.hasPid()) {
+            val pid = service.getPid()
+            logger.lifecycle("Stopping virtual X server at PID $pid ...")
+            try {
+                val outputStream = ByteArrayOutputStream()
+                val errStream = ByteArrayOutputStream()
+                val injected = project.objects.newInstance<InjectedExecOps>()
+                val result = injected.execOps.exec {
+                    commandLine("sh", "-c", "kill $pid")
+                    standardOutput = outputStream
+                    errorOutput = errStream
+                    setIgnoreExitValue(true)
+                }
+                if (result.exitValue == 0) {
+                    logger.lifecycle("Stopped virtual X server at PID $pid successfully.")
+                } else if (result.exitValue == 1) {
+                    logger.warn("Virtual X server (PID: ${pid}) was not found (may have already stopped)")
+                } else {
+                    logger.warn("Failed to stop virtual X server: $errStream")
+                }
+                Thread.sleep(500)
                 try {
-                    val outputStream = ByteArrayOutputStream()
-                    val errStream = ByteArrayOutputStream()
-                    val injected = project.objects.newInstance<InjectedExecOps>()
-                    val result = injected.execOps.exec {
-                        commandLine("sh", "-c", "kill $pid")
-                        standardOutput = outputStream
-                        errorOutput = errStream
+                    injected.execOps.exec {
+                        commandLine("sh", "-c", "kill -9 $pid")
+                        standardOutput = ByteArrayOutputStream()
+                        errorOutput = ByteArrayOutputStream()
                         setIgnoreExitValue(true)
                     }
-                    if (result.exitValue == 0) {
-                        logger.lifecycle("Stopped virtual X server at PID $pid successfully.")
-                    } else if (result.exitValue == 1) {
-                        logger.warn("Virtual X server (PID: ${pid}) was not found (may have already stopped)")
-                    } else {
-                        logger.warn("Failed to stop virtual X server: $errStream")
-                    }
-                    Thread.sleep(500)
-                    try {
-                        injected.execOps.exec {
-                            commandLine("sh", "-c", "kill -9 $pid")
-                            standardOutput = ByteArrayOutputStream()
-                            errorOutput = ByteArrayOutputStream()
-                            setIgnoreExitValue(true)
-                        }
-                    } catch (e: Exception) {
-                        logger.debug("Failed to kill virtual X server: ${e.message}")
-                    }
-                    service.setPid(display, null)
                 } catch (e: Exception) {
-                    logger.error("Error stopping virtual X server: ${e.message}")
+                    logger.debug("Failed to kill virtual X server: ${e.message}")
                 }
+                service.clearPid()
+            } catch (e: Exception) {
+                logger.error("Error stopping virtual X server: ${e.message}")
             }
+
         }
     }
 }
@@ -183,7 +183,7 @@ tasks.test {
                                 setIgnoreExitValue(true)
                             }
                             if (checkResult.exitValue == 0) {
-                                xvfbService.get().setPid(display, xvfbPid)
+                                xvfbService.get().setPid(xvfbPid)
                                 xvfbStarted.set(true)
                                 environment["DISPLAY"] = ":$display"
                                 injected.execOps.exec {

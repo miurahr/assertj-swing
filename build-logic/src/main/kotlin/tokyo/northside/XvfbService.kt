@@ -2,25 +2,24 @@ package tokyo.northside
 
 import org.gradle.api.services.BuildService
 import org.gradle.api.services.BuildServiceParameters
-import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicReference
 
 abstract class XvfbService : BuildService<BuildServiceParameters.None> {
-    private val pidByDisplay = ConcurrentHashMap<String, String>()
+    private val pidRef = AtomicReference("")
 
-    fun setPid(display: String, pid: String?) {
-        if (pid.isNullOrBlank()) {
-            pidByDisplay.remove(display)
-        } else {
-            pidByDisplay[display] = pid
-        }
+    fun setPid(pid: String?) {
+        pidRef.set(pid.orEmpty())
     }
 
-    fun getPid(display: String): String? {
-        return pidByDisplay[display]
+    fun getPid(): String {
+        return pidRef.get().orEmpty()
     }
 
-    fun hasPid(display: String): Boolean {
-        return pidByDisplay.containsKey(display)
+    fun hasPid(): Boolean {
+        return getPid().isNotBlank()
     }
-    fun allDisplays(): Set<String> = pidByDisplay.keys.toSet()
+
+    fun clearPid() {
+        pidRef.set("")
+    }
 }
