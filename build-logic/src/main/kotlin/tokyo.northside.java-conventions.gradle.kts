@@ -1,8 +1,7 @@
 import org.gradle.api.services.BuildService
 import org.gradle.api.services.BuildServiceParameters
-import org.gradle.internal.dispatch.Dispatch
-import java.util.concurrent.atomic.AtomicReference
 import java.io.ByteArrayOutputStream
+import java.util.concurrent.atomic.AtomicReference
 import java.util.concurrent.ConcurrentHashMap
 
 plugins {
@@ -97,7 +96,8 @@ fun isCommandAvailable(command: String): Boolean {
     }
     return providers.exec {
         commandLine("sh", "-c", "command -v $command")
-    }.result.get().exitValue.equals(0)
+        isIgnoreExitValue = true
+    }.result.get().exitValue == 0
 }
 
 abstract class XvfbService : BuildService<BuildServiceParameters.None> {
@@ -177,7 +177,6 @@ val testFinally by tasks.register("testFinally") {
         }
     }
 }
-
 
 tasks.test {
     onlyIf {
