@@ -203,7 +203,7 @@ tasks.test {
                         val xvfbPid = outputStream.toString().trim()
                         if (xvfbPid.isNotEmpty() && xvfbPid.matches(Regex("[0-9]+"))) {
                             val checkResult = injected.execOps.exec {
-                                commandLine("sh", "-c", "kill -0 xvfbPid 2>/dev/null")
+                                commandLine("sh", "-c", "kill -0 $xvfbPid 2>/dev/null")
                                 setIgnoreExitValue(true)
                             }
                             if (checkResult.exitValue == 0) {
